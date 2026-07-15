@@ -451,6 +451,16 @@ The `knowledge-base/` directory is simultaneously an **Obsidian vault** (Section
 
 The structure may be refined at the planning stage — with the user's approval.
 
+### 11.1. Source of truth about the base composition
+
+The **filesystem is the source of truth about what the base contains** — the directories `versions/`, `diffs/`, `troubleshooting/`, and `reports/`, together with the YAML source-of-truth files inside them. `INDEX.md` and the `README` MOCs are a **derived navigation layer**: a convenience view, not an authority.
+
+On any divergence between the navigation layer and the filesystem, the **filesystem wins**, and the divergence is treated as a **defect of the index** to be fixed (never the other way around). Consequently:
+
+- updating `INDEX.md` and the affected `README`s is the **closing step** of any change to the base;
+- the consistency validator `scripts/validate_kb.py` (Section 12, Stage 8) must pass before a change is considered complete;
+- in reference mode, questions about *what the base contains* are answered from the filesystem, not from `INDEX.md` alone (Section 15.2).
+
 ---
 
 ## 12. Work Stages for the First Version (v2.29.1)
@@ -482,7 +492,7 @@ Recommended stage sequence (every stage starts with a plan and approval):
 
 **Stage 7. Troubleshooting.** Select merged PRs and confirmed Issues for `v2.29.1` per the rules of Section 10.
 
-**Stage 8. Validation.** Verify that every item contains the mandatory metadata; verify the completeness of the Ansible tag reference; build `INDEX.md`.
+**Stage 8. Validation.** Verify that every item contains the mandatory metadata; verify the completeness of the Ansible tag reference; build `INDEX.md`. Then run `scripts/validate_kb.py` and resolve every reported divergence before the version is considered added — the script treats the filesystem as authoritative (Section 11.1) and fails on any index/filesystem inconsistency (missing/phantom versions or diffs, stale counters, broken wiki-links, version mixing, missing metadata).
 
 After v2.29.1 is complete — proceed to `v2.30.0`, then `v2.31.0` (the repository's current Quick Start already uses the v2.31.0 image), and onward through sequential stable tags.
 
@@ -532,7 +542,7 @@ If the user's message is a **question about Kubespray** (variables, run tags, co
    - if the version is stated in the question — use its slice;
    - if not stated — use the **latest indexed version** from `INDEX.md` and explicitly say so in the answer;
    - if the requested version is not in the base — report this and offer the nearest indexed one.
-2. Start with `INDEX.md`, then move to the `versions/<tag>/` slice — first the structured references (`variables/`, `ansible-tags.yaml`, `components.yaml`), then `docs/`, `release-notes.md`, `troubleshooting/`.
+2. Start with `INDEX.md`, then move to the `versions/<tag>/` slice — first the structured references (`variables/`, `ansible-tags.yaml`, `components.yaml`), then `docs/`, `release-notes.md`, `troubleshooting/`. `INDEX.md` is a navigation layer, not the source of truth about composition: when the question is *which versions are indexed* (or whether a diff/slice exists), confirm it by listing the filesystem (`versions/`, `diffs/`), which is authoritative per Section 11.1 — do not rely on `INDEX.md` alone.
 3. If the answer is not in the base — say so honestly. It is permitted to suggest checking the tag's code in the repository, but it is **forbidden to present the model's training knowledge as knowledge base content**.
 
 ### 15.3. Answer requirements
@@ -588,7 +598,8 @@ The exact headless-mode flags and allowed tools (permissions) are agreed upon du
    - `https://github.com/kubernetes-sigs/kubespray/tags`
    - `https://github.com/kubernetes-sigs/kubespray/releases`
 2. Checks for new merged PRs and confirmed Issues affecting **already indexed versions** (per the rules of Section 10).
-3. Produces a report `reports/nightly/<YYYY-MM-DD>.md` (written in Russian) with the following structure:
+3. Runs the consistency validator `scripts/validate_kb.py` (read-only) and records any index/filesystem divergence in the report — this does not edit the base (Section 16.3); it only surfaces defects of the navigation layer for the user to fix in an interactive session.
+4. Produces a report `reports/nightly/<YYYY-MM-DD>.md` (written in Russian) with the following structure:
 
 ```markdown
 ---
@@ -607,6 +618,9 @@ retrieved_at: 2026-07-14
 
 ## Кандидаты в unversioned/
 (материалы без подтверждённой версии)
+
+## Консистентность базы (validate_kb.py)
+(результат прогона валидатора: PASS или список расхождений индекса с ФС; если есть — это дефекты навигационного слоя, требующие правки в интерактивной сессии)
 
 ## Требуется решение пользователя
 (список действий, ожидающих одобрения)
