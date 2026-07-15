@@ -1,0 +1,999 @@
+project: kubespray
+kubespray_version: v2.29.1
+git_commit: 0c6a295
+source_type: inventory
+source_paths:
+  - inventory/sample/group_vars/all/aws.yml
+  - inventory/sample/group_vars/all/azure.yml
+  - inventory/sample/group_vars/all/gcp.yml
+  - inventory/sample/group_vars/all/hcloud.yml
+  - inventory/sample/group_vars/all/huaweicloud.yml
+  - inventory/sample/group_vars/all/oci.yml
+  - inventory/sample/group_vars/all/openstack.yml
+  - inventory/sample/group_vars/all/upcloud.yml
+  - inventory/sample/group_vars/all/vsphere.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.29.1
+retrieved_at: 2026-07-14
+topics: [inventory, cloud-providers]
+reliability: authoritative
+# Примечание: ВСЕ переменные во всех девяти файлах закомментированы —
+# это примеры-заготовки для пользователя. Поэтому is_set: false у всех.
+variables:
+
+  # --- aws.yml ---
+  - name: aws_ebs_csi_enabled
+    sample_value: "true"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/aws.yml
+    provider: aws
+    comment: "Включить AWS EBS CSI Driver для провижининга томов"
+  - name: aws_ebs_csi_enable_volume_scheduling
+    sample_value: "true"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/aws.yml
+    provider: aws
+    comment: "Включить планирование томов (topology-aware)"
+  - name: aws_ebs_csi_enable_volume_snapshot
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/aws.yml
+    provider: aws
+    comment: "Включить поддержку снапшотов томов"
+  - name: aws_ebs_csi_enable_volume_resizing
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/aws.yml
+    provider: aws
+    comment: "Включить изменение размера томов"
+  - name: aws_ebs_csi_controller_replicas
+    sample_value: "1"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/aws.yml
+    provider: aws
+    comment: "Число реплик контроллера EBS CSI"
+  - name: aws_ebs_csi_plugin_image_tag
+    sample_value: "latest"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/aws.yml
+    provider: aws
+    comment: "Тег образа плагина EBS CSI"
+  - name: aws_ebs_csi_extra_volume_tags
+    sample_value: "Owner=owner,Team=team,Environment=environment'"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/aws.yml
+    provider: aws
+    comment: "Дополнительные теги, навешиваемые на создаваемые тома EBS (в примере опечатка — незакрытая кавычка)"
+
+  # --- azure.yml ---
+  - name: azure_cloud
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Имя облака Azure (например AzurePublicCloud)"
+  - name: azure_tenant_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "ID тенанта Azure AD"
+  - name: azure_subscription_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "ID подписки Azure"
+  - name: azure_aad_client_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Client ID сервис-принципала Azure AD"
+  - name: azure_aad_client_secret
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Client secret сервис-принципала Azure AD"
+  - name: azure_resource_group
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Resource group, где размещены ресурсы кластера"
+  - name: azure_location
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Регион (location) Azure"
+  - name: azure_subnet_name
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Имя подсети"
+  - name: azure_security_group_name
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Имя network security group"
+  - name: azure_security_group_resource_group
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Resource group для security group"
+  - name: azure_vnet_name
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Имя виртуальной сети (VNet)"
+  - name: azure_vnet_resource_group
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Resource group для VNet"
+  - name: azure_route_table_name
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Имя таблицы маршрутизации"
+  - name: azure_route_table_resource_group
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Resource group для таблицы маршрутизации"
+  - name: azure_vmtype
+    sample_value: "standard"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Тип ВМ: поддерживаются значения 'standard' или 'vmss'"
+  - name: azure_csi_tenant_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Tenant ID для Azure Disk CSI"
+  - name: azure_csi_subscription_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Subscription ID для Azure Disk CSI"
+  - name: azure_csi_aad_client_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "AAD client ID для Azure Disk CSI"
+  - name: azure_csi_aad_client_secret
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "AAD client secret для Azure Disk CSI"
+  - name: azure_csi_location
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Регион для Azure Disk CSI"
+  - name: azure_csi_resource_group
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Resource group для Azure Disk CSI"
+  - name: azure_csi_vnet_name
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Имя VNet для Azure Disk CSI"
+  - name: azure_csi_vnet_resource_group
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Resource group VNet для Azure Disk CSI"
+  - name: azure_csi_subnet_name
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Имя подсети для Azure Disk CSI"
+  - name: azure_csi_security_group_name
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Имя security group для Azure Disk CSI"
+  - name: azure_csi_use_instance_metadata
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Использовать instance metadata service вместо явных креденшелов"
+  - name: azure_csi_tags
+    sample_value: "Owner=owner,Team=team,Environment=environment'"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Теги для ресурсов Azure Disk CSI (в примере опечатка — незакрытая кавычка)"
+  - name: azure_csi_enabled
+    sample_value: "true"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Включить Azure Disk CSI"
+  - name: azure_csi_controller_replicas
+    sample_value: "1"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Число реплик контроллера Azure Disk CSI"
+  - name: azure_csi_plugin_image_tag
+    sample_value: "latest"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/azure.yml
+    provider: azure
+    comment: "Тег образа плагина Azure Disk CSI"
+
+  # --- gcp.yml ---
+  - name: gcp_pd_csi_sa_cred_file
+    sample_value: "/my/safe/credentials/directory/cloud-sa.json"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/gcp.yml
+    provider: gcp
+    comment: "Путь к файлу с креденшелами сервис-аккаунта GCP"
+  - name: gcp_pd_csi_enabled
+    sample_value: "true"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/gcp.yml
+    provider: gcp
+    comment: "Включить GCP Persistent Disk CSI Driver"
+  - name: gcp_pd_csi_controller_replicas
+    sample_value: "1"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/gcp.yml
+    provider: gcp
+    comment: "Число реплик контроллера GCP PD CSI"
+  - name: gcp_pd_csi_driver_image_tag
+    sample_value: "v0.7.0-gke.0"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/gcp.yml
+    provider: gcp
+    comment: "Тег образа драйвера GCP PD CSI"
+
+  # --- hcloud.yml ---
+  - name: external_hcloud_cloud
+    sample_value: "commented (dict)"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Словарь настроек внешнего Hetzner Cloud Controller Manager (см. вложенные ключи ниже)"
+  - name: external_hcloud_cloud.hcloud_api_token
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "API-токен Hetzner Cloud"
+  - name: external_hcloud_cloud.token_secret_name
+    sample_value: "hcloud"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Имя Kubernetes secret с токеном"
+  - name: external_hcloud_cloud.with_networks
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Использовать CCM с поддержкой networks"
+  - name: external_hcloud_cloud.network_name
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Имя/ID сети (при самостоятельном управлении сетью)"
+  - name: external_hcloud_cloud.service_account_name
+    sample_value: "cloud-controller-manager"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Имя сервис-аккаунта для CCM"
+  - name: external_hcloud_cloud.controller_image_tag
+    sample_value: "latest"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Тег образа Hetzner CCM"
+  - name: external_hcloud_cloud.controller_extra_args
+    sample_value: "{}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Дополнительные аргументы для daemonset CCM"
+  - name: external_hcloud_cloud.load_balancers_location
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Локация балансировщиков (взаимоисключающа с network_zone)"
+  - name: external_hcloud_cloud.load_balancers_network_zone
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Сетевая зона балансировщиков"
+  - name: external_hcloud_cloud.load_balancers_disable_private_ingress
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Отключить приватный ingress (true при IPVS-плагинах)"
+  - name: external_hcloud_cloud.load_balancers_use_private_ip
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Использовать приватный IP (true при приватных сетях)"
+  - name: external_hcloud_cloud.load_balancers_enabled
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Включить управление балансировщиками"
+  - name: external_hcloud_cloud.network_routes_enabled
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/hcloud.yml
+    provider: hcloud
+    comment: "Включить управление сетевыми маршрутами"
+
+  # --- huaweicloud.yml ---
+  - name: external_huaweicloud_lbaas_subnet_id
+    sample_value: "Neutron subnet ID to create LBaaS VIP"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "Neutron subnet ID для создания LBaaS VIP"
+  - name: external_huaweicloud_lbaas_network_id
+    sample_value: "Neutron network ID to create LBaaS VIP"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "Neutron network ID для создания LBaaS VIP"
+  - name: external_huaweicloud_auth_url
+    sample_value: "{{ lookup('env','OS_AUTH_URL')  }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "URL Keystone API (по умолчанию из переменной окружения OS_AUTH_URL)"
+  - name: external_huaweicloud_access_key
+    sample_value: "{{ lookup('env','OS_ACCESS_KEY')  }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "Access key (по умолчанию из OS_ACCESS_KEY)"
+  - name: external_huaweicloud_secret_key
+    sample_value: "{{ lookup('env','OS_SECRET_KEY')  }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "Secret key (по умолчанию из OS_SECRET_KEY)"
+  - name: external_huaweicloud_region
+    sample_value: "{{ lookup('env','OS_REGION_NAME')  }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "Регион (по умолчанию из OS_REGION_NAME)"
+  - name: external_huaweicloud_project_id
+    sample_value: "{{ lookup('env','OS_TENANT_ID')| default(lookup('env','OS_PROJECT_ID'),true) }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "Project ID (по умолчанию из OS_TENANT_ID или OS_PROJECT_ID)"
+  - name: external_huaweicloud_cloud
+    sample_value: "{{ lookup('env','OS_CLOUD') }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "Имя облака (по умолчанию из OS_CLOUD)"
+  - name: external_huawei_cloud_controller_image_repo
+    sample_value: "swr.ap-southeast-1.myhuaweicloud.com"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "Репозиторий образа Huawei Cloud Controller"
+  - name: external_huawei_cloud_controller_image_tag
+    sample_value: "v0.26.8"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/huaweicloud.yml
+    provider: huaweicloud
+    comment: "Тег образа Huawei Cloud Controller"
+
+  # --- oci.yml ---
+  - name: external_oracle_auth_region
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Регион для внешнего OCI Cloud Controller Manager"
+  - name: external_oracle_auth_tenancy
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID tenancy для внешнего CCM"
+  - name: external_oracle_auth_user
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID пользователя для внешнего CCM"
+  - name: external_oracle_auth_key
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Приватный ключ API для внешнего CCM"
+  - name: external_oracle_auth_passphrase
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Passphrase приватного ключа"
+  - name: external_oracle_auth_fingerprint
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Fingerprint ключа API"
+  - name: external_oracle_auth_use_instance_principals
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Использовать instance principals вместо явных креденшелов"
+  - name: external_oracle_compartment
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID compartment"
+  - name: external_oracle_vcn
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID виртуальной облачной сети (VCN)"
+  - name: external_oracle_load_balancer_subnet1
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID первой подсети для балансировщика"
+  - name: external_oracle_load_balancer_subnet2
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID второй подсети для балансировщика"
+  - name: external_oracle_load_balancer_security_list_management_mode
+    sample_value: "All"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Режим управления security list для балансировщика"
+  - name: external_oracle_load_balancer_security_lists
+    sample_value: "{}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Явное сопоставление security list для балансировщика"
+  - name: external_oracle_ratelimiter_qps_read
+    sample_value: "20.0"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "QPS чтения для rate limiter"
+  - name: external_oracle_ratelimiter_bucket_read
+    sample_value: "5"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Размер bucket чтения для rate limiter"
+  - name: external_oracle_ratelimiter_qps_write
+    sample_value: "20.0"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "QPS записи для rate limiter"
+  - name: external_oracle_ratelimiter_bucket_write
+    sample_value: "5"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Размер bucket записи для rate limiter"
+  - name: external_oracle_cloud_controller_image_repo
+    sample_value: "ghcr.io/oracle/cloud-provider-oci"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Репозиторий образа внешнего OCI CCM"
+  - name: external_oracle_cloud_controller_image_tag
+    sample_value: "v1.29.0"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Тег образа внешнего OCI CCM"
+  - name: oci_private_key
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Приватный ключ (устаревший in-tree OCI провайдер)"
+  - name: oci_region_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "ID региона OCI"
+  - name: oci_tenancy_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID tenancy"
+  - name: oci_user_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID пользователя"
+  - name: oci_user_fingerprint
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Fingerprint ключа пользователя"
+  - name: oci_compartment_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID compartment"
+  - name: oci_vnc_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID VCN"
+  - name: oci_subnet1_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID первой подсети"
+  - name: oci_subnet2_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "OCID второй подсети"
+  - name: oci_security_list_management
+    sample_value: "All"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Режим управления security list"
+  - name: oci_security_lists
+    sample_value: "commented (mapping subnet ocid -> security list ocid)"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Сопоставление подсетей и security list, если контроллер управляет ими вручную"
+  - name: oci_use_instance_principals
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Использовать instance principals (тогда region/tenancy/user/key не нужны)"
+  - name: oci_rate_limit
+    sample_value: "commented (dict)"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Управление ограничением частоты запросов OCI (вложенные ключи ниже)"
+  - name: oci_rate_limit.rate_limit_qps_read
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "QPS чтения"
+  - name: oci_rate_limit.rate_limit_qps_write
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "QPS записи"
+  - name: oci_rate_limit.rate_limit_bucket_read
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Bucket чтения"
+  - name: oci_rate_limit.rate_limit_bucket_write
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Bucket записи"
+  - name: oci_cloud_controller_pull_source
+    sample_value: "(default iad.ocir.io/oracle/cloud-provider-oci)"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Источник образа cloud controller (зеркало)"
+  - name: oci_cloud_controller_pull_secret
+    sample_value: "(name of pull secret to use if you define your own mirror above)"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/oci.yml
+    provider: oci
+    comment: "Имя pull secret для собственного зеркала образов"
+
+  # --- openstack.yml ---
+  - name: openstack_blockstorage_ignore_volume_az
+    sample_value: "yes"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Игнорировать AZ томов Cinder (если автоопределение версии не сработало)"
+  - name: openstack_lbaas_enabled
+    sample_value: "True"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Включить встроенный (in-tree) LBaaSv2"
+  - name: openstack_lbaas_subnet_id
+    sample_value: "Neutron subnet ID (not network ID) to create LBaaS VIP"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Neutron subnet ID для создания LBaaS VIP"
+  - name: openstack_lbaas_floating_network_id
+    sample_value: "Neutron network ID (not subnet ID) to get floating IP from, disabled by default"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Neutron network ID для автоматического выделения floating IP"
+  - name: openstack_lbaas_use_octavia
+    sample_value: "False"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Использовать Octavia вместо Neutron LBaaS"
+  - name: openstack_lbaas_method
+    sample_value: "ROUND_ROBIN"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Алгоритм балансировки"
+  - name: openstack_lbaas_provider
+    sample_value: "haproxy"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Провайдер LBaaS"
+  - name: openstack_lbaas_create_monitor
+    sample_value: "yes"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Создавать health monitor"
+  - name: openstack_lbaas_monitor_delay
+    sample_value: "1m"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Интервал проверок health monitor"
+  - name: openstack_lbaas_monitor_timeout
+    sample_value: "30s"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Таймаут проверки health monitor"
+  - name: openstack_lbaas_monitor_max_retries
+    sample_value: "3"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Число повторов health monitor"
+  - name: external_openstack_lbaas_enabled
+    sample_value: "true"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Включить LBaaS во внешнем OpenStack Cloud Controller"
+  - name: external_openstack_lbaas_floating_network_id
+    sample_value: "Neutron network ID to get floating IP from"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Neutron network ID для floating IP (внешний CCM)"
+  - name: external_openstack_lbaas_floating_subnet_id
+    sample_value: "Neutron subnet ID to get floating IP from"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Neutron subnet ID для floating IP (внешний CCM)"
+  - name: external_openstack_lbaas_method
+    sample_value: "ROUND_ROBIN"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Алгоритм балансировки (внешний CCM)"
+  - name: external_openstack_lbaas_provider
+    sample_value: "amphora"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Провайдер LBaaS (внешний CCM)"
+  - name: external_openstack_lbaas_subnet_id
+    sample_value: "Neutron subnet ID to create LBaaS VIP"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Neutron subnet ID для создания LBaaS VIP (внешний CCM)"
+  - name: external_openstack_lbaas_network_id
+    sample_value: "Neutron network ID to create LBaaS VIP"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Neutron network ID для создания LBaaS VIP (внешний CCM)"
+  - name: external_openstack_lbaas_manage_security_groups
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Управлять security group для LBaaS"
+  - name: external_openstack_lbaas_create_monitor
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Создавать health monitor (внешний CCM)"
+  - name: external_openstack_lbaas_monitor_delay
+    sample_value: "5s"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Интервал проверок health monitor (внешний CCM)"
+  - name: external_openstack_lbaas_monitor_max_retries
+    sample_value: "1"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Число повторов health monitor (внешний CCM)"
+  - name: external_openstack_lbaas_monitor_timeout
+    sample_value: "3s"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Таймаут проверки health monitor (внешний CCM)"
+  - name: external_openstack_lbaas_internal_lb
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Создавать внутренний (internal) балансировщик"
+  - name: external_openstack_network_ipv6_disabled
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Отключить IPv6 в сети"
+  - name: external_openstack_network_internal_networks
+    sample_value: "[]"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Список внутренних сетей"
+  - name: external_openstack_network_public_networks
+    sample_value: "[]"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Список публичных сетей"
+  - name: external_openstack_metadata_search_order
+    sample_value: "configDrive,metadataService"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Порядок поиска метаданных инстанса"
+  - name: external_openstack_application_credential_name
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Имя application credential для Keystone (приоритетнее username/password)"
+  - name: external_openstack_application_credential_id
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "ID application credential"
+  - name: external_openstack_application_credential_secret
+    sample_value: "commented"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Secret application credential"
+  - name: cinder_csi_attacher_image_tag
+    sample_value: "v4.4.2"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Тег образа csi-attacher для Cinder CSI"
+  - name: cinder_csi_provisioner_image_tag
+    sample_value: "v3.6.2"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Тег образа csi-provisioner для Cinder CSI"
+  - name: cinder_csi_snapshotter_image_tag
+    sample_value: "v6.3.2"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Тег образа csi-snapshotter для Cinder CSI"
+  - name: cinder_csi_resizer_image_tag
+    sample_value: "v1.9.2"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Тег образа csi-resizer для Cinder CSI"
+  - name: cinder_csi_livenessprobe_image_tag
+    sample_value: "v2.11.0"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Тег образа livenessprobe для Cinder CSI"
+  - name: cinder_csi_enabled
+    sample_value: "true"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Включить Cinder CSI для провижининга томов"
+  - name: cinder_csi_controller_replicas
+    sample_value: "1"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Число реплик контроллера Cinder CSI"
+  - name: storage_classes
+    sample_value: "commented (list; пример: cinder-csi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/openstack.yml
+    provider: openstack
+    comment: "Список StorageClass для Cinder CSI (name, provisioner, mount_options, parameters, reclaim_policy, volume_binding_mode)"
+
+  # --- upcloud.yml ---
+  - name: upcloud_csi_enabled
+    sample_value: "true"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/upcloud.yml
+    provider: upcloud
+    comment: "Включить UpCloud CSI для провижининга томов (нужны UPCLOUD_USERNAME/UPCLOUD_PASSWORD)"
+  - name: upcloud_csi_controller_replicas
+    sample_value: "1"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/upcloud.yml
+    provider: upcloud
+    comment: "Число реплик контроллера UpCloud CSI"
+  - name: upcloud_csi_provisioner_image_tag
+    sample_value: "v3.1.0"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/upcloud.yml
+    provider: upcloud
+    comment: "Тег образа csi-provisioner для UpCloud CSI"
+  - name: upcloud_csi_attacher_image_tag
+    sample_value: "v3.4.0"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/upcloud.yml
+    provider: upcloud
+    comment: "Тег образа csi-attacher для UpCloud CSI"
+  - name: upcloud_csi_resizer_image_tag
+    sample_value: "v1.4.0"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/upcloud.yml
+    provider: upcloud
+    comment: "Тег образа csi-resizer для UpCloud CSI"
+  - name: upcloud_csi_plugin_image_tag
+    sample_value: "v0.3.3"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/upcloud.yml
+    provider: upcloud
+    comment: "Тег образа плагина UpCloud CSI"
+  - name: upcloud_csi_node_image_tag
+    sample_value: "v2.5.0"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/upcloud.yml
+    provider: upcloud
+    comment: "Тег образа node-компонента UpCloud CSI"
+  - name: upcloud_tolerations
+    sample_value: "[]"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/upcloud.yml
+    provider: upcloud
+    comment: "Tolerations для подов UpCloud CSI"
+  - name: storage_classes
+    sample_value: "commented (list; примеры: standard, hdd)"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/upcloud.yml
+    provider: upcloud
+    comment: "Список StorageClass для UpCloud CSI (name, is_default, expand_persistent_volumes, parameters.tier)"
+
+  # --- vsphere.yml ---
+  - name: external_vsphere_vcenter_ip
+    sample_value: "myvcenter.domain.com"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/vsphere.yml
+    provider: vsphere
+    comment: "Адрес vCenter"
+  - name: external_vsphere_vcenter_port
+    sample_value: "443"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/vsphere.yml
+    provider: vsphere
+    comment: "Порт vCenter"
+  - name: external_vsphere_insecure
+    sample_value: "true"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/vsphere.yml
+    provider: vsphere
+    comment: "Разрешить небезопасное (без проверки TLS) подключение к vCenter"
+  - name: external_vsphere_user
+    sample_value: "administrator@vsphere.local"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/vsphere.yml
+    provider: vsphere
+    comment: "Пользователь vCenter (можно задать через VSPHERE_USER)"
+  - name: external_vsphere_password
+    sample_value: "K8s_admin"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/vsphere.yml
+    provider: vsphere
+    comment: "Пароль vCenter (можно задать через VSPHERE_PASSWORD)"
+  - name: external_vsphere_datacenter
+    sample_value: "DATACENTER_name"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/vsphere.yml
+    provider: vsphere
+    comment: "Имя датацентра vSphere"
+  - name: external_vsphere_kubernetes_cluster_id
+    sample_value: "kubernetes-cluster-id"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/vsphere.yml
+    provider: vsphere
+    comment: "Идентификатор кластера Kubernetes для vSphere CCM"
+  - name: vsphere_csi_enabled
+    sample_value: "true"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/vsphere.yml
+    provider: vsphere
+    comment: "Включить vSphere CSI для провижининга томов"
+  - name: vsphere_csi_controller_replicas
+    sample_value: "1"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/vsphere.yml
+    provider: vsphere
+    comment: "Число реплик контроллера vSphere CSI"

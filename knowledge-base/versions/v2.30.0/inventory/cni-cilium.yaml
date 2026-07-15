@@ -1,0 +1,543 @@
+project: kubespray
+kubespray_version: v2.30.0
+git_commit: f4ccdb5
+source_type: inventory
+source_paths: [inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml]
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.30.0
+retrieved_at: 2026-07-14
+topics: [inventory, cni, cilium]
+reliability: authoritative
+
+# ПРИМЕЧАНИЕ: в sample-inventory для Cilium фактически задана (раскомментирована)
+# только одна переменная — cilium_l2announcements. Все остальные закомментированы
+# и приведены как пример со значением по умолчанию (is_set: false).
+
+variables:
+  # === Общие / отладка и MTU ===
+  - name: cilium_debug
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Уровень логирования / режим отладки агента Cilium."
+
+  - name: cilium_mtu
+    sample_value: "\"\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "MTU для сети Cilium; пустое значение — автоопределение."
+
+  # === IPv4 / IPv6 ===
+  - name: cilium_enable_ipv4
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает поддержку IPv4 в Cilium."
+
+  - name: cilium_enable_ipv6
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает поддержку IPv6 в Cilium."
+
+  # === L2 Announcements ===
+  - name: cilium_l2announcements
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает L2-анонсирование Cilium как замену MetalLB для L2-режима. Единственная фактически заданная (раскомментированная) переменная в файле."
+
+  # === Health / идентификация ===
+  - name: cilium_agent_health_port
+    sample_value: "\"9879\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Порт health-проверки агента Cilium."
+
+  - name: cilium_identity_allocation_mode
+    sample_value: "kvstore (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Режим выделения идентичностей: crd (хранение в CRD Kubernetes) или kvstore (хранение в etcd). Для внешних нагрузок требуется crd."
+
+  # === SSL-каталоги etcd ===
+  - name: cilium_cert_dir
+    sample_value: "/etc/cilium/certs (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Каталог с SSL-сертификатами Cilium для доступа к etcd."
+
+  - name: kube_etcd_cacert_file
+    sample_value: "ca.pem (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Имя файла CA-сертификата etcd (в контексте доступа Cilium к etcd)."
+
+  - name: kube_etcd_cert_file
+    sample_value: "cert.pem (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Имя файла клиентского сертификата etcd."
+
+  - name: kube_etcd_key_file
+    sample_value: "cert-key.pem (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Имя файла приватного ключа клиента etcd."
+
+  # === Лимиты ресурсов ===
+  - name: cilium_memory_limit
+    sample_value: "500M (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Лимит памяти для подов Cilium."
+
+  - name: cilium_cpu_limit
+    sample_value: "500m (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Лимит CPU для подов Cilium."
+
+  - name: cilium_memory_requests
+    sample_value: "64M (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Запрос памяти (requests) для подов Cilium."
+
+  - name: cilium_cpu_requests
+    sample_value: "100m (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Запрос CPU (requests) для подов Cilium."
+
+  # === Режим оверлея / балансировка нагрузки ===
+  - name: cilium_tunnel_mode
+    sample_value: "vxlan (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Режим туннелирования оверлейной сети (vxlan/geneve/disabled)."
+
+  - name: cilium_loadbalancer_mode
+    sample_value: "snat (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Режим LoadBalancer: snat/dsr/hybrid."
+
+  # === Опциональные функции ===
+  - name: cilium_enable_prometheus
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает экспорт метрик Prometheus."
+
+  - name: cilium_enable_portmap
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает поддержку hostPort через плагин portmap."
+
+  - name: cilium_monitor_aggregation
+    sample_value: "medium (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Уровень агрегации монитора: none/low/medium/maximum."
+
+  - name: cilium_monitor_aggregation_flags
+    sample_value: "\"all\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Флаги TCP, вызывающие уведомления монитора при первом наблюдении. Действует при агрегации medium и выше."
+
+  - name: cilium_kube_proxy_replacement
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Режим замены kube-proxy средствами Cilium (true/false)."
+
+  - name: cilium_preallocate_bpf_maps
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Предварительное выделение BPF-карт (актуально при апгрейде с Cilium < 1.5 для предотвращения простоя сервисов)."
+
+  # === Устаревшие опции ===
+  - name: cilium_tofqdns_enable_poller
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "УСТАРЕЛО в Cilium 1.8, удалено в 1.9. Ранее — включение поллера ToFQDNs."
+
+  - name: cilium_enable_legacy_services
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "УСТАРЕЛО в Cilium 1.6, удалено в 1.9. Ранее — совместимость со старым форматом сервисов."
+
+  # === Кластер-меш ===
+  - name: cilium_cluster_id
+    sample_value: "(без значения, commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Уникальный ID кластера (1–255). По умолчанию не задан. Актуален только при построении меша кластеров."
+
+  - name: cilium_deploy_additionally
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Разворачивает Cilium даже если kube_network_plugin не cilium — для установки рядом с другим CNI ради замены kube-proxy."
+
+  # === Прямая маршрутизация / native routing CIDR ===
+  - name: cilium_auto_direct_node_routes
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Автоанонс маршрутов подов без туннелирования (при cilium_tunnel_mode: disabled). Требует L2-связности между узлами и заданного cilium_native_routing_cidr."
+
+  - name: cilium_native_routing_cidr
+    sample_value: "\"\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Явно заданный IPv4 CIDR для native routing; трафик в этот диапазон передаётся сетевому стеку Linux без SNAT."
+
+  - name: cilium_native_routing_cidr_ipv6
+    sample_value: "\"\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Явно заданный IPv6 CIDR для native routing."
+
+  # === Шифрование ===
+  - name: cilium_encryption_enabled
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает прозрачное шифрование сетевого трафика."
+
+  - name: cilium_encryption_type
+    sample_value: "\"ipsec\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Метод шифрования: ipsec или wireguard. Действует при cilium_encryption_enabled: true."
+
+  - name: cilium_ipsec_node_encryption
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Шифрование чистого трафика узел-узел. Действует только при cilium_encryption_type: ipsec."
+
+  - name: cilium_wireguard_userspace_fallback
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Fallback на пользовательскую реализацию WireGuard (wireguard-go), если ядро не поддерживает WireGuard. Действует при cilium_encryption_type: wireguard."
+
+  # === IP Masquerade Agent ===
+  - name: cilium_ip_masq_agent_enable
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает IP Masquerade Agent. По умолчанию пакеты пода за пределы cilium_native_routing_cidr маскируются."
+
+  - name: cilium_non_masquerade_cidrs
+    sample_value: "список CIDR (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 100.64.0.0/10, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 198.18.0.0/15, 198.51.100.0/24, 203.0.113.0/24, 240.0.0.0/4) (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Список CIDR, трафик в которые не маскируется."
+
+  - name: cilium_masq_link_local
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Маскировать ли трафик к link-local префиксу. Если false/не задано, 169.254.0.0/16 добавляется в список non-masquerade CIDR."
+
+  - name: cilium_ip_masq_resync_interval
+    sample_value: "60s (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Интервал, с которым агент перечитывает конфигурацию с диска."
+
+  # === Host Firewall и Policy Audit Mode ===
+  - name: cilium_enable_host_firewall
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает host firewall Cilium."
+
+  - name: cilium_policy_audit_mode
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Режим аудита политик (без реального блокирования)."
+
+  # === Hubble ===
+  - name: cilium_enable_hubble
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает Hubble без установки серверной части."
+
+  - name: cilium_enable_hubble_ui
+    sample_value: "\"{{ cilium_enable_hubble }}\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает Hubble UI. По умолчанию наследует значение cilium_enable_hubble; для отключения задать false."
+
+  - name: cilium_enable_hubble_metrics
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает метрики Hubble."
+
+  - name: cilium_hubble_metrics
+    sample_value: "{} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Набор метрик Hubble (dns, drop, tcp, flow, icmp, http). Действует при cilium_enable_hubble_metrics: true."
+
+  - name: cilium_hubble_install
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает установку Hubble."
+
+  - name: cilium_hubble_tls_generate
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Автогенерация сертификатов при cilium_hubble_install: true."
+
+  - name: cilium_hubble_event_buffer_capacity
+    sample_value: "4095 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Ёмкость буфера событий Hubble. Значение должно быть на 1 меньше степени двойки и не больше 65535."
+
+  - name: cilium_hubble_event_queue_size
+    sample_value: "50 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Размер буфера канала приёма событий монитора Hubble."
+
+  - name: cilium_hubble_peer_service_cluster_domain
+    sample_value: "\"{{ dns_domain }}\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "DNS-суффикс, по которому Hubble-Relay резолвит свой peer-сервис. По умолчанию — dns_domain из inventory."
+
+  # === IPAM ===
+  - name: cilium_ipam_mode
+    sample_value: "kubernetes (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Режим управления IP-адресами (IPAM) для Cilium v1.9+."
+
+  # === Дополнительные аргументы и тома агента ===
+  - name: cilium_agent_custom_args
+    sample_value: "[] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Дополнительные аргументы командной строки для агента Cilium."
+
+  - name: cilium_agent_extra_volumes
+    sample_value: "[] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Дополнительные тома, монтируемые в под агента Cilium."
+
+  - name: cilium_agent_extra_volume_mounts
+    sample_value: "[] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Точки монтирования дополнительных томов агента Cilium."
+
+  - name: cilium_agent_extra_env_vars
+    sample_value: "[] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Дополнительные переменные окружения для агента Cilium."
+
+  # === Cilium Operator ===
+  - name: cilium_operator_replicas
+    sample_value: "2 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Число реплик cilium-operator."
+
+  - name: cilium_operator_api_serve_addr
+    sample_value: "\"127.0.0.1:9234\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Адрес, на котором cilium-operator публикует health-check API."
+
+  - name: cilium_config_extra_vars
+    sample_value: "{} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Словарь дополнительных параметров конфигурации, добавляемых в cilium-config."
+
+  - name: cilium_operator_extra_volumes
+    sample_value: "[] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Дополнительные тома, монтируемые в под cilium-operator."
+
+  - name: cilium_operator_extra_volume_mounts
+    sample_value: "[] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Точки монтирования дополнительных томов cilium-operator."
+
+  - name: cilium_operator_custom_args
+    sample_value: "[] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Дополнительные аргументы командной строки для cilium-operator."
+
+  # === Кластер-меш: имя кластера ===
+  - name: cilium_cluster_name
+    sample_value: "default (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Имя кластера. Актуально только при построении меша кластеров."
+
+  # === CNI: эксклюзивность и логирование ===
+  - name: cilium_cni_exclusive
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Cilium забирает во владение /etc/cni/net.d, переименовывая не-Cilium конфигурации в *.cilium_bak. Доступно с Cilium v1.10+."
+
+  - name: cilium_cni_log_file
+    sample_value: "\"/var/run/cilium/cilium-cni.log\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Файл логов CNI (хранение 7 дней). Пустое значение отключает файловое логирование. Доступно с Cilium v1.12+."
+
+  # === cgroup ===
+  - name: cilium_cgroup_auto_mount
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Автомонтирование файловой системы cgroup2. Доступно с Cilium v1.11+."
+
+  - name: cilium_cgroup_host_root
+    sample_value: "\"/run/cilium/cgroupv2\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Корневой путь, куда монтируется cgroup2 на хосте."
+
+  # === BPF ===
+  - name: cilium_bpf_map_dynamic_size_ratio
+    sample_value: "\"0.0\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Доля (0.0–1.0) общей памяти системы под динамический размер BPF-карт (TCP CT, non-TCP CT, NAT, policy)."
+
+  # === Masquerade (eBPF) ===
+  - name: cilium_enable_ipv4_masquerade
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Маскировка IPv4-трафика, покидающего узел от эндпоинтов. Доступно с Cilium v1.10+."
+
+  - name: cilium_enable_ipv6_masquerade
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Маскировка IPv6-трафика, покидающего узел от эндпоинтов. Доступно с Cilium v1.10+."
+
+  - name: cilium_enable_bpf_masquerade
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Нативная поддержка IP-маскировки в eBPF."
+
+  # === BGP Control Plane ===
+  - name: cilium_enable_bgp_control_plane
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает BGP Control Plane."
+
+  - name: cilium_loadbalancer_ip_pools
+    sample_value: "список пулов (name/cidrs/ranges) (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Настройка пулов IP-адресов LoadBalancer (имя, CIDR, диапазоны start/stop)."
+
+  - name: cilium_bgp_cluster_configs
+    sample_value: "список конфигураций BGP-инстансов (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Настройка BGP-инстансов (новый bgpv2 API, v1.16+): bgpInstances, localASN, peers, nodeSelector."
+
+  - name: cilium_bgp_peer_configs
+    sample_value: "список конфигураций BGP-пиров (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Настройка BGP-пиров (новый bgpv2 API, v1.16+): gracefulRestart, families (afi/safi/advertisements)."
+
+  - name: cilium_bgp_advertisements
+    sample_value: "список анонсов BGP (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Настройка BGP-анонсов (новый bgpv2 API, v1.16+): advertisementType (PodCIDR/Service), адреса, селекторы."
+
+  - name: cilium_bgp_node_config_overrides
+    sample_value: "список переопределений конфигурации узлов BGP (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Переопределения BGP-конфигурации на уровне узла (новый bgpv2 API, v1.16+): routerID, localPort, peers/localAddress."
+
+  - name: cilium_bgp_peering_policies
+    sample_value: "список политик BGP-пиринга (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Настройка BGP-пиров (устаревший формат, Legacy v1.16+): virtualRouters, localASN, neighbors, serviceSelector."
+
+  # === Маршрутизация и идентичности ===
+  - name: cilium_enable_host_legacy_routing
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Маршрутизация в режиме direct routing через host stack (true) или напрямую средствами BPF (false), если ядро поддерживает. Значение false обходит netfilter в host namespace."
+
+  - name: cilium_enable_remote_node_identity
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает использование remote node identity."
+
+  - name: cilium_enable_well_known_identities
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает использование well-known identities."
+
+  - name: cilium_enable_bpf_clock_probe
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Включает BPF clock probe."
+
+  - name: cilium_disable_cnp_status_updates
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Отключает обновления статуса CiliumNetworkPolicy (CNP)."
+
+  # === ClusterRole и extra values ===
+  - name: cilium_clusterrole_rules_operator_extra_vars
+    sample_value: "[] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Дополнительные правила для clusterrole cilium-operator (apiGroups/resources/verbs/resourceNames)."
+
+  - name: cilium_extra_values
+    sample_value: "{} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: "Произвольные extra-значения из Helm Chart Cilium."
+
+# Проверка расхождений с ролевыми defaults (раздел 6.2):
+# для единственной заданной переменной cilium_l2announcements значение в sample (false)
+# совпадает с ролевым default (roles/network_plugin/cilium/defaults/main.yml: false).
+discrepancies: []

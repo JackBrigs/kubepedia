@@ -1,0 +1,462 @@
+project: kubespray
+kubespray_version: v2.30.0
+git_commit: f4ccdb5
+source_type: code
+source_paths:
+  - roles/etcd_defaults/defaults/main.yml
+  - roles/etcd_defaults/vars/main.yml
+  - roles/etcdctl_etcdutl/tasks/main.yml
+  - roles/kubespray_defaults/defaults/main/main.yml
+  - roles/kubespray_defaults/defaults/main/download.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.30.0
+retrieved_at: 2026-07-14
+topics: [etcd]
+reliability: authoritative
+
+variables:
+  # ============================================================
+  # Развёртывание и общие параметры кластера etcd
+  # ============================================================
+  - name: etcd_deployment_type
+    default: "host"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Тип развёртывания etcd: host (бинарник etcd как systemd-сервис на хостах группы etcd), docker или другой контейнерный режим. Влияет на способ скачивания (file vs container) и на применимость etcd_memory_limit."
+    related: [container_manager, deploy_container_engine, etcd_memory_limit]
+
+  - name: etcd_cluster_setup
+    default: "true"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Выполнять полное развёртывание и настройку кластера etcd. Если false — роль ограничивается только управлением сертификатами."
+    related: [etcd_events_cluster_setup]
+
+  - name: etcd_events_cluster_setup
+    default: "false"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Выполнять развёртывание отдельного кластера etcd-events (для хранения событий Kubernetes)."
+    related: [etcd_events_cluster_enabled, etcd_cluster_setup]
+
+  - name: etcd_events_cluster_enabled
+    default: "false"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Включить вынос событий Kubernetes в отдельный кластер etcd. Дублируется в roles/kubespray_defaults/defaults/main/main.yml с тем же значением."
+    related: [etcd_events_cluster_setup, etcd_events_data_dir]
+
+  - name: etcd_owner
+    default: "etcd"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Системный пользователь-владелец файлов и процессов etcd."
+    related: [etcd_cert_group]
+
+  - name: etcd_cert_group
+    default: "root"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Группа-владелец файлов сертификатов etcd."
+    related: [etcd_owner, etcd_cert_dir]
+
+  - name: etcd_data_dir
+    default: "/var/lib/etcd"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Каталог данных etcd (WAL и snapshot-файлы). Дублируется в roles/kubespray_defaults/defaults/main/main.yml."
+    related: [etcd_events_data_dir]
+
+  - name: etcd_events_data_dir
+    default: "/var/lib/etcd-events"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог данных отдельного кластера etcd-events."
+    related: [etcd_events_cluster_enabled, etcd_data_dir]
+
+  - name: etcd_config_dir
+    default: "/etc/ssl/etcd"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Базовый каталог конфигурации и сертификатов etcd. Дублируется в roles/kubespray_defaults/defaults/main/main.yml."
+    related: [etcd_cert_dir]
+
+  - name: etcd_cert_dir
+    default: "{{ etcd_config_dir }}/ssl"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Каталог с TLS-сертификатами etcd. Дублируется в roles/kubespray_defaults/defaults/main/main.yml."
+    related: [etcd_config_dir, cert_files]
+
+  - name: etcd_script_dir
+    default: "{{ bin_dir }}/etcd-scripts"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Каталог для вспомогательных скриптов etcd (генерация сертификатов и т.п.)."
+    related: [bin_dir]
+
+  - name: etcd_hosts
+    default: "{{ groups['etcd'] | default(groups['kube_control_plane']) }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список хостов etcd. Если группа etcd пуста (например, при управлении etcd через kubeadm), используется группа kube_control_plane."
+    related: [etcd_member_name]
+
+  - name: etcd_member_name
+    default: |-
+      {% for host in groups['etcd'] %}
+      {% if inventory_hostname == host %}{{ hostvars[host].etcd_member_name | default("etcd" + loop.index | string) }}{% endif %}
+      {% endfor %}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Имя члена кластера etcd для текущего хоста. Пользователь может переопределить в inventory; по умолчанию формируется как etcd<порядковый_номер>."
+    related: [etcd_hosts, etcd_peer_addresses]
+
+  - name: etcd_node_cert_hosts
+    default: "{{ groups['k8s_cluster'] }}"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Хосты, для которых выпускаются клиентские (node) сертификаты доступа к etcd."
+    related: [cert_files]
+
+  - name: etcd_retries
+    default: "4"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Количество повторных попыток для операций цикла в роли etcd."
+    related: []
+
+  # ============================================================
+  # Сетевые адреса и endpoint'ы
+  # ============================================================
+  - name: etcd_address
+    default: "{{ hostvars[inventory_hostname]['main_ip'] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Основной IP-адрес текущего узла etcd (main_ip)."
+    related: [etcd_access_address]
+
+  - name: etcd_access_address
+    default: "{{ hostvars[inventory_hostname]['main_access_ip'] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Адрес доступа к etcd на текущем узле (main_access_ip), используется в peer/client URL."
+    related: [etcd_peer_url, etcd_client_url]
+
+  - name: etcd_events_access_address
+    default: "{{ hostvars[inventory_hostname]['main_access_ip'] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Адрес доступа к etcd-events на текущем узле."
+    related: [etcd_events_peer_url, etcd_events_client_url]
+
+  - name: etcd_peer_url
+    default: "https://{{ etcd_access_address | ansible.utils.ipwrap }}:2380"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "URL для peer-соединений (обмен между членами кластера) etcd, порт 2380."
+    related: [etcd_access_address, etcd_peer_addresses]
+
+  - name: etcd_client_url
+    default: "https://{{ etcd_access_address | ansible.utils.ipwrap }}:2379"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "URL для клиентских соединений с etcd, порт 2379."
+    related: [etcd_access_address, etcd_access_addresses]
+
+  - name: etcd_events_peer_url
+    default: "https://{{ etcd_events_access_address | ansible.utils.ipwrap }}:2382"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "URL peer-соединений кластера etcd-events, порт 2382."
+    related: [etcd_events_access_address]
+
+  - name: etcd_events_client_url
+    default: "https://{{ etcd_events_access_address | ansible.utils.ipwrap }}:2383"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "URL клиентских соединений кластера etcd-events, порт 2383."
+    related: [etcd_events_access_address]
+
+  - name: etcd_access_addresses
+    default: |-
+      {% for item in etcd_hosts -%}
+        https://{{ hostvars[item]['main_access_ip'] | ansible.utils.ipwrap }}:2379{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список клиентских endpoint'ов всех узлов etcd через запятую (порт 2379)."
+    related: [etcd_hosts, etcd_client_url]
+
+  - name: etcd_events_access_addresses_list
+    default: |-
+      [
+      {% for item in etcd_hosts -%}
+        'https://{{ hostvars[item].main_access_ip | ansible.utils.ipwrap }}:2383'{% if not loop.last %},{% endif %}
+      {%- endfor %}
+      ]
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список клиентских endpoint'ов etcd-events в виде YAML/Python-списка (порт 2383)."
+    related: [etcd_events_access_addresses, etcd_events_access_addresses_semicolon]
+
+  - name: etcd_metrics_addresses
+    default: |-
+      {% for item in etcd_hosts -%}
+        https://{{ hostvars[item]['main_access_ip'] | ansible.utils.ipwrap }}:{{ etcd_metrics_port | default(2381) }}{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список endpoint'ов метрик всех узлов etcd (порт etcd_metrics_port, по умолчанию 2381)."
+    related: [etcd_metrics_port, etcd_metrics]
+
+  - name: etcd_events_access_addresses
+    default: "{{ etcd_events_access_addresses_list | join(',') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Строка клиентских endpoint'ов etcd-events через запятую (собирается из etcd_events_access_addresses_list)."
+    related: [etcd_events_access_addresses_list]
+
+  - name: etcd_events_access_addresses_semicolon
+    default: "{{ etcd_events_access_addresses_list | join(';') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Строка клиентских endpoint'ов etcd-events через точку с запятой."
+    related: [etcd_events_access_addresses_list]
+
+  - name: etcd_peer_addresses
+    default: |-
+      {% for item in groups['etcd'] -%}
+        {{ hostvars[item].etcd_member_name | default("etcd" + loop.index | string) }}=https://{{ hostvars[item]['main_access_ip'] | ansible.utils.ipwrap }}:2380{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "initial-cluster для etcd: список пар имя_члена=peer_url для всех узлов (порт 2380)."
+    related: [etcd_member_name, etcd_peer_url]
+
+  - name: etcd_events_peer_addresses
+    default: |-
+      {% for item in groups['etcd'] -%}
+        {{ hostvars[item].etcd_member_name | default("etcd" + loop.index | string) }}-events=https://{{ hostvars[item]['main_access_ip'] | ansible.utils.ipwrap }}:2382{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "initial-cluster для etcd-events: список пар имя_члена-events=peer_url (порт 2382)."
+    related: [etcd_member_name, etcd_events_peer_url]
+
+  # ============================================================
+  # TLS и сертификаты
+  # ============================================================
+  - name: force_etcd_cert_refresh
+    default: "true"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Принудительно перевыпускать сертификаты etcd при запуске роли."
+    related: [etcd_cert_dir]
+
+  - name: etcd_cert_alt_names
+    default: |-
+      - "etcd.kube-system.svc.{{ dns_domain }}"
+      - "etcd.kube-system.svc"
+      - "etcd.kube-system"
+      - "etcd"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Дополнительные DNS-имена (SAN), добавляемые в сертификат etcd. Сами DNS-записи не создаются."
+    related: [etcd_cert_alt_ips, dns_domain]
+
+  - name: etcd_cert_alt_ips
+    default: "[]"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Дополнительные IP-адреса (SAN), добавляемые в сертификат etcd."
+    related: [etcd_cert_alt_names]
+
+  - name: etcd_secure_client
+    default: "true"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Требовать TLS-сертификаты у клиентов (например, etcdctl); отличается от peer-безопасности."
+    related: [etcd_peer_client_auth]
+
+  - name: etcd_peer_client_auth
+    default: "true"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Включить проверку клиентских сертификатов при peer-соединениях между членами etcd."
+    related: [etcd_secure_client]
+
+  - name: etcd_tls_cipher_suites
+    default: "{} (закомментирована в defaults)"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Набор поддерживаемых TLS cipher suites для etcd. По умолчанию закомментирована (не задана); в комментариях приведён пример допустимых значений."
+    conditions: "Применяется только если задана пользователем"
+    related: []
+    reliability: unconfirmed
+
+  - name: cert_files
+    default: |-
+      master:
+      - "{{ etcd_cert_dir }}/member-{{ inventory_hostname }}.pem"
+      - "{{ etcd_cert_dir }}/member-{{ inventory_hostname }}-key.pem"
+      - "{{ etcd_cert_dir }}/admin-{{ inventory_hostname }}.pem"
+      - "{{ etcd_cert_dir }}/admin-{{ inventory_hostname }}-key.pem"
+      node:
+      - "{{ etcd_cert_dir }}/node-{{ inventory_hostname }}.pem"
+      - "{{ etcd_cert_dir }}/node-{{ inventory_hostname }}-key.pem"
+    source_path: roles/etcd_defaults/vars/main.yml
+    description: "Внутренняя карта путей к сертификатам etcd по ролям узла (master/node), используется при проверке сертификатов. Определена в vars (переопределение нежелательно)."
+    related: [etcd_cert_dir]
+
+  # ============================================================
+  # Метрики и наблюдаемость
+  # ============================================================
+  - name: etcd_metrics
+    default: "basic"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Уровень детализации экспортируемых метрик etcd; значение 'extensive' включает histogram-метрики."
+    related: [etcd_metrics_port]
+
+  - name: etcd_metrics_port
+    default: "2381 (закомментирована, значение из комментария/примера)"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Отдельный порт для экспорта метрик etcd. В defaults закомментирована; фактическое значение по умолчанию (2381) задаётся через default() в etcd_metrics_addresses."
+    conditions: "Задаётся в inventory; при отсутствии используется 2381"
+    related: [etcd_metrics_addresses, etcd_metrics]
+
+  - name: etcd_log_level
+    default: "info"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Уровень логирования процесса etcd."
+    related: []
+
+  - name: etcd_experimental_enable_distributed_tracing
+    default: "false"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Включить распределённую трассировку etcd (OpenTelemetry)."
+    related: [etcd_experimental_distributed_tracing_address, etcd_experimental_distributed_tracing_sample_rate]
+
+  - name: etcd_experimental_distributed_tracing_sample_rate
+    default: "100"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Частота сэмплирования трассировки (spans на миллион)."
+    conditions: "Действует при etcd_experimental_enable_distributed_tracing: true"
+    related: [etcd_experimental_enable_distributed_tracing]
+
+  - name: etcd_experimental_distributed_tracing_address
+    default: "localhost:4317"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Адрес коллектора трассировки (OTLP endpoint)."
+    conditions: "Действует при etcd_experimental_enable_distributed_tracing: true"
+    related: [etcd_experimental_enable_distributed_tracing]
+
+  - name: etcd_experimental_distributed_tracing_service_name
+    default: "etcd"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Имя сервиса, под которым etcd регистрируется в системе трассировки."
+    conditions: "Действует при etcd_experimental_enable_distributed_tracing: true"
+    related: [etcd_experimental_enable_distributed_tracing]
+
+  # ============================================================
+  # Тюнинг и производительность
+  # ============================================================
+  - name: etcd_heartbeat_interval
+    default: "\"250\""
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Интервал heartbeat лидера etcd в миллисекундах. Дублируется в roles/kubespray_defaults/defaults/main/main.yml."
+    related: [etcd_election_timeout]
+
+  - name: etcd_election_timeout
+    default: "\"5000\""
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Таймаут выборов лидера etcd в миллисекундах. Дублируется в roles/kubespray_defaults/defaults/main/main.yml."
+    related: [etcd_heartbeat_interval]
+
+  - name: etcd_snapshot_count
+    default: "\"100000\""
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Количество применённых записей, после которого etcd делает снимок (snapshot) состояния."
+    related: [etcd_max_snapshots]
+
+  - name: etcd_compaction_retention
+    default: "\"8\""
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Период автоматического сжатия (compaction) MVCC-хранилища etcd в часах."
+    related: []
+
+  - name: etcd_quota_backend_bytes
+    default: "\"2147483648\""
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Квота размера backend-хранилища etcd в байтах (по умолчанию 2 ГБ). При превышении etcd переходит в режим только для чтения; рекомендуемый максимум ~8 ГБ."
+    related: [etcd_memory_limit]
+
+  - name: etcd_max_request_bytes
+    default: "\"1572864\""
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Максимальный размер клиентского запроса в байтах, принимаемого сервером etcd."
+    related: []
+
+  - name: etcd_max_snapshots
+    default: "5"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Максимальное число хранимых snapshot-файлов (0 — без ограничений)."
+    related: [etcd_snapshot_count, etcd_max_wals]
+
+  - name: etcd_max_wals
+    default: "5"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Максимальное число хранимых WAL-файлов (0 — без ограничений)."
+    related: [etcd_max_snapshots]
+
+  - name: etcd_memory_limit
+    default: "{% if ansible_memtotal_mb < 4096 %}512M{% else %}0{% endif %}"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Ограничение памяти etcd. На системах <4 ГБ ОЗУ — 512M, иначе без ограничений (0). Актуально только при etcd_deployment_type: docker."
+    conditions: "Применяется при etcd_deployment_type: docker"
+    related: [etcd_deployment_type, etcd_quota_backend_bytes]
+
+  - name: etcd_cpu_limit
+    default: "300m (закомментирована в defaults)"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Ограничение CPU для etcd (для контейнерного развёртывания). По умолчанию закомментирована."
+    conditions: "Задаётся пользователем; актуально для контейнерного развёртывания"
+    related: [etcd_deployment_type, etcd_memory_limit]
+    reliability: unconfirmed
+
+  - name: etcd_blkio_weight
+    default: "1000"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Вес blkio (приоритет дисковых операций) для контейнера etcd."
+    conditions: "Актуально для контейнерного развёртывания"
+    related: [etcd_deployment_type]
+
+  - name: etcd_extra_vars
+    default: "{}"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Словарь дополнительных переменных окружения, добавляемых в etcd.env (формат ETCD_VAR: value)."
+    related: []
+
+  - name: etcd_experimental_initial_corrupt_check
+    default: "true"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Включить проверку целостности данных при старте (обходит известную проблему etcd 3.5.x)."
+    related: []
+
+  - name: etcd_experimental_watch_progress_notify_interval
+    default: "5s"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Интервал уведомлений о прогрессе watch-запросов etcd."
+    related: []
+
+  # ============================================================
+  # Резервное копирование (backup)
+  # ============================================================
+  - name: etcd_backup_prefix
+    default: "/var/backups"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Базовый каталог для резервных копий etcd."
+    related: [etcd_backup_retention_count]
+
+  - name: etcd_backup_retention_count
+    default: "-1"
+    source_path: roles/etcd_defaults/defaults/main.yml
+    description: "Количество хранимых резервных копий etcd. Значение < 0 означает хранить все копии."
+    related: [etcd_backup_prefix]
+
+  # ============================================================
+  # Загрузка бинарника и образа etcd
+  # ============================================================
+  - name: etcd_version
+    default: "{{ etcd_supported_versions[kube_major_version] }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "Версия etcd, выбираемая по мажорной версии Kubernetes (etcd_supported_versions в vars). Для v2.30.0 (K8s 1.32-1.34) — старшая версия ветки 3.5.x (< 3.6), т.е. 3.5.26."
+    related: [etcd_image_tag, etcd_download_url, etcd_binary_checksum]
+
+  - name: etcd_download_url
+    default: "{{ github_url }}/etcd-io/etcd/releases/download/v{{ etcd_version }}/etcd-v{{ etcd_version }}-linux-{{ image_arch }}.tar.gz"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "URL для скачивания архива бинарников etcd (используется при etcd_deployment_type: host)."
+    related: [etcd_version]
+
+  - name: etcd_binary_checksum
+    default: "{{ etcd_binary_checksums[image_arch][etcd_version] }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "SHA256-контрольная сумма архива бинарника etcd для выбранной версии и архитектуры."
+    related: [etcd_version, etcd_download_url]
+
+  - name: etcd_image_repo
+    default: "{{ quay_image_repo }}/coreos/etcd"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "Репозиторий контейнерного образа etcd (по умолчанию quay.io/coreos/etcd)."
+    related: [etcd_image_tag]
+
+  - name: etcd_image_tag
+    default: "v{{ etcd_version }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "Тег контейнерного образа etcd (v + версия). Используется и ролью etcdctl_etcdutl для копирования бинарников из образа при container_manager: docker."
+    related: [etcd_version, etcd_image_repo, netcheck_etcd_image_tag]

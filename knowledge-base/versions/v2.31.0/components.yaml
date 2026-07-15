@@ -1,0 +1,298 @@
+project: kubespray
+kubespray_version: v2.31.0
+git_commit: 1c9add4
+source_type: code
+source_paths:
+  - roles/kubespray_defaults/defaults/main/download.yml
+  - roles/kubespray_defaults/defaults/main/main.yml
+  - roles/kubespray_defaults/vars/main/main.yml
+  - roles/kubespray_defaults/vars/main/checksums.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.31.0
+retrieved_at: 2026-07-14
+topics:
+  - components
+  - versions
+reliability: authoritative
+
+# Версии компонентов по умолчанию для v2.31.0.
+# Jinja-выражения вида (X_checksums['amd64'] | dict2items)[0].key разрешены до
+# конкретного значения по roles/kubespray_defaults/vars/main/checksums.yml
+# (первый ключ соответствующего словаря = самая новая поддерживаемая версия,
+# ключи в checksums.yml упорядочены по убыванию версии).
+#
+# Цепочка разрешения версий, зависящих от Kubernetes:
+#   kube_version = (kubelet_checksums['amd64'] | dict2items)[0].key = 1.35.4
+#   kube_major_version      = 1.35
+#   kube_major_next_version = 1.36
+
+resolution_chain:
+  kube_version: "1.35.4"
+  kube_major_version: "1.35"
+  kube_major_next_version: "1.36"
+
+components:
+  - name: kubernetes
+    version_variable: kube_version
+    default_expression: "{{ (kubelet_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "1.35.4"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+
+  - name: etcd
+    version_variable: etcd_version
+    default_expression: "{{ etcd_supported_versions[kube_major_version] }} -> (etcd_binary_checksums['amd64'].keys() | select('version', '3.6', '<'))[0]"
+    resolved_version: "3.6.10"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: >-
+      etcd_supported_versions['1.35'] выбирает версию < 3.7; для 1.34/1.33 — < 3.6.
+      При kube_major_version=1.35 итог совпадает с ветвью < 3.7, но первая версия
+      в таблице ниже границы — 3.6.10.
+
+  - name: containerd
+    version_variable: containerd_version
+    default_expression: "{{ (containerd_archive_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "2.2.3"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: runc
+    version_variable: runc_version
+    default_expression: "{{ (runc_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "1.4.2"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: crictl
+    version_variable: crictl_version
+    default_expression: "{{ (crictl_checksums['amd64'].keys() | select('version', kube_major_next_version, '<'))[0] }}"
+    resolved_version: "1.35.0"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "Выбирается наибольшая версия crictl < kube_major_next_version (1.36)."
+
+  - name: nerdctl
+    version_variable: nerdctl_version
+    default_expression: "{{ (nerdctl_archive_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "2.2.2"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: cni-plugins
+    version_variable: cni_version
+    default_expression: "{{ (cni_binary_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "1.9.1"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: cilium
+    version_variable: cilium_version
+    default_expression: "1.19.3"
+    resolved_version: "1.19.3"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "Жёстко заданное значение (не из checksums)."
+
+  - name: cilium-cli
+    version_variable: cilium_cli_version
+    default_expression: "{{ (ciliumcli_binary_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "0.18.9"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: coredns
+    version_variable: coredns_version
+    default_expression: "{{ coredns_supported_versions[kube_major_version] }}"
+    resolved_version: "1.12.4"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "coredns_supported_versions['1.35'] = 1.12.4 (для 1.34=1.12.1, 1.33=1.12.0)."
+
+  - name: nodelocaldns
+    version_variable: nodelocaldns_version
+    default_expression: "1.25.0"
+    resolved_version: "1.25.0"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: helm
+    version_variable: helm_version
+    default_expression: "{{ (helm_archive_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "3.18.4"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: pause
+    version_variable: pod_infra_version
+    default_expression: "{{ pod_infra_supported_versions[kube_major_version] }}"
+    resolved_version: "3.10.1"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "pod_infra_supported_versions['1.35'] = 3.10.1 (образ registry.k8s.io/pause)."
+
+  - name: cri-o
+    version_variable: crio_version
+    default_expression: "{{ (crio_archive_checksums['amd64'].keys() | select('version', kube_major_next_version, '<'))[0] }}"
+    resolved_version: "1.35.0"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "Наибольшая версия cri-o < kube_major_next_version (1.36). Используется при container_manager=crio."
+
+  - name: cri-dockerd
+    version_variable: cri_dockerd_version
+    default_expression: "{{ (cri_dockerd_archive_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "0.3.24"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "Используется при container_manager=docker."
+
+  - name: skopeo
+    version_variable: skopeo_version
+    default_expression: "{{ (skopeo_binary_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "1.16.1"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: crun
+    version_variable: crun_version
+    default_expression: "{{ (crun_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "1.17"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: youki
+    version_variable: youki_version
+    default_expression: "{{ (youki_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "0.5.7"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: gvisor
+    version_variable: gvisor_version
+    default_expression: "{{ (gvisor_runsc_binary_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "20260323.0"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "gVisor версионируется датой релиза; поддерживается только amd64."
+
+  - name: kata-containers
+    version_variable: kata_containers_version
+    default_expression: "{{ (kata_containers_binary_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "3.7.0"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: kube-vip
+    version_variable: kube_vip_version
+    default_expression: "1.0.3"
+    resolved_version: "1.0.3"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: gateway_api
+    version_variable: gateway_api_version
+    default_expression: "{{ (gateway_api_standard_crds_checksums.no_arch | dict2items)[0].key }}"
+    resolved_version: "1.5.1"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "gateway_api_channel по умолчанию 'standard'."
+
+  - name: metrics_server
+    version_variable: metrics_server_version
+    default_expression: "0.8.1"
+    resolved_version: "0.8.1"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: cert_manager
+    version_variable: cert_manager_version
+    default_expression: "1.15.3"
+    resolved_version: "1.15.3"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: argocd
+    version_variable: argocd_version
+    default_expression: "{{ (argocd_install_checksums.no_arch | dict2items)[0].key }}"
+    resolved_version: "2.14.21"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: metallb
+    version_variable: metallb_version
+    default_expression: "0.13.9"
+    resolved_version: "0.13.9"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: local_path_provisioner
+    version_variable: local_path_provisioner_version
+    default_expression: "0.0.32"
+    resolved_version: "0.0.32"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: local_volume_provisioner
+    version_variable: local_volume_provisioner_version
+    default_expression: "2.5.0"
+    resolved_version: "2.5.0"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  # --- CNI и сетевые компоненты ---
+  - name: calico
+    version_variable: calico_version
+    default_expression: "{{ (calicoctl_binary_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "3.31.5"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "calico_ctl/cni/policy/typha/apiserver_version наследуют это значение."
+
+  - name: flannel
+    version_variable: flannel_version
+    default_expression: "0.28.4"
+    resolved_version: "0.28.4"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "flannel_cni_version = 1.7.1-flannel1."
+
+  - name: kube-ovn
+    version_variable: kube_ovn_version
+    default_expression: "1.12.21"
+    resolved_version: "1.12.21"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: kube-router
+    version_variable: kube_router_version
+    default_expression: "2.1.1"
+    resolved_version: "2.1.1"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: multus
+    version_variable: multus_version
+    default_expression: "4.2.2"
+    resolved_version: "4.2.2"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  # --- Прочие индексированные компоненты ---
+  - name: yq
+    version_variable: yq_version
+    default_expression: "{{ (yq_checksums['amd64'] | dict2items)[0].key }}"
+    resolved_version: "4.42.1"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "Скачивается только при argocd_enabled."
+
+  - name: prometheus_operator_crds
+    version_variable: prometheus_operator_crds_version
+    default_expression: "{{ (prometheus_operator_crds_checksums.no_arch | dict2items)[0].key }}"
+    resolved_version: "0.88.1"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: registry
+    version_variable: registry_version
+    default_expression: "2.8.1"
+    resolved_version: "2.8.1"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: dnsautoscaler
+    version_variable: dnsautoscaler_version
+    default_expression: "1.8.8"
+    resolved_version: "1.8.8"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: node_feature_discovery
+    version_variable: node_feature_discovery_version
+    default_expression: "0.16.4"
+    resolved_version: "0.16.4"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+
+  - name: docker_containerd
+    version_variable: docker_containerd_version
+    default_expression: "1.6.32"
+    resolved_version: "1.6.32"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    notes: "Актуально при container_manager=docker."
+
+# Компоненты, УДАЛЁННЫЕ к v2.31.0 (в v2.30.0 помечены как последняя поддерживаемая версия):
+removed_components:
+  - name: ingress_nginx
+    note: >-
+      Роль ingress-nginx (nginx ingress controller) удалена. В
+      roles/kubernetes-apps/ingress_controller/ остался только
+      alb_ingress_controller. Переменных ingress_nginx_* в download.yml нет.
+  - name: kubernetes-dashboard
+    note: >-
+      Роль/переменные Kubernetes Dashboard отсутствуют в v2.31.0
+      (в kubespray_defaults ссылок на dashboard нет).
+
+reliability: authoritative

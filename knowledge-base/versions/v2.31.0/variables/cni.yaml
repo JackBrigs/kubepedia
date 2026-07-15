@@ -1,0 +1,1211 @@
+---
+# ============================================================================
+# Kubespray Encyclopedia — справочник переменных CNI (только Cilium)
+# Прочие CNI-плагины (calico, flannel, kube-ovn, kube-router, macvlan, multus,
+# ovn4nfv, custom_cni) в этом срезе НЕ индексируются — см. cni.md.
+# ============================================================================
+project: kubespray
+kubespray_version: v2.31.0
+git_commit: 1c9add4
+source_type: code
+source_paths:
+  - roles/network_plugin/cilium/defaults/main.yml
+  - roles/network_plugin/cni/defaults/main.yml
+  - roles/kubespray_defaults/defaults/main/main.yml
+  - roles/kubespray_defaults/defaults/main/download.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.31.0
+retrieved_at: 2026-07-14
+topics:
+  - cni
+  - cilium
+  - network
+reliability: authoritative
+
+# Примечание о reliability на уровне переменных:
+#   authoritative — переменная объявлена в defaults и реально используется
+#     в задачах/шаблонах роли (grep -w по roles/ и playbooks/ дал > 0 совпадений).
+#   unconfirmed   — переменная объявлена в defaults, но НЕ используется ни в одной
+#     задаче или шаблоне текущего тега (0 совпадений). В v2.31.0 установка Cilium
+#     выполняется через Helm-чарт (templates/values.yaml.j2), поэтому ряд
+#     legacy-ключей остался в defaults, но фактически не влияет на развёртывание.
+
+variables:
+
+  # ==========================================================================
+  # Выбор CNI-плагина (roles/kubespray_defaults/defaults/main/main.yml)
+  # ==========================================================================
+  - name: kube_network_plugin
+    default: calico
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: >-
+      Выбор сетевого плагина кластера. Допустимые значения: cilium, calico,
+      kube-ovn, flannel, kube-router, cni (обобщённый внешний CNI), cloud
+      (маршрутизацию настраивает облачный провайдер). Для использования Cilium
+      значение должно быть равно cilium.
+    conditions: null
+    related:
+      - kube_network_plugin_multus
+      - cilium_deploy_additionally
+
+  - name: kube_network_plugin_multus
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: >-
+      Включает установку Multus поверх основного CNI (мета-плагин для нескольких
+      сетевых интерфейсов у подов). Может использоваться совместно с Cilium.
+    conditions: null
+    related:
+      - kube_network_plugin
+
+  - name: cilium_deploy_additionally
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: >-
+      Развернуть Cilium дополнительно, даже если kube_network_plugin не равен
+      cilium. Позволяет запустить Cilium рядом с другим CNI, например для замены
+      kube-proxy. Влияет на условие enabled образов cilium/cilium_operator/ciliumcli
+      в download.yml.
+    conditions: null
+    related:
+      - kube_network_plugin
+      - cilium_kube_proxy_replacement
+
+  - name: cilium_identity_allocation_mode
+    default: crd
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: >-
+      Способ хранения идентичностей (identities) между узлами Cilium. Значения:
+      "crd" (хранение в Kubernetes как CRD, требуется для External Workloads) или
+      "kvstore" (хранение в etcd-kvstore). По умолчанию crd.
+    conditions: null
+    related:
+      - kube_etcd_cacert_file
+      - kube_etcd_cert_file
+      - kube_etcd_key_file
+
+  # ==========================================================================
+  # Обобщённый CNI (roles/network_plugin/cni/defaults/main.yml)
+  # ==========================================================================
+  - name: cni_bin_owner
+    default: "{{ kube_owner }}"
+    source_path: roles/network_plugin/cni/defaults/main.yml
+    description: >-
+      Владелец каталога с бинарями CNI-плагинов. По умолчанию совпадает с
+      kube_owner. Единственная переменная роли network_plugin/cni.
+    conditions: null
+    related:
+      - kube_owner
+
+  # ==========================================================================
+  # Cilium: версии и образы (roles/kubespray_defaults/defaults/main/download.yml)
+  # ==========================================================================
+  - name: cilium_version
+    default: "1.19.3"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: >-
+      Версия Cilium, разворачиваемая в v2.31.0. Определяет теги образов
+      cilium/cilium-operator/hubble-relay (v{{ cilium_version }}).
+    conditions: null
+    related:
+      - cilium_image_tag
+      - cilium_operator_image_tag
+
+  - name: cilium_cli_version
+    default: "{{ (ciliumcli_binary_checksums['amd64'] | dict2items)[0].key }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: >-
+      Версия утилиты cilium-cli. Вычисляется из первого ключа словаря контрольных
+      сумм ciliumcli_binary_checksums для amd64.
+    conditions: null
+    related:
+      - ciliumcli_binary_checksum
+
+  - name: cilium_image_repo
+    default: "{{ quay_image_repo }}/cilium/cilium"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Репозиторий образа агента Cilium (по умолчанию quay.io/cilium/cilium).
+    conditions: null
+    related:
+      - cilium_image_tag
+
+  - name: cilium_image_tag
+    default: "v{{ cilium_version }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Тег образа агента Cilium, строится из cilium_version.
+    conditions: null
+    related:
+      - cilium_version
+
+  - name: cilium_operator_image_repo
+    default: "{{ quay_image_repo }}/cilium/operator"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Репозиторий образа cilium-operator.
+    conditions: null
+    related:
+      - cilium_operator_image_tag
+
+  - name: cilium_operator_image_tag
+    default: "v{{ cilium_version }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Тег образа cilium-operator, строится из cilium_version.
+    conditions: null
+    related:
+      - cilium_version
+
+  - name: cilium_hubble_relay_image_repo
+    default: "{{ quay_image_repo }}/cilium/hubble-relay"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Репозиторий образа hubble-relay.
+    conditions: "enabled при cilium_enable_hubble: true"
+    related:
+      - cilium_enable_hubble
+
+  - name: cilium_hubble_relay_image_tag
+    default: "v{{ cilium_version }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Тег образа hubble-relay, строится из cilium_version.
+    conditions: null
+    related:
+      - cilium_version
+
+  - name: cilium_hubble_certgen_image_repo
+    default: "{{ quay_image_repo }}/cilium/certgen"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Репозиторий образа certgen (генерация сертификатов Hubble mTLS).
+    conditions: "enabled при cilium_enable_hubble: true"
+    related:
+      - cilium_hubble_certgen_image_tag
+
+  - name: cilium_hubble_certgen_image_tag
+    default: "v0.2.4"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Тег образа certgen.
+    conditions: null
+    related:
+      - cilium_hubble_certgen_image_repo
+
+  - name: cilium_hubble_ui_image_repo
+    default: "{{ quay_image_repo }}/cilium/hubble-ui"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Репозиторий образа hubble-ui (фронтенд).
+    conditions: "enabled при cilium_enable_hubble: true"
+    related:
+      - cilium_enable_hubble_ui
+
+  - name: cilium_hubble_ui_image_tag
+    default: "v0.13.3"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Тег образа hubble-ui.
+    conditions: null
+    related:
+      - cilium_hubble_ui_image_repo
+
+  - name: cilium_hubble_ui_backend_image_repo
+    default: "{{ quay_image_repo }}/cilium/hubble-ui-backend"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Репозиторий образа hubble-ui-backend.
+    conditions: "enabled при cilium_enable_hubble: true"
+    related:
+      - cilium_hubble_ui_backend_image_tag
+
+  - name: cilium_hubble_ui_backend_image_tag
+    default: "v0.13.3"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Тег образа hubble-ui-backend.
+    conditions: null
+    related:
+      - cilium_hubble_ui_backend_image_repo
+
+  - name: cilium_hubble_envoy_image_repo
+    default: "{{ quay_image_repo }}/cilium/cilium-envoy"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Репозиторий образа cilium-envoy (используется Hubble).
+    conditions: "enabled при cilium_enable_hubble: true"
+    related:
+      - cilium_hubble_envoy_image_tag
+
+  - name: cilium_hubble_envoy_image_tag
+    default: "v1.34.10-1762597008-ff7ae7d623be00078865cff1b0672cc5d9bfc6d5"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: Тег образа cilium-envoy.
+    conditions: null
+    related:
+      - cilium_hubble_envoy_image_repo
+
+  # ==========================================================================
+  # Cilium: базовые параметры и сеть
+  # (roles/network_plugin/cilium/defaults/main.yml)
+  # ==========================================================================
+  - name: cilium_min_version_required
+    default: "1.15"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Минимально поддерживаемая версия Cilium. Используется в проверках
+      (tasks/check.yml) — установка прерывается, если cilium_version ниже.
+    conditions: null
+    related:
+      - cilium_version
+
+  - name: cilium_debug
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает подробный уровень логирования (debug) агента Cilium.
+    conditions: null
+    related: []
+
+  - name: cilium_mtu
+    default: "0"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      MTU сетевых интерфейсов, управляемых Cilium. Значение "0" означает
+      автоопределение.
+    conditions: null
+    related: []
+
+  - name: cilium_enable_ipv4
+    default: "{{ ipv4_stack }}"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает поддержку IPv4 в Cilium. По умолчанию наследует ipv4_stack.
+    conditions: null
+    related:
+      - cilium_enable_ipv6
+
+  - name: cilium_enable_ipv6
+    default: "{{ ipv6_stack }}"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает поддержку IPv6 в Cilium. По умолчанию наследует ipv6_stack.
+    conditions: null
+    related:
+      - cilium_enable_ipv4
+
+  - name: cilium_l2announcements
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Включает L2-анонсирование (L2 announcements) Cilium как замену MetalLB.
+      Ref: https://docs.cilium.io/en/v1.14/network/l2-announcements/
+    conditions: null
+    related:
+      - cilium_loadbalancer_ip_pools
+
+  - name: cilium_agent_health_port
+    default: "9879"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Порт проверки состояния (health) агента Cilium.
+    conditions: null
+    related: []
+
+  - name: cilium_tunnel_mode
+    default: vxlan
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Режим оверлейной сети (туннелирования). Значения: vxlan, geneve, disabled.
+      При disabled применяется прямая маршрутизация (см. cilium_auto_direct_node_routes).
+    conditions: null
+    related:
+      - cilium_auto_direct_node_routes
+      - cilium_native_routing_cidr
+
+  # --------------------------------------------------------------------------
+  # Cilium: etcd kvstore (сертификаты)
+  # --------------------------------------------------------------------------
+  - name: cilium_cert_dir
+    default: /etc/cilium/certs
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Каталог сертификатов Cilium для доступа к etcd (при
+      cilium_identity_allocation_mode: kvstore).
+    conditions: null
+    related:
+      - kube_etcd_cacert_file
+      - kube_etcd_cert_file
+      - kube_etcd_key_file
+
+  - name: kube_etcd_cacert_file
+    default: ca.pem
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Имя файла CA-сертификата etcd, используемого Cilium в режиме kvstore.
+      Переопределяет одноимённую переменную роли на время работы Cilium.
+    conditions: "актуально при cilium_identity_allocation_mode: kvstore"
+    related:
+      - cilium_cert_dir
+
+  - name: kube_etcd_cert_file
+    default: node-{{ inventory_hostname }}.pem
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Имя клиентского сертификата узла для доступа Cilium к etcd.
+    conditions: "актуально при cilium_identity_allocation_mode: kvstore"
+    related:
+      - cilium_cert_dir
+
+  - name: kube_etcd_key_file
+    default: node-{{ inventory_hostname }}-key.pem
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Имя приватного ключа узла для доступа Cilium к etcd.
+    conditions: "актуально при cilium_identity_allocation_mode: kvstore"
+    related:
+      - cilium_cert_dir
+
+  # --------------------------------------------------------------------------
+  # Cilium: ресурсы подов
+  # --------------------------------------------------------------------------
+  - name: cilium_memory_limit
+    default: 500M
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Лимит памяти (limits.memory) для пода агента Cilium.
+    conditions: null
+    related:
+      - cilium_memory_requests
+
+  - name: cilium_cpu_limit
+    default: 500m
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Лимит CPU (limits.cpu) для пода агента Cilium.
+    conditions: null
+    related:
+      - cilium_cpu_requests
+
+  - name: cilium_memory_requests
+    default: 64M
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Запрос памяти (requests.memory) для пода агента Cilium.
+    conditions: null
+    related:
+      - cilium_memory_limit
+
+  - name: cilium_cpu_requests
+    default: 100m
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Запрос CPU (requests.cpu) для пода агента Cilium.
+    conditions: null
+    related:
+      - cilium_cpu_limit
+
+  # ==========================================================================
+  # Cilium: балансировка нагрузки и kube-proxy replacement
+  # ==========================================================================
+  - name: cilium_loadbalancer_mode
+    default: snat
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Режим балансировщика нагрузки: snat, dsr или hybrid.
+      Ref: kubeproxy-free/#dsr-mode.
+    conditions: null
+    related:
+      - cilium_kube_proxy_replacement
+
+  - name: cilium_loadbalancer_ip_pools
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Список пулов IP-адресов для LoadBalancer (CiliumLoadBalancerIPPool).
+      Рендерится в шаблон cilium-loadbalancer-ip-pool.yml.j2.
+    conditions: null
+    related:
+      - cilium_l2announcements
+
+  - name: cilium_enable_prometheus
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает экспорт метрик Prometheus агентом и оператором Cilium.
+    conditions: null
+    related:
+      - cilium_agent_scrape_port
+      - cilium_operator_scrape_port
+
+  - name: cilium_enable_portmap
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает CNI-плагин portmap для проброса hostPort.
+    conditions: null
+    related: []
+
+  - name: cilium_monitor_aggregation
+    default: medium
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Уровень агрегации мониторинга: none, low, medium, maximum.
+      Влияет на объём событий, генерируемых Cilium.
+    conditions: null
+    related:
+      - cilium_monitor_aggregation_flags
+
+  - name: cilium_kube_proxy_replacement
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Режим замены kube-proxy (true/false). При включении (true/strict) Cilium
+      берёт на себя функции kube-proxy; kube-proxy можно отключить. Влияет на
+      расчёт kube_proxy_remove в kubespray_defaults.
+    conditions: null
+    related:
+      - cilium_loadbalancer_mode
+      - cilium_dns_proxy_enable_transparent_mode
+
+  - name: cilium_preallocate_bpf_maps
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Преаллокация BPF-таблиц (актуально при обновлении с Cilium < 1.5 для
+      предотвращения перерыва в обслуживании).
+    conditions: null
+    related: []
+
+  # ==========================================================================
+  # Cilium: прямая маршрутизация и native routing
+  # ==========================================================================
+  - name: cilium_auto_direct_node_routes
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Автоматическое добавление маршрутов к подам без туннелирования
+      (при cilium_tunnel_mode: disabled). Требует L2-связности между узлами и
+      заданного cilium_native_routing_cidr.
+    conditions: "имеет смысл при cilium_tunnel_mode: disabled"
+    related:
+      - cilium_tunnel_mode
+      - cilium_native_routing_cidr
+
+  - name: cilium_native_routing_cidr
+    default: ""
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Явный IPv4 CIDR для native routing. Cilium считает сеть для этого диапазона
+      преднастроенной и передаёт трафик в сетевой стек Linux без SNAT.
+    conditions: null
+    related:
+      - cilium_native_routing_cidr_ipv6
+      - cilium_auto_direct_node_routes
+
+  - name: cilium_native_routing_cidr_ipv6
+    default: ""
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Явный IPv6 CIDR для native routing.
+    conditions: null
+    related:
+      - cilium_native_routing_cidr
+
+  # ==========================================================================
+  # Cilium: шифрование трафика
+  # ==========================================================================
+  - name: cilium_encryption_enabled
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает прозрачное шифрование сетевого трафика.
+    conditions: null
+    related:
+      - cilium_encryption_type
+
+  - name: cilium_encryption_type
+    default: "ipsec"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Метод шифрования: ipsec или wireguard. Действует только при
+      cilium_encryption_enabled: true.
+    conditions: "cilium_encryption_enabled: true"
+    related:
+      - cilium_encryption_enabled
+      - cilium_encryption_node_encryption
+
+  - name: cilium_encryption_node_encryption
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Шифрование трафика node-to-node. Действует только при
+      cilium_encryption_type: wireguard.
+    conditions: "cilium_encryption_type: wireguard"
+    related:
+      - cilium_encryption_type
+
+  - name: cilium_wireguard_userspace_fallback
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Позволяет агенту Cilium использовать пользовательскую реализацию WireGuard
+      (wireguard-go), если ядро не поддерживает WireGuard нативно. Действует
+      только при cilium_encryption_type: wireguard. Переменная объявлена, но не
+      используется в задачах/шаблонах v2.31.0.
+    conditions: "cilium_encryption_type: wireguard"
+    related:
+      - cilium_encryption_type
+    reliability: unconfirmed
+
+  # ==========================================================================
+  # Cilium: Bandwidth Manager
+  # ==========================================================================
+  - name: cilium_enable_bandwidth_manager
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Включает Bandwidth Manager (поддержка аннотации
+      kubernetes.io/egress-bandwidth). Требует ядро Linux >= 5.1.
+    conditions: null
+    related:
+      - cilium_enable_bandwidth_manager_bbr
+
+  - name: cilium_enable_bandwidth_manager_bbr
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает алгоритм TCP BBR в рамках Bandwidth Manager.
+    conditions: null
+    related:
+      - cilium_enable_bandwidth_manager
+
+  # ==========================================================================
+  # Cilium: IP Masquerade Agent
+  # ==========================================================================
+  - name: cilium_ip_masq_agent_enable
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Включает ip-masq-agent. По умолчанию весь трафик от пода к адресам вне
+      cilium_native_routing_cidr маскарадится.
+    conditions: null
+    related:
+      - cilium_non_masquerade_cidrs
+      - cilium_masq_link_local
+
+  - name: cilium_non_masquerade_cidrs
+    default:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+      - 100.64.0.0/10
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 198.18.0.0/15
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 240.0.0.0/4
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Список CIDR, трафик к которым НЕ маскарадится ip-masq-agent.
+    conditions: "при cilium_ip_masq_agent_enable: true"
+    related:
+      - cilium_ip_masq_agent_enable
+
+  - name: cilium_masq_link_local
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Маскарадить ли трафик к link-local префиксу. Если false, 169.254.0.0/16
+      добавляется в список non-masquerade CIDR.
+    conditions: null
+    related:
+      - cilium_non_masquerade_cidrs
+
+  - name: cilium_masq_link_local_ipv6
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Аналог cilium_masq_link_local для IPv6 link-local.
+    conditions: null
+    related:
+      - cilium_masq_link_local
+
+  - name: cilium_ip_masq_resync_interval
+    default: 60s
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Интервал, с которым агент перечитывает конфигурацию ip-masq с диска.
+    conditions: null
+    related:
+      - cilium_ip_masq_agent_enable
+
+  # ==========================================================================
+  # Cilium: Hubble (наблюдаемость)
+  # ==========================================================================
+  - name: cilium_enable_hubble
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Включает Hubble (без установки UI/relay по умолчанию). Влияет на условие
+      enabled образов hubble-relay/certgen/ui/envoy в download.yml.
+    conditions: null
+    related:
+      - cilium_enable_hubble_ui
+      - cilium_hubble_metrics
+
+  - name: cilium_enable_hubble_ui
+    default: "{{ cilium_enable_hubble }}"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает Hubble UI. По умолчанию наследует cilium_enable_hubble.
+    conditions: null
+    related:
+      - cilium_enable_hubble
+
+  - name: cilium_enable_hubble_metrics
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      (deprecated) Включает метрики Hubble. Переменная объявлена, но не
+      используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related:
+      - cilium_hubble_metrics
+    reliability: unconfirmed
+
+  - name: cilium_hubble_metrics
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Список метрик Hubble для экспорта (dns, drop, tcp, flow, icmp, http),
+      если экспорт метрик включён.
+    conditions: null
+    related:
+      - cilium_enable_hubble_metrics
+
+  - name: cilium_hubble_install
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Включает полную установку Hubble. Переменная объявлена, но не используется
+      в задачах/шаблонах v2.31.0.
+    conditions: null
+    related:
+      - cilium_enable_hubble
+    reliability: unconfirmed
+
+  - name: cilium_hubble_tls_generate
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Автогенерация сертификатов Hubble (при cilium_hubble_install: true).
+      Переменная объявлена, но не используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related:
+      - cilium_hubble_install
+    reliability: unconfirmed
+
+  - name: cilium_hubble_export_file_max_backups
+    default: "5"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Максимальное число ротируемых файлов экспорта событий Hubble.
+    conditions: null
+    related:
+      - cilium_hubble_export_dynamic_enabled
+
+  - name: cilium_hubble_export_file_max_size_mb
+    default: "10"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Максимальный размер (МБ) файла экспорта событий Hubble до ротации.
+    conditions: null
+    related:
+      - cilium_hubble_export_dynamic_enabled
+
+  - name: cilium_hubble_export_dynamic_enabled
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает динамический экспорт потоков (flow) Hubble в файл.
+    conditions: null
+    related:
+      - cilium_hubble_export_dynamic_config_content
+
+  - name: cilium_hubble_export_dynamic_config_content
+    default:
+      - name: all
+        fieldMask: []
+        includeFilters: []
+        excludeFilters: []
+        filePath: "/var/run/cilium/hubble/events.log"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Описание конфигураций динамического экспорта Hubble (имя, маски полей,
+      фильтры, путь к файлу событий).
+    conditions: "при cilium_hubble_export_dynamic_enabled: true"
+    related:
+      - cilium_hubble_export_dynamic_enabled
+
+  - name: cilium_hubble_peer_service_cluster_domain
+    default: "{{ dns_domain }}"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      DNS-суффикс, по которому Hubble-Relay резолвит peer-сервис. По умолчанию
+      наследует dns_domain кластера.
+    conditions: null
+    related:
+      - cilium_enable_hubble
+
+  # ==========================================================================
+  # Cilium: Gateway API и IPAM
+  # ==========================================================================
+  - name: cilium_gateway_api_enabled
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает поддержку Kubernetes Gateway API в Cilium.
+    conditions: null
+    related: []
+
+  - name: cilium_ipam_mode
+    default: cluster-pool
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Режим управления IP-адресами (IPAM). По умолчанию "cluster-pool"
+      (Cluster Scope). Связанные переопределяемые параметры (cilium_pool_cidr,
+      cilium_pool_mask_size и др.) закомментированы в defaults и берут значения
+      из kube_pods_subnet / kube_network_node_prefix.
+    conditions: null
+    related:
+      - cilium_cluster_id
+
+  # ==========================================================================
+  # Cilium: агент — доп. аргументы, тома, переменные окружения
+  # ==========================================================================
+  - name: cilium_agent_custom_args
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      (deprecated) Доп. аргументы агента Cilium. Переменная объявлена, но не
+      используется в задачах/шаблонах v2.31.0 (заменена cilium_agent_extra_args).
+    conditions: null
+    related:
+      - cilium_agent_extra_args
+    reliability: unconfirmed
+
+  - name: cilium_agent_extra_args
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Дополнительные аргументы командной строки агента Cilium.
+    conditions: null
+    related:
+      - cilium_agent_extra_env_vars
+
+  - name: cilium_agent_extra_volumes
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Дополнительные тома (volumes), монтируемые в под агента Cilium.
+    conditions: null
+    related:
+      - cilium_agent_extra_volume_mounts
+
+  - name: cilium_agent_extra_volume_mounts
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Точки монтирования дополнительных томов агента Cilium.
+    conditions: null
+    related:
+      - cilium_agent_extra_volumes
+
+  - name: cilium_agent_extra_env_vars
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Дополнительные переменные окружения агента Cilium. Переменная объявлена,
+      но не используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related:
+      - cilium_agent_extra_args
+    reliability: unconfirmed
+
+  # ==========================================================================
+  # Cilium: оператор
+  # ==========================================================================
+  - name: cilium_operator_replicas
+    default: 2
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Число реплик cilium-operator.
+    conditions: null
+    related:
+      - cilium_operator_tolerations
+
+  - name: cilium_operator_api_serve_addr
+    default: "127.0.0.1:9234"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Адрес, на котором cilium-operator публикует health-check API. Переменная
+      объявлена, но не используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related: []
+    reliability: unconfirmed
+
+  - name: cilium_config_extra_vars
+    default: {}
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Словарь дополнительных параметров, добавляемых в cilium-config
+      (var1: value1, ...).
+    conditions: null
+    related:
+      - cilium_extra_values
+
+  - name: cilium_operator_extra_volumes
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Дополнительные тома, монтируемые в под cilium-operator.
+    conditions: null
+    related:
+      - cilium_operator_extra_volume_mounts
+
+  - name: cilium_operator_extra_volume_mounts
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Точки монтирования дополнительных томов cilium-operator.
+    conditions: null
+    related:
+      - cilium_operator_extra_volumes
+
+  - name: cilium_operator_custom_args
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      (deprecated) Доп. аргументы cilium-operator. Переменная объявлена, но не
+      используется в задачах/шаблонах v2.31.0 (заменена cilium_operator_extra_args).
+    conditions: null
+    related:
+      - cilium_operator_extra_args
+    reliability: unconfirmed
+
+  - name: cilium_operator_extra_args
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Дополнительные аргументы командной строки cilium-operator.
+    conditions: null
+    related:
+      - cilium_operator_custom_args
+
+  - name: cilium_operator_tolerations
+    default:
+      - operator: "Exists"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Tolerations для пода cilium-operator.
+    conditions: null
+    related:
+      - cilium_operator_replicas
+
+  # ==========================================================================
+  # Cilium: Cluster Mesh
+  # ==========================================================================
+  - name: cilium_cluster_id
+    default: 0
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Уникальный ID кластера (1..255), требуется для Cluster Mesh. Может быть 0,
+      если Cluster Mesh не используется.
+    conditions: null
+    related:
+      - cilium_cluster_name
+
+  - name: cilium_cluster_name
+    default: default
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Имя кластера, значимо при построении mesh. Имя "default" нельзя использовать,
+      если cilium_cluster_id отличен от 0.
+    conditions: null
+    related:
+      - cilium_cluster_id
+
+  # ==========================================================================
+  # Cilium: CNI-конфигурация на узле
+  # ==========================================================================
+  - name: cilium_cni_exclusive
+    default: true
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Cilium становится эксклюзивным владельцем /etc/cni/net.d, переименовывая
+      прочие CNI-конфигурации в *.cilium_bak. Доступно с Cilium v1.10.
+    conditions: null
+    related: []
+
+  - name: cilium_cni_log_file
+    default: "/var/run/cilium/cilium-cni.log"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Файл логирования CNI-плагина Cilium (ротация 7 дней). Пустое значение
+      отключает файловое логирование. Доступно с Cilium v1.12.
+    conditions: null
+    related: []
+
+  # ==========================================================================
+  # Cilium: cgroup v2
+  # ==========================================================================
+  - name: cilium_cgroup_auto_mount
+    default: true
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Автомонтирование ФС cgroup2 в cilium_cgroup_host_root на хосте и в поде
+      агента. При false администратор монтирует cgroup2 сам. Доступно с Cilium v1.11.
+    conditions: null
+    related:
+      - cilium_cgroup_host_root
+
+  - name: cilium_cgroup_host_root
+    default: "/run/cilium/cgroupv2"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Путь на хосте, куда монтируется ФС cgroup2.
+    conditions: null
+    related:
+      - cilium_cgroup_auto_mount
+
+  - name: cilium_bpf_map_dynamic_size_ratio
+    default: "0.0025"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Доля (0.0–1.0) общей памяти системы для динамического расчёта размеров
+      BPF-таблиц (TCP CT, non-TCP CT, NAT, policy).
+    conditions: null
+    related: []
+
+  # ==========================================================================
+  # Cilium: masquerade (BPF/eBPF)
+  # ==========================================================================
+  - name: cilium_enable_ipv4_masquerade
+    default: true
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Маскарадинг IPv4-трафика, покидающего узел от эндпоинтов. Доступно с
+      Cilium v1.10.
+    conditions: null
+    related:
+      - cilium_enable_ipv6_masquerade
+
+  - name: cilium_enable_ipv6_masquerade
+    default: true
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Маскарадинг IPv6-трафика от эндпоинтов. Доступно с Cilium v1.10.
+    conditions: null
+    related:
+      - cilium_enable_ipv4_masquerade
+
+  - name: cilium_enable_bpf_masquerade
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает нативный масквардинг средствами eBPF.
+    conditions: null
+    related:
+      - cilium_enable_ipv4_masquerade
+
+  - name: cilium_enable_host_legacy_routing
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      В режиме прямой маршрутизации направлять трафик через host stack (true) или
+      напрямую через BPF (false, эффективнее, минуя netfilter в host namespace).
+    conditions: null
+    related: []
+
+  # ==========================================================================
+  # Cilium: identity
+  # ==========================================================================
+  - name: cilium_enable_remote_node_identity
+    default: true
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Включает использование remote node identity. Переменная объявлена, но не
+      используется в задачах/шаблонах v2.31.0.
+      Ref: configmap-remote-node-identity.
+    conditions: null
+    related: []
+    reliability: unconfirmed
+
+  - name: cilium_enable_well_known_identities
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Включает использование well-known identities. Переменная объявлена, но не
+      используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related: []
+    reliability: unconfirmed
+
+  - name: cilium_monitor_aggregation_flags
+    default: "all"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      TCP-флаги, при первом наблюдении которых генерируются уведомления монитора.
+      Действует при cilium_monitor_aggregation medium и выше. Переменная объявлена,
+      но не используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related:
+      - cilium_monitor_aggregation
+    reliability: unconfirmed
+
+  # ==========================================================================
+  # Cilium: BGP Control Plane
+  # ==========================================================================
+  - name: cilium_enable_bgp_control_plane
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает BGP Control Plane в Cilium.
+    conditions: null
+    related:
+      - cilium_bgp_cluster_configs
+      - cilium_bgp_peering_policies
+
+  - name: cilium_bgp_cluster_configs
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      BGP Instances (новый bgpv2 API, Cilium v1.16+). Рендерится в шаблон
+      cilium-bgp-cluster-config.yml.j2.
+    conditions: null
+    related:
+      - cilium_enable_bgp_control_plane
+
+  - name: cilium_bgp_peer_configs
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      BGP Peers (новый bgpv2 API, Cilium v1.16+). Шаблон
+      cilium-bgp-peer-config.yml.j2.
+    conditions: null
+    related:
+      - cilium_enable_bgp_control_plane
+
+  - name: cilium_bgp_advertisements
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      BGP Advertisements (новый bgpv2 API, Cilium v1.16+). Шаблон
+      cilium-bgp-advertisement.yml.j2.
+    conditions: null
+    related:
+      - cilium_enable_bgp_control_plane
+
+  - name: cilium_bgp_node_config_overrides
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      BGP Node Config Overrides (новый bgpv2 API, Cilium v1.16+). Шаблон
+      cilium-bgp-node-config-override.yml.j2.
+    conditions: null
+    related:
+      - cilium_enable_bgp_control_plane
+
+  - name: cilium_bgp_peering_policies
+    default: []
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      BGP Peers (legacy API, Cilium < v1.16). Шаблон
+      cilium-bgp-peering-policy.yml.j2.
+    conditions: null
+    related:
+      - cilium_enable_bgp_control_plane
+
+  # ==========================================================================
+  # Cilium: политики, рестарт, метрики, сертификаты Hubble
+  # ==========================================================================
+  - name: cilium_disable_cnp_status_updates
+    default: true
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Отключает обновление статуса CiliumNetworkPolicy. Переменная объявлена, но
+      не используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related: []
+    reliability: unconfirmed
+
+  - name: cilium_rolling_restart_wait_retries_count
+    default: 30
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Количество попыток ожидания готовности DaemonSet Cilium при плавающем
+      рестарте.
+    conditions: null
+    related:
+      - cilium_rolling_restart_wait_retries_delay_seconds
+
+  - name: cilium_rolling_restart_wait_retries_delay_seconds
+    default: 10
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Задержка (сек) между попытками ожидания готовности DaemonSet Cilium.
+    conditions: null
+    related:
+      - cilium_rolling_restart_wait_retries_count
+
+  - name: cilium_agent_scrape_port
+    default: "9962"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Порт экспорта метрик агента Cilium (изменён в 1.12). Переменная объявлена,
+      но не используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related:
+      - cilium_enable_prometheus
+    reliability: unconfirmed
+
+  - name: cilium_operator_scrape_port
+    default: "9963"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Порт экспорта метрик cilium-operator. Переменная объявлена, но не
+      используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related:
+      - cilium_enable_prometheus
+    reliability: unconfirmed
+
+  - name: cilium_hubble_scrape_port
+    default: "9965"
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Порт экспорта метрик Hubble. Переменная объявлена, но не используется в
+      задачах/шаблонах v2.31.0.
+    conditions: null
+    related:
+      - cilium_enable_hubble
+    reliability: unconfirmed
+
+  - name: cilium_certgen_args
+    default:
+      cilium-namespace: kube-system
+      ca-reuse-secret: true
+      ca-secret-name: hubble-ca-secret
+      ca-generate: true
+      ca-validity-duration: 94608000s
+      hubble-server-cert-generate: true
+      hubble-server-cert-common-name: '*.{{ cilium_cluster_name }}.hubble-grpc.cilium.io'
+      hubble-server-cert-validity-duration: 94608000s
+      hubble-server-cert-secret-name: hubble-server-certs
+      hubble-relay-client-cert-generate: true
+      hubble-relay-client-cert-common-name: '*.{{ cilium_cluster_name }}.hubble-grpc.cilium.io'
+      hubble-relay-client-cert-validity-duration: 94608000s
+      hubble-relay-client-cert-secret-name: hubble-relay-client-certs
+      hubble-relay-server-cert-generate: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Аргументы cilium certgen для генерации сертификатов Hubble mTLS. Переменная
+      объявлена, но не используется в задачах/шаблонах v2.31.0.
+    conditions: null
+    related:
+      - cilium_cluster_name
+    reliability: unconfirmed
+
+  - name: cilium_enable_host_firewall
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Включает Host Firewall (сетевые политики для трафика хоста).
+    conditions: null
+    related:
+      - cilium_policy_audit_mode
+
+  - name: cilium_policy_audit_mode
+    default: false
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Режим аудита сетевых политик (политики не блокируют трафик, только логируют).
+    conditions: null
+    related:
+      - cilium_enable_host_firewall
+
+  # ==========================================================================
+  # Cilium: расширенная кастомизация установки (Helm)
+  # ==========================================================================
+  - name: cilium_install_extra_flags
+    default: ""
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: Дополнительные флаги команды установки Cilium.
+    conditions: null
+    related:
+      - cilium_extra_values
+
+  - name: cilium_extra_values
+    default: {}
+    source_path: roles/network_plugin/cilium/defaults/main.yml
+    description: >-
+      Произвольные значения из Helm-чарта Cilium, добавляемые к values.yaml.
+      Ref: https://docs.cilium.io/en/stable/helm-reference/
+    conditions: null
+    related:
+      - cilium_config_extra_vars
+      - cilium_install_extra_flags

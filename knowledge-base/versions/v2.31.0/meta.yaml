@@ -1,0 +1,45 @@
+project: kubespray
+kubespray_version: v2.31.0
+git_commit: 1c9add4
+git_commit_full: 1c9add48975060f45396b34d8e022c30d7f80dab
+tag_date: 2026-04-24
+tag_commit_subject: "docs: fix release-notes command in release guide (#13211)"
+source_type: code
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.31.0
+retrieved_at: 2026-07-14
+previous_version: v2.30.0
+topics:
+  - meta
+reliability: authoritative
+
+# Версии по умолчанию, разрешённые из кода тега (этап 2).
+# Источник истины и полный список (39 компонентов): components.yaml
+kubernetes_version: 1.35.4          # kube_version
+component_versions:
+  etcd: 3.6.10                       # переход на линию 3.6.x (в v2.30.0 было 3.5.26)
+  containerd: 2.2.3
+  runc: 1.4.2
+  crictl: 1.35.0
+  nerdctl: 2.2.2
+  cni_plugins: 1.9.1
+  cilium: 1.19.3
+  cilium_cli: 0.18.9
+  coredns: 1.12.4
+  nodelocaldns: 1.25.0
+  helm: 3.18.4
+  pause: 3.10.1
+  cri_o: 1.35.0
+  cri_dockerd: 0.3.24
+  metrics_server: 0.8.1
+  cert_manager: 1.15.3
+  argocd: 2.14.21
+  metallb: 0.13.9
+  local_path_provisioner: 0.0.32
+  kube_vip: 1.0.3
+  gateway_api: 1.5.1
+  prometheus_operator_crds: 0.88.1
+
+# Удалены в v2.31.0 (breaking change относительно v2.30.0):
+removed_components:
+  - ingress_nginx        # роль ingress_controller/ingress_nginx удалена
+  - kubernetes_dashboard # роль и переменные удалены полностью

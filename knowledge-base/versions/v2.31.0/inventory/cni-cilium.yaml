@@ -1,0 +1,811 @@
+---
+# ============================================================================
+# Kubespray Encyclopedia — разбор sample inventory для Cilium (v2.31.0)
+# Файл: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+#
+# ВАЖНО: в sample-инвентаре из CNI детально разбирается ТОЛЬКО Cilium.
+# Прочие сетевые файлы (calico, flannel, kube-ovn, kube-router, macvlan,
+# custom-cni) в этом срезе не индексируются — только перечислены в cni-cilium.md.
+#
+# Почти весь файл ЗАКОММЕНТИРОВАН: пользователю показаны значения-примеры.
+# Единственная реально заданная (is_set: true) переменная —
+# cilium_l2announcements: false. Все остальные переменные закомментированы
+# (is_set: false) и не переопределяют defaults роли.
+#
+# Источник истины по значениям по умолчанию — variables/cni.yaml (source_type:
+# code). Здесь фиксируются значения-ПРИМЕРЫ из sample, которые местами
+# отличаются от defaults роли (например, cilium_ipam_mode: kubernetes в sample
+# против cluster-pool в defaults) — но так как они закомментированы, они не
+# создают расхождений в смысле раздела 6.2.
+# ============================================================================
+project: kubespray
+kubespray_version: v2.31.0
+git_commit: 1c9add4
+source_type: inventory
+source_paths:
+  - inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.31.0
+retrieved_at: 2026-07-14
+topics:
+  - inventory
+  - cni
+  - cilium
+reliability: authoritative
+
+# Расхождения inventory vs roles/*/defaults (раздел 6.2): нет (см. disc-файл).
+discrepancies: []
+
+variables:
+
+  # ==========================================================================
+  # Уровень логирования
+  # ==========================================================================
+  - name: cilium_debug
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает подробный (debug) уровень логирования агента
+      Cilium. Значение-пример совпадает с defaults роли (false).
+
+  # ==========================================================================
+  # Базовая сеть (MTU, IPv4/IPv6)
+  # ==========================================================================
+  - name: cilium_mtu
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. MTU интерфейсов, управляемых Cilium. В sample показано
+      пустое значение "" (в defaults роли — "0", автоопределение).
+
+  - name: cilium_enable_ipv4
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает поддержку IPv4 в Cilium. В defaults роли
+      наследует ipv4_stack ("{{ ipv4_stack }}"); в sample показано true.
+
+  - name: cilium_enable_ipv6
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает поддержку IPv6 в Cilium. В defaults роли
+      наследует ipv6_stack ("{{ ipv6_stack }}"); в sample показано false.
+
+  # ==========================================================================
+  # L2-анонсирование (замена MetalLB) — ЕДИНСТВЕННАЯ заданная переменная
+  # ==========================================================================
+  - name: cilium_l2announcements
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      РЕАЛЬНО ЗАДАНО (не закомментировано). Включает L2-анонсирование Cilium как
+      замену MetalLB. Значение false совпадает с defaults роли — расхождения нет.
+      Ref: https://docs.cilium.io/en/v1.14/network/l2-announcements/
+
+  # ==========================================================================
+  # Порт health-check агента
+  # ==========================================================================
+  - name: cilium_agent_health_port
+    sample_value: '"9879"'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Порт проверки состояния (health) агента Cilium.
+      Совпадает с defaults роли ("9879").
+
+  # ==========================================================================
+  # Режим хранения identities (crd / kvstore)
+  # ==========================================================================
+  - name: cilium_identity_allocation_mode
+    sample_value: kvstore
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Способ хранения identities между узлами: "crd" или
+      "kvstore". В sample показан kvstore, тогда как defaults роли — crd
+      (crd требуется для External Workloads). Так как строка закомментирована,
+      расхождения по разделу 6.2 нет.
+
+  # ==========================================================================
+  # etcd SSL (актуально при identity_allocation_mode: kvstore)
+  # ==========================================================================
+  - name: cilium_cert_dir
+    sample_value: /etc/cilium/certs
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Каталог сертификатов Cilium для доступа к etcd в режиме
+      kvstore. Совпадает с defaults роли.
+
+  - name: kube_etcd_cacert_file
+    sample_value: ca.pem
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Имя CA-сертификата etcd для Cilium (kvstore). Совпадает
+      с defaults роли (ca.pem).
+
+  - name: kube_etcd_cert_file
+    sample_value: cert.pem
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Имя клиентского сертификата etcd для Cilium (kvstore).
+      В sample — cert.pem; в defaults роли — node-{{ inventory_hostname }}.pem.
+
+  - name: kube_etcd_key_file
+    sample_value: cert-key.pem
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Имя приватного ключа etcd для Cilium (kvstore).
+      В sample — cert-key.pem; в defaults роли — node-{{ inventory_hostname }}-key.pem.
+
+  # ==========================================================================
+  # Ресурсы подов (limits / requests)
+  # ==========================================================================
+  - name: cilium_memory_limit
+    sample_value: 500M
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: Закомментировано. Лимит памяти пода агента Cilium. Совпадает с defaults роли.
+
+  - name: cilium_cpu_limit
+    sample_value: 500m
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: Закомментировано. Лимит CPU пода агента Cilium. Совпадает с defaults роли.
+
+  - name: cilium_memory_requests
+    sample_value: 64M
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: Закомментировано. Запрос памяти пода агента Cilium. Совпадает с defaults роли.
+
+  - name: cilium_cpu_requests
+    sample_value: 100m
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: Закомментировано. Запрос CPU пода агента Cilium. Совпадает с defaults роли.
+
+  # ==========================================================================
+  # Режим оверлейной сети (туннелирование)
+  # ==========================================================================
+  - name: cilium_tunnel_mode
+    sample_value: vxlan
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Режим туннелирования: vxlan, geneve или disabled.
+      Совпадает с defaults роли (vxlan).
+
+  # ==========================================================================
+  # LoadBalancer Mode / kube-proxy replacement
+  # ==========================================================================
+  - name: cilium_loadbalancer_mode
+    sample_value: snat
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Режим балансировщика: snat, dsr или hybrid. Совпадает
+      с defaults роли (snat). Ref: kubeproxy-free/#dsr-mode.
+
+  - name: cilium_enable_prometheus
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Экспорт метрик Prometheus агентом и оператором Cilium.
+      Совпадает с defaults роли (false).
+
+  - name: cilium_enable_portmap
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает CNI-плагин portmap для проброса hostPort.
+      Совпадает с defaults роли (false).
+
+  - name: cilium_monitor_aggregation
+    sample_value: medium
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Уровень агрегации мониторинга: none/low/medium/maximum.
+      Совпадает с defaults роли (medium).
+
+  - name: cilium_monitor_aggregation_flags
+    sample_value: '"all"'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. TCP-флаги, при первом наблюдении которых генерируются
+      уведомления монитора (при aggregation medium и выше). Совпадает с defaults
+      роли ("all"). В defaults эта переменная помечена reliability: unconfirmed
+      (не используется в задачах/шаблонах v2.31.0).
+
+  - name: cilium_kube_proxy_replacement
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Режим замены kube-proxy (true/false). Совпадает с
+      defaults роли (false).
+
+  # ==========================================================================
+  # Преаллокация BPF-таблиц (апгрейд с Cilium < 1.5)
+  # ==========================================================================
+  - name: cilium_preallocate_bpf_maps
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Преаллокация BPF-таблиц (актуально при апгрейде с
+      Cilium < 1.5). Совпадает с defaults роли (false).
+
+  # ==========================================================================
+  # Устаревшие (deprecated) переменные — присутствуют только в sample
+  # ==========================================================================
+  - name: cilium_tofqdns_enable_poller
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. DEPRECATED: устарело в Cilium 1.8, удалено в 1.9.
+      В defaults роли v2.31.0 отсутствует; присутствует в sample как исторический
+      пример.
+
+  - name: cilium_enable_legacy_services
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. DEPRECATED: устарело в Cilium 1.6, удалено в 1.9.
+      В defaults роли v2.31.0 отсутствует; присутствует в sample как исторический
+      пример.
+
+  # ==========================================================================
+  # Cluster Mesh — ID кластера
+  # ==========================================================================
+  - name: cilium_cluster_id
+    sample_value: null
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано, без значения. Уникальный ID кластера (1..255) для
+      Cluster Mesh. В sample значение по умолчанию не задаётся; в defaults роли — 0.
+
+  # ==========================================================================
+  # Дополнительное развёртывание Cilium (рядом с другим CNI)
+  # ==========================================================================
+  - name: cilium_deploy_additionally
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Развернуть Cilium даже если kube_network_plugin != cilium
+      (например, для замены kube-proxy рядом с другим CNI). Совпадает с defaults
+      (false; в defaults объявлена в roles/kubespray_defaults).
+
+  # ==========================================================================
+  # Прямая маршрутизация / native routing
+  # ==========================================================================
+  - name: cilium_auto_direct_node_routes
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Автодобавление маршрутов к подам без туннелирования
+      (при cilium_tunnel_mode: disabled). Требует L2-связности и заданного
+      cilium_native_routing_cidr. Совпадает с defaults роли (false).
+
+  - name: cilium_native_routing_cidr
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Явный IPv4 CIDR для native routing. Совпадает с defaults
+      роли ("").
+
+  - name: cilium_native_routing_cidr_ipv6
+    sample_value: '""'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Явный IPv6 CIDR для native routing. Совпадает с defaults
+      роли ("").
+
+  # ==========================================================================
+  # Шифрование трафика
+  # ==========================================================================
+  - name: cilium_encryption_enabled
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает прозрачное шифрование трафика. Совпадает с
+      defaults роли (false).
+
+  - name: cilium_encryption_type
+    sample_value: '"ipsec"'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Метод шифрования: ipsec или wireguard (при
+      cilium_encryption_enabled: true). Совпадает с defaults роли ("ipsec").
+
+  - name: cilium_ipsec_node_encryption
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Шифрование трафика node-to-node (при encryption_type:
+      ipsec). Внимание: в defaults роли v2.31.0 одноимённой переменной нет —
+      аналог называется cilium_encryption_node_encryption (default false).
+      В sample сохранено legacy-имя cilium_ipsec_node_encryption.
+
+  - name: cilium_wireguard_userspace_fallback
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Fallback на user-space реализацию WireGuard, если ядро
+      не поддерживает WireGuard нативно (при encryption_type: wireguard).
+      Совпадает с defaults роли (false); в defaults помечена reliability:
+      unconfirmed.
+
+  # ==========================================================================
+  # IP Masquerade Agent
+  # ==========================================================================
+  - name: cilium_ip_masq_agent_enable
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает ip-masq-agent. Совпадает с defaults роли (false).
+
+  - name: cilium_non_masquerade_cidrs
+    sample_value:
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 192.168.0.0/16
+      - 100.64.0.0/10
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 198.18.0.0/15
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 240.0.0.0/4
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Список CIDR, трафик к которым НЕ маскарадится
+      ip-masq-agent. Совпадает с defaults роли.
+
+  - name: cilium_masq_link_local
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Маскарадить ли трафик к link-local префиксу. Если false,
+      169.254.0.0/16 добавляется в список non-masquerade. Совпадает с defaults
+      роли (false).
+
+  - name: cilium_ip_masq_resync_interval
+    sample_value: 60s
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Интервал перечитывания конфигурации ip-masq с диска.
+      Совпадает с defaults роли (60s).
+
+  # ==========================================================================
+  # Host Firewall и Policy Audit Mode
+  # ==========================================================================
+  - name: cilium_enable_host_firewall
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает Host Firewall (политики для трафика хоста).
+      Совпадает с defaults роли (false).
+
+  - name: cilium_policy_audit_mode
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Режим аудита сетевых политик (только логирование, без
+      блокировки). Совпадает с defaults роли (false).
+
+  # ==========================================================================
+  # Hubble (наблюдаемость)
+  # ==========================================================================
+  - name: cilium_enable_hubble
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает Hubble (без установки UI/relay по умолчанию).
+      Совпадает с defaults роли (false).
+
+  - name: cilium_enable_hubble_ui
+    sample_value: '"{{ cilium_enable_hubble }}"'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает Hubble UI. По умолчанию наследует
+      cilium_enable_hubble. Совпадает с defaults роли.
+
+  - name: cilium_enable_hubble_metrics
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает метрики Hubble. Совпадает с defaults роли
+      (false); в defaults помечена reliability: unconfirmed.
+
+  - name: cilium_hubble_metrics
+    sample_value: '{}'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Список метрик Hubble для экспорта (dns, drop, tcp, flow,
+      icmp, http). В sample показан пустой {} (в defaults роли — []).
+
+  - name: cilium_hubble_install
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Полная установка Hubble. Совпадает с defaults роли
+      (false); в defaults помечена reliability: unconfirmed.
+
+  - name: cilium_hubble_tls_generate
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Автогенерация сертификатов Hubble (при hubble_install:
+      true). Совпадает с defaults роли (false); в defaults reliability:
+      unconfirmed.
+
+  - name: cilium_hubble_event_buffer_capacity
+    sample_value: 4095
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Ёмкость буфера событий Hubble (значение = степень двойки
+      минус 1, не больше 65535). В defaults роли v2.31.0 одноимённой переменной
+      нет — присутствует только в sample как настраиваемый пример.
+
+  - name: cilium_hubble_event_queue_size
+    sample_value: 50
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Размер канала приёма monitor-событий Hubble. В defaults
+      роли v2.31.0 одноимённой переменной нет — присутствует только в sample.
+
+  - name: cilium_hubble_peer_service_cluster_domain
+    sample_value: '"{{ dns_domain }}"'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. DNS-суффикс, по которому Hubble-Relay резолвит
+      peer-сервис. Совпадает с defaults роли (наследует dns_domain).
+
+  # ==========================================================================
+  # IPAM
+  # ==========================================================================
+  - name: cilium_ipam_mode
+    sample_value: kubernetes
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Режим управления IP-адресами (IPAM). В sample показан
+      "kubernetes", тогда как defaults роли v2.31.0 — "cluster-pool". Так как
+      строка закомментирована, расхождения по разделу 6.2 нет, но при
+      раскомментировании поведение будет отличаться от значения по умолчанию.
+
+  # ==========================================================================
+  # Агент: доп. аргументы, тома, переменные окружения
+  # ==========================================================================
+  - name: cilium_agent_custom_args
+    sample_value: '[]'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Доп. аргументы агента Cilium. Совпадает с defaults роли
+      ([]); в defaults DEPRECATED (заменена cilium_agent_extra_args),
+      reliability: unconfirmed.
+
+  - name: cilium_agent_extra_volumes
+    sample_value: '[]'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Доп. тома, монтируемые в под агента Cilium. Совпадает
+      с defaults роли ([]).
+
+  - name: cilium_agent_extra_volume_mounts
+    sample_value: '[]'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Точки монтирования доп. томов агента Cilium. Совпадает
+      с defaults роли ([]).
+
+  - name: cilium_agent_extra_env_vars
+    sample_value: '[]'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Доп. переменные окружения агента Cilium. Совпадает с
+      defaults роли ([]); в defaults reliability: unconfirmed.
+
+  # ==========================================================================
+  # Оператор Cilium
+  # ==========================================================================
+  - name: cilium_operator_replicas
+    sample_value: 2
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Число реплик cilium-operator. Совпадает с defaults роли (2).
+
+  - name: cilium_operator_api_serve_addr
+    sample_value: '"127.0.0.1:9234"'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Адрес health-check API оператора. Совпадает с defaults
+      роли; в defaults reliability: unconfirmed.
+
+  - name: cilium_config_extra_vars
+    sample_value: '{}'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Словарь доп. параметров в cilium-config. Совпадает с
+      defaults роли ({}).
+
+  - name: cilium_operator_extra_volumes
+    sample_value: '[]'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Доп. тома, монтируемые в под cilium-operator. Совпадает
+      с defaults роли ([]).
+
+  - name: cilium_operator_extra_volume_mounts
+    sample_value: '[]'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Точки монтирования доп. томов cilium-operator. Совпадает
+      с defaults роли ([]).
+
+  - name: cilium_operator_custom_args
+    sample_value: '[]'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Доп. аргументы cilium-operator. Совпадает с defaults роли
+      ([]); в defaults DEPRECATED (заменена cilium_operator_extra_args),
+      reliability: unconfirmed.
+
+  # ==========================================================================
+  # Имя кластера (Cluster Mesh)
+  # ==========================================================================
+  - name: cilium_cluster_name
+    sample_value: default
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Имя кластера, значимо при построении mesh. Совпадает с
+      defaults роли (default).
+
+  # ==========================================================================
+  # CNI-конфигурация на узле
+  # ==========================================================================
+  - name: cilium_cni_exclusive
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Cilium становится эксклюзивным владельцем /etc/cni/net.d
+      (прочие CNI-конфиги переименовываются в *.cilium_bak). Доступно с Cilium
+      v1.10. Совпадает с defaults роли (true).
+
+  - name: cilium_cni_log_file
+    sample_value: '"/var/run/cilium/cilium-cni.log"'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Файл логирования CNI-плагина Cilium (ротация 7 дней).
+      Доступно с Cilium v1.12. Совпадает с defaults роли.
+
+  # ==========================================================================
+  # cgroup v2
+  # ==========================================================================
+  - name: cilium_cgroup_auto_mount
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Автомонтирование ФС cgroup2. Доступно с Cilium v1.11.
+      Совпадает с defaults роли (true).
+
+  - name: cilium_cgroup_host_root
+    sample_value: '"/run/cilium/cgroupv2"'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Путь на хосте для монтирования cgroup2. Совпадает с
+      defaults роли.
+
+  - name: cilium_bpf_map_dynamic_size_ratio
+    sample_value: '"0.0"'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Доля памяти системы (0.0–1.0) для динамического расчёта
+      размеров BPF-таблиц. В sample показан "0.0", тогда как defaults роли —
+      "0.0025". Значение закомментировано, поэтому расхождения нет.
+
+  # ==========================================================================
+  # Masquerade (BPF/eBPF)
+  # ==========================================================================
+  - name: cilium_enable_ipv4_masquerade
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Маскарадинг IPv4-трафика от эндпоинтов. Доступно с
+      Cilium v1.10. Совпадает с defaults роли (true).
+
+  - name: cilium_enable_ipv6_masquerade
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Маскарадинг IPv6-трафика от эндпоинтов. Доступно с
+      Cilium v1.10. Совпадает с defaults роли (true).
+
+  - name: cilium_enable_bpf_masquerade
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Нативный маскарадинг средствами eBPF. Совпадает с
+      defaults роли (false).
+
+  # ==========================================================================
+  # BGP Control Plane
+  # ==========================================================================
+  - name: cilium_enable_bgp_control_plane
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает BGP Control Plane. Совпадает с defaults роли (false).
+
+  - name: cilium_loadbalancer_ip_pools
+    sample_value: "пример структуры (список пулов blue-pool с cidrs/ranges) — закомментирован"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Пулы IP-адресов для LoadBalancer (CiliumLoadBalancerIPPool).
+      В sample дан развёрнутый пример (name/cidrs/ranges); в defaults роли — [].
+
+  - name: cilium_bgp_cluster_configs
+    sample_value: "пример структуры (bgpv2 API v1.16+, bgpInstances/peers) — закомментирован"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. BGP Instances (новый bgpv2 API, Cilium v1.16+). В sample
+      дан развёрнутый пример; в defaults роли — [].
+
+  - name: cilium_bgp_peer_configs
+    sample_value: "пример структуры (bgpv2 API v1.16+, gracefulRestart/families) — закомментирован"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. BGP Peers (новый bgpv2 API, Cilium v1.16+). В sample дан
+      пример; в defaults роли — [].
+
+  - name: cilium_bgp_advertisements
+    sample_value: "пример структуры (bgpv2 API v1.16+, advertisementType Service) — закомментирован"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. BGP Advertisements (новый bgpv2 API, Cilium v1.16+).
+      В sample дан пример; в defaults роли — [].
+
+  - name: cilium_bgp_node_config_overrides
+    sample_value: "пример структуры (bgpv2 API v1.16+, bgpInstances/routerID) — закомментирован"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. BGP Node Config Overrides (новый bgpv2 API, Cilium
+      v1.16+). В sample дан пример; в defaults роли — [].
+
+  - name: cilium_bgp_peering_policies
+    sample_value: "пример структуры (legacy API, virtualRouters/neighbors) — закомментирован"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. BGP Peers (legacy API, Cilium < v1.16). В sample дан
+      пример; в defaults роли — [].
+
+  # ==========================================================================
+  # Прямая маршрутизация через host stack / BPF
+  # ==========================================================================
+  - name: cilium_enable_host_legacy_routing
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Направлять трафик через host stack (true) или напрямую
+      через BPF (false, эффективнее). В sample показано true, тогда как defaults
+      роли — false. Значение закомментировано, расхождения нет.
+
+  # ==========================================================================
+  # Identity (remote node / well-known)
+  # ==========================================================================
+  - name: cilium_enable_remote_node_identity
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает remote node identity. Совпадает с defaults роли
+      (true); в defaults reliability: unconfirmed.
+
+  - name: cilium_enable_well_known_identities
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Включает well-known identities. Совпадает с defaults роли
+      (false); в defaults reliability: unconfirmed.
+
+  # ==========================================================================
+  # Обновление статуса CiliumNetworkPolicy
+  # ==========================================================================
+  - name: cilium_disable_cnp_status_updates
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Отключает обновление статуса CiliumNetworkPolicy.
+      Совпадает с defaults роли (true); в defaults reliability: unconfirmed.
+
+  # ==========================================================================
+  # ClusterRole оператора: доп. правила
+  # ==========================================================================
+  - name: cilium_clusterrole_rules_operator_extra_vars
+    sample_value: '[]'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Доп. правила в clusterrole для cilium-operator (apiGroups
+      /resources/verbs). В sample дан пример; итоговое значение по умолчанию — [].
+
+  # ==========================================================================
+  # Расширенная кастомизация (Helm)
+  # ==========================================================================
+  - name: cilium_extra_values
+    sample_value: '{}'
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-net-cilium.yml
+    comment: >-
+      Закомментировано. Произвольные значения из Helm-чарта Cilium, добавляемые
+      к values.yaml. Совпадает с defaults роли ({}).
+      Ref: https://docs.cilium.io/en/stable/helm-reference/

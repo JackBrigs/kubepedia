@@ -1,0 +1,2343 @@
+---
+project: kubespray
+kubespray_version: v2.30.0
+git_commit: f4ccdb5
+source_type: code
+source_paths:
+  - roles/kubespray_defaults/defaults/main/main.yml
+  - roles/kubespray_defaults/vars/main/main.yml
+  - roles/kubernetes/control-plane/defaults/main/main.yml
+  - roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+  - roles/kubernetes/control-plane/defaults/main/etcd.yml
+  - roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+  - roles/kubernetes/control-plane/vars/main.yaml
+  - roles/kubernetes/node/defaults/main.yml
+  - roles/kubernetes/node/vars/fedora.yml
+  - roles/kubernetes/node/vars/ubuntu-18.yml
+  - roles/kubernetes/node/vars/ubuntu-20.yml
+  - roles/kubernetes/node/vars/ubuntu-22.yml
+  - roles/kubernetes/node/vars/ubuntu-24.yml
+  - roles/kubernetes/kubeadm/defaults/main.yml
+  - roles/kubernetes/kubeadm_common/defaults/main.yml
+  - roles/kubernetes/preinstall/defaults/main.yml
+  - roles/kubernetes/preinstall/vars/main.yml
+  - roles/kubernetes/client/defaults/main.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.30.0
+retrieved_at: 2026-07-14
+topics: [k8s-cluster, control-plane, kubelet, kube-proxy]
+reliability: authoritative
+notes: >
+  Справочник переменных ядра кластера Kubespray на теге v2.30.0 (commit f4ccdb5).
+  Роль kubespray_defaults на этом теге называется roles/kubespray_defaults/ (в v2.29.1
+  так же). Роли roles/kubernetes/node-label/ и roles/kubernetes/node-taint/ содержат
+  только tasks/ (без defaults/ и vars/), поэтому переменных из них здесь нет.
+  Переменные загрузок (download.yml) и контрольные суммы (checksums.yml) вынесены
+  в отдельные справочники. Включены только фактически определённые (не закомментированные)
+  переменные. Некоторые переменные повторяются в нескольких файлах — для них указан
+  каждый source_path с пометкой о дублировании.
+variables:
+
+  # =====================================================================
+  # roles/kubespray_defaults/defaults/main/main.yml
+  # Базовые, системные, сетевые и общекластерные переменные
+  # =====================================================================
+
+  # --- SSH / базовые настройки узлов ---
+  - name: ansible_ssh_common_args
+    default: "{% if 'bastion' in groups['all'] %} -o ProxyCommand='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -W %h:%p -p {{ hostvars['bastion']['ansible_port'] | default(22) }} {{ hostvars['bastion']['ansible_user'] }}@{{ hostvars['bastion']['ansible_host'] }} {% if ansible_ssh_private_key_file is defined %}-i {{ ansible_ssh_private_key_file }}{% endif %} ' {% endif %}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Автоматически добавляет SSH ProxyCommand через bastion-хост, если он есть в группе all"
+    conditions: "Применяется только при наличии хоста bastion в группе all"
+  - name: preinstall_selinux_state
+    default: "permissive"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Целевое состояние SELinux, выставляемое на этапе preinstall (permissive/disabled)"
+  - name: ping_access_ip
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Проверять доступность access_ip через ping; отключить, если файрвол блокирует ICMP"
+  - name: kube_api_anonymous_auth
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Разрешает анонимную аутентификацию на kube-apiserver; при значении undef() флаг --anonymous-auth удаляется"
+  - name: is_fedora_coreos
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Признак Fedora CoreOS; выставляется в true автоматически при обнаружении этой ОС"
+
+  # --- Swap ---
+  - name: kubelet_fail_swap_on
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Падать при запуске kubelet, если на узле включён swap (failSwapOn)"
+  - name: kubelet_swap_behavior
+    default: "LimitedSwap"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Поведение kubelet при использовании swap (LimitedSwap/NoSwap)"
+
+  # --- Версии Kubernetes ---
+  - name: kube_version
+    default: "{{ (kubelet_checksums['amd64'] | dict2items)[0].key }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Версия Kubernetes для установки; по умолчанию берётся первая (самая свежая) версия из kubelet_checksums"
+    related: [kube_version_min_required, kubelet_checksums]
+  - name: kube_version_min_required
+    default: "{{ (kubelet_checksums['amd64'] | dict2items)[-1].key }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Минимально поддерживаемая версия Kubernetes; последняя (самая старая) в списке kubelet_checksums"
+    related: [kube_version]
+
+  # --- kube-proxy режим ---
+  - name: kube_proxy_mode
+    default: "ipvs"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Режим работы kube-proxy: ipvs, iptables или nftables"
+
+  # --- kubeadm ---
+  - name: kubeadm_config_api_version
+    default: "{{ 'v1beta4' if kube_version is version('1.31.0', '>=') else 'v1beta3' }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Версия API конфигурации kubeadm: v1beta4 для K8s >= 1.31, иначе v1beta3"
+    related: [kube_version]
+  - name: kubeadm_config_validate_enabled
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Валидировать конфиг kubeadm командой validate; отключать только для dev/test с pre-release версиями"
+  - name: kubeadm_init_timeout
+    default: "300s"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Таймаут инициализации первого control-plane узла (kubeadm init)"
+  - name: kube_reserved_cgroups_for_service_slice
+    default: "kube.slice"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Имя systemd slice для cgroups сервисов kube (TODO помечен на удаление в коде)"
+  - name: kubeadm_init_phases_skip_default
+    default: '[ "addon/coredns" ]'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Базовый список фаз kubeadm init, пропускаемых при развёртывании control plane (по умолчанию addon/coredns)"
+    related: [kubeadm_init_phases_skip]
+  - name: kubeadm_init_phases_skip
+    default: >-
+      {%- if kube_network_plugin == 'kube-router' and (kube_router_run_service_proxy is defined and kube_router_run_service_proxy) -%}
+      {{ kubeadm_init_phases_skip_default + ["addon/kube-proxy"] }}
+      {%- elif kube_network_plugin == 'cilium' and (cilium_kube_proxy_replacement is defined and (cilium_kube_proxy_replacement == 'strict' or (cilium_kube_proxy_replacement | bool) or (cilium_kube_proxy_replacement | string | lower == 'true') )) -%}
+      {{ kubeadm_init_phases_skip_default + ["addon/kube-proxy"] }}
+      {%- elif kube_network_plugin == 'calico' and (calico_bpf_enabled is defined and calico_bpf_enabled) -%}
+      {{ kubeadm_init_phases_skip_default + ["addon/kube-proxy"] }}
+      {%- elif kube_proxy_remove is defined and kube_proxy_remove -%}
+      {{ kubeadm_init_phases_skip_default + ["addon/kube-proxy"] }}
+      {%- else -%}
+      {{ kubeadm_init_phases_skip_default }}
+      {%- endif -%}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Итоговый список пропускаемых фаз kubeadm init; при некоторых CNI (kube-router, cilium, calico bpf) или kube_proxy_remove добавляется addon/kube-proxy"
+    related: [kubeadm_init_phases_skip_default, kube_network_plugin, kube_proxy_remove]
+  - name: kubeadm_join_phases_skip_default
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Базовый список фаз kubeadm join, пропускаемых при вводе нового узла; для air-gapped может понадобиться ['preflight']"
+    related: [kubeadm_join_phases_skip]
+  - name: kubeadm_join_phases_skip
+    default: "{{ kubeadm_join_phases_skip_default }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Итоговый список пропускаемых фаз kubeadm join"
+    related: [kubeadm_join_phases_skip_default]
+  - name: kubeadm_upgrade_node_phases_skip_default
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Базовый список фаз kubeadm upgrade node, пропускаемых при обновлении вторичного control-plane узла"
+    related: [kubeadm_upgrade_node_phases_skip]
+  - name: kubeadm_upgrade_node_phases_skip
+    default: >-
+      {%- if kube_version is version('1.32.0', '>=') -%}
+      {{ kubeadm_upgrade_node_phases_skip_default + kubeadm_init_phases_skip }}
+      {%- else -%}
+      {{ kubeadm_upgrade_node_phases_skip_default }}
+      {%- endif -%}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Итоговый список пропускаемых фаз kubeadm upgrade node; для K8s >= 1.32 добавляются фазы из kubeadm_init_phases_skip"
+    related: [kubeadm_upgrade_node_phases_skip_default, kubeadm_init_phases_skip, kube_version]
+  - name: remove_anonymous_access
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Удалять привязку роли к анонимным пользователям, создаваемую kubeadm"
+    related: [kubeadm_use_file_discovery]
+
+  # --- kube-proxy NodePort ---
+  - name: kube_proxy_nodeport_addresses
+    default: >-
+      {%- if kube_proxy_nodeport_addresses_cidr is defined -%}
+      [{{ kube_proxy_nodeport_addresses_cidr }}]
+      {%- else -%}
+      []
+      {%- endif -%}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список адресов (CIDR) для NodePort-сервисов; пустой список означает использование всех локальных адресов. Дублируется в roles/kubernetes/control-plane/defaults/main/kube-proxy.yml"
+    related: [kube_proxy_nodeport_addresses_cidr]
+
+  - name: ignore_assert_errors
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Разрешить продолжение деплоя при провале предварительных проверок (assert). Дублируется в preinstall и client defaults"
+
+  # --- kube-vip / балансировщик ---
+  - name: kube_vip_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить kube-vip для виртуального IP control plane"
+  - name: kube_vip_lb_fwdmethod
+    default: "local"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Метод пересылки трафика балансировщика kube-vip (local/masquerade)"
+  - name: kube_vip_address
+    default: "~"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Виртуальный IP-адрес kube-vip (пусто по умолчанию)"
+  - name: nginx_config_dir
+    default: "/etc/nginx"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог конфигурации nginx-proxy (локальный балансировщик apiserver)"
+  - name: haproxy_config_dir
+    default: "/etc/haproxy"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог конфигурации haproxy (локальный балансировщик apiserver)"
+
+  # --- Каталоги бинарников и релизов ---
+  - name: bin_dir
+    default: "/usr/local/bin"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог установки бинарных файлов (kubectl, kubelet и др.)"
+  - name: docker_bin_dir
+    default: "/usr/bin"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог бинарников Docker"
+  - name: containerd_bin_dir
+    default: "{{ bin_dir }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог бинарников containerd"
+    related: [bin_dir]
+  - name: etcd_data_dir
+    default: "/var/lib/etcd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог данных etcd"
+  - name: local_release_dir
+    default: "/tmp/releases"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог загрузки бинарников (нужно ~1 ГБ свободного места)"
+  - name: retry_stagger
+    default: 5
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Случайный разброс (сек) для повторов неудачных операций загрузки/выгрузки"
+
+  # --- DNS ---
+  - name: cluster_name
+    default: "cluster.local"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Имя кластера Kubernetes, также используется как DNS-домен"
+    related: [dns_domain]
+  - name: ndots
+    default: 2
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Значение опции ndots в resolv.conf для hostnet-подов"
+  - name: docker_dns_options
+    default: "['ndots:{{ ndots }}', 'timeout:2', 'attempts:2']"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Опции resolv.conf по умолчанию (ndots/timeout/attempts)"
+    related: [ndots]
+  - name: dns_mode
+    default: "coredns"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Режим DNS кластера: coredns, coredns_dual, manual или none"
+    related: [kube_dns_servers, dns_servers]
+  - name: enable_dns_autoscaler
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить автоскейлер DNS"
+  - name: upstream_dns_servers
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "DNS-серверы, добавляемые после cluster DNS; используются CoreDNS как upstream для внешних запросов"
+  - name: enable_nodelocaldns
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить NodeLocal DNS Cache"
+  - name: enable_nodelocaldns_secondary
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить вторичный экземпляр NodeLocal DNS Cache"
+  - name: nodelocaldns_ip
+    default: "169.254.25.10"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Link-local IP NodeLocal DNS Cache"
+  - name: nodelocaldns_health_port
+    default: 9254
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Порт health-check NodeLocal DNS Cache"
+  - name: nodelocaldns_second_health_port
+    default: 9256
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Порт health-check вторичного NodeLocal DNS Cache"
+  - name: nodelocaldns_bind_metrics_host_ip
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Привязывать метрики NodeLocal DNS к host IP"
+  - name: nodelocaldns_secondary_skew_seconds
+    default: 5
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Сдвиг (сек) между первичным и вторичным NodeLocal DNS Cache"
+  - name: manual_dns_server
+    default: '""'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Cluster IP кастомного DNS при dns_mode=manual"
+    conditions: "Используется при dns_mode=manual"
+  - name: resolvconf_mode
+    default: "host_resolvconf"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Режим управления resolv.conf: host_resolvconf, docker_dns или none"
+  - name: deploy_netchecker
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть приложение netchecker для проверки DNS-резолвинга как HTTP-сервиса"
+  - name: skydns_server
+    default: "{{ kube_service_subnets.split(',') | first | ansible.utils.ipaddr('net') | ansible.utils.ipaddr(3) | ansible.utils.ipaddr('address') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "IP-адрес DNS-сервиса кластера (3-й адрес service-сети); имя skydns по историческим причинам"
+    related: [kube_service_subnets]
+  - name: skydns_server_secondary
+    default: "{{ kube_service_subnets.split(',') | first | ansible.utils.ipaddr('net') | ansible.utils.ipaddr(4) | ansible.utils.ipaddr('address') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "IP вторичного DNS-сервиса кластера (4-й адрес service-сети)"
+    related: [kube_service_subnets]
+  - name: dns_domain
+    default: "{{ cluster_name }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "DNS-домен кластера (равен cluster_name)"
+    related: [cluster_name]
+  - name: docker_dns_search_domains
+    default: "['default.svc.{{ dns_domain }}', 'svc.{{ dns_domain }}']"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Search-домены resolv.conf для контейнеров"
+    related: [dns_domain]
+  - name: searchdomains
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Дополнительные search-домены пользователя"
+  - name: kube_dns_servers
+    default: "{coredns: ['{{ skydns_server }}'], coredns_dual: '{{ [skydns_server] + [skydns_server_secondary] }}', manual: ['{{ manual_dns_server }}']}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Соответствие dns_mode -> список DNS-серверов"
+    related: [dns_mode, skydns_server, skydns_server_secondary, manual_dns_server]
+  - name: dns_servers
+    default: "{{ kube_dns_servers[dns_mode] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Итоговый список DNS-серверов в зависимости от dns_mode"
+    related: [kube_dns_servers, dns_mode]
+  - name: enable_coredns_k8s_external
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить плагин CoreDNS k8s_external"
+  - name: coredns_k8s_external_zone
+    default: "k8s_external.local"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "DNS-зона для плагина CoreDNS k8s_external"
+  - name: enable_coredns_k8s_endpoint_pod_names
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить резолвинг pod-имён в endpoint для CoreDNS"
+
+  # --- Каталоги и владельцы конфигурации Kubernetes ---
+  - name: kube_config_dir
+    default: "/etc/kubernetes"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Основной каталог конфигурации Kubernetes. Дублируется в preinstall и client defaults"
+  - name: kube_script_dir
+    default: "{{ bin_dir }}/kubernetes-scripts"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог вспомогательных скриптов Kubernetes"
+    related: [bin_dir]
+  - name: kube_manifest_dir
+    default: "{{ kube_config_dir }}/manifests"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог статических манифестов подов"
+    related: [kube_config_dir]
+  - name: kubectl
+    default: "{{ bin_dir }}/kubectl --kubeconfig {{ kube_config_dir }}/admin.conf"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Команда kubectl с admin.conf для использования в ролях"
+    related: [bin_dir, kube_config_dir]
+  - name: kube_cert_dir
+    default: "{{ kube_config_dir }}/ssl"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог сертификатов и скриптов сертификатов. Дублируется в preinstall defaults"
+    related: [kube_config_dir]
+  - name: kube_cert_compat_dir
+    default: "/etc/kubernetes/pki"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог совместимости сертификатов для kubeadm. Дублируется в preinstall defaults"
+  - name: kube_token_dir
+    default: "{{ kube_config_dir }}/tokens"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог хранения bearer-токенов"
+    related: [kube_config_dir]
+  - name: kube_owner
+    default: "kube"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Пользователь-владелец установки кластера. Дублируется в preinstall defaults"
+  - name: kube_cert_group
+    default: "kube-cert"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Группа, назначаемая файлам сертификатов. Дублируется в preinstall defaults"
+  - name: kube_external_ca_mode
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Режим внешнего управления CA; отключает задачи манипуляции сертификатами (сертификаты и kubeconfig должны быть заранее подготовлены)"
+  - name: kube_log_level
+    default: 2
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Уровень логирования компонентов кластера"
+
+  # --- Сеть кластера / CNI ---
+  - name: kube_network_plugin
+    default: "calico"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Сетевой плагин (CNI): cilium, calico, kube-ovn, flannel, cni, cloud и др."
+  - name: kube_network_plugin_multus
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть Multus поверх основного CNI"
+  - name: cilium_deploy_additionally
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть Cilium дополнительно к другому CNI (для замены kube-proxy)"
+  - name: peer_with_calico_rr
+    default: "{{ 'calico_rr' in groups and groups['calico_rr'] | length > 0 }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Определяет наличие непустой группы calico_rr (route reflectors)"
+  - name: calico_datastore
+    default: "kdd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Тип хранилища данных Calico: etcd или kdd (kubernetes datastore)"
+  - name: kube_service_addresses
+    default: "10.233.0.0/18"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Внутренняя сеть service-адресов Kubernetes (должна быть свободна в инфраструктуре)"
+  - name: kube_pods_subnet
+    default: "10.233.64.0/18"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Внутренняя сеть для IP-адресов подов (должна быть свободна в инфраструктуре)"
+  - name: kube_network_node_prefix
+    default: 24
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Размер подсети, выделяемой каждому узлу для IP подов"
+    related: [kube_pods_subnet, kubelet_max_pods]
+  - name: ipv4_stack
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить IPv4-стек сети"
+  - name: ipv6_stack
+    default: "{{ enable_dual_stack_networks | default(false) }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить IPv6-стек сети; берётся из устаревшей enable_dual_stack_networks"
+    related: [ipv4_stack]
+  - name: kube_service_addresses_ipv6
+    default: "fd85:ee78:d8a6:8607::1000/116"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Внутренняя IPv6-сеть service-адресов (используется только при ipv6_stack=true)"
+    conditions: "Только при ipv6_stack=true"
+  - name: kube_pods_subnet_ipv6
+    default: "fd85:ee78:d8a6:8607::1:0000/112"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Внутренняя IPv6-сеть для подов (используется только при ipv6_stack=true)"
+    conditions: "Только при ipv6_stack=true"
+  - name: kube_network_node_prefix_ipv6
+    default: 120
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Размер IPv6-подсети на узел (только при ipv6_stack=true)"
+    conditions: "Только при ipv6_stack=true"
+
+  # --- API server (endpoint) ---
+  - name: kube_apiserver_ip
+    default: "{{ kube_service_subnets.split(',') | first | ansible.utils.ipaddr('net') | ansible.utils.ipaddr(1) | ansible.utils.ipaddr('address') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Виртуальный cluster IP API-сервера (1-й адрес service-сети)"
+    related: [kube_service_subnets]
+  - name: kube_apiserver_bind_address
+    default: "::"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Адрес привязки внешнего API. Дублируется в control-plane/defaults/main/main.yml"
+  - name: kube_apiserver_port
+    default: 6443
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "HTTPS-порт API-сервера. Дублируется (строкой) в client defaults"
+  - name: kube_override_hostname
+    default: "{{ inventory_hostname }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Если непусто — используется как идентификатор узла вместо фактического hostname"
+  - name: default_kubelet_config_dir
+    default: "{{ kube_config_dir }}/dynamic_kubelet_dir"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог динамической конфигурации kubelet"
+    related: [kube_config_dir]
+  - name: kube_api_aggregator_routing
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить маршрутизацию aggregator API-сервера"
+  - name: kube_profiling
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить профилирование компонентов кластера"
+
+  # --- Graceful shutdown ---
+  - name: kubelet_shutdown_grace_period
+    default: "60s"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Общий период graceful shutdown узла для kubelet"
+  - name: kubelet_shutdown_grace_period_critical_pods
+    default: "20s"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Период graceful shutdown для критических подов (должен быть меньше общего)"
+    related: [kubelet_shutdown_grace_period]
+
+  # --- Cloud provider ---
+  - name: cloud_provider
+    default: '""'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Провайдер облака; допустимо только 'external' или пустая строка"
+  - name: external_cloud_provider
+    default: '""'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Внешний Cloud Controller Manager: openstack, vsphere, oci, huaweicloud, hcloud, manual"
+    conditions: "cloud_provider должен быть 'external'"
+    related: [cloud_provider]
+
+  # --- Container runtime ---
+  - name: deploy_container_engine
+    default: "{{ 'k8s_cluster' in group_names or etcd_deployment_type == 'docker' }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Разворачивать ли контейнерный движок на узле"
+    related: [etcd_deployment_type]
+  - name: container_manager
+    default: "containerd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Контейнерный runtime: containerd, crio или docker"
+  - name: nri_enabled
+    default: "{{ container_manager == 'containerd' }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить плагин Node Resource Interface для containerd"
+    related: [container_manager]
+  - name: kata_containers_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить Kata Containers как дополнительный runtime (требует container_manager != docker)"
+  - name: gvisor_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить gVisor как дополнительный runtime (docker или containerd)"
+  - name: runc_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить runc как дополнительный runtime (требует container_manager=crio)"
+  - name: crun_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить crun как дополнительный runtime (требует container_manager=crio)"
+  - name: youki_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить youki как дополнительный runtime (требует container_manager=crio)"
+  - name: container_manager_on_localhost
+    default: "{{ container_manager }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Контейнерный runtime на localhost (для download_localhost)"
+    related: [container_manager]
+  - name: cri_socket
+    default: >-
+      {%- if container_manager == 'crio' -%}
+      unix:///var/run/crio/crio.sock
+      {%- elif container_manager == 'containerd' -%}
+      unix:///var/run/containerd/containerd.sock
+      {%- elif container_manager == 'docker' -%}
+      unix:///var/run/cri-dockerd.sock
+      {%- endif -%}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Путь к CRI-сокету в зависимости от container_manager"
+    related: [container_manager]
+  - name: crio_insecure_registries
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список insecure-реестров для CRI-O"
+
+  # --- Docker ---
+  - name: docker_dns_servers_strict
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "При true использовать только первые 3 nameserver, иначе падать при их избытке"
+  - name: docker_daemon_graph
+    default: "/var/lib/docker"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог данных Docker"
+  - name: docker_iptables_enabled
+    default: '"false"'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить управление iptables демоном Docker"
+  - name: docker_log_opts
+    default: "--log-opt max-size=50m --log-opt max-file=5"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Опции ротации логов контейнеров Docker (50m, 5 файлов)"
+  - name: docker_insecure_registries
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список insecure-реестров Docker"
+  - name: docker_registry_mirrors
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список зеркал реестров Docker"
+  - name: docker_plugins
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список плагинов Docker для установки"
+
+  # --- containerd ---
+  - name: containerd_use_systemd_cgroup
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Использовать systemd cgroup driver в containerd"
+  - name: containerd_static_binary
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Использовать статический бинарник containerd (для старых дистрибутивов, напр. Debian 11)"
+  - name: containerd_storage_dir
+    default: "/var/lib/containerd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог данных containerd"
+  - name: containerd_state_dir
+    default: "/run/containerd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог runtime-состояния containerd"
+  - name: containerd_systemd_dir
+    default: "/etc/systemd/system/containerd.service.d"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог systemd drop-in для containerd"
+  - name: containerd_cfg_dir
+    default: "/etc/containerd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог конфигурации containerd"
+
+  # --- etcd deployment ---
+  - name: etcd_deployment_type
+    default: "host"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Тип развёртывания etcd (legacy-режим): host, docker и др."
+  - name: cert_management
+    default: "script"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Механизм управления сертификатами"
+
+  # --- kubeconfig / kubectl на Ansible-хосте ---
+  - name: kubeconfig_localhost
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Копировать kubeconfig на хост Ansible в {{ inventory_dir }}/artifacts. Дублируется в client defaults"
+  - name: kubectl_localhost
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Скачивать kubectl на хост Ansible в bin_dir. Дублируется в client defaults"
+  - name: credentials_dir
+    default: "{{ inventory_dir }}/credentials"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог учётных данных (переопределяемый)"
+  - name: k8s_image_pull_policy
+    default: "IfNotPresent"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "imagePullPolicy для образов Kubernetes"
+
+  # --- Addons (флаги включения) ---
+  - name: dashboard_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть Kubernetes Dashboard (требует RBAC)"
+  - name: helm_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Установить Helm"
+  - name: registry_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть внутренний container registry"
+  - name: metrics_server_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть metrics-server"
+  - name: enable_network_policy
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить поддержку NetworkPolicy"
+  - name: local_path_provisioner_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть local-path-provisioner"
+  - name: local_volume_provisioner_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть local-volume-provisioner"
+  - name: local_volume_provisioner_directory_mode
+    default: '"0700"'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Права каталога local-volume-provisioner"
+  - name: cinder_csi_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить OpenStack Cinder CSI"
+  - name: aws_ebs_csi_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить AWS EBS CSI"
+  - name: azure_csi_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить Azure Disk CSI"
+  - name: gcp_pd_csi_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить GCP Persistent Disk CSI"
+  - name: vsphere_csi_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить vSphere CSI"
+  - name: upcloud_csi_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить UpCloud CSI"
+  - name: csi_snapshot_controller_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть CSI snapshot controller"
+  - name: persistent_volumes_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить поддержку Persistent Volumes"
+  - name: ingress_nginx_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть ingress-nginx"
+  - name: ingress_alb_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть AWS ALB ingress controller"
+  - name: cert_manager_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть cert-manager"
+  - name: expand_persistent_volumes
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Разрешить расширение Persistent Volumes"
+  - name: metallb_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть MetalLB"
+  - name: metallb_speaker_enabled
+    default: "{{ metallb_enabled }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить MetalLB speaker"
+    related: [metallb_enabled]
+  - name: argocd_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть Argo CD"
+  - name: gateway_api_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Установить CRD Gateway API"
+  - name: prometheus_operator_crds_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Установить CRD Prometheus Operator"
+
+  # --- OpenStack / внешние облака ---
+  - name: openstack_blockstorage_ignore_volume_az
+    default: "{{ volume_cross_zone_attachment | default('false') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Игнорировать AZ тома для OpenStack block storage"
+  - name: cinder_csi_ignore_volume_az
+    default: "{{ volume_cross_zone_attachment | default('false') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Игнорировать AZ тома для Cinder CSI (кросс-зональное монтирование)"
+  - name: openstack_lbaas_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить OpenStack LBaaSv2 (in-tree)"
+  - name: openstack_lbaas_create_monitor
+    default: '"yes"'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Создавать health-монитор LBaaS"
+  - name: openstack_lbaas_monitor_delay
+    default: '"1m"'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Интервал проверки health-монитора LBaaS"
+  - name: openstack_lbaas_monitor_timeout
+    default: '"30s"'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Таймаут health-монитора LBaaS"
+  - name: openstack_lbaas_monitor_max_retries
+    default: '"3"'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Число повторов health-монитора LBaaS"
+  - name: openstack_cacert
+    default: "{{ lookup('env', 'OS_CACERT') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "CA-сертификат OpenStack из переменной окружения OS_CACERT"
+  - name: external_openstack_lbaas_enabled
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить LBaaS для внешнего OpenStack Cloud Controller"
+  - name: external_openstack_network_ipv6_disabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Отключить IPv6 для внешнего OpenStack CCM"
+  - name: external_openstack_network_internal_networks
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список внутренних сетей внешнего OpenStack CCM"
+  - name: external_openstack_network_public_networks
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список публичных сетей внешнего OpenStack CCM"
+  - name: external_hcloud_cloud
+    default: "{hcloud_api_token: '', token_secret_name: hcloud, service_account_name: cloud-controller-manager, controller_image_tag: 'latest', controller_extra_args: {}}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Настройки внешнего Hetzner Cloud Controller (токен, secret, service account, тег образа, extra args)"
+
+  # --- Авторизация / RBAC ---
+  - name: authorization_modes
+    default: "['Node', 'RBAC']"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Режимы авторизации кластера; тестируются AlwaysAllow, AlwaysDeny, Node, RBAC. Порядок важен"
+  - name: kube_apiserver_use_authorization_config_file
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Использовать структурированный AuthorizationConfiguration вместо флага --authorization-mode; при true authorization_modes игнорируется"
+    related: [authorization_modes, kube_apiserver_authorization_config_authorizers]
+  - name: kube_apiserver_authorization_config_api_version
+    default: "{{ 'v1alpha1' if kube_version is version('1.30.0', '<') else 'v1beta1' if kube_version is version('1.32.0', '<') else 'v1' }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Версия API AuthorizationConfiguration в зависимости от версии K8s"
+    related: [kube_version]
+  - name: kube_apiserver_authorization_config_authorizers
+    default: "[{type: Node, name: node}, {type: RBAC, name: rbac}]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список авторизаторов для структурированной AuthorizationConfiguration"
+    related: [kube_apiserver_use_authorization_config_file]
+  - name: rbac_enabled
+    default: "{{ ('RBAC' in authorization_modes and not kube_apiserver_use_authorization_config_file) or (kube_apiserver_use_authorization_config_file and kube_apiserver_authorization_config_authorizers | selectattr('type', 'equalto', 'RBAC') | list | length > 0) }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включён ли RBAC (вычисляется из authorization_modes или authorizers)"
+    related: [authorization_modes, kube_apiserver_authorization_config_authorizers]
+
+  # --- kubelet auth / сертификаты ---
+  - name: kubelet_authentication_token_webhook
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Разрешить аутентификацию по bearer-токенам на HTTPS-эндпоинте kubelet"
+  - name: kubelet_authorization_mode_webhook
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Требовать авторизацию доступа к kubelet API делегированием на API-сервер"
+  - name: kubelet_rotate_certificates
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Автоматически ротировать клиентские сертификаты kubelet"
+  - name: kubelet_rotate_server_certificates
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Запрашивать новый серверный сертификат kubelet у API-сервера"
+  - name: kubelet_protect_kernel_defaults
+    default: true
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "kubelet падает, если параметры ядра отличаются от его дефолтов"
+
+  # --- sysctl / feature gates ---
+  - name: additional_sysctl
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Дополнительные sysctl-параметры ядра (список name/value)"
+  - name: kube_feature_gates
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Общий список feature gates кластера"
+  - name: kube_apiserver_feature_gates
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Feature gates kube-apiserver"
+  - name: kube_controller_feature_gates
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Feature gates kube-controller-manager"
+  - name: kube_scheduler_feature_gates
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Feature gates kube-scheduler"
+  - name: kube_proxy_feature_gates
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Feature gates kube-proxy"
+  - name: kubelet_feature_gates
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Feature gates kubelet"
+  - name: kubeadm_feature_gates
+    default: "[]"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Feature gates kubeadm"
+
+  # --- Прочее (storage classes, CA-каталоги) ---
+  - name: local_volume_provisioner_storage_classes
+    default: "{ '{{ local_volume_provisioner_storage_class | default('local-storage') }}': { host_dir, mount_dir, volume_mode: Filesystem, fs_type: ext4 } }"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Определение StorageClass для local-volume-provisioner (JSON-строка, приводимая к dict)"
+    reliability: unconfirmed
+  - name: ssl_ca_dirs
+    default: "список путей к CA в зависимости от ansible_os_family (Flatcar/RedHat/Debian)"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталоги системных CA-сертификатов, зависят от семейства ОС"
+
+  # --- Эндпоинты control plane / API server (вычисляемые) ---
+  - name: first_kube_control_plane
+    default: "{{ groups['kube_control_plane'] | first }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Первый control-plane узел (для делегирования задач)"
+  - name: kube_apiserver_count
+    default: "{{ groups['kube_control_plane'] | length }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Количество control-plane узлов"
+  - name: kube_apiserver_address
+    default: "{{ hostvars[inventory_hostname]['main_ip'] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Основной IP API-сервера текущего узла"
+  - name: kube_apiserver_access_address
+    default: "{{ hostvars[inventory_hostname]['main_access_ip'] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Access-IP API-сервера текущего узла"
+  - name: first_kube_control_plane_address
+    default: "{{ hostvars[groups['kube_control_plane'][0]]['main_access_ip'] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Access-IP первого control-plane узла"
+  - name: loadbalancer_apiserver_localhost
+    default: "{{ loadbalancer_apiserver is not defined }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Использовать локальный балансировщик apiserver (если внешний не задан)"
+  - name: loadbalancer_apiserver_type
+    default: "nginx"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Тип локального балансировщика apiserver: nginx или haproxy"
+  - name: apiserver_loadbalancer_domain_name
+    default: "{{ 'localhost' if loadbalancer_apiserver_localhost else (loadbalancer_apiserver.address | d(undef())) }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Доменное имя внешнего балансировщика apiserver"
+    related: [loadbalancer_apiserver_localhost]
+  - name: kube_apiserver_global_endpoint
+    default: "вычисляется из loadbalancer_apiserver / localhost / first_kube_control_plane_address"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Глобальный HTTPS-эндпоинт API-сервера"
+  - name: kube_apiserver_endpoint
+    default: "вычисляется из loadbalancer_apiserver / group_names / bind_address"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "HTTPS-эндпоинт API-сервера для конкретного узла (с учётом роли узла)"
+  - name: kube_apiserver_client_cert
+    default: "{{ kube_cert_dir }}/ca.crt"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Клиентский сертификат API-сервера (CA)"
+    related: [kube_cert_dir]
+  - name: kube_apiserver_client_key
+    default: "{{ kube_cert_dir }}/ca.key"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Клиентский ключ API-сервера (CA)"
+    related: [kube_cert_dir]
+
+  # --- etcd (эндпоинты и параметры) ---
+  - name: etcd_events_cluster_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Развернуть отдельный кластер etcd-events"
+  - name: etcd_hosts
+    default: "{{ groups['etcd'] | default(groups['kube_control_plane']) }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список хостов etcd (может быть пуст, если etcd управляется kubeadm)"
+  - name: etcd_address
+    default: "{{ hostvars[inventory_hostname]['main_ip'] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Основной IP etcd текущего узла"
+  - name: etcd_access_address
+    default: "{{ hostvars[inventory_hostname]['main_access_ip'] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Access-IP etcd текущего узла"
+  - name: etcd_events_access_address
+    default: "{{ hostvars[inventory_hostname]['main_access_ip'] }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Access-IP etcd-events текущего узла"
+  - name: etcd_peer_url
+    default: "https://{{ etcd_access_address | ansible.utils.ipwrap }}:2380"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Peer-URL etcd (порт 2380)"
+  - name: etcd_client_url
+    default: "https://{{ etcd_access_address | ansible.utils.ipwrap }}:2379"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Client-URL etcd (порт 2379)"
+  - name: etcd_events_peer_url
+    default: "https://{{ etcd_events_access_address | ansible.utils.ipwrap }}:2382"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Peer-URL etcd-events (порт 2382)"
+  - name: etcd_events_client_url
+    default: "https://{{ etcd_events_access_address | ansible.utils.ipwrap }}:2383"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Client-URL etcd-events (порт 2383)"
+  - name: etcd_access_addresses
+    default: "список https://<access_ip>:2379 по всем etcd_hosts"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список client-адресов всех узлов etcd"
+    related: [etcd_hosts]
+  - name: etcd_events_access_addresses_list
+    default: "список 'https://<access_ip>:2383' по всем etcd_hosts"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список client-адресов etcd-events (как список Python)"
+    related: [etcd_hosts]
+  - name: etcd_metrics_addresses
+    default: "список https://<access_ip>:{{ etcd_metrics_port | default(2381) }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Список адресов метрик etcd (порт по умолчанию 2381)"
+    related: [etcd_hosts]
+  - name: etcd_events_access_addresses
+    default: "{{ etcd_events_access_addresses_list | join(',') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Client-адреса etcd-events через запятую"
+    related: [etcd_events_access_addresses_list]
+  - name: etcd_events_access_addresses_semicolon
+    default: "{{ etcd_events_access_addresses_list | join(';') }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Client-адреса etcd-events через точку с запятой"
+    related: [etcd_events_access_addresses_list]
+  - name: etcd_member_name
+    default: "имя члена etcd для текущего узла (etcd_member_name или etcdN)"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Имя члена кластера etcd для текущего узла"
+  - name: etcd_peer_addresses
+    default: "список <member>=https://<access_ip>:2380 по группе etcd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Peer-адреса всех членов etcd"
+  - name: etcd_events_peer_addresses
+    default: "список <member>-events=https://<access_ip>:2382 по группе etcd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Peer-адреса всех членов etcd-events"
+  - name: etcd_heartbeat_interval
+    default: '"250"'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Интервал heartbeat etcd (мс). Дублируется в control-plane/defaults/main/etcd.yml"
+  - name: etcd_election_timeout
+    default: '"5000"'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Таймаут выборов лидера etcd (мс). Дублируется в control-plane/defaults/main/etcd.yml"
+  - name: etcd_snapshot_count
+    default: '"100000"'
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Количество транзакций между снапшотами etcd"
+  - name: certificates_key_size
+    default: 2048
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Размер ключа генерируемых сертификатов (бит)"
+  - name: certificates_duration
+    default: 36500
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Срок действия генерируемых сертификатов (дней)"
+  - name: etcd_config_dir
+    default: "/etc/ssl/etcd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог конфигурации etcd"
+  - name: etcd_events_data_dir
+    default: "/var/lib/etcd-events"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог данных etcd-events"
+  - name: etcd_cert_dir
+    default: "{{ etcd_config_dir }}/ssl"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог сертификатов etcd"
+    related: [etcd_config_dir]
+
+  # --- CNI флаги (calico/typha) ---
+  - name: typha_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить Calico Typha"
+  - name: calico_apiserver_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить Calico API server"
+
+  # --- Архитектура / ОС хоста (вычисляемые) ---
+  - name: _host_architecture_groups
+    default: "{x86_64: amd64, aarch64: arm64, armv7l: arm}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Соответствие архитектуры ansible_architecture -> Go-архитектура"
+  - name: host_architecture
+    default: "маппинг ansible_architecture через _host_architecture_groups"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Нормализованная архитектура хоста (amd64/arm64/arm)"
+    related: [_host_architecture_groups]
+  - name: _host_os_groups
+    default: "{Linux: linux, Darwin: darwin, Win32NT: windows}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Соответствие ansible_system -> Go-ОС"
+  - name: host_os
+    default: "маппинг ansible_system через _host_os_groups"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Нормализованная ОС хоста (linux/darwin/windows)"
+    related: [_host_os_groups]
+
+  # --- kubelet / прокси окружения ---
+  - name: kubelet_event_record_qps
+    default: 50
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "eventRecordQPS в kubelet-config (0 = без лимита)"
+  - name: proxy_env_defaults
+    default: "{http_proxy, HTTP_PROXY, https_proxy, HTTPS_PROXY, no_proxy, NO_PROXY из соответствующих переменных}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Базовый словарь переменных окружения прокси"
+  - name: proxy_env
+    default: "{{ proxy_env_defaults | combine({'SSL_CERT_FILE': https_proxy_cert_file}) if https_proxy_cert_file is defined else proxy_env_defaults }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Итоговый словарь окружения прокси (с опциональным SSL_CERT_FILE)"
+    related: [proxy_env_defaults]
+  - name: proxy_disable_env
+    default: "{ALL_PROXY, FTP_PROXY, HTTPS_PROXY, HTTP_PROXY, NO_PROXY и их lowercase = ''}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Словарь для отключения прокси-окружения"
+  - name: sysctl_file_path
+    default: "/etc/sysctl.d/99-sysctl.conf"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Путь к файлу sysctl-конфигурации. Дублируется в node и preinstall defaults"
+  - name: sysctl_ignore_unknown_keys
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Игнорировать ошибки sysctl о неизвестных ключах"
+  - name: system_upgrade
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Выполнять обновление системных пакетов ОС"
+  - name: system_upgrade_reboot
+    default: "on-upgrade"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Политика перезагрузки после обновления системы: never, on-upgrade, always"
+  - name: scheduler_plugins_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включить плагины планировщика (scheduler-plugins)"
+
+  # --- NTP ---
+  - name: ntp_enabled
+    default: false
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Запускать и включать сервис ntpd/chrony при загрузке"
+  - name: ntp_package
+    default: "chrony на RedHat, иначе ntp"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Пакет NTP: ntp, ntpsec или chrony (зависит от семейства ОС)"
+
+  # =====================================================================
+  # roles/kubespray_defaults/vars/main/main.yml
+  # Внутренние вычисляемые переменные версий и сети
+  # =====================================================================
+  - name: kube_major_version
+    default: "{{ (kube_version | split('.'))[:-1] | join('.') }}"
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Мажорная версия Kubernetes (например 1.17 из 1.17.4)"
+    related: [kube_version]
+  - name: kube_next
+    default: "{{ ((kube_version | split('.'))[1] | int) + 1 }}"
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Следующий минорный номер версии Kubernetes"
+    related: [kube_version]
+  - name: kube_major_next_version
+    default: "1.{{ kube_next }}"
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Следующая мажорная версия Kubernetes (1.<kube_next>)"
+    related: [kube_next]
+  - name: pod_infra_supported_versions
+    default: "{'1.34': '3.10.1', '1.33': '3.10', '1.32': '3.10'}"
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Соответствие версии K8s -> версия pause-образа (pod infra)"
+  - name: etcd_supported_versions
+    default: "{'1.34','1.33','1.32': первая версия etcd < 3.6 из etcd_binary_checksums}"
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Соответствие версии K8s -> поддерживаемая версия etcd"
+    reliability: unconfirmed
+  - name: kube_proxy_deployed
+    default: "{{ 'addon/kube-proxy' not in kubeadm_init_phases_skip }}"
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Развёрнут ли kube-proxy (по факту пропуска фазы addon/kube-proxy)"
+    related: [kubeadm_init_phases_skip]
+  - name: calico_min_version_required
+    default: "3.27.0"
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Минимальная версия Calico для апгрейда (calico_version предыдущей ветки)"
+  - name: containerd_min_version_required
+    default: "1.3.7"
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Минимально поддерживаемая версия containerd"
+  - name: kube_service_subnets
+    default: >-
+      {%- if ipv4_stack and ipv6_stack -%}
+      {{ kube_service_addresses }},{{ kube_service_addresses_ipv6 }}
+      {%- elif ipv4_stack -%}
+      {{ kube_service_addresses }}
+      {%- else -%}
+      {{ kube_service_addresses_ipv6 }}
+      {%- endif -%}
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Итоговые service-подсети с учётом стека (dualstack/ipv6only/ipv4only)"
+    related: [kube_service_addresses, kube_service_addresses_ipv6, ipv4_stack, ipv6_stack]
+  - name: kube_pods_subnets
+    default: >-
+      {%- if ipv4_stack and ipv6_stack -%}
+      {{ kube_pods_subnet }},{{ kube_pods_subnet_ipv6 }}
+      {%- elif ipv4_stack -%}
+      {{ kube_pods_subnet }}
+      {%- else -%}
+      {{ kube_pods_subnet_ipv6 }}
+      {%- endif -%}
+    source_path: roles/kubespray_defaults/vars/main/main.yml
+    description: "Итоговые pod-подсети с учётом стека (dualstack/ipv6only/ipv4only)"
+    related: [kube_pods_subnet, kube_pods_subnet_ipv6, ipv4_stack, ipv6_stack]
+
+  # =====================================================================
+  # roles/kubernetes/control-plane/defaults/main/main.yml
+  # API server, controller-manager, аудит, PodSecurity, шифрование
+  # =====================================================================
+  - name: upgrade_cluster_setup
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Флаг режима обновления кластера"
+  - name: control_plane_node_become_ready_tries
+    default: 24
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Число повторов (интервал 5с) проверки готовности нового control-plane узла после join"
+  - name: kube_apiserver_bind_address
+    default: "::"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Адрес привязки внешнего API-сервера. Дублирует значение из kubespray_defaults"
+  - name: kube_apiserver_node_port_range
+    default: '"30000-32767"'
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Диапазон портов NodePort. Дублируется в node/defaults/main.yml"
+  - name: kube_apiserver_storage_backend
+    default: "etcd3"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Backend-хранилище данных Kubernetes"
+  - name: kube_apiserver_etcd_compaction_interval
+    default: '"5m0s"'
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Интервал запросов compaction к etcd (0 = отключено)"
+  - name: kube_apiserver_service_account_lookup
+    default: true
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Проверять наличие service account токена в etcd (CIS 1.2.26)"
+  - name: kube_etcd_cacert_file
+    default: "ca.pem"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Имя файла CA-сертификата etcd для apiserver"
+  - name: kube_etcd_cert_file
+    default: "node-{{ inventory_hostname }}.pem"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Имя файла клиентского сертификата etcd для apiserver"
+  - name: kube_etcd_key_file
+    default: "node-{{ inventory_hostname }}-key.pem"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Имя файла клиентского ключа etcd для apiserver"
+  - name: kube_controller_manager_bind_address
+    default: "::"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Адрес привязки kube-controller-manager"
+  - name: control_plane_health_retries
+    default: 60
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Число повторов health-check для apiserver, scheduler, controller-manager"
+  - name: kube_controller_manager_leader_elect_lease_duration
+    default: "15s"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Длительность lease при leader election controller-manager"
+  - name: kube_controller_manager_leader_elect_renew_deadline
+    default: "10s"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Deadline обновления lease при leader election controller-manager"
+  - name: discovery_timeout
+    default: "5m0s"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Таймаут discovery. Переопределяется в kubeadm/defaults (60s) и kubeadm_common"
+  - name: kubeadm_refresh_token
+    default: true
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Обновлять kubeadm-токен на первом control-plane узле"
+  - name: kubeadm_scale_down_coredns_enabled
+    default: true
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Масштабировать CoreDNS в 0 реплик, если dns_mode != coredns"
+    related: [dns_mode]
+  - name: kubernetes_audit
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Включить аудит kube-apiserver"
+  - name: audit_log_path
+    default: "/var/log/audit/kube-apiserver-audit.log"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Путь к файлу лога аудита"
+  - name: audit_log_maxage
+    default: 30
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Максимальный возраст логов аудита (дней)"
+  - name: audit_log_maxbackups
+    default: 10
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Количество хранимых лог-файлов аудита"
+  - name: audit_log_maxsize
+    default: 100
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Максимальный размер лог-файла аудита (МБ)"
+  - name: audit_policy_file
+    default: "{{ kube_config_dir }}/audit-policy/apiserver-audit-policy.yaml"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Путь к файлу политики аудита"
+    related: [kube_config_dir]
+  - name: audit_log_name
+    default: "audit-logs"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Имя hostPath-тома логов аудита"
+  - name: audit_log_hostpath
+    default: "/var/log/kubernetes/audit"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "hostPath для логов аудита"
+  - name: audit_log_mountpath
+    default: "{{ audit_log_path | dirname }}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Точка монтирования логов аудита в контейнере apiserver"
+    related: [audit_log_path]
+  - name: audit_policy_name
+    default: "audit-policy"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Имя hostPath-тома политики аудита"
+  - name: audit_policy_hostpath
+    default: "{{ audit_policy_file | dirname }}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "hostPath для политики аудита"
+    related: [audit_policy_file]
+  - name: audit_policy_mountpath
+    default: "{{ audit_policy_hostpath }}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Точка монтирования политики аудита"
+    related: [audit_policy_hostpath]
+  - name: kubernetes_audit_webhook
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Включить аудит через webhook"
+  - name: audit_webhook_config_file
+    default: "{{ kube_config_dir }}/audit-policy/apiserver-audit-webhook-config.yaml"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Путь к файлу конфигурации webhook аудита"
+    related: [kube_config_dir]
+  - name: audit_webhook_server_url
+    default: "https://audit.app"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "URL сервера webhook аудита"
+  - name: audit_webhook_server_extra_args
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Дополнительные аргументы webhook аудита"
+  - name: audit_webhook_mode
+    default: "batch"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Режим отправки webhook аудита (batch и др.)"
+  - name: audit_webhook_batch_max_size
+    default: 100
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Максимальный размер батча webhook аудита"
+  - name: audit_webhook_batch_max_wait
+    default: "1s"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Максимальное ожидание батча webhook аудита"
+  - name: kube_controller_node_monitor_grace_period
+    default: "40s"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Grace-период мониторинга узла controller-manager перед пометкой NotReady"
+  - name: kube_controller_node_monitor_period
+    default: "5s"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Период мониторинга состояния узлов controller-manager"
+  - name: kube_controller_terminated_pod_gc_threshold
+    default: 12500
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Порог сборки мусора завершённых подов"
+  - name: kube_apiserver_request_timeout
+    default: '"1m0s"'
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Таймаут запросов к kube-apiserver"
+  - name: kube_apiserver_pod_eviction_not_ready_timeout_seconds
+    default: '"300"'
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Таймаут вытеснения подов с узла NotReady (сек)"
+  - name: kube_apiserver_pod_eviction_unreachable_timeout_seconds
+    default: '"300"'
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Таймаут вытеснения подов с недостижимого узла (сек)"
+  - name: kube_apiserver_enable_admission_plugins
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Список включаемых admission-плагинов"
+  - name: kube_apiserver_admission_control_config_file
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Включить файл конфигурации admission-плагинов"
+  - name: kube_apiserver_admission_event_rate_limits
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Конфигурация admission-плагина EventRateLimit"
+  - name: kube_pod_security_use_default
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Использовать дефолтную конфигурацию PodSecurityAdmission"
+  - name: kube_pod_security_default_enforce
+    default: "baseline"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Уровень enforce PodSecurity по умолчанию"
+  - name: kube_pod_security_default_enforce_version
+    default: "v{{ kube_major_version }}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Версия стандарта enforce PodSecurity"
+    related: [kube_major_version]
+  - name: kube_pod_security_default_audit
+    default: "restricted"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Уровень audit PodSecurity по умолчанию"
+  - name: kube_pod_security_default_audit_version
+    default: "v{{ kube_major_version }}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Версия стандарта audit PodSecurity"
+    related: [kube_major_version]
+  - name: kube_pod_security_default_warn
+    default: "restricted"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Уровень warn PodSecurity по умолчанию"
+  - name: kube_pod_security_default_warn_version
+    default: "v{{ kube_major_version }}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Версия стандарта warn PodSecurity"
+    related: [kube_major_version]
+  - name: kube_pod_security_exemptions_usernames
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Исключения PodSecurity по именам пользователей"
+  - name: kube_pod_security_exemptions_runtime_class_names
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Исключения PodSecurity по RuntimeClass"
+  - name: kube_pod_security_exemptions_namespaces
+    default: "[kube-system]"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Исключения PodSecurity по namespace"
+  - name: kube_resource_quota_limited_resources
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Ресурсы, ограничиваемые admission-плагином ResourceQuota по умолчанию"
+  - name: kube_apiserver_disable_admission_plugins
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Список отключаемых admission-плагинов"
+  - name: kube_api_runtime_config
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Дополнительный runtime-config API-сервера. Также закомментирован в node/defaults"
+  - name: kube_token_auth
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Включить token-аутентификацию API-сервера"
+  - name: kube_oidc_auth
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Включить OIDC-аутентификацию API-сервера"
+  - name: kube_webhook_token_auth
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Включить webhook token-аутентификацию"
+  - name: kube_webhook_token_auth_url_skip_tls_verify
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Пропускать проверку TLS для URL webhook token auth"
+  - name: kube_webhook_authorization
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Включить webhook-авторизацию"
+  - name: kube_webhook_authorization_url_skip_tls_verify
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Пропускать проверку TLS для URL webhook-авторизации"
+  - name: kube_apiserver_admission_plugins_podnodeselector_default_node_selector
+    default: '""'
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "NodeSelector по умолчанию для admission-плагина PodNodeSelector"
+  - name: kubelet_preferred_address_types
+    default: "InternalDNS,InternalIP,Hostname,ExternalDNS,ExternalIP"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Предпочтительные типы адресов узла для подключений kubelet"
+  - name: kube_kubeadm_apiserver_extra_args
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Доп. аргументы kube-apiserver, передаваемые через kubeadm"
+  - name: kube_kubeadm_controller_extra_args
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Доп. аргументы kube-controller-manager, передаваемые через kubeadm"
+  - name: apiserver_extra_volumes
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Доп. host-тома для kube-apiserver"
+  - name: controller_manager_extra_volumes
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Доп. host-тома для kube-controller-manager"
+  - name: kube_encrypt_secret_data
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Включить шифрование Secret'ов в etcd (encryption at rest)"
+  - name: kube_encrypt_token
+    default: "{{ lookup('password', credentials_dir + '/kube_encrypt_token.creds length=32 chars=ascii_letters,digits') }}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Ключ шифрования Secret'ов (генерируется, 32 символа)"
+    related: [credentials_dir]
+  - name: kube_encryption_algorithm
+    default: "secretbox"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Алгоритм шифрования: aescbc, secretbox или aesgcm"
+  - name: kube_encryption_resources
+    default: "[secrets]"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Ресурсы Kubernetes для шифрования"
+  - name: secrets_encryption_query
+    default: "resources[*].providers[0].{{ kube_encryption_algorithm }}.keys[0].secret"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "JMESPath-запрос для извлечения ключа шифрования"
+    related: [kube_encryption_algorithm]
+  - name: event_ttl_duration
+    default: '"1h0m0s"'
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Время хранения событий Kubernetes"
+  - name: auto_renew_certificates
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Автоматически обновлять сертификаты control plane (первый понедельник месяца)"
+  - name: auto_renew_certificates_systemd_calendar
+    default: "Mon *-*-1,2,3,4,5,6,7 03:00:00"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "systemd-календарь автообновления сертификатов (первый понедельник месяца)"
+    related: [auto_renew_certificates]
+  - name: kubeadm_upgrade_auto_cert_renewal
+    default: true
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Обновлять сертификаты при апгрейде control plane через kubeadm"
+  - name: supplementary_addresses_in_ssl_keys
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Дополнительные SAN в сертификатах apiserver (напр. адреса балансировщиков)"
+  - name: kube_apiserver_tracing
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Включить distributed tracing для kube-apiserver"
+  - name: kube_apiserver_tracing_endpoint
+    default: '"[::]:4317"'
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Endpoint OTLP для tracing kube-apiserver"
+  - name: kube_apiserver_tracing_sampling_rate_per_million
+    default: 100
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Частота сэмплирования tracing kube-apiserver (на миллион)"
+  - name: kubeadm_use_file_discovery
+    default: "{{ remove_anonymous_access }}"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Использовать file discovery kubeadm при удалённом анонимном доступе. Дублируется в kubeadm/defaults и kubeadm_common"
+    related: [remove_anonymous_access]
+  - name: kubeadm_image_pull_serial
+    default: true
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Последовательная (не параллельная) загрузка образов kubeadm"
+  - name: kube_asymmetric_encryption_algorithm
+    default: "RSA-2048"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Асимметричный алгоритм ключей и сертификатов: RSA-2048, RSA-3072, RSA-4096, ECDSA-P256"
+  - name: kube_cert_validity_period
+    default: "8760h"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Срок действия не-CA сертификатов (по умолчанию 1 год)"
+  - name: kube_ca_cert_validity_period
+    default: "87600h"
+    source_path: roles/kubernetes/control-plane/defaults/main/main.yml
+    description: "Срок действия CA-сертификатов (по умолчанию 10 лет)"
+
+  # =====================================================================
+  # roles/kubernetes/control-plane/defaults/main/etcd.yml
+  # =====================================================================
+  - name: etcd_owner
+    default: "etcd"
+    source_path: roles/kubernetes/control-plane/defaults/main/etcd.yml
+    description: "Пользователь/группа etcd"
+  - name: etcd_cert_alt_names
+    default: "['etcd.kube-system.svc.{{ dns_domain }}', 'etcd.kube-system.svc', 'etcd.kube-system', 'etcd']"
+    source_path: roles/kubernetes/control-plane/defaults/main/etcd.yml
+    description: "Дополнительные DNS-имена (SAN) в сертификате etcd"
+    related: [dns_domain]
+  - name: etcd_cert_alt_ips
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/etcd.yml
+    description: "Дополнительные IP (SAN) в сертификате etcd"
+  - name: etcd_heartbeat_interval
+    default: '"250"'
+    source_path: roles/kubernetes/control-plane/defaults/main/etcd.yml
+    description: "Интервал heartbeat etcd (мс). Дублирует значение из kubespray_defaults/defaults/main/main.yml"
+  - name: etcd_election_timeout
+    default: '"5000"'
+    source_path: roles/kubernetes/control-plane/defaults/main/etcd.yml
+    description: "Таймаут выборов лидера etcd (мс). Дублирует значение из kubespray_defaults/defaults/main/main.yml"
+  - name: etcd_metrics
+    default: "basic"
+    source_path: roles/kubernetes/control-plane/defaults/main/etcd.yml
+    description: "Уровень метрик etcd (basic/extensive)"
+  - name: etcd_extra_vars
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/etcd.yml
+    description: "Доп. переменные окружения для etcd.env (без префикса ETCD_)"
+  - name: etcd_compaction_retention
+    default: '"8"'
+    source_path: roles/kubernetes/control-plane/defaults/main/etcd.yml
+    description: "Retention compaction etcd"
+
+  # =====================================================================
+  # roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+  # =====================================================================
+  - name: kube_proxy_bind_address
+    default: "0.0.0.0"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Адрес привязки kube-proxy"
+  - name: kube_proxy_client_accept_content_types
+    default: "''"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Accept-Content-Types клиента kube-proxy"
+  - name: kube_proxy_client_burst
+    default: 10
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Burst запросов клиента kube-proxy"
+  - name: kube_proxy_client_content_type
+    default: "application/vnd.kubernetes.protobuf"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Content-Type данных клиента kube-proxy к серверу"
+  - name: kube_proxy_client_kubeconfig
+    default: "''"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Путь к kubeconfig клиента kube-proxy (пусто = генерировать)"
+  - name: kube_proxy_client_qps
+    default: 5
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "QPS клиента kube-proxy"
+  - name: kube_proxy_config_sync_period
+    default: "15m0s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Период синхронизации конфигурации kube-proxy с apiserver"
+  - name: kube_proxy_conntrack_max_per_core
+    default: 32768
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Максимум NAT-соединений conntrack на ядро CPU"
+  - name: kube_proxy_conntrack_min
+    default: 131072
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Минимум записей conntrack"
+  - name: kube_proxy_conntrack_tcp_close_wait_timeout
+    default: "1h0m0s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Таймаут conntrack в состоянии CLOSE_WAIT"
+  - name: kube_proxy_conntrack_tcp_established_timeout
+    default: "24h0m0s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Таймаут idle TCP-соединения conntrack"
+  - name: kube_proxy_enable_profiling
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Включить профилирование kube-proxy через web (/debug/pprof)"
+  - name: kube_proxy_healthz_bind_address
+    default: "0.0.0.0:10256"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Адрес health-check kube-proxy"
+  - name: kube_proxy_masquerade_all
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "SNAT всего трафика в режиме iptables (ломает policy engine)"
+  - name: kube_proxy_masquerade_bit
+    default: 14
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Бит fwmark для пометки пакетов SNAT (0-31)"
+  - name: kube_proxy_min_sync_period
+    default: "0s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Минимальный интервал обновления правил iptables/ipvs"
+  - name: kube_proxy_sync_period
+    default: "30s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Максимальный интервал обновления правил iptables/ipvs"
+  - name: kube_proxy_exclude_cidrs
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "CIDR, которые ipvs proxier не трогает при очистке правил"
+  - name: kube_proxy_scheduler
+    default: "rr"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Тип IPVS-планировщика: rr, lc, dh, sh, sed, nq"
+  - name: kube_proxy_strict_arp
+    default: false
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Настроить arp_ignore/arp_announce (нужно для MetalLB, kube-vip ARP)"
+  - name: kube_proxy_tcp_timeout
+    default: "0s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Таймаут idle IPVS TCP-сессий (0 = не менять)"
+  - name: kube_proxy_tcp_fin_timeout
+    default: "0s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Таймаут IPVS TCP-сессий после FIN (0 = не менять)"
+  - name: kube_proxy_udp_timeout
+    default: "0s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Таймаут IPVS UDP-пакетов (0 = не менять)"
+  - name: kube_proxy_metrics_bind_address
+    default: "127.0.0.1:10249"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Адрес сервера метрик kube-proxy"
+  - name: kube_proxy_nodeport_addresses
+    default: >-
+      {%- if kube_proxy_nodeport_addresses_cidr is defined -%}
+      [{{ kube_proxy_nodeport_addresses_cidr }}]
+      {%- else -%}
+      []
+      {%- endif -%}
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Адреса NodePort для kube-proxy. Дублирует значение из kubespray_defaults"
+    related: [kube_proxy_nodeport_addresses_cidr]
+  - name: kube_proxy_oom_score_adj
+    default: -999
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "oom-score-adj процесса kube-proxy (-1000..1000)"
+  - name: kube_proxy_port_range
+    default: "''"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
+    description: "Диапазон host-портов для проксирования трафика (пусто = случайно)"
+
+  # =====================================================================
+  # roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+  # =====================================================================
+  - name: kube_kubeadm_scheduler_extra_args
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Доп. аргументы kube-scheduler, передаваемые через kubeadm"
+  - name: kube_scheduler_bind_address
+    default: "::"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Адрес привязки kube-scheduler"
+  - name: kube_scheduler_client_conn_extra_opts
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Доп. опции ClientConnection kube-scheduler (Burst, QPS и т.п.)"
+  - name: kube_scheduler_config_extra_opts
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Доп. настройки KubeSchedulerConfiguration (напр. metricsBindAddress)"
+  - name: kube_scheduler_extenders
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Список scheduler extenders"
+  - name: kube_scheduler_leader_elect_extra_opts
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Доп. опции leader election kube-scheduler (кроме lease/renew)"
+  - name: kube_scheduler_leader_elect_lease_duration
+    default: "15s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Длительность lease при leader election scheduler"
+  - name: kube_scheduler_leader_elect_renew_deadline
+    default: "10s"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Deadline обновления lease при leader election scheduler"
+  - name: kube_scheduler_profiles
+    default: "[]"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Список профилей планирования kube-scheduler"
+  - name: scheduler_extra_volumes
+    default: "{}"
+    source_path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
+    description: "Доп. тома для kube-scheduler"
+
+  # =====================================================================
+  # roles/kubernetes/control-plane/vars/main.yaml
+  # =====================================================================
+  - name: kube_apiserver_admission_plugins_needs_configuration
+    default: "[EventRateLimit, ImagePolicyWebhook, PodSecurity, PodNodeSelector, ResourceQuota]"
+    source_path: roles/kubernetes/control-plane/vars/main.yaml
+    description: "Список admission-плагинов, требующих отдельной конфигурации"
+
+  # =====================================================================
+  # roles/kubernetes/node/defaults/main.yml
+  # kubelet, cgroups, резервирование ресурсов, kube-vip, балансировщик
+  # =====================================================================
+  - name: kubelet_address
+    default: "{{ main_ips | join(',') }}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Анонсируемый host IP для kubelet (влияет на конфиг CNI)"
+  - name: kubelet_bind_address
+    default: "{{ main_ip | default('::') }}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Адрес привязки kubelet (:: = все интерфейсы)"
+  - name: kube_resolv_conf
+    default: "/etc/resolv.conf"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Базовый resolv.conf для DNS-конфигурации. Переопределяется в node/vars для Fedora/Ubuntu"
+  - name: kubelet_enforce_node_allocatable
+    default: '"\"\""'
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "enforceNodeAllocatable kubelet (пусто = не создавать cgroup)"
+  - name: kube_service_cgroups
+    default: "{% if kube_reserved %}{{ kube_reserved_cgroups_for_service_slice }}{% else %}system.slice{% endif %}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Slice cgroups для сервисов при systemd cgroup driver"
+    related: [kube_reserved, kube_reserved_cgroups_for_service_slice]
+  - name: kubelet_runtime_cgroups
+    default: "/{{ kube_service_cgroups }}/{{ container_manager }}.service"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "cgroups контейнерного runtime (systemd driver)"
+    related: [kube_service_cgroups, container_manager]
+  - name: kubelet_kubelet_cgroups
+    default: "/{{ kube_service_cgroups }}/kubelet.service"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "cgroups kubelet (systemd driver)"
+    related: [kube_service_cgroups]
+  - name: kubelet_runtime_cgroups_cgroupfs
+    default: "/system.slice/{{ container_manager }}.service"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "cgroups контейнерного runtime (cgroupfs driver)"
+    related: [container_manager]
+  - name: kubelet_kubelet_cgroups_cgroupfs
+    default: "/system.slice/kubelet.service"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "cgroups kubelet (cgroupfs driver)"
+  - name: kubelet_systemd_hardening
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить hardening systemd-сервиса kubelet"
+  - name: kubelet_systemd_wants_dependencies
+    default: "[]"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Дополнительные зависимости systemd-сервиса kubelet (кроме runtime)"
+  - name: kube_node_addresses
+    default: "список main_ips по группам k8s_cluster и etcd"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "IP всех узлов кластера и etcd (для secure-адресов kubelet)"
+  - name: kubelet_secure_addresses
+    default: "localhost link-local {{ kube_pods_subnets | regex_replace(',', ' ') }} {{ kube_node_addresses }}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Список доверенных IP для kubelet"
+    related: [kube_pods_subnets, kube_node_addresses]
+  - name: kube_reserved
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резервировать ресурсы под kube (и запускать daemons в отдельном cgroup)"
+  - name: kube_reserved_cgroups
+    default: "/{{ kube_reserved_cgroups_for_service_slice }}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "cgroup для зарезервированных ресурсов kube"
+    related: [kube_reserved_cgroups_for_service_slice]
+  - name: kube_memory_reserved
+    default: "256Mi"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резерв памяти под kube"
+  - name: kube_cpu_reserved
+    default: "100m"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резерв CPU под kube"
+  - name: kube_ephemeral_storage_reserved
+    default: "500Mi"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резерв ephemeral storage под kube"
+  - name: kube_pid_reserved
+    default: '"1000"'
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резерв PID под kube"
+  - name: system_reserved
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резервировать ресурсы под системные демоны"
+  - name: system_reserved_cgroups_for_service_slice
+    default: "system.slice"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Slice cgroups для системных сервисов"
+  - name: system_reserved_cgroups
+    default: "/{{ system_reserved_cgroups_for_service_slice }}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "cgroup для зарезервированных системных ресурсов"
+    related: [system_reserved_cgroups_for_service_slice]
+  - name: system_memory_reserved
+    default: "512Mi"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резерв памяти под систему"
+  - name: system_cpu_reserved
+    default: "500m"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резерв CPU под систему"
+  - name: system_ephemeral_storage_reserved
+    default: "500Mi"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резерв ephemeral storage под систему"
+  - name: system_pid_reserved
+    default: 1000
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Резерв PID под систему"
+  - name: eviction_hard
+    default: "{}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Жёсткие пороги вытеснения kubelet для узлов"
+  - name: eviction_hard_control_plane
+    default: "{}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Жёсткие пороги вытеснения kubelet для control-plane узлов"
+  - name: kubelet_status_update_frequency
+    default: "10s"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Частота обновления статуса узла kubelet"
+  - name: kube_vip_arp_enabled
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить ARP-режим kube-vip"
+  - name: kube_vip_interface
+    default: "~"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Интерфейс kube-vip"
+  - name: kube_vip_services_interface
+    default: "~"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Интерфейс kube-vip для сервисов"
+  - name: kube_vip_cidr
+    default: 32
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "CIDR VIP kube-vip"
+  - name: kube_vip_dns_mode
+    default: "first"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Режим DNS kube-vip"
+  - name: kube_vip_controlplane_enabled
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить kube-vip для control plane"
+  - name: kube_vip_ddns_enabled
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить DDNS в kube-vip"
+  - name: kube_vip_cp_detect
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Автоопределение control plane в kube-vip"
+  - name: kube_vip_services_enabled
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить kube-vip для сервисов LoadBalancer"
+  - name: kube_vip_leader_election_enabled
+    default: "{{ kube_vip_arp_enabled }}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить leader election kube-vip"
+    related: [kube_vip_arp_enabled]
+  - name: kube_vip_bgp_enabled
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить BGP-режим kube-vip"
+  - name: kube_vip_bgp_routerid
+    default: "~"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "BGP router ID kube-vip"
+  - name: kube_vip_local_as
+    default: 65000
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Локальный AS для BGP kube-vip"
+  - name: kube_vip_bgp_peeraddress
+    default: "~"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Адрес BGP-пира kube-vip"
+  - name: kube_vip_bgp_peerpass
+    default: "~"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Пароль BGP-пира kube-vip"
+  - name: kube_vip_bgp_peeras
+    default: 65000
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "AS BGP-пира kube-vip"
+  - name: kube_vip_bgppeers
+    default: "~"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Список BGP-пиров kube-vip"
+  - name: kube_vip_enableServicesElection
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить election для сервисов kube-vip"
+  - name: kube_vip_lb_enable
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить load balancer kube-vip"
+  - name: kube_vip_leasename
+    default: "plndr-cp-lock"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Имя lease для control plane kube-vip"
+  - name: kube_vip_svc_leasename
+    default: "plndr-svcs-lock"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Имя lease для сервисов kube-vip"
+  - name: kube_vip_leaseduration
+    default: 5
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Длительность lease kube-vip"
+  - name: kube_vip_renewdeadline
+    default: 3
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Deadline обновления lease kube-vip"
+  - name: kube_vip_retryperiod
+    default: 1
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Период повтора lease kube-vip"
+  - name: kube_vip_enable_node_labeling
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить маркировку узлов kube-vip"
+  - name: loadbalancer_apiserver_memory_requests
+    default: "32M"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Запрос памяти для пода локального балансировщика apiserver"
+  - name: loadbalancer_apiserver_cpu_requests
+    default: "25m"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Запрос CPU для пода локального балансировщика apiserver"
+  - name: loadbalancer_apiserver_keepalive_timeout
+    default: "5m"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Keepalive-таймаут локального балансировщика apiserver"
+  - name: loadbalancer_apiserver_pod_name
+    default: "{% if loadbalancer_apiserver_type == 'nginx' %}nginx-proxy{% else %}haproxy{% endif %}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Имя пода локального балансировщика apiserver"
+    related: [loadbalancer_apiserver_type]
+  - name: kube_apiserver_node_port_range
+    default: '"30000-32767"'
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Диапазон портов NodePort. Дублирует значение из control-plane defaults"
+  - name: kubelet_max_pods
+    default: 110
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Максимальное число подов на узел"
+    related: [kube_network_node_prefix]
+  - name: kubelet_pod_pids_limit
+    default: -1
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Максимум процессов на под (-1 = без лимита)"
+  - name: kubelet_config_extra_args
+    default: "{}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Доп. параметры kubelet через kubelet-config.yaml"
+  - name: kubelet_config_extra_args_cgroupfs
+    default: "{systemCgroups: /system.slice, cgroupRoot: /}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Доп. параметры kubelet при cgroupfs cgroup driver"
+  - name: kubelet_logfiles_max_nr
+    default: 5
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Максимальное число лог-файлов контейнера"
+  - name: kubelet_logfiles_max_size
+    default: "10Mi"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Максимальный размер лог-файла контейнера до ротации"
+  - name: kubelet_custom_flags
+    default: "[]"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Кастомные флаги, передаваемые kubelet"
+  - name: kube_read_only_port
+    default: 0
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Read-only порт kubelet без аутентификации (0 = отключён)"
+  - name: kubelet_healthz_port
+    default: 10248
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Порт healthz kubelet"
+  - name: kubelet_healthz_bind_address
+    default: "127.0.0.1"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Адрес привязки healthz kubelet"
+  - name: sysctl_file_path
+    default: "/etc/sysctl.d/99-sysctl.conf"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Путь к файлу sysctl-конфигурации. Дублирует значение из kubespray_defaults и preinstall"
+  - name: kube_proxy_ipvs_modules
+    default: "[ip_vs, ip_vs_rr, ip_vs_wrr, ip_vs_sh, ip_vs_wlc, ip_vs_lc]"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Список модулей ядра IPVS для kube-proxy"
+  - name: kubelet_static_pod_path
+    default: "{{ kube_manifest_dir }}"
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Каталог статических подов kubelet (пусто = отключить staticPodPath)"
+    related: [kube_manifest_dir]
+  - name: kubelet_tracing
+    default: false
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Включить distributed tracing для kubelet"
+  - name: kubelet_tracing_endpoint
+    default: '"[::]:4317"'
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Endpoint OTLP для tracing kubelet"
+  - name: kubelet_tracing_sampling_rate_per_million
+    default: 100
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Частота сэмплирования tracing kubelet (на миллион)"
+  - name: kubelet_max_parallel_image_pulls
+    default: 1
+    source_path: roles/kubernetes/node/defaults/main.yml
+    description: "Максимум параллельных загрузок образов (>1 включает параллелизм)"
+
+  # =====================================================================
+  # roles/kubernetes/node/vars/{fedora,ubuntu-18,ubuntu-20,ubuntu-22,ubuntu-24}.yml
+  # ОС-специфичные переопределения (все с одинаковым значением)
+  # =====================================================================
+  - name: kube_resolv_conf
+    default: "/run/systemd/resolve/resolv.conf"
+    source_path: roles/kubernetes/node/vars/fedora.yml
+    description: "resolv.conf через systemd-resolved. Идентичное переопределение задано также в ubuntu-18.yml, ubuntu-20.yml, ubuntu-22.yml, ubuntu-24.yml"
+    conditions: "Применяется на Fedora и Ubuntu 18/20/22/24"
+
+  # =====================================================================
+  # roles/kubernetes/kubeadm/defaults/main.yml
+  # =====================================================================
+  - name: discovery_timeout
+    default: "60s"
+    source_path: roles/kubernetes/kubeadm/defaults/main.yml
+    description: "Таймаут discovery kubeadm (должен быть меньше kubeadm_join_timeout). Переопределяет значение control-plane defaults (5m0s)"
+    related: [kubeadm_join_timeout]
+  - name: kubeadm_join_timeout
+    default: "120s"
+    source_path: roles/kubernetes/kubeadm/defaults/main.yml
+    description: "Таймаут kubeadm join"
+    related: [discovery_timeout]
+  - name: kubeadm_use_file_discovery
+    default: "{{ remove_anonymous_access }}"
+    source_path: roles/kubernetes/kubeadm/defaults/main.yml
+    description: "Использовать file discovery kubeadm при удалённом анонимном доступе. Дублирует control-plane defaults"
+    related: [remove_anonymous_access]
+
+  # =====================================================================
+  # roles/kubernetes/kubeadm_common/defaults/main.yml
+  # =====================================================================
+  - name: kubeadm_patches_dir
+    default: "{{ kube_config_dir }}/patches"
+    source_path: roles/kubernetes/kubeadm_common/defaults/main.yml
+    description: "Каталог патчей kubeadm"
+    related: [kube_config_dir]
+  - name: kubeadm_patches
+    default: "[]"
+    source_path: roles/kubernetes/kubeadm_common/defaults/main.yml
+    description: "Список патчей kubeadm (для kube-apiserver, controller-manager, scheduler, etcd, kubeletconfiguration)"
+  - name: kubeadm_ignore_preflight_errors
+    default: "[]"
+    source_path: roles/kubernetes/kubeadm_common/defaults/main.yml
+    description: "Список ошибок preflight-проверок kubeadm для игнорирования"
+
+  # =====================================================================
+  # roles/kubernetes/preinstall/defaults/main.yml
+  # DNS/resolv.conf, NTP, проверки памяти, поддерживаемые ОС
+  # =====================================================================
+  - name: ignore_assert_errors
+    default: false
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Разрешить продолжение деплоя при провале проверок. Дублирует значение из kubespray_defaults и client defaults"
+  - name: leave_etc_backup_files
+    default: true
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Накапливать резервные копии файлов конфигурации (false — отключить бэкапы)"
+  - name: nameservers
+    default: "[]"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Дополнительные nameserver для resolv.conf"
+  - name: cloud_resolver
+    default: "[]"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Cloud DNS-резолверы"
+  - name: disable_host_nameservers
+    default: false
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Отключить nameserver'ы хоста в resolv.conf"
+  - name: dns_late
+    default: false
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Флаг применения изменений host resolv.conf после запуска clusterDNS (выставляется Kubespray)"
+  - name: disable_ipv6_dns
+    default: false
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Отключить IPv6 DNS (может понадобиться для GCE docker registry)"
+  - name: remove_default_searchdomains
+    default: false
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Удалить дефолтные cluster search-домены"
+  - name: kube_owner
+    default: "kube"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Пользователь-владелец установки. Дублирует значение из kubespray_defaults"
+  - name: kube_cert_group
+    default: "kube-cert"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Группа сертификатов. Дублирует значение из kubespray_defaults"
+  - name: kube_config_dir
+    default: "/etc/kubernetes"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Каталог конфигурации Kubernetes. Дублирует значение из kubespray_defaults"
+  - name: kube_cert_dir
+    default: "{{ kube_config_dir }}/ssl"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Каталог сертификатов. Дублирует значение из kubespray_defaults"
+    related: [kube_config_dir]
+  - name: kube_cert_compat_dir
+    default: "/etc/kubernetes/pki"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Каталог совместимости сертификатов. Дублирует значение из kubespray_defaults"
+  - name: kubelet_flexvolumes_plugins_dir
+    default: "/usr/libexec/kubernetes/kubelet-plugins/volume/exec"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Каталог flexvolume-плагинов kubelet"
+  - name: resolveconf_cloud_init_conf
+    default: "/etc/resolveconf_cloud_init.conf"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Файл cloud-init для resolv.conf на Flatcar"
+  - name: sysctl_file_path
+    default: "/etc/sysctl.d/99-sysctl.conf"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Путь к файлу sysctl-конфигурации. Дублирует значение из kubespray_defaults"
+  - name: minimal_node_memory_mb
+    default: 1024
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Минимальный объём памяти узла (МБ) для проверок безопасности"
+  - name: minimal_master_memory_mb
+    default: 1500
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Минимальный объём памяти control-plane узла (МБ)"
+  - name: ntp_manage_config
+    default: false
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Управлять конфигурационным файлом NTP"
+  - name: ntp_servers
+    default: "['0.pool.ntp.org iburst', '1.pool.ntp.org iburst', '2.pool.ntp.org iburst', '3.pool.ntp.org iburst']"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Список NTP-серверов (при ntp_manage_config=true)"
+    related: [ntp_manage_config]
+  - name: ntp_restrict
+    default: "['127.0.0.1', '::1']"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Ограничение доступа к NTP (при ntp_manage_config=true)"
+    related: [ntp_manage_config]
+  - name: ntp_filter_interface
+    default: false
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Фильтровать интерфейсы NTP"
+  - name: ntp_driftfile
+    default: "/var/lib/ntpsec/ntp.drift для ntpsec, иначе /var/lib/ntp/ntp.drift"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Путь к driftfile NTP (при ntp_manage_config=true)"
+    related: [ntp_package, ntp_manage_config]
+  - name: ntp_tinker_panic
+    default: false
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Параметр tinker panic NTP (при ntp_manage_config=true)"
+  - name: ntp_force_sync_immediately
+    default: false
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Принудительная синхронизация времени сразу после установки NTP"
+  - name: ntp_timezone
+    default: '""'
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Часовой пояс сервера (пусто = не менять)"
+  - name: supported_os_distributions
+    default: "список поддерживаемых дистрибутивов (RedHat, CentOS, Fedora, Ubuntu, Debian, Flatcar, Suse, ...)"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Список известных поддерживаемых дистрибутивов ОС"
+  - name: redhat_os_family_extensions
+    default: "['UnionTech', 'UniontechOS']"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Дистрибутивы, расширяющие семейство RedHat"
+  - name: systemd_resolved_disable_stub_listener
+    default: "{{ ansible_os_family in ['Flatcar', 'Flatcar Container Linux by Kinvolk'] }}"
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Отключить DNSStubListener systemd-resolved (полезно при занятом 0.0.0.0:53)"
+  - name: disable_fapolicyd
+    default: true
+    source_path: roles/kubernetes/preinstall/defaults/main.yml
+    description: "Отключить File Access Policy Daemon (иначе установка CNI падает)"
+
+  # =====================================================================
+  # roles/kubernetes/preinstall/vars/main.yml
+  # Вычисляемые переменные DNS/resolv.conf
+  # =====================================================================
+  - name: coredns_server_by_mode
+    default: "{coredns, coredns_dual, manual, none: соответствующие списки серверов}"
+    source_path: roles/kubernetes/preinstall/vars/main.yml
+    description: "Соответствие dns_mode -> список CoreDNS-серверов"
+    related: [dns_mode, skydns_server, skydns_server_secondary, manual_dns_server]
+  - name: coredns_server
+    default: "{{ upstream_dns_servers if dns_early else coredns_server_by_mode[dns_mode] }}"
+    source_path: roles/kubernetes/preinstall/vars/main.yml
+    description: "Итоговый список CoreDNS-серверов (с учётом dns_early)"
+    related: [coredns_server_by_mode, dns_mode, upstream_dns_servers]
+  - name: _nameserverentries
+    default: "{late: [...], early: [...]} — nameserver'ы для поздней и ранней фаз DNS"
+    source_path: roles/kubernetes/preinstall/vars/main.yml
+    description: "Внутренние наборы nameserver-записей для ранней/поздней конфигурации DNS"
+    related: [nameservers, cloud_resolver, nodelocaldns_ip, enable_nodelocaldns]
+  - name: nameserverentries
+    default: "{{ ((_nameserverentries['late'] if not dns_early else []) + _nameserverentries['early']) | flatten | unique }}"
+    source_path: roles/kubernetes/preinstall/vars/main.yml
+    description: "Итоговый уникальный список nameserver-записей для resolv.conf"
+    related: [_nameserverentries]
+  - name: dhclient_supersede
+    default: "{domain-name-servers, domain-name, domain-search: вычисляемые}"
+    source_path: roles/kubernetes/preinstall/vars/main.yml
+    description: "Параметры supersede для dhclient (DNS-серверы, домен, search)"
+    related: [nameservers, cloud_resolver, dns_domain, searchdomains]
+  - name: configured_nameservers
+    default: "nameserver'ы, извлечённые regex из существующего resolv.conf (или [])"
+    source_path: roles/kubernetes/preinstall/vars/main.yml
+    description: "Уже настроенные на хосте nameserver'ы (парсинг resolv.conf)"
+    reliability: unconfirmed
+
+  # =====================================================================
+  # roles/kubernetes/client/defaults/main.yml
+  # =====================================================================
+  - name: kubeconfig_localhost
+    default: false
+    source_path: roles/kubernetes/client/defaults/main.yml
+    description: "Копировать kubeconfig на хост Ansible. Дублирует значение из kubespray_defaults"
+  - name: kubeconfig_localhost_ansible_host
+    default: false
+    source_path: roles/kubernetes/client/defaults/main.yml
+    description: "Использовать ansible_host в скопированном kubeconfig"
+  - name: kubectl_localhost
+    default: false
+    source_path: roles/kubernetes/client/defaults/main.yml
+    description: "Скачивать kubectl на хост Ansible. Дублирует значение из kubespray_defaults"
+  - name: artifacts_dir
+    default: "{{ inventory_dir }}/artifacts"
+    source_path: roles/kubernetes/client/defaults/main.yml
+    description: "Каталог артефактов (kubeconfig, kubectl) на хосте Ansible"
+  - name: kube_config_dir
+    default: "/etc/kubernetes"
+    source_path: roles/kubernetes/client/defaults/main.yml
+    description: "Каталог конфигурации Kubernetes. Дублирует значение из kubespray_defaults"
+  - name: kube_apiserver_port
+    default: '"6443"'
+    source_path: roles/kubernetes/client/defaults/main.yml
+    description: "Порт API-сервера (строка). Дублирует kube_apiserver_port из kubespray_defaults (там число 6443)"

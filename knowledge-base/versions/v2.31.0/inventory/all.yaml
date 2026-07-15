@@ -1,0 +1,919 @@
+project: kubespray
+kubespray_version: v2.31.0
+git_commit: 1c9add4
+source_type: inventory
+source_paths:
+  - inventory/sample/group_vars/all/all.yml
+  - inventory/sample/group_vars/all/etcd.yml
+  - inventory/sample/group_vars/all/containerd.yml
+  - inventory/sample/group_vars/all/cri-o.yml
+  - inventory/sample/group_vars/all/docker.yml
+  - inventory/sample/group_vars/all/coreos.yml
+  - inventory/sample/group_vars/all/offline.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.31.0/inventory/sample/group_vars/all
+retrieved_at: 2026-07-14
+topics: [inventory, all, offline]
+reliability: authoritative
+
+# ============================================================================
+# Разбор общих (не облачных) файлов group_vars/all тега v2.31.0.
+# Поле is_set: true  — переменная в sample-инвентаре РАСКОММЕНТИРОВАНА (задана);
+#                       такое значение переопределяет role defaults.
+# Поле is_set: false — переменная ЗАКОММЕНТИРОВАНА (только пример/подсказка);
+#                       фактически действует значение из roles/*/defaults.
+# sample_value для is_set:false берётся из закомментированной строки (пример).
+# Проверка расхождений с role defaults — см. поле notes/discrepancies в конце.
+# ============================================================================
+
+variables:
+
+  # ==========================================================================
+  # inventory/sample/group_vars/all/all.yml
+  # ==========================================================================
+  - name: bin_dir
+    sample_value: /usr/local/bin
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Каталог, куда устанавливаются бинарные файлы. Совпадает с role default (roles/kubespray_defaults/defaults/main/main.yml)."
+
+  - name: access_ip
+    sample_value: 1.1.1.1
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Определяет, как другие узлы обращаются к данному узлу (например, публичный IP в AWS/GCP, о котором сам узел не знает). Используется в flannel."
+
+  - name: loadbalancer_apiserver
+    sample_value: |-
+      address: 1.2.3.4
+      port: 1234
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Конфигурация внешнего балансировщика API-сервера (address и port). Пример в связке с apiserver_loadbalancer_domain_name."
+
+  - name: loadbalancer_apiserver_localhost
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Разворачивать локальный балансировщик API-сервера на узлах. Role default вычисляется как (loadbalancer_apiserver не задан)."
+
+  - name: loadbalancer_apiserver_type
+    sample_value: nginx
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Тип локального балансировщика API-сервера. Допустимые значения: nginx или haproxy."
+
+  - name: loadbalancer_apiserver_port
+    sample_value: 6443
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Порт локального балансировщика API-сервера. Должен быть равен 6443."
+
+  - name: loadbalancer_apiserver_healthcheck_port
+    sample_value: 8081
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Если переменная задана — включается проверка живости (liveness) прокси для nginx."
+
+  - name: disable_host_nameservers
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Если true — Kubespray не включает nameserver'ы хоста в nameserverentries на стадии dns_late (но использует их на стадии dns_early). Использовать осторожно."
+
+  - name: upstream_dns_servers
+    sample_value: |-
+      - 8.8.8.8
+      - 8.8.4.4
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Вышестоящие (upstream) DNS-серверы. Role default — пустой список []."
+
+  - name: cloud_provider
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Специфичные настройки облачного провайдера. После K8s v1.31 допустимо только значение 'external'."
+
+  - name: external_cloud_provider
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Внешний cloud controller manager. Требует cloud_provider=external. Поддерживаются: openstack, vsphere, oci, huaweicloud, hcloud, manual."
+
+  - name: http_proxy
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "HTTP-прокси для пакетного менеджера и docker daemon."
+
+  - name: https_proxy
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "HTTPS-прокси для пакетного менеджера и docker daemon."
+
+  - name: https_proxy_cert_file
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Пользовательский CA-сертификат для https_proxy при необходимости."
+
+  - name: no_proxy
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Список адресов/сетей, исключаемых из проксирования. Перед изменением см. roles/kubespray_defaults/defaults/main/main.yml."
+
+  - name: download_validate_certs
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Валидация TLS-сертификатов в модуле get_url. false отключает проверку SSL (обход бага ansible #32750); контрольные суммы всё равно проверяются. Role default — true."
+
+  - name: additional_no_proxy
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Дополнительные ресурсы, которые нужно исключить из проксирования (помимо узлов кластера)."
+
+  - name: skip_http_proxy_on_os_packages
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Если true — прокси не задаётся для репозиториев ОС (не пишется в /etc/yum.conf или /etc/apt/apt.conf)."
+
+  - name: no_proxy_exclude_workers
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Если true — в no_proxy включаются только узлы control-plane (не воркеры), чтобы docker не перезапускался на всех узлах при добавлении/удалении воркеров."
+
+  - name: cert_management
+    sample_value: script
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Способ управления сертификатами. Значения: script или none (none — если вы предоставляете свои сертификаты)."
+
+  - name: ignore_assert_errors
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Разрешить провал pre-check-проверок и продолжить развёртывание."
+
+  - name: kube_read_only_port
+    sample_value: 10255
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Read-only порт kubelet без аутентификации/авторизации. Раскомментировать для включения."
+
+  - name: download_container
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Скачивать и кэшировать контейнерные образы."
+
+  - name: deploy_container_engine
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Разворачивать container engine. false — если движок устанавливается вручную."
+
+  - name: rh_subscription_username
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Имя пользователя подписки Red Hat Enterprise Linux."
+
+  - name: rh_subscription_password
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Пароль подписки Red Hat Enterprise Linux."
+
+  - name: rh_subscription_org_id
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Organization ID подписки RHEL (в связке с Activation Key)."
+
+  - name: rh_subscription_activation_key
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Activation Key подписки RHEL (в связке с Organization ID)."
+
+  - name: rh_subscription_usage
+    sample_value: Development
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Назначение (usage) подписки RHEL."
+
+  - name: rh_subscription_role
+    sample_value: Red Hat Enterprise Server
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Роль подписки RHEL."
+
+  - name: rh_subscription_sla
+    sample_value: Self-Support
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Уровень SLA подписки RHEL."
+
+  - name: ping_access_ip
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Проверять доступность access_ip через ping. false — если файрвол блокирует ICMP."
+
+  - name: sysctl_file_path
+    sample_value: /etc/sysctl.d/99-sysctl.conf
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Путь к файлу sysctl-конфигурации, куда добавляются параметры."
+
+  - name: sysctl_ignore_unknown_keys
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Игнорировать ошибки sysctl о неизвестных ключах."
+
+  - name: kube_webhook_token_auth
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Включить webhook token authentication для API-сервера."
+
+  - name: kube_webhook_token_auth_url_skip_tls_verify
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Пропускать проверку TLS при обращении к webhook token auth URL."
+
+  - name: kube_webhook_token_auth_url
+    sample_value: https://...
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "URL сервиса webhook token authentication."
+
+  - name: kube_webhook_token_auth_ca_data
+    sample_value: "LS0t..."
+    is_set: false
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Base64-строка CA-сертификата webhook'а."
+
+  - name: ntp_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Запускать и включать сервис ntpd/chrony при загрузке системы."
+
+  - name: ntp_manage_config
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Позволять Kubespray управлять конфигурацией NTP (ntp_servers)."
+
+  - name: ntp_servers
+    sample_value: |-
+      - "0.pool.ntp.org iburst"
+      - "1.pool.ntp.org iburst"
+      - "2.pool.ntp.org iburst"
+      - "3.pool.ntp.org iburst"
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Список NTP-серверов, применяется при ntp_manage_config: true."
+
+  - name: unsafe_show_logs
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Управляет атрибутом no_log. false — не показывать потенциально приватные данные в логах. Совпадает с разрешённым (non-CI) значением role default из download.yml."
+
+  - name: allow_unsupported_distribution_setup
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/all/all.yml
+    comment: "Разрешить попытку установки на неподдерживаемых дистрибутивах (может привести к сбоям)."
+
+  # ==========================================================================
+  # inventory/sample/group_vars/all/etcd.yml
+  # ==========================================================================
+  - name: etcd_data_dir
+    sample_value: /var/lib/etcd
+    is_set: true
+    source_path: inventory/sample/group_vars/all/etcd.yml
+    comment: "Каталог данных etcd (WAL и snapshot). Совпадает с role default (roles/etcd_defaults/defaults/main.yml)."
+
+  - name: container_manager
+    sample_value: containerd
+    is_set: false
+    source_path: inventory/sample/group_vars/all/etcd.yml
+    comment: "Container runtime для etcd: docker, crio, containerd или kubeadm (экспериментально). Если не задан — наследуется из Kubespray defaults, а не из k8s-cluster.yml. Позволяет использовать другой runtime на узлах etcd."
+
+  - name: etcd_deployment_type
+    sample_value: host
+    is_set: true
+    source_path: inventory/sample/group_vars/all/etcd.yml
+    comment: "Тип развёртывания etcd. Установить docker при container_manager: docker. Совпадает с role default."
+
+  # ==========================================================================
+  # inventory/sample/group_vars/all/containerd.yml
+  # (все переменные закомментированы; полные defaults —
+  #  roles/container-engine/containerd/defaults/main.yml)
+  # ==========================================================================
+  - name: containerd_storage_dir
+    sample_value: "/var/lib/containerd"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Каталог хранения данных containerd (root)."
+
+  - name: containerd_state_dir
+    sample_value: "/run/containerd"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Каталог состояния containerd (state)."
+
+  - name: containerd_oom_score
+    sample_value: 0
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Значение oom_score_adj для процесса containerd."
+
+  - name: containerd_default_runtime
+    sample_value: "runc"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Имя рантайма CRI по умолчанию для containerd."
+
+  - name: containerd_snapshotter
+    sample_value: "native"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Снапшоттер containerd. Внимание: пример в инвентаре — native, тогда как role default — overlayfs."
+
+  - name: containerd_runc_runtime
+    sample_value: |-
+      name: runc
+      type: "io.containerd.runc.v2"
+      options:
+        Root: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Определение рантайма runc для containerd (пример; полный role default содержит base_runtime_spec, SystemdCgroup, BinaryName)."
+
+  - name: containerd_additional_runtimes
+    sample_value: |-
+      - name: kata
+        type: "io.containerd.kata.v2"
+        options:
+          Root: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Дополнительные рантаймы containerd. В примере — Kata Containers. Role default — []."
+
+  - name: containerd_grpc_max_recv_message_size
+    sample_value: 16777216
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Максимальный размер принимаемого gRPC-сообщения containerd (байт)."
+
+  - name: containerd_grpc_max_send_message_size
+    sample_value: 16777216
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Максимальный размер отправляемого gRPC-сообщения containerd (байт)."
+
+  - name: containerd_debug_address
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Адрес debug-сокета containerd (формат unix или tcp)."
+
+  - name: containerd_debug_level
+    sample_value: "info"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Уровень логирования containerd."
+
+  - name: containerd_debug_format
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Формат логов containerd. Поддерживаются: text, json."
+
+  - name: containerd_debug_uid
+    sample_value: 0
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "UID владельца debug-сокета containerd."
+
+  - name: containerd_debug_gid
+    sample_value: 0
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "GID владельца debug-сокета containerd."
+
+  - name: containerd_metrics_address
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Адрес эндпоинта метрик containerd."
+
+  - name: containerd_metrics_grpc_histogram
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Включить гистограммы gRPC в метриках containerd."
+
+  - name: containerd_registries_mirrors
+    sample_value: |-
+      - prefix: docker.io
+        mirrors:
+          - host: https://registry-1.docker.io
+            capabilities: ["pull", "resolve"]
+            skip_verify: false
+            header:
+              Authorization: "Basic XXX"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Зеркала реестров containerd (формат hosts.toml)."
+
+  - name: containerd_max_container_log_line_size
+    sample_value: 16384
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Максимальный размер строки лога контейнера (байт)."
+
+  - name: containerd_registry_auth
+    sample_value: |-
+      - registry: 10.0.0.2:5000
+        username: user
+        password: pass
+    is_set: false
+    source_path: inventory/sample/group_vars/all/containerd.yml
+    comment: "Аутентификация для реестров containerd (registry/username/password). Role default — []."
+
+  # ==========================================================================
+  # inventory/sample/group_vars/all/cri-o.yml
+  # (все переменные закомментированы)
+  # ==========================================================================
+  - name: crio_insecure_registries
+    sample_value: |-
+      - 10.0.0.2:5000
+    is_set: false
+    source_path: inventory/sample/group_vars/all/cri-o.yml
+    comment: "Список insecure-реестров для CRI-O. Role default — []."
+
+  - name: crio_registry_auth
+    sample_value: |-
+      - registry: 10.0.0.2:5000
+        username: user
+        password: pass
+    is_set: false
+    source_path: inventory/sample/group_vars/all/cri-o.yml
+    comment: "Аутентификация для реестров CRI-O (registry/username/password)."
+
+  # ==========================================================================
+  # inventory/sample/group_vars/all/docker.yml
+  # ==========================================================================
+  - name: docker_storage_options
+    sample_value: -s overlay2
+    is_set: false
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Форсировать overlay/overlay2 как storage driver docker (overlay2 — только на новых ядрах)."
+
+  - name: docker_container_storage_setup
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Включить docker_container_storage_setup (настройка devicemapper на CentOS7/RedHat7)."
+
+  - name: docker_container_storage_setup_devs
+    sample_value: /dev/vdb
+    is_set: false
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Путь к диску для docker_container_storage_setup. Обязателен, иначе docker-storage-setup отработает некорректно."
+
+  - name: docker_cgroup_driver
+    sample_value: systemd
+    is_set: false
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Cgroup driver docker (native.cgroupdriver). Значения: systemd или cgroupfs, по умолчанию systemd."
+
+  - name: docker_dns_servers_strict
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Задавать true только при более чем 3 nameserver'ах: тогда используются первые 3, иначе выполнение прервётся. Совпадает с role default."
+
+  - name: docker_daemon_graph
+    sample_value: "/var/lib/docker"
+    is_set: true
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Каталог хранения данных Docker. Совпадает с role default."
+
+  - name: docker_iptables_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Опция iptables демона Docker (строка). Совпадает с role default."
+
+  - name: docker_log_opts
+    sample_value: "--log-opt max-size=50m --log-opt max-file=5"
+    is_set: true
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Опции логирования Docker: ротация при 50m, хранить 5 файлов. Совпадает с role default."
+
+  - name: docker_bin_dir
+    sample_value: "/usr/bin"
+    is_set: true
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Каталог бинарников Docker. Совпадает с role default."
+
+  - name: docker_rpm_keepcache
+    sample_value: 1
+    is_set: true
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Сохранять пакеты docker после установки (1) — ускоряет повторные прогоны ansible."
+
+  - name: docker_insecure_registries
+    sample_value: |-
+      - mirror.registry.io
+      - 172.19.16.11
+    is_set: false
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Insecure-реестры Docker (IP или доменное имя). Role default — []."
+
+  - name: docker_registry_mirrors
+    sample_value: |-
+      - https://registry.docker-cn.com
+      - https://mirror.aliyuncs.com
+    is_set: false
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Зеркала реестров Docker (например, зеркала для Китая). Role default — []."
+
+  - name: docker_mount_flags
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Переопределяет системное значение MountFlags. Флаг распространения монтирования: shared, slave или private. Пусто — системное значение."
+
+  - name: docker_options
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/all/docker.yml
+    comment: "Строка дополнительных опций демона docker, дословно добавляемая как есть."
+
+  # ==========================================================================
+  # inventory/sample/group_vars/all/coreos.yml
+  # (все переменные закомментированы)
+  # ==========================================================================
+  - name: coreos_auto_upgrade
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/all/coreos.yml
+    comment: "Нужно ли автообновление CoreOS. По умолчанию true."
+
+  # ==========================================================================
+  # inventory/sample/group_vars/all/offline.yml
+  # (все переменные закомментированы; предназначены для offline/air-gapped установки)
+  # ==========================================================================
+  # --- Приватный реестр образов и HTTP-репозитории ---
+  - name: registry_host
+    sample_value: "myprivateregisry.com"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Хост приватного реестра контейнерных образов. Используется в *_image_repo при offline-установке."
+
+  - name: files_repo
+    sample_value: "http://myprivatehttpd"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Приватный HTTP-репозиторий файлов/бинарников. Используется в *_download_url при offline-установке."
+
+  - name: yum_repo
+    sample_value: "http://myinternalyumrepo"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Внутренний yum-репозиторий (CentOS, RedHat, AlmaLinux, Fedora)."
+
+  - name: debian_repo
+    sample_value: "http://myinternaldebianrepo"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Внутренний Debian-репозиторий."
+
+  - name: ubuntu_repo
+    sample_value: "http://myinternalubunturepo"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Внутренний Ubuntu-репозиторий."
+
+  # --- Переопределение репозиториев образов ---
+  - name: kube_image_repo
+    sample_value: "{{ registry_host }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Переопределение репозитория образов Kubernetes на приватный реестр."
+
+  - name: gcr_image_repo
+    sample_value: "{{ registry_host }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Переопределение Google Container Registry на приватный реестр."
+
+  - name: github_image_repo
+    sample_value: "{{ registry_host }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Переопределение GitHub Container Registry на приватный реестр."
+
+  - name: docker_image_repo
+    sample_value: "{{ registry_host }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Переопределение Docker Hub на приватный реестр."
+
+  - name: quay_image_repo
+    sample_value: "{{ registry_host }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Переопределение Quay на приватный реестр."
+
+  # --- Компоненты Kubernetes (download URL) ---
+  - name: kubeadm_download_url
+    sample_value: "{{ files_repo }}/dl.k8s.io/release/v{{ kube_version }}/bin/linux/{{ image_arch }}/kubeadm"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания kubeadm через приватный files_repo."
+
+  - name: kubectl_download_url
+    sample_value: "{{ files_repo }}/dl.k8s.io/release/v{{ kube_version }}/bin/linux/{{ image_arch }}/kubectl"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания kubectl через приватный files_repo."
+
+  - name: kubelet_download_url
+    sample_value: "{{ files_repo }}/dl.k8s.io/release/v{{ kube_version }}/bin/linux/{{ image_arch }}/kubelet"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания kubelet через приватный files_repo."
+
+  # --- Переопределение всего репозитория бинарников (вариант 1) ---
+  - name: github_url
+    sample_value: "https://my_github_proxy"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Прокси/зеркало базового URL GitHub для всех компонентов."
+
+  - name: dl_k8s_io_url
+    sample_value: "https://my_dl_k8s_io_proxy"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Прокси/зеркало базового URL dl.k8s.io."
+
+  - name: storage_googleapis_url
+    sample_value: "https://my_storage_googleapi_proxy"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Прокси/зеркало базового URL storage.googleapis.com (cri-o, gVisor)."
+
+  - name: get_helm_url
+    sample_value: "https://my_helm_sh_proxy"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Прокси/зеркало базового URL get.helm.sh."
+
+  # --- Переопределение отдельных бинарников (вариант 2) ---
+  - name: cni_download_url
+    sample_value: "{{ files_repo }}/github.com/containernetworking/plugins/releases/download/v{{ cni_version }}/cni-plugins-linux-{{ image_arch }}-v{{ cni_version }}.tgz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания CNI Plugins через files_repo."
+
+  - name: crictl_download_url
+    sample_value: "{{ files_repo }}/github.com/kubernetes-sigs/cri-tools/releases/download/v{{ crictl_version }}/crictl-v{{ crictl_version }}-{{ ansible_system | lower }}-{{ image_arch }}.tar.gz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания cri-tools (crictl) через files_repo."
+
+  - name: etcd_download_url
+    sample_value: "{{ files_repo }}/github.com/etcd-io/etcd/releases/download/v{{ etcd_version }}/etcd-v{{ etcd_version }}-linux-{{ image_arch }}.tar.gz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания etcd через files_repo. Только при etcd_deployment_type=host."
+
+  - name: calicoctl_download_url
+    sample_value: "{{ files_repo }}/github.com/projectcalico/calico/releases/download/v{{ calico_ctl_version }}/calicoctl-linux-{{ image_arch }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания calicoctl через files_repo. При использовании Calico."
+
+  - name: calico_crds_download_url
+    sample_value: "{{ files_repo }}/github.com/projectcalico/calico/raw/v{{ calico_version }}/manifests/crds.yaml"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания CRDs Calico через files_repo. При использовании Calico с datastore kdd."
+
+  - name: ciliumcli_download_url
+    sample_value: "{{ files_repo }}/github.com/cilium/cilium-cli/releases/download/v{{ cilium_cli_version }}/cilium-linux-{{ image_arch }}.tar.gz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания cilium-cli через files_repo. При использовании Cilium."
+
+  - name: helm_download_url
+    sample_value: "{{ files_repo }}/get.helm.sh/helm-v{{ helm_version }}-linux-{{ image_arch }}.tar.gz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания helm через files_repo. Только при helm_enabled: true."
+
+  - name: crun_download_url
+    sample_value: "{{ files_repo }}/github.com/containers/crun/releases/download/{{ crun_version }}/crun-{{ crun_version }}-linux-{{ image_arch }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания crun через files_repo. Только при crun_enabled: true."
+
+  - name: kata_containers_download_url
+    sample_value: "{{ files_repo }}/github.com/kata-containers/kata-containers/releases/download/{{ kata_containers_version }}/kata-static-{{ kata_containers_version }}-{{ image_arch }}.tar.xz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания kata-containers через files_repo. Только при kata_containers_enabled: true."
+
+  - name: cri_dockerd_download_url
+    sample_value: "{{ files_repo }}/github.com/Mirantis/cri-dockerd/releases/download/v{{ cri_dockerd_version }}/cri-dockerd-{{ cri_dockerd_version }}.{{ image_arch }}.tgz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания cri-dockerd через files_repo. Только при container_manager: docker."
+
+  - name: runc_download_url
+    sample_value: "{{ files_repo }}/github.com/opencontainers/runc/releases/download/v{{ runc_version }}/runc.{{ image_arch }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания runc через files_repo. При container_manager containerd или crio."
+
+  - name: crio_download_base
+    sample_value: "download.opensuse.org/repositories/devel:kubic:libcontainers:stable"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Базовый путь репозитория CRI-O. Только при container_manager: crio."
+
+  - name: crio_download_crio
+    sample_value: "http://{{ crio_download_base }}:/cri-o:/"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL репозитория пакетов CRI-O (собирается из crio_download_base)."
+
+  - name: crio_download_url
+    sample_value: "{{ files_repo }}/storage.googleapis.com/cri-o/artifacts/cri-o.{{ image_arch }}.v{{ crio_version }}.tar.gz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания архива CRI-O через files_repo."
+
+  - name: skopeo_download_url
+    sample_value: "{{ files_repo }}/github.com/lework/skopeo-binary/releases/download/v{{ skopeo_version }}/skopeo-linux-{{ image_arch }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания skopeo через files_repo. Только при container_manager: crio."
+
+  - name: containerd_download_url
+    sample_value: "{{ files_repo }}/github.com/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-linux-{{ image_arch }}.tar.gz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания containerd через files_repo. Только при container_runtime: containerd."
+
+  - name: nerdctl_download_url
+    sample_value: "{{ files_repo }}/github.com/containerd/nerdctl/releases/download/v{{ nerdctl_version }}/nerdctl-{{ nerdctl_version }}-{{ ansible_system | lower }}-{{ image_arch }}.tar.gz"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания nerdctl через files_repo."
+
+  - name: gvisor_runsc_download_url
+    sample_value: "{{ files_repo }}/storage.googleapis.com/gvisor/releases/release/{{ gvisor_version }}/{{ ansible_architecture }}/runsc"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания gVisor runsc через files_repo. Только при gvisor_enabled: true."
+
+  - name: gvisor_containerd_shim_runsc_download_url
+    sample_value: "{{ files_repo }}/storage.googleapis.com/gvisor/releases/release/{{ gvisor_version }}/{{ ansible_architecture }}/containerd-shim-runsc-v1"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "URL скачивания gVisor containerd-shim-runsc через files_repo. Только при gvisor_enabled: true."
+
+  # --- CentOS/Redhat/AlmaLinux ---
+  - name: rhel_enable_repos
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Автоматически включать baseos и appstream для EL8 (по умолчанию включаются)."
+
+  - name: docker_rh_repo_base_url
+    sample_value: "{{ yum_repo }}/docker-ce/$releasever/$basearch"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Базовый URL yum-репозитория Docker для RHEL/CentOS/AlmaLinux."
+
+  - name: docker_rh_repo_gpgkey
+    sample_value: "{{ yum_repo }}/docker-ce/gpg"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "GPG-ключ yum-репозитория Docker для RHEL/CentOS/AlmaLinux."
+
+  # --- Fedora ---
+  - name: docker_fedora_repo_base_url
+    sample_value: "{{ yum_repo }}/docker-ce/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Базовый URL репозитория Docker для Fedora."
+
+  - name: docker_fedora_repo_gpgkey
+    sample_value: "{{ yum_repo }}/docker-ce/gpg"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "GPG-ключ репозитория Docker для Fedora."
+
+  - name: containerd_fedora_repo_base_url
+    sample_value: "{{ yum_repo }}/containerd"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Базовый URL репозитория containerd для Fedora."
+
+  - name: containerd_fedora_repo_gpgkey
+    sample_value: "{{ yum_repo }}/docker-ce/gpg"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "GPG-ключ репозитория containerd для Fedora."
+
+  # --- Debian ---
+  - name: docker_debian_repo_base_url
+    sample_value: "{{ debian_repo }}/docker-ce"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Базовый URL репозитория Docker для Debian."
+
+  - name: docker_debian_repo_gpgkey
+    sample_value: "{{ debian_repo }}/docker-ce/gpg"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "GPG-ключ репозитория Docker для Debian."
+
+  - name: containerd_debian_repo_base_url
+    sample_value: "{{ debian_repo }}/containerd"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Базовый URL репозитория containerd для Debian."
+
+  - name: containerd_debian_repo_gpgkey
+    sample_value: "{{ debian_repo }}/containerd/gpg"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "GPG-ключ репозитория containerd для Debian."
+
+  - name: containerd_debian_repo_repokey
+    sample_value: 'YOURREPOKEY'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Ключ репозитория (repokey) containerd для Debian."
+
+  # --- Ubuntu ---
+  - name: docker_ubuntu_repo_base_url
+    sample_value: "{{ ubuntu_repo }}/docker-ce"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Базовый URL репозитория Docker для Ubuntu."
+
+  - name: docker_ubuntu_repo_gpgkey
+    sample_value: "{{ ubuntu_repo }}/docker-ce/gpg"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "GPG-ключ репозитория Docker для Ubuntu."
+
+  - name: containerd_ubuntu_repo_base_url
+    sample_value: "{{ ubuntu_repo }}/containerd"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Базовый URL репозитория containerd для Ubuntu."
+
+  - name: containerd_ubuntu_repo_gpgkey
+    sample_value: "{{ ubuntu_repo }}/containerd/gpg"
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "GPG-ключ репозитория containerd для Ubuntu."
+
+  - name: containerd_ubuntu_repo_repokey
+    sample_value: 'YOURREPOKEY'
+    is_set: false
+    source_path: inventory/sample/group_vars/all/offline.yml
+    comment: "Ключ репозитория (repokey) containerd для Ubuntu."
+
+# ============================================================================
+# Проверка расхождений inventory vs roles/*/defaults (раздел 6.2 CLAUDE.md).
+# Сверялись только is_set:true переменные, присутствующие в проверенных срезах
+# defaults (etcd.yaml, container-runtime.yaml, download.yaml, k8s-cluster.yaml):
+#   bin_dir, etcd_data_dir, etcd_deployment_type, docker_dns_servers_strict,
+#   docker_daemon_graph, docker_iptables_enabled, docker_log_opts, docker_bin_dir,
+#   unsafe_show_logs.
+# Все значения совпадают с role defaults (для unsafe_show_logs — с разрешённым
+# non-CI значением false). Расхождений не выявлено.
+# ============================================================================
+discrepancies: []

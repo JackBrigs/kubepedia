@@ -1,0 +1,408 @@
+project: kubespray
+kubespray_version: v2.30.0
+git_commit: f4ccdb5
+source_type: code
+source_paths:
+  - roles/kubespray_defaults/defaults/main/main.yml
+  - roles/kubespray_defaults/defaults/main/download.yml
+  - roles/kubespray_defaults/vars/main/checksums.yml
+  - roles/container-engine/containerd/defaults/main.yml
+  - roles/container-engine/containerd-common/defaults/main.yml
+  - roles/container-engine/runc/defaults/main.yml
+  - roles/container-engine/validate-container-engine/tasks/main.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.30.0
+retrieved_at: 2026-07-14
+topics:
+  - container-runtime
+  - containerd
+reliability: authoritative
+variables:
+  # ======================================================================
+  # Выбор рантайма (roles/kubespray_defaults/defaults/main/main.yml)
+  # ======================================================================
+  - name: container_manager
+    default: "containerd"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Движок контейнеров (CRI) для узлов кластера. Значение по умолчанию — containerd. Допустимые значения: containerd, crio, docker. Определяет, какая роль container-engine/* устанавливается и какой cri_socket используется."
+    related: [cri_socket, container_manager_on_localhost, deploy_container_engine]
+  - name: deploy_container_engine
+    default: "{{ 'k8s_cluster' in group_names or etcd_deployment_type == 'docker' }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Разворачивать ли движок контейнеров на хосте. По умолчанию true для узлов группы k8s_cluster, а также для etcd-узлов при etcd_deployment_type == 'docker'."
+    related: [container_manager, etcd_deployment_type]
+  - name: container_manager_on_localhost
+    default: "{{ container_manager }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Движок контейнеров на управляющем хосте (localhost) — используется при загрузке образов, когда download_localhost = true. По умолчанию совпадает с container_manager."
+    related: [container_manager]
+  - name: cri_socket
+    default: >-
+      {%- if container_manager == 'crio' -%}
+      unix:///var/run/crio/crio.sock
+      {%- elif container_manager == 'containerd' -%}
+      unix:///var/run/containerd/containerd.sock
+      {%- elif container_manager == 'docker' -%}
+      unix:///var/run/cri-dockerd.sock
+      {%- endif -%}
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Путь к CRI-сокету, вычисляемый из container_manager. Для containerd — unix:///var/run/containerd/containerd.sock. Передаётся kubeadm/kubelet."
+    related: [container_manager]
+  - name: nri_enabled
+    default: "{{ container_manager == 'containerd' }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включает плагин Node Resource Interface (NRI) в containerd. По умолчанию включён, только когда container_manager == 'containerd'."
+    conditions: "container_manager == 'containerd'"
+    related: [container_manager]
+
+  # ---- Флаги дополнительных рантаймов (не индексируются подробно) ----
+  - name: kata_containers_enabled
+    default: "false"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включает Kata Containers как дополнительный рантайм. Требует container_manager, отличного от docker. Сама роль kata-containers в этом срезе не индексируется."
+    related: [container_manager, containerd_additional_runtimes]
+  - name: gvisor_enabled
+    default: "false"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включает gVisor как дополнительный рантайм. Поддерживается только с container_manager docker или containerd. Роль gvisor в этом срезе не индексируется."
+    related: [container_manager, containerd_additional_runtimes]
+  - name: runc_enabled
+    default: "false"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включает runc как дополнительный рантайм. Требует container_manager=crio. Не путать с runc как рантаймом по умолчанию для containerd (см. containerd_default_runtime)."
+    related: [container_manager]
+  - name: crun_enabled
+    default: "false"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включает crun как дополнительный рантайм. Требует container_manager=crio. Роль crun в этом срезе не индексируется."
+    related: [container_manager]
+  - name: youki_enabled
+    default: "false"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Включает youki как дополнительный рантайм. Требует container_manager=crio. Роль youki в этом срезе не индексируется."
+    related: [container_manager]
+
+  # ======================================================================
+  # Версии компонентов containerd-стека (download.yml + checksums.yml)
+  # ======================================================================
+  - name: containerd_version
+    default: "{{ (containerd_archive_checksums['amd64'] | dict2items)[0].key }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "Версия containerd. Вычисляется как первый ключ словаря контрольных сумм containerd_archive_checksums для amd64. В теге v2.30.0 первый ключ — 2.2.1, то есть фактическая версия по умолчанию containerd 2.2.1."
+    related: [containerd_download_url, containerd_static_binary, containerd_archive_checksum]
+  - name: runc_version
+    default: "{{ (runc_checksums['amd64'] | dict2items)[0].key }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "Версия runc — низкоуровневого OCI-рантайма по умолчанию для containerd. Первый ключ runc_checksums['amd64'] в v2.30.0 — 1.3.4."
+    related: [runc_download_url, containerd_runc_runtime]
+  - name: nerdctl_version
+    default: "{{ (nerdctl_archive_checksums['amd64'] | dict2items)[0].key }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "Версия nerdctl (CLI для containerd). Первый ключ nerdctl_archive_checksums['amd64'] в v2.30.0 — 2.2.1."
+    related: [nerdctl_download_url]
+  - name: crictl_version
+    default: "{{ (crictl_checksums['amd64'].keys() | select('version', kube_major_next_version, '<'))[0] }}"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "Версия crictl (CLI CRI-tools). Выбирается как первая версия из crictl_checksums['amd64'], меньшая kube_major_next_version. Фактическое значение зависит от версии Kubernetes; первый ключ словаря в v2.30.0 — 1.34.0."
+    conditions: "выбор зависит от kube_major_next_version"
+    related: [crictl_download_url]
+    reliability: unconfirmed
+  - name: docker_containerd_version
+    default: "1.6.32"
+    source_path: roles/kubespray_defaults/defaults/main/download.yml
+    description: "Версия пакета containerd.io, устанавливаемого вместе с docker. Актуальна только при container_manager == 'docker'; при containerd используется containerd_version. Роль docker в этом срезе не индексируется."
+    conditions: "container_manager == 'docker'"
+    related: [container_manager, containerd_version]
+
+  # ======================================================================
+  # Пути и бинарники containerd (main.yml + containerd/defaults + common)
+  # ======================================================================
+  - name: containerd_bin_dir
+    default: "{{ bin_dir }}"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Каталог для бинарных файлов containerd. По умолчанию совпадает с bin_dir (/usr/local/bin)."
+    related: [bin_dir]
+  - name: containerd_static_binary
+    default: "false"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Использовать статический бинарник containerd для совместимости со старыми дистрибутивами (например, Debian 11). Влияет на выбор архива (static-) и контрольной суммы."
+    related: [containerd_version, containerd_download_url]
+  - name: containerd_storage_dir
+    default: "/var/lib/containerd"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Каталог хранения данных containerd (root). Также задан в kubespray_defaults/main.yml с тем же значением."
+  - name: containerd_state_dir
+    default: "/run/containerd"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Каталог состояния containerd (state). Дублируется в kubespray_defaults/main.yml."
+  - name: containerd_systemd_dir
+    default: "/etc/systemd/system/containerd.service.d"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Каталог для drop-in файлов systemd-юнита containerd. Дублируется в kubespray_defaults/main.yml."
+  - name: containerd_cfg_dir
+    default: "/etc/containerd"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Каталог конфигурации containerd (config.toml). В containerd/defaults задан без кавычек как /etc/containerd; продублирован в kubespray_defaults/main.yml как \"/etc/containerd\"."
+  - name: containerd_package
+    default: "containerd.io"
+    source_path: roles/container-engine/containerd-common/defaults/main.yml
+    description: "Имя пакета containerd для установки через пакетный менеджер. Сохранено для миграции с пакетной установки на прямую загрузку бинарника."
+  - name: yum_repo_dir
+    default: "/etc/yum.repos.d"
+    source_path: roles/container-engine/containerd-common/defaults/main.yml
+    description: "Каталог yum-репозиториев на RHEL-подобных дистрибутивах."
+
+  # ======================================================================
+  # Конфигурация рантайма containerd (roles/.../containerd/defaults)
+  # ======================================================================
+  - name: containerd_default_runtime
+    default: "runc"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Имя рантайма по умолчанию в конфигурации CRI containerd. По умолчанию runc."
+    related: [containerd_runc_runtime]
+  - name: containerd_snapshotter
+    default: "overlayfs"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Снапшоттер containerd. По умолчанию overlayfs."
+  - name: containerd_runc_runtime
+    default: |
+      name: runc
+      type: "io.containerd.runc.v2"
+      base_runtime_spec: cri-base.json
+      options:
+        Root: ""
+        SystemdCgroup: "{{ containerd_use_systemd_cgroup | ternary('true', 'false') }}"
+        BinaryName: "{{ bin_dir }}/runc"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Определение рантайма runc для CRI-плагина containerd: тип io.containerd.runc.v2, базовая спецификация cri-base.json, признак SystemdCgroup (зависит от containerd_use_systemd_cgroup) и путь к бинарнику runc."
+    related: [containerd_use_systemd_cgroup, containerd_default_runtime, containerd_base_runtime_specs]
+  - name: containerd_additional_runtimes
+    default: "[]"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Список дополнительных рантаймов для containerd (например, kata). По умолчанию пуст. В defaults приведён закомментированный пример для Kata Containers."
+    related: [kata_containers_enabled, gvisor_enabled]
+  - name: containerd_use_systemd_cgroup
+    default: "true"
+    source_path: roles/kubespray_defaults/defaults/main/main.yml
+    description: "Использовать systemd cgroup driver для containerd. Актуально при container_manager == 'containerd'. Прокидывается в опцию SystemdCgroup рантайма runc."
+    conditions: "container_manager == 'containerd'"
+    related: [containerd_runc_runtime]
+  - name: containerd_oom_score
+    default: "0"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Значение OOMScoreAdjust для containerd. Значение по умолчанию 0 (не -999), так как oom_score_adj containerd всё равно устанавливается в -999 даже при 0 (см. PR #9275)."
+  - name: containerd_base_runtime_spec_rlimit_nofile
+    default: "65535"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Значение лимита RLIMIT_NOFILE (soft и hard), подставляемое в базовую спецификацию рантайма cri-base.json."
+    related: [containerd_default_base_runtime_spec_patch, containerd_base_runtime_specs]
+  - name: containerd_default_base_runtime_spec_patch
+    default: |
+      process:
+        rlimits:
+          - type: RLIMIT_NOFILE
+            hard: "{{ containerd_base_runtime_spec_rlimit_nofile }}"
+            soft: "{{ containerd_base_runtime_spec_rlimit_nofile }}"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Патч базовой спецификации рантайма, задающий rlimit RLIMIT_NOFILE из containerd_base_runtime_spec_rlimit_nofile. Объединяется с дефолтной спецификацией при формировании cri-base.json."
+    related: [containerd_base_runtime_spec_rlimit_nofile, containerd_base_runtime_specs]
+  - name: containerd_base_runtime_specs
+    default: |
+      cri-base.json: "{{ containerd_default_base_runtime_spec | combine(containerd_default_base_runtime_spec_patch, recursive=1) }}"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Словарь базовых спецификаций рантайма. cri-base.json формируется объединением containerd_default_base_runtime_spec с патчем containerd_default_base_runtime_spec_patch."
+    related: [containerd_default_base_runtime_spec_patch]
+  - name: containerd_discard_unpacked_layers
+    default: "true"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Отбрасывать распакованные слои образов для экономии места на диске. Действует только для containerd < 2.1."
+    conditions: "containerd < 2.1"
+  - name: containerd_grpc_max_recv_message_size
+    default: "16777216"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Максимальный размер принимаемого gRPC-сообщения containerd (байт), 16 МиБ."
+  - name: containerd_grpc_max_send_message_size
+    default: "16777216"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Максимальный размер отправляемого gRPC-сообщения containerd (байт), 16 МиБ."
+  - name: containerd_max_container_log_line_size
+    default: "16384"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Максимальный размер строки лога контейнера (байт)."
+  - name: containerd_image_pull_progress_timeout
+    default: "5m"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Таймаут ожидания прогресса при загрузке образа."
+
+  # ======================================================================
+  # Отладка, метрики, трассировка (containerd/defaults)
+  # ======================================================================
+  - name: containerd_debug_address
+    default: '""'
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Адрес debug-сокета containerd. Пусто по умолчанию (отключено)."
+  - name: containerd_debug_level
+    default: "info"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Уровень логирования containerd."
+  - name: containerd_debug_format
+    default: '""'
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Формат отладочного вывода containerd. Пусто по умолчанию."
+  - name: containerd_debug_uid
+    default: "0"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "UID владельца debug-сокета containerd."
+  - name: containerd_debug_gid
+    default: "0"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "GID владельца debug-сокета containerd."
+  - name: containerd_metrics_address
+    default: '""'
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Адрес экспорта метрик containerd. Пусто по умолчанию (метрики отключены)."
+  - name: containerd_metrics_grpc_histogram
+    default: "false"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Включить гистограммы gRPC в метриках containerd."
+  - name: containerd_tracing_enabled
+    default: "false"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Включить трассировку (OpenTelemetry) containerd."
+    related: [containerd_tracing_endpoint, containerd_tracing_protocol]
+  - name: containerd_tracing_endpoint
+    default: "[::]:4317"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Endpoint экспортёра трассировки containerd."
+    conditions: "containerd_tracing_enabled"
+  - name: containerd_tracing_protocol
+    default: "grpc"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Протокол экспорта трассировки containerd."
+    conditions: "containerd_tracing_enabled"
+  - name: containerd_tracing_sampling_ratio
+    default: "1.0"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Доля трасс, отправляемых на сэмплирование."
+    conditions: "containerd_tracing_enabled"
+  - name: containerd_tracing_service_name
+    default: "containerd"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Имя сервиса в трассировке containerd."
+    conditions: "containerd_tracing_enabled"
+
+  # ======================================================================
+  # Реестры образов (containerd/defaults)
+  # ======================================================================
+  - name: containerd_registries_mirrors
+    default: |
+      - prefix: docker.io
+        mirrors:
+          - host: https://registry-1.docker.io
+            capabilities: ["pull", "resolve"]
+            skip_verify: false
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Список зеркал реестров для containerd. По умолчанию настроено зеркало для docker.io на registry-1.docker.io с возможностями pull и resolve. В defaults есть закомментированные примеры ca/client/header."
+  - name: containerd_registry_auth
+    default: "[]"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Аутентификация в реестрах (registry/username/password). Пусто по умолчанию; в defaults приведён закомментированный пример."
+
+  # ======================================================================
+  # Безопасность и функции (containerd/defaults)
+  # ======================================================================
+  - name: containerd_enable_unprivileged_ports
+    default: "false"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Разрешить непривилегированным пользователям использовать порты <1024."
+  - name: containerd_enable_unprivileged_icmp
+    default: "false"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Разрешить непривилегированным пользователям использовать icmp-сокеты."
+  - name: containerd_enable_selinux
+    default: "false"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Включить поддержку SELinux в containerd."
+  - name: containerd_disable_apparmor
+    default: "false"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Отключить AppArmor в containerd."
+  - name: containerd_tolerate_missing_hugetlb_controller
+    default: "true"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Терпимо относиться к отсутствию cgroup-контроллера hugetlb."
+  - name: containerd_disable_hugetlb_controller
+    default: "true"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Отключить контроллер hugetlb в containerd."
+  - name: enable_cdi
+    default: "false"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Включить Container Device Interface (CDI)."
+
+  # ======================================================================
+  # Лимиты systemd-сервиса containerd (containerd/defaults)
+  # ======================================================================
+  - name: containerd_limit_proc_num
+    default: "infinity"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "LimitNPROC для сервиса containerd."
+  - name: containerd_limit_core
+    default: "infinity"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "LimitCORE для сервиса containerd."
+  - name: containerd_limit_open_file_num
+    default: "1048576"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "LimitNOFILE для сервиса containerd."
+  - name: containerd_limit_mem_lock
+    default: "infinity"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "LimitMEMLOCK для сервиса containerd."
+
+  # ======================================================================
+  # Дополнительная конфигурация (containerd/defaults)
+  # ======================================================================
+  - name: containerd_extra_args
+    default: "''"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Произвольный дополнительный текст, дословно добавляемый в {{ containerd_cfg_dir }}/config.toml."
+    related: [containerd_cfg_dir]
+  - name: containerd_extra_runtime_args
+    default: "{}"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Дополнительные параметры конфигурации, внедряемые в секцию CRI-плагина рантайма containerd [plugins.\"io.containerd.cri.v1.runtime\"]. Полезно для опций, не поддержанных явными переменными Kubespray."
+  - name: containerd_supported_distributions
+    default: |
+      - "CentOS"
+      - "OracleLinux"
+      - "RedHat"
+      - "Ubuntu"
+      - "Debian"
+      - "Fedora"
+      - "AlmaLinux"
+      - "Rocky"
+      - "Amazon"
+      - "Flatcar"
+      - "Flatcar Container Linux by Kinvolk"
+      - "Suse"
+      - "openSUSE Leap"
+      - "openSUSE Tumbleweed"
+      - "Kylin Linux Advanced Server"
+      - "UnionTech"
+      - "UniontechOS"
+      - "openEuler"
+    source_path: roles/container-engine/containerd/defaults/main.yml
+    description: "Список дистрибутивов ОС, для которых поддерживается установка containerd."
+
+  # ======================================================================
+  # runc (roles/container-engine/runc/defaults)
+  # ======================================================================
+  - name: runc_bin_dir
+    default: "{{ bin_dir }}"
+    source_path: roles/container-engine/runc/defaults/main.yml
+    description: "Каталог для бинарника runc. По умолчанию bin_dir (/usr/local/bin)."
+    related: [bin_dir]
+  - name: runc_package_name
+    default: "runc"
+    source_path: roles/container-engine/runc/defaults/main.yml
+    description: "Имя пакета runc при пакетной установке."

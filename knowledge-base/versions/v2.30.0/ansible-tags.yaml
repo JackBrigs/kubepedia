@@ -1,0 +1,3229 @@
+# Справочник Ansible-тегов запуска Kubespray v2.30.0 (раздел 6.4 CLAUDE.md)
+# Источник истины; человекочитаемая заметка — ansible-tags.md
+project: kubespray
+kubespray_version: v2.30.0
+git_commit: f4ccdb5
+git_commit_full: f4ccdb5e72395eaf9f3444056ebd1a6625ddb89a
+source_type: code
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.30.0
+retrieved_at: '2026-07-14'
+topics:
+- ansible-tags
+- playbooks
+- run-tags
+reliability: authoritative
+tags_total: 123
+
+tags:
+- ansible_tag: always
+  description: 'Специальный Ansible-тег, автоматически применяемый к задачам вне зависимости от --tags
+    (отменяется только через --skip-tags always). В v2.30.0 на уровне play помечены: проверка версии Ansible
+    и зависимостей (playbooks/ansible_version.yml), настройка и валидация инвентаря (playbooks/boilerplate.yml,
+    роли dynamic_groups и validate_inventory — совместимость старых имён групп, определение родительских/пустых
+    групп) и сбор фактов (playbooks/internal_facts.yml: network_facts, минимальный setup, сетевые и аппаратные
+    факты). Эти play выполняются перед любым запуском, обеспечивая корректный инвентарь и наличие фактов
+    для остальных ролей.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  - scale.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - all
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - dynamic_groups
+  - validate_inventory
+  - network_facts
+  - bootstrap_os
+  source_paths:
+  - playbooks/ansible_version.yml
+  - playbooks/boilerplate.yml
+  - playbooks/internal_facts.yml
+  standalone_run: safe
+  notes: 'Спецсемантика: задачи с тегом always выполняются при любом запуске, если явно не заданы --skip-tags
+    always. Запуск `--tags always` в изоляции лишь прогонит подготовительные play (валидация версии, инвентаря,
+    сбор фактов) — операции неразрушающие, изменений на узлах кластера не производится.
+
+    '
+  reliability: authoritative
+- ansible_tag: annotate
+  description: 'Создаёт аннотации на узлах для сетевого плагина kube-router: задача импортирует annotate.yml
+    из роли network_plugin/kube-router (roles/network_plugin/kube-router/tasks/main.yml, import_tasks
+    annotate.yml). Аннотации задают параметры BGP (subnet/ASN и пр.) для работы kube-router. Применяется
+    только при kube_network_plugin == ''kube-router''.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_node
+  roles:
+  - network_plugin/kube-router
+  source_paths:
+  - roles/network_plugin/kube-router/tasks/main.yml
+  standalone_run: risky
+  notes: 'Зависит от развёрнутого kube-router и выбранного kube_network_plugin == ''kube-router''; вне
+    сетевого этапа (роль network_plugin) без установленного CNI изолированный запуск смысла не имеет.
+    Соответствует описанию в docs/ansible/ansible.md ("Create kube-router annotation").
+
+    '
+  reliability: authoritative
+- ansible_tag: apps
+  description: 'Сквозной («umbrella») тег группы kubernetes-apps. Запускает роль kubernetes-apps в плее
+    «Install Kubernetes apps» (hosts: kube_control_plane) и разворачивает весь набор кластерных addon''ов,
+    каждый — по своему флагу *_enabled: helm, registry, metrics_server, CSI-драйверы, persistent_volumes,
+    snapshots, container_runtimes (kata/gvisor/crun/youki), container_engine_accelerator (nvidia_gpu),
+    kubelet-csr-approver, metallb, argocd, scheduler_plugins, node_feature_discovery. Кроме того, метка
+    apps продублирована на подролях ingress_controller (ingress_nginx/cert_manager/alb), external_provisioner
+    (local-path/local-volume) и container-* — поэтому запуск с --tags apps затрагивает и их. Также помечает
+    задачу создания служебных каталогов в roles/kubernetes/preinstall/tasks/0050-create_directories.yml.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps
+  - kubernetes-apps/ingress_controller
+  - kubernetes-apps/external_provisioner
+  - kubernetes-apps/container_runtimes
+  - kubernetes-apps/container_engine_accelerator
+  - kubernetes/preinstall
+  source_paths:
+  - playbooks/cluster.yml
+  - playbooks/upgrade_cluster.yml
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/ingress_controller/meta/main.yml
+  - roles/kubernetes-apps/external_provisioner/meta/main.yml
+  - roles/kubernetes-apps/container_runtimes/meta/main.yml
+  - roles/kubernetes-apps/container_engine_accelerator/meta/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: risky
+  notes: Разворачивается только на control plane; большинство задач выполняется однократно с delegate_to/run_once
+    на kube_control_plane[0]. Реальный состав разворачиваемого полностью зависит от флагов *_enabled (по
+    умолчанию почти все addon'ы выключены). Изолированный запуск требует работающего apiserver и заранее
+    скачанных артефактов; без --tags download на чистом окружении часть addon'ов упадёт из-за отсутствия
+    образов/бинарников.
+  reliability: authoritative
+- ansible_tag: argocd
+  description: Разворачивает Argo CD. Скачивает бинарь yq и манифесты Argo CD, создаёт namespace и применяет
+    установочный манифест выбранной версии, затем при необходимости патчит секрет initial admin. Подключается
+    зависимостью роли kubernetes-apps/argocd в roles/kubernetes-apps/meta/main.yml.
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/argocd
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/argocd/tasks/main.yml
+  standalone_run: risky
+  notes: Включается только при argocd_enabled (по умолчанию false) и выполняется на kube_control_plane[0].
+    Требует работающего кластера и доступа к загрузке манифестов Argo CD (сеть/зеркало). В docs/ansible/ansible.md
+    отдельно не описан.
+  reliability: authoritative
+- ansible_tag: asserts
+  description: 'Проверочные (assert) задачи-предусловия. В v2.30.0 тег стоит на: roles/kubernetes/preinstall/tasks/main.yml
+    (import 0040-verify-settings.yml — валидация настроек кластера), roles/download/tasks/prep_download.yml
+    (проверка на localhost: доступ к контейнерному рантайму без sudo либо возможность стать root при download_localhost)
+    и roles/download/tasks/check_pull_required.yml (сверка локального digest sha256 образа с заданным
+    тегом при pull_by_digest). Задачи только читают/проверяют состояние и падают при несоблюдении условий,
+    ничего не меняя на узлах.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  roles:
+  - kubernetes/preinstall
+  - download
+  source_paths:
+  - roles/kubernetes/preinstall/tasks/main.yml
+  - roles/download/tasks/prep_download.yml
+  - roles/download/tasks/check_pull_required.yml
+  standalone_run: safe
+  notes: 'Задачи неразрушающие (assert), но требуют собранных фактов и заданных переменных (image_info_command,
+    download_localhost и др.); часть asserts вложена в блоки, выполняемые только при соответствующих условиях.
+    Расхождение с docs/ansible/ansible.md: документация описывает asserts как "Check tasks for download
+    role", тогда как фактически тег применяется ещё и к verify-settings роли kubernetes/preinstall — приоритет
+    у кода.
+
+    '
+  reliability: authoritative
+- ansible_tag: aws-ebs-csi-driver
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает CSI-драйвер AWS EBS (roles/kubernetes-apps/csi_driver/aws_ebs) и связанные
+    объекты хранилища через roles/kubernetes-apps/persistent_volumes/aws-ebs-csi (StorageClass). Генерирует
+    манифесты драйвера и StorageClass и применяет их к кластеру kubectl-ом.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/csi_driver/aws_ebs
+  - kubernetes-apps/persistent_volumes/aws-ebs-csi
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: aws_ebs_csi_enabled. Является частью зонтичного тега csi-driver (навешан
+    вместе с ним в roles/kubernetes-apps/meta/main.yml). Ставит и сам драйвер, и StorageClass (через persistent_volumes/aws-ebs-csi).
+    При выключенном флаге — no-op. Требует работающий control plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: azure-csi-driver
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает CSI-драйвер Azure Disk (roles/kubernetes-apps/csi_driver/azuredisk) и объекты
+    хранилища через roles/kubernetes-apps/persistent_volumes/azuredisk-csi (StorageClass). Манифесты применяются
+    к кластеру kubectl-ом.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/csi_driver/azuredisk
+  - kubernetes-apps/persistent_volumes/azuredisk-csi
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: azure_csi_enabled. Входит в зонтичный тег csi-driver. При выключенном флаге
+    — no-op. Требует работающий control plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: bastion
+  description: 'Настраивает SSH-конфигурацию для проксирования подключений через bastion-хост. В playbooks/boilerplate.yml
+    роль bastion-ssh-config применяется к хосту bastion[0] с тегами [localhost, bastion] и генерирует
+    ssh config, через который Ansible достукивается до узлов кластера за bastion.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  - scale.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - bastion
+  roles:
+  - bastion-ssh-config
+  source_paths:
+  - playbooks/boilerplate.yml
+  standalone_run: safe
+  notes: 'Неразрушающая операция (формирование ssh config). Полезна только при наличии группы bastion
+    в инвентаре; при её отсутствии play пропускается. Совпадает с docs/ansible/ansible.md ("Setup ssh
+    config for bastion").
+
+    '
+  reliability: authoritative
+- ansible_tag: bootstrap_os
+  description: 'Объединяет задачи первичной подготовки ОС узлов. Включает роль bootstrap_os (playbooks/internal_facts.yml:
+    определение дистрибутива, подключение distro-специфичных vars/tasks, hostname, bash_completion), установку
+    системных пакетов через роль system_packages (обновление кэша пакетов, epel-release, установка/удаление
+    пакетов) и задачи роли kubernetes/preinstall: создание каталогов (0050), настройка resolvconf/systemd-resolved/NetworkManager
+    DNS, системные конфигурации sysctl/SELinux/ip_forward (0080), NTP (0081) и dhclient-хуки. Меняет системные
+    настройки, DNS-резолвинг, пакеты и sysctl на узлах.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - bootstrap_os
+  - system_packages
+  - kubernetes/preinstall
+  source_paths:
+  - playbooks/internal_facts.yml
+  - roles/system_packages/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  - roles/kubernetes/preinstall/tasks/0080-system-configurations.yml
+  standalone_run: risky
+  notes: 'Часть задач зависит от фактов и переменных, задаваемых задачами с тегом facts (include_vars
+    distro-специфики в bootstrap_os, набор пакетов pkgs). При запуске только `--tags bootstrap_os` без
+    facts часть переменных может оказаться не определена. Соответствует docs/ansible/ansible.md ("Anything
+    related to host OS configuration").
+
+    '
+  reliability: authoritative
+- ansible_tag: calico
+  description: 'Разворачивает CNI Calico: роль network_plugin/calico выполняется как зависимость network_plugin
+    при kube_network_plugin == ''calico''. Роль состоит из pre.yml, repos.yml и install.yml (подготовка,
+    репозитории/образы и установка манифестов Calico). Тег calico также помечает создание каталога /var/lib/calico
+    в preinstall.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  roles:
+  - network_plugin
+  - network_plugin/calico
+  - kubernetes/preinstall
+  source_paths:
+  - roles/network_plugin/meta/main.yml
+  - roles/network_plugin/calico/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: risky
+  notes: Плагин не проиндексирован детально (в фокусе только Cilium). Изолированный запуск зависит от
+    скачанных образов (download) и настроенного кластера.
+  reliability: authoritative
+- ansible_tag: calico_rr
+  description: 'Настраивает Calico Route Reflector: отдельная play "Install Calico Route Reflector" в
+    cluster.yml с hosts: calico_rr исполняет роль network_plugin/calico/rr (pre.yml, update-node.yml,
+    установка метки route-reflector на узле). Тег calico_rr назначен вместе с тегом network.'
+  playbooks:
+  - cluster.yml
+  affected_groups:
+  - calico_rr
+  roles:
+  - network_plugin/calico/rr
+  source_paths:
+  - playbooks/cluster.yml
+  - roles/network_plugin/calico/rr/tasks/main.yml
+  standalone_run: risky
+  notes: Плагин не проиндексирован детально. Применяется только при наличии группы calico_rr и использовании
+    Calico. Изолированно запускается лишь на узлах-рефлекторах.
+  reliability: authoritative
+- ansible_tag: cert-manager
+  description: Разворачивает cert-manager. Удаляет устаревшие каталог/namespace прежней установки (задачи
+    с тегом upgrade), создаёт addon-каталог, рендерит и применяет манифесты cert-manager. Подключается
+    зависимостью роли kubernetes-apps/ingress_controller/cert_manager.
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/ingress_controller/cert_manager
+  source_paths:
+  - roles/kubernetes-apps/ingress_controller/meta/main.yml
+  - roles/kubernetes-apps/ingress_controller/cert_manager/tasks/main.yml
+  standalone_run: risky
+  notes: 'Включается только при cert_manager_enabled (по умолчанию false), выполняется на kube_control_plane[0].
+    Метка идёт в связке с apps и ingress-controller. Часть задач помечена дополнительным тегом upgrade
+    (очистка legacy-ресурсов). docs/ansible/ansible.md: «Configuring certificate manager for K8s».'
+  reliability: authoritative
+- ansible_tag: check
+  description: 'Помечает три assert-проверки окружения запуска в playbooks/ansible_version.yml: версия
+    Ansible в диапазоне minimal_ansible_version (2.17.3) <= x < maximal_ansible_version (2.18.0), наличие
+    python-netaddr (ansible.utils.ipaddr) и достаточно свежая версия Jinja. Выполняются один раз (run_once)
+    на хостах группы all, ничего не меняют.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  - scale.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - all
+  roles: []
+  source_paths:
+  - playbooks/ansible_version.yml
+  standalone_run: safe
+  notes: 'Play ansible_version.yml помечен тегом always, поэтому эти проверки и так выполняются при каждом
+    запуске; тег check позволяет адресно прогнать только их. Задачи неразрушающие. В docs/ansible/ansible.md
+    тег check отдельно не описан.
+
+    '
+  reliability: authoritative
+- ansible_tag: cilium
+  description: 'Разворачивает CNI Cilium через утилиту cilium-cli по helm-values (в v2.30.0 это основной
+    способ, не через статические манифесты). Роль network_plugin/cilium выполняется как зависимость network_plugin
+    при условии kube_network_plugin == ''cilium'' или cilium_deploy_additionally. Порядок работы: 1) check.yml
+    — набор assert-проверок: наличие cilium_ipsec_key при шифровании ipsec, корректность cilium_encryption_type
+    (ipsec|wireguard), ядро >= 5.6.0 для wireguard, cilium_identity_allocation_mode в [''crd'',''kvstore''],
+    cilium_cluster_id в диапазоне 0..255, cilium_version >= cilium_min_version_required, cilium_hubble_event_buffer_capacity
+    равно степени двойки минус 1; обрабатывается устаревший флаг cilium_ipsec_enabled (переводится в cilium_encryption_type=ipsec).
+    2) install.yml — монтирует BPFFS в /sys/fs/bpf; при cilium_identity_allocation_mode == ''kvstore''
+    создаёт каталог cilium_cert_dir и жёстко линкует etcd-сертификаты (ca_cert.crt, cert.crt, key.pem);
+    на первом узле kube_control_plane рендерит values.yaml.j2 в {{ kube_config_dir }}/cilium-values.yaml,
+    пишет cilium-extra-values.yaml из cilium_extra_values; копирует бинарник cilium-cli из local_release_dir
+    в bin_dir. 3) apply.yml — на первом control-plane выполняет `cilium version`, по наличию helm-релиза
+    выбирает действие install либо upgrade, затем запускает `cilium <install|upgrade> --version {{ cilium_version
+    }} -f cilium-values.yaml -f cilium-extra-values.yaml {{ cilium_install_extra_flags }}`; ждёт готовности
+    подов k8s-app=cilium; при заданных переменных применяет CRD-ресурсы Cilium: CiliumLoadBalancerIPPool,
+    CiliumBGPPeeringPolicy, CiliumBGPClusterConfig, CiliumBGPPeerConfig, CiliumBGPAdvertisement, CiliumBGPNodeConfigOverride
+    (каждый — после ожидания установки соответствующего CRD). Тег cilium также помечает создание CNI-каталогов
+    (/etc/cni/net.d, /opt/cni/bin) в preinstall.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_control_plane
+  roles:
+  - network_plugin
+  - network_plugin/cilium
+  - kubernetes/preinstall
+  source_paths:
+  - roles/network_plugin/meta/main.yml
+  - roles/network_plugin/cilium/tasks/main.yml
+  - roles/network_plugin/cilium/tasks/check.yml
+  - roles/network_plugin/cilium/tasks/install.yml
+  - roles/network_plugin/cilium/tasks/apply.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: risky
+  notes: 'Ключевое изменение относительно v2.29.1: установка Cilium выполняется через cilium-cli (команды
+    `cilium install/upgrade -f <values>`), а не применением готовых манифестов. Требуется предварительно
+    скачанный бинарник cilium-cli (роль download) и рабочий control-plane с доступным kubectl. Изолированный
+    запуск --tags cilium без --tags download/network рискован: если бинарник cilium-cli не скопирован
+    или values не отрендерены, установка упадёт. Часть шагов выполняется только на groups[''kube_control_plane''][0].'
+  reliability: authoritative
+- ansible_tag: cinder-csi-driver
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает CSI-драйвер OpenStack Cinder (roles/kubernetes-apps/csi_driver/cinder),
+    создаёт объекты хранилища (roles/kubernetes-apps/persistent_volumes/cinder-csi, StorageClass) и дополнительно
+    VolumeSnapshotClass для Cinder (roles/kubernetes-apps/snapshots/cinder-csi). Отличие от остальных
+    *-csi-driver: единственный, который затрагивает и подсистему снапшотов.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/csi_driver/cinder
+  - kubernetes-apps/persistent_volumes/cinder-csi
+  - kubernetes-apps/snapshots/cinder-csi
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  - roles/kubernetes-apps/snapshots/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: cinder_csi_enabled. Помимо драйвера и StorageClass создаёт VolumeSnapshotClass
+    Cinder (snapshots/cinder-csi). Значение cinder_csi_enabled также включает установку CSI CRD и snapshot-controller
+    (см. теги csi-driver, snapshot-controller). Требует работающий control plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: client
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Настраивает клиентский доступ к кластеру на control plane узлах (роль kubernetes/client).
+    Создаёт каталог ~/.kube для пользователя become, копирует /etc/kubernetes/admin.conf в ~/.kube/config,
+    дожидается доступности kube-apiserver (wait_for на kube_apiserver_access_address:port). При kubeconfig_localhost
+    выгружает admin.conf на управляющий хост Ansible в artifacts_dir с переопределением server/имени кластера/контекста/пользователя;
+    при kubectl_localhost дополнительно скачивает бинарь kubectl и создаёт вспомогательный скрипт kubectl.sh.
+    Определяет external_apiserver_address/port (тег facts) с учётом внешнего балансировщика.
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes/client
+  source_paths:
+  - roles/kubernetes/client/tasks/main.yml
+  - playbooks/cluster.yml
+  - playbooks/upgrade_cluster.yml
+  standalone_run: risky
+  notes: 'Запускается на группе kube_control_plane. Требует уже развёрнутого control plane: наличия admin.conf
+    и работающего apiserver — при изолированном запуске на неготовом кластере задачи wait_for/copy admin.conf
+    упадут. Сами по себе операции неразрушающие (копирование kubeconfig и бинаря).'
+  reliability: authoritative
+- ansible_tag: cluster-roles
+  description: Настраивает общекластерные RBAC-объекты и приоритетные классы. Создаёт ClusterRoleBinding
+    kubespray:system:node, разрешающий узлам с сертификатом O=system:nodes регистрироваться (при rbac_enabled);
+    удаляет устаревшие ClusterRole/ClusterRoleBinding system:node-webhook (задачи с тегом node-webhook);
+    создаёт PriorityClass k8s-cluster-critical. Роль kubernetes-apps/cluster_roles подключается напрямую
+    в плее control plane.
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/cluster_roles
+  source_paths:
+  - playbooks/cluster.yml
+  - playbooks/upgrade_cluster.yml
+  - roles/kubernetes-apps/cluster_roles/tasks/main.yml
+  standalone_run: risky
+  notes: 'Выполняется на группе kube_control_plane; часть задач ограничена kube_control_plane[0], создание
+    PriorityClass — на kube_control_plane|last. Требует поднятого kube-apiserver (есть ожидание /healthz).
+    Вложенный тег node-webhook отвечает за удаление старого webhook-ClusterRole. docs/ansible/ansible.md:
+    «Configuring cluster wide application (psp ...)».'
+  reliability: authoritative
+- ansible_tag: cni
+  description: 'ВНИМАНИЕ: в v2.30.0 Ansible-тег cni назначен только одной задаче — "Ensure that user manifests
+    directory exists" в роли win_nodes/kubernetes_patch (tags: [init, cni]), выполняемой в play "Patch
+    Kubernetes for Windows" на хосте kube_control_plane[0]. Эта задача создаёт каталог пользовательских
+    манифестов. Установка CNI-плагинов (бинарники в /opt/cni/bin роли network_plugin/cni) под тег cni
+    НЕ помечена — она идёт под тегом network.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - win_nodes/kubernetes_patch
+  source_paths:
+  - roles/win_nodes/kubernetes_patch/tasks/main.yml
+  standalone_run: safe
+  notes: 'Расхождение с docs/ansible/ansible.md: документация описывает cni как "CNI plugins for Network
+    Plugins", но фактически (приоритет кода, раздел 6.2 CLAUDE.md) тег cni в v2.30.0 привязан лишь к созданию
+    каталога манифестов в win_nodes-патче. Для реальной установки CNI используйте тег network.'
+  reliability: authoritative
+- ansible_tag: container-engine
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Зонтичный тег всей роли roles/container-engine. Через meta-зависимости (roles/container-engine/meta/main.yml)
+    последовательно запускает подроли: validate-container-engine (проверка и удаление конфликтующего установленного
+    движка), kata-containers (если kata_containers_enabled), gvisor (если gvisor_enabled и container_manager
+    in [''docker'',''containerd'']), crun (если crun_enabled), youki (если youki_enabled и container_manager==''crio''),
+    cri-o (если container_manager==''crio''), containerd (если container_manager==''containerd'') и cri-dockerd
+    (если container_manager==''docker''). Фактически на узлах устанавливается и настраивается выбранный
+    контейнерный движок: скачиваются бинарники/пакеты, генерируются systemd-юниты (containerd.service,
+    cri-dockerd.service/.socket), пишутся конфиги (config.toml, зеркала реестров, http-proxy drop-in),
+    сервис запускается и включается. Тег НЕ создаёт объекты RuntimeClass в кластере — это делает тег container-runtimes.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - container-engine
+  - container-engine/validate-container-engine
+  - container-engine/containerd
+  - container-engine/cri-o
+  - container-engine/cri-dockerd
+  - container-engine/crun
+  - container-engine/youki
+  - container-engine/gvisor
+  - container-engine/kata-containers
+  source_paths:
+  - roles/container-engine/meta/main.yml
+  - playbooks/cluster.yml
+  - playbooks/scale.yml
+  - playbooks/upgrade_cluster.yml
+  standalone_run: risky
+  notes: 'В cluster.yml роль выполняется на группе k8s_cluster:etcd, в scale.yml — только на kube_node,
+    в upgrade_cluster.yml — тремя проходами (etcd:calico_rr:!k8s_cluster, kube_control_plane, kube_node:calico_rr:!kube_control_plane).
+    Изолированный запуск рискован: роли скачивают бинарники через download_file (нужен доступ к артефактам),
+    опираются на факты preinstall/bootstrap_os и на переменные kubespray_defaults; подрол validate-container-engine
+    при обнаружении иного запущенного движка может выполнить drain узла и остановку kubelet. Без --tags
+    download часть бинарников может отсутствовать.
+
+    '
+  reliability: authoritative
+- ansible_tag: container-runtimes
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Тег этапа apps (роль kubernetes-apps/container_runtimes). Не устанавливает бинарники на
+    узлах, а создаёт в кластере объекты RuntimeClass для дополнительных рантаймов: kata-containers (если
+    kata_containers_enabled), gvisor (если gvisor_enabled), crun (если crun_enabled), youki (если youki_enabled
+    и container_manager==''crio''). Для каждого включённого рантайма шаблонизируется манифест runtimeclass-*.yml
+    в {{ kube_config_dir }} и применяется через модуль kube (kubectl apply). Все задачи выполняются только
+    на первом узле kube_control_plane (inventory_hostname == groups[''kube_control_plane''][0]).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/container_runtimes
+  - kubernetes-apps/container_runtimes/kata_containers
+  - kubernetes-apps/container_runtimes/gvisor
+  - kubernetes-apps/container_runtimes/crun
+  - kubernetes-apps/container_runtimes/youki
+  source_paths:
+  - roles/kubernetes-apps/container_runtimes/meta/main.yml
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/container_runtimes/kata_containers/tasks/main.yaml
+  - roles/kubernetes-apps/container_runtimes/gvisor/tasks/main.yaml
+  - roles/kubernetes-apps/container_runtimes/crun/tasks/main.yaml
+  - roles/kubernetes-apps/container_runtimes/youki/tasks/main.yaml
+  standalone_run: risky
+  notes: 'Запускается в рамках роли kubernetes-apps (тег apps) на группе kube_control_plane, но фактически
+    действует только на первом control plane узле. Требует работающего кластера и валидного kubeconfig
+    ({{ bin_dir }}/kubectl), поэтому изолированный запуск на неготовом кластере завершится ошибкой. Создаёт
+    только RuntimeClass; сами рантаймы должны быть предварительно установлены тегом container-engine.
+
+    '
+  reliability: authoritative
+- ansible_tag: container_engine_accelerator
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Тег этапа apps (роль kubernetes-apps/container_engine_accelerator). Включает поддержку
+    GPU-ускорителей. Через meta-зависимость подключает подроль nvidia_gpu при nvidia_accelerator_enabled.
+    Загружает ОС-специфичные переменные, формирует URL драйвера NVIDIA (flavor tesla/gtx), создаёт каталог
+    addons и шаблонизирует манифесты nvidia-driver-install-daemonset.yml и k8s-device-plugin-nvidia-daemonset.yml,
+    затем применяет их через модуль kube. Действия по созданию/применению манифестов выполняются только
+    на первом узле kube_control_plane и только при nvidia_driver_install_container (и nvidia_driver_install_supported
+    для apply).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/container_engine_accelerator
+  - kubernetes-apps/container_engine_accelerator/nvidia_gpu
+  source_paths:
+  - roles/kubernetes-apps/container_engine_accelerator/meta/main.yml
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/tasks/main.yml
+  standalone_run: risky
+  notes: 'В roles/kubernetes-apps/meta/main.yml роль включается по условию nvidia_accelerator_enabled.
+    По содержанию задач тег container_engine_accelerator и тег nvidia_gpu в v2.30.0 практически эквивалентны
+    (обе ведут к подроли nvidia_gpu). Требует готового кластера и kubectl; изолированный запуск на неготовом
+    кластере невозможен.
+
+    '
+  reliability: authoritative
+- ansible_tag: containerd
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Двойное назначение в зависимости от плейбука. (1) Установка: в роли container-engine (meta)
+    подроль container-engine/containerd выполняется при container_manager==''containerd'' — скачивает
+    и распаковывает архив containerd в containerd_bin_dir, генерирует systemd-юнит containerd.service,
+    создаёт каталоги и конфиги (config.toml или config-v1.toml по версии), пишет http-proxy drop-in, настраивает
+    base_runtime_spec и зеркала реестров (certs.d/hosts.toml), запускает и включает сервис containerd.
+    (2) Teardown: в роли reset (roles/reset/tasks/main.yml) задачи с тегом containerd останавливают cri-контейнеры/поды
+    через crictl, останавливают и удаляют containerd.service, удаляют бинарники containerd (containerd,
+    ctr, runc, crictl и т.д.) при container_manager==''containerd''.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - container-engine/containerd
+  - reset
+  source_paths:
+  - roles/container-engine/meta/main.yml
+  - roles/reset/tasks/main.yml
+  standalone_run: risky
+  notes: 'Тег обозначает разные операции в разных плейбуках: в cluster.yml/scale.yml/ upgrade_cluster.yml
+    — установка/настройка containerd; в reset.yml/remove_node.yml — остановка и удаление containerd, его
+    контейнеров/подов и бинарников. Установочная часть требует скачанных артефактов (download) и фактов
+    preinstall. Teardown-часть в reset деструктивна. Изолированный запуск требует понимания контекста
+    плейбука.
+
+    '
+  reliability: authoritative
+- ansible_tag: control-plane
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Разворачивает и конфигурирует роль control plane (kubernetes/control-plane) на узлах kube_control_plane.
+    Выполняет предапгрейд-очистку манифестов (import k8s-pre-upgrade), генерирует webhook token/authorization
+    и структурный AuthorizationConfiguration, конфиг kube-scheduler, при необходимости encrypt-at-rest,
+    копирует kubectl, затем kubeadm-setup (kubeadm init/join control plane, SAN-сертификаты apiserver,
+    токены), extra-задачи kubeadm-etcd, fix apiserver, ротацию сертификатов kubelet и установку скрипта/таймера
+    ежемесячного продления сертификатов control plane. Дополнительно под этим тегом в roles/etcd/tasks/main.yml
+    вычисляется серийный номер etcd-клиентского сертификата на узлах k8s_cluster, создаётся каталог в
+    preinstall и патчатся Windows-узлы (win_nodes/kubernetes_patch на kube_control_plane[0]).
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  - k8s_cluster
+  roles:
+  - kubernetes/control-plane
+  - etcd
+  - kubernetes/preinstall
+  - win_nodes/kubernetes_patch
+  source_paths:
+  - roles/kubernetes/control-plane/tasks/main.yml
+  - roles/kubernetes/control-plane/tasks/kubeadm-setup.yml
+  - roles/kubernetes/control-plane/tasks/kubeadm-etcd.yml
+  - roles/etcd/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  - playbooks/cluster.yml
+  - playbooks/upgrade_cluster.yml
+  standalone_run: risky
+  notes: 'ВАЖНО: в v2.30.0 роль kubernetes/control-plane в playbooks/upgrade_cluster.yml выполняется под
+    тегом control-plane (строка `{ role: kubernetes/control-plane, tags: control-plane, upgrade_cluster_setup:
+    true }`). Легаси-тег master, существовавший в v2.29.1 как синоним control-plane в upgrade, в v2.30.0
+    ПОЛНОСТЬЮ УДАЛЁН: ни в playbooks/, ни в roles/, ни в docs/ansible/ansible.md его нет (упоминания слова
+    master в коде относятся только к именам переменных генерации сертификатов etcd). Изолированный запуск
+    рискован: требует готового etcd, подготовленных узлов (node/preinstall) и скачанных образов.'
+  reliability: authoritative
+- ansible_tag: coredns
+  description: 'Разворачивает и настраивает DNS-развёртывание CoreDNS. Задачи в роли kubernetes-apps/ansible
+    (delegate_to control-plane[0], run_once): применение манифестов CoreDNS (coredns_manifests) при dns_mode
+    in [''coredns'',''coredns_dual''] и deploy_coredns; при dns_mode == ''coredns_dual'' — второй (secondary)
+    экземпляр с skydns_server_secondary. Тег coredns также назначен задаче nodelocalDNS (вместе с тегом
+    nodelocaldns), поэтому запуск --tags coredns затрагивает и nodelocaldns при enable_nodelocaldns.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/ansible
+  source_paths:
+  - roles/kubernetes-apps/ansible/tasks/main.yml
+  standalone_run: risky
+  notes: Применяется через kubectl на первом control-plane (run_once). Тег coredns пересекается с nodelocaldns
+    (общая задача nodelocalDNS помечена обоими тегами). Требует рабочего apiserver.
+  reliability: authoritative
+- ansible_tag: crio
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Двойное назначение. (1) Установка: в роли container-engine (meta) подроль container-engine/cri-o
+    выполняется при container_manager==''crio'' — разворачивает движок CRI-O (репозитории/пакеты или бинарники,
+    конфигурация, systemd-сервис crio). (2) Teardown: в роли reset (roles/reset/tasks/main.yml) задачи
+    с тегом crio останавливают cri-контейнеры через crictl, останавливают и отключают сервис crio, и при
+    container_manager==''crio'' выполняют "crio wipe -f" (полная очистка контейнеров и образов CRI-O).
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - container-engine/cri-o
+  - reset
+  source_paths:
+  - roles/container-engine/meta/main.yml
+  - roles/reset/tasks/main.yml
+  standalone_run: risky
+  notes: 'Как и containerd, тег означает установку в cluster/scale/upgrade и деструктивный teardown в
+    reset/remove_node. Не путать с тегом reset_crio, который относится к задачам удаления CRI-O внутри
+    роли cri-o (tasks/reset.yml), вызываемым из validate-container-engine при смене движка. Установочная
+    часть требует download и фактов preinstall.
+
+    '
+  reliability: authoritative
+- ansible_tag: crun
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Настройка низкоуровневого OCI-рантайма crun. Проявляется в двух местах. (1) container-engine:
+    подроль container-engine/crun (при crun_enabled) скачивает бинарник crun через download_file и копирует
+    его в {{ bin_dir }}/crun на узлах. (2) apps/container-runtimes: подроль kubernetes-apps/container_runtimes/crun
+    (при crun_enabled) шаблонизирует и применяет объект RuntimeClass "crun" в кластере (только на первом
+    узле kube_control_plane).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - container-engine/crun
+  - kubernetes-apps/container_runtimes/crun
+  source_paths:
+  - roles/container-engine/meta/main.yml
+  - roles/container-engine/crun/tasks/main.yml
+  - roles/kubernetes-apps/container_runtimes/meta/main.yml
+  - roles/kubernetes-apps/container_runtimes/crun/tasks/main.yaml
+  standalone_run: risky
+  notes: 'Условие включения — crun_enabled (без ограничения по container_manager на этапе container-engine).
+    Установочная часть требует скачанного бинарника (download), часть RuntimeClass требует готового кластера
+    и kubectl. В scale.yml роль apps не выполняется, поэтому RuntimeClass там не создаётся.
+
+    '
+  reliability: authoritative
+- ansible_tag: csi-driver
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Зонтичный тег для всей подсистемы CSI-драйверов. Включает установку CSI CRD (roles/kubernetes-apps/csi_driver/csi_crd)
+    и всех включённых CSI-драйверов: cinder, aws_ebs, azuredisk, gcp_pd, upcloud, vsphere, а также подсистему
+    снапшотов (roles/kubernetes-apps/snapshots). Каждая зависимость выполняется только при своём флаге
+    (*_csi_enabled). Драйверы генерируют манифесты (Deployment/DaemonSet/RBAC/StorageClass) и применяют
+    их через kubectl к работающему кластеру.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/csi_driver/csi_crd
+  - kubernetes-apps/csi_driver/cinder
+  - kubernetes-apps/csi_driver/aws_ebs
+  - kubernetes-apps/csi_driver/azuredisk
+  - kubernetes-apps/csi_driver/gcp_pd
+  - kubernetes-apps/csi_driver/upcloud
+  - kubernetes-apps/csi_driver/vsphere
+  - kubernetes-apps/snapshots
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - playbooks/upgrade_cluster.yml
+  standalone_run: safe
+  notes: 'В upgrade_cluster.yml тег csi-driver навешан отдельно на роль kubernetes-apps (строка 63) —
+    это выделенный проход апгрейда CSI. Реально выполняется только то, для чего включён соответствующий
+    флаг: cinder_csi_enabled, aws_ebs_csi_enabled, azure_csi_enabled, gcp_pd_csi_enabled, upcloud_csi_enabled,
+    vsphere_csi_enabled; CSI CRD и snapshot-controller ставятся при (cinder_csi_enabled or csi_snapshot_controller_enabled).
+    Если ни один флаг не включён — тег ничего не делает (no-op). Требует работающего control plane (задачи
+    применяют манифесты через kubectl). Изолированный запуск на уже развёрнутом кластере безопасен; в
+    offline-сценарии образы должны быть заранее скачаны (--tags download).
+
+    '
+  reliability: authoritative
+- ansible_tag: custom_cni
+  description: 'Разворачивает пользовательский CNI: роль network_plugin/custom_cni как зависимость network_plugin
+    при kube_network_plugin == ''custom_cni''. Единственная задача "Custom CNI | Manifest deployment"
+    применяет заданные пользователем манифесты (custom_cni_manifests).'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  roles:
+  - network_plugin
+  - network_plugin/custom_cni
+  source_paths:
+  - roles/network_plugin/meta/main.yml
+  - roles/network_plugin/custom_cni/tasks/main.yml
+  standalone_run: risky
+  notes: Плагин не проиндексирован детально. Kubespray лишь применяет пользовательские манифесты; корректность
+    CNI на совести пользователя.
+  reliability: authoritative
+- ansible_tag: dashboard
+  description: 'Разворачивает Kubernetes Dashboard: применяет шаблон dashboard.yml.j2 в namespace dashboard_namespace.
+    Отдельная задача внутри роли kubernetes-apps/ansible (общий набор apiserver-зависимых addon''ов).'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/ansible
+  source_paths:
+  - roles/kubernetes-apps/ansible/tasks/main.yml
+  standalone_run: risky
+  notes: 'Включается только при dashboard_enabled (по умолчанию false). Задача выполняется run_once с
+    delegate_to на kube_control_plane[0]. Роль kubernetes-apps/ansible подключается в meta с условием
+    inventory_hostname == groups[''kube_control_plane''][0]. Требует работающего apiserver. docs/ansible/ansible.md:
+    «Installing and configuring the Kubernetes Dashboard».'
+  reliability: authoritative
+- ansible_tag: dns
+  description: 'Задачи очистки DNS-настроек при сбросе узла (роль reset). В v2.30.0 тег dns стоит на задаче
+    удаления добавленных Ansible блоков из /etc/dhclient.conf и /etc/dhcp/dhclient.conf (blockinfile state=absent).
+    Убирает DNS-записи, внесённые Kubespray в конфигурацию dhclient.
+
+    '
+  playbooks:
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - reset
+  source_paths:
+  - roles/reset/tasks/main.yml
+  standalone_run: risky
+  notes: 'Разрушающая операция сброса (удаление конфигурации), но узкая по охвату. Выполняется в составе
+    роли reset (playbooks reset.yml/remove_node.yml). Соответствует docs/ansible/ansible.md ("Remove dns
+    entries when resetting").
+
+    '
+  reliability: authoritative
+- ansible_tag: docker
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Двойное назначение. (1) Установка: в роли container-engine (meta) при container_manager==''docker''
+    выполняется подроль container-engine/cri-dockerd, которая скачивает и устанавливает бинарник cri-dockerd,
+    генерирует systemd-юниты cri-dockerd.service и cri-dockerd.socket и запускает/включает их (сам Docker
+    CE ставится связанными задачами роли docker). (2) Teardown: в роли reset (roles/reset/tasks/main.yml)
+    задача "Reset | Remove Docker" при container_manager==''docker'' подключает container-engine/docker
+    tasks_from: reset — останавливает контейнеры, удаляет пакеты docker/containerd, репозитории и конфигурацию
+    (/var/lib/docker, /etc/docker и т.д.).
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - container-engine/cri-dockerd
+  - container-engine/docker
+  - reset
+  source_paths:
+  - roles/container-engine/meta/main.yml
+  - roles/reset/tasks/main.yml
+  - roles/container-engine/cri-dockerd/tasks/main.yml
+  - roles/container-engine/docker/tasks/reset.yml
+  standalone_run: risky
+  notes: 'В meta-роли container-engine тег docker навешан на подроль cri-dockerd (shim, необходимый для
+    работы kubelet с Docker). Teardown в reset деструктивен: удаляет пакеты docker-ce/containerd и все
+    данные Docker. Изолированный запуск требует учёта контекста плейбука и предварительно скачанных артефактов.
+
+    '
+  reliability: authoritative
+- ansible_tag: download
+  description: 'Загрузка бинарных файлов и контейнерных образов, используемых Kubespray. Роль download:
+    подготовка рабочих каталогов и переменных (prep_download), получение бинарника kubeadm и списка требуемых
+    образов (prep_kubeadm_images), затем скачивание каждого элемента через download_container.yml (pull
+    образа, кэширование, save/load, синхронизация на узлы) или download_file.yml (get_url, кэш, распаковка
+    архивов). Загружает артефакты в локальный кэш и/или на узлы кластера.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - download
+  source_paths:
+  - roles/download/tasks/main.yml
+  - roles/download/tasks/prep_download.yml
+  - roles/download/tasks/download_container.yml
+  - roles/download/tasks/download_file.yml
+  standalone_run: risky
+  notes: 'Изолированный запуск `--tags download` — частый штатный сценарий (см. пример в docs/ansible/ansible.md),
+    но зависит от фактов и set_fact (теги facts, preinstall): image_info_command, download_delegate, downloads
+    и т.п. Требует корректно собранных фактов; при download_run_once/download_localhost логика делегирования
+    меняется. Соответствует docs ("Fetching container images to a delegate host").
+
+    '
+  reliability: authoritative
+- ansible_tag: etcd
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Разворачивает и настраивает кластер etcd (роль etcd). Проверяет и генерирует сертификаты
+    (script-режим), устанавливает доверие к CA etcd, устанавливает бинарь etcd через install_{etcd_deployment_type}.yml,
+    конфигурирует (configure/refresh_config), при смене сертификатов перезапускает etcd/etcd-events. Роль
+    применяется только при etcd_deployment_type != "kubeadm". В install_etcd.yml хосты — etcd:kube_control_plane:_kubespray_needs_etcd;
+    при определённых CNI (flannel/canal/cilium или calico c datastore etcd) worker-узлам также раздаются
+    клиентские сертификаты etcd.
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - etcd
+  - kube_control_plane
+  - kube_node
+  roles:
+  - etcd
+  source_paths:
+  - roles/etcd/tasks/main.yml
+  - playbooks/install_etcd.yml
+  - playbooks/scale.yml
+  standalone_run: risky
+  notes: Тег etcd навешивается на роль etcd в playbooks/install_etcd.yml (импортируется в cluster.yml,
+    upgrade и scale) и в scale.yml. Изолированный запуск требует сгенерированных фактов и корректной группы
+    etcd; для kubeadm-режима etcd (etcd_deployment_type == "kubeadm") роль пропускается.
+  reliability: authoritative
+- ansible_tag: etcd-secrets
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Отвечает исключительно за сертификаты и ключи etcd (подмножество роли etcd): проверка
+    существующих сертификатов (check_certs.yml, cert_management == script), генерация сертификатов (gen_certs_script.yml)
+    и установка доверия к CA etcd (upd_ca_trust.yml) на узлах etcd/kube_control_plane, а при необходимости
+    — на узлах k8s_cluster (для CNI, требующих клиентских сертификатов etcd). Установку/конфигурацию самого
+    демона etcd не выполняет.'
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - etcd
+  - kube_control_plane
+  - k8s_cluster
+  roles:
+  - etcd
+  source_paths:
+  - roles/etcd/tasks/main.yml
+  standalone_run: safe
+  notes: Операции ограничены генерацией/проверкой сертификатов и доверием к CA — относительно безопасны.
+    Часть задач привязана к тегу facts, поэтому при изолированном запуске нужны собранные факты.
+  reliability: authoritative
+- ansible_tag: etcd_metrics
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Применяет манифесты Endpoints и Service для экспонирования метрик etcd в кластере (roles/kubernetes-apps/ansible/tasks/main.yml):
+    kubectl apply шаблонов etcd_metrics-endpoints.yml.j2 и etcd_metrics-service.yml.j2. Выполняется только
+    когда определены etcd_metrics_port и etcd_metrics_service_labels; delegate на kube_control_plane[0],
+    run_once.'
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/ansible
+  source_paths:
+  - roles/kubernetes-apps/ansible/tasks/main.yml
+  standalone_run: risky
+  notes: Часть этапа установки kube-apps (play "Install Kubernetes apps", hosts kube_control_plane). Требует
+    работающего apiserver. Без заданных etcd_metrics_port/labels задача пропускается (no-op).
+  reliability: authoritative
+- ansible_tag: etcdctl
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Устанавливает бинари etcdctl и etcdutl через роль etcdctl_etcdutl и создаёт скрипт-обёртку
+    etcdctl.sh. При container_manager == docker бинари копируются из образа etcd; при containerd/crio
+    — скачиваются и распаковываются из архива etcd. Вызывается из roles/etcd/tasks/main.yml (когда узел
+    в группе etcd и etcd_cluster_setup) и из control-plane/kubeadm-etcd.yml (когда etcd_deployment_type
+    == kubeadm).
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - etcd
+  - kube_control_plane
+  roles:
+  - etcd
+  - etcdctl_etcdutl
+  - kubernetes/control-plane
+  source_paths:
+  - roles/etcd/tasks/main.yml
+  - roles/kubernetes/control-plane/tasks/kubeadm-etcd.yml
+  - roles/etcdctl_etcdutl/tasks/main.yml
+  standalone_run: safe
+  notes: Теги etcdctl и etcdutl навешаны на ОДНУ И ТУ ЖЕ задачу import_role etcdctl_etcdutl, поэтому запуск
+    с любым из них устанавливает ОБА бинаря (etcdctl и etcdutl). Операции — только копирование бинарей
+    и wrapper-скрипта; требуется, чтобы download/образ etcd были доступны.
+  reliability: authoritative
+- ansible_tag: etcdutl
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Устанавливает бинари etcdutl и etcdctl через роль etcdctl_etcdutl (тот же набор задач,
+    что и у тега etcdctl). etcdutl — офлайн-утилита обслуживания данных etcd (снапшоты, дефрагментация,
+    миграция). Вызывается из roles/etcd/tasks/main.yml (группа etcd, etcd_cluster_setup) и из control-plane/kubeadm-etcd.yml
+    (etcd_deployment_type == kubeadm).
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - etcd
+  - kube_control_plane
+  roles:
+  - etcd
+  - etcdctl_etcdutl
+  - kubernetes/control-plane
+  source_paths:
+  - roles/etcd/tasks/main.yml
+  - roles/kubernetes/control-plane/tasks/kubeadm-etcd.yml
+  - roles/etcdctl_etcdutl/tasks/main.yml
+  standalone_run: safe
+  notes: 'Тег etcdutl неотделим от etcdctl: оба навешаны на одну задачу import_role, установка бинарей
+    происходит совместно. Отдельного набора задач только для etcdutl нет.'
+  reliability: authoritative
+- ansible_tag: external-cloud-controller
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Зонтичный тег для внешних cloud-controller-manager (CCM). Запускает роль roles/kubernetes-apps/external_cloud_controller,
+    которая по значению external_cloud_provider разворачивает соответствующий внешний CCM: openstack,
+    vsphere, hcloud, huaweicloud или oci. Генерирует манифесты (Secret/RBAC/DaemonSet) и применяет их
+    к кластеру.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/external_cloud_controller
+  source_paths:
+  - playbooks/cluster.yml
+  - playbooks/upgrade_cluster.yml
+  - roles/kubernetes-apps/external_cloud_controller/meta/main.yml
+  standalone_run: safe
+  notes: 'Общее условие всех зависимостей: cloud_provider == "external" и конкретный external_cloud_provider,
+    задача выполняется на groups[''kube_control_plane''][0]. В cluster.yml роль подключена на hosts kube_control_plane;
+    в upgrade_cluster.yml — на kube_control_plane:calico_rr:kube_node, но фактически работает только на
+    первом control plane узле из-за условия when. Если cloud_provider != "external" — no-op.
+
+    '
+  reliability: authoritative
+- ansible_tag: external-hcloud
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает внешний Hetzner Cloud Controller Manager: генерирует манифесты (secret,
+    service-account, role-bindings, DaemonSet — с сетями или без, в зависимости от external_hcloud_cloud.with_networks)
+    и применяет их через kubectl (roles/kubernetes-apps/external_cloud_controller/hcloud).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/external_cloud_controller/hcloud
+  source_paths:
+  - roles/kubernetes-apps/external_cloud_controller/meta/main.yml
+  - roles/kubernetes-apps/external_cloud_controller/hcloud/tasks/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: cloud_provider == "external" и external_cloud_provider == "hcloud"; задачи
+    на groups[''kube_control_plane''][0]. Расхождение с docs/ansible/ansible.md: тег external-hcloud в
+    таблице документации отсутствует — приоритет коду (v2.30.0). Требует работающий control plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: external-huaweicloud
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает внешний Huawei Cloud Controller Manager: проверяет учётные данные (huaweicloud-credential-check.yml),
+    читает cacert, формирует секрет cloud-config, генерирует манифесты (config-secret, roles, role-bindings,
+    DaemonSet) и применяет их через kubectl (roles/kubernetes-apps/external_cloud_controller/huaweicloud).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/external_cloud_controller/huaweicloud
+  source_paths:
+  - roles/kubernetes-apps/external_cloud_controller/meta/main.yml
+  - roles/kubernetes-apps/external_cloud_controller/huaweicloud/tasks/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: cloud_provider == "external" и external_cloud_provider == "huaweicloud";
+    задачи на groups[''kube_control_plane''][0]. Расхождение с docs/ansible/ansible.md: тег external-huaweicloud
+    в документации отсутствует — приоритет коду. Требует работающий control plane и корректные учётные
+    данные.
+
+    '
+  reliability: authoritative
+- ansible_tag: external-oci
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает внешний Oracle OCI Cloud Controller Manager: проверяет учётные данные и
+    настройки (assert), формирует секрет cloud-config, генерирует манифесты (config-secret, RBAC, cloud-controller-manager)
+    и применяет их через kubectl (roles/kubernetes-apps/external_cloud_controller/oci).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/external_cloud_controller/oci
+  source_paths:
+  - roles/kubernetes-apps/external_cloud_controller/meta/main.yml
+  - roles/kubernetes-apps/external_cloud_controller/oci/tasks/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: cloud_provider == "external" и external_cloud_provider == "oci"; секрет и
+    манифесты на groups[''kube_control_plane''][0]. Задачи assert (проверка external_oracle_* и настроек
+    LB) выполняются без ограничения по хосту и без тега external-oci — при изолированном запуске по тегу
+    они пропускаются, а применяются только помеченные задачи. Расхождение с docs/ansible/ansible.md: тег
+    external-oci в документации отсутствует (есть лишь общий "oci") — приоритет коду.
+
+    '
+  reliability: authoritative
+- ansible_tag: external-openstack
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает внешний OpenStack Cloud Controller Manager: проверяет учётные данные (openstack-credential-check.yml),
+    читает cacert, формирует секрет cloud-config, генерирует манифесты (config-secret, roles, role-bindings,
+    DaemonSet) и применяет их через kubectl (roles/kubernetes-apps/external_cloud_controller/openstack).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/external_cloud_controller/openstack
+  source_paths:
+  - roles/kubernetes-apps/external_cloud_controller/meta/main.yml
+  - roles/kubernetes-apps/external_cloud_controller/openstack/tasks/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: cloud_provider == "external" и external_cloud_provider == "openstack"; задачи
+    на groups[''kube_control_plane''][0]. Требует корректные учётные данные OpenStack (иначе credential-check
+    упадёт). Работающий control plane обязателен.
+
+    '
+  reliability: authoritative
+- ansible_tag: external-provisioner
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Зонтичный тег для внешних провижнеров томов. Запускает роль roles/kubernetes-apps/external_provisioner,
+    которая при своих флагах разворачивает local-volume-provisioner (sig-storage) и/или local-path-provisioner
+    (Rancher): генерирует манифесты и применяет их к кластеру.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/external_provisioner/local_volume_provisioner
+  - kubernetes-apps/external_provisioner/local_path_provisioner
+  source_paths:
+  - playbooks/cluster.yml
+  - playbooks/upgrade_cluster.yml
+  - roles/kubernetes-apps/external_provisioner/meta/main.yml
+  standalone_run: safe
+  notes: 'Условия включения зависимостей: local_volume_provisioner_enabled (только на groups[''kube_control_plane''][0])
+    и local_path_provisioner_enabled (на всех kube_control_plane). Зависимости также помечены тегом apps.
+    Если оба флага выключены — no-op. Требует работающий control plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: external-vsphere
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает внешний vSphere Cloud Controller Manager (CPI): проверяет учётные данные,
+    генерирует CPI cloud-config, secret, roles, role-bindings, DaemonSet, создаёт ConfigMap cloud-config
+    и применяет манифесты через kubectl (roles/kubernetes-apps/external_cloud_controller/vsphere).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/external_cloud_controller/vsphere
+  source_paths:
+  - roles/kubernetes-apps/external_cloud_controller/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: cloud_provider == "external" и external_cloud_provider == "vsphere"; задача
+    на groups[''kube_control_plane''][0]. Тег external-vsphere навешан на уровне роли в external_cloud_controller/meta/main.yml;
+    сами задачи в vsphere/tasks/main.yml не имеют собственных строк tags (наследуют тег роли) — поэтому
+    в карте тег→файл присутствует только meta/main.yml. Требует работающий control plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: facts
+  description: 'Сквозной тег на задачах сбора фактов и вычисления переменных (set_fact, include_vars,
+    setup) во многих ролях: bootstrap_os (подключение distro-vars), download (download_force_cache, container-facts,
+    флаги образов, пути кэша), etcd, kubernetes/preinstall (0020-set_facts: ansible_os_family и др.),
+    kubernetes/node, kubernetes/control-plane, kubernetes/kubeadm, network_plugin/calico, container-engine,
+    remove-node. Не меняет состояние узлов, только формирует факты и переменные для последующих задач.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  - kube_control_plane
+  - kube_node
+  roles:
+  - bootstrap_os
+  - download
+  - etcd
+  - kubernetes/preinstall
+  - kubernetes/node
+  - kubernetes/control-plane
+  - kubernetes/kubeadm
+  - network_plugin/calico
+  - container-engine
+  source_paths:
+  - roles/kubernetes/preinstall/tasks/0020-set_facts.yml
+  - roles/download/tasks/prep_download.yml
+  - roles/download/tasks/download_container.yml
+  - roles/download/tasks/download_file.yml
+  - roles/bootstrap_os/tasks/main.yml
+  standalone_run: safe
+  notes: 'Задачи неразрушающие (set_fact/include_vars). Обычно комбинируется с preinstall/download для
+    получения переменных перед целевыми действиями (пример из docs: `--tags preinstall,facts`). Соответствует
+    docs ("Gathering facts and misc check results").
+
+    '
+  reliability: authoritative
+- ansible_tag: files
+  description: 'Разрушающее удаление файлов и каталогов, созданных Kubespray, при сбросе узла (роль reset).
+    Тег files стоит на: массовом удалении конфигов/данных/бинарников (kube_config_dir, /var/lib/kubelet,
+    containerd_storage_dir, etcd_data_dir, сертификаты CA, CNI, бинарники kubelet/etcd/kubectl/kubeadm/helm/crictl
+    и др.), удалении бинарников containerd и удалении DNS-блоков из dhclient.conf. Стирает установленные
+    компоненты и артефакты кластера с узла.
+
+    '
+  playbooks:
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - reset
+  source_paths:
+  - roles/reset/tasks/main.yml
+  standalone_run: unsafe
+  notes: 'Опасно запускать изолированно на рабочем узле: удаляет бинарники и конфигурацию кластера. Выполняется
+    только в рамках сброса (reset.yml/remove_node.yml). Соответствует docs/ansible/ansible.md ("Remove
+    files when resetting").
+
+    '
+  reliability: authoritative
+- ansible_tag: flannel
+  description: 'Разворачивает CNI Flannel: роль network_plugin/flannel как зависимость network_plugin
+    при kube_network_plugin == ''flannel''. Проверяет версию ядра для Flannel Wireguard, рендерит и применяет
+    манифесты Flannel, ждёт появления файла subnet.env.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  roles:
+  - network_plugin
+  - network_plugin/flannel
+  source_paths:
+  - roles/network_plugin/meta/main.yml
+  - roles/network_plugin/flannel/tasks/main.yml
+  standalone_run: risky
+  notes: Плагин не проиндексирован детально. Изолированный запуск зависит от скачанных образов и рабочего
+    кластера.
+  reliability: authoritative
+- ansible_tag: gateway_api
+  description: Устанавливает CRD Gateway API. Скачивает YAML (downloads.gateway_api_crds), кладёт в addon-каталог
+    и применяет через kubectl установочный манифест выбранного канала (gateway_api_channel). Подключается
+    зависимостью роли kubernetes-apps/common_crds/gateway_api.
+  playbooks:
+  - cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/common_crds/gateway_api
+  source_paths:
+  - roles/kubernetes-apps/common_crds/meta/main.yml
+  - roles/kubernetes-apps/common_crds/gateway_api/tasks/main.yml
+  standalone_run: risky
+  notes: 'Включается только при gateway_api_enabled (по умолчанию false). Роль common_crds подключается
+    в плее «Invoke kubeadm and install a CNI» (hosts: k8s_cluster), но создание каталога и применение
+    манифеста ограничены kube_control_plane[0]; скачивание файла может затрагивать все узлы k8s_cluster.
+    Присутствует только в cluster.yml (в upgrade_cluster.yml роль common_crds не вызывается). В docs/ansible/ansible.md
+    отдельно не описан.'
+  reliability: authoritative
+- ansible_tag: gcp-pd-csi-driver
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает CSI-драйвер Google Persistent Disk (roles/kubernetes-apps/csi_driver/gcp_pd)
+    и объекты хранилища через roles/kubernetes-apps/persistent_volumes/gcp-pd-csi (StorageClass).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/csi_driver/gcp_pd
+  - kubernetes-apps/persistent_volumes/gcp-pd-csi
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: gcp_pd_csi_enabled. Входит в зонтичный тег csi-driver. При выключенном флаге
+    — no-op. Требует работающий control plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: gvisor
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Настройка песочничного рантайма gVisor (runsc). (1) container-engine: подроль container-engine/gvisor
+    (при gvisor_enabled и container_manager in [''docker'',''containerd'']) скачивает бинарники runsc
+    и containerd-shim-runsc-v1 и копирует их в {{ bin_dir }} на узлах. (2) apps/container-runtimes: подроль
+    kubernetes-apps/container_runtimes/gvisor (при gvisor_enabled) создаёт каталог addons/gvisor, шаблонизирует
+    манифест runtimeclass-gvisor.yml и применяет объект RuntimeClass через kube (только на первом kube_control_plane).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - container-engine/gvisor
+  - kubernetes-apps/container_runtimes/gvisor
+  source_paths:
+  - roles/container-engine/meta/main.yml
+  - roles/container-engine/gvisor/tasks/main.yml
+  - roles/kubernetes-apps/container_runtimes/meta/main.yml
+  - roles/kubernetes-apps/container_runtimes/gvisor/tasks/main.yaml
+  standalone_run: risky
+  notes: 'Установка бинарников gVisor ограничена движками docker/containerd (условие в roles/container-engine/meta/main.yml).
+    Требует скачанных артефактов (download); часть RuntimeClass требует готового кластера и kubectl.
+
+    '
+  reliability: authoritative
+- ansible_tag: haproxy
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Разворачивает локальный HAProxy как балансировщик к kube-apiserver (roles/kubernetes/node/tasks/loadbalancer/haproxy.yml,
+    часть роли kubernetes/node). Удаляет возможный манифест nginx-proxy, создаёт каталог конфигурации,
+    пишет haproxy.cfg и статический под-манифест haproxy.yml в kube_manifest_dir. Применяется только при
+    loadbalancer_apiserver_localhost и loadbalancer_apiserver_type == "haproxy", и когда узел не является
+    control plane (либо kube_apiserver_bind_address != '::').
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_node
+  roles:
+  - kubernetes/node
+  source_paths:
+  - roles/kubernetes/node/tasks/loadbalancer/haproxy.yml
+  - roles/kubernetes/node/tasks/main.yml
+  standalone_run: risky
+  notes: Задача включается через import_tasks внутри роли node. Изолированный запуск имеет смысл только
+    при включённом локальном LB типа haproxy; иначе no-op. Пишет статический под — требует настроенного
+    kubelet/manifest-каталога.
+  reliability: authoritative
+- ansible_tag: helm
+  description: 'Устанавливает и настраивает Helm: ставит зависимость PyYAML, скачивает и копирует бинарь
+    helm в bin_dir, генерирует bash-completion. Роль kubernetes-apps/helm подключается зависимостью в
+    kubernetes-apps/meta.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/helm
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/helm/tasks/main.yml
+  standalone_run: safe
+  notes: 'Включается только при helm_enabled (по умолчанию false). В отличие от большинства addon''ов
+    НЕ ограничен kube_control_plane[0] — устанавливает helm на все узлы группы kube_control_plane. Идемпотентен
+    и относительно безопасен для изолированного запуска (ставит клиент, кластерные ресурсы не меняет),
+    но требует доступа к загрузке бинаря helm. docs/ansible/ansible.md: «Installing and configuring Helm».'
+  reliability: authoritative
+- ansible_tag: ingress-controller
+  description: 'Зонтичный тег контроллеров ingress. Роль kubernetes-apps/ingress_controller подключается
+    напрямую в плее apps и через meta разворачивает включённые подкомпоненты: NGINX Ingress (ingress_nginx_enabled),
+    cert-manager (cert_manager_enabled), AWS ALB Ingress (ingress_alb_enabled).'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/ingress_controller
+  - kubernetes-apps/ingress_controller/ingress_nginx
+  - kubernetes-apps/ingress_controller/cert_manager
+  - kubernetes-apps/ingress_controller/alb_ingress_controller
+  source_paths:
+  - playbooks/cluster.yml
+  - playbooks/upgrade_cluster.yml
+  - roles/kubernetes-apps/ingress_controller/meta/main.yml
+  standalone_run: risky
+  notes: 'Реальный состав зависит от флагов ingress_nginx_enabled / cert_manager_enabled / ingress_alb_enabled
+    (по умолчанию все false). Выполняется на control plane, задачи ограничены kube_control_plane[0]. Требует
+    работающего apiserver. docs/ansible/ansible.md: «Configure ingress controllers».'
+  reliability: authoritative
+- ansible_tag: ingress-nginx
+  description: 'Разворачивает NGINX Ingress Controller: создаёт addon-каталог, рендерит манифесты (namespace,
+    ConfigMap''ы, SA, ClusterRole/Role и binding''и, IngressClass, deployment/daemonset) и применяет их.
+    Подключается зависимостью роли kubernetes-apps/ingress_controller/ingress_nginx.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/ingress_controller/ingress_nginx
+  source_paths:
+  - roles/kubernetes-apps/ingress_controller/meta/main.yml
+  - roles/kubernetes-apps/ingress_controller/ingress_nginx/tasks/main.yml
+  standalone_run: risky
+  notes: Включается только при ingress_nginx_enabled (по умолчанию false), выполняется на kube_control_plane[0].
+    Метка идёт в связке с apps и ingress-controller. В docs/ansible/ansible.md отдельной строкой не описан.
+  reliability: authoritative
+- ansible_tag: ingress_alb
+  description: 'Разворачивает AWS ALB Ingress Controller: создаёт addon-каталог, рендерит манифесты (ClusterRole/binding,
+    namespace, ServiceAccount, deployment) и применяет их. Подключается зависимостью роли kubernetes-apps/ingress_controller/alb_ingress_controller.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/ingress_controller/alb_ingress_controller
+  source_paths:
+  - roles/kubernetes-apps/ingress_controller/meta/main.yml
+  - roles/kubernetes-apps/ingress_controller/alb_ingress_controller/tasks/main.yml
+  standalone_run: risky
+  notes: 'Включается только при ingress_alb_enabled (по умолчанию false); применение манифестов ограничено
+    kube_control_plane[0]. Предназначен для кластеров в AWS. docs/ansible/ansible.md: «AWS ALB Ingress
+    Controller».'
+  reliability: authoritative
+- ansible_tag: init
+  description: 'Задачи инициализации для поддержки Windows-узлов (роль win_nodes/kubernetes_patch). Тег
+    init стоит на создании каталога пользовательских манифестов (kubernetes_user_manifests_path/kubernetes)
+    и на применении nodeSelector (kubernetes.io/os=linux) к DaemonSet kube-proxy через kubectl patch,
+    чтобы kube-proxy не планировался на Windows-узлы. Выполняется на первом узле control plane.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - win_nodes/kubernetes_patch
+  source_paths:
+  - roles/win_nodes/kubernetes_patch/tasks/main.yml
+  standalone_run: risky
+  notes: 'Требует работающего API-сервера и kubectl (patch DaemonSet), выполняется на kube_control_plane[0];
+    в изоляции без поднятого кластера завершится ошибкой. В docs/ansible/ansible.md ("Windows kubernetes
+    init nodes").
+
+    '
+  reliability: authoritative
+- ansible_tag: ip6tables
+  description: 'Сброс правил IPv6-фаервола при reset (роль reset). Тег ip6tables помечает задачи установки
+    политик ACCEPT для цепочек INPUT/FORWARD/OUTPUT (ip_version ipv6), флаш таблиц filter/nat/mangle/raw
+    и удаление пользовательских цепочек (ip6tables -X). Выполняется только при flush_iptables=true и включённом
+    ipv6_stack.
+
+    '
+  playbooks:
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - reset
+  source_paths:
+  - roles/reset/tasks/main.yml
+  standalone_run: unsafe
+  notes: 'Разрушающая сетевая операция: сбрасывает IPv6-фаервол узла. Требует flush_iptables=true и ipv6_stack.
+    Опасно вне полного сброса. В docs/ansible/ansible.md отдельной строки для ip6tables нет (описан только
+    iptables) — тег подтверждён кодом roles/reset/tasks/main.yml.
+
+    '
+  reliability: authoritative
+- ansible_tag: iptables
+  description: 'Сброс правил IPv4-фаервола при reset (роль reset). Тег iptables помечает задачи установки
+    политик ACCEPT для цепочек INPUT/FORWARD/OUTPUT, флаш таблиц filter/nat/mangle/raw и удаление пользовательских
+    цепочек (iptables -X). Выполняется только при flush_iptables=true и включённом ipv4_stack.
+
+    '
+  playbooks:
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - reset
+  source_paths:
+  - roles/reset/tasks/main.yml
+  standalone_run: unsafe
+  notes: 'Разрушающая сетевая операция: сбрасывает IPv4-фаервол узла. Требует flush_iptables=true и ipv4_stack.
+    Опасно вне полного сброса. Соответствует docs/ansible/ansible.md ("Flush and clear iptable when resetting").
+
+    '
+  reliability: authoritative
+- ansible_tag: k8s-pre-upgrade
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Предапгрейдовая подготовка control plane (roles/kubernetes/control-plane/tasks/pre-upgrade.yml).
+    При изменении etcd-секретов (etcd_secret_changed) удаляет статические манифесты kube-apiserver, kube-controller-manager,
+    kube-scheduler из /etc/kubernetes/manifests и, если манифесты были удалены, принудительно удаляет
+    соответствующие docker-контейнеры control plane. Импортируется в начале roles/kubernetes/control-plane/tasks/main.yml.
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes/control-plane
+  source_paths:
+  - roles/kubernetes/control-plane/tasks/pre-upgrade.yml
+  - roles/kubernetes/control-plane/tasks/main.yml
+  standalone_run: unsafe
+  notes: 'Потенциально разрушительная логика: удаляет манифесты и контейнеры control plane (срабатывает
+    лишь при etcd_secret_changed). Осмысленна только как часть полного прогона роли control-plane; изолированный
+    запуск не рекомендуется. Docker-ветка актуальна лишь для container_manager == docker.'
+  reliability: authoritative
+- ansible_tag: kata-containers
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Настройка рантайма Kata Containers. (1) container-engine: подроль container-engine/kata-containers
+    (при kata_containers_enabled) скачивает и распаковывает бинарники kata в корень, создаёт каталог конфигурации,
+    шаблонизирует configuration-qemu.toml и containerd-shim-kata-qemu-v2, загружает и закрепляет модули
+    ядра vhost_vsock и vhost_net (/etc/modules-load.d/kubespray-kata-containers.conf). (2) apps/container-runtimes:
+    подроль kubernetes-apps/container_runtimes/kata_containers (при kata_containers_enabled) создаёт addons/kata_containers,
+    шаблонизирует runtimeclass-kata-qemu.yml и применяет RuntimeClass через kube (только на первом kube_control_plane).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - container-engine/kata-containers
+  - kubernetes-apps/container_runtimes/kata_containers
+  source_paths:
+  - roles/container-engine/meta/main.yml
+  - roles/container-engine/kata-containers/tasks/main.yml
+  - roles/kubernetes-apps/container_runtimes/meta/main.yml
+  - roles/kubernetes-apps/container_runtimes/kata_containers/tasks/main.yaml
+  standalone_run: risky
+  notes: 'В meta container-engine подроль kata-containers включается только при kata_containers_enabled
+    (без ограничения по container_manager). Загружает модули ядра vhost на узлах. Требует скачанных артефактов;
+    RuntimeClass — готового кластера и kubectl.
+
+    '
+  reliability: authoritative
+- ansible_tag: kube-apiserver
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: В роли kubernetes/control-plane тегом kube-apiserver помечён импорт encrypt-at-rest.yml
+    (конфигурация шифрования secret-данных в etcd, когда kube_encrypt_secret_data). Дополнительно в preinstall
+    (0050-create_directories.yml) под этим тегом создаётся служебный каталог. Сам статический под kube-apiserver
+    в этой версии формируется kubeadm (kubeadm-setup), а не отдельными задачами данного тега.
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes/control-plane
+  - kubernetes/preinstall
+  source_paths:
+  - roles/kubernetes/control-plane/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: risky
+  notes: Несмотря на имя, тег покрывает узкий набор задач (encrypt-at-rest + создание каталога), а не
+    полную настройку apiserver. Изолированный запуск возможен только на готовом control plane.
+  reliability: authoritative
+- ansible_tag: kube-controller-manager
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: В v2.30.0 тег kube-controller-manager встречается ТОЛЬКО в roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+    и покрывает создание служебного каталога для kube-controller-manager. Сам статический под kube-controller-manager
+    разворачивается kubeadm, а не задачами этого тега.
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - k8s_cluster
+  roles:
+  - kubernetes/preinstall
+  source_paths:
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: safe
+  notes: Фактически тег ограничен созданием каталога (idempotent, безопасно). Описание в docs/ansible/ansible.md
+    ("Configuring static pod kube-controller-manager") шире реального объёма кода этого тега в данной
+    версии — приоритет коду.
+  reliability: authoritative
+- ansible_tag: kube-ovn
+  description: 'Разворачивает CNI Kube-OVN: роль network_plugin/kube-ovn как зависимость network_plugin
+    при kube_network_plugin == ''kube-ovn''. Ставит метку на узел ovn-db, рендерит и применяет манифесты
+    Kube-OVN. Тег kube-ovn также помечает создание CNI-каталогов в preinstall.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  roles:
+  - network_plugin
+  - network_plugin/kube-ovn
+  - kubernetes/preinstall
+  source_paths:
+  - roles/network_plugin/meta/main.yml
+  - roles/network_plugin/kube-ovn/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: risky
+  notes: Плагин не проиндексирован детально. Изолированный запуск зависит от скачанных образов и рабочего
+    кластера.
+  reliability: authoritative
+- ansible_tag: kube-proxy
+  description: 'Настраивает kube-proxy (в кластере kube-proxy — статический под, разворачиваемый kubeadm).
+    Фактические задачи под тегом kube-proxy: В роли kubernetes/node (hosts: k8s_cluster): резервирование
+    диапазона nodePort через sysctl net.ipv4.ip_local_reserved_ports; загрузка модулей ядра IPVS (kube_proxy_ipvs_modules)
+    и nf_conntrack при kube_proxy_mode == ''ipvs''; загрузка модуля nf_tables при kube_proxy_mode == ''nftables''.
+    В роли kubernetes/kubeadm: чтение resourceVersion configmap kube-proxy; правка поля server в kubeconfig
+    kube-proxy (варианты localhost и внешний LB); перезапуск подов kube-proxy при изменении configmap
+    — всё при kube_proxy_deployed, выполняется run_once с delegate_to первого control-plane.'
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_control_plane
+  roles:
+  - kubernetes/node
+  - kubernetes/kubeadm
+  source_paths:
+  - roles/kubernetes/node/tasks/main.yml
+  - roles/kubernetes/kubeadm/tasks/main.yml
+  standalone_run: risky
+  notes: Тег не устанавливает kube-proxy как таковой (это делает kubeadm), а настраивает узлы под выбранный
+    kube_proxy_mode (ipvs/nftables) и правит kubeconfig/configmap kube-proxy. Задачи правки configmap
+    выполняются только при kube_proxy_deployed и на control-plane[0].
+  reliability: authoritative
+- ansible_tag: kube-router
+  description: 'Разворачивает CNI Kube-router: роль network_plugin/kube-router как зависимость network_plugin
+    при kube_network_plugin == ''kube-router''. Создаёт аннотации узлов (annotate.yml, отдельный тег annotate),
+    каталог и kubeconfig, формирует CNI-конфиг, рендерит и применяет манифест, ждёт готовности подов kube-router.
+    Тег kube-router также помечает создание CNI-каталогов в preinstall.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  roles:
+  - network_plugin
+  - network_plugin/kube-router
+  - kubernetes/preinstall
+  source_paths:
+  - roles/network_plugin/meta/main.yml
+  - roles/network_plugin/kube-router/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: risky
+  notes: Плагин не проиндексирован детально. Отдельно существует тег annotate (создание аннотаций kube-router).
+    Изолированный запуск зависит от скачанных образов и рабочего кластера.
+  reliability: authoritative
+- ansible_tag: kube-vip
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Устанавливает и настраивает kube-vip как статический под для виртуального IP apiserver
+    (roles/kubernetes/node/tasks/loadbalancer/kube-vip.yml, часть роли kubernetes/node). Проверяет требование
+    kube_proxy_strict_arp при ipvs+ARP, выбирает admin.conf/super-admin.conf, пишет манифест kube-vip.yml
+    в kube_manifest_dir. Выполняется только на узлах kube_control_plane при kube_vip_enabled.
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes/node
+  source_paths:
+  - roles/kubernetes/node/tasks/loadbalancer/kube-vip.yml
+  - roles/kubernetes/node/tasks/main.yml
+  standalone_run: risky
+  notes: Активен только при kube_vip_enabled и на control plane узлах. Пишет статический под — требует
+    настроенного kubelet/manifest-каталога.
+  reliability: authoritative
+- ansible_tag: kubeadm
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Объединяет задачи, связанные с kubeadm join и настройкой узлов через kubeadm. Роль kubernetes/kubeadm
+    выполняет присоединение не-control-plane узлов к кластеру (kubeadm join), формирует kubeadm-client.conf,
+    обновляет server-поля в kubelet.conf и в configmap kube-proxy, перезапускает поды kube-proxy, при
+    kubeadm-режиме etcd извлекает клиентские сертификаты etcd. Дополнительно тег kubeadm помечает копирование
+    бинаря kubeadm (node/install.yml на не-CP узлах), запись kubelet.env/kubelet-config/юнита (node/kubelet.yml)
+    и импорт kubelet в node/main.yml. В scale.yml тегом kubeadm помечён отдельный play выгрузки сертификатов
+    control plane (kubeadm init phase upload-certs).
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_node
+  - kube_control_plane
+  roles:
+  - kubernetes/kubeadm
+  - kubernetes/node
+  source_paths:
+  - roles/kubernetes/kubeadm/tasks/main.yml
+  - roles/kubernetes/node/tasks/install.yml
+  - roles/kubernetes/node/tasks/kubelet.yml
+  - roles/kubernetes/node/tasks/main.yml
+  - playbooks/scale.yml
+  standalone_run: risky
+  notes: Присоединение узлов требует работающего control plane и валидного токена; изолированный запуск
+    на неготовом кластере приведёт к сбою kubeadm join. Операции с kube-proxy configmap делегируются на
+    первый control plane узел.
+  reliability: authoritative
+- ansible_tag: kubeadm_token
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Управление bootstrap-токенами kubeadm для присоединения узлов (roles/kubernetes/control-plane/tasks/kubeadm-setup.yml).
+    Создаёт заранее заданный (hardcoded) токен при kubeadm_refresh_token, либо генерирует токен с сроком
+    24ч (kubeadm token create), затем сохраняет его в факт kubeadm_token. Выполняется на первом control
+    plane узле (first_kube_control_plane).
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes/control-plane
+  source_paths:
+  - roles/kubernetes/control-plane/tasks/kubeadm-setup.yml
+  standalone_run: safe
+  notes: Только генерация/пересоздание токена — операция относительно безопасна, но требует уже инициализированного
+    kubeadm (наличия admin.conf) на первом control plane узле.
+  reliability: authoritative
+- ansible_tag: kubectl
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Устанавливает kubectl и bash-автодополнение на control plane узлах (roles/kubernetes/control-plane/tasks/main.yml):
+    копирует бинарь kubectl из download-каталога в bin_dir, генерирует /etc/bash_completion.d/kubectl.sh,
+    задаёт alias (kubectl_alias) и права на файл. Ряд этих задач дополнительно помечен тегом upgrade.'
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes/control-plane
+  source_paths:
+  - roles/kubernetes/control-plane/tasks/main.yml
+  standalone_run: safe
+  notes: Неразрушающие операции (копирование бинаря и настройка completion). Требует, чтобы бинарь kubectl
+    был предварительно скачан (роль download / downloads.kubectl).
+  reliability: authoritative
+- ansible_tag: kubelet
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Устанавливает и конфигурирует kubelet на всех узлах k8s_cluster (роль kubernetes/node):
+    сбор фактов, копирование бинаря kubelet (node/install.yml), запись kubelet.env, kubelet-config.yaml
+    и systemd-юнита kubelet.service, flush_handlers и включение/запуск службы kubelet (node/kubelet.yml).
+    Также тег kubelet используется в preinstall (meta: зависимость adduser; создание каталога в 0050-create_directories.yml).'
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_node
+  - kube_control_plane
+  roles:
+  - kubernetes/node
+  - kubernetes/preinstall
+  source_paths:
+  - roles/kubernetes/node/tasks/install.yml
+  - roles/kubernetes/node/tasks/kubelet.yml
+  - roles/kubernetes/node/tasks/main.yml
+  - roles/kubernetes/preinstall/meta/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: risky
+  notes: Перезапускает службу kubelet (через handlers) — на работающем узле это кратковременно влияет
+    на компоненты. Требует скачанного бинаря kubelet и подготовленной конфигурации (preinstall).
+  reliability: authoritative
+- ansible_tag: kubelet-csr-approver
+  description: Устанавливает kubelet-csr-approver (postfinance) через Helm. Роль kubernetes-apps/kubelet-csr-approver
+    подключает роль helm-apps, добавляет Helm-репозиторий и разворачивает релиз в namespace kube-system.
+    Компонент автоматически подтверждает CSR-запросы на серверные сертификаты kubelet.
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/kubelet-csr-approver
+  - helm-apps
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/kubelet-csr-approver/meta/main.yml
+  - roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+  - playbooks/upgrade_cluster.yml
+  standalone_run: risky
+  notes: 'Включается при kubelet_csr_approver_enabled, которое по умолчанию равно kubelet_rotate_server_certificates
+    (обычно false); выполняется на kube_control_plane[0]. В upgrade_cluster.yml роль вызывается отдельно
+    (hosts: kube_control_plane) с этим же тегом, в cluster.yml — через kubernetes-apps/meta. Требует Helm
+    и сетевого доступа к чарт-репозиторию postfinance. В docs/ansible/ansible.md отдельно не описан.'
+  reliability: authoritative
+- ansible_tag: local-path-provisioner
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает Rancher local-path-provisioner (roles/kubernetes-apps/external_provisioner/local_path_provisioner):
+    генерирует манифесты (namespace/RBAC/ConfigMap/Deployment/StorageClass) и применяет их через kubectl.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/external_provisioner/local_path_provisioner
+  source_paths:
+  - roles/kubernetes-apps/external_provisioner/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: local_path_provisioner_enabled. В отличие от local-volume-provisioner, роль
+    не ограничена узлом [0] и подключается на всех kube_control_plane (внутри задач применение манифестов
+    обычно всё равно выполняется только на первом узле). Помечена также тегами apps и external-provisioner.
+    При выключенном флаге — no-op.
+
+    '
+  reliability: authoritative
+- ansible_tag: local-volume-provisioner
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает sig-storage local-volume-provisioner (roles/kubernetes-apps/external_provisioner/local_volume_provisioner):
+    генерирует манифесты (namespace/RBAC/StorageClass/DaemonSet) и применяет их через kubectl.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/external_provisioner/local_volume_provisioner
+  source_paths:
+  - roles/kubernetes-apps/external_provisioner/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: local_volume_provisioner_enabled; роль выполняется только на groups[''kube_control_plane''][0].
+    Помечена также тегами apps и external-provisioner. При выключенном флаге — no-op. Требует работающий
+    control plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: localhost
+  description: 'Специальные шаги, выполняемые на управляющем узле Ansible (localhost / download_delegate).
+    Тег localhost помечает: установку bastion-ssh-config (playbooks/boilerplate.yml, на bastion[0]) и
+    локальные задачи роли download — проверку возможности стать root и доступа к контейнерному рантайму
+    на localhost, создание локального каталога кэша образов/файлов (prep_download.yml, download_file.yml)
+    при download_force_cache/download_run_once.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - bastion
+  - k8s_cluster
+  - etcd
+  - kube_node
+  roles:
+  - bastion-ssh-config
+  - download
+  source_paths:
+  - playbooks/boilerplate.yml
+  - roles/download/tasks/prep_download.yml
+  - roles/download/tasks/download_file.yml
+  standalone_run: safe
+  notes: 'Операции на управляющей ноде преимущественно неразрушающие (проверки, создание каталогов кэша,
+    ssh config). Часть задач срабатывает только при download_localhost/download_force_cache. Соответствует
+    docs/ansible/ansible.md ("Special steps for the localhost (ansible runner)").
+
+    '
+  reliability: authoritative
+- ansible_tag: macvlan
+  description: 'Разворачивает CNI Macvlan: роль network_plugin/macvlan как зависимость network_plugin
+    при kube_network_plugin == ''macvlan''. Определяет Pod CIDR и сетевой интерфейс шлюза, настраивает
+    сетевой интерфейс шлюза (Debian/RH/Flatcar), ставит CNI-определения macvlan и loopback, включает net.ipv4.conf.all.arp_notify.
+    Также помечает создание CNI-каталогов в preinstall.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  roles:
+  - network_plugin
+  - network_plugin/macvlan
+  - kubernetes/preinstall
+  source_paths:
+  - roles/network_plugin/meta/main.yml
+  - roles/network_plugin/macvlan/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: risky
+  notes: Плагин не проиндексирован детально. Изменяет сетевую конфигурацию узла; изолированный запуск
+    требует корректного кластера и фактов.
+  reliability: authoritative
+- ansible_tag: metallb
+  description: Разворачивает MetalLB (балансировщик L2/BGP для bare-metal). Проверяет требования (для
+    kube_proxy_mode ipvs обязателен kube_proxy_strict_arp), рендерит metallb.yaml и применяет его, дожидается
+    готовности контроллера. Роль kubernetes-apps/metallb подключается в kubernetes-apps/meta.
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/metallb
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/metallb/tasks/main.yml
+  standalone_run: risky
+  notes: 'Включается только при metallb_enabled (по умолчанию false), выполняется на kube_control_plane[0].
+    Есть проверка устаревшей переменной matallb_auto_assign (задача fail). Требует работающего apiserver.
+    docs/ansible/ansible.md: «Installing and configuring metallb».'
+  reliability: authoritative
+- ansible_tag: metrics_server
+  description: 'Разворачивает Kubernetes Metrics Server: удаляет прежний addon-каталог (задача с тегом
+    upgrade), создаёт каталог заново, рендерит манифесты (SA, Deployment, Service, APIService, ClusterRole/RoleBinding)
+    и применяет их. Роль kubernetes-apps/metrics_server подключается в kubernetes-apps/meta.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/metrics_server
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/metrics_server/tasks/main.yml
+  standalone_run: risky
+  notes: 'Включается только при metrics_server_enabled (по умолчанию false), выполняется на kube_control_plane[0].
+    Часть задач помечена дополнительным тегом upgrade (пересоздание манифестов при обновлении). Требует
+    apiserver. docs/ansible/ansible.md: «Configuring metrics_server».'
+  reliability: authoritative
+- ansible_tag: mounts
+  description: 'Отмонтирование каталогов kubelet при сбросе узла (роль reset). Тег mounts помечает задачу
+    сбора смонтированных путей внутри /var/lib/kubelet/ (mount | grep | awk) и задачу их размонтирования
+    (umount -f) с повторными попытками. Освобождает точки монтирования перед удалением данных kubelet.
+
+    '
+  playbooks:
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - reset
+  source_paths:
+  - roles/reset/tasks/main.yml
+  standalone_run: risky
+  notes: 'Разрушающая операция сброса (принудительный umount каталогов kubelet). Выполняется в составе
+    reset.yml/remove_node.yml. Соответствует docs/ansible/ansible.md ("Umount kubelet dirs when resetting").
+
+    '
+  reliability: authoritative
+- ansible_tag: multus
+  description: 'Разворачивает Multus (meta-CNI для нескольких интерфейсов): роль network_plugin/multus
+    как зависимость network_plugin при kube_network_plugin_multus (не по kube_network_plugin, а по отдельному
+    флагу). Копирует файлы и шаблоны манифестов (с учётом типа container engine) и применяет ресурсы Multus.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  roles:
+  - network_plugin
+  - network_plugin/multus
+  source_paths:
+  - roles/network_plugin/meta/main.yml
+  - roles/network_plugin/multus/tasks/main.yml
+  standalone_run: risky
+  notes: Плагин не проиндексирован детально. Включается флагом kube_network_plugin_multus поверх основного
+    CNI, а не значением kube_network_plugin. Изолированный запуск зависит от базового CNI и образов.
+  reliability: authoritative
+- ansible_tag: netchecker
+  description: Устанавливает приложение netchecker (проверка сетевой связности внутри кластера). Задача
+    "Kubernetes Apps | Netchecker" в роли kubernetes-apps/ansible применяет набор манифестов (namespace,
+    service account, agent DaemonSet и hostnet-DaemonSet, server SA/clusterrole/clusterrolebinding/ deployment/service)
+    в namespace netcheck_namespace при deploy_netchecker. Выполняется delegate_to control-plane[0], run_once.
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/ansible
+  source_paths:
+  - roles/kubernetes-apps/ansible/tasks/main.yml
+  standalone_run: risky
+  notes: Применяется только при deploy_netchecker (по умолчанию обычно выключено). Устанавливается через
+    kubectl на первом control-plane; требует рабочего apiserver.
+  reliability: authoritative
+- ansible_tag: network
+  description: 'Сквозной тег настройки сети. Основное назначение — установка выбранного CNI: тегом network
+    помечена вся роль network_plugin в play "Invoke kubeadm and install a CNI" (hosts: k8s_cluster), которая
+    через зависимости ставит network_plugin/cni и конкретный плагин (cilium/calico/flannel/macvlan/kube-ovn/
+    kube-router/custom_cni/multus). Тег network также назначен: роли network_plugin/calico/rr (play calico_rr),
+    созданию CNI-каталогов /etc/cni/net.d и /opt/cni/bin в preinstall (0050-create_directories), задачам
+    получения серийного номера клиентского etcd-сертификата и установки etcd_client_cert_serial в roles/etcd,
+    roles/kubernetes/control-plane/kubeadm-etcd.yml и kubeadm/kubeadm_etcd_node.yml (нужно для CNI, использующих
+    etcd: calico/flannel/cilium в режиме kvstore), а также включению reset-задач сетевого плагина в roles/reset
+    (для flannel/cilium/kube-router/calico).'
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  - reset.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_control_plane
+  - etcd
+  - calico_rr
+  roles:
+  - network_plugin
+  - network_plugin/cni
+  - network_plugin/calico/rr
+  - kubernetes/preinstall
+  - etcd
+  - kubernetes/control-plane
+  - kubernetes/kubeadm
+  - reset
+  source_paths:
+  - playbooks/cluster.yml
+  - roles/network_plugin/meta/main.yml
+  - roles/network_plugin/cni/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  - roles/etcd/tasks/main.yml
+  - roles/kubernetes/control-plane/tasks/kubeadm-etcd.yml
+  - roles/kubernetes/kubeadm/tasks/kubeadm_etcd_node.yml
+  - roles/reset/tasks/main.yml
+  standalone_run: risky
+  notes: Тег network охватывает установку CNI и связанные с сетью подготовительные/сбросовые задачи. Запуск
+    --tags network предполагает уже установленный kubeadm/control-plane; в reset.yml тот же тег выполняет
+    сетевой откат. Составные плагины (кроме Cilium) детально не проиндексированы.
+  reliability: authoritative
+- ansible_tag: nginx
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Разворачивает локальный nginx-proxy как балансировщик к kube-apiserver (roles/kubernetes/node/tasks/loadbalancer/nginx-proxy.yml,
+    часть роли kubernetes/node). Удаляет возможный манифест haproxy, создаёт каталог nginx_config_dir,
+    пишет nginx.conf и статический под-манифест nginx-proxy.yml. Применяется при loadbalancer_apiserver_localhost
+    и loadbalancer_apiserver_type == "nginx", когда узел не control plane (либо kube_apiserver_bind_address
+    != '::').
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_node
+  roles:
+  - kubernetes/node
+  source_paths:
+  - roles/kubernetes/node/tasks/loadbalancer/nginx-proxy.yml
+  - roles/kubernetes/node/tasks/main.yml
+  standalone_run: risky
+  notes: В docs/ansible/ansible.md описан как "Configuring LB for kube-apiserver instances". Активен только
+    при включённом локальном LB типа nginx; пишет статический под, требует настроенного kubelet/manifest-каталога.
+  reliability: authoritative
+- ansible_tag: node
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Базовая настройка узла как worker/минион (роль kubernetes/node) на всех узлах k8s_cluster:
+    сбор фактов, создание /var/lib/cni, установка бинаря kubelet, установка локального LB (kube-vip/nginx-proxy/haproxy
+    по условиям), резервирование nodePort-диапазона, загрузка/персист модуля br_netfilter, включение bridge-nf-call
+    sysctl, загрузка модулей IPVS/conntrack/nftables (по kube_proxy_mode), установка kubelet. Дополнительно
+    в preinstall (0050-create_directories.yml) под тегом node создаются каталоги.'
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_node
+  - kube_control_plane
+  roles:
+  - kubernetes/node
+  - kubernetes/preinstall
+  source_paths:
+  - roles/kubernetes/node/tasks/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  - playbooks/cluster.yml
+  - playbooks/scale.yml
+  - playbooks/upgrade_cluster.yml
+  standalone_run: risky
+  notes: Крупная роль базовой настройки узла; включает установку kubelet и модулей ядра, перезапуск kubelet.
+    Изолированный запуск на неготовом узле возможен, но требует предшествующего preinstall/download.
+  reliability: authoritative
+- ansible_tag: node-label
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Проставляет метки (labels) на узлы кластера (роль kubernetes/node-label). Дожидается готовности
+    apiserver (healthz с первого control plane), формирует список ролевых меток (например nvidia.com/gpu=true
+    для GPU-узлов) и меток из инвентаря (node_labels), затем применяет их командой kubectl label node
+    --overwrite=true с делегированием на kube_control_plane[0].
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_node
+  - kube_control_plane
+  roles:
+  - kubernetes/node-label
+  source_paths:
+  - roles/kubernetes/node-label/tasks/main.yml
+  standalone_run: risky
+  notes: Требует работающего apiserver и присоединённых узлов (kubectl label выполняется через первый
+    control plane). Сами операции неразрушающие, но бессмысленны без поднятого кластера.
+  reliability: authoritative
+- ansible_tag: node-taint
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Проставляет taint-ы на узлы кластера (роль kubernetes/node-taint). Формирует ролевые taint-ы
+    (например nvidia.com/gpu=:NoSchedule для GPU-узлов) и taint-ы из инвентаря (node_taints), затем применяет
+    их одной командой kubectl taint node --overwrite=true с делегированием на kube_control_plane[0]. Выполняется,
+    только если итоговый список taint-ов непуст.
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  - scale.yml
+  affected_groups:
+  - k8s_cluster
+  - kube_node
+  - kube_control_plane
+  roles:
+  - kubernetes/node-taint
+  source_paths:
+  - roles/kubernetes/node-taint/tasks/main.yml
+  standalone_run: risky
+  notes: Требует работающего apiserver и присоединённых узлов. При пустом списке taint-ов задача пропускается
+    (no-op).
+  reliability: authoritative
+- ansible_tag: node-webhook
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Управляет доступом на основе webhook — ClusterRole/ClusterRoleBinding system:node-webhook
+    (roles/kubernetes-apps/cluster_roles/tasks/main.yml). Создаёт clusterrole и clusterrolebinding system:node-webhook
+    (и удаляет старые), предоставляя необходимые права. Выполняется в рамках play "Install the control
+    plane" (роль kubernetes-apps/cluster_roles, тег cluster-roles) на узлах kube_control_plane.
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/cluster_roles
+  source_paths:
+  - roles/kubernetes-apps/cluster_roles/tasks/main.yml
+  standalone_run: risky
+  notes: Применяет RBAC-объекты через apiserver — требует работающего control plane. Операции идемпотентны,
+    но зависят от доступности apiserver.
+  reliability: authoritative
+- ansible_tag: node_feature_discovery
+  description: 'Разворачивает Node Feature Discovery (NFD): создаёт addon-каталог, рендерит манифесты
+    (namespace, CRD, SA, Role/ClusterRole и binding''и, ConfigMap''ы master/worker/topologyupdater, deployment''ы
+    nfd-master и nfd-gc, DaemonSet nfd-worker, Service) и применяет их. Роль kubernetes-apps/node_feature_discovery
+    подключается в kubernetes-apps/meta.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/node_feature_discovery
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/node_feature_discovery/tasks/main.yml
+  standalone_run: risky
+  notes: Включается только при node_feature_discovery_enabled (по умолчанию false), выполняется на kube_control_plane[0].
+    Требует apiserver. В docs/ansible/ansible.md отдельно не описан.
+  reliability: authoritative
+- ansible_tag: nodelocaldns
+  description: Разворачивает DaemonSet nodelocaldns (локальный кэш DNS на узлах). Задача "Kubernetes Apps
+    | nodelocalDNS" в роли kubernetes-apps/ansible применяет манифесты nodelocaldns_manifests при enable_nodelocaldns
+    (delegate_to control-plane[0], run_once). Формирует адреса upstream/forward на основе dns_mode, skydns_server(_secondary),
+    manual_dns_server и upstream_dns_servers. Задача помечена и тегом coredns.
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/ansible
+  source_paths:
+  - roles/kubernetes-apps/ansible/tasks/main.yml
+  standalone_run: risky
+  notes: Выполняется только при enable_nodelocaldns. Манифест применяется через kubectl на первом control-plane.
+    Требует рабочего apiserver и корректных переменных DNS.
+  reliability: authoritative
+- ansible_tag: nvidia_gpu
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Тег подроли kubernetes-apps/container_engine_accelerator/nvidia_gpu (включается при nvidia_accelerator_enabled).
+    Загружает ОС-специфичные переменные, вычисляет URL драйвера NVIDIA (flavor tesla/gtx), создаёт каталог
+    addons/container_engine_accelerator, шаблонизирует манифесты nvidia-driver-install-daemonset.yml и
+    k8s-device-plugin-nvidia-daemonset.yml и применяет их через модуль kube. Создание манифестов — при
+    nvidia_driver_install_container, применение — дополнительно при nvidia_driver_install_supported; всё
+    только на первом узле kube_control_plane.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/container_engine_accelerator/nvidia_gpu
+  source_paths:
+  - roles/kubernetes-apps/container_engine_accelerator/meta/main.yml
+  - roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/tasks/main.yml
+  standalone_run: risky
+  notes: 'По содержанию задач эквивалентен тегу container_engine_accelerator (оба ведут к подроли nvidia_gpu).
+    Требует готового кластера и kubectl; изолированный запуск на неготовом кластере невозможен.
+
+    '
+  reliability: authoritative
+- ansible_tag: persistent_volumes
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Запускает роль roles/kubernetes-apps/persistent_volumes, которая через свои зависимости
+    создаёт объекты хранилища (StorageClass/PV) для включённых CSI: cinder, aws-ebs, azuredisk, gcp-pd,
+    upcloud. Дополнительно этим же тегом помечена задача создания директорий под локальное хранилище в
+    preinstall (roles/kubernetes/preinstall/tasks/0050-create_directories.yml).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  - scale.yml
+  affected_groups:
+  - kube_control_plane
+  - k8s_cluster
+  roles:
+  - kubernetes-apps/persistent_volumes
+  - kubernetes/preinstall
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  - roles/kubernetes/preinstall/tasks/0050-create_directories.yml
+  standalone_run: safe
+  notes: 'Условие включения роли persistent_volumes: persistent_volumes_enabled, и она выполняется только
+    на groups[''kube_control_plane''][0]. Реально созданные объекты зависят от включённых *_csi_enabled
+    (см. persistent_volumes_* под-теги). Задача создания директорий в preinstall (тег persistent_volumes)
+    выполняется на группе k8s_cluster и попадает также в scale.yml (через роль preinstall). Требует работающий
+    control plane для применения манифестов.
+
+    '
+  reliability: authoritative
+- ansible_tag: persistent_volumes_aws_ebs_csi
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Создаёт объекты хранилища (StorageClass) для AWS EBS через под-роль roles/kubernetes-apps/persistent_volumes/aws-ebs-csi.
+    Более узкий тег, чем persistent_volumes — покрывает только AWS EBS.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/persistent_volumes/aws-ebs-csi
+  source_paths:
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: aws_ebs_csi_enabled. Помечен вместе с тегом aws-ebs-csi-driver на той же
+    зависимости. Создаёт StorageClass, но не сам драйвер (драйвер — тег aws-ebs-csi-driver). При выключенном
+    флаге — no-op.
+
+    '
+  reliability: authoritative
+- ansible_tag: persistent_volumes_azure_csi
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Создаёт объекты хранилища (StorageClass) для Azure Disk через под-роль roles/kubernetes-apps/persistent_volumes/azuredisk-csi.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/persistent_volumes/azuredisk-csi
+  source_paths:
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: azure_csi_enabled. Помечен вместе с тегом azure-csi-driver. Расхождение с
+    docs/ansible/ansible.md: тег persistent_volumes_azure_csi в таблице документации отсутствует — приоритет
+    коду. При выключенном флаге — no-op.
+
+    '
+  reliability: authoritative
+- ansible_tag: persistent_volumes_cinder_csi
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Создаёт объекты хранилища (StorageClass) для OpenStack Cinder через под-роль roles/kubernetes-apps/persistent_volumes/cinder-csi.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/persistent_volumes/cinder-csi
+  source_paths:
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: cinder_csi_enabled. Помечен вместе с тегом cinder-csi-driver. Создаёт только
+    StorageClass; сам драйвер и VolumeSnapshotClass — теги cinder-csi-driver / snapshot. При выключенном
+    флаге — no-op.
+
+    '
+  reliability: authoritative
+- ansible_tag: persistent_volumes_gcp_pd_csi
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Создаёт объекты хранилища (StorageClass) для Google Persistent Disk через под-роль roles/kubernetes-apps/persistent_volumes/gcp-pd-csi.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/persistent_volumes/gcp-pd-csi
+  source_paths:
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: gcp_pd_csi_enabled. Помечен вместе с тегом gcp-pd-csi-driver. При выключенном
+    флаге — no-op.
+
+    '
+  reliability: authoritative
+- ansible_tag: persistent_volumes_upcloud_csi
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Создаёт объекты хранилища (StorageClass) для UpCloud через под-роль roles/kubernetes-apps/persistent_volumes/upcloud-csi.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/persistent_volumes/upcloud-csi
+  source_paths:
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: upcloud_csi_enabled. Помечен вместе с тегом upcloud-csi-driver. Расхождение
+    с docs/ansible/ansible.md: тег persistent_volumes_upcloud_csi в документации не описан — приоритет
+    коду. При выключенном флаге — no-op.
+
+    '
+  reliability: authoritative
+- ansible_tag: policy-controller
+  description: Разворачивает контроллер сетевых политик Calico (calico-kube-controllers). Роль kubernetes-apps/policy_controller
+    через meta подключает подроль policy_controller/calico при kube_network_plugin in ['calico'] и enable_network_policy.
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/policy_controller
+  - policy_controller/calico
+  source_paths:
+  - playbooks/cluster.yml
+  - playbooks/upgrade_cluster.yml
+  - roles/kubernetes-apps/policy_controller/meta/main.yml
+  standalone_run: risky
+  notes: 'Разворачивается только для CNI Calico при включённых сетевых политиках. В cluster.yml роль в
+    плее «Install Kubernetes apps» (hosts: kube_control_plane), в upgrade_cluster.yml — в плее с hosts
+    kube_control_plane:calico_rr:kube_node. Требует работающего apiserver. docs/ansible/ansible.md: «Configuring
+    Calico policy controller».'
+  reliability: authoritative
+- ansible_tag: post-remove
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Финальный этап удаления узла (роль remove-node/post-remove в playbooks/remove_node.yml).
+    Выполняет kubectl delete node для удаляемого узла с делегированием на первый control plane узел, с
+    ретраями. Запускается на хостах, указанных в переменной node.
+  playbooks:
+  - remove-node.yml
+  affected_groups:
+  - kube_node
+  - kube_control_plane
+  - etcd
+  roles:
+  - remove-node/post-remove
+  source_paths:
+  - roles/remove-node/post-remove/tasks/main.yml
+  - playbooks/remove_node.yml
+  standalone_run: unsafe
+  notes: Разрушающая операция (удаление узла из кластера). Зависит от переменной nodes, регистрируемой
+    на этапе pre-remove (список узлов кластера), поэтому не может корректно выполняться в изоляции от
+    pre-remove. Первый control plane/etcd узел удалять нельзя (ограничение remove_node.yml).
+  reliability: authoritative
+- ansible_tag: post-upgrade
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Постобработка узла после апгрейда (роль upgrade/post-upgrade в playbooks/upgrade_cluster.yml).
+    Для CNI cilium дожидается готовности cilium-подов на узле, при необходимости запрашивает подтверждение/паузу,
+    выполняет post_upgrade_hooks и снимает cordon с узла (kubectl uncordon) с делегированием на первый
+    control plane узел. Применяется как к control plane, так и к worker-узлам в соответствующих play апгрейда.
+  playbooks:
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  - kube_node
+  roles:
+  - upgrade/post-upgrade
+  source_paths:
+  - roles/upgrade/post-upgrade/tasks/main.yml
+  - playbooks/upgrade_cluster.yml
+  standalone_run: risky
+  notes: Логика uncordon завязана на факт needs_cordoning, устанавливаемый на этапе pre-upgrade; при изолированном
+    запуске (без pre-upgrade) uncordon пропускается. Осмысленна только в связке с pre-upgrade в рамках
+    upgrade-cluster.
+  reliability: authoritative
+- ansible_tag: pre-remove
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Подготовка узла к удалению (роль remove_node/pre_remove в playbooks/remove_node.yml). Получает
+    список узлов кластера (kubectl get nodes, сохраняется в факт nodes), выполняет kubectl drain удаляемого
+    узла (--ignore-daemonsets, --delete-emptydir-data, с ретраями и учётом allow_ungraceful_removal) и
+    дожидается отсоединения томов (volumeattachments) от узла. Все kubectl-операции делегируются на первый
+    control plane узел.
+  playbooks:
+  - remove-node.yml
+  affected_groups:
+  - kube_node
+  - kube_control_plane
+  - etcd
+  roles:
+  - remove_node/pre_remove
+  source_paths:
+  - roles/remove_node/pre_remove/tasks/main.yml
+  - playbooks/remove_node.yml
+  standalone_run: risky
+  notes: Выполняет drain узла (эвакуация подов) — влияет на рабочие нагрузки. Требует работающего control
+    plane. Регистрирует факт nodes, который затем использует этап post-remove. Файл roles/container-engine/validate-container-engine/tasks/main.yml,
+    попавший в карту тегов для pre-remove, содержит только задачи с тегом facts (meta-зависимость), собственных
+    задач тега pre-remove не имеет.
+  reliability: authoritative
+- ansible_tag: pre-upgrade
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Подготовка узла к апгрейду (роль upgrade/pre-upgrade в playbooks/upgrade_cluster.yml).
+    Опциональное подтверждение/пауза перед апгрейдом, определение состояния узла (Ready/schedulable),
+    решение о необходимости cordon (needs_cordoning), затем cordon и drain узла с ретраями и fallback-режимом
+    с отключённым eviction; при провале drain — rescue-ветка (uncordon/fail по флагам). Все kubectl-операции
+    делегируются на первый control plane узел. Применяется к control plane узлам (serial:1) и worker-узлам
+    (batch-режим).
+  playbooks:
+  - upgrade-cluster.yml
+  affected_groups:
+  - kube_control_plane
+  - kube_node
+  roles:
+  - upgrade/pre-upgrade
+  source_paths:
+  - roles/upgrade/pre-upgrade/tasks/main.yml
+  - playbooks/upgrade_cluster.yml
+  standalone_run: risky
+  notes: Выполняет cordon/drain — прямое влияние на рабочие нагрузки. Устанавливает факт needs_cordoning,
+    используемый на этапе post-upgrade для uncordon. Требует работающего control plane.
+  reliability: authoritative
+- ansible_tag: preinstall
+  description: 'Предварительная подготовка узлов (роль kubernetes/preinstall). Выполняет: отключение swap
+    (0010), установку фактов (0020-set_facts), проверку настроек (0040-verify-settings), создание каталогов
+    (0050), настройку разрешения имён — resolvconf/systemd-resolved/NetworkManager (0060–0063), системные
+    конфигурации sysctl/SELinux/форвардинг (0080), NTP (0081), dhclient-хуки (0100/0110) и проверки Calico.
+    Готовит ОС и сетевые настройки узлов перед установкой кластера.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  roles:
+  - kubernetes/preinstall
+  source_paths:
+  - roles/kubernetes/preinstall/tasks/main.yml
+  standalone_run: safe
+  notes: 'Штатно запускается изолированно (пример docs: `--tags preinstall,facts --skip-tags=download,bootstrap_os`).
+    Зависит от фактов, собираемых play internal_facts.yml (тег always) и задачами facts; при dns_late/dns_early
+    часть шагов пропускается по условиям. Соответствует docs ("Preliminary configuration steps").
+
+    '
+  reliability: authoritative
+- ansible_tag: prometheus_operator_crds
+  description: Устанавливает CRD Prometheus Operator. Скачивает YAML (downloads.prometheus_operator_crds)
+    и применяет его через kubectl apply. Подключается зависимостью роли kubernetes-apps/common_crds/prometheus_operator_crds.
+  playbooks:
+  - cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/common_crds/prometheus_operator_crds
+  source_paths:
+  - roles/kubernetes-apps/common_crds/meta/main.yml
+  - roles/kubernetes-apps/common_crds/prometheus_operator_crds/tasks/main.yml
+  standalone_run: risky
+  notes: 'Включается только при prometheus_operator_crds_enabled (по умолчанию false). Роль common_crds
+    вызывается в плее «Invoke kubeadm and install a CNI» (hosts: k8s_cluster); применение манифеста ограничено
+    kube_control_plane[0], скачивание может затрагивать узлы k8s_cluster. Есть только в cluster.yml (в
+    upgrade_cluster.yml роль common_crds не вызывается). В docs/ansible/ansible.md отдельно не описан.'
+  reliability: authoritative
+- ansible_tag: registry
+  description: 'Разворачивает внутрикластерный docker registry: валидирует registry_service_type и связанные
+    переменные, создаёт addon-каталог, рендерит манифесты (namespace, SA, ...) и применяет их. Роль kubernetes-apps/registry
+    подключается в kubernetes-apps/meta.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/registry
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/registry/tasks/main.yml
+  standalone_run: risky
+  notes: 'Включается только при registry_enabled (по умолчанию false) и на kube_control_plane[0]. Начинается
+    с набора проверок совместимости registry_service_type (ClusterIP/LoadBalancer/NodePort) — при конфликте
+    конфигурации задачи fail останавливают выполнение. Требует apiserver. docs/ansible/ansible.md: «Configuring
+    local docker registry».'
+  reliability: authoritative
+- ansible_tag: reset
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: Полный сброс узла (роль reset) в playbooks/reset.yml и playbooks/remove_node.yml. Останавливает
+    и удаляет службы (kubelet, etcd, containerd/crio/docker), выполняет daemon-reload, останавливает CRI-поды
+    и очищает хранилище контейнеров, размонтирует каталоги kubelet, сбрасывает и очищает правила iptables/ip6tables,
+    удаляет файлы, записи DNS, сетевые артефакты. Внутри роли задачи разбиты на подтеги (services, containerd,
+    crio, docker, mounts, iptables, ip6tables, files, dns, network).
+  playbooks:
+  - reset.yml
+  - remove-node.yml
+  affected_groups:
+  - etcd
+  - k8s_cluster
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - reset
+  source_paths:
+  - roles/reset/tasks/main.yml
+  - playbooks/reset.yml
+  - playbooks/remove_node.yml
+  standalone_run: unsafe
+  notes: Крайне разрушающая операция — полностью снимает Kubernetes с узла. В reset.yml и remove_node.yml
+    защищена интерактивным подтверждением (pause/fail), которое можно пропустить лишь через skip_confirmation.
+    В remove_node.yml выполняется только при reset_nodes (по умолчанию true).
+  reliability: authoritative
+- ansible_tag: reset_containerd
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Teardown-тег внутри роли container-engine/containerd (tasks/reset.yml). Все задачи файла
+    reset.yml помечены этим тегом: остановка и отключение сервиса containerd, удаление конфигурационных
+    файлов и каталогов (/etc/systemd/system/containerd.service, containerd_systemd_dir, containerd_cfg_dir,
+    containerd_storage_dir, containerd_state_dir). Задачи выполняются, когда reset.yml роли containerd
+    подключается извне.
+
+    '
+  playbooks: []
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  roles:
+  - container-engine/containerd
+  - container-engine/validate-container-engine
+  source_paths:
+  - roles/container-engine/containerd/tasks/reset.yml
+  - roles/container-engine/validate-container-engine/tasks/main.yml
+  standalone_run: unsafe
+  notes: 'Тег reset_containerd не задан ни в одном плейбуке напрямую и в docs/ansible/ansible.md не описан.
+    Задачи reset.yml роли containerd достигаются через validate-container-engine (блок "Uninstall containerd"),
+    который вызывает import_role container-engine/containerd tasks_from=reset при обнаружении иного (не
+    containerd) container_manager и запущенного containerd. Изолированный запуск только с --tags reset_containerd
+    небезопасен: пропускаются задачи сбора фактов (service_facts, is_ostree) и охранные условия блока,
+    из-за чего логика удаления выполнится вне ожидаемого контекста. Использовать осознанно.
+
+    '
+  reliability: authoritative
+- ansible_tag: reset_crio
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Teardown-тег внутри роли container-engine/cri-o (tasks/reset.yml). Все задачи файла помечены
+    этим тегом: удаление apt/yum-репозиториев Kubic/CRI-O, очистка метаданных yum, удаление crictl и /etc/crictl.yaml,
+    остановка и отключение сервиса crio, удаление конфигурации CRI-O (/etc/crio, /etc/containers, /etc/systemd/system/crio.service.d)
+    и удаление бинарников/libexec CRI-O (crio_bin_files, crio_libexec_files).
+
+    '
+  playbooks: []
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  roles:
+  - container-engine/cri-o
+  - container-engine/validate-container-engine
+  source_paths:
+  - roles/container-engine/cri-o/tasks/reset.yml
+  - roles/container-engine/validate-container-engine/tasks/main.yml
+  standalone_run: unsafe
+  notes: 'Тег reset_crio не задан ни в одном плейбуке напрямую и в docs/ansible/ansible.md не описан.
+    Задачи reset.yml роли cri-o достигаются через validate-container-engine (блок "Uninstall crio"), который
+    вызывает import_role container-engine/cri-o tasks_from=reset при обнаружении иного (не crio) container_manager
+    и запущенного crio. Изолированный запуск только с этим тегом небезопасен: пропускаются задачи сбора
+    фактов и охранные условия блока.
+
+    '
+  reliability: authoritative
+- ansible_tag: resolvconf
+  description: 'Настройка /etc/resolv.conf и разрешения имён на узлах (роль kubernetes/preinstall). Тег
+    resolvconf помечает установку фактов (0020-set_facts) и задачи применения resolvconf (0060), systemd-resolved
+    (0061), NetworkManager DNS (0063) и dhclient-хуков (0100/0110). Отдельные play в cluster.yml/scale.yml/upgrade_cluster.yml
+    (dns_late) и reset.yml (dns_early) вызывают роль preinstall именно с этим тегом, чтобы обновить resolv.conf
+    после поднятия кластерного DNS или до сброса.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  - reset.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - kubernetes/preinstall
+  source_paths:
+  - roles/kubernetes/preinstall/tasks/main.yml
+  - playbooks/cluster.yml
+  - playbooks/reset.yml
+  standalone_run: safe
+  notes: 'Применяется только при dns_mode != ''none'' и resolvconf_mode == ''host_resolvconf''. Пример
+    изолированного запуска в docs: `-e dns_mode=''none'' --tags resolvconf` удаляет IP кластерного DNS-резолвера
+    из /etc/resolv.conf. Соответствует docs ("Configuring /etc/resolv.conf for hosts/apps").
+
+    '
+  reliability: authoritative
+- ansible_tag: scheduler_plugins
+  description: 'Разворачивает проект scheduler-plugins (SIG Scheduling): создаёт каталог, рендерит и применяет
+    CRD (appgroups, networktopologies, elasticquotas, podgroups, noderesourcetopologies), namespace, SA,
+    RBAC, ConfigMap и deployment контроллера/шедулера, ожидает готовности подов. Роль kubernetes-apps/scheduler_plugins.'
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/scheduler_plugins
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/scheduler_plugins/tasks/main.yml
+  standalone_run: risky
+  notes: 'ВАЖНО. Условие подключения роли в roles/kubernetes-apps/meta/main.yml: scheduler_plugins_enabled
+    (по умолчанию false) И kube_major_version is version(''1.29'', ''<'') И kube_control_plane[0]. kube_major_version
+    вычисляется из kube_version (roles/kubespray_defaults/ vars/main/main.yml: "{{ (kube_version | split(''.''))[:-1]
+    | join(''.'') }}"), а kube_version по умолчанию в v2.30.0 = 1.34.x, то есть kube_major_version = "1.34".
+    Проверка "1.34" < "1.29" ложна, поэтому при дефолтной версии Kubernetes роль scheduler_plugins НЕ
+    разворачивается даже при scheduler_plugins_enabled=true — addon фактически инертен для K8s >= 1.29.
+    Развернуть его можно только на кластере с kube_version < 1.29. Это отличие от предыдущих версий следует
+    учитывать: тег присутствует, но при штатной установке v2.30.0 ничего не делает.'
+  reliability: authoritative
+- ansible_tag: services
+  description: 'Остановка и удаление systemd-сервисов при сбросе узла (роль reset). Тег services помечает:
+    остановку/отключение kubelet, cri-dockerd, containerd, etcd, etcd-events; удаление unit-файлов этих
+    сервисов (а также calico-node, k8s-certs-renew, http-proxy drop-in), и рестарт сетевых сервисов (NetworkManager/systemd-networkd/networking)
+    после сброса. Останавливает компоненты кластера на узле.
+
+    '
+  playbooks:
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - reset
+  source_paths:
+  - roles/reset/tasks/main.yml
+  standalone_run: unsafe
+  notes: 'Разрушающая операция: останавливает kubelet/containerd/etcd и удаляет их unit-файлы. Опасно
+    на рабочем узле вне полного сброса. Соответствует docs/ansible/ansible.md ("Remove services (etcd,
+    kubelet etc...) when resetting").
+
+    '
+  reliability: authoritative
+- ansible_tag: snapshot
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Создаёт VolumeSnapshotClass для Cinder CSI: копирует шаблон cinder-csi-snapshot-class.yml
+    и применяет его через kubectl (roles/kubernetes-apps/snapshots/cinder-csi/tasks/main.yml). Не ставит
+    сам контроллер снапшотов.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/snapshots/cinder-csi
+  source_paths:
+  - roles/kubernetes-apps/snapshots/meta/main.yml
+  - roles/kubernetes-apps/snapshots/cinder-csi/tasks/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: cinder_csi_enabled (тег помечен вместе с cinder-csi-driver). Задачи ограничены
+    groups[''kube_control_plane''][0]. Отличие от snapshot-controller: snapshot = только VolumeSnapshotClass
+    Cinder; snapshot-controller = сам контроллер; snapshots = зонтик над обоими. Практически бесполезен
+    без snapshot-controller.
+
+    '
+  reliability: authoritative
+- ansible_tag: snapshot-controller
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает CSI Snapshot Controller: проверяет наличие namespace, генерирует и применяет
+    манифесты snapshot-ns, rbac-snapshot-controller, snapshot-controller (roles/kubernetes-apps/snapshots/snapshot-controller/tasks/main.yml).
+    Ставит сам контроллер снапшотов и его RBAC, но не VolumeSnapshotClass.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/snapshots/snapshot-controller
+  source_paths:
+  - roles/kubernetes-apps/snapshots/meta/main.yml
+  - roles/kubernetes-apps/snapshots/snapshot-controller/tasks/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: cinder_csi_enabled or csi_snapshot_controller_enabled. Все задачи ограничены
+    groups[''kube_control_plane''][0]. Отличие от тега snapshot: этот ставит контроллер и RBAC, а snapshot
+    создаёт только VolumeSnapshotClass Cinder. Требует работающий control plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: snapshots
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Зонтичный тег подсистемы снапшотов. Запускает роль roles/kubernetes-apps/snapshots, которая
+    через зависимости ставит snapshot-controller (при cinder_csi_enabled or csi_snapshot_controller_enabled)
+    и VolumeSnapshotClass Cinder (при cinder_csi_enabled). Роль выполняется на groups[''kube_control_plane''][0].
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/snapshots
+  - kubernetes-apps/snapshots/snapshot-controller
+  - kubernetes-apps/snapshots/cinder-csi
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/snapshots/meta/main.yml
+  standalone_run: safe
+  notes: 'В roles/kubernetes-apps/meta/main.yml роль snapshots помечена тегами snapshots и csi-driver
+    и выполняется только на первом control plane узле (без флага включения на уровне роли; конкретные
+    зависимости имеют свои условия). Отличие от родственных тегов: snapshots — зонтик; snapshot-controller
+    — только контроллер снапшотов; snapshot — только VolumeSnapshotClass Cinder. Требует работающий control
+    plane.
+
+    '
+  reliability: authoritative
+- ansible_tag: system-packages
+  description: 'Установка системных пакетов через пакетный менеджер ОС (роль bootstrap_os → import роли
+    system_packages). Обновляет кэш пакетов (zypper/apt/dnf), удаляет устаревший файл репозитория docker,
+    ставит epel-release на RHEL-производных и выполняет установку/удаление пакетов из наборов pkgs и pkgs_to_remove.
+    Пропускается на Flatcar и Fedora CoreOS.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  - reset.yml
+  - remove_node.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - calico_rr
+  roles:
+  - bootstrap_os
+  - system_packages
+  source_paths:
+  - roles/bootstrap_os/tasks/main.yml
+  - roles/system_packages/tasks/main.yml
+  standalone_run: risky
+  notes: 'Роль system_packages вызывается из bootstrap_os, где distro-специфичные vars (в т.ч. наборы
+    пакетов) подключаются задачами с тегом facts. При запуске только `--tags system-packages` без facts
+    переменные pkgs могут быть не определены. Соответствует docs/ansible/ansible.md ("Install packages
+    using OS package manager").
+
+    '
+  reliability: authoritative
+- ansible_tag: system-upgrade
+  description: 'Обновление системных пакетов ОС в процессе апгрейда кластера (роль upgrade/system-upgrade),
+    подключается на уровне play в upgrade_cluster.yml. Роль в зависимости от семейства ОС запускает APT-
+    (Debian) или YUM-обновление (RedHat, кроме Fedora CoreOS) при включённой переменной system_upgrade.
+    Выполняется по control plane узлам (serial 1) и рабочим узлам (батчами).
+
+    '
+  playbooks:
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  - kube_node
+  - calico_rr
+  roles:
+  - upgrade/system-upgrade
+  source_paths:
+  - playbooks/upgrade_cluster.yml
+  - roles/upgrade/system-upgrade/tasks/main.yml
+  standalone_run: risky
+  notes: 'Срабатывает только при system_upgrade=true; может приводить к перезагрузке узлов (system_upgrade_reboot)
+    и требует последующей загрузки образов (роль download в том же play). Присутствует только в upgrade_cluster.yml.
+    В docs/ansible/ansible.md отдельной строки нет — подтверждено кодом.
+
+    '
+  reliability: authoritative
+- ansible_tag: system-upgrade-apt
+  description: 'Подтег системного обновления для Debian-семейства (роль upgrade/system-upgrade). Включает
+    apt.yml при system_upgrade=true и ansible_os_family == ''Debian''. Выполняет обновление пакетов через
+    APT в рамках апгрейда кластера.
+
+    '
+  playbooks:
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  - kube_node
+  - calico_rr
+  roles:
+  - upgrade/system-upgrade
+  source_paths:
+  - roles/upgrade/system-upgrade/tasks/main.yml
+  standalone_run: risky
+  notes: 'Условия: system_upgrade=true и Debian. Изолированный запуск обновляет системные пакеты и может
+    требовать перезагрузки. Доступен только в upgrade_cluster.yml. В docs/ansible/ansible.md не описан
+    — подтверждено кодом.
+
+    '
+  reliability: authoritative
+- ansible_tag: system-upgrade-yum
+  description: 'Подтег системного обновления для RedHat-семейства (роль upgrade/system-upgrade). Включает
+    yum.yml при system_upgrade=true, ansible_os_family == ''RedHat'' и не Fedora CoreOS. Выполняет обновление
+    пакетов через YUM/DNF в рамках апгрейда кластера.
+
+    '
+  playbooks:
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  - kube_node
+  - calico_rr
+  roles:
+  - upgrade/system-upgrade
+  source_paths:
+  - roles/upgrade/system-upgrade/tasks/main.yml
+  standalone_run: risky
+  notes: 'Условия: system_upgrade=true, RedHat и не Fedora CoreOS. Изолированный запуск обновляет системные
+    пакеты и может требовать перезагрузки. Доступен только в upgrade_cluster.yml. В docs/ansible/ansible.md
+    не описан — подтверждено кодом.
+
+    '
+  reliability: authoritative
+- ansible_tag: upcloud-csi-driver
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает CSI-драйвер UpCloud (roles/kubernetes-apps/csi_driver/upcloud) и объекты
+    хранилища через roles/kubernetes-apps/persistent_volumes/upcloud-csi (StorageClass).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/csi_driver/upcloud
+  - kubernetes-apps/persistent_volumes/upcloud-csi
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  - roles/kubernetes-apps/persistent_volumes/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: upcloud_csi_enabled. Входит в зонтичный тег csi-driver. Расхождение с docs/ansible/ansible.md:
+    в таблице документации тег upcloud-csi-driver не описан — приоритет отдан коду (v2.30.0). При выключенном
+    флаге — no-op.
+
+    '
+  reliability: authoritative
+- ansible_tag: upgrade
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Сквозной тег, помечающий отдельные задачи обновления бинарей и addon-ов в разных ролях
+    (не является отдельной ролью). Покрывает: установку etcdctl/etcdutl и установку бинаря etcd (roles/etcd/tasks/main.yml),
+    копирование kubectl и настройку completion (roles/kubernetes/control-plane/tasks/main.yml), копирование
+    бинаря kubelet (roles/kubernetes/node/tasks/install.yml), переустановку cert-manager (ingress_controller/cert_manager)
+    и metrics_server. Позволяет прицельно перезапустить задачи, связанные с обновлением компонентов.'
+  playbooks:
+  - cluster.yml
+  - upgrade-cluster.yml
+  affected_groups:
+  - etcd
+  - kube_control_plane
+  - k8s_cluster
+  - kube_node
+  roles:
+  - etcd
+  - kubernetes/control-plane
+  - kubernetes/node
+  - kubernetes-apps/ingress_controller/cert_manager
+  - kubernetes-apps/metrics_server
+  source_paths:
+  - roles/etcd/tasks/main.yml
+  - roles/kubernetes/control-plane/tasks/main.yml
+  - roles/kubernetes/node/tasks/install.yml
+  - roles/kubernetes-apps/ingress_controller/cert_manager/tasks/main.yml
+  - roles/kubernetes-apps/metrics_server/tasks/main.yml
+  standalone_run: risky
+  notes: Не самостоятельный сценарий, а набор точечных задач в нескольких ролях. Изолированный запуск
+    затрагивает разрозненные операции (копирование бинарей, переустановка addon-ов) и требует, чтобы соответствующие
+    download/образа были доступны, а кластер работал. Тег upgrade отсутствует в справочной таблице docs/ansible/ansible.md
+    — подтверждён только по коду.
+  reliability: authoritative
+- ansible_tag: upload
+  description: 'В v2.30.0 тег upload помечает в roles/download/tasks/main.yml две подготовительные задачи
+    роли download: подготовку рабочих каталогов и переменных (import prep_download.yml) и получение бинарника
+    kubeadm со списком требуемых образов (include prep_kubeadm_images.yml). Обе задачи имеют оба тега
+    (download и upload).
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  roles:
+  - download
+  source_paths:
+  - roles/download/tasks/main.yml
+  standalone_run: risky
+  notes: 'Важное расхождение с docs/ansible/ansible.md: документация описывает upload как "Distributing
+    images/binaries across hosts", однако фактически в коде тег upload навешен только на подготовительные
+    задачи (prep_download, prep_kubeadm_images), а сама раздача образов/файлов на узлы (synchronize push
+    в download_container.yml/download_file.yml) идёт под тегом download, не upload. В примере docs upload
+    обычно исключают (`--skip-tags upload`) при локальной подготовке образов. Приоритет у кода.
+
+    '
+  reliability: authoritative
+- ansible_tag: validate-container-engine
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Первая (валидирующая) подроль роли container-engine (container-engine/validate-container-engine).
+    Определяет is_ostree, наличие systemd-юнита kubelet, собирает service_facts и ищет установленные сервисы
+    containerd/docker/crio. Если обнаружен запущенный движок, отличный от текущего container_manager (и
+    это не ostree/Flatcar), выполняет удаление старого движка: при необходимости drain узла (роль remove_node/pre_remove,
+    тег pre-remove), остановку kubelet и import_role соответствующей reset-логики (container-engine/containerd|docker|cri-o,
+    tasks_from=reset). Обеспечивает корректный переход между container runtimes.
+
+    '
+  playbooks:
+  - cluster.yml
+  - scale.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - container-engine/validate-container-engine
+  - remove_node/pre_remove
+  - container-engine/containerd
+  - container-engine/docker
+  - container-engine/cri-o
+  source_paths:
+  - roles/container-engine/meta/main.yml
+  - roles/container-engine/validate-container-engine/tasks/main.yml
+  standalone_run: risky
+  notes: 'Выполняется как часть роли container-engine (навешан тег container-engine и validate-container-engine).
+    Потенциально деструктивен: при смене движка может вызвать drain узла, остановку kubelet и полное удаление
+    ранее установленного контейнерного движка. Опирается на факты (service_facts, is_ostree). Изолированный
+    запуск безопасен только если движок не менялся; иначе способен нарушить работу узла.
+
+    '
+  reliability: authoritative
+- ansible_tag: vsphere-csi-driver
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Разворачивает CSI-драйвер vSphere (roles/kubernetes-apps/csi_driver/vsphere): генерирует
+    и применяет манифесты драйвера/RBAC/StorageClass. В отличие от остальных *-csi-driver, отдельной под-роли
+    в persistent_volumes нет — объекты создаются внутри самой роли csi_driver/vsphere.
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - kubernetes-apps/csi_driver/vsphere
+  source_paths:
+  - roles/kubernetes-apps/meta/main.yml
+  standalone_run: safe
+  notes: 'Условие включения: vsphere_csi_enabled. Входит в зонтичный тег csi-driver. В persistent_volumes/meta/main.yml
+    под-роли vsphere нет (в отличие от cinder/aws-ebs/azure/gcp/upcloud), поэтому нет парного тега persistent_volumes_vsphere_csi.
+    При выключенном флаге — no-op.
+
+    '
+  reliability: authoritative
+- ansible_tag: win_nodes
+  description: 'Специфичные для Windows задачи (роль win_nodes/kubernetes_patch), выполняются на первом
+    узле control plane. Создают каталог пользовательских манифестов и патчат DaemonSet kube-proxy nodeSelector''ом
+    kubernetes.io/os=linux, чтобы системные компоненты не планировались на Windows-узлы. Роль подключается
+    с тегами [control-plane, win_nodes].
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - kube_control_plane
+  roles:
+  - win_nodes/kubernetes_patch
+  source_paths:
+  - roles/win_nodes/kubernetes_patch/tasks/main.yml
+  - playbooks/cluster.yml
+  standalone_run: risky
+  notes: 'Требует работающего API-сервера и kubectl (patch kube-proxy), выполняется на kube_control_plane[0].
+    В изоляции без поднятого кластера завершится ошибкой. Соответствует docs/ansible/ansible.md ("Running
+    windows specific tasks").
+
+    '
+  reliability: authoritative
+- ansible_tag: youki
+  kubespray_version: v2.30.0
+  git_commit: f4ccdb5
+  description: 'Настройка OCI-рантайма youki. (1) container-engine: подроль container-engine/youki (при
+    youki_enabled и container_manager==''crio'') скачивает бинарник youki через download_file и копирует
+    его в {{ youki_bin_dir }}/youki на узлах. (2) apps/container-runtimes: подроль kubernetes-apps/container_runtimes/youki
+    (при youki_enabled и container_manager==''crio'') шаблонизирует и применяет объект RuntimeClass "youki"
+    в кластере (только на первом узле kube_control_plane).
+
+    '
+  playbooks:
+  - cluster.yml
+  - upgrade_cluster.yml
+  affected_groups:
+  - k8s_cluster
+  - etcd
+  - kube_node
+  - kube_control_plane
+  - calico_rr
+  roles:
+  - container-engine/youki
+  - kubernetes-apps/container_runtimes/youki
+  source_paths:
+  - roles/container-engine/meta/main.yml
+  - roles/container-engine/youki/tasks/main.yml
+  - roles/kubernetes-apps/container_runtimes/meta/main.yml
+  - roles/kubernetes-apps/container_runtimes/youki/tasks/main.yaml
+  standalone_run: risky
+  notes: 'youki поддерживается только совместно с CRI-O (условие youki_enabled и container_manager==''crio''
+    в обеих ролях). Установочная часть требует скачанного бинарника (download), часть RuntimeClass — готового
+    кластера и kubectl. В scale.yml роль apps не выполняется, RuntimeClass там не создаётся.
+
+    '
+  reliability: authoritative

@@ -1,0 +1,464 @@
+project: kubespray
+kubespray_version: v2.31.0
+git_commit: 1c9add4
+source_type: inventory
+source_paths:
+  - inventory/sample/group_vars/k8s_cluster/addons.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.31.0
+retrieved_at: 2026-07-14
+topics:
+  - addons
+  - inventory
+reliability: authoritative
+notes: >-
+  В v2.31.0 из addons.yml удалены переменные Kubernetes Dashboard
+  (dashboard_enabled и связанные) и ingress_nginx (ingress_nginx_enabled и
+  связанные) — соответствующие роли убраны из Kubespray. В sample-файле их больше нет.
+variables:
+
+  # --- Helm ---
+  - name: helm_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Установить клиент Helm на узлы control-plane."
+
+  # --- Registry ---
+  - name: registry_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть внутрикластерный registry."
+  - name: registry_namespace
+    sample_value: kube-system
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Namespace для внутрикластерного registry."
+  - name: registry_storage_class
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). StorageClass для registry."
+  - name: registry_disk_size
+    sample_value: "10Gi"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Размер диска для registry."
+
+  # --- Metrics Server ---
+  - name: metrics_server_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть metrics-server."
+  - name: metrics_server_container_port
+    sample_value: 10250
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Порт контейнера metrics-server."
+  - name: metrics_server_kubelet_insecure_tls
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Не проверять TLS-сертификаты kubelet у metrics-server."
+  - name: metrics_server_metric_resolution
+    sample_value: 15s
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Интервал сбора метрик metrics-server."
+  - name: metrics_server_kubelet_preferred_address_types
+    sample_value: "InternalIP,ExternalIP,Hostname"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Предпочтительные типы адресов kubelet для metrics-server."
+  - name: metrics_server_host_network
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Использовать hostNetwork для metrics-server."
+  - name: metrics_server_replicas
+    sample_value: 1
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Число реплик metrics-server."
+
+  # --- Rancher Local Path Provisioner ---
+  - name: local_path_provisioner_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть Rancher Local Path Provisioner."
+  - name: local_path_provisioner_namespace
+    sample_value: "local-path-storage"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Namespace для Local Path Provisioner."
+  - name: local_path_provisioner_storage_class
+    sample_value: "local-path"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Имя StorageClass Local Path Provisioner."
+  - name: local_path_provisioner_reclaim_policy
+    sample_value: Delete
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Reclaim policy для PV Local Path Provisioner."
+  - name: local_path_provisioner_claim_root
+    sample_value: /opt/local-path-provisioner/
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Корневой путь на узле для томов Local Path Provisioner."
+  - name: local_path_provisioner_debug
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Режим отладки Local Path Provisioner."
+  - name: local_path_provisioner_image_repo
+    sample_value: "{{ docker_image_repo }}/rancher/local-path-provisioner"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Репозиторий образа Local Path Provisioner."
+  - name: local_path_provisioner_helper_image_repo
+    sample_value: "busybox"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Репозиторий helper-образа Local Path Provisioner."
+  - name: local_path_provisioner_helper_image_tag
+    sample_value: "latest"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Тег helper-образа Local Path Provisioner."
+
+  # --- Local Volume Provisioner ---
+  - name: local_volume_provisioner_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть Local Volume Provisioner."
+  - name: local_volume_provisioner_namespace
+    sample_value: kube-system
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Namespace для Local Volume Provisioner."
+  - name: local_volume_provisioner_nodelabels
+    sample_value: |-
+      - kubernetes.io/hostname
+      - topology.kubernetes.io/region
+      - topology.kubernetes.io/zone
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Метки узла, копируемые в создаваемые PV."
+  - name: local_volume_provisioner_storage_classes
+    sample_value: |-
+      local-storage:
+        host_dir: /mnt/disks
+        mount_dir: /mnt/disks
+        volume_mode: Filesystem
+        fs_type: ext4
+      fast-disks:
+        host_dir: /mnt/fast-disks
+        mount_dir: /mnt/fast-disks
+        block_cleaner_command:
+          - "/scripts/shred.sh"
+          - "2"
+        volume_mode: Filesystem
+        fs_type: ext4
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Определение StorageClass'ов Local Volume Provisioner (host_dir, mount_dir, volume_mode, fs_type, block_cleaner_command)."
+  - name: local_volume_provisioner_tolerations
+    sample_value: |-
+      - effect: NoSchedule
+        operator: Exists
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Tolerations для подов Local Volume Provisioner."
+
+  # --- CSI Volume Snapshot Controller ---
+  - name: csi_snapshot_controller_enabled
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Развернуть CSI snapshot controller (cinder_csi_enabled=true включает его автоматически; Longhorn требует true)."
+  - name: snapshot_controller_namespace
+    sample_value: kube-system
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Namespace для CSI snapshot controller."
+
+  # --- Gateway API ---
+  - name: gateway_api_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Установить CRD Gateway API."
+
+  # --- ALB Ingress Controller ---
+  - name: ingress_alb_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть AWS ALB Ingress Controller."
+  - name: alb_ingress_aws_region
+    sample_value: "us-east-1"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Регион AWS для ALB Ingress Controller."
+  - name: alb_ingress_restrict_scheme
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Ограничивать schema ALB Ingress."
+  - name: alb_ingress_aws_debug
+    sample_value: "false"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Логировать все исходящие запросы к AWS API."
+
+  # --- Cert Manager ---
+  - name: cert_manager_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть cert-manager."
+  - name: cert_manager_namespace
+    sample_value: "cert-manager"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Namespace для cert-manager."
+  - name: cert_manager_tolerations
+    sample_value: |-
+      - key: node-role.kubernetes.io/control-plane
+        effect: NoSchedule
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Tolerations для подов cert-manager."
+  - name: cert_manager_affinity
+    sample_value: |-
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          preference:
+            matchExpressions:
+            - key: node-role.kubernetes.io/control-plane
+              operator: In
+              values:
+              - ""
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Affinity для подов cert-manager."
+  - name: cert_manager_nodeselector
+    sample_value: |-
+      kubernetes.io/os: "linux"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). nodeSelector для подов cert-manager."
+  - name: cert_manager_trusted_internal_ca
+    sample_value: |-
+      -----BEGIN CERTIFICATE-----
+      [REPLACE with your CA certificate]
+      -----END CERTIFICATE-----
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Доверенный внутренний CA-сертификат для cert-manager."
+  - name: cert_manager_leader_election_namespace
+    sample_value: kube-system
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Namespace для leader election cert-manager."
+  - name: cert_manager_dns_policy
+    sample_value: "ClusterFirst"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). dnsPolicy для подов cert-manager."
+  - name: cert_manager_dns_config
+    sample_value: |-
+      nameservers:
+        - "1.1.1.1"
+        - "8.8.8.8"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). dnsConfig (nameservers) для подов cert-manager."
+  - name: cert_manager_controller_extra_args
+    sample_value: |-
+      - "--dns01-recursive-nameservers-only=true"
+      - "--dns01-recursive-nameservers=1.1.1.1:53,8.8.8.8:53"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Дополнительные аргументы контроллера cert-manager."
+
+  # --- MetalLB ---
+  - name: metallb_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть MetalLB."
+  - name: metallb_speaker_enabled
+    sample_value: "{{ metallb_enabled }}"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Включить MetalLB speaker (по умолчанию равно metallb_enabled)."
+  - name: metallb_namespace
+    sample_value: "metallb-system"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace для MetalLB."
+  - name: metallb_protocol
+    sample_value: "layer2"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Протокол MetalLB: layer2 или bgp."
+  - name: metallb_port
+    sample_value: "7472"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Порт метрик MetalLB."
+  - name: metallb_memberlist_port
+    sample_value: "7946"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Порт memberlist MetalLB."
+  - name: metallb_config
+    sample_value: |-
+      speaker:
+        nodeselector:
+          kubernetes.io/os: "linux"
+        tolerations:
+          - key: "node-role.kubernetes.io/control-plane"
+            operator: "Equal"
+            value: ""
+            effect: "NoSchedule"
+      address_pools:
+        primary:
+          ip_range:
+            - 10.5.0.0/16
+          auto_assign: true
+      layer2:
+        - primary
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Полная конфигурация MetalLB: speaker/controller (nodeselector, tolerations), address_pools, layer2/layer3, communities, peers. В файле приведён развёрнутый пример."
+
+  # --- Argo CD ---
+  - name: argocd_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть Argo CD."
+  - name: argocd_namespace
+    sample_value: argocd
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Namespace для Argo CD."
+  - name: argocd_admin_password
+    sample_value: "password"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Пароль администратора Argo CD (иначе генерируется автоматически в secret argocd-initial-admin-secret)."
+
+  # --- Kube VIP ---
+  - name: kube_vip_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть kube-vip для виртуального IP API-сервера."
+  - name: kube_vip_arp_enabled
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Включить ARP-режим kube-vip."
+  - name: kube_vip_controlplane_enabled
+    sample_value: true
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Включить kube-vip для control-plane."
+  - name: kube_vip_address
+    sample_value: 192.168.56.120
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Виртуальный IP-адрес kube-vip."
+  - name: loadbalancer_apiserver
+    sample_value: |-
+      address: "{{ kube_vip_address }}"
+      port: 6443
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Адрес/порт внешнего балансировщика API-сервера (для kube-vip)."
+  - name: kube_vip_interface
+    sample_value: eth0
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Сетевой интерфейс kube-vip."
+  - name: kube_vip_services_enabled
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Включить kube-vip для сервисов типа LoadBalancer."
+  - name: kube_vip_dns_mode
+    sample_value: first
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). DNS-режим kube-vip."
+  - name: kube_vip_cp_detect
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Автоопределение control-plane для kube-vip."
+  - name: kube_vip_leasename
+    sample_value: plndr-cp-lock
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Имя lease для лидерства kube-vip."
+  - name: kube_vip_enable_node_labeling
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Включить проставление меток узлов kube-vip."
+  - name: kube_vip_lb_fwdmethod
+    sample_value: local
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Метод форвардинга нагрузки kube-vip."
+  - name: kube_vip_bgp_sourceip
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Source IP для BGP kube-vip."
+  - name: kube_vip_bgp_sourceif
+    sample_value: ""
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Source-интерфейс для BGP kube-vip."
+
+  # --- Node Feature Discovery ---
+  - name: node_feature_discovery_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть Node Feature Discovery."
+  - name: node_feature_discovery_gc_sa_name
+    sample_value: node-feature-discovery
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Имя service account сборщика мусора NFD."
+  - name: node_feature_discovery_gc_sa_create
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Создавать ли service account сборщика мусора NFD."
+  - name: node_feature_discovery_worker_sa_name
+    sample_value: node-feature-discovery
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Имя service account воркера NFD."
+  - name: node_feature_discovery_worker_sa_create
+    sample_value: false
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Создавать ли service account воркера NFD."
+  - name: node_feature_discovery_master_config
+    sample_value: |-
+      extraLabelNs: ["nvidia.com"]
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пример (закомментирован). Конфигурация master-компонента NFD (например, extraLabelNs)."
