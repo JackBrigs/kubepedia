@@ -1,0 +1,347 @@
+---
+project: kubespray
+kubespray_version: v2.27.0
+git_commit: 9ec9b3a
+source_type: code
+source_paths:
+  - roles/kubespray-defaults/defaults/main/download.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.27.0
+retrieved_at: 2026-07-15
+topics:
+  - download
+reliability: authoritative
+
+# Примечания по источникам в v2.27.0:
+# - Каталога roles/download/defaults/ НЕТ. Все переменные механизма загрузки —
+#   в roles/kubespray-defaults/defaults/main/download.yml (каталог с ДЕФИСОМ).
+# - В v2.27.0 многие версии компонентов заданы явными литералами (containerd_version: 1.7.24,
+#   runc_version: v1.2.3, cni_version: v1.4.0 и т.п.), а не вычисляются из checksums, как в v2.29.1.
+# - Переменной kubeadm_image_repo в v2.27.0 НЕТ.
+# - URL-ы Kubernetes используют {{ kube_version }} напрямую (kube_version уже содержит префикс v: v1.31.4).
+# - Пер-версионные версии/образы компонентов даны в профильных справочниках
+#   (etcd.yaml, cni.yaml, container-runtime.yaml); здесь — только механизм загрузки.
+
+notes:
+  - >
+    Механизм контрольных сумм: для каждого скачиваемого файла определена переменная вида
+    <компонент>_binary_checksum / <компонент>_archive_checksum, которая берёт значение из
+    больших словарей *_checksums (roles/kubespray-defaults/vars/main/checksums.yml) по ключам
+    [image_arch][<версия>]. Пер-версионные таблицы сумм в справочник не включены — см. checksums.yml тега.
+  - >
+    Переменные *_image_repo / *_image_tag строятся от базовых репозиториев
+    (kube_image_repo, docker_image_repo, quay_image_repo, github_image_repo, gcr_image_repo)
+    и переменных версий, что позволяет перенаправить все образы на локальное зеркало.
+
+variables:
+  # === Каталоги и кэш ===
+  - name: local_release_dir
+    default: "/tmp/releases"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Каталог на целевых узлах, куда складываются скачанные файлы (бинарники, архивы)."
+    related: [download_cache_dir]
+
+  - name: download_cache_dir
+    default: "/tmp/kubespray_cache"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Каталог локального кэша загрузок на хосте-делегате/Ansible-раннере."
+    related: [download_run_once, download_force_cache, download_keep_remote_cache]
+
+  - name: download_keep_remote_cache
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Не удалять файлы удалённого кэша после использования (полезно только при разработке Kubespray)."
+    related: [download_cache_dir]
+
+  - name: download_force_cache
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "При download_run_once=false принудительно раздавать файлы/образы из локального кэша и копировать скачанное на узлах обратно в кэш раннера."
+    conditions: "Имеет смысл только при download_run_once: false"
+    related: [download_run_once, download_cache_dir]
+
+  # === Режимы работы механизма загрузки ===
+  - name: skip_downloads
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Пропустить сами загрузки; переменные роли download при этом всё равно вычисляются."
+
+  - name: skip_kubeadm_images
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Опционально пропустить загрузку образов, требуемых kubeadm."
+    related: [kubeadm_images]
+
+  - name: kubeadm_images
+    default: "{}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Словарь образов kubeadm; заполняется динамически задачами роли download."
+    related: [skip_kubeadm_images]
+
+  - name: download_run_once
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Скачивать каждый файл/образ только один раз (на хосте-делегате), затем раздавать на остальные узлы; не работает на Flatcar без download_localhost."
+    related: [download_localhost, download_delegate, download_compress, download_cache_dir]
+
+  - name: download_compress
+    default: "1"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Уровень сжатия при передаче образов в режиме download_run_once (1 — самый быстрый)."
+    conditions: "Используется в режиме download_run_once"
+    related: [download_run_once]
+
+  - name: download_container
+    default: "true"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Скачивать контейнерные образы (а не только файлы)."
+
+  - name: download_localhost
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "В режиме download_run_once использовать localhost (Ansible-раннер) как хост загрузки; требует docker и sudo; иначе используется первый узел kube_control_plane."
+    conditions: "Имеет смысл при download_run_once: true"
+    related: [download_run_once, download_delegate]
+
+  - name: download_always_pull
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Всегда делать pull образов; иначе наличие проверяется по тегу/дайджесту в локальном хранилище."
+
+  - name: download_validate_certs
+    default: "true"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Проверять SSL-сертификаты в get_url; отключение бывает нужно при https-прокси (баг ansible#32750), контрольные суммы проверяются в любом случае."
+
+  - name: download_delegate
+    default: "{% if download_localhost %}localhost{% else %}{{ groups['kube_control_plane'][0] }}{% endif %}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Хост, на который делегируются загрузки в режиме download_run_once: localhost либо первый узел kube_control_plane."
+    conditions: "Используется в режиме download_run_once"
+    related: [download_localhost, download_run_once]
+
+  - name: download_retries
+    default: "4"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Число повторных попыток загрузки файлов и контейнерных образов."
+
+  - name: unsafe_show_logs
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Показывать отладочный вывод задач загрузки (может содержать приватные данные); в проде рекомендуется false. Также объявлена в roles/etcd/defaults/main.yml."
+
+  # === Команды работы с образами и выбор инструмента ===
+  - name: docker_image_pull_command
+    default: "{{ docker_bin_dir }}/docker pull"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Команда pull образа для container_manager=docker."
+
+  - name: docker_image_info_command
+    default: "{{ docker_bin_dir }}/docker images -q | xargs -i ... docker inspect (двойная Jinja-обработка через raw/endraw)"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Команда получения списка локальных образов для docker (двойная Jinja-обработка через raw/endraw)."
+
+  - name: nerdctl_image_info_command
+    default: "{{ bin_dir }}/nerdctl -n k8s.io images --format '{% raw %}{{ .Repository }}:{{ .Tag }}{% endraw %}' 2>/dev/null | grep -v ^:$ | tr '\\n' ','"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Команда получения списка локальных образов для containerd (через nerdctl, namespace k8s.io)."
+
+  - name: nerdctl_image_pull_command
+    default: "{{ bin_dir }}/ctr -n k8s.io images pull{% if containerd_registries_mirrors is defined %} --hosts-dir {{ containerd_cfg_dir }}/certs.d{%- endif -%}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Команда pull образа для container_manager=containerd. В v2.27.0 использует ctr (обход issue kubespray#10670), а не nerdctl."
+
+  - name: crictl_image_info_command
+    default: "{{ bin_dir }}/crictl images --verbose | awk -F ': ' '/RepoTags|RepoDigests/ {print $2}' | tr '\\n' ','"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Команда получения списка локальных образов для CRI-O (crictl)."
+
+  - name: crictl_image_pull_command
+    default: "{{ bin_dir }}/crictl pull"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Команда pull образа для container_manager=crio (crictl)."
+
+  - name: image_command_tool
+    default: "{%- if container_manager == 'containerd' -%}nerdctl{%- elif container_manager == 'crio' -%}crictl{%- else -%}{{ container_manager }}{%- endif -%}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Инструмент работы с образами, выбираемый по container_manager: nerdctl / crictl / docker."
+    related: [image_pull_command, image_info_command]
+
+  - name: image_command_tool_on_localhost
+    default: "{{ image_command_tool }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Инструмент работы с образами на localhost (для download_localhost); по умолчанию тот же, что на узлах."
+    related: [image_command_tool, download_localhost]
+
+  - name: image_pull_command
+    default: "{{ lookup('vars', image_command_tool + '_image_pull_command') }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Итоговая команда pull, разрешается в docker/nerdctl(ctr)/crictl-вариант по image_command_tool."
+    related: [image_command_tool]
+
+  - name: image_info_command
+    default: "{{ lookup('vars', image_command_tool + '_image_info_command') }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Итоговая команда получения информации об образах, разрешается по image_command_tool."
+    related: [image_command_tool]
+
+  - name: image_pull_command_on_localhost
+    default: "{{ lookup('vars', image_command_tool_on_localhost + '_image_pull_command') }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Команда pull на localhost в режиме download_localhost."
+    conditions: "Используется при download_localhost: true"
+    related: [image_command_tool_on_localhost]
+
+  - name: image_info_command_on_localhost
+    default: "{{ lookup('vars', image_command_tool_on_localhost + '_image_info_command') }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Команда информации об образах на localhost в режиме download_localhost."
+    conditions: "Используется при download_localhost: true"
+    related: [image_command_tool_on_localhost]
+
+  - name: image_arch
+    default: "{{ host_architecture | default('amd64') }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Архитектура скачиваемых образов и бинарников (ключ в словарях checksums и в URL загрузок)."
+
+  # === Мажорная версия Kubernetes (ключ для карт версий компонентов) ===
+  - name: kube_major_version
+    default: "{{ kube_version | regex_replace('^v([0-9])+\\.([0-9]+)\\.[0-9]+', 'v\\1.\\2') }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Мажорная версия Kubernetes (например v1.31), по которой выбираются версии etcd, crictl, crio, pause и др. из *_supported_versions."
+    related: [kube_version]
+
+  # === Базовые репозитории образов (точки подмены на зеркала) ===
+  - name: gcr_image_repo
+    default: "gcr.io"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Базовый адрес реестра gcr.io."
+
+  - name: kube_image_repo
+    default: "registry.k8s.io"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Базовый реестр образов Kubernetes (kube-proxy, pause, coredns, addons registry.k8s.io). В v2.27.0 отдельного kubeadm_image_repo нет."
+
+  - name: docker_image_repo
+    default: "docker.io"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Базовый адрес реестра Docker Hub."
+
+  - name: quay_image_repo
+    default: "quay.io"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Базовый адрес реестра quay.io (etcd, cilium, calico)."
+
+  - name: github_image_repo
+    default: "ghcr.io"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Базовый адрес реестра GitHub Container Registry (multus, kube-vip)."
+
+  # === Базовые URL файловых загрузок (точки подмены для offline/зеркал) ===
+  - name: github_url
+    default: "https://github.com"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Базовый URL GitHub для загрузки релизных артефактов (etcd, cni, runc, containerd и др.)."
+
+  - name: dl_k8s_io_url
+    default: "https://dl.k8s.io"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Базовый URL загрузки бинарников Kubernetes (kubelet, kubectl, kubeadm)."
+
+  - name: storage_googleapis_url
+    default: "https://storage.googleapis.com"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Базовый URL Google Storage (cri-o, gVisor)."
+
+  - name: get_helm_url
+    default: "https://get.helm.sh"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Базовый URL загрузки Helm."
+
+  # === URL конкретных загрузок (*_download_url), выборочно ===
+  - name: kubelet_download_url
+    default: "{{ dl_k8s_io_url }}/release/{{ kube_version }}/bin/linux/{{ image_arch }}/kubelet"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL бинарника kubelet; в v2.27.0 использует {{ kube_version }} напрямую (уже с префиксом v)."
+    related: [dl_k8s_io_url, image_arch]
+
+  - name: kubectl_download_url
+    default: "{{ dl_k8s_io_url }}/release/{{ kube_version }}/bin/linux/{{ image_arch }}/kubectl"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL бинарника kubectl."
+    related: [dl_k8s_io_url, image_arch]
+
+  - name: kubeadm_download_url
+    default: "{{ dl_k8s_io_url }}/release/{{ kube_version }}/bin/linux/{{ image_arch }}/kubeadm"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL бинарника kubeadm."
+    related: [dl_k8s_io_url, image_arch]
+
+  - name: etcd_download_url
+    default: "{{ github_url }}/etcd-io/etcd/releases/download/{{ etcd_version }}/etcd-{{ etcd_version }}-linux-{{ image_arch }}.tar.gz"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL архива etcd (etcd_version уже с префиксом v); подробнее — в etcd.yaml."
+
+  - name: cni_download_url
+    default: "{{ github_url }}/containernetworking/plugins/releases/download/{{ cni_version }}/cni-plugins-linux-{{ image_arch }}-{{ cni_version }}.tgz"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL архива CNI-плагинов; подробнее — в cni.yaml."
+
+  - name: crictl_download_url
+    default: "{{ github_url }}/kubernetes-sigs/cri-tools/releases/download/{{ crictl_version }}/crictl-{{ crictl_version }}-{{ ansible_system | lower }}-{{ image_arch }}.tar.gz"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL архива crictl; подробнее — в container-runtime.yaml."
+
+  - name: runc_download_url
+    default: "{{ github_url }}/opencontainers/runc/releases/download/{{ runc_version }}/runc.{{ image_arch }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL бинарника runc."
+    conditions: "Скачивается при container_manager == 'containerd'"
+
+  - name: containerd_download_url
+    default: "{{ github_url }}/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-linux-{{ image_arch }}.tar.gz"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL архива containerd; в v2.27.0 нет ветки static-. Подробнее — в container-runtime.yaml."
+    conditions: "Скачивается при container_manager == 'containerd'"
+
+  - name: nerdctl_download_url
+    default: "{{ github_url }}/containerd/nerdctl/releases/download/v{{ nerdctl_version }}/nerdctl-{{ nerdctl_version }}-{{ ansible_system | lower }}-{{ image_arch }}.tar.gz"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL архива nerdctl."
+    conditions: "Скачивается при container_manager == 'containerd'"
+
+  - name: helm_download_url
+    default: "{{ get_helm_url }}/helm-{{ helm_version }}-linux-{{ image_arch }}.tar.gz"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL архива Helm."
+    conditions: "Скачивается при helm_enabled"
+
+  - name: skopeo_download_url
+    default: "{{ github_url }}/lework/skopeo-binary/releases/download/{{ skopeo_version }}/skopeo-linux-{{ image_arch }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL бинарника skopeo."
+    conditions: "Скачивается при container_manager == 'crio'"
+
+  - name: ciliumcli_download_url
+    default: "{{ github_url }}/cilium/cilium-cli/releases/download/{{ cilium_cli_version }}/cilium-linux-{{ image_arch }}.tar.gz"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL архива cilium-cli; подробнее — в cni.yaml."
+    conditions: "Скачивается при kube_network_plugin == 'cilium' или cilium_deploy_additionally"
+
+  - name: calicoctl_download_url
+    default: "{{ github_url }}/projectcalico/calico/releases/download/{{ calico_ctl_version }}/calicoctl-linux-{{ image_arch }}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "URL бинарника calicoctl (Calico не индексируется детально по охвату; приведён как пример механизма)."
+    conditions: "Скачивается при kube_network_plugin == 'calico'"
+
+  # === Словарь загрузок ===
+  - name: downloads
+    default: "<большой словарь (~74 элемента): netcheck_server, etcd, cni, kubeadm, kubelet, kubectl, crictl, containerd, runc, cilium, coredns, helm, metrics_server и др.>"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Главный реестр всех загрузок: для каждого элемента задаются enabled (условие), container/file, repo/tag или url/dest/checksum, unarchive, owner/mode и целевые группы хостов (groups)."
+    related: [download_defaults, skip_downloads, download_container]
+
+  - name: download_defaults
+    default: "{container: false, file: false, repo: None, tag: None, enabled: false, dest: None, version: None, url: None, unarchive: false, owner: \"{{ kube_owner }}\", mode: None}"
+    source_path: roles/kubespray-defaults/defaults/main/download.yml
+    description: "Значения по умолчанию, которыми дополняется каждый элемент словаря downloads."
+    related: [downloads]

@@ -2,3 +2,6 @@
 !/projects/kubepedia/
 !/projects/kubepedia/**
 kubespray-src/
+
+# macOS
+.DS_Store

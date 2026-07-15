@@ -1,0 +1,672 @@
+project: kubespray
+kubespray_version: v2.27.1
+git_commit: 45140b5
+source_type: inventory
+source_paths:
+  - inventory/sample/group_vars/k8s_cluster/addons.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.27.1
+retrieved_at: 2026-07-15
+topics: [inventory, addons]
+reliability: authoritative
+# Примечания:
+# - По умолчанию все аддоны выключены (флаг *_enabled = false либо закомментирован).
+# - is_set: true — переменная раскомментирована; is_set: false — закомментированный пример.
+# - Отличия v2.27.1 от v2.29.1: присутствуют аддоны cephfs_provisioner_* и rbd_provisioner_*
+#   (удалены в более поздних версиях), а также krew_enabled/krew_root_dir прямо в addons.yml.
+variables:
+
+  # --- Dashboard ---
+  - name: dashboard_enabled
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Kubernetes Dashboard (требует RBAC). В sample закомментирован."
+
+  # --- Helm ---
+  - name: helm_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Установка Helm CLI на ноды."
+
+  # --- Registry ---
+  - name: registry_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть внутренний registry."
+  - name: registry_namespace
+    sample_value: "kube-system (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace registry."
+  - name: registry_storage_class
+    sample_value: "\"\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "StorageClass для PVC registry."
+  - name: registry_disk_size
+    sample_value: "\"10Gi\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Размер диска registry."
+
+  # --- Metrics Server ---
+  - name: metrics_server_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Развернуть Metrics Server."
+  - name: metrics_server_container_port
+    sample_value: "10250 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Порт контейнера Metrics Server."
+  - name: metrics_server_kubelet_insecure_tls
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Не проверять TLS kubelet."
+  - name: metrics_server_metric_resolution
+    sample_value: "15s (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Разрешение метрик."
+  - name: metrics_server_kubelet_preferred_address_types
+    sample_value: "\"InternalIP,ExternalIP,Hostname\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Порядок типов адресов kubelet."
+  - name: metrics_server_host_network
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "hostNetwork для пода Metrics Server."
+  - name: metrics_server_replicas
+    sample_value: "1 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Число реплик Metrics Server."
+
+  # --- Local Path Provisioner ---
+  - name: local_path_provisioner_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Rancher Local Path Provisioner."
+  - name: local_path_provisioner_namespace
+    sample_value: "\"local-path-storage\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace провижионера."
+  - name: local_path_provisioner_storage_class
+    sample_value: "\"local-path\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя StorageClass."
+  - name: local_path_provisioner_reclaim_policy
+    sample_value: "Delete (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Reclaim policy."
+  - name: local_path_provisioner_claim_root
+    sample_value: "/opt/local-path-provisioner/ (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Корневой каталог томов."
+  - name: local_path_provisioner_debug
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Debug-режим."
+  - name: local_path_provisioner_image_repo
+    sample_value: "\"{{ docker_image_repo }}/rancher/local-path-provisioner\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Репозиторий образа."
+  - name: local_path_provisioner_image_tag
+    sample_value: "\"v0.0.24\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Тег образа."
+  - name: local_path_provisioner_helper_image_repo
+    sample_value: "\"busybox\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Репозиторий helper-образа."
+  - name: local_path_provisioner_helper_image_tag
+    sample_value: "\"latest\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Тег helper-образа."
+
+  # --- Local Volume Provisioner ---
+  - name: local_volume_provisioner_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Local Volume Provisioner."
+  - name: local_volume_provisioner_namespace
+    sample_value: "kube-system (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace."
+  - name: local_volume_provisioner_nodelabels
+    sample_value: "[kubernetes.io/hostname, topology.kubernetes.io/region, topology.kubernetes.io/zone] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Метки нод для топологии."
+  - name: local_volume_provisioner_storage_classes
+    sample_value: "{local-storage: {...}, fast-disks: {...}} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Карта StorageClass с host_dir/mount_dir/volume_mode/fs_type и командами очистки."
+  - name: local_volume_provisioner_tolerations
+    sample_value: "[{effect: NoSchedule, operator: Exists}] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Tolerations подов."
+
+  # --- CSI Snapshot Controller ---
+  - name: csi_snapshot_controller_enabled
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "CSI Volume Snapshot Controller. При cinder_csi_enabled=true включается автоматически."
+  - name: snapshot_controller_namespace
+    sample_value: "kube-system (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace snapshot controller."
+
+  # --- CephFS Provisioner (в v2.27.1; удалён в поздних версиях) ---
+  - name: cephfs_provisioner_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "CephFS provisioner. Присутствует в v2.27.1, отсутствует в v2.29.1."
+  - name: cephfs_provisioner_namespace
+    sample_value: "\"cephfs-provisioner\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace CephFS provisioner."
+  - name: cephfs_provisioner_cluster
+    sample_value: "ceph (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя Ceph-кластера."
+  - name: cephfs_provisioner_monitors
+    sample_value: "\"172.24.0.1:6789,...\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Ceph monitors."
+  - name: cephfs_provisioner_admin_id
+    sample_value: "admin (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Admin ID."
+  - name: cephfs_provisioner_secret
+    sample_value: "secret (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Секрет admin."
+  - name: cephfs_provisioner_storage_class
+    sample_value: "cephfs (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя StorageClass."
+  - name: cephfs_provisioner_reclaim_policy
+    sample_value: "Delete (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Reclaim policy."
+  - name: cephfs_provisioner_claim_root
+    sample_value: "/volumes (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Корень claim'ов."
+  - name: cephfs_provisioner_deterministic_names
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Детерминированные имена томов."
+
+  # --- RBD Provisioner (в v2.27.1; удалён в поздних версиях) ---
+  - name: rbd_provisioner_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Ceph RBD provisioner. Присутствует в v2.27.1, отсутствует в v2.29.1."
+  - name: rbd_provisioner_namespace
+    sample_value: "rbd-provisioner (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace."
+  - name: rbd_provisioner_replicas
+    sample_value: "2 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Число реплик."
+  - name: rbd_provisioner_monitors
+    sample_value: "\"172.24.0.1:6789,...\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Ceph monitors."
+  - name: rbd_provisioner_pool
+    sample_value: "kube (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "RBD pool."
+  - name: rbd_provisioner_admin_id
+    sample_value: "admin (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Admin ID."
+  - name: rbd_provisioner_secret_name
+    sample_value: "ceph-secret-admin (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя секрета admin."
+  - name: rbd_provisioner_secret
+    sample_value: "ceph-key-admin (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Секрет admin."
+  - name: rbd_provisioner_user_id
+    sample_value: "kube (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "User ID."
+  - name: rbd_provisioner_user_secret_name
+    sample_value: "ceph-secret-user (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя секрета пользователя."
+  - name: rbd_provisioner_user_secret
+    sample_value: "ceph-key-user (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Секрет пользователя."
+  - name: rbd_provisioner_user_secret_namespace
+    sample_value: "rbd-provisioner (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace секрета пользователя."
+  - name: rbd_provisioner_fs_type
+    sample_value: "ext4 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Файловая система."
+  - name: rbd_provisioner_image_format
+    sample_value: "\"2\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Формат RBD-образа."
+  - name: rbd_provisioner_image_features
+    sample_value: "layering (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Возможности RBD-образа."
+  - name: rbd_provisioner_storage_class
+    sample_value: "rbd (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя StorageClass."
+  - name: rbd_provisioner_reclaim_policy
+    sample_value: "Delete (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Reclaim policy."
+
+  # --- Gateway API ---
+  - name: gateway_api_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Установить CRD Gateway API."
+  - name: gateway_api_experimental_channel
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Экспериментальный канал CRD Gateway API."
+
+  # --- Ingress Nginx ---
+  - name: ingress_nginx_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Nginx Ingress Controller."
+  - name: ingress_nginx_host_network
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "hostNetwork для контроллера."
+  - name: ingress_nginx_service_type
+    sample_value: "LoadBalancer (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Тип сервиса контроллера."
+  - name: ingress_nginx_service_annotations
+    sample_value: "{example.io/loadbalancerIPs: 1.2.3.4} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Аннотации сервиса."
+  - name: ingress_nginx_service_nodeport_http
+    sample_value: "30080 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "NodePort HTTP."
+  - name: ingress_nginx_service_nodeport_https
+    sample_value: "30081 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "NodePort HTTPS."
+  - name: ingress_publish_status_address
+    sample_value: "\"\""
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Адрес публикации статуса Ingress (пустой)."
+  - name: ingress_nginx_nodeselector
+    sample_value: "{kubernetes.io/os: linux} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "nodeSelector контроллера."
+  - name: ingress_nginx_tolerations
+    sample_value: "[{key: node-role.kubernetes.io/control-plane, ...}] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Tolerations контроллера."
+  - name: ingress_nginx_namespace
+    sample_value: "\"ingress-nginx\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace."
+  - name: ingress_nginx_insecure_port
+    sample_value: "80 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "HTTP-порт."
+  - name: ingress_nginx_secure_port
+    sample_value: "443 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "HTTPS-порт."
+  - name: ingress_nginx_configmap
+    sample_value: "{map-hash-bucket-size: 128, ssl-protocols: TLSv1.2 TLSv1.3} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "ConfigMap контроллера."
+  - name: ingress_nginx_configmap_tcp_services
+    sample_value: "{9000: default/example-go:8080} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "ConfigMap TCP-сервисов."
+  - name: ingress_nginx_configmap_udp_services
+    sample_value: "{53: kube-system/coredns:53} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "ConfigMap UDP-сервисов."
+  - name: ingress_nginx_extra_args
+    sample_value: "[--default-ssl-certificate=default/foo-tls] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Дополнительные аргументы контроллера."
+  - name: ingress_nginx_termination_grace_period_seconds
+    sample_value: "300 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Период graceful termination."
+  - name: ingress_nginx_class
+    sample_value: "nginx (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя IngressClass."
+  - name: ingress_nginx_without_class
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Обрабатывать Ingress без класса."
+  - name: ingress_nginx_default
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Сделать IngressClass по умолчанию."
+
+  # --- ALB Ingress ---
+  - name: ingress_alb_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "AWS ALB Ingress Controller."
+  - name: alb_ingress_aws_region
+    sample_value: "\"us-east-1\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Регион AWS."
+  - name: alb_ingress_restrict_scheme
+    sample_value: "\"false\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Ограничение scheme."
+  - name: alb_ingress_aws_debug
+    sample_value: "\"false\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Логирование запросов к AWS API."
+
+  # --- Cert Manager ---
+  - name: cert_manager_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Cert Manager."
+  - name: cert_manager_namespace
+    sample_value: "\"cert-manager\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace."
+  - name: cert_manager_tolerations
+    sample_value: "[{key: node-role.kubernetes.io/control-plane, effect: NoSchedule}] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Tolerations."
+  - name: cert_manager_affinity
+    sample_value: "{nodeAffinity: {...}} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Affinity."
+  - name: cert_manager_nodeselector
+    sample_value: "{kubernetes.io/os: linux} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "nodeSelector."
+  - name: cert_manager_trusted_internal_ca
+    sample_value: "PEM CA (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Доверенный внутренний CA."
+  - name: cert_manager_leader_election_namespace
+    sample_value: "kube-system (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace leader election."
+  - name: cert_manager_dns_policy
+    sample_value: "\"ClusterFirst\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "DNS policy контроллера."
+  - name: cert_manager_dns_config
+    sample_value: "{nameservers: [1.1.1.1, 8.8.8.8]} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "DNS config контроллера."
+  - name: cert_manager_controller_extra_args
+    sample_value: "[--dns01-recursive-nameservers-only=true, ...] (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Дополнительные аргументы контроллера."
+
+  # --- MetalLB ---
+  - name: metallb_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "MetalLB."
+  - name: metallb_speaker_enabled
+    sample_value: "{{ metallb_enabled }}"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Speaker MetalLB; наследует metallb_enabled."
+  - name: metallb_namespace
+    sample_value: "\"metallb-system\""
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace MetalLB."
+  - name: metallb_version
+    sample_value: "v0.13.9 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Версия MetalLB."
+  - name: metallb_protocol
+    sample_value: "\"layer2\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Протокол: layer2/bgp."
+  - name: metallb_port
+    sample_value: "\"7472\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Порт метрик MetalLB."
+  - name: metallb_memberlist_port
+    sample_value: "\"7946\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Порт memberlist."
+  - name: metallb_config
+    sample_value: "{speaker, controller, address_pools, layer2, layer3, metallb_peers} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Крупный блок конфигурации: пулы адресов, layer2/layer3, BGP-пиры, communities."
+
+  # --- Argo CD ---
+  - name: argocd_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Argo CD."
+  - name: argocd_version
+    sample_value: "v2.11.0 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Версия Argo CD."
+  - name: argocd_namespace
+    sample_value: "argocd (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Namespace."
+  - name: argocd_admin_password
+    sample_value: "\"password\" (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Пароль администратора (иначе автогенерируется)."
+
+  # --- Krew (в v2.27.1 задаётся прямо в addons.yml) ---
+  - name: krew_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Менеджер плагинов kubectl (krew). В v2.27.1 флаг задан прямо в addons.yml."
+  - name: krew_root_dir
+    sample_value: "\"/usr/local/krew\""
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Корневой каталог установки krew."
+
+  # --- Kube VIP ---
+  - name: kube_vip_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Kube VIP (VIP для control plane/сервисов)."
+  - name: kube_vip_arp_enabled
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Режим ARP."
+  - name: kube_vip_controlplane_enabled
+    sample_value: "true (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "VIP для control plane."
+  - name: kube_vip_address
+    sample_value: "192.168.56.120 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Адрес VIP."
+  - name: loadbalancer_apiserver
+    sample_value: "{address: {{ kube_vip_address }}, port: 6443} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Конфигурация внешнего LB apiserver для kube-vip."
+  - name: kube_vip_interface
+    sample_value: "eth0 (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Сетевой интерфейс VIP."
+  - name: kube_vip_services_enabled
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "VIP для сервисов типа LoadBalancer."
+  - name: kube_vip_dns_mode
+    sample_value: "first (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Режим DNS."
+  - name: kube_vip_cp_detect
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Автоопределение control plane."
+  - name: kube_vip_leasename
+    sample_value: "plndr-cp-lock (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя lease для leader election."
+  - name: kube_vip_enable_node_labeling
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Проставление меток на ноды."
+
+  # --- Node Feature Discovery ---
+  - name: node_feature_discovery_enabled
+    sample_value: "false"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Node Feature Discovery."
+  - name: node_feature_discovery_gc_sa_name
+    sample_value: "node-feature-discovery (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя SA для GC."
+  - name: node_feature_discovery_gc_sa_create
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Создавать SA для GC."
+  - name: node_feature_discovery_worker_sa_name
+    sample_value: "node-feature-discovery (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Имя SA worker."
+  - name: node_feature_discovery_worker_sa_create
+    sample_value: "false (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Создавать SA worker."
+  - name: node_feature_discovery_master_config
+    sample_value: "{extraLabelNs: [nvidia.com]} (commented)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/addons.yml
+    comment: "Конфигурация master NFD."

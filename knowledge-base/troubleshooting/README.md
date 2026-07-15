@@ -14,6 +14,47 @@ reliability: authoritative
 
 Все записи имеют `reliability: confirmed`. Отклонённые кандидаты (без подтверждённой причины, без merged PR, без привязки к версии) в базу не включены.
 
+# Нижняя цепочка v2.27.0 → v2.29.0
+
+14 подтверждённых проблем, добавленных для новой цепочки. Каждая проверена git-ancestry (фикс-коммит — предок соответствующего тега, `git merge-base --is-ancestor`) и по коду тегов. Важно по хронологии: v2.28.0 (20.05.2025) вышел раньше патчей v2.27.1 (27.06) и v2.28.1 (26.08) — патч-релизы это бэкпорты, поэтому `affected`/`fixed` проставлены по фактическому наличию фикса в дереве тега, а не по номеру версии.
+
+## Баги v2.27.0 (исправлены в v2.27.1 / v2.28.0)
+
+| Проблема | Компонент | Исправлено в | Источник |
+|---|---|---|---|
+| [[troubleshooting/issues/control-plane-upgrade-reconfiguration-v2.27.0\|Реконфигурация control-plane при upgrade не выполнялась]] | upgrade/control-plane | v2.27.1, v2.28.0 | PR #12015 (бэкпорт #12103) |
+| [[troubleshooting/issues/etcd-cert-symlinks-control-plane-v2.27.0\|Симлинки сертификатов etcd на control-plane]] | etcd | v2.27.1, v2.28.0 | PR #12181 (бэкпорт #12192) |
+| [[troubleshooting/issues/offline-manage-images-podman-image-id-v2.27.0\|Offline: manage-offline-images и image id под Podman]] | offline | v2.27.1, v2.28.1, v2.29.0 | PR #12314 / #12316 |
+
+## Баги v2.28.0 (исправлены в v2.28.1 / v2.29.0)
+
+| Проблема | Компонент | Исправлено в | Источник |
+|---|---|---|---|
+| [[troubleshooting/issues/etcd-initial-cluster-quoted-urls-v2.28.0\|Кавычки в etcd initial-cluster ломали scale]] | etcd/scale | v2.28.1, v2.29.0 | PR #12342 (бэкпорт #12352) |
+| [[troubleshooting/issues/cilium-values-booleans-json-render-v2.28.0\|JSON-рендер булевых в cilium-values]] | cilium | v2.28.1, v2.29.0 | PR #12280 (#12283) |
+| [[troubleshooting/issues/cilium-upgrade-install-vs-upgrade-v2.28.0\|Cilium: install вместо upgrade при обновлении]] | cilium/upgrade | v2.28.1, v2.29.0 | PR #12254 (бэкпорт #12324) |
+| [[troubleshooting/issues/kubeadm-skip-phases-1.32-v2.28.0\|kubeadm skip-phases на K8s 1.32]] | kubeadm | v2.28.1, v2.29.0 | PR #12351 (#12354) |
+| [[troubleshooting/issues/cilium-config-extra-vars-not-rendered-v2.28.0\|`cilium_config_extra_vars` не рендерились]] | cilium | v2.28.1, v2.29.0 | PR #12335 (#12338) |
+| [[troubleshooting/issues/apiserver-san-missing-default-addresses-v2.28.0\|SAN apiserver без адресов по умолчанию (тянется с v2.27.0)]] | control-plane | v2.28.1, v2.29.0 | PR #12413 (бэкпорт #12505) |
+
+## Баги v2.28.1 (исправлены только в v2.29.0, бэкпорта в release-2.28 нет)
+
+| Проблема | Компонент | Затронуто | Источник |
+|---|---|---|---|
+| [[troubleshooting/issues/kubeadm-ignore-preflight-errors-all-v2.28.1\|`kubeadm_ignore_preflight_errors` = all]] | kubeadm | v2.27.0…v2.28.1 → v2.29.0 | PR #12606 |
+| [[troubleshooting/issues/kubeadm-file-discovery-kubeconfig-missing-v2.28.1\|File discovery: отсутствует kubeconfig на вторичных узлах]] | kubeadm/upgrade | v2.27.0…v2.28.1 → v2.29.0 | PR #12132 |
+| [[troubleshooting/issues/etcd-cert-extraction-cilium-crd-v2.28.1\|Извлечение сертификатов etcd для Cilium CRD]] | etcd/cilium | v2.28.0, v2.28.1 → v2.29.0 | PR #12565 |
+| [[troubleshooting/issues/reset-cluster-cni-timeout-loop-v2.28.1\|reset: таймаут-петля при удалении CNI]] | reset | v2.28.0, v2.28.1 → v2.29.0 | PR #12300 |
+| [[troubleshooting/issues/coredns-nodelocaldns-redeploy-config-change-v2.28.1\|CoreDNS/nodelocaldns не передеплоивались при смене конфигурации]] | coredns | v2.28.0, v2.28.1 → v2.29.0 | PR #12401 |
+
+Все 14 проблем исправлены не позднее v2.29.0 — уже индексированных v2.29.1 / v2.30.0 / v2.31.0 они **не затрагивают** (проверено ancestry).
+
+### Отклонено при разборе цепочки v2.27.0–v2.29.0 (раздел 10)
+
+Не заведены: ingress-nginx CVE-2025-1974 (обновление версии, ingress-nginx вне детального охвата); CoreDNS PDB/nodelocaldns_secondary #11957 (узкая правка синтаксиса); fallback_ip cacheable #12182 (вспом. правка кэша фактов); Calico kubecontrollersconfigurations #12039 (Calico\* вне охвата); Cilium BGP AnsibleUnsafeText #12430/#12432 (узкий BGP-кейс, кандидат); Hubble-Relay peer discovery #12346/#12374 (узкий, кандидат); PodSecurity admission #12478 (edge-настройка security); `cilium_policy_audit_mode` #12569 (мелкая правка).
+
+---
+
 ## Исправлено в v2.29.1 (баги v2.29.0)
 
 Проблемы, которые были в v2.29.0 и устранены патчем v2.29.1 — актуальны для тех, кто ещё на v2.29.0.

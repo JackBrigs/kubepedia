@@ -1,0 +1,56 @@
+project: kubespray
+kubespray_version: v2.28.1
+git_commit: a20891a
+git_commit_full: a20891ab67136f8c92ccad3fad9ad11fc71363d0
+tag_date: 2025-08-26
+tag_commit_subject: "Fix SAN address collection from ansible_default_ipv{4,6} (#12505)"
+source_type: code
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.28.1
+retrieved_at: 2026-07-15
+topics:
+  - meta
+reliability: authoritative
+
+# Версии по умолчанию, разрешённые из кода тега (этап 2).
+# Источник истины и полный список (42 компонента): components.yaml
+kubernetes_version: 1.32.8          # kube_version; минимально поддерживаемая: 1.30.0
+component_versions:
+  etcd: 3.5.22
+  containerd: 2.0.6
+  runc: 1.2.6
+  crictl: 1.32.0
+  nerdctl: 2.0.5
+  cri_o: 1.32.0
+  cri_dockerd: 0.3.18
+  skopeo: 1.16.1
+  crun: 1.17
+  youki: 0.5.5
+  gvisor: 20250820.0
+  kata_containers: 3.7.0
+  cni_plugins: 1.4.1
+  cilium: 1.17.7
+  cilium_cli: 0.18.6
+  calico: 3.29.5
+  flannel: 0.22.0
+  weave: 2.8.7
+  kube_ovn: 1.12.21
+  kube_router: 2.1.1
+  multus: 4.1.0
+  coredns: 1.11.3
+  nodelocaldns: 1.25.0
+  dnsautoscaler: 1.8.8
+  helm: 3.16.4
+  yq: 4.42.1
+  metrics_server: 0.7.0
+  ingress_nginx: 1.12.1
+  cert_manager: 1.15.3
+  argocd: 2.14.5
+  metallb: 0.13.9
+  local_path_provisioner: 0.0.24
+  local_volume_provisioner: 2.5.0
+  node_feature_discovery: 0.16.4
+  gateway_api: 1.2.1
+  registry: 2.8.1
+  pause: "3.10"
+  kubernetes_dashboard: 2.7.0
+  kube_vip: 0.8.9

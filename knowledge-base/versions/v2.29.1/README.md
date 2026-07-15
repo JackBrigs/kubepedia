@@ -17,6 +17,7 @@ reliability: authoritative
 - **Commit:** `0c6a29553f90c55cba5e0e359470321dc7cf7d29` (`0c6a295`)
 - **Дата тега:** 2025-12-11
 - **Источник:** https://github.com/kubernetes-sigs/kubespray/tree/v2.29.1
+- **Предыдущая версия:** [[versions/v2.29.0/README|v2.29.0]] · **Следующая версия:** [[versions/v2.30.0/README|v2.30.0]]
 
 - **Kubernetes по умолчанию:** 1.33.7 (минимально поддерживаемая: 1.31.0)
 - **Ограничение среза:** из сетевых плагинов проиндексирован только Cilium; из container runtime полностью проиндексирован containerd

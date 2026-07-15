@@ -1,0 +1,2153 @@
+project: kubespray
+kubespray_version: v2.27.0
+git_commit: 9ec9b3a
+source_type: code
+source_paths:
+  - roles/kubespray-defaults/defaults/main/main.yml
+  - roles/kubernetes-apps/defaults/main.yml
+  - roles/kubernetes-apps/ansible/defaults/main.yml
+  - roles/kubernetes-apps/argocd/defaults/main.yml
+  - roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+  - roles/kubernetes-apps/csi_driver/aws_ebs/defaults/main.yml
+  - roles/kubernetes-apps/csi_driver/azuredisk/defaults/main.yml
+  - roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+  - roles/kubernetes-apps/csi_driver/gcp_pd/defaults/main.yml
+  - roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+  - roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+  - roles/kubernetes-apps/external_cloud_controller/hcloud/defaults/main.yml
+  - roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+  - roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+  - roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+  - roles/kubernetes-apps/external_cloud_controller/vsphere/defaults/main.yml
+  - roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+  - roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+  - roles/kubernetes-apps/external_provisioner/local_volume_provisioner/defaults/main.yml
+  - roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+  - roles/kubernetes-apps/gateway_api/defaults/main.yml
+  - roles/kubernetes-apps/helm/defaults/main.yml
+  - roles/kubernetes-apps/ingress_controller/alb_ingress_controller/defaults/main.yml
+  - roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+  - roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+  - roles/kubernetes-apps/krew/defaults/main.yml
+  - roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+  - roles/kubernetes-apps/metallb/defaults/main.yml
+  - roles/kubernetes-apps/metrics_server/defaults/main.yml
+  - roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+  - roles/kubernetes-apps/persistent_volumes/aws-ebs-csi/defaults/main.yml
+  - roles/kubernetes-apps/persistent_volumes/azuredisk-csi/defaults/main.yml
+  - roles/kubernetes-apps/persistent_volumes/cinder-csi/defaults/main.yml
+  - roles/kubernetes-apps/persistent_volumes/gcp-pd-csi/defaults/main.yml
+  - roles/kubernetes-apps/persistent_volumes/upcloud-csi/defaults/main.yml
+  - roles/kubernetes-apps/policy_controller/calico/defaults/main.yml
+  - roles/kubernetes-apps/registry/defaults/main.yml
+  - roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
+  - roles/kubernetes-apps/snapshots/cinder-csi/defaults/main.yml
+  - roles/kubernetes-apps/snapshots/snapshot-controller/defaults/main.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.27.0
+retrieved_at: 2026-07-15
+topics: [addons, kubernetes-apps]
+reliability: authoritative
+
+variables:
+  # === флаги включения аддонов, определённые ТОЛЬКО в kubespray-defaults ===
+  # Эти переключатели отсутствуют в defaults соответствующих ролей kubernetes-apps
+  # (в отличие от helm_enabled, krew_enabled, metallb_enabled, argocd_enabled,
+  #  local_path_provisioner_enabled, scheduler_plugins_enabled, deploy_netchecker,
+  #  которые продублированы в ролях и описаны в своих разделах ниже).
+  - name: dashboard_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку Kubernetes Dashboard (требуется RBAC). Ресурсы Dashboard разворачивает роль kubernetes-apps/ansible."
+    related: [dashboard_namespace, dashboard_replicas]
+  - name: registry_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает развертывание внутрикластерного Docker registry."
+    related: [registry_namespace, registry_service_type]
+  - name: metrics_server_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку metrics-server (метрики ресурсов для HPA и kubectl top)."
+    related: [metrics_server_replicas]
+  - name: local_volume_provisioner_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку local-volume-provisioner (статические локальные PV)."
+    related: [local_volume_provisioner_storage_classes]
+  - name: local_volume_provisioner_directory_mode
+    default: "\"0700\""
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Права доступа на каталоги, создаваемые для local-volume-provisioner."
+    conditions: "используется при local_volume_provisioner_enabled"
+  - name: cinder_csi_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку OpenStack Cinder CSI-драйвера."
+    related: [cinder_auth_url, cinder_csi_controller_replicas]
+  - name: aws_ebs_csi_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку AWS EBS CSI-драйвера."
+    related: [aws_ebs_csi_controller_replicas]
+  - name: azure_csi_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку Azure Disk CSI-драйвера."
+    related: [azure_csi_controller_replicas]
+  - name: gcp_pd_csi_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку GCP Persistent Disk CSI-драйвера."
+    related: [gcp_pd_csi_controller_replicas]
+  - name: vsphere_csi_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку vSphere CSI-драйвера."
+    related: [vsphere_csi_namespace, vsphere_csi_controller_replicas]
+  - name: upcloud_csi_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку UpCloud CSI-драйвера."
+    related: [upcloud_csi_controller_replicas]
+  - name: csi_snapshot_controller_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку snapshot-controller для CSI-снапшотов."
+    related: [snapshot_controller_replicas, snapshot_controller_namespace]
+  - name: persistent_volumes_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает создание StorageClass для облачных провайдеров (роли persistent_volumes)."
+    related: [storage_classes, gcp_pd_csi_volume_type, storage_account_type]
+  - name: cephfs_provisioner_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку CephFS-провижионера (внешнее хранилище CephFS)."
+    related: [cephfs_provisioner_storage_class]
+  - name: rbd_provisioner_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку Ceph RBD-провижионера (внешнее блочное хранилище Ceph)."
+    related: [rbd_provisioner_storage_class, rbd_provisioner_monitors]
+  - name: ingress_nginx_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку ingress-nginx контроллера."
+    related: [ingress_nginx_namespace, ingress_nginx_class]
+  - name: ingress_alb_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку AWS ALB Ingress Controller."
+    related: [alb_ingress_controller_namespace, alb_ingress_aws_region]
+  - name: cert_manager_enabled
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Включает установку cert-manager."
+    related: [cert_manager_namespace]
+  - name: expand_persistent_volumes
+    default: "false"
+    source_path: roles/kubespray-defaults/defaults/main/main.yml
+    description: "Разрешает расширение томов (allowVolumeExpansion) в создаваемых StorageClass."
+    conditions: "используется при persistent_volumes_enabled"
+
+  # === общие переменные kubernetes-apps ===
+  - name: namespace
+    default: "kube-system"
+    source_path: roles/kubernetes-apps/defaults/main.yml
+    description: "Namespace по умолчанию для базовых объектов kubernetes-apps."
+
+  # === coredns / dns-autoscaler / nodelocaldns (роль kubernetes-apps/ansible) ===
+  - name: dns_memory_limit
+    default: "300Mi"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит памяти контейнера CoreDNS (dns_cpu_limit по умолчанию не задан, закомментирован)."
+  - name: dns_cpu_requests
+    default: "100m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос CPU контейнера CoreDNS."
+  - name: dns_memory_requests
+    default: "70Mi"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос памяти контейнера CoreDNS."
+  - name: dns_min_replicas
+    default: "{{ [2, groups['k8s_cluster'] | length] | min }}"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Минимальное число реплик CoreDNS для dns-autoscaler (2 или число узлов, если их меньше)."
+    related: [dns_nodes_per_replica, dns_cores_per_replica]
+  - name: dns_nodes_per_replica
+    default: "16"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Параметр dns-autoscaler: число узлов на одну реплику CoreDNS."
+  - name: dns_cores_per_replica
+    default: "256"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Параметр dns-autoscaler: число ядер CPU кластера на одну реплику CoreDNS."
+  - name: dns_prevent_single_point_failure
+    default: "{{ 'true' if dns_min_replicas | int > 1 else 'false' }}"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Параметр dns-autoscaler: не допускать единственную реплику CoreDNS, если реплик больше одной."
+    related: [dns_min_replicas]
+  - name: enable_coredns_reverse_dns_lookups
+    default: "true"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Включает обратные (PTR) DNS-запросы в конфигурации CoreDNS."
+  - name: coredns_ordinal_suffix
+    default: "\"\""
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Суффикс к именам ресурсов CoreDNS (используется при развертывании вторичного экземпляра)."
+  - name: coredns_deployment_nodeselector
+    default: "kubernetes.io/os: linux"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "nodeSelector деплоймента CoreDNS."
+  - name: coredns_default_zone_cache_block
+    default: |-
+      cache 30
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Блок cache в зоне по умолчанию Corefile CoreDNS."
+  - name: coredns_pod_disruption_budget
+    default: "false"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Включает создание PodDisruptionBudget для CoreDNS."
+    related: [coredns_pod_disruption_budget_max_unavailable]
+  - name: coredns_pod_disruption_budget_max_unavailable
+    default: "\"30%\""
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Значение maxUnavailable для PDB CoreDNS."
+    conditions: "используется при coredns_pod_disruption_budget: true"
+  - name: old_dns_domains
+    default: "[]"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Список прежних dns_domain для корректных ответов coredns/nodelocaldns после смены домена кластера."
+  - name: nodelocaldns_cpu_requests
+    default: "100m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос CPU контейнера nodelocaldns."
+  - name: nodelocaldns_memory_limit
+    default: "200Mi"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит памяти контейнера nodelocaldns."
+  - name: nodelocaldns_memory_requests
+    default: "70Mi"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос памяти контейнера nodelocaldns."
+  - name: nodelocaldns_ds_nodeselector
+    default: "kubernetes.io/os: linux"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "nodeSelector DaemonSet nodelocaldns."
+  - name: nodelocaldns_prometheus_port
+    default: "9253"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Порт метрик Prometheus для nodelocaldns."
+  - name: nodelocaldns_secondary_prometheus_port
+    default: "9255"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Порт метрик Prometheus для вторичного nodelocaldns."
+  - name: dns_autoscaler_cpu_requests
+    default: "20m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос CPU пода dns-autoscaler."
+  - name: dns_autoscaler_memory_requests
+    default: "10Mi"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос памяти пода dns-autoscaler."
+  - name: dns_autoscaler_deployment_nodeselector
+    default: "kubernetes.io/os: linux"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "nodeSelector деплоймента dns-autoscaler."
+
+  # === netchecker (роль kubernetes-apps/ansible) ===
+  - name: deploy_netchecker
+    default: "false"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Включает развертывание Netchecker (проверка сетевой связности; дублируется в roles/kubespray-defaults/defaults/main/main.yml с тем же значением)."
+    related: [netchecker_port, netcheck_namespace]
+  - name: netchecker_port
+    default: "31081"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "NodePort сервиса netchecker-server."
+  - name: agent_report_interval
+    default: "15"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Интервал отчётов агентов Netchecker (сек)."
+  - name: netcheck_namespace
+    default: "default"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Namespace для компонентов Netchecker."
+  - name: netchecker_agent_cpu_limit
+    default: "30m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит CPU агента Netchecker."
+  - name: netchecker_agent_memory_limit
+    default: "100M"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит памяти агента Netchecker."
+  - name: netchecker_agent_cpu_requests
+    default: "15m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос CPU агента Netchecker."
+  - name: netchecker_agent_memory_requests
+    default: "64M"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос памяти агента Netchecker."
+  - name: netchecker_server_cpu_limit
+    default: "100m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит CPU сервера Netchecker."
+  - name: netchecker_server_memory_limit
+    default: "256M"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит памяти сервера Netchecker."
+  - name: netchecker_server_cpu_requests
+    default: "50m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос CPU сервера Netchecker."
+  - name: netchecker_server_memory_requests
+    default: "64M"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос памяти сервера Netchecker."
+  - name: netchecker_etcd_cpu_limit
+    default: "200m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит CPU etcd Netchecker."
+  - name: netchecker_etcd_memory_limit
+    default: "256M"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит памяти etcd Netchecker."
+  - name: netchecker_etcd_cpu_requests
+    default: "100m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос CPU etcd Netchecker."
+  - name: netchecker_etcd_memory_requests
+    default: "128M"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос памяти etcd Netchecker."
+  - name: netchecker_agent_user
+    default: "1000"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "UID (securityContext) агента Netchecker."
+  - name: netchecker_server_user
+    default: "1000"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "UID (securityContext) сервера Netchecker."
+  - name: netchecker_agent_group
+    default: "1000"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "GID (securityContext) агента Netchecker."
+  - name: netchecker_server_group
+    default: "1000"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "GID (securityContext) сервера Netchecker."
+  - name: netchecker_agent_log_level
+    default: "5"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Уровень логирования агента Netchecker."
+  - name: netchecker_server_log_level
+    default: "5"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Уровень логирования сервера Netchecker."
+  - name: netchecker_etcd_log_level
+    default: "info"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Уровень логирования etcd Netchecker."
+
+  # === dashboard (роль kubernetes-apps/ansible) ===
+  - name: dashboard_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Число реплик Kubernetes Dashboard."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_namespace
+    default: "kube-system"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Namespace для Kubernetes Dashboard."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_cpu_limit
+    default: "100m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит CPU пода Dashboard."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_memory_limit
+    default: "256M"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Лимит памяти пода Dashboard."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_cpu_requests
+    default: "50m"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос CPU пода Dashboard."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_memory_requests
+    default: "64M"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Запрос памяти пода Dashboard."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_use_custom_certs
+    default: "false"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Использовать пользовательские TLS-сертификаты Dashboard из секрета вместо самоподписанных."
+    conditions: "используется при dashboard_enabled"
+    related: [dashboard_certs_secret_name, dashboard_tls_key_file, dashboard_tls_cert_file]
+  - name: dashboard_certs_secret_name
+    default: "kubernetes-dashboard-certs"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Имя секрета с TLS-сертификатами Dashboard."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_tls_key_file
+    default: "dashboard.key"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Имя файла TLS-ключа в секрете Dashboard."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_tls_cert_file
+    default: "dashboard.crt"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Имя файла TLS-сертификата в секрете Dashboard."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_master_toleration
+    default: "true"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Добавляет toleration, разрешающий запуск Dashboard на узлах control plane."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_token_ttl
+    default: "900"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Время жизни токена сессии Dashboard (сек)."
+    conditions: "используется при dashboard_enabled"
+  - name: dashboard_skip_login
+    default: "false"
+    source_path: roles/kubernetes-apps/ansible/defaults/main.yml
+    description: "Разрешает пропуск экрана входа в Dashboard."
+    conditions: "используется при dashboard_enabled"
+
+  # === helm ===
+  - name: helm_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/helm/defaults/main.yml
+    description: "Включает установку CLI Helm на узлы control plane (дублируется в roles/kubespray-defaults/defaults/main/main.yml с тем же значением)."
+
+  # === krew ===
+  - name: krew_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/krew/defaults/main.yml
+    description: "Включает установку менеджера плагинов kubectl krew (дублируется в roles/kubespray-defaults/defaults/main/main.yml с тем же значением)."
+    related: [krew_root_dir, krew_default_index_uri]
+  - name: krew_root_dir
+    default: "\"/usr/local/krew\""
+    source_path: roles/kubernetes-apps/krew/defaults/main.yml
+    description: "Корневой каталог установки krew (переменная KREW_ROOT)."
+    conditions: "используется при krew_enabled"
+  - name: krew_default_index_uri
+    default: "https://github.com/kubernetes-sigs/krew-index.git"
+    source_path: roles/kubernetes-apps/krew/defaults/main.yml
+    description: "URI индекса плагинов krew по умолчанию."
+    conditions: "используется при krew_enabled"
+  - name: krew_no_upgrade_check
+    default: "0"
+    source_path: roles/kubernetes-apps/krew/defaults/main.yml
+    description: "Отключение проверки обновлений krew (KREW_NO_UPGRADE_CHECK)."
+    conditions: "используется при krew_enabled"
+
+  # === registry ===
+  - name: registry_namespace
+    default: "\"kube-system\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Namespace для внутрикластерного registry."
+    conditions: "используется при registry_enabled"
+  - name: registry_storage_class
+    default: "\"\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "StorageClass для PVC хранилища registry (пустая строка — класс по умолчанию)."
+    conditions: "используется при registry_enabled"
+  - name: registry_storage_access_mode
+    default: "\"ReadWriteOnce\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Режим доступа PVC registry."
+    conditions: "используется при registry_enabled"
+  - name: registry_disk_size
+    default: "\"10Gi\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Размер PVC для хранилища registry."
+    conditions: "используется при registry_enabled"
+  - name: registry_port
+    default: "5000"
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Порт registry."
+    conditions: "используется при registry_enabled"
+  - name: registry_replica_count
+    default: "1"
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Число реплик registry."
+    conditions: "используется при registry_enabled"
+  - name: registry_service_type
+    default: "\"ClusterIP\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Тип сервиса registry: ClusterIP, LoadBalancer или NodePort."
+    conditions: "используется при registry_enabled"
+    related: [registry_service_cluster_ip, registry_service_loadbalancer_ip, registry_service_nodeport]
+  - name: registry_service_cluster_ip
+    default: "\"\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Явный clusterIP сервиса registry при registry_service_type: ClusterIP."
+    conditions: "используется при registry_enabled и registry_service_type: ClusterIP"
+  - name: registry_service_loadbalancer_ip
+    default: "\"\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "loadBalancerIP сервиса registry при registry_service_type: LoadBalancer."
+    conditions: "используется при registry_enabled и registry_service_type: LoadBalancer"
+  - name: registry_service_annotations
+    default: "{}"
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Аннотации сервиса registry (например, для облачных балансировщиков)."
+    conditions: "используется при registry_enabled"
+  - name: registry_service_nodeport
+    default: "\"\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "NodePort сервиса registry при registry_service_type: NodePort."
+    conditions: "используется при registry_enabled и registry_service_type: NodePort"
+  - name: registry_tls_secret
+    default: "\"\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Имя секрета Kubernetes с TLS-сертификатами registry."
+    conditions: "используется при registry_enabled"
+  - name: registry_htpasswd
+    default: "\"\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Содержимое htpasswd для базовой аутентификации registry."
+    conditions: "используется при registry_enabled"
+  - name: registry_config
+    default: |-
+      version: 0.1
+      log:
+        fields:
+          service: registry
+      storage:
+        cache:
+          blobdescriptor: inmemory
+      http:
+        addr: :{{ registry_port }}
+        headers:
+          X-Content-Type-Options: [nosniff]
+      health:
+        storagedriver:
+          enabled: true
+          interval: 10s
+          threshold: 3
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Конфигурация Docker registry (см. документацию registry configuration)."
+    conditions: "используется при registry_enabled"
+  - name: registry_ingress_annotations
+    default: "{}"
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Аннотации Ingress для registry."
+    conditions: "используется при registry_enabled"
+  - name: registry_ingress_host
+    default: "\"\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Хост Ingress для registry (пусто — Ingress не создается)."
+    conditions: "используется при registry_enabled"
+  - name: registry_ingress_tls_secret
+    default: "\"\""
+    source_path: roles/kubernetes-apps/registry/defaults/main.yml
+    description: "Имя секрета TLS для Ingress registry."
+    conditions: "используется при registry_enabled"
+
+  # === metrics_server ===
+  - name: metrics_server_container_port
+    default: "10250"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Порт контейнера metrics-server."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_kubelet_insecure_tls
+    default: "true"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Не проверять TLS-сертификаты kubelet при сборе метрик (--kubelet-insecure-tls)."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_kubelet_preferred_address_types
+    default: "\"InternalIP,ExternalIP,Hostname\""
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Приоритет типов адресов узла для подключения к kubelet."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_metric_resolution
+    default: "15s"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Интервал сбора метрик metrics-server."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_limits_cpu
+    default: "100m"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Лимит CPU metrics-server."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_limits_memory
+    default: "200Mi"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Лимит памяти metrics-server."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_requests_cpu
+    default: "100m"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Запрос CPU metrics-server."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_requests_memory
+    default: "200Mi"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Запрос памяти metrics-server."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_host_network
+    default: "false"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Запуск metrics-server в hostNetwork."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Число реплик metrics-server."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_extra_tolerations
+    default: "[]"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Дополнительные tolerations пода metrics-server."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_extra_affinity
+    default: "{}"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "Дополнительная affinity пода metrics-server."
+    conditions: "используется при metrics_server_enabled"
+  - name: metrics_server_nodeselector
+    default: "{}"
+    source_path: roles/kubernetes-apps/metrics_server/defaults/main.yml
+    description: "nodeSelector пода metrics-server."
+    conditions: "используется при metrics_server_enabled"
+
+  # === ingress_nginx ===
+  - name: ingress_nginx_namespace
+    default: "\"ingress-nginx\""
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Namespace для ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_host_network
+    default: "false"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Запуск ingress-nginx в hostNetwork."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_service_type
+    default: "LoadBalancer"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Тип сервиса ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_service_nodeport_http
+    default: "\"\""
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Фиксированный NodePort HTTP сервиса ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_service_nodeport_https
+    default: "\"\""
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Фиксированный NodePort HTTPS сервиса ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_service_annotations
+    default: "{}"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Аннотации сервиса ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_publish_status_address
+    default: "\"\""
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Явный адрес для публикации статуса Ingress (--publish-status-address)."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_nodeselector
+    default: |-
+      kubernetes.io/os: "linux"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "nodeSelector DaemonSet ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_tolerations
+    default: "[]"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Tolerations подов ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_insecure_port
+    default: "80"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "HTTP-порт ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_secure_port
+    default: "443"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "HTTPS-порт ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_metrics_port
+    default: "10254"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Порт метрик ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_configmap
+    default: "{}"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Содержимое ConfigMap глобальной конфигурации nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_configmap_tcp_services
+    default: "{}"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "ConfigMap проксирования TCP-сервисов через ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_configmap_udp_services
+    default: "{}"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "ConfigMap проксирования UDP-сервисов через ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_extra_args
+    default: "[]"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Дополнительные аргументы командной строки контроллера ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_termination_grace_period_seconds
+    default: "300"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "terminationGracePeriodSeconds подов ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_class
+    default: "nginx"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Имя IngressClass контроллера."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_without_class
+    default: "true"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Обрабатывать Ingress-ресурсы без указанного ingressClassName (--watch-ingress-without-class)."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_default
+    default: "false"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Пометить IngressClass как класс по умолчанию."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_webhook_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Включает admission webhook валидации конфигурации ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+    related: [ingress_nginx_webhook_job_ttl]
+  - name: ingress_nginx_webhook_job_ttl
+    default: "1800"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "TTL (сек) для job-ов генерации сертификатов webhook."
+    conditions: "используется при ingress_nginx_enabled и ingress_nginx_webhook_enabled"
+  - name: ingress_nginx_opentelemetry_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "Включает OpenTelemetry-трассировку в ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+  - name: ingress_nginx_probe_initial_delay_seconds
+    default: "10"
+    source_path: roles/kubernetes-apps/ingress_controller/ingress_nginx/defaults/main.yml
+    description: "initialDelaySeconds проб liveness/readiness ingress-nginx."
+    conditions: "используется при ingress_nginx_enabled"
+
+  # === alb_ingress_controller ===
+  - name: alb_ingress_controller_namespace
+    default: "kube-system"
+    source_path: roles/kubernetes-apps/ingress_controller/alb_ingress_controller/defaults/main.yml
+    description: "Namespace для AWS ALB Ingress Controller."
+    conditions: "используется при ingress_alb_enabled"
+  - name: alb_ingress_aws_region
+    default: "\"us-east-1\""
+    source_path: roles/kubernetes-apps/ingress_controller/alb_ingress_controller/defaults/main.yml
+    description: "Регион AWS для ALB Ingress Controller."
+    conditions: "используется при ingress_alb_enabled"
+  - name: alb_ingress_aws_debug
+    default: "\"false\""
+    source_path: roles/kubernetes-apps/ingress_controller/alb_ingress_controller/defaults/main.yml
+    description: "Включает логирование всех исходящих запросов к AWS API."
+    conditions: "используется при ingress_alb_enabled"
+
+  # === cert_manager ===
+  - name: cert_manager_namespace
+    default: "\"cert-manager\""
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "Namespace для cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_user
+    default: "1001"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "UID (securityContext) подов cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_tolerations
+    default: "[]"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "Tolerations подов cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_affinity
+    default: "{}"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "Affinity подов cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_nodeselector
+    default: "{}"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "nodeSelector подов cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_dns_policy
+    default: "\"ClusterFirst\""
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "dnsPolicy подов cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_dns_config
+    default: "{}"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "dnsConfig подов cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_controller_extra_args
+    default: "[]"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "Дополнительные аргументы контроллера cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_http_proxy
+    default: "{{ http_proxy | default('') }}"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "Переменная окружения http_proxy для cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_https_proxy
+    default: "{{ https_proxy | default('') }}"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "Переменная окружения https_proxy для cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_no_proxy
+    default: "{{ no_proxy | default('') }}"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "Переменная окружения no_proxy для cert-manager."
+    conditions: "используется при cert_manager_enabled"
+  - name: cert_manager_leader_election_namespace
+    default: "kube-system"
+    source_path: roles/kubernetes-apps/ingress_controller/cert_manager/defaults/main.yml
+    description: "Namespace leader election cert-manager (менять при GKE Autopilot, где kube-system запрещён)."
+    conditions: "используется при cert_manager_enabled"
+
+  # === metallb ===
+  - name: metallb_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "Включает установку MetalLB (дублируется в roles/kubespray-defaults/defaults/main/main.yml с тем же значением)."
+    related: [metallb_speaker_enabled]
+  - name: metallb_log_level
+    default: "info"
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "Уровень логирования компонентов MetalLB."
+    conditions: "используется при metallb_enabled"
+  - name: metallb_port
+    default: "\"7472\""
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "Порт метрик MetalLB."
+    conditions: "используется при metallb_enabled"
+  - name: metallb_memberlist_port
+    default: "\"7946\""
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "Порт memberlist для взаимодействия speaker-ов MetalLB."
+    conditions: "используется при metallb_enabled"
+  - name: metallb_speaker_enabled
+    default: "{{ metallb_enabled }}"
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "Включает DaemonSet speaker MetalLB (можно отключить, например, при BGP через FRR; дублируется в roles/kubespray-defaults/defaults/main/main.yml)."
+    conditions: "используется при metallb_enabled"
+  - name: metallb_speaker_nodeselector
+    default: |-
+      kubernetes.io/os: "linux"
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "nodeSelector DaemonSet speaker MetalLB."
+    conditions: "используется при metallb_enabled"
+  - name: metallb_controller_nodeselector
+    default: |-
+      kubernetes.io/os: "linux"
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "nodeSelector контроллера MetalLB."
+    conditions: "используется при metallb_enabled"
+  - name: metallb_speaker_tolerations
+    default: |-
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
+        operator: Exists
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "Tolerations speaker MetalLB (по умолчанию разрешён запуск на control plane)."
+    conditions: "используется при metallb_enabled"
+  - name: metallb_controller_tolerations
+    default: "[]"
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "Tolerations контроллера MetalLB."
+    conditions: "используется при metallb_enabled"
+  - name: metallb_loadbalancer_class
+    default: "\"\""
+    source_path: roles/kubernetes-apps/metallb/defaults/main.yml
+    description: "Значение loadBalancerClass, обслуживаемое MetalLB (пусто — все сервисы LoadBalancer)."
+    conditions: "используется при metallb_enabled"
+
+  # === argocd ===
+  - name: argocd_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/argocd/defaults/main.yml
+    description: "Включает установку Argo CD (дублируется в roles/kubespray-defaults/defaults/main/main.yml с тем же значением)."
+    related: [argocd_version, argocd_namespace]
+  - name: argocd_version
+    default: "v2.11.0"
+    source_path: roles/kubernetes-apps/argocd/defaults/main.yml
+    description: "Версия устанавливаемого Argo CD (используется в argocd_install_url)."
+    conditions: "используется при argocd_enabled"
+  - name: argocd_namespace
+    default: "argocd"
+    source_path: roles/kubernetes-apps/argocd/defaults/main.yml
+    description: "Namespace для Argo CD (переменная argocd_admin_password по умолчанию не задана, закомментирована)."
+    conditions: "используется при argocd_enabled"
+  - name: argocd_install_url
+    default: "\"https://raw.githubusercontent.com/argoproj/argo-cd/{{ argocd_version }}/manifests/install.yaml\""
+    source_path: roles/kubernetes-apps/argocd/defaults/main.yml
+    description: "URL манифеста установки Argo CD (по умолчанию из репозитория argoproj для argocd_version)."
+    conditions: "используется при argocd_enabled"
+
+  # === gateway_api (CRD) ===
+  - name: gateway_api_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/gateway_api/defaults/main.yml
+    description: "Включает установку CRD Gateway API. Роль gateway_api в v2.27.0 расположена в roles/kubernetes-apps/gateway_api (без промежуточного каталога common_crds)."
+    related: [gateway_api_version, gateway_api_experimental_channel]
+  - name: gateway_api_version
+    default: "v1.1.0"
+    source_path: roles/kubernetes-apps/gateway_api/defaults/main.yml
+    description: "Версия устанавливаемых CRD Gateway API."
+    conditions: "используется при gateway_api_enabled"
+  - name: gateway_api_experimental_channel
+    default: "false"
+    source_path: roles/kubernetes-apps/gateway_api/defaults/main.yml
+    description: "Использовать экспериментальный канал Gateway API вместо стандартного (в v2.27.0 канал задаётся булевым флагом, а не строкой gateway_api_channel)."
+    conditions: "используется при gateway_api_enabled"
+
+  # === node_feature_discovery ===
+  - name: node_feature_discovery_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Включает установку Node Feature Discovery (NFD)."
+    related: [node_feature_discovery_namespace]
+  - name: node_feature_discovery_namespace
+    default: "node-feature-discovery"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Namespace для NFD."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_enable_nodefeature_api
+    default: "true"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Включает NodeFeature API (CRD) для NFD."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_gc_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Число реплик nfd-gc (сборщик мусора)."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_gc_interval
+    default: "1h"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Интервал работы nfd-gc."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_gc_sa_name
+    default: "node-feature-discovery-gc"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Имя ServiceAccount для nfd-gc."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_gc_sa_create
+    default: "true"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Создавать ServiceAccount для nfd-gc."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_master_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Число реплик nfd-master."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_master_crd_controller
+    default: "null"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Переопределение флага crd-controller nfd-master (null — значение по умолчанию чарта)."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_master_instance
+    default: "null"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Имя instance nfd-master (null — не задано)."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_master_config
+    default: "null"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Пользовательская конфигурация nfd-master (null — конфигурация по умолчанию)."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_worker_sa_name
+    default: "node-feature-discovery-worker"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Имя ServiceAccount для nfd-worker."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_worker_sa_create
+    default: "true"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Создавать ServiceAccount для nfd-worker."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_worker_config
+    default: "null"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Пользовательская конфигурация nfd-worker (null — конфигурация по умолчанию)."
+    conditions: "используется при node_feature_discovery_enabled"
+  - name: node_feature_discovery_worker_tolerations
+    default: "null"
+    source_path: roles/kubernetes-apps/node_feature_discovery/defaults/main.yml
+    description: "Tolerations DaemonSet nfd-worker (null — значение по умолчанию чарта)."
+    conditions: "используется при node_feature_discovery_enabled"
+
+  # === scheduler_plugins ===
+  - name: scheduler_plugins_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
+    description: "Включает установку scheduler-plugins (второй планировщик; дублируется в roles/kubespray-defaults/defaults/main/main.yml с тем же значением)."
+    related: [scheduler_plugins_namespace]
+  - name: scheduler_plugins_namespace
+    default: "scheduler-plugins"
+    source_path: roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
+    description: "Namespace для scheduler-plugins."
+    conditions: "используется при scheduler_plugins_enabled"
+  - name: scheduler_plugins_controller_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
+    description: "Число реплик контроллера scheduler-plugins."
+    conditions: "используется при scheduler_plugins_enabled"
+  - name: scheduler_plugins_scheduler_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
+    description: "Число реплик планировщика scheduler-plugins."
+    conditions: "используется при scheduler_plugins_enabled"
+  - name: scheduler_plugins_scheduler_leader_elect
+    default: "{{ ((groups['kube_control_plane'] | length) > 1) }}"
+    source_path: roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
+    description: "Leader election планировщика scheduler-plugins (включается при более чем одном control plane)."
+    conditions: "используется при scheduler_plugins_enabled"
+  - name: scheduler_plugins_enabled_plugins
+    default: |-
+      - Coscheduling
+      - CapacityScheduling
+      - NodeResourceTopologyMatch
+      - NodeResourcesAllocatable
+    source_path: roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
+    description: "Список включённых плагинов планировщика."
+    conditions: "используется при scheduler_plugins_enabled"
+  - name: scheduler_plugins_disabled_plugins
+    default: |-
+      - PrioritySort
+    source_path: roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
+    description: "Список отключённых стандартных плагинов планировщика."
+    conditions: "используется при scheduler_plugins_enabled"
+  - name: scheduler_plugins_plugin_config
+    default: |-
+      - name: Coscheduling
+        args:
+          permitWaitingTimeSeconds: 10
+    source_path: roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
+    description: "Конфигурация pluginConfig включённых плагинов."
+    conditions: "используется при scheduler_plugins_enabled"
+
+  # === kubelet-csr-approver ===
+  - name: kubelet_csr_approver_enabled
+    default: "{{ kubelet_rotate_server_certificates }}"
+    source_path: roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+    description: "Включает установку kubelet-csr-approver (автоодобрение CSR kubelet; по умолчанию следует за kubelet_rotate_server_certificates)."
+    related: [kubelet_csr_approver_chart_version]
+  - name: kubelet_csr_approver_namespace
+    default: "kube-system"
+    source_path: roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+    description: "Namespace для kubelet-csr-approver."
+    conditions: "используется при kubelet_csr_approver_enabled"
+  - name: kubelet_csr_approver_repository_name
+    default: "kubelet-csr-approver"
+    source_path: roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+    description: "Имя Helm-репозитория kubelet-csr-approver."
+    conditions: "используется при kubelet_csr_approver_enabled"
+  - name: kubelet_csr_approver_repository_url
+    default: "https://postfinance.github.io/kubelet-csr-approver"
+    source_path: roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+    description: "URL Helm-репозитория kubelet-csr-approver."
+    conditions: "используется при kubelet_csr_approver_enabled"
+  - name: kubelet_csr_approver_chart_ref
+    default: "{{ kubelet_csr_approver_repository_name }}/kubelet-csr-approver"
+    source_path: roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+    description: "Ссылка на Helm-чарт kubelet-csr-approver."
+    conditions: "используется при kubelet_csr_approver_enabled"
+  - name: kubelet_csr_approver_chart_version
+    default: "1.1.0"
+    source_path: roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+    description: "Версия Helm-чарта kubelet-csr-approver."
+    conditions: "используется при kubelet_csr_approver_enabled"
+  - name: kubelet_csr_approver_values
+    default: "{}"
+    source_path: roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+    description: "Переопределение values Helm-чарта kubelet-csr-approver."
+    conditions: "используется при kubelet_csr_approver_enabled"
+
+  # === container_engine_accelerator / nvidia_gpu ===
+  - name: nvidia_accelerator_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Включает поддержку GPU-ускорителей NVIDIA (device plugin и, опционально, установку драйверов)."
+    related: [nvidia_gpu_flavor, nvidia_driver_install_container]
+  - name: nvidia_driver_version
+    default: "\"390.87\""
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Версия драйвера NVIDIA для установки."
+    conditions: "используется при nvidia_accelerator_enabled"
+  - name: nvidia_gpu_tesla_base_url
+    default: "https://us.download.nvidia.com/tesla/"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Базовый URL для загрузки драйверов серии Tesla."
+    conditions: "используется при nvidia_accelerator_enabled"
+  - name: nvidia_gpu_gtx_base_url
+    default: "http://us.download.nvidia.com/XFree86/Linux-x86_64/"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Базовый URL для загрузки драйверов серии GTX."
+    conditions: "используется при nvidia_accelerator_enabled"
+  - name: nvidia_gpu_flavor
+    default: "tesla"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Серия GPU: tesla или gtx (определяет базовый URL драйвера)."
+    conditions: "используется при nvidia_accelerator_enabled"
+  - name: nvidia_url_end
+    default: "{{ nvidia_driver_version }}/NVIDIA-Linux-x86_64-{{ nvidia_driver_version }}.run"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Хвост URL установочного файла драйвера NVIDIA."
+    conditions: "используется при nvidia_accelerator_enabled"
+  - name: nvidia_driver_install_container
+    default: "false"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Устанавливать драйвер NVIDIA через контейнер-инсталлятор."
+    conditions: "используется при nvidia_accelerator_enabled"
+  - name: nvidia_driver_install_centos_container
+    default: "atzedevries/nvidia-centos-driver-installer:2"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Образ контейнера-инсталлятора драйвера для CentOS."
+    conditions: "используется при nvidia_accelerator_enabled и nvidia_driver_install_container"
+  - name: nvidia_driver_install_ubuntu_container
+    default: "registry.k8s.io/ubuntu-nvidia-driver-installer@sha256:7df76a0f0a17294e86f691c81de6bbb7c04a1b4b3d4ea4e7e2cccdc42e1f6d63"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Образ контейнера-инсталлятора драйвера для Ubuntu."
+    conditions: "используется при nvidia_accelerator_enabled и nvidia_driver_install_container"
+  - name: nvidia_driver_install_supported
+    default: "false"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Признак поддержки автоматической установки драйвера на данной ОС."
+    conditions: "используется при nvidia_accelerator_enabled"
+  - name: nvidia_gpu_device_plugin_container
+    default: "\"registry.k8s.io/nvidia-gpu-device-plugin@sha256:0842734032018be107fa2490c98156992911e3e1f2a21e059ff0105b07dd8e9e\""
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Образ NVIDIA GPU device plugin."
+    conditions: "используется при nvidia_accelerator_enabled"
+  - name: nvidia_gpu_nodes
+    default: "[]"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Список узлов с GPU NVIDIA."
+    conditions: "используется при nvidia_accelerator_enabled"
+  - name: nvidia_gpu_device_plugin_memory
+    default: "30Mi"
+    source_path: roles/kubernetes-apps/container_engine_accelerator/nvidia_gpu/defaults/main.yml
+    description: "Лимит/запрос памяти пода NVIDIA GPU device plugin."
+    conditions: "используется при nvidia_accelerator_enabled"
+
+  # === policy_controller/calico (calico-kube-controllers) ===
+  - name: calico_policy_controller_cpu_limit
+    default: "1000m"
+    source_path: roles/kubernetes-apps/policy_controller/calico/defaults/main.yml
+    description: "Лимит CPU calico-kube-controllers."
+  - name: calico_policy_controller_memory_limit
+    default: "256M"
+    source_path: roles/kubernetes-apps/policy_controller/calico/defaults/main.yml
+    description: "Лимит памяти calico-kube-controllers."
+  - name: calico_policy_controller_cpu_requests
+    default: "30m"
+    source_path: roles/kubernetes-apps/policy_controller/calico/defaults/main.yml
+    description: "Запрос CPU calico-kube-controllers."
+  - name: calico_policy_controller_memory_requests
+    default: "64M"
+    source_path: roles/kubernetes-apps/policy_controller/calico/defaults/main.yml
+    description: "Запрос памяти calico-kube-controllers."
+  - name: calico_policy_controller_deployment_nodeselector
+    default: "kubernetes.io/os: linux"
+    source_path: roles/kubernetes-apps/policy_controller/calico/defaults/main.yml
+    description: "nodeSelector деплоймента calico-kube-controllers."
+  - name: calico_policy_controller_log_level
+    default: "info"
+    source_path: roles/kubernetes-apps/policy_controller/calico/defaults/main.yml
+    description: "Уровень логирования calico-kube-controllers."
+  - name: calico_cert_dir
+    default: "\"/etc/calico/certs\""
+    source_path: roles/kubernetes-apps/policy_controller/calico/defaults/main.yml
+    description: "Каталог сертификатов для calico-kube-controllers (etcd datastore)."
+
+  # === external_provisioner / local_path_provisioner ===
+  - name: local_path_provisioner_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+    description: "Включает установку Local Path Provisioner (дублируется в roles/kubespray-defaults/defaults/main/main.yml с тем же значением)."
+    related: [local_path_provisioner_storage_class]
+  - name: local_path_provisioner_namespace
+    default: "\"local-path-storage\""
+    source_path: roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+    description: "Namespace для Local Path Provisioner."
+    conditions: "используется при local_path_provisioner_enabled"
+  - name: local_path_provisioner_storage_class
+    default: "\"local-path\""
+    source_path: roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+    description: "Имя StorageClass Local Path Provisioner."
+    conditions: "используется при local_path_provisioner_enabled"
+  - name: local_path_provisioner_reclaim_policy
+    default: "Delete"
+    source_path: roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+    description: "reclaimPolicy StorageClass Local Path Provisioner."
+    conditions: "используется при local_path_provisioner_enabled"
+  - name: local_path_provisioner_claim_root
+    default: "/opt/local-path-provisioner/"
+    source_path: roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+    description: "Каталог на узлах для томов Local Path Provisioner."
+    conditions: "используется при local_path_provisioner_enabled"
+  - name: local_path_provisioner_is_default_storageclass
+    default: "\"true\""
+    source_path: roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+    description: "Помечать StorageClass Local Path Provisioner классом по умолчанию."
+    conditions: "используется при local_path_provisioner_enabled"
+  - name: local_path_provisioner_debug
+    default: "false"
+    source_path: roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+    description: "Включает режим отладки Local Path Provisioner."
+    conditions: "используется при local_path_provisioner_enabled"
+  - name: local_path_provisioner_helper_image_repo
+    default: "\"busybox\""
+    source_path: roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+    description: "Репозиторий вспомогательного образа Local Path Provisioner."
+    conditions: "используется при local_path_provisioner_enabled"
+  - name: local_path_provisioner_helper_image_tag
+    default: "\"latest\""
+    source_path: roles/kubernetes-apps/external_provisioner/local_path_provisioner/defaults/main.yml
+    description: "Тег вспомогательного образа Local Path Provisioner."
+    conditions: "используется при local_path_provisioner_enabled"
+
+  # === external_provisioner / local_volume_provisioner ===
+  - name: local_volume_provisioner_namespace
+    default: "\"kube-system\""
+    source_path: roles/kubernetes-apps/external_provisioner/local_volume_provisioner/defaults/main.yml
+    description: "Namespace для local-volume-provisioner."
+    conditions: "используется при local_volume_provisioner_enabled"
+  - name: local_volume_provisioner_nodelabels
+    default: "[]"
+    source_path: roles/kubernetes-apps/external_provisioner/local_volume_provisioner/defaults/main.yml
+    description: "Список меток узла, копируемых в создаваемые PV."
+    conditions: "используется при local_volume_provisioner_enabled"
+  - name: local_volume_provisioner_tolerations
+    default: "[]"
+    source_path: roles/kubernetes-apps/external_provisioner/local_volume_provisioner/defaults/main.yml
+    description: "Tolerations DaemonSet local-volume-provisioner."
+    conditions: "используется при local_volume_provisioner_enabled"
+  - name: local_volume_provisioner_use_node_name_only
+    default: "false"
+    source_path: roles/kubernetes-apps/external_provisioner/local_volume_provisioner/defaults/main.yml
+    description: "Использовать только имя узла (без FQDN) при создании PV."
+    conditions: "используется при local_volume_provisioner_enabled"
+  - name: local_volume_provisioner_storage_classes
+    default: |-
+      {
+        "{{ local_volume_provisioner_storage_class | default('local-storage') }}": {
+          "host_dir": "{{ local_volume_provisioner_base_dir | default('/mnt/disks') }}",
+          "mount_dir": "{{ local_volume_provisioner_mount_dir | default('/mnt/disks') }}",
+          "volume_mode": "Filesystem",
+          "fs_type": "ext4"
+        }
+      }
+    source_path: roles/kubernetes-apps/external_provisioner/local_volume_provisioner/defaults/main.yml
+    description: "Описание StorageClass-ов local-volume-provisioner (каталоги, режим, тип ФС)."
+    conditions: "используется при local_volume_provisioner_enabled"
+  - name: local_volume_provisioner_log_level
+    default: "2"
+    source_path: roles/kubernetes-apps/external_provisioner/local_volume_provisioner/defaults/main.yml
+    description: "Уровень логирования local-volume-provisioner."
+    conditions: "используется при local_volume_provisioner_enabled"
+
+  # === external_provisioner / cephfs_provisioner ===
+  - name: cephfs_provisioner_namespace
+    default: "\"cephfs-provisioner\""
+    source_path: roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+    description: "Namespace для CephFS-провижионера."
+    conditions: "используется при cephfs_provisioner_enabled"
+  - name: cephfs_provisioner_cluster
+    default: "ceph"
+    source_path: roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+    description: "Имя Ceph-кластера."
+    conditions: "используется при cephfs_provisioner_enabled"
+  - name: cephfs_provisioner_monitors
+    default: "~"
+    source_path: roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+    description: "Список мониторов Ceph (обязательно задать пользователем)."
+    conditions: "используется при cephfs_provisioner_enabled"
+  - name: cephfs_provisioner_admin_id
+    default: "admin"
+    source_path: roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+    description: "Идентификатор администратора Ceph."
+    conditions: "используется при cephfs_provisioner_enabled"
+  - name: cephfs_provisioner_secret
+    default: "secret"
+    source_path: roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+    description: "Секрет (ключ) администратора Ceph."
+    conditions: "используется при cephfs_provisioner_enabled"
+  - name: cephfs_provisioner_storage_class
+    default: "cephfs"
+    source_path: roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+    description: "Имя StorageClass CephFS."
+    conditions: "используется при cephfs_provisioner_enabled"
+  - name: cephfs_provisioner_reclaim_policy
+    default: "Delete"
+    source_path: roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+    description: "reclaimPolicy StorageClass CephFS."
+    conditions: "используется при cephfs_provisioner_enabled"
+  - name: cephfs_provisioner_claim_root
+    default: "/volumes"
+    source_path: roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+    description: "Корневой путь для томов CephFS."
+    conditions: "используется при cephfs_provisioner_enabled"
+  - name: cephfs_provisioner_deterministic_names
+    default: "true"
+    source_path: roles/kubernetes-apps/external_provisioner/cephfs_provisioner/defaults/main.yml
+    description: "Использовать детерминированные имена томов CephFS."
+    conditions: "используется при cephfs_provisioner_enabled"
+
+  # === external_provisioner / rbd_provisioner ===
+  - name: rbd_provisioner_namespace
+    default: "\"rbd-provisioner\""
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Namespace для Ceph RBD-провижионера."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_replicas
+    default: "2"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Число реплик RBD-провижионера."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_monitors
+    default: "~"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Список мониторов Ceph (обязательно задать пользователем)."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_pool
+    default: "kube"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Пул Ceph RBD."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_admin_id
+    default: "admin"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Идентификатор администратора Ceph."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_secret_name
+    default: "ceph-secret-admin"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Имя секрета с ключом администратора Ceph."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_secret
+    default: "ceph-key-admin"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Ключ администратора Ceph."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_user_id
+    default: "kube"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Идентификатор пользователя Ceph."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_user_secret_name
+    default: "ceph-secret-user"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Имя секрета с ключом пользователя Ceph."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_user_secret
+    default: "ceph-key-user"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Ключ пользователя Ceph."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_user_secret_namespace
+    default: "rbd-provisioner"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Namespace секрета пользователя Ceph."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_fs_type
+    default: "ext4"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Тип файловой системы томов RBD."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_image_format
+    default: "\"2\""
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Формат образа RBD."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_image_features
+    default: "layering"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Функции образа RBD (image features)."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_storage_class
+    default: "rbd"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "Имя StorageClass RBD."
+    conditions: "используется при rbd_provisioner_enabled"
+  - name: rbd_provisioner_reclaim_policy
+    default: "Delete"
+    source_path: roles/kubernetes-apps/external_provisioner/rbd_provisioner/defaults/main.yml
+    description: "reclaimPolicy StorageClass RBD."
+    conditions: "используется при rbd_provisioner_enabled"
+
+  # === csi_driver / aws_ebs ===
+  - name: aws_ebs_csi_enable_volume_scheduling
+    default: "true"
+    source_path: roles/kubernetes-apps/csi_driver/aws_ebs/defaults/main.yml
+    description: "Включает планирование томов (topology-aware) для AWS EBS CSI."
+    conditions: "используется при aws_ebs_csi_enabled"
+  - name: aws_ebs_csi_enable_volume_snapshot
+    default: "false"
+    source_path: roles/kubernetes-apps/csi_driver/aws_ebs/defaults/main.yml
+    description: "Включает поддержку снапшотов томов AWS EBS CSI."
+    conditions: "используется при aws_ebs_csi_enabled"
+  - name: aws_ebs_csi_enable_volume_resizing
+    default: "false"
+    source_path: roles/kubernetes-apps/csi_driver/aws_ebs/defaults/main.yml
+    description: "Включает расширение томов AWS EBS CSI."
+    conditions: "используется при aws_ebs_csi_enabled"
+  - name: aws_ebs_csi_controller_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/csi_driver/aws_ebs/defaults/main.yml
+    description: "Число реплик контроллера AWS EBS CSI."
+    conditions: "используется при aws_ebs_csi_enabled"
+  - name: aws_ebs_csi_plugin_image_tag
+    default: "latest"
+    source_path: roles/kubernetes-apps/csi_driver/aws_ebs/defaults/main.yml
+    description: "Тег образа плагина AWS EBS CSI."
+    conditions: "используется при aws_ebs_csi_enabled"
+
+  # === csi_driver / azuredisk ===
+  - name: azure_csi_use_instance_metadata
+    default: "true"
+    source_path: roles/kubernetes-apps/csi_driver/azuredisk/defaults/main.yml
+    description: "Использовать instance metadata Azure для получения данных о ВМ."
+    conditions: "используется при azure_csi_enabled"
+  - name: azure_csi_controller_replicas
+    default: "2"
+    source_path: roles/kubernetes-apps/csi_driver/azuredisk/defaults/main.yml
+    description: "Число реплик контроллера Azure Disk CSI."
+    conditions: "используется при azure_csi_enabled"
+  - name: azure_csi_plugin_image_tag
+    default: "latest"
+    source_path: roles/kubernetes-apps/csi_driver/azuredisk/defaults/main.yml
+    description: "Тег образа плагина Azure Disk CSI."
+    conditions: "используется при azure_csi_enabled"
+  - name: azure_csi_controller_affinity
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/azuredisk/defaults/main.yml
+    description: "Affinity контроллера Azure Disk CSI."
+    conditions: "используется при azure_csi_enabled"
+  - name: azure_csi_node_affinity
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/azuredisk/defaults/main.yml
+    description: "Affinity DaemonSet узлового плагина Azure Disk CSI."
+    conditions: "используется при azure_csi_enabled"
+
+  # === csi_driver / cinder ===
+  - name: cinder_csi_attacher_image_tag
+    default: "\"v4.4.2\""
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Тег образа csi-attacher для Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_provisioner_image_tag
+    default: "\"v3.6.2\""
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Тег образа csi-provisioner для Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_snapshotter_image_tag
+    default: "\"v6.3.2\""
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Тег образа csi-snapshotter для Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_resizer_image_tag
+    default: "\"v1.9.2\""
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Тег образа csi-resizer для Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_livenessprobe_image_tag
+    default: "\"v2.11.0\""
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Тег образа livenessprobe для Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_auth_url
+    default: "{{ lookup('env', 'OS_AUTH_URL') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "URL аутентификации OpenStack (из окружения OS_AUTH_URL)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_username
+    default: "{{ lookup('env', 'OS_USERNAME') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Имя пользователя OpenStack (из окружения OS_USERNAME)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_password
+    default: "{{ lookup('env', 'OS_PASSWORD') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Пароль OpenStack (из окружения OS_PASSWORD)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_application_credential_id
+    default: "{{ lookup('env', 'OS_APPLICATION_CREDENTIAL_ID') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "ID application credential OpenStack (из окружения)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_application_credential_name
+    default: "{{ lookup('env', 'OS_APPLICATION_CREDENTIAL_NAME') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Имя application credential OpenStack (из окружения)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_application_credential_secret
+    default: "{{ lookup('env', 'OS_APPLICATION_CREDENTIAL_SECRET') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Секрет application credential OpenStack (из окружения)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_region
+    default: "{{ lookup('env', 'OS_REGION_NAME') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Регион OpenStack (из окружения OS_REGION_NAME)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_tenant_id
+    default: "{{ lookup('env', 'OS_TENANT_ID') | default(lookup('env', 'OS_PROJECT_ID'), true) }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "ID проекта/tenant OpenStack (из окружения)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_tenant_name
+    default: "{{ lookup('env', 'OS_TENANT_NAME') | default(lookup('env', 'OS_PROJECT_NAME'), true) }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Имя проекта/tenant OpenStack (из окружения)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_domain_name
+    default: "{{ lookup('env', 'OS_USER_DOMAIN_NAME') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Имя домена пользователя OpenStack (из окружения)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_domain_id
+    default: "{{ lookup('env', 'OS_USER_DOMAIN_ID') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "ID домена пользователя OpenStack (из окружения)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_cacert
+    default: "{{ lookup('env', 'OS_CACERT') }}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "CA-сертификат OpenStack (из окружения OS_CACERT)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_blockstorage_version
+    default: "\"v3\""
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Версия API блочного хранилища Cinder (поддерживается только v3)."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_controller_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Число реплик контроллера Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_tolerations
+    default: "[]"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Tolerations подов Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_attacher_extra_args
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Дополнительные аргументы контейнера csi-attacher Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_provisioner_extra_args
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Дополнительные аргументы контейнера csi-provisioner Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_snapshotter_extra_args
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Дополнительные аргументы контейнера csi-snapshotter Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_resizer_extra_args
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Дополнительные аргументы контейнера csi-resizer Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_csi_plugin_extra_args
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Дополнительные аргументы контейнера плагина Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+  - name: cinder_liveness_probe_extra_args
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/cinder/defaults/main.yml
+    description: "Дополнительные аргументы контейнера livenessprobe Cinder CSI."
+    conditions: "используется при cinder_csi_enabled"
+
+  # === csi_driver / gcp_pd ===
+  - name: gcp_pd_csi_controller_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/csi_driver/gcp_pd/defaults/main.yml
+    description: "Число реплик контроллера GCP PD CSI (единственная переменная в defaults роли)."
+    conditions: "используется при gcp_pd_csi_enabled"
+
+  # === csi_driver / upcloud ===
+  - name: upcloud_csi_controller_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Число реплик контроллера UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_provisioner_image_tag
+    default: "\"v3.1.0\""
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Тег образа csi-provisioner UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_attacher_image_tag
+    default: "\"v3.4.0\""
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Тег образа csi-attacher UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_resizer_image_tag
+    default: "\"v1.4.0\""
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Тег образа csi-resizer UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_plugin_image_tag
+    default: "\"v1.1.0\""
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Тег образа плагина UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_node_image_tag
+    default: "\"v2.5.0\""
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Тег образа узлового плагина UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_username
+    default: "{{ lookup('env', 'UPCLOUD_USERNAME') }}"
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Имя пользователя UpCloud API (из окружения UPCLOUD_USERNAME)."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_password
+    default: "{{ lookup('env', 'UPCLOUD_PASSWORD') }}"
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Пароль UpCloud API (из окружения UPCLOUD_PASSWORD)."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_tolerations
+    default: "[]"
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Tolerations подов UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_enable_volume_snapshot
+    default: "false"
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Включает поддержку снапшотов томов UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_snapshot_controller_replicas
+    default: "2"
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Число реплик snapshot-controller UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_snapshotter_image_tag
+    default: "\"v4.2.1\""
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Тег образа csi-snapshotter UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_snapshot_controller_image_tag
+    default: "\"v4.2.1\""
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Тег образа snapshot-controller UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_csi_snapshot_validation_webhook_image_tag
+    default: "\"v4.2.1\""
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "Тег образа snapshot validation webhook UpCloud CSI."
+    conditions: "используется при upcloud_csi_enabled"
+  - name: upcloud_cacert
+    default: "{{ lookup('env', 'OS_CACERT') }}"
+    source_path: roles/kubernetes-apps/csi_driver/upcloud/defaults/main.yml
+    description: "CA-сертификат (читается из переменной окружения OS_CACERT — вероятно унаследовано из кода Cinder)."
+    conditions: "используется при upcloud_csi_enabled"
+    reliability: unconfirmed
+
+  # === csi_driver / vsphere ===
+  - name: external_vsphere_vcenter_port
+    default: "\"443\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Порт vCenter (продублировано в defaults external_cloud_controller/vsphere)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: external_vsphere_insecure
+    default: "\"true\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Не проверять TLS-сертификат vCenter (продублировано в defaults external_cloud_controller/vsphere)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: external_vsphere_kubernetes_cluster_id
+    default: "\"kubernetes-cluster-id\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Идентификатор кластера Kubernetes для vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: external_vsphere_version
+    default: "\"7.0u1\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Версия vSphere (влияет на путь csi_endpoint)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_syncer_image_tag
+    default: "\"v3.3.1\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Тег образа vsphere-syncer."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_attacher_image_tag
+    default: "\"v4.3.0\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Тег образа csi-attacher vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_controller
+    default: "\"v3.3.1\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Тег образа контроллера vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_liveness_probe_image_tag
+    default: "\"v2.10.0\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Тег образа livenessprobe vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_provisioner_image_tag
+    default: "\"v3.5.0\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Тег образа csi-provisioner vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_snapshotter_image_tag
+    default: "\"v6.2.2\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Тег образа csi-snapshotter vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_node_driver_registrar_image_tag
+    default: "\"v2.8.0\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Тег образа node-driver-registrar vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_driver_image_tag
+    default: "\"v3.3.1\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Тег образа драйвера vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_resizer_tag
+    default: "\"v1.8.0\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Тег образа csi-resizer vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_namespace
+    default: "\"kube-system\""
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Namespace vSphere CSI (для обратной совместимости kube-system; рекомендуется vmware-system-csi)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_controller_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Число реплик контроллера vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: csi_endpoint
+    default: "'{% if external_vsphere_version >= \"7.0u1\" %}/csi{% else %}/var/lib/csi/sockets/pluginproxy{% endif %}'"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Путь CSI endpoint (зависит от external_vsphere_version)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_aggressive_node_drain
+    default: "false"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Агрессивный drain узла для vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_aggressive_node_unreachable_timeout
+    default: "300"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Таймаут недоступности узла для агрессивного drain (сек)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_aggressive_node_not_ready_timeout
+    default: "300"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Таймаут NotReady узла для агрессивного drain (сек)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_node_affinity
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Affinity узлового плагина vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: unsafe_show_logs
+    default: "false"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Показывать отладочную информацию (может содержать приватные данные; рекомендуется false в проде)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_block_volume_snapshot
+    default: "false"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Включает block volume snapshot для vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: external_vsphere_user
+    default: "{{ lookup('env', 'VSPHERE_USER') }}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Пользователь vCenter (из окружения VSPHERE_USER; продублировано в external_cloud_controller/vsphere)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: external_vsphere_password
+    default: "{{ lookup('env', 'VSPHERE_PASSWORD') }}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Пароль vCenter (из окружения VSPHERE_PASSWORD; продублировано в external_cloud_controller/vsphere)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_snapshotter_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера csi-snapshotter (контроллер)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_provisioner_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера csi-provisioner (контроллер)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_syncer_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера vsphere-syncer."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_liveness_probe_controller_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера livenessprobe (контроллер)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера контроллера vSphere CSI."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_resizer_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера csi-resizer (контроллер)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_attacher_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера csi-attacher (контроллер)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_node_driver_registrar_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера node-driver-registrar (DaemonSet)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_driver_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера драйвера (DaemonSet)."
+    conditions: "используется при vsphere_csi_enabled"
+  - name: vsphere_csi_liveness_probe_ds_resources
+    default: "{}"
+    source_path: roles/kubernetes-apps/csi_driver/vsphere/defaults/main.yml
+    description: "Ресурсы контейнера livenessprobe (DaemonSet)."
+    conditions: "используется при vsphere_csi_enabled"
+
+  # === external_cloud_controller / hcloud ===
+  - name: external_hcloud_cloud
+    default: |-
+      hcloud_api_token: ""
+      token_secret_name: hcloud
+      service_account_name: cloud-controller-manager
+      controller_image_tag: "latest"
+      controller_extra_args: {}
+    source_path: roles/kubernetes-apps/external_cloud_controller/hcloud/defaults/main.yml
+    description: "Словарь конфигурации Hetzner Cloud Controller Manager: токен API, секрет, ServiceAccount, тег образа, доп. аргументы."
+    conditions: "используется при cloud_provider external и external_cloud_provider: hcloud"
+
+  # === external_cloud_controller / huaweicloud ===
+  - name: external_huaweicloud_auth_url
+    default: "{{ lookup('env','OS_AUTH_URL')  }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+    description: "URL аутентификации Huawei Cloud (из окружения OS_AUTH_URL)."
+  - name: external_huaweicloud_access_key
+    default: "{{ lookup('env','OS_ACCESS_KEY')  }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+    description: "Access key Huawei Cloud (из окружения OS_ACCESS_KEY)."
+  - name: external_huaweicloud_secret_key
+    default: "{{ lookup('env','OS_SECRET_KEY')  }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+    description: "Secret key Huawei Cloud (из окружения OS_SECRET_KEY)."
+  - name: external_huaweicloud_region
+    default: "{{ lookup('env','OS_REGION_NAME')  }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+    description: "Регион Huawei Cloud (из окружения OS_REGION_NAME)."
+  - name: external_huaweicloud_project_id
+    default: "{{ lookup('env','OS_TENANT_ID')| default(lookup('env','OS_PROJECT_ID'),true) }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+    description: "ID проекта Huawei Cloud (из окружения)."
+  - name: external_huaweicloud_cloud
+    default: "{{ lookup('env','OS_CLOUD') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+    description: "Имя облака Huawei Cloud (из окружения OS_CLOUD)."
+  - name: external_huawei_cloud_controller_extra_args
+    default: "{}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+    description: "Дополнительные аргументы Huawei cloud controller manager."
+  - name: external_huawei_cloud_controller_image_repo
+    default: "\"swr.ap-southeast-1.myhuaweicloud.com\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+    description: "Репозиторий образа Huawei cloud controller manager."
+  - name: external_huawei_cloud_controller_image_tag
+    default: "\"v0.26.8\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/huaweicloud/defaults/main.yml
+    description: "Тег образа Huawei cloud controller manager."
+
+  # === external_cloud_controller / oci ===
+  - name: external_oracle_auth_region
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Регион аутентификации Oracle Cloud (задаётся пользователем)."
+  - name: external_oracle_auth_tenancy
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "OCID tenancy Oracle Cloud."
+  - name: external_oracle_auth_user
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "OCID пользователя Oracle Cloud."
+  - name: external_oracle_auth_key
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Приватный ключ аутентификации Oracle Cloud."
+  - name: external_oracle_auth_passphrase
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Passphrase приватного ключа Oracle Cloud."
+  - name: external_oracle_auth_fingerprint
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Fingerprint ключа API Oracle Cloud."
+  - name: external_oracle_auth_use_instance_principals
+    default: "false"
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Использовать instance principals вместо ключей аутентификации Oracle Cloud."
+  - name: external_oracle_compartment
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "OCID compartment Oracle Cloud."
+  - name: external_oracle_vcn
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "OCID VCN (виртуальной сети) Oracle Cloud."
+  - name: external_oracle_load_balancer_subnet1
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "OCID первой подсети балансировщика Oracle Cloud."
+  - name: external_oracle_load_balancer_subnet2
+    default: "\"\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "OCID второй подсети балансировщика Oracle Cloud."
+  - name: external_oracle_load_balancer_security_list_management_mode
+    default: "All"
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Режим управления security list балансировщика Oracle Cloud."
+  - name: external_oracle_load_balancer_security_lists
+    default: "{}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Соответствие подсетей и security list балансировщика Oracle Cloud."
+  - name: external_oracle_ratelimiter_qps_read
+    default: "20.0"
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Лимит QPS на чтение к Oracle Cloud API."
+  - name: external_oracle_ratelimiter_bucket_read
+    default: "5"
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Размер bucket rate limiter на чтение Oracle Cloud API."
+  - name: external_oracle_ratelimiter_qps_write
+    default: "20.0"
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Лимит QPS на запись к Oracle Cloud API."
+  - name: external_oracle_ratelimiter_bucket_write
+    default: "5"
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Размер bucket rate limiter на запись Oracle Cloud API."
+  - name: external_oracle_cloud_controller_image_repo
+    default: "ghcr.io/oracle/cloud-provider-oci"
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Репозиторий образа Oracle Cloud Controller Manager."
+  - name: external_oracle_cloud_controller_image_tag
+    default: "\"v1.29.0\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/oci/defaults/main.yml
+    description: "Тег образа Oracle Cloud Controller Manager."
+
+  # === external_cloud_controller / openstack ===
+  - name: external_openstack_auth_url
+    default: "{{ lookup('env', 'OS_AUTH_URL') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "URL аутентификации OpenStack (из окружения OS_AUTH_URL)."
+  - name: external_openstack_username
+    default: "{{ lookup('env', 'OS_USERNAME') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Имя пользователя OpenStack (из окружения OS_USERNAME)."
+  - name: external_openstack_password
+    default: "{{ lookup('env', 'OS_PASSWORD') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Пароль OpenStack (из окружения OS_PASSWORD)."
+  - name: external_openstack_application_credential_id
+    default: "{{ lookup('env', 'OS_APPLICATION_CREDENTIAL_ID') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "ID application credential OpenStack (из окружения)."
+  - name: external_openstack_application_credential_name
+    default: "{{ lookup('env', 'OS_APPLICATION_CREDENTIAL_NAME') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Имя application credential OpenStack (из окружения)."
+  - name: external_openstack_application_credential_secret
+    default: "{{ lookup('env', 'OS_APPLICATION_CREDENTIAL_SECRET') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Секрет application credential OpenStack (из окружения)."
+  - name: external_openstack_region
+    default: "{{ lookup('env', 'OS_REGION_NAME') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Регион OpenStack (из окружения OS_REGION_NAME)."
+  - name: external_openstack_tenant_id
+    default: "{{ lookup('env', 'OS_TENANT_ID') | default(lookup('env', 'OS_PROJECT_ID'), true) }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "ID проекта/tenant OpenStack (из окружения)."
+  - name: external_openstack_tenant_name
+    default: "{{ lookup('env', 'OS_TENANT_NAME') | default(lookup('env', 'OS_PROJECT_NAME'), true) }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Имя проекта/tenant OpenStack (из окружения)."
+  - name: external_openstack_domain_name
+    default: "{{ lookup('env', 'OS_USER_DOMAIN_NAME') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Имя домена пользователя OpenStack (из окружения)."
+  - name: external_openstack_domain_id
+    default: "{{ lookup('env', 'OS_USER_DOMAIN_ID') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "ID домена пользователя OpenStack (из окружения)."
+  - name: external_openstack_cacert
+    default: "{{ lookup('env', 'OS_CACERT') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "CA-сертификат OpenStack (из окружения OS_CACERT)."
+  - name: external_openstack_cloud_controller_extra_args
+    default: "{}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Дополнительные аргументы OpenStack cloud controller manager."
+  - name: external_openstack_cloud_controller_image_tag
+    default: "\"v1.30.0\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Тег образа OpenStack cloud controller manager."
+  - name: external_openstack_cloud_controller_bind_address
+    default: "127.0.0.1"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "Адрес привязки OpenStack cloud controller manager."
+  - name: external_openstack_cloud_controller_dns_policy
+    default: "ClusterFirst"
+    source_path: roles/kubernetes-apps/external_cloud_controller/openstack/defaults/main.yml
+    description: "dnsPolicy подов OpenStack cloud controller manager."
+
+  # === external_cloud_controller / vsphere ===
+  - name: external_vsphere_vcenter_port
+    default: "\"443\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/vsphere/defaults/main.yml
+    description: "Порт vCenter (продублировано в defaults csi_driver/vsphere)."
+  - name: external_vsphere_insecure
+    default: "\"true\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/vsphere/defaults/main.yml
+    description: "Не проверять TLS-сертификат vCenter (продублировано в defaults csi_driver/vsphere)."
+  - name: external_vsphere_cloud_controller_extra_args
+    default: "{}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/vsphere/defaults/main.yml
+    description: "Дополнительные аргументы vSphere cloud controller manager."
+  - name: external_vsphere_cloud_controller_image_tag
+    default: "\"v1.31.0\""
+    source_path: roles/kubernetes-apps/external_cloud_controller/vsphere/defaults/main.yml
+    description: "Тег образа vSphere cloud controller manager."
+  - name: external_vsphere_user
+    default: "{{ lookup('env', 'VSPHERE_USER') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/vsphere/defaults/main.yml
+    description: "Пользователь vCenter (из окружения VSPHERE_USER; продублировано в csi_driver/vsphere)."
+  - name: external_vsphere_password
+    default: "{{ lookup('env', 'VSPHERE_PASSWORD') }}"
+    source_path: roles/kubernetes-apps/external_cloud_controller/vsphere/defaults/main.yml
+    description: "Пароль vCenter (из окружения VSPHERE_PASSWORD; продублировано в csi_driver/vsphere)."
+
+  # === persistent_volumes / aws-ebs-csi ===
+  - name: restrict_az_provisioning
+    default: "false"
+    source_path: roles/kubernetes-apps/persistent_volumes/aws-ebs-csi/defaults/main.yml
+    description: "Ограничить провижионинг томов заданными зонами доступности AWS."
+    conditions: "используется при persistent_volumes_enabled и aws_ebs_csi_enabled"
+  - name: aws_ebs_availability_zones
+    default: |-
+      - eu-west-3c
+    source_path: roles/kubernetes-apps/persistent_volumes/aws-ebs-csi/defaults/main.yml
+    description: "Список зон доступности AWS для провижионинга томов."
+    conditions: "используется при restrict_az_provisioning: true"
+
+  # === persistent_volumes / azuredisk-csi ===
+  - name: storage_account_type
+    default: "StandardSSD_LRS"
+    source_path: roles/kubernetes-apps/persistent_volumes/azuredisk-csi/defaults/main.yml
+    description: "Тип Azure storage account для StorageClass (Standard_LRS, Premium_LRS, StandardSSD_LRS, UltraSSD_LRS)."
+    conditions: "используется при persistent_volumes_enabled и azure_csi_enabled"
+
+  # === persistent_volumes / cinder-csi ===
+  - name: storage_classes
+    default: |-
+      - name: cinder-csi
+        is_default: false
+        parameters:
+          availability: nova
+          allowVolumeExpansion: false
+    source_path: roles/kubernetes-apps/persistent_volumes/cinder-csi/defaults/main.yml
+    description: "StorageClass-ы для Cinder CSI (переменная storage_classes определена также в persistent_volumes/upcloud-csi с другим значением)."
+    conditions: "используется при persistent_volumes_enabled и cinder_csi_enabled"
+
+  # === persistent_volumes / gcp-pd-csi ===
+  - name: gcp_pd_csi_volume_type
+    default: "pd-standard"
+    source_path: roles/kubernetes-apps/persistent_volumes/gcp-pd-csi/defaults/main.yml
+    description: "Тип диска GCP PD (pd-standard или pd-ssd)."
+    conditions: "используется при persistent_volumes_enabled и gcp_pd_csi_enabled"
+  - name: gcp_pd_regional_replication_enabled
+    default: "false"
+    source_path: roles/kubernetes-apps/persistent_volumes/gcp-pd-csi/defaults/main.yml
+    description: "Включает региональную репликацию дисков GCP PD."
+    conditions: "используется при persistent_volumes_enabled и gcp_pd_csi_enabled"
+  - name: gcp_pd_restrict_zone_replication
+    default: "false"
+    source_path: roles/kubernetes-apps/persistent_volumes/gcp-pd-csi/defaults/main.yml
+    description: "Ограничить репликацию заданными зонами GCP."
+    conditions: "используется при gcp_pd_regional_replication_enabled"
+  - name: gcp_pd_restricted_zones
+    default: |-
+      - europe-west1-b
+      - europe-west1-c
+    source_path: roles/kubernetes-apps/persistent_volumes/gcp-pd-csi/defaults/main.yml
+    description: "Список зон GCP для ограниченной репликации дисков."
+    conditions: "используется при gcp_pd_restrict_zone_replication: true"
+
+  # === persistent_volumes / upcloud-csi ===
+  - name: storage_classes
+    default: |-
+      - name: standard
+        is_default: true
+        expand_persistent_volumes: true
+        parameters:
+          tier: maxiops
+      - name: hdd
+        is_default: false
+        expand_persistent_volumes: true
+        parameters:
+          tier: hdd
+    source_path: roles/kubernetes-apps/persistent_volumes/upcloud-csi/defaults/main.yml
+    description: "StorageClass-ы для UpCloud CSI (переменная storage_classes определена также в persistent_volumes/cinder-csi с другим значением)."
+    conditions: "используется при persistent_volumes_enabled и upcloud_csi_enabled"
+
+  # === snapshots / cinder-csi ===
+  - name: snapshot_classes
+    default: |-
+      - name: cinder-csi-snapshot
+        is_default: false
+        force_create: true
+        deletionPolicy: Delete
+    source_path: roles/kubernetes-apps/snapshots/cinder-csi/defaults/main.yml
+    description: "VolumeSnapshotClass-ы для Cinder CSI."
+    conditions: "используется при csi_snapshot_controller_enabled и cinder_csi_enabled"
+
+  # === snapshots / snapshot-controller ===
+  - name: snapshot_controller_replicas
+    default: "1"
+    source_path: roles/kubernetes-apps/snapshots/snapshot-controller/defaults/main.yml
+    description: "Число реплик snapshot-controller."
+    conditions: "используется при csi_snapshot_controller_enabled"
+  - name: snapshot_controller_namespace
+    default: "kube-system"
+    source_path: roles/kubernetes-apps/snapshots/snapshot-controller/defaults/main.yml
+    description: "Namespace для snapshot-controller."
+    conditions: "используется при csi_snapshot_controller_enabled"

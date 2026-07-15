@@ -1,0 +1,691 @@
+project: kubespray
+kubespray_version: v2.28.0
+git_commit: 63cdf87
+source_type: inventory
+source_paths:
+  - inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.28.0
+retrieved_at: 2026-07-15
+topics: [inventory, k8s-cluster]
+reliability: authoritative
+notes: >
+  Разбор sample-inventory тега v2.28.0. Поле is_set: true — переменная в файле
+  раскомментирована и реально задаётся; is_set: false — это закомментированный
+  пример/дефолт, приведённый для справки. Значения приведены дословно из файла.
+  Расхождений с defaults ролей не обнаружено (см. discrepancies.md среза).
+  Комментарии оригинала перекраны на русский; ключевые формулировки процитированы.
+
+variables:
+  # =====================================================================
+  #  Файл k8s-cluster.yml
+  # =====================================================================
+
+  # --- Каталоги конфигурации Kubernetes ---
+  - name: kube_config_dir
+    sample_value: "/etc/kubernetes"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Основной каталог конфигурации Kubernetes (аналог /srv/kubernetes). В комментарии предупреждение: изменение этих значений почти наверняка что-то сломает."
+  - name: kube_script_dir
+    sample_value: "{{ bin_dir }}/kubernetes-scripts"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Каталог вспомогательных скриптов Kubernetes."
+  - name: kube_manifest_dir
+    sample_value: "{{ kube_config_dir }}/manifests"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Каталог статических манифестов подов."
+  - name: kube_cert_dir
+    sample_value: "{{ kube_config_dir }}/ssl"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Каталог сертификатов и cert-скриптов."
+  - name: kube_token_dir
+    sample_value: "{{ kube_config_dir }}/tokens"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Каталог хранения bearer-токенов."
+
+  # --- Анонимная аутентификация к API ---
+  - name: kube_api_anonymous_auth
+    sample_value: true
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Разрешить анонимную аутентификацию к API-серверу."
+
+  # --- Каталог загрузок и повторы ---
+  - name: local_release_dir
+    sample_value: "/tmp/releases"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Каталог на нодах для скачиваемых бинарников; нужно около 1 ГБ свободного места."
+  - name: retry_stagger
+    sample_value: 5
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Случайный разброс задержки при повторах неудачных операций скачивания/загрузки."
+
+  # --- Владельцы файлов и уровень логов ---
+  - name: kube_owner
+    sample_value: "kube"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Пользователь-владелец установки кластера."
+  - name: kube_cert_group
+    sample_value: "kube-cert"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Группа, на которую cert-скрипты меняют владельца файлов сертификатов; в комментарии сказано, что менять её фактически нельзя."
+  - name: kube_log_level
+    sample_value: 2
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Уровень логирования (-v) компонентов кластера."
+  - name: credentials_dir
+    sample_value: "{{ inventory_dir }}/credentials"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Каталог хранения сгенерированных секретов."
+
+  # --- Методы аутентификации (закомментированные примеры) ---
+  - name: kube_oidc_auth
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Включение аутентификации через OIDC; можно активировать/деактивировать методы аутентификации (oidc, static token auth)."
+  - name: kube_token_auth
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Включение статической токен-аутентификации."
+  - name: kube_oidc_url
+    sample_value: "commented (пример: https:// ...)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "URL OIDC-провайдера. Для OIDC требуется развернуть отдельный провайдер (Dex, Keycloak и т. п.)."
+  - name: kube_oidc_client_id
+    sample_value: "commented (пример: kubernetes)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Client ID OIDC."
+  - name: kube_oidc_ca_file
+    sample_value: "commented (пример: {{ kube_cert_dir }}/ca.pem)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "CA-файл OIDC (опционально)."
+  - name: kube_oidc_username_claim
+    sample_value: "commented (пример: sub)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "OIDC claim для имени пользователя."
+  - name: kube_oidc_username_prefix
+    sample_value: "commented (пример: 'oidc:')"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Префикс имени пользователя OIDC."
+  - name: kube_oidc_groups_claim
+    sample_value: "commented (пример: groups)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "OIDC claim для групп."
+  - name: kube_oidc_groups_prefix
+    sample_value: "commented (пример: 'oidc:')"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Префикс групп OIDC."
+
+  # --- Webhook authn/authz (закомментированные примеры) ---
+  - name: kube_webhook_token_auth
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Включить webhook token-аутентификацию."
+  - name: kube_webhook_token_auth_url
+    sample_value: "commented (пример: https://...)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "URL webhook token-аутентификации."
+  - name: kube_webhook_token_auth_url_skip_tls_verify
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Пропускать проверку TLS для webhook token-аутентификации."
+  - name: kube_webhook_authorization
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Webhook-авторизация; требует, чтобы authorization_modes включал Webhook или kube_apiserver_authorization_config_authorizers содержал type: Webhook."
+  - name: kube_webhook_authorization_url
+    sample_value: "commented (пример: https://...)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "URL webhook-авторизации."
+  - name: kube_webhook_authorization_url_skip_tls_verify
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Пропускать проверку TLS для webhook-авторизации."
+
+  # --- Сетевой плагин CNI ---
+  - name: kube_network_plugin
+    sample_value: "calico"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Выбор CNI: cilium, calico, kube-ovn, weave или flannel (cni — generic-плагин). Также допустимо 'cloud' — маршрутизацию настраивает облачный провайдер. Примечание: weave присутствует в списке v2.28.0, но удалён в v2.29.1."
+  - name: kube_network_plugin_multus
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "true — установить Multus (подключение нескольких CNI к подам)."
+
+  # --- Подсети кластера (IPv4) ---
+  - name: kube_service_addresses
+    sample_value: "10.233.0.0/18"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Внутренняя IPv4-подсеть для сервисов; неиспользуемый блок адресов."
+  - name: kube_pods_subnet
+    sample_value: "10.233.64.0/18"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Внутренняя IPv4-подсеть для подов; не должна использоваться в вашей сети."
+  - name: kube_network_node_prefix
+    sample_value: 24
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Размер IPv4-подсети на ноду для IP подов. Число подов также ограничено kubelet_max_pods (по умолчанию 110). В комментарии примеры: /24 — до 64 нод, /25 — до 128 нод."
+
+  # --- Подсети кластера (IPv6, только при ipv6_stack: true) ---
+  - name: kube_service_addresses_ipv6
+    sample_value: "fd85:ee78:d8a6:8607::1000/116"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "IPv6-подсеть для сервисов (4096 адресов). Используется только при ipv6_stack: true."
+  - name: kube_pods_subnet_ipv6
+    sample_value: "fd85:ee78:d8a6:8607::1:0000/112"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "IPv6-подсеть для подов (256 нод по 254 пода). Только при ipv6_stack: true; не должна пересекаться с инфраструктурой."
+  - name: kube_network_node_prefix_ipv6
+    sample_value: 120
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Длина IPv6-префикса на ноду под поды (254 пода на ноду). Только при ipv6_stack: true."
+
+  # --- API-сервер ---
+  - name: kube_apiserver_ip
+    sample_value: "{{ kube_service_subnets.split(',') | first | ansible.utils.ipaddr('net') | ansible.utils.ipaddr(1) | ansible.utils.ipaddr('address') }}"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Виртуальный IP API-сервера — первый адрес сервисной подсети."
+  - name: kube_apiserver_port
+    sample_value: 6443
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "HTTPS-порт API-сервера."
+
+  # --- kube-proxy ---
+  - name: kube_proxy_mode
+    sample_value: "ipvs"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Режим kube-proxy: ipvs, iptables или nftables. В комментарии TODO: перейти на nftables, когда апстрим сделает его дефолтным."
+  - name: kube_proxy_strict_arp
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Настроить arp_ignore/arp_announce, чтобы не отвечать на ARP-запросы с интерфейса kube-ipvs0. Должно быть true для работы MetalLB и kube-vip (ARP)."
+  - name: kube_proxy_nodeport_addresses
+    sample_value: "выражение: [{{ kube_proxy_nodeport_addresses_cidr }}] если задан kube_proxy_nodeport_addresses_cidr, иначе []"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Список CIDR-адресов для NodePort; пустой список [] — все локальные адреса. kube_proxy_nodeport_addresses_cidr сохранён для legacy-конфигураций."
+  - name: kube_override_hostname
+    sample_value: "commented (пример: {{ inventory_hostname }})"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Если задано непустым — использовать эту строку как идентификатор ноды вместо реального hostname."
+
+  # --- Шифрование секретов ---
+  - name: kube_encrypt_secret_data
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Шифрование Secret Data at Rest в etcd."
+
+  # --- Graceful Node Shutdown (закомментированные примеры) ---
+  - name: kubelet_shutdown_grace_period
+    sample_value: "commented (пример: 60s)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Общий период graceful shutdown ноды (K8s >= 1.21). Должен быть больше kubelet_shutdown_grace_period_critical_pods."
+  - name: kubelet_shutdown_grace_period_critical_pods
+    sample_value: "commented (пример: 20s)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Часть периода shutdown, зарезервированная для критических подов."
+
+  # --- DNS: домен и параметры resolv.conf ---
+  - name: cluster_name
+    sample_value: "cluster.local"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Имя кластера, оно же DNS-домен."
+  - name: ndots
+    sample_value: 2
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Значение ndots для разрешения поддоменов кластерного домена через /etc/resolv.conf у hostnet-подов."
+  - name: dns_timeout
+    sample_value: "commented (пример: 2)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Таймаут DNS-запросов (опция resolv.conf)."
+  - name: dns_attempts
+    sample_value: "commented (пример: 2)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Число попыток DNS-запросов (опция resolv.conf)."
+  - name: searchdomains
+    sample_value: "commented (пример: список svc.{{ cluster_name }}, default.svc.{{ cluster_name }})"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Дополнительные search-домены сверх стандартных кластерных."
+  - name: remove_default_searchdomains
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Удалить стандартные кластерные search-домены (default.svc.{{ dns_domain }}, svc.{{ dns_domain }})."
+
+  # --- DNS: режим и nodelocaldns ---
+  - name: dns_mode
+    sample_value: "coredns"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Режим кластерного DNS: coredns, coredns_dual, manual или none."
+  - name: manual_dns_server
+    sample_value: "commented (пример: 10.x.x.x)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "IP кастомного DNS-сервера для dns_mode: manual."
+  - name: enable_nodelocaldns
+    sample_value: true
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Включить nodelocal DNS cache (локальный кеш DNS на каждой ноде)."
+  - name: enable_nodelocaldns_secondary
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Включить вторичный daemonset nodelocaldns."
+  - name: nodelocaldns_ip
+    sample_value: "169.254.25.10"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Link-local IP, на котором слушает nodelocaldns."
+  - name: nodelocaldns_health_port
+    sample_value: 9254
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Порт health-check основного nodelocaldns."
+  - name: nodelocaldns_second_health_port
+    sample_value: 9256
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Порт health-check вторичного nodelocaldns."
+  - name: nodelocaldns_bind_metrics_host_ip
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Привязывать метрики nodelocaldns к IP хоста."
+  - name: nodelocaldns_secondary_skew_seconds
+    sample_value: 5
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Сдвиг (сек) между перезапусками основного и вторичного nodelocaldns."
+  - name: nodelocaldns_external_zones
+    sample_value: "commented (пример: список зон с nameservers/cache/rewrite)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Внешние зоны для nodelocaldns: свои зоны с указанием nameservers, cache и rewrite."
+
+  # --- DNS: CoreDNS плагины ---
+  - name: enable_coredns_k8s_external
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Включить плагин k8s_external в CoreDNS."
+  - name: coredns_k8s_external_zone
+    sample_value: "k8s_external.local"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "DNS-зона для плагина k8s_external."
+  - name: enable_coredns_k8s_endpoint_pod_names
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Включить опцию endpoint_pod_names в плагине kubernetes CoreDNS."
+  - name: dns_upstream_forward_extra_opts
+    sample_value: "commented (пример: policy: sequential)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Доп. опции forward для upstream DNS-серверов в coredns и nodelocaldns."
+  - name: coredns_kubernetes_extra_opts
+    sample_value: "commented (пример: - 'fallthrough example.local')"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Дополнительные опции плагина kubernetes CoreDNS."
+  - name: coredns_kubernetes_extra_domains
+    sample_value: "commented (пример: '')"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Домены, дополнительно форвардящиеся в плагин kubernetes CoreDNS."
+
+  # --- resolvconf и netchecker ---
+  - name: resolvconf_mode
+    sample_value: "host_resolvconf"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Способ настройки resolv.conf: docker_dns, host_resolvconf или none."
+  - name: deploy_netchecker
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Развернуть netchecker — HTTP-сервис проверки DNS-резолвинга."
+
+  # --- Адреса skydns и dns_domain ---
+  - name: skydns_server
+    sample_value: "{{ kube_service_subnets.split(',') | first | ansible.utils.ipaddr('net') | ansible.utils.ipaddr(3) | ansible.utils.ipaddr('address') }}"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "IP кластерного DNS-сервиса (skydns) — третий адрес сервисной подсети."
+  - name: skydns_server_secondary
+    sample_value: "{{ kube_service_subnets.split(',') | first | ansible.utils.ipaddr('net') | ansible.utils.ipaddr(4) | ansible.utils.ipaddr('address') }}"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "IP вторичного DNS-сервиса — четвёртый адрес сервисной подсети."
+  - name: dns_domain
+    sample_value: "{{ cluster_name }}"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "DNS-домен кластера; по умолчанию равен cluster_name."
+
+  # --- Контейнерный рантайм ---
+  - name: container_manager
+    sample_value: "containerd"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Рантайм: docker для docker, crio для cri-o, containerd для containerd. По умолчанию containerd."
+  - name: kata_containers_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Дополнительный рантайм Kata Containers."
+
+  # --- Сертификаты и pull policy ---
+  - name: kubeadm_certificate_key
+    sample_value: "{{ lookup('password', credentials_dir + '/kubeadm_certificate_key.creds length=64 chars=hexdigits') | lower }}"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Ключ шифрования сертификатов kubeadm; генерируется lookup password (64 hex-символа) и хранится в credentials_dir."
+  - name: k8s_image_pull_policy
+    sample_value: "IfNotPresent"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "imagePullPolicy контейнеров компонентов K8s."
+
+  # --- Аудит ---
+  - name: kubernetes_audit
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Включить audit log Kubernetes."
+
+  # --- Динамическая конфигурация kubelet ---
+  - name: kubelet_config_dir
+    sample_value: "commented (без значения; определяет каталог dynamic kubelet)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Каталог динамической конфигурации kubelet (dynamic kubelet); закомментирован."
+  - name: default_kubelet_config_dir
+    sample_value: "{{ kube_config_dir }}/dynamic_kubelet_dir"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Каталог динамической конфигурации kubelet по умолчанию."
+
+  # --- Копирование kubeconfig / kubectl на хост Ansible (закомментированы) ---
+  - name: kubeconfig_localhost
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Скопировать kubeconfig на хост Ansible в {{ inventory_dir }}/artifacts."
+  - name: kubeconfig_localhost_ansible_host
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Использовать ansible_host как внешний IP API при копировании kubeconfig."
+  - name: kubectl_localhost
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Скачать kubectl на хост Ansible в {{ bin_dir }}."
+
+  # --- Node allocatable и cgroups (закомментированные примеры) ---
+  - name: kubelet_enforce_node_allocatable
+    sample_value: "commented (пример: pods)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Список уровней enforcement node allocatable через запятую: 'pods', 'system-reserved', 'kube-reserved' и ''. По умолчанию \"\"."
+  - name: kubelet_runtime_cgroups
+    sample_value: "commented (пример: /{{ kube_service_cgroups }}/{{ container_manager }}.service)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "runtime cgroups при systemd в качестве cgroup driver (по умолчанию)."
+  - name: kubelet_kubelet_cgroups
+    sample_value: "commented (пример: /{{ kube_service_cgroups }}/kubelet.service)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "kubelet cgroups при systemd в качестве cgroup driver."
+  - name: kubelet_runtime_cgroups_cgroupfs
+    sample_value: "commented (пример: /system.slice/{{ container_manager }}.service)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "runtime cgroups при cgroupfs в качестве cgroup driver."
+  - name: kubelet_kubelet_cgroups_cgroupfs
+    sample_value: "commented (пример: /system.slice/kubelet.service)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "kubelet cgroups при cgroupfs в качестве cgroup driver."
+
+  # --- kube_reserved (закомментированные примеры) ---
+  - name: kube_reserved
+    sample_value: "commented (пример: false)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Запускать kubelet и container-engine в выделенном cgroup. При true нужно задать kube_reserved_cgroups_for_service_slice и kube_reserved_cgroups."
+  - name: kube_reserved_cgroups_for_service_slice
+    sample_value: "commented (пример: kube.slice)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "systemd slice для зарезервированных ресурсов kube."
+  - name: kube_reserved_cgroups
+    sample_value: "commented (пример: /{{ kube_reserved_cgroups_for_service_slice }})"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "cgroup зарезервированных ресурсов kube."
+  - name: kube_memory_reserved
+    sample_value: "commented (пример: 256Mi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Зарезервированная память для kube-компонентов (значение для рабочих нод; в kube_control_plane.yml пример 512Mi)."
+  - name: kube_cpu_reserved
+    sample_value: "commented (пример: 100m)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Зарезервированный CPU для kube-компонентов."
+  - name: kube_ephemeral_storage_reserved
+    sample_value: "commented (пример: 2Gi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Зарезервированное эфемерное хранилище для kube-компонентов."
+  - name: kube_pid_reserved
+    sample_value: "commented (пример: \"1000\")"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Зарезервированное число PID для kube-компонентов."
+
+  # --- system_reserved (закомментированные примеры) ---
+  - name: system_reserved
+    sample_value: "commented (пример: true)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Резервировать ресурсы для системных демонов ОС. При true нужно задать system_reserved_cgroups_for_service_slice и system_reserved_cgroups."
+  - name: system_reserved_cgroups_for_service_slice
+    sample_value: "commented (пример: system.slice)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "systemd slice для зарезервированных системных ресурсов."
+  - name: system_reserved_cgroups
+    sample_value: "commented (пример: /{{ system_reserved_cgroups_for_service_slice }})"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "cgroup зарезервированных системных ресурсов."
+  - name: system_memory_reserved
+    sample_value: "commented (пример: 512Mi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Зарезервированная память для системных демонов (значение для рабочих нод; в kube_control_plane.yml пример 256Mi)."
+  - name: system_cpu_reserved
+    sample_value: "commented (пример: 500m)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Зарезервированный CPU для системных демонов."
+  - name: system_ephemeral_storage_reserved
+    sample_value: "commented (пример: 2Gi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Зарезервированное эфемерное хранилище для системных демонов."
+
+  # --- Eviction thresholds (закомментированные примеры) ---
+  - name: eviction_hard
+    sample_value: "commented (пример: {})"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Жёсткие пороги вытеснения (eviction) для рабочих нод."
+  - name: eviction_hard_control_plane
+    sample_value: "commented (пример: {})"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Жёсткие пороги вытеснения для узлов control plane."
+
+  # --- flexvolume и SSL ---
+  - name: kubelet_flexvolumes_plugins_dir
+    sample_value: "commented (пример: /usr/libexec/kubernetes/kubelet-plugins/volume/exec)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Альтернативный каталог flexvolume-плагинов."
+  - name: supplementary_addresses_in_ssl_keys
+    sample_value: "commented (пример: [10.0.0.1, 10.0.0.2, 10.0.0.3])"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Дополнительные адреса в SSL-сертификатах K8s; полезно, например, для виртуального IP keepalived."
+
+  # --- OpenStack / persistent volumes ---
+  - name: volume_cross_zone_attachment
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "true снимает ограничение NoVolumeZoneConflict при работе поверх OpenStack VM с Cinder (см. issue #2141)."
+  - name: persistent_volumes_enabled
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Добавить StorageClass для облачных провайдеров (in-tree OpenStack, Cinder CSI, AWS EBS CSI, Azure Disk CSI, GCP PD CSI)."
+
+  # --- Container Engine Acceleration / NVIDIA (закомментированные примеры) ---
+  - name: nvidia_accelerator_enabled
+    sample_value: "commented (пример: true)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Включить аппаратное ускорение контейнеров (например, GPU)."
+  - name: nvidia_gpu_nodes
+    sample_value: "commented (пример: - kube-gpu-001)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Список нод для установки NVIDIA-драйверов (init-под в виде daemonset). Метки и taints ставятся только нодам из списка. Для Ubuntu нужен docker_storage_options: -s overlay2."
+  - name: nvidia_driver_version
+    sample_value: "commented (пример: \"384.111\")"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Версия драйвера NVIDIA."
+  - name: nvidia_gpu_flavor
+    sample_value: "commented (пример: gtx)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Тип GPU: tesla или gtx."
+  - name: nvidia_driver_install_centos_container
+    sample_value: "commented (пример: atzedevries/nvidia-centos-driver-installer:2)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Образ установщика драйвера NVIDIA для CentOS."
+  - name: nvidia_driver_install_ubuntu_container
+    sample_value: "commented (пример: gcr.io/google-containers/ubuntu-nvidia-driver-installer@sha256:...)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Образ установщика драйвера NVIDIA для Ubuntu."
+  - name: nvidia_gpu_device_plugin_container
+    sample_value: "commented (пример: registry.k8s.io/nvidia-gpu-device-plugin@sha256:...)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Образ device plugin NVIDIA."
+
+  # --- TLS (закомментированные примеры) ---
+  - name: tls_min_version
+    sample_value: "commented (пример: \"\")"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Минимальная версия TLS: VersionTLS10..VersionTLS13."
+  - name: tls_cipher_suites
+    sample_value: "commented (пример: {} со списком cipher suites)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Поддерживаемые наборы шифров TLS."
+
+  # --- Прочее: события и ротация сертификатов ---
+  - name: event_ttl_duration
+    sample_value: "1h0m0s"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Время хранения событий (по умолчанию 1h0m0s)."
+  - name: auto_renew_certificates
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Автообновление сертификатов control plane каждый первый понедельник месяца."
+  - name: auto_renew_certificates_systemd_calendar
+    sample_value: "commented (пример: \"Mon *-*-1,2,3,4,5,6,7 03:{{ groups['kube_control_plane'].index(inventory_hostname) }}0:00\")"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "systemd-calendar расписание автообновления сертификатов (первый понедельник месяца). В v2.28.0 пример содержит выражение с индексом ноды в минутах (03:X0:00), в v2.29.1 упрощён до 03:00:00."
+
+  # --- kubeadm patches ---
+  - name: kubeadm_patches_dir
+    sample_value: "{{ kube_config_dir }}/patches"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Каталог патчей kubeadm."
+  - name: kubeadm_patches
+    sample_value: "[]"
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "Список патчей kubeadm (target: kube-apiserver|kube-controller-manager|kube-scheduler|etcd|kubeletconfiguration, type, patch). Применяются в порядке указания. См. docs kubeadm control-plane-flags/#patches."
+
+  # --- Анонимный доступ ---
+  - name: remove_anonymous_access
+    sample_value: false
+    is_set: true
+    source_path: inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+    comment: "true — удалить role binding для анонимных пользователей, созданный kubeadm."
+  # Примечание: переменные файла kube_control_plane.yml вынесены в отдельный
+  # справочник kube_control_plane.yaml этого же каталога.

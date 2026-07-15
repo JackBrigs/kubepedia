@@ -1,0 +1,64 @@
+project: kubespray
+kubespray_version: v2.28.1
+git_commit: a20891a
+source_type: inventory
+source_paths:
+  - inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.28.1
+retrieved_at: 2026-07-15
+topics: [inventory, control-plane, resources]
+reliability: authoritative
+notes: >
+  Разбор sample-файла inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+  тега v2.28.1 (commit a20891a). Файл задаёт резервирование ресурсов
+  (CPU/память/эфемерное хранилище/PID) ТОЛЬКО для узлов группы kube_control_plane.
+  Все переменные закомментированы (примеры) — is_set: false. Значения примеров
+  отличаются от аналогичных примеров в k8s-cluster.yml (там значения для рабочих нод).
+  Расхождений с defaults ролей не обнаружено (переменные закомментированы). В defaults
+  Kubespray этих самостоятельных переменных нет — резервирование настраивается
+  пользователем на уровне group_vars группы kube_control_plane.
+
+variables:
+  # --- Резервирование под компоненты Kubernetes (control plane) ---
+  - name: kube_memory_reserved
+    sample_value: "commented (пример: 512Mi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование памяти для компонентов Kubernetes на control plane."
+  - name: kube_cpu_reserved
+    sample_value: "commented (пример: 200m)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование CPU для компонентов Kubernetes на control plane."
+  - name: kube_ephemeral_storage_reserved
+    sample_value: "commented (пример: 2Gi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование эфемерного хранилища для компонентов K8s на control plane."
+  - name: kube_pid_reserved
+    sample_value: "commented (пример: \"1000\")"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование PID для компонентов K8s на control plane."
+
+  # --- Резервирование под системные демоны хоста (control plane) ---
+  - name: system_memory_reserved
+    sample_value: "commented (пример: 256Mi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование памяти для системы хоста control plane."
+  - name: system_cpu_reserved
+    sample_value: "commented (пример: 250m)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование CPU для системы хоста control plane."
+  - name: system_ephemeral_storage_reserved
+    sample_value: "commented (пример: 2Gi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование эфемерного хранилища для системы хоста control plane."
+  - name: system_pid_reserved
+    sample_value: "commented (пример: \"1000\")"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование PID для системы хоста control plane."

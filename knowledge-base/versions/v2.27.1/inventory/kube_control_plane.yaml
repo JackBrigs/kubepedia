@@ -1,0 +1,66 @@
+project: kubespray
+kubespray_version: v2.27.1
+git_commit: 45140b5
+source_type: inventory
+source_paths:
+  - inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+source_url: https://github.com/kubernetes-sigs/kubespray/tree/v2.27.1
+retrieved_at: 2026-07-15
+topics: [inventory, control-plane, resource-reservation]
+reliability: authoritative
+notes: >
+  Разбор sample-файла inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml.
+  Файл ДОБАВЛЕН в v2.27.1 (относительно v2.27.0). Он предназначен для group_vars
+  группы kube_control_plane и содержит закомментированные примеры резервирования
+  ресурсов для узлов control plane. Все переменные закомментированы (is_set: false),
+  то есть по умолчанию резервирование не задано. Имена переменных совпадают с
+  переменными резервирования рабочих нод (kube_*_reserved / system_*_reserved) —
+  специфических имён kube_master_* / system_master_* в v2.27.1 больше нет.
+  Значения из defaults роли node: kube_memory_reserved=256Mi, kube_cpu_reserved=100m,
+  system_memory_reserved=512Mi и т.д. (roles/kubernetes/node/defaults/main.yml);
+  приведённые в sample примеры — иллюстративные значения для control plane.
+
+variables:
+  # === Резервирование ресурсов для kube-компонентов control plane ===
+  - name: kube_memory_reserved
+    sample_value: "commented (пример: 512Mi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование памяти для kube-компонентов на узлах control plane. Default роли node — 256Mi."
+  - name: kube_cpu_reserved
+    sample_value: "commented (пример: 200m)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование CPU для kube-компонентов на узлах control plane. Default роли node — 100m."
+  - name: kube_ephemeral_storage_reserved
+    sample_value: "commented (пример: 2Gi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование эфемерного хранилища для kube-компонентов на узлах control plane."
+  - name: kube_pid_reserved
+    sample_value: "commented (пример: \"1000\")"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование числа PID для kube-компонентов на узлах control plane."
+
+  # === Резервирование системных ресурсов хоста control plane ===
+  - name: system_memory_reserved
+    sample_value: "commented (пример: 256Mi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование памяти для системных демонов ОС на узлах control plane. Default роли node — 512Mi."
+  - name: system_cpu_reserved
+    sample_value: "commented (пример: 250m)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование CPU для системных демонов ОС на узлах control plane. Default роли node — 500m."
+  - name: system_ephemeral_storage_reserved
+    sample_value: "commented (пример: 2Gi)"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование эфемерного хранилища для системных демонов ОС на узлах control plane."
+  - name: system_pid_reserved
+    sample_value: "commented (пример: \"1000\")"
+    is_set: false
+    source_path: inventory/sample/group_vars/k8s_cluster/kube_control_plane.yml
+    comment: "Резервирование числа PID для системных демонов ОС на узлах control plane. В отличие от v2.27.0 (где system_master_pid_reserved отсутствовал), здесь пример system_pid_reserved присутствует."
