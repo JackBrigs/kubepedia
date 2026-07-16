@@ -54,6 +54,9 @@
 {"source": "PRACTICE-HARDENING", "target": "VARIABLE-KUBE_POD_SECURITY_USE_DEFAULT", "type": "see_also"}
 {"source": "PRACTICE-HA_MODE", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
 {"source": "PRACTICE-HA_MODE", "target": "VARIABLE-LOADBALANCER_APISERVER_LOCALHOST", "type": "see_also"}
+{"source": "PRACTICE-KUBEADM_JOIN_FAILURES", "target": "PRACTICE-CERTIFICATE_EXPIRY", "type": "see_also"}
+{"source": "PRACTICE-KUBEADM_JOIN_FAILURES", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
+{"source": "PRACTICE-KUBEADM_JOIN_FAILURES", "target": "TAG-KUBEADM", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-ETCD", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-RESET", "type": "see_also"}
 {"source": "PRACTICE-NODE_NOT_READY", "target": "PRACTICE-CILIUM_DIAGNOSTICS", "type": "see_also"}
