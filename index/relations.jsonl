@@ -101,6 +101,8 @@
 {"source": "CONFIG-KUBELET_CONFIGURATION", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "CONFIG-KUBELET_CONFIGURATION", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "CONFIG-KUBELET_CONFIGURATION", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
+{"source": "CONFIG-NODE_LABELS_TAINTS", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
+{"source": "CONFIG-NODE_LABELS_TAINTS", "target": "TAG-NODE_LABEL", "type": "see_also"}
 {"source": "CONFIG-NTP", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "CONFIG-NTP", "target": "TROUBLE-CLOCK_SKEW_TLS", "type": "see_also"}
 {"source": "CONFIG-PROXY", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
