@@ -1,0 +1,2 @@
+{"component_version": "3.5.23", "id": "COMPONENT-ETCD", "kubernetes_version": ">=1.31 <=1.33", "kubespray_version": "v2.29.0", "path": "kb/components/etcd/etcd.md", "status": "active", "tags": ["etcd", "datastore", "control-plane"], "title": "etcd", "type": "component"}
+{"component_version": null, "id": "VARIABLE-ETCD_DEPLOYMENT_TYPE", "kubernetes_version": null, "kubespray_version": "v2.29.0", "path": "kb/kubespray/variables/etcd_deployment_type.md", "status": "active", "tags": ["etcd", "deployment"], "title": "etcd_deployment_type", "type": "variable"}
