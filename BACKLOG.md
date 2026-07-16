@@ -40,10 +40,11 @@ Beyond version support, the full Kubernetes layer is not yet indexed:
 
 The `ansible_tag` KDS type exists (D-012). Indexed: `etcd-secrets`, `etcd`,
 `control-plane`, `download`, `preinstall`, `container-engine`, `node`, `kubeadm`,
-`network`. Remaining run-tags to add: `client`, `cluster-roles`, `node-label`,
-`node-taint`, `apps`, `ingress-controller`, `policy-controller`,
-`external-provisioner`, `resolvconf`, `upgrade`, `bootstrap-os`, `kubelet`,
-`etcdctl`. The 0.1.0 cache (`knowledge-base/versions/*/ansible-tags.yaml`) is a
+`network`, `apps`, `client`, `cluster-roles`, `node-label`, `node-taint`,
+`resolvconf`. Remaining run-tags to add: addon-family tags
+(`ingress-controller`, `policy-controller`, `external-provisioner`,
+`external-cloud-controller`), cross-playbook tags (`upgrade`, `reset`,
+`remove-node`), and `bootstrap-os`, `kubelet`, `etcdctl`. The 0.1.0 cache (`knowledge-base/versions/*/ansible-tags.yaml`) is a
 pointer; each must be re-verified against the tag.
 
 ## Troubleshooting
