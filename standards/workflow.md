@@ -1,5 +1,14 @@
 # Workflow Standard
 
+Version: 1.1
+
+Changelog:
+
+- 1.1 — Conflict resolution now references the single source-priority list in
+  `sources.md` (removes a second, conflicting ordering); clarified what a
+  "Pull Request" means in this repository.
+- 1.0 — Initial standard.
+
 ## Purpose
 
 This document defines the execution model for every Kubepedia task.
@@ -189,6 +198,12 @@ Failed validation blocks completion.
 
 # Pull Request Rules
 
+In this repository a "Pull Request" is a **focused, reviewable change unit**: a
+topic branch validated before it is merged, and never pushed directly to the
+default branch. When a Git remote with review is used, it is a literal Pull
+Request; without one, it is the equivalent branch-and-merge. The discipline is
+the same either way — one logical change, validated, reviewable in isolation.
+
 Every logical change must produce one Pull Request.
 
 A Pull Request must include:
@@ -270,15 +285,9 @@ Preserve document stability whenever possible.
 
 # Conflict Resolution
 
-When sources disagree:
-
-1. Source code
-2. Tagged release
-3. Official documentation
-4. Release notes
-5. Migration guides
-6. PR
-7. Issues
+When sources disagree, apply the single normative source-priority list defined in
+`standards/sources.md` → "Source Priority". This standard does not keep its own
+ordering.
 
 Document every unresolved conflict.
 

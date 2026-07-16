@@ -1,5 +1,13 @@
 # Project Standard
 
+Version: 1.1
+
+This document states the project's vision, mission, and philosophy. Normative,
+enforceable rules live in the topic standards — `workflow.md` (execution),
+`sources.md` (sources and priority), `kds.md` (document schema), and
+`validation.md` (checks) — and resolved conflicts are recorded in `decisions.md`.
+Where this document restates a principle, the topic standard is authoritative.
+
 ## Purpose
 
 Kubepedia is an AI-first engineering knowledge base designed to collect, validate, organize, and continuously evolve technical knowledge about Kubernetes, Kubespray, and their supported ecosystem.

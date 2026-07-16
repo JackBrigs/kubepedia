@@ -13,6 +13,7 @@ The initial baseline is Kubespray `v2.29.0`.
 All initial research must start from this exact tag.
 Do not use `master`, `main`, a newer tag, or unpinned documentation as evidence for behavior in `v2.29.0`.
 Newer information may be added only when marked as future context relative to `v2.29.0`.
+The Kubepedia 0.1.0 knowledge base under `knowledge-base/` (version slices `v2.27.0`–`v2.31.0`) is retained as a raw, pre-analyzed **source cache**, not as KDS knowledge. It accelerates research, but every fact must be re-verified against the tag before it becomes a KDS document under `kb/`. The KDS graph and the legacy cache never mix.
 ## Project Version
 The current Kubepedia version is `0.2.0`.
 This version establishes the architecture, execution model, source policy, knowledge format, and validation rules.
@@ -24,8 +25,9 @@ Before starting any task, read and follow:
 - `standards/sources.md`
 - `standards/kds.md`
 - `standards/validation.md`
+- `standards/decisions.md`
 These files are part of the project contract.
-If rules conflict, prefer the stricter rule and record the conflict.
+If rules conflict, prefer the stricter rule and record the conflict in `standards/decisions.md`.
 ## Priorities
 Apply these priorities in order:
 1. Accuracy
@@ -98,6 +100,9 @@ An ID must survive file moves, title changes, directory changes, and new version
 Knowledge must remain usable by Claude, ChatGPT, Gemini, NotebookLM, Telegram bots, CLI clients, web interfaces, full-text search, vector search, hybrid RAG, and graph retrieval.
 Do not depend on one model, tool, database, or interface.
 Simple clients must be able to answer basic questions from metadata and indexes without an LLM.
+
+## Knowledge Language
+The language of KDS knowledge content is **English**: the project aims to be an open engineering knowledge base, the standards are in English, and identifiers and technical terms are English already. This maximizes reach and AI-tool compatibility. Conversational and user-facing summaries may be in the user's language. This is a recorded decision (see `standards/decisions.md`) and is reversible while no knowledge content exists.
 ## Version Awareness
 Every technical claim must be bound to the versions for which it is valid.
 Where applicable, record:
@@ -178,6 +183,9 @@ Start with Kubespray `v2.29.0`:
 6. update indexes
 7. validate all changes
 8. stop for review before the next stage
+## Design Decisions
+Architectural decisions and resolved conflicts between standards are recorded in `standards/decisions.md` (an append-only decision log). When two standards appear to conflict, prefer the stricter rule, then record the resolution there. Current recorded decisions include: the single source-priority list (`sources.md`), KDS section profiles per type, the ID grammar and one-ID-per-entity-across-versions rule, typed relations, confidence ordering, version-field nullability, the generated index, English as the knowledge-content language, and the legacy 0.1.0 base as a raw source cache.
+
 ## Final Rule
 Do not redesign the architecture unless implementation proves that a current rule blocks correct work.
 Build the knowledge base, validate it, and use practical results to justify future changes.

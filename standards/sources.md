@@ -1,6 +1,12 @@
 # Sources Standard
 
-Version: 1.0
+Version: 1.1
+
+Changelog:
+
+- 1.1 — "Source Priority" is declared the single normative priority list;
+  `workflow.md` now references it instead of keeping a second, conflicting list.
+- 1.0 — Initial standard.
 
 ---
 
@@ -206,17 +212,21 @@ Every important engineering statement must be verified using higher-priority sou
 
 # Source Priority
 
+This is the **single normative source-priority list** for the whole project.
+Every conflict-resolution rule in other standards (notably `workflow.md`)
+references this list; no other file defines its own ordering.
+
 When sources disagree, use the following priority:
 
 1. Tagged source code
-2. Tagged implementation
+2. Tagged implementation (release artifacts, generated config at the tag)
 3. Official documentation
 4. Migration Guides
 5. Release Notes
 6. API Reference
 7. KEP
 8. Security Advisories
-9. Pull Requests
+9. Merged Pull Requests
 10. GitHub Issues
 11. Discussions
 12. CNCF
@@ -226,6 +236,11 @@ When sources disagree, use the following priority:
 16. Community discussions
 
 Never reverse this priority.
+
+Migration Guides rank above Release Notes: a migration guide is the authoritative,
+actionable account of required upgrade actions, whereas release notes summarize
+and may be incomplete. Documentation (3) explains; source code (1) defines. When
+code contradicts any lower source, code wins and the conflict is recorded.
 
 ---
 
