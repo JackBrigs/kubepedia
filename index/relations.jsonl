@@ -106,6 +106,9 @@
 {"source": "PRACTICE-CERT_MANAGER_SETUP", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "PRACTICE-CILIUM_DIAGNOSTICS", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "PRACTICE-CILIUM_DIAGNOSTICS", "target": "VARIABLE-CILIUM_KUBE_PROXY_REPLACEMENT", "type": "see_also"}
+{"source": "PRACTICE-CLUSTER_HARDENING", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
+{"source": "PRACTICE-CLUSTER_HARDENING", "target": "PRACTICE-SECRETS_ENCRYPTION_AT_REST", "type": "see_also"}
+{"source": "PRACTICE-CLUSTER_HARDENING", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-DNS_DEBUG", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "PRACTICE-CNI_GENERIC_PLUGIN", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
