@@ -165,6 +165,9 @@
 {"source": "TROUBLE-CILIUM_CONFIG_VALIDATION", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CONFIG_VALIDATION", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CONFIG_VALIDATION", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT", "target": "COMPONENT-HELM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT", "target": "TROUBLE-CILIUM_CONFIG_VALIDATION", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_KNOWN_CVES", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CLOCK_SKEW_TLS", "target": "PRACTICE-CERTIFICATE_EXPIRY", "type": "see_also"}
