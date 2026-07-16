@@ -64,6 +64,25 @@ v2.29.0–v2.31.0. Minor remaining tags if needed: `calico_rr`, `win_nodes`,
   (`knowledge-base/troubleshooting/`) into KDS `troubleshooting` documents, one at
   a time, re-verified against the tag.
 
+## Sources — categories not yet collected (standards/sources.md)
+
+So far only the strongest tiers are used: tagged Kubespray source code
+(`confirmed`) and tag docs (`verified`). Not yet touched:
+
+- **Community (category 6)** — Reddit, Stack Overflow, Server Fault, GitHub
+  Discussions, Slack/Discord. **Owner asked to work on this.** Note: per
+  `sources.md`, community knowledge is **never authoritative** — every statement
+  taken from it must be re-verified against higher-priority sources (code / docs /
+  merged PR) before entering the KB, and marked with the appropriate (lower)
+  confidence.
+- Security (category 4) — CVE / GitHub & Kubernetes Security Advisories per
+  component (affected/fixed versions, severity, mitigation).
+- Upstream Kubernetes (category 2, direct) — KEPs, feature gates, API
+  deprecations/removals from kubernetes/kubernetes (not via Kubespray).
+- Engineering experience (category 5) — CNCF / KubeCon / engineering blogs /
+  postmortems.
+- GitHub Issues / merged PRs (the troubleshooting layer).
+
 ## Possible architecture refinements (only if justified by implementation)
 
 - formalize the D-005 "version envelope in frontmatter, precise per-version facts
