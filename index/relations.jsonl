@@ -37,12 +37,15 @@
 {"source": "PLAYBOOK-SCALE", "target": "TAG-NODE", "type": "see_also"}
 {"source": "PLAYBOOK-UPGRADE_CLUSTER", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
 {"source": "PLAYBOOK-UPGRADE_CLUSTER", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
+{"source": "PRACTICE-ARCHITECTURE_COMPATIBILITY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "PRACTICE-CERTIFICATE_EXPIRY", "target": "TAG-ETCD_SECRETS", "type": "see_also"}
 {"source": "PRACTICE-CERTIFICATE_EXPIRY", "target": "VARIABLE-KUBELET_ROTATE_CERTIFICATES", "type": "see_also"}
+{"source": "PRACTICE-CERT_MANAGER_SETUP", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "PRACTICE-CILIUM_DIAGNOSTICS", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "PRACTICE-CILIUM_DIAGNOSTICS", "target": "VARIABLE-CILIUM_KUBE_PROXY_REPLACEMENT", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-DNS_DEBUG", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
+{"source": "PRACTICE-CNI_GENERIC_PLUGIN", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
 {"source": "PRACTICE-CONTAINERD_DIAGNOSTICS", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "PRACTICE-CONTAINERD_DIAGNOSTICS", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "PRACTICE-DNS_DEBUG", "target": "COMPONENT-COREDNS", "type": "see_also"}
@@ -59,6 +62,8 @@
 {"source": "PRACTICE-KUBEADM_JOIN_FAILURES", "target": "PRACTICE-CERTIFICATE_EXPIRY", "type": "see_also"}
 {"source": "PRACTICE-KUBEADM_JOIN_FAILURES", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
 {"source": "PRACTICE-KUBEADM_JOIN_FAILURES", "target": "TAG-KUBEADM", "type": "see_also"}
+{"source": "PRACTICE-KUBERNETES_RELIABILITY", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
+{"source": "PRACTICE-MIGRATE_DOCKER_TO_CONTAINERD", "target": "VARIABLE-CONTAINER_MANAGER", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-ETCD", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-RESET", "type": "see_also"}
 {"source": "PRACTICE-NODE_NOT_READY", "target": "PRACTICE-CILIUM_DIAGNOSTICS", "type": "see_also"}
@@ -68,6 +73,7 @@
 {"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "VARIABLE-SKIP_DOWNLOADS", "type": "see_also"}
 {"source": "PRACTICE-RECOVER_CONTROL_PLANE", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "PRACTICE-RECOVER_CONTROL_PLANE", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
+{"source": "PRACTICE-SECRETS_ENCRYPTION_AT_REST", "target": "VARIABLE-KUBE_ENCRYPT_SECRET_DATA", "type": "see_also"}
 {"source": "PRACTICE-SERVICE_NETWORKING_DEBUG", "target": "PRACTICE-CILIUM_DIAGNOSTICS", "type": "see_also"}
 {"source": "PRACTICE-SERVICE_NETWORKING_DEBUG", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
 {"source": "PRACTICE-UPGRADE_PREFLIGHT", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
