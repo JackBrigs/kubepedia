@@ -134,6 +134,9 @@
 {"source": "PRACTICE-ETCD_BACKUP_RESTORE", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "PRACTICE-ETCD_BACKUP_RESTORE", "target": "PRACTICE-RECOVER_CONTROL_PLANE", "type": "see_also"}
 {"source": "PRACTICE-ETCD_BACKUP_RESTORE", "target": "TAG-ETCDCTL", "type": "see_also"}
+{"source": "PRACTICE-GRACEFUL_UPGRADE", "target": "PRACTICE-NODES_ADD_REPLACE", "type": "see_also"}
+{"source": "PRACTICE-GRACEFUL_UPGRADE", "target": "PRACTICE-UPGRADE_PREFLIGHT", "type": "see_also"}
+{"source": "PRACTICE-GRACEFUL_UPGRADE", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
 {"source": "PRACTICE-HARDENING", "target": "VARIABLE-KUBERNETES_AUDIT", "type": "see_also"}
 {"source": "PRACTICE-HARDENING", "target": "VARIABLE-KUBE_ENCRYPT_SECRET_DATA", "type": "see_also"}
 {"source": "PRACTICE-HARDENING", "target": "VARIABLE-KUBE_POD_SECURITY_USE_DEFAULT", "type": "see_also"}
