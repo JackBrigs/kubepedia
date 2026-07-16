@@ -4,6 +4,13 @@ Deferred work items. This is a work-tracking file, not KDS knowledge; the base o
 truth about what the KB *contains* is `kb/` + `index/`. Items here are agreed but
 not yet implemented. Pull an item into a focused change when ready, then remove it.
 
+## README (public-facing)
+
+The repository has **no README** on purpose right now — the previous drafts were
+rejected by the owner. A public README must be **designed separately** (agree the
+audience, structure, and tone with the owner first) before re-adding it. Do not
+re-create it ad hoc.
+
 ## CNI plugins (other than Cilium)
 
 Per owner decision (2026-07-16), only **Cilium** is indexed for CNI. The following
