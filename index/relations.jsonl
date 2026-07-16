@@ -18,6 +18,8 @@
 {"source": "CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
 {"source": "CONCEPT-K8S_API_REMOVALS", "target": "API-FLOWCONTROL_APISERVER", "type": "see_also"}
 {"source": "CONCEPT-K8S_API_REMOVALS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "CONCEPT-K8S_FEATURE_GATES", "target": "CONCEPT-K8S_API_REMOVALS", "type": "see_also"}
+{"source": "CONCEPT-K8S_FEATURE_GATES", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "VARIABLE-KUBE_VERSION", "type": "depends_on"}
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "CONFIG-KUBEADM_CONFIG_API_VERSION", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
