@@ -1,3 +1,4 @@
+{"source": "COMPONENT-ETCD", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "VARIABLE-KUBE_VERSION", "type": "depends_on"}
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "VARIABLE-ETCD_DEPLOYMENT_TYPE", "target": "COMPONENT-ETCD", "type": "part_of"}
