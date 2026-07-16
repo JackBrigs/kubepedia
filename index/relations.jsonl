@@ -32,6 +32,9 @@
 {"source": "CONCEPT-CLUSTER_NETWORKING", "target": "CONCEPT-CILIUM_DATAPATH", "type": "see_also"}
 {"source": "CONCEPT-CLUSTER_NETWORKING", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
 {"source": "CONCEPT-CLUSTER_NETWORKING", "target": "CONFIG-DUAL_STACK", "type": "see_also"}
+{"source": "CONCEPT-CLUSTER_PKI", "target": "PRACTICE-CERTIFICATE_EXPIRY", "type": "see_also"}
+{"source": "CONCEPT-CLUSTER_PKI", "target": "TROUBLE-APISERVER_CERT_SAN", "type": "see_also"}
+{"source": "CONCEPT-CLUSTER_PKI", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
 {"source": "CONCEPT-COMPONENT_VERSION_SELECTION", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "CONCEPT-COMPONENT_VERSION_SELECTION", "target": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "type": "see_also"}
 {"source": "CONCEPT-COMPONENT_VERSION_SELECTION", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
