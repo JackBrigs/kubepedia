@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Image tag for the Cilium/Hubble Envoy container"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # cilium_hubble_envoy_image_tag

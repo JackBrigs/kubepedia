@@ -18,7 +18,9 @@ sources:
     path: roles/network_plugin/cilium/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/defaults/main.yml
     note: "Defines cilium_encryption_node_encryption, default false"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # cilium_encryption_node_encryption

@@ -19,7 +19,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/main.yml
     note: "Ordered address types the API server prefers when connecting to the kubelet (kubelet-preferred-address-types)"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kubelet_preferred_address_types

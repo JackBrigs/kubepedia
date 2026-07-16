@@ -18,7 +18,9 @@ sources:
     path: roles/container-engine/containerd/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/containerd/defaults/main.yml
     note: "oom_score value written to the containerd config; default 0"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CONTAINERD
 ---
 
 # containerd_oom_score

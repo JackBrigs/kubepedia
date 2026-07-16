@@ -19,7 +19,9 @@ sources:
     path: roles/network_plugin/cilium/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/defaults/main.yml
     note: "DNS suffix Hubble-Relay uses to resolve its peer service"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # cilium_hubble_peer_service_cluster_domain

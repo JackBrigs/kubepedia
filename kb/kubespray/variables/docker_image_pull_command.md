@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Command used to pull images with Docker; default {{ docker_bin_dir }}/docker pull"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-CONTAINER_MANAGER
 ---
 
 # docker_image_pull_command

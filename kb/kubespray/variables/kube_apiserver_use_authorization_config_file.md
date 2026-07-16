@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Toggles use of a structured authorization config file for the apiserver; default false"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kube_apiserver_use_authorization_config_file

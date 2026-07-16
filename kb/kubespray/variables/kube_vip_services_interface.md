@@ -19,7 +19,9 @@ sources:
     path: roles/kubernetes/node/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/defaults/main.yml
     note: "Network interface for kube-vip service mode, empty default"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-KUBE_VIP
 ---
 
 # kube_vip_services_interface

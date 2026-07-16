@@ -19,7 +19,9 @@ sources:
     path: roles/network_plugin/cilium/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/defaults/main.yml
     note: "Default cilium_memory_limit: 500M"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # cilium_memory_limit

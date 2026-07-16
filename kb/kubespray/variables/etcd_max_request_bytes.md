@@ -17,7 +17,9 @@ sources:
     path: roles/etcd_defaults/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/etcd_defaults/defaults/main.yml
     note: "Defines default etcd_max_request_bytes: \"1572864\""
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # etcd_max_request_bytes

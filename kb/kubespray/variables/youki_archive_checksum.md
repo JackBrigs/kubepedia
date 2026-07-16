@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Selects the sha256 checksum for the youki archive by arch and version."
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-CONTAINER_MANAGER
 ---
 
 # youki_archive_checksum

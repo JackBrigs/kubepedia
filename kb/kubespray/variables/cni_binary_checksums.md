@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/checksums.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/checksums.yml
     note: "Per-architecture map of CNI plugins version to sha256 checksum"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CNI_PLUGINS
 ---
 
 # cni_binary_checksums

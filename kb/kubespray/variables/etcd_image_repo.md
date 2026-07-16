@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Computes etcd_image_repo from quay_image_repo as {{ quay_image_repo }}/coreos/etcd"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # etcd_image_repo

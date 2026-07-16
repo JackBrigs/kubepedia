@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Image repository for the nodelocaldns (k8s-dns-node-cache) container"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-NODELOCALDNS
 ---
 
 # nodelocaldns_image_repo

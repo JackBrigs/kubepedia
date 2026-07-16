@@ -18,7 +18,9 @@ sources:
     path: roles/etcd_defaults/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/etcd_defaults/defaults/main.yml
     note: "Hosts that receive etcd node client certificates; default all k8s_cluster members"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # etcd_node_cert_hosts

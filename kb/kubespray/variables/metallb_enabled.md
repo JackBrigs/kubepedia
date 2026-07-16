@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes-apps/metallb/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes-apps/metallb/defaults/main.yml
     note: "Defines default metallb_enabled: false"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-METALLB
 ---
 
 # metallb_enabled

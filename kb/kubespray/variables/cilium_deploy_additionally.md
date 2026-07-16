@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "cilium_deploy_additionally: false (default, unchanged v2.29.0-v2.31.0)"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # cilium_deploy_additionally

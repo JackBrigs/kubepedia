@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Portion of the shutdown grace period reserved for critical pods; default 20s"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kubelet_shutdown_grace_period_critical_pods

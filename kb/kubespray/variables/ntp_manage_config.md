@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/preinstall/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/preinstall/defaults/main.yml
     note: "Whether Kubespray manages the NTP configuration file; default false"
-relations: []
+relations:
+  - type: see_also
+    target: TAG-PREINSTALL
 ---
 
 # ntp_manage_config

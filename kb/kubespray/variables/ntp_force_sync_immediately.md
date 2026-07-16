@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/preinstall/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/preinstall/defaults/main.yml
     note: "Force an immediate time sync after NTP install; default false"
-relations: []
+relations:
+  - type: see_also
+    target: TAG-PREINSTALL
 ---
 
 # ntp_force_sync_immediately

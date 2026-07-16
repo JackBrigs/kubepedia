@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Registry hostname for Docker Hub images; default docker.io"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-CONTAINER_MANAGER
 ---
 
 # docker_image_repo

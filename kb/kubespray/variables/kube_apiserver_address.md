@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Bind/local address of the apiserver on a node, from that host's main_ip"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kube_apiserver_address

@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
     note: "Defines kube_proxy_healthz_bind_address, default 0.0.0.0:10256"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-KUBE_PROXY_MODE
 ---
 
 # kube_proxy_healthz_bind_address

@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Pins the node-local-dns (k8s-dns-node-cache) image version; default 1.25.0"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-NODELOCALDNS
 ---
 
 # nodelocaldns_version

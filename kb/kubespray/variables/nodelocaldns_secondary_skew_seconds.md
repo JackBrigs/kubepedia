@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Time skew between primary and secondary nodelocaldns instances; default 5"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-NODELOCALDNS
 ---
 
 # nodelocaldns_secondary_skew_seconds

@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Comma-separated list of client URLs for all etcd hosts; computed from etcd_hosts"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # etcd_access_addresses

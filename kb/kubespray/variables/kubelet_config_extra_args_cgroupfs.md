@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/node/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/defaults/main.yml
     note: "Extra kubelet config settings applied when cgroupfs is the cgroup driver; default systemCgroups: /system.slice, cgroupRoot: /"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kubelet_config_extra_args_cgroupfs

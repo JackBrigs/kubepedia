@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Computed youki version; defaults to the first key of youki_checksums['amd64']."
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-CONTAINER_MANAGER
 ---
 
 # youki_version

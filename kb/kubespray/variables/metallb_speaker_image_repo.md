@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Defines the MetalLB speaker container image repository"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-METALLB
 ---
 
 # metallb_speaker_image_repo

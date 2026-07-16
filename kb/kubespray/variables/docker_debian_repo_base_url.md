@@ -19,7 +19,9 @@ sources:
     path: roles/container-engine/docker/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/docker/defaults/main.yml
     note: "Base URL of the Docker APT repository for Debian; default https://download.docker.com/linux/debian"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-CONTAINER_MANAGER
 ---
 
 # docker_debian_repo_base_url

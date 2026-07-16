@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "cilium_operator_image_repo derived from quay_image_repo/cilium/operator (unchanged v2.29.0-v2.31.0)"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # cilium_operator_image_repo

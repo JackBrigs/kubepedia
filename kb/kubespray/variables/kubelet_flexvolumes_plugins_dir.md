@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/preinstall/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/preinstall/defaults/main.yml
     note: "Directory for kubelet FlexVolume driver plugins"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kubelet_flexvolumes_plugins_dir

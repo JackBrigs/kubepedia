@@ -18,7 +18,9 @@ sources:
     path: roles/container-engine/docker/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/docker/defaults/main.yml
     note: "Old apt docker packages removed before install; default list of 3 packages"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-CONTAINER_MANAGER
 ---
 
 # docker_remove_packages_apt

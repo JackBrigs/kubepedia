@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/main.yml
     note: "Default \"5m0s\" — kube-apiserver --etcd-compaction-interval"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kube_apiserver_etcd_compaction_interval

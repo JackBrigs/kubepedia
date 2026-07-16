@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/node/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/defaults/main.yml
     note: "Per-pod PID limit enforced by the kubelet (podPidsLimit); default -1 (unlimited)"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kubelet_pod_pids_limit

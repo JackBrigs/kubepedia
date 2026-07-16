@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Enables the systemd cgroup driver for the containerd runc runtime; default true"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CONTAINERD
 ---
 
 # containerd_use_systemd_cgroup

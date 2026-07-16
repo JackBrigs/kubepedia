@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/main.yml
     note: "Whether to refresh the kubeadm bootstrap token; default true"
-relations: []
+relations:
+  - type: see_also
+    target: CONFIG-KUBEADM_CONFIG_API_VERSION
 ---
 
 # kubeadm_refresh_token

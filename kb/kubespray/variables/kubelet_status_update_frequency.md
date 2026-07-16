@@ -17,7 +17,9 @@ sources:
     path: roles/kubernetes/node/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/defaults/main.yml
     note: "How often kubelet posts node status to the API server; default 10s"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kubelet_status_update_frequency

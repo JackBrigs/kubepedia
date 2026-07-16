@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/main.yml
     note: "Computed pod CIDR string selected by network stack (dual/ipv4/ipv6)."
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-KUBERNETES_VERSION_SUPPORT
 ---
 
 # kube_pods_subnets

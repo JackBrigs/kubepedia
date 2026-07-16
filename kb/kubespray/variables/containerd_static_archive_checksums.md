@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/checksums.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/checksums.yml
     note: "Per-arch, per-version SHA256 checksums of the containerd static release archives"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CONTAINERD
 ---
 
 # containerd_static_archive_checksums

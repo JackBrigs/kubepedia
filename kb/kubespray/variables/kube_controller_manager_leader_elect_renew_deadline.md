@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/main.yml
     note: "Defines the leader-elect-renew-deadline for kube-controller-manager; default 10s"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kube_controller_manager_leader_elect_renew_deadline

@@ -18,7 +18,9 @@ sources:
     path: roles/network_plugin/cilium/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/defaults/main.yml
     note: "Enables Cilium's built-in ip-masq-agent; default false"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # cilium_ip_masq_agent_enable

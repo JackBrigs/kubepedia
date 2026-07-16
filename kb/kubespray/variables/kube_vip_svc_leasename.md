@@ -19,7 +19,9 @@ sources:
     path: roles/kubernetes/node/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/defaults/main.yml
     note: "Lease name for kube-vip service leader election, default plndr-svcs-lock"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-KUBE_VIP
 ---
 
 # kube_vip_svc_leasename

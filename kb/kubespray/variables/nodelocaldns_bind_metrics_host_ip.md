@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Whether nodelocaldns binds its metrics endpoint to the host IP"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-NODELOCALDNS
 ---
 
 # nodelocaldns_bind_metrics_host_ip

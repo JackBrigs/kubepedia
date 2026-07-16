@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/preinstall/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/preinstall/defaults/main.yml
     note: "List of NTP servers written to the NTP config; default is four *.pool.ntp.org entries with iburst."
-relations: []
+relations:
+  - type: see_also
+    target: TAG-PREINSTALL
 ---
 
 # ntp_servers

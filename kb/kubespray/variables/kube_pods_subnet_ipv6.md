@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "IPv6 pod CIDR; defaults to fd85:ee78:d8a6:8607::1:0000/112."
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-KUBERNETES_VERSION_SUPPORT
 ---
 
 # kube_pods_subnet_ipv6

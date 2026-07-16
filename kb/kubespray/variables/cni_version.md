@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "CNI plugins version, derived from the first key of the amd64 checksums map"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CNI_PLUGINS
 ---
 
 # cni_version

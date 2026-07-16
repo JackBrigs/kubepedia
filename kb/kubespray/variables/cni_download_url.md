@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Download URL for the CNI plugins archive"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CNI_PLUGINS
 ---
 
 # cni_download_url

@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/main.yml
     note: "Defines terminated-pod-gc-threshold for kube-controller-manager; default 12500"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kube_controller_terminated_pod_gc_threshold

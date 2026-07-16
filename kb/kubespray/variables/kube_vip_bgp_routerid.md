@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/node/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/defaults/main.yml
     note: "Declares the BGP router ID for kube-vip with an empty (null) default"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-KUBE_VIP
 ---
 
 # kube_vip_bgp_routerid

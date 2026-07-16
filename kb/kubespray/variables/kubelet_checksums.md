@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/checksums.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/checksums.yml
     note: "Map of kubelet binary sha256 checksums keyed by architecture and Kubernetes version"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kubelet_checksums

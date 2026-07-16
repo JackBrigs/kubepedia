@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Defines the command used by nerdctl to pull images into the k8s.io namespace"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-NERDCTL
 ---
 
 # nerdctl_image_pull_command

@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/preinstall/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/preinstall/defaults/main.yml
     note: "Path of the cloud-init resolvconf file managed by preinstall; default /etc/resolveconf_cloud_init.conf"
-relations: []
+relations:
+  - type: see_also
+    target: TAG-RESOLVCONF
 ---
 
 # resolveconf_cloud_init_conf

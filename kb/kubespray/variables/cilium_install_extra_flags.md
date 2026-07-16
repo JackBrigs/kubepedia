@@ -18,7 +18,9 @@ sources:
     path: roles/network_plugin/cilium/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/defaults/main.yml
     note: "Extra flags appended to the cilium install/upgrade CLI command; default empty string"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # cilium_install_extra_flags

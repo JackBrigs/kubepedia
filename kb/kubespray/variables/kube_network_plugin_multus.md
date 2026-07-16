@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Defines kube_network_plugin_multus default false"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-KUBE_NETWORK_PLUGIN
 ---
 
 # kube_network_plugin_multus

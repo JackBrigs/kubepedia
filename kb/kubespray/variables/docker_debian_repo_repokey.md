@@ -19,7 +19,9 @@ sources:
     path: roles/container-engine/docker/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/docker/defaults/main.yml
     note: "Docker Debian repository key fingerprint; default 9DC858229FC7DD38854AE2D88D81803C0EBFCD88"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-CONTAINER_MANAGER
 ---
 
 # docker_debian_repo_repokey

@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Computed Metrics Server image repository path"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-METRICS_SERVER
 ---
 
 # metrics_server_image_repo

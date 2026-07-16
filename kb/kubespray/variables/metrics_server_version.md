@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Metrics Server component version default"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-METRICS_SERVER
 ---
 
 # metrics_server_version

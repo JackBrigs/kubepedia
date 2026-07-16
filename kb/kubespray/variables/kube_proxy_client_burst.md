@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
     note: "Client burst QPS for kube-proxy connections to the API server; defaults to 10."
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-KUBE_PROXY_MODE
 ---
 
 # kube_proxy_client_burst

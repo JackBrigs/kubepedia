@@ -18,7 +18,9 @@ sources:
     path: roles/container-engine/runc/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/runc/defaults/main.yml
     note: "Defines runc_bin_dir defaulting to bin_dir"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-RUNC
 ---
 
 # runc_bin_dir

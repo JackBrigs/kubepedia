@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/kube-scheduler.yml
     note: "Defines kube_scheduler_profiles, default []"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS
 ---
 
 # kube_scheduler_profiles

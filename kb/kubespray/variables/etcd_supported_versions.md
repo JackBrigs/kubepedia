@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/main.yml
     note: "Map of Kubernetes minor version to the etcd version selected for it"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # etcd_supported_versions

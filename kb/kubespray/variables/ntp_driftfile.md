@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/preinstall/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/preinstall/defaults/main.yml
     note: "Path to the NTP drift file; computed from ntp_package"
-relations: []
+relations:
+  - type: see_also
+    target: TAG-PREINSTALL
 ---
 
 # ntp_driftfile

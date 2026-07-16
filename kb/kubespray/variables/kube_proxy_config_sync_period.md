@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
     note: "Defines configSyncPeriod for kube-proxy; default 15m0s"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-KUBE_PROXY_MODE
 ---
 
 # kube_proxy_config_sync_period

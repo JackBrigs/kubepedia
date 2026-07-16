@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/node/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/defaults/main.yml
     note: "Defines the default BGP peer AS number 65000 for kube-vip"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-KUBE_VIP
 ---
 
 # kube_vip_bgp_peeras

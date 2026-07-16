@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Computed download URL for the kubeadm binary"
-relations: []
+relations:
+  - type: see_also
+    target: CONFIG-KUBEADM_CONFIG_API_VERSION
 ---
 
 # kubeadm_download_url

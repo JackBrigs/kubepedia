@@ -17,7 +17,9 @@ sources:
     path: roles/etcd_defaults/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/etcd_defaults/defaults/main.yml
     note: "Maximum number of etcd WAL files to retain; default 5"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # etcd_max_wals

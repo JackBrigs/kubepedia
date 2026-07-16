@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes-apps/metallb/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes-apps/metallb/defaults/main.yml
     note: "Defines metallb_speaker_enabled default (mirrors metallb_enabled)"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-METALLB
 ---
 
 # metallb_speaker_enabled

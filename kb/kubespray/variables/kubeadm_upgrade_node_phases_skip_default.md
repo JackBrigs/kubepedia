@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Defines kubeadm_upgrade_node_phases_skip_default: []"
-relations: []
+relations:
+  - type: see_also
+    target: CONFIG-KUBEADM_CONFIG_API_VERSION
 ---
 
 # kubeadm_upgrade_node_phases_skip_default

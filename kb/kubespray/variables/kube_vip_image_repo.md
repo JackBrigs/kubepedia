@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Defines the kube-vip container image repository (computed)"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-KUBE_VIP
 ---
 
 # kube_vip_image_repo

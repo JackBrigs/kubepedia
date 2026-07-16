@@ -18,7 +18,9 @@ sources:
     path: roles/etcd_defaults/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/etcd_defaults/defaults/main.yml
     note: "Defines etcd_events_cluster_setup, role default false (overridden by playbooks)"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # etcd_events_cluster_setup

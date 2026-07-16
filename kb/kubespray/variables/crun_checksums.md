@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/checksums.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/checksums.yml
     note: "SHA256 checksum table for crun release binaries keyed by arch then version"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-CONTAINER_MANAGER
 ---
 
 # crun_checksums

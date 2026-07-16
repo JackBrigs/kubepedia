@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/kube-proxy.yml
     note: "Defines conntrack.tcpEstablishedTimeout for kube-proxy; default 24h0m0s"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-KUBE_PROXY_MODE
 ---
 
 # kube_proxy_conntrack_tcp_established_timeout

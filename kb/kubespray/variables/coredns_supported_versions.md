@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Map of Kubernetes minor version -> CoreDNS version used to derive coredns_version"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-COREDNS
 ---
 
 # coredns_supported_versions

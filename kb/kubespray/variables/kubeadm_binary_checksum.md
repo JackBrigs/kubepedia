@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Computed checksum for the kubeadm binary of the selected kube_version/arch"
-relations: []
+relations:
+  - type: see_also
+    target: CONFIG-KUBEADM_CONFIG_API_VERSION
 ---
 
 # kubeadm_binary_checksum

@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/checksums.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/checksums.yml
     note: "Nested map arch -> cilium_cli_version -> sha256 checksum for the cilium-cli binary"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # ciliumcli_binary_checksums

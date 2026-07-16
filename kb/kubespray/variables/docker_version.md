@@ -18,7 +18,9 @@ sources:
     path: roles/container-engine/docker/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/docker/defaults/main.yml
     note: "Docker CE version installed by the docker role; default '28.3'"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-CONTAINER_MANAGER
 ---
 
 # docker_version

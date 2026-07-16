@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Derives the nerdctl version from the first key of nerdctl_archive_checksums['amd64']"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-NERDCTL
 ---
 
 # nerdctl_version

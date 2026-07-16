@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Default download_cache_dir: /tmp/kubespray_cache"
-relations: []
+relations:
+  - type: see_also
+    target: TAG-DOWNLOAD
 ---
 
 # download_cache_dir

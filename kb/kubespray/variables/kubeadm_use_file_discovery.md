@@ -19,7 +19,9 @@ sources:
     path: roles/kubernetes/control-plane/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/defaults/main/main.yml
     note: "Defines kubeadm_use_file_discovery defaulting to remove_anonymous_access"
-relations: []
+relations:
+  - type: see_also
+    target: CONFIG-KUBEADM_CONFIG_API_VERSION
 ---
 
 # kubeadm_use_file_discovery

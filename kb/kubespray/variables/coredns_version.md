@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "CoreDNS image version, derived from coredns_supported_versions[kube_major_version]"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-COREDNS
 ---
 
 # coredns_version

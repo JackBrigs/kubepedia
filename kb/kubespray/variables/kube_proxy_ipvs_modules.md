@@ -19,7 +19,9 @@ sources:
     path: roles/kubernetes/node/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/defaults/main.yml
     note: "Defines kube_proxy_ipvs_modules, the list of IPVS kernel modules to load"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-KUBE_PROXY_MODE
 ---
 
 # kube_proxy_ipvs_modules

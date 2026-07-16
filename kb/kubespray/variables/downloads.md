@@ -17,7 +17,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Dictionary of all downloadable files and container images"
-relations: []
+relations:
+  - type: see_also
+    target: TAG-DOWNLOAD
 ---
 
 # downloads

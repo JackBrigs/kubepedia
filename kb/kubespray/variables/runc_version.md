@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "Derives runc version from the first key of amd64 checksums"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-RUNC
 ---
 
 # runc_version

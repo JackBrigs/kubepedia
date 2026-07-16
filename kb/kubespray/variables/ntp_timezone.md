@@ -18,7 +18,9 @@ sources:
     path: roles/kubernetes/preinstall/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/preinstall/defaults/main.yml
     note: "Timezone to set on the server; default empty string means the timezone is left unchanged."
-relations: []
+relations:
+  - type: see_also
+    target: TAG-PREINSTALL
 ---
 
 # ntp_timezone

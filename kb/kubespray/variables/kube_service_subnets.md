@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/main.yml
     note: "Computed stack-aware service CIDR string derived from kube_service_addresses / kube_service_addresses_ipv6"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-KUBERNETES_VERSION_SUPPORT
 ---
 
 # kube_service_subnets

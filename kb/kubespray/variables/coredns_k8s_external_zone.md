@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "DNS zone served by the CoreDNS k8s_external plugin; default k8s_external.local"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-COREDNS
 ---
 
 # coredns_k8s_external_zone

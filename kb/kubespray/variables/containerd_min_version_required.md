@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/main.yml
     note: "Minimum containerd version enforced by preflight checks; default \"1.3.7\""
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CONTAINERD
 ---
 
 # containerd_min_version_required

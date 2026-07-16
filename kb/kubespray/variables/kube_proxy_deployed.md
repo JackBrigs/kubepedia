@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/vars/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/main.yml
     note: "Computed constant: true unless the addon/kube-proxy kubeadm phase is skipped"
-relations: []
+relations:
+  - type: see_also
+    target: VARIABLE-KUBE_PROXY_MODE
 ---
 
 # kube_proxy_deployed

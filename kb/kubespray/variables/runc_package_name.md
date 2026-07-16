@@ -18,7 +18,9 @@ sources:
     path: roles/container-engine/runc/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/runc/defaults/main.yml
     note: "OS package name for runc, default runc"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-RUNC
 ---
 
 # runc_package_name

@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "Defines kube_service_addresses_ipv6, default fd85:ee78:d8a6:8607::1000/116"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-KUBERNETES_VERSION_SUPPORT
 ---
 
 # kube_service_addresses_ipv6
