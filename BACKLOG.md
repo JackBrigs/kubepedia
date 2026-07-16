@@ -38,14 +38,18 @@ Beyond version support, the full Kubernetes layer is not yet indexed:
 
 ## Ansible run-tags
 
-The `ansible_tag` KDS type exists (D-012). Indexed: `etcd-secrets`, `etcd`,
+The `ansible_tag` KDS type exists (D-012). Indexed (24): `etcd-secrets`, `etcd`,
 `control-plane`, `download`, `preinstall`, `container-engine`, `node`, `kubeadm`,
 `network`, `apps`, `client`, `cluster-roles`, `node-label`, `node-taint`,
-`resolvconf`. Remaining run-tags to add: addon-family tags
-(`ingress-controller`, `policy-controller`, `external-provisioner`,
-`external-cloud-controller`), cross-playbook tags (`upgrade`, `reset`,
-`remove-node`), and `bootstrap-os`, `kubelet`, `etcdctl`. The 0.1.0 cache (`knowledge-base/versions/*/ansible-tags.yaml`) is a
-pointer; each must be re-verified against the tag.
+`resolvconf`, `reset`, `pre-upgrade`, `system-upgrade`, `post-upgrade`, `etcdctl`,
+`ingress-controller`, `policy-controller`, `external-provisioner`,
+`external-cloud-controller`. Core layer complete.
+
+Verified NON-tags (do not create): `kubelet`, `remove-node`, `upgrade` are not
+standalone role tags (`upgrade` is split into pre/system/post-upgrade;
+`remove-node` is a playbook); `bootstrap-os` is not exposed as a run-tag in
+v2.29.0–v2.31.0. Minor remaining tags if needed: `calico_rr`, `win_nodes`,
+`kubelet-csr-approver`, and the granular `preinstall`/task-level tags.
 
 ## Troubleshooting
 
