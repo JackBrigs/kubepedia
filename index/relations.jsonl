@@ -41,6 +41,8 @@
 {"source": "PRACTICE-CILIUM_DIAGNOSTICS", "target": "VARIABLE-CILIUM_KUBE_PROXY_REPLACEMENT", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-DNS_DEBUG", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
+{"source": "PRACTICE-CONTAINERD_DIAGNOSTICS", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
+{"source": "PRACTICE-CONTAINERD_DIAGNOSTICS", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "PRACTICE-DNS_DEBUG", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "PRACTICE-DNS_DEBUG", "target": "COMPONENT-NODELOCALDNS", "type": "see_also"}
 {"source": "PRACTICE-DNS_DEBUG", "target": "VARIABLE-DNS_MODE", "type": "see_also"}
@@ -54,11 +56,17 @@
 {"source": "PRACTICE-HA_MODE", "target": "VARIABLE-LOADBALANCER_APISERVER_LOCALHOST", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-ETCD", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-RESET", "type": "see_also"}
+{"source": "PRACTICE-NODE_NOT_READY", "target": "PRACTICE-CILIUM_DIAGNOSTICS", "type": "see_also"}
+{"source": "PRACTICE-NODE_NOT_READY", "target": "PRACTICE-CLUSTER_HEALTH_CHECKS", "type": "see_also"}
 {"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "TAG-DOWNLOAD", "type": "see_also"}
 {"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "VARIABLE-DOWNLOAD_RUN_ONCE", "type": "see_also"}
 {"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "VARIABLE-SKIP_DOWNLOADS", "type": "see_also"}
 {"source": "PRACTICE-RECOVER_CONTROL_PLANE", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "PRACTICE-RECOVER_CONTROL_PLANE", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
+{"source": "PRACTICE-SERVICE_NETWORKING_DEBUG", "target": "PRACTICE-CILIUM_DIAGNOSTICS", "type": "see_also"}
+{"source": "PRACTICE-SERVICE_NETWORKING_DEBUG", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
+{"source": "PRACTICE-UPGRADE_PREFLIGHT", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
+{"source": "PRACTICE-UPGRADE_PREFLIGHT", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
 {"source": "RELEASE-V2_29_0", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "RELEASE-V2_29_1", "target": "RELEASE-V2_29_0", "type": "see_also"}
 {"source": "RELEASE-V2_30_0", "target": "RELEASE-V2_29_1", "type": "see_also"}

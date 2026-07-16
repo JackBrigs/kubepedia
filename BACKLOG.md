@@ -66,6 +66,21 @@ So far only the strongest tiers are used: tagged Kubespray source code
   postmortems.
 - GitHub Issues / merged PRs (the troubleshooting layer).
 
+## Troubleshooting — RETURN AT THE END (owner request)
+
+DONE so far: 15 in-range cache entries migrated + 18 mined from Kubespray merged
+PRs (33 total) + 5 diagnostic runbooks. The Kubespray git source is exhausted for
+the v2.29.0–v2.31.0 range (remaining fix commits are CI/test/docs/typo/niche-OS/
+non-Cilium CNI).
+
+**Come back at the end and expand from the remaining sources:**
+- component release notes / known issues (etcd, Cilium, containerd, CoreDNS) for
+  the versions we ship;
+- **Community** (Reddit / Stack Overflow / Slack) — with mandatory re-verification
+  and lower confidence (see the Sources section);
+- curated Kubernetes "Known Issues" / "Urgent Upgrade Notes" per version (raw
+  `kubernetes/kubernetes` issue mining is low-signal and unreliable via web).
+
 ## Possible architecture refinements (only if justified by implementation)
 
 - formalize the D-005 "version envelope in frontmatter, precise per-version facts
