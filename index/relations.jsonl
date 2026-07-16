@@ -189,6 +189,9 @@
 {"source": "TROUBLE-COREDNS_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-COREDNS_RESOLUTION_LOOP", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "TROUBLE-DISK_PRESSURE_EVICTION", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
+{"source": "TROUBLE-DOWNLOAD_FAILS", "target": "PRACTICE-OFFLINE_ENVIRONMENT", "type": "see_also"}
+{"source": "TROUBLE-DOWNLOAD_FAILS", "target": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "type": "see_also"}
+{"source": "TROUBLE-DOWNLOAD_FAILS", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}
 {"source": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PLAYBOOK-RECOVER_CONTROL_PLANE", "type": "see_also"}
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
@@ -210,6 +213,9 @@
 {"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "TROUBLE-KUBE_VIP_CAPS_VERSION", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "VARIABLE-KUBE_VIP_ADDRESS", "type": "see_also"}
+{"source": "TROUBLE-METALLB_SERVICE_PENDING", "target": "COMPONENT-METALLB", "type": "see_also"}
+{"source": "TROUBLE-METALLB_SERVICE_PENDING", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
+{"source": "TROUBLE-METALLB_SERVICE_PENDING", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_33_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
