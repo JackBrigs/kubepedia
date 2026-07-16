@@ -1,5 +1,6 @@
 {"source": "COMPONENT-CILIUM", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
 {"source": "COMPONENT-CONTAINERD", "target": "VARIABLE-CONTAINER_MANAGER", "type": "see_also"}
+{"source": "COMPONENT-COREDNS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "COMPONENT-ETCD", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "VARIABLE-KUBE_VERSION", "type": "depends_on"}
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "COMPONENT-ETCD", "type": "see_also"}
