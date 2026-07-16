@@ -199,6 +199,9 @@
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "target": "PRACTICE-CONTAINERD_DIAGNOSTICS", "type": "see_also"}
+{"source": "TROUBLE-KUBELET_SERVING_CERT_TLS", "target": "COMPONENT-METRICS_SERVER", "type": "see_also"}
+{"source": "TROUBLE-KUBELET_SERVING_CERT_TLS", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
+{"source": "TROUBLE-KUBELET_SERVING_CERT_TLS", "target": "VARIABLE-KUBELET_ROTATE_SERVER_CERTIFICATES", "type": "see_also"}
 {"source": "TROUBLE-KUBERNETES_KNOWN_CVES", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "TROUBLE-KUBERNETES_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
