@@ -189,6 +189,9 @@
 {"source": "TROUBLE-COREDNS_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-COREDNS_RESOLUTION_LOOP", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "TROUBLE-DISK_PRESSURE_EVICTION", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
+{"source": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "target": "PRACTICE-DNS_DEBUG", "type": "see_also"}
+{"source": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "target": "PRACTICE-DNS_STACK", "type": "see_also"}
+{"source": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "TROUBLE-DOWNLOAD_FAILS", "target": "PRACTICE-OFFLINE_ENVIRONMENT", "type": "see_also"}
 {"source": "TROUBLE-DOWNLOAD_FAILS", "target": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "type": "see_also"}
 {"source": "TROUBLE-DOWNLOAD_FAILS", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}
