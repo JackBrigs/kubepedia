@@ -58,14 +58,14 @@ So far only the strongest tiers are used: tagged Kubespray source code
   taken from it must be re-verified against higher-priority sources (code / docs /
   merged PR) before entering the KB, and marked with the appropriate (lower)
   confidence.
-- Security (category 4) — CVE / GitHub & Kubernetes Security Advisories per
-  component (affected/fixed versions, severity, mitigation). STARTED: verified
-  runc CVE-2025-31133 (affects v2.29.0) + CONCEPT-SECURITY_ADVISORIES tracker.
-  **Blocker for deeper coverage:** web-scraping GitHub advisories does NOT yield
-  reliable affected/fixed version ranges (and recent CVE IDs are unverifiable by
-  the model) — do NOT fabricate. Do this properly via a structured source
-  (osv.dev API — needs POST, so a small fetch script) or manual per-advisory NVD
-  verification, only recording confirmed version-range hits.
+- Security (category 4) — LARGELY DONE via the **osv.dev API** (curl POST works;
+  authoritative, version-filtered → no fabrication). Per-component CVE matrices
+  indexed for: kubernetes, runc, containerd, coredns, cilium, cni-plugins,
+  cert-manager, helm; verified clean (0 CVE at shipped versions): etcd, kube-vip,
+  metallb, nerdctl, node-feature-discovery. Method: query osv.dev per shipped
+  version, record only returned (=affected) vulns. **Remaining:** re-run the
+  osv.dev sweep whenever versions change or new CVEs land (it is date-sensitive);
+  optionally cover the long tail of minor add-ons and per-K8s-patch versions.
 - Upstream Kubernetes (category 2, direct) — KEPs, feature gates, API
   deprecations/removals from kubernetes/kubernetes (not via Kubespray).
 - Engineering experience (category 5) — CNCF / KubeCon / engineering blogs /
