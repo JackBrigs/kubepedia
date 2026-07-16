@@ -65,6 +65,10 @@ Version deltas:
   security docs.)
 - **Feature gates / no API removals** documented for `1.33`–`1.35` (see
   [[CONCEPT-K8S_API_REMOVALS]], [[CONCEPT-K8S_FEATURE_GATES]]).
+- **ingress-nginx removed:** Kubespray no longer manages the ingress-nginx controller
+  in `v2.31.0` (`ingress_nginx_enabled` is gone; only the ALB controller remains). If
+  you relied on it, take over its lifecycle yourself before upgrading
+  ([[COMPONENT-INGRESS_NGINX]]).
 - The legacy `master` run-tag is gone (fully renamed to `control-plane`).
 - One minor at a time; snapshot etcd first ([[PRACTICE-UPGRADE_PREFLIGHT]]).
 
