@@ -1,9 +1,12 @@
 # Knowledge Document Specification (KDS)
 
-Version: 1.1
+Version: 1.2
 
 Changelog:
 
+- 1.2 — Added the `ansible_tag` document type (Kubespray run-tags), with ID prefix
+  `TAG`, section profile (Context, Implementation, Compatibility), and Kubespray
+  version scope. See `standards/decisions.md` D-012.
 - 1.1 — Section profiles per document type replace the fixed ten-section layout;
   formal ID grammar and repository layout; typed `relations` replace the flat
   `related` list; version-field nullability rules; confidence ordering and
@@ -157,6 +160,7 @@ SEGMENT = [A-Z0-9]+
 | upgrade       | UPGRADE     |
 | command       | COMMAND     |
 | concept       | CONCEPT     |
+| ansible_tag   | TAG         |
 
 ---
 
@@ -181,6 +185,7 @@ Supported types:
 - upgrade
 - command
 - concept
+- ansible_tag
 
 New document types require a KDS update.
 
@@ -216,6 +221,7 @@ type:
 | upgrade         | Implementation, Upgrade Notes, Compatibility |
 | command         | Diagnostics |
 | concept         | Context |
+| ansible_tag     | Context, Implementation, Compatibility |
 
 The full section vocabulary (order is fixed when sections are present):
 
@@ -259,7 +265,7 @@ type:
 
 | type family | non-null version dimension required |
 |-------------|-------------------------------------|
-| Kubespray-scoped: variable, role, playbook, task, release, migration, upgrade | `kubespray_version` |
+| Kubespray-scoped: variable, role, playbook, task, release, migration, upgrade, ansible_tag | `kubespray_version` |
 | Kubernetes-scoped: api, feature_gate, and Kubernetes concepts | `kubernetes_version` |
 | component | `component_version` **and** `kubespray_version` (as shipped by that Kubespray release); `kubernetes_version` records the compatibility range |
 | troubleshooting, issue, pull_request | at least one of `kubespray_version` / `kubernetes_version` / `component_version` non-null, matching the affected subsystem |

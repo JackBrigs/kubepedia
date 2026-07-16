@@ -16,9 +16,9 @@ tags:
   - networking
 sources:
   - type: code
-    path: roles/network_plugin/cilium/defaults/main.yml
-    lines: "117 (v2.29.0), 119 (v2.30.0/v2.31.0)"
-    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/defaults/main.yml
+    path: roles/kubespray_defaults/defaults/main/download.yml
+    lines: "117 (v2.29.0), 119 (v2.29.1/v2.30.0/v2.31.0)"
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "cilium_version literal; cilium_image_repo/cilium_image_tag"
   - type: code
     path: roles/kubespray_defaults/defaults/main/main.yml
@@ -36,7 +36,7 @@ relations:
 Cilium is an eBPF-based CNI plugin, selectable in Kubespray with
 `kube_network_plugin: cilium` (see [[VARIABLE-KUBE_NETWORK_PLUGIN]]; the default
 plugin is `calico`). Unlike etcd/containerd, the Cilium version is a **literal**
-pin in the plugin role, not derived from a checksums table.
+pin in `kubespray_defaults`, not derived from a checksums table.
 
 ## Context
 
@@ -46,7 +46,8 @@ pin in the plugin role, not derived from a checksums table.
 
 ## Implementation
 
-The version is a literal in `roles/network_plugin/cilium/defaults/main.yml`:
+The version is a literal in
+`roles/kubespray_defaults/defaults/main/download.yml`:
 
 ```yaml
 cilium_version: "1.19.3"          # value shown for v2.31.0
@@ -56,36 +57,38 @@ cilium_image_tag: "v{{ cilium_version }}"
 
 Concrete version per tag:
 
-| Kubespray | cilium_version | defaults line | Image |
-|-----------|----------------|---------------|-------|
-| v2.29.0   | 1.18.2         | 117           | quay.io/cilium/cilium:v1.18.2 |
-| v2.30.0   | 1.18.6         | 119           | quay.io/cilium/cilium:v1.18.6 |
-| v2.31.0   | 1.19.3         | 119           | quay.io/cilium/cilium:v1.19.3 |
+| Kubespray | cilium_version | download.yml line | Image |
+|-----------|----------------|-------------------|-------|
+| v2.29.0   | 1.18.2         | 117               | quay.io/cilium/cilium:v1.18.2 |
+| v2.29.1   | 1.18.4         | 119               | quay.io/cilium/cilium:v1.18.4 |
+| v2.30.0   | 1.18.6         | 119               | quay.io/cilium/cilium:v1.18.6 |
+| v2.31.0   | 1.19.3         | 119               | quay.io/cilium/cilium:v1.19.3 |
 
 Note the minor bump `1.18 → 1.19` in `v2.31.0`.
 
 ## Configuration
 
-- Version: `cilium_version` (literal, `roles/network_plugin/cilium/defaults/main.yml`).
+- Version: `cilium_version` (literal,
+  `roles/kubespray_defaults/defaults/main/download.yml`).
 - Image: `cilium_image_repo` = `quay.io/cilium/cilium`, `cilium_image_tag` =
   `v{{ cilium_version }}`.
 - Selection: [[VARIABLE-KUBE_NETWORK_PLUGIN]] must be `cilium`.
 - Further Cilium tunables (datapath mode, kube-proxy replacement, hubble, etc.)
-  live in the same `roles/network_plugin/cilium/defaults/main.yml` and are indexed
-  separately as needed.
+  live in the `roles/network_plugin/cilium/defaults/main.yml` role defaults and are
+  indexed separately as needed.
 
 ## Compatibility
 
-- Kubespray `v2.29.0` → Cilium `1.18.2`; `v2.30.0` → `1.18.6`; `v2.31.0` →
-  `1.19.3`.
+- Kubespray `v2.29.0` → Cilium `1.18.2`; `v2.29.1` → `1.18.4`; `v2.30.0` →
+  `1.18.6`; `v2.31.0` → `1.19.3`.
 - Applies to the Kubernetes versions these releases install (`>=1.31`).
 - Because the version is a literal, it does **not** vary with `kube_version`
   within a single Kubespray release (contrast [[COMPONENT-ETCD]]).
 
 ## References
 
-- `roles/network_plugin/cilium/defaults/main.yml` (`cilium_version`,
+- `roles/kubespray_defaults/defaults/main/download.yml` (`cilium_version`,
   `cilium_image_repo`, `cilium_image_tag`) — line 117 (v2.29.0), 119
-  (v2.30.0/v2.31.0).
+  (v2.29.1/v2.30.0/v2.31.0).
 - `roles/kubespray_defaults/defaults/main/main.yml` (`kube_network_plugin`).
-- Tags: v2.29.0 `9991412`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`.
+- Tags: v2.29.0 `9991412`, v2.29.1 `0c6a295`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`.

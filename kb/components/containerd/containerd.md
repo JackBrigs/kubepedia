@@ -64,6 +64,7 @@ tag:
 | Kubespray | containerd version | main.yml line |
 |-----------|--------------------|---------------|
 | v2.29.0   | 2.1.4              | 81            |
+| v2.29.1   | 2.1.5              | 81            |
 | v2.30.0   | 2.2.1              | 83            |
 | v2.31.0   | 2.2.3              | 83            |
 
@@ -83,8 +84,8 @@ checksum is selected by `image_arch` from `containerd_archive_checksums`.
 
 ## Compatibility
 
-- Kubespray `v2.29.0` → containerd `2.1.4`; `v2.30.0` → `2.2.1`; `v2.31.0` →
-  `2.2.3`.
+- Kubespray `v2.29.0` → containerd `2.1.4`; `v2.29.1` → `2.1.5`; `v2.30.0` →
+  `2.2.1`; `v2.31.0` → `2.2.3`.
 - Architecture: `containerd_archive_checksums` provides `amd64` and `arm64`; the
   archive is chosen by `image_arch`.
 
@@ -94,4 +95,4 @@ checksum is selected by `image_arch` from `containerd_archive_checksums`.
   81 (v2.29.0), 83 (v2.30.0/v2.31.0).
 - `roles/kubespray_defaults/vars/main/checksums.yml` (`containerd_archive_checksums`).
 - `roles/container-engine/containerd/` (install + config).
-- Tags: v2.29.0 `9991412`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`.
+- Tags: v2.29.0 `9991412`, v2.29.1 `0c6a295`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`.

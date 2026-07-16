@@ -63,6 +63,7 @@ The version does not vary by tag or by `kube_version`:
 | Kubespray | metallb_version | Images |
 |-----------|-----------------|--------|
 | v2.29.0   | 0.13.9          | quay.io/metallb/{speaker,controller}:v0.13.9 |
+| v2.29.1   | 0.13.9          | quay.io/metallb/{speaker,controller}:v0.13.9 |
 | v2.30.0   | 0.13.9          | quay.io/metallb/{speaker,controller}:v0.13.9 |
 | v2.31.0   | 0.13.9          | quay.io/metallb/{speaker,controller}:v0.13.9 |
 

@@ -39,7 +39,8 @@ kube-proxy's own default of `iptables`).
 ## Implementation
 
 Defined in `roles/kubespray_defaults/defaults/main/main.yml`
-(`kube_proxy_mode: ipvs`; line 31 in v2.29.0/v2.30.0, line 34 in v2.31.0). The
+(`kube_proxy_mode: ipvs`; line 31 in v2.29.0/v2.29.1/v2.30.0, line 34 in
+v2.31.0). The
 value is passed to the kube-proxy configuration and gates mode-specific tasks:
 
 - `ipvs` (default) — requires the IPVS kernel modules; interacts with

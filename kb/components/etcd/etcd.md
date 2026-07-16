@@ -86,6 +86,7 @@ Concrete resolution per tag and minor:
 | Kubespray | Kubernetes minors | etcd version | Image (non-`host`) |
 |-----------|-------------------|--------------|--------------------|
 | v2.29.0   | 1.31, 1.32, 1.33  | 3.5.23       | quay.io/coreos/etcd:v3.5.23 |
+| v2.29.1   | 1.31, 1.32, 1.33  | 3.5.25       | quay.io/coreos/etcd:v3.5.25 |
 | v2.30.0   | 1.32, 1.33, 1.34  | 3.5.26       | quay.io/coreos/etcd:v3.5.26 |
 | v2.31.0   | 1.33, 1.34        | 3.5.29       | quay.io/coreos/etcd:v3.5.29 |
 | v2.31.0   | 1.35              | 3.6.10       | quay.io/coreos/etcd:v3.6.10 |
@@ -109,8 +110,9 @@ In container modes the image `etcd_image_repo`/`etcd_image_tag` is used.
 
 ## Compatibility
 
-- Kubespray `v2.29.0` → etcd `3.5.23`; `v2.30.0` → `3.5.26`; `v2.31.0` → `3.5.29`
-  for Kubernetes `1.33`/`1.34` and `3.6.10` for Kubernetes `1.35`.
+- Kubespray `v2.29.0` → etcd `3.5.23`; `v2.29.1` → `3.5.25`; `v2.30.0` → `3.5.26`;
+  `v2.31.0` → `3.5.29` for Kubernetes `1.33`/`1.34` and `3.6.10` for Kubernetes
+  `1.35`.
 - etcd `3.6` first appears in `v2.31.0`, gated to Kubernetes `1.35` by the `< 3.7`
   ceiling; older minors remain on the newest `3.5.x`.
 - Architecture: `etcd_binary_checksums` provides `amd64` and `arm64`; the binary
@@ -123,4 +125,4 @@ In container modes the image `etcd_image_repo`/`etcd_image_tag` is used.
 - `roles/kubespray_defaults/vars/main/main.yml:14` (`etcd_supported_versions`)
 - `roles/kubespray_defaults/vars/main/checksums.yml` (`etcd_binary_checksums`)
 - `roles/etcd_defaults/defaults/main.yml` (cluster defaults)
-- Tags: v2.29.0 `9991412`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`.
+- Tags: v2.29.0 `9991412`, v2.29.1 `0c6a295`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`.

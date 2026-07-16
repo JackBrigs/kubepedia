@@ -74,7 +74,9 @@ version. Resolution per tag and minor:
 | v2.31.0   | 1.35             | 1.12.4          |
 
 With each tag's default `kube_version` the deployed CoreDNS is `1.12.0`
-(v2.29.0), `1.12.1` (v2.30.0), and `1.12.4` (v2.31.0).
+(v2.29.0 and v2.29.1 — both default to Kubernetes minor 1.33), `1.12.1`
+(v2.30.0), and `1.12.4` (v2.31.0). The patch release v2.29.1 keeps the same
+`coredns_supported_versions` map as v2.29.0.
 
 The image is `registry.k8s.io/coredns/coredns:v{{ coredns_version }}`
 (`kube_image_repo` = `registry.k8s.io`; the `/coredns` path and `v` tag prefix

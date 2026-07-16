@@ -76,6 +76,7 @@ Support window per tag:
 | Kubespray | Minor lines | Patch ranges | Count | Default | Minimum |
 |-----------|-------------|--------------|-------|---------|---------|
 | v2.29.0   | 1.31, 1.32, 1.33 | 1.31.0–1.31.13, 1.32.0–1.32.9, 1.33.0–1.33.5 | 30 | 1.33.5 | 1.31.0 |
+| v2.29.1   | 1.31, 1.32, 1.33 | 1.31.0–1.31.14, 1.32.0–1.32.10, 1.33.0–1.33.7 | 34 | 1.33.7 | 1.31.0 |
 | v2.30.0   | 1.32, 1.33, 1.34 | 1.32.0–1.32.11, 1.33.0–1.33.7, 1.34.0–1.34.3 | 24 | 1.34.3 | 1.32.0 |
 | v2.31.0   | 1.33, 1.34, 1.35 | 1.33.0–1.33.11, 1.34.0–1.34.7, 1.35.0–1.35.4 | 25 | 1.35.4 | 1.33.0 |
 
@@ -83,6 +84,9 @@ Notes:
 
 - The window advances by one minor per Kubespray minor release; the oldest minor
   is dropped and a new one added (1.31 present in v2.29.0, dropped in v2.30.0).
+- A patch release keeps the same minor window as its parent but refreshes patch
+  versions and the default (v2.29.1 stays on 1.31–1.33 but adds newer patches and
+  bumps the default to 1.33.7).
 - No explicit upper bound is asserted; a version without a checksum fails during
   download.
 - CI: the inventories under `tests/files/` do not pin `kube_version`, so CI
@@ -91,6 +95,7 @@ Notes:
 ## Compatibility
 
 - Kubespray `v2.29.0`: `>=1.31.0 <=1.33.5`, default `1.33.5`.
+- Kubespray `v2.29.1`: `>=1.31.0 <=1.33.7`, default `1.33.7`.
 - Kubespray `v2.30.0`: `>=1.32.0 <=1.34.3`, default `1.34.3`.
 - Kubespray `v2.31.0`: `>=1.33.0 <=1.35.4`, default `1.35.4`.
 - Below the per-tag minimum: rejected by inventory validation.
@@ -98,7 +103,7 @@ Notes:
 ## References
 
 - `roles/kubespray_defaults/vars/main/checksums.yml` (`kubelet_checksums`) —
-  v2.29.0 `9991412`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`
+  v2.29.0 `9991412`, v2.29.1 `0c6a295`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`
 - `roles/kubespray_defaults/defaults/main/main.yml:25,28`
 - `roles/validate_inventory/tasks/main.yml` (version assert)
 - `tests/files/` (no `kube_version` override → default is tested)

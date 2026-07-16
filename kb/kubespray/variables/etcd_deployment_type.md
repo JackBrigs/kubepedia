@@ -54,6 +54,7 @@ Default in `roles/kubespray_defaults/defaults/main/main.yml` (`host`):
 | Kubespray | Line | Default |
 |-----------|------|---------|
 | v2.29.0   | 424  | host    |
+| v2.29.1   | 424  | host    |
 | v2.30.0   | 425  | host    |
 | v2.31.0   | 437  | host    |
 

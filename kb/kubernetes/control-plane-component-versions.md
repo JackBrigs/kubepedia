@@ -87,6 +87,7 @@ Per-tag concrete version (the default `kube_version`):
 | Kubespray | Control plane version (default) |
 |-----------|---------------------------------|
 | v2.29.0   | 1.33.5                          |
+| v2.29.1   | 1.33.7                          |
 | v2.30.0   | 1.34.3                          |
 | v2.31.0   | 1.35.4                          |
 

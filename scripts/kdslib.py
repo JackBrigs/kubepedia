@@ -30,6 +30,7 @@ TYPE_PREFIX = {
     "upgrade": "UPGRADE",
     "command": "COMMAND",
     "concept": "CONCEPT",
+    "ansible_tag": "TAG",
 }
 
 # additional required sections per type (KDS "Section Profiles"); every type
@@ -52,6 +53,7 @@ PROFILE = {
     "upgrade": ["Implementation", "Upgrade Notes", "Compatibility"],
     "command": ["Diagnostics"],
     "concept": ["Context"],
+    "ansible_tag": ["Context", "Implementation", "Compatibility"],
 }
 
 # which non-null version dimension a type requires (KDS "Version Fields")
@@ -64,6 +66,7 @@ VERSION_RULE = {
     "release": "kubespray",
     "migration": "kubespray",
     "upgrade": "kubespray",
+    "ansible_tag": "kubespray",
     "api": "kubernetes",
     "feature_gate": "kubernetes",
     "component": "component",

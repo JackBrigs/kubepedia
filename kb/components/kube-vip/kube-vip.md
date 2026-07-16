@@ -67,6 +67,7 @@ The **deployed image tag** differs from the `kube_vip_version` variable in
 | Kubespray | kube_vip_version | kube_vip_image_tag (deployed) |
 |-----------|------------------|-------------------------------|
 | v2.29.0   | 0.8.0            | `v0.8.9` (literal) → **deployed v0.8.9** |
+| v2.29.1   | 0.8.0            | `v0.8.9` (literal) → **deployed v0.8.9** |
 | v2.30.0   | 1.0.3            | `v{{ kube_vip_version }}` → **v1.0.3** |
 | v2.31.0   | 1.0.3            | `v{{ kube_vip_version }}` → **v1.0.3** |
 

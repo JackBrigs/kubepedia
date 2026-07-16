@@ -178,3 +178,28 @@ the tag before it becomes a KDS document (`CLAUDE.md` → "Baseline").
 
 **Rationale.** Preserves valuable extracted material without treating it as
 trusted KDS knowledge or deleting it.
+
+---
+
+## D-012 — `ansible_tag` document type
+
+**Context.** Kubespray run-tags (`--tags etcd`, `--tags etcd-secrets`, …) are a
+first-class operational entity: each has its own behavior, affected roles/tasks,
+host groups, playbook membership, and standalone-run safety. None of the existing
+KDS types expressed this, so questions like "which tag regenerates etcd
+certificates in v2.29.1" could not be answered from the KB. The 0.1.0 base already
+treated run-tags as first-class.
+
+**Decision.** Add the `ansible_tag` document type (KDS): ID prefix `TAG`, section
+profile `Summary, Context, Implementation, Compatibility, References`, Kubespray
+version scope. `Context` carries playbooks and affected host groups;
+`Implementation` the tagged tasks/roles; `Compatibility` version coverage and
+standalone-run safety.
+
+**Rationale.** Justified architecture extension under the Final Rule: correctly
+representing a run-tag was impossible with existing types, blocking a real
+operational question. Kept minimal — one type, reusing the existing section
+vocabulary.
+
+**Consequences.** `kds.md` 1.2, `schema/kds.schema.json`, and `scripts/kdslib.py`
+updated together. Run-tags now indexed under `kb/kubespray/ansible-tags/`.

@@ -88,6 +88,7 @@ Result per tag:
 | Kubespray | Selection mechanism | Effective kubeadm API |
 |-----------|---------------------|-----------------------|
 | v2.29.0   | `kubeadm_config_api_version` variable (always resolves v1beta4) | kubeadm.k8s.io/v1beta4 |
+| v2.29.1   | `kubeadm_config_api_version` variable (always resolves v1beta4) | kubeadm.k8s.io/v1beta4 |
 | v2.30.0   | `kubeadm_config_api_version` variable (always resolves v1beta4) | kubeadm.k8s.io/v1beta4 |
 | v2.31.0   | hardcoded template `kubeadm-config.v1beta4.yaml.j2` | kubeadm.k8s.io/v1beta4 |
 
