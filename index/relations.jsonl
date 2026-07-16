@@ -135,6 +135,9 @@
 {"source": "PLAYBOOK-UPGRADE_CLUSTER", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
 {"source": "PLAYBOOK-UPGRADE_CLUSTER", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
 {"source": "PRACTICE-ARCHITECTURE_COMPATIBILITY", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "PRACTICE-BACKUP_DR", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
+{"source": "PRACTICE-BACKUP_DR", "target": "PRACTICE-RECOVER_CONTROL_PLANE", "type": "see_also"}
+{"source": "PRACTICE-BACKUP_DR", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
 {"source": "PRACTICE-CERTIFICATE_EXPIRY", "target": "TAG-ETCD_SECRETS", "type": "see_also"}
 {"source": "PRACTICE-CERTIFICATE_EXPIRY", "target": "VARIABLE-KUBELET_ROTATE_CERTIFICATES", "type": "see_also"}
 {"source": "PRACTICE-CERT_MANAGER_SETUP", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
