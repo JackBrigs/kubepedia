@@ -116,6 +116,8 @@
 {"source": "PRACTICE-CERT_MANAGER_SETUP", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "PRACTICE-CILIUM_DIAGNOSTICS", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "PRACTICE-CILIUM_DIAGNOSTICS", "target": "VARIABLE-CILIUM_KUBE_PROXY_REPLACEMENT", "type": "see_also"}
+{"source": "PRACTICE-CLUSTER_ACCESS", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
+{"source": "PRACTICE-CLUSTER_ACCESS", "target": "TROUBLE-APISERVER_CERT_SAN", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HARDENING", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HARDENING", "target": "PRACTICE-SECRETS_ENCRYPTION_AT_REST", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HARDENING", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
