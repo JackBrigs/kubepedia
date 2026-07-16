@@ -152,6 +152,12 @@
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
+{"source": "UPGRADE-V2_29_0__V2_29_1", "target": "RELEASE-V2_29_1", "type": "see_also"}
+{"source": "UPGRADE-V2_29_0__V2_29_1", "target": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "type": "see_also"}
+{"source": "UPGRADE-V2_29_1__V2_30_0", "target": "CONCEPT-K8S_API_REMOVALS", "type": "see_also"}
+{"source": "UPGRADE-V2_29_1__V2_30_0", "target": "RELEASE-V2_30_0", "type": "see_also"}
+{"source": "UPGRADE-V2_30_0__V2_31_0", "target": "CONFIG-KUBEADM_CONFIG_API_VERSION", "type": "see_also"}
+{"source": "UPGRADE-V2_30_0__V2_31_0", "target": "RELEASE-V2_31_0", "type": "see_also"}
 {"source": "VARIABLE-CILIUMCLI_BINARY_CHECKSUM", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "VARIABLE-CILIUMCLI_BINARY_CHECKSUMS", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "VARIABLE-CILIUMCLI_DOWNLOAD_URL", "target": "COMPONENT-CILIUM", "type": "see_also"}
