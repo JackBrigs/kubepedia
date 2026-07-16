@@ -180,6 +180,14 @@
 {"source": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "target": "PRACTICE-CONTAINERD_DIAGNOSTICS", "type": "see_also"}
 {"source": "TROUBLE-KUBERNETES_KNOWN_CVES", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "TROUBLE-KUBERNETES_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
+{"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
+{"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
+{"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "TROUBLE-NODE_MEMORY_TOO_SMALL", "type": "see_also"}
+{"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_33_CHANGES", "type": "see_also"}
+{"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
+{"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
+{"source": "TROUBLE-NODE_MEMORY_TOO_SMALL", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
+{"source": "TROUBLE-NODE_MEMORY_TOO_SMALL", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "TROUBLE-POD_STUCK_TERMINATING", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "target": "COMPONENT-RUNC", "type": "see_also"}
 {"source": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
