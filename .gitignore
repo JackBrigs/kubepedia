@@ -9,3 +9,8 @@ kubespray-src/
 # Python
 __pycache__/
 *.pyc
+
+# Claude Code service files — never commit
+.claude/
+.claude/**
+*.claude-session
