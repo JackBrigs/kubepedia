@@ -14,3 +14,4 @@ __pycache__/
 .claude/
 .claude/**
 *.claude-session
+.venv/

@@ -30,6 +30,9 @@
 {"source": "CONCEPT-K8S_1_35_CHANGES", "target": "UPGRADE-V2_30_0__V2_31_0", "type": "see_also"}
 {"source": "CONCEPT-K8S_API_REMOVALS", "target": "API-FLOWCONTROL_APISERVER", "type": "see_also"}
 {"source": "CONCEPT-K8S_API_REMOVALS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
+{"source": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
 {"source": "CONCEPT-K8S_FEATURE_GATES", "target": "CONCEPT-K8S_API_REMOVALS", "type": "see_also"}
 {"source": "CONCEPT-K8S_FEATURE_GATES", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "VARIABLE-KUBE_VERSION", "type": "depends_on"}
@@ -40,6 +43,9 @@
 {"source": "CONCEPT-SECURITY_ADVISORIES", "target": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "type": "see_also"}
 {"source": "CONFIG-KUBEADM_CONFIG_API_VERSION", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "CONFIG-KUBEADM_CONFIG_API_VERSION", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
+{"source": "CONFIG-KUBELET_CONFIGURATION", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
+{"source": "CONFIG-KUBELET_CONFIGURATION", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
+{"source": "CONFIG-KUBELET_CONFIGURATION", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
 {"source": "PLAYBOOK-CLUSTER", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
 {"source": "PLAYBOOK-CLUSTER", "target": "TAG-ETCD", "type": "see_also"}
 {"source": "PLAYBOOK-CLUSTER", "target": "TAG-NETWORK", "type": "see_also"}
