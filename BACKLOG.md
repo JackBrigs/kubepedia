@@ -59,7 +59,13 @@ So far only the strongest tiers are used: tagged Kubespray source code
   merged PR) before entering the KB, and marked with the appropriate (lower)
   confidence.
 - Security (category 4) — CVE / GitHub & Kubernetes Security Advisories per
-  component (affected/fixed versions, severity, mitigation).
+  component (affected/fixed versions, severity, mitigation). STARTED: verified
+  runc CVE-2025-31133 (affects v2.29.0) + CONCEPT-SECURITY_ADVISORIES tracker.
+  **Blocker for deeper coverage:** web-scraping GitHub advisories does NOT yield
+  reliable affected/fixed version ranges (and recent CVE IDs are unverifiable by
+  the model) — do NOT fabricate. Do this properly via a structured source
+  (osv.dev API — needs POST, so a small fetch script) or manual per-advisory NVD
+  verification, only recording confirmed version-range hits.
 - Upstream Kubernetes (category 2, direct) — KEPs, feature gates, API
   deprecations/removals from kubernetes/kubernetes (not via Kubespray).
 - Engineering experience (category 5) — CNCF / KubeCon / engineering blogs /
