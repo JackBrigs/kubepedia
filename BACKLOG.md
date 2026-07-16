@@ -79,13 +79,16 @@ PRs (33 total) + 5 diagnostic runbooks. The Kubespray git source is exhausted fo
 the v2.29.0–v2.31.0 range (remaining fix commits are CI/test/docs/typo/niche-OS/
 non-Cilium CNI).
 
-**Come back at the end and expand from the remaining sources:**
-- component release notes / known issues (etcd, Cilium, containerd, CoreDNS) for
-  the versions we ship;
-- **Community** (Reddit / Stack Overflow / Slack) — with mandatory re-verification
-  and lower confidence (see the Sources section);
-- curated Kubernetes "Known Issues" / "Urgent Upgrade Notes" per version (raw
-  `kubernetes/kubernetes` issue mining is low-signal and unreliable via web).
+DONE (round 2): per-component CVE matrices via osv.dev (security), and 8
+verifiable **operational/community** troubleshooting scenarios (CoreDNS loop, etcd
+db-space, conntrack full, VXLAN MTU, pod Terminating, pull rate-limit, clock skew,
+DiskPressure). Total troubleshooting docs: 50.
+
+**Still optional (return if wanted):**
+- component release-note "Known Issues" (etcd/Cilium/containerd/CoreDNS) beyond
+  CVEs — web-scraping is unreliable; do per-advisory or from cloned repos;
+- deeper **Community** mining (Reddit / SO / Slack) with re-verification;
+- curated Kubernetes "Known Issues" / "Urgent Upgrade Notes" per version.
 
 ## Possible architecture refinements (only if justified by implementation)
 
