@@ -17,6 +17,15 @@
 {"source": "COMPONENT-NODELOCALDNS", "target": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "type": "see_also"}
 {"source": "COMPONENT-NODELOCALDNS", "target": "VARIABLE-DNS_MODE", "type": "see_also"}
 {"source": "COMPONENT-RUNC", "target": "COMPONENT-CONTAINERD", "type": "part_of"}
+{"source": "CONCEPT-CILIUM_DATAPATH", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "CONCEPT-CILIUM_DATAPATH", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
+{"source": "CONCEPT-CILIUM_DATAPATH", "target": "TROUBLE-CILIUM_CONFIG_VALIDATION", "type": "see_also"}
+{"source": "CONCEPT-CILIUM_ENCRYPTION", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "CONCEPT-CILIUM_ENCRYPTION", "target": "CONCEPT-CILIUM_DATAPATH", "type": "see_also"}
+{"source": "CONCEPT-CILIUM_ENCRYPTION", "target": "TROUBLE-CILIUM_CONFIG_VALIDATION", "type": "see_also"}
+{"source": "CONCEPT-CILIUM_HUBBLE", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "CONCEPT-CILIUM_HUBBLE", "target": "CONCEPT-CILIUM_DATAPATH", "type": "see_also"}
+{"source": "CONCEPT-CILIUM_HUBBLE", "target": "TROUBLE-CILIUM_CONFIG_VALIDATION", "type": "see_also"}
 {"source": "CONCEPT-COMPONENT_VERSION_SELECTION", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "CONCEPT-COMPONENT_VERSION_SELECTION", "target": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "type": "see_also"}
 {"source": "CONCEPT-COMPONENT_VERSION_SELECTION", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
