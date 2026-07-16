@@ -23,14 +23,16 @@ sources:
     note: "nodelocaldns_version: 1.25.0; image registry.k8s.io/dns/k8s-dns-node-cache"
   - type: code
     path: roles/kubespray_defaults/defaults/main/main.yml
-    lines: "138,140"
+    lines: "138-144"
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
-    note: "enable_nodelocaldns: true; nodelocaldns_ip: 169.254.25.10"
+    note: "enable_nodelocaldns(_secondary); nodelocaldns_ip; health ports; secondary_skew_seconds"
 relations:
   - type: see_also
     target: COMPONENT-COREDNS
   - type: see_also
     target: VARIABLE-DNS_MODE
+  - type: see_also
+    target: TROUBLE-DNS_EXTERNAL_RESOLUTION
 ---
 
 # NodeLocal DNS (nodelocaldns)
@@ -74,10 +76,31 @@ The version does not change across the indexed tags.
 - Version: `nodelocaldns_version` (literal `1.25.0`).
 - Image: `registry.k8s.io/dns/k8s-dns-node-cache:{{ nodelocaldns_version }}`.
 - Local listen IP: `nodelocaldns_ip` (`169.254.25.10`).
+- Health port: `nodelocaldns_health_port` (`9254`).
+- Metrics bind: `nodelocaldns_bind_metrics_host_ip` (default `false`).
+
+### Secondary cache (HA)
+
+A single node-local cache is a **per-node single point of failure**: because pods point
+their resolver at `nodelocaldns_ip` (`169.254.25.10`), if that cache pod restarts or
+crashes, **all** pod DNS on that node breaks until it recovers
+([[TROUBLE-DNS_EXTERNAL_RESOLUTION]]). Kubespray can run a **second** node-local cache
+for redundancy:
+
+- `enable_nodelocaldns_secondary` (default `false`) — deploy a second cache alongside the
+  primary on each node.
+- `nodelocaldns_second_health_port` (`9256`) — health port for the secondary (primary
+  uses `9254`).
+- `nodelocaldns_secondary_skew_seconds` (`5`) — staggers the two so they don't restart at
+  the same time (otherwise both could be down together, defeating the purpose).
+
+Enable the secondary on clusters where per-node DNS availability matters (the two caches
+share the `169.254.25.10` VIP so pods need no change).
 
 ## Compatibility
 
-- Kubespray `v2.29.0`–`v2.31.0`: NodeLocal DNS `1.25.0`, enabled by default.
+- Kubespray `v2.29.0`–`v2.31.0`: NodeLocal DNS `1.25.0`, enabled by default; secondary
+  cache **off** by default.
 - Works with `dns_mode: coredns` / `coredns_dual`.
 
 ## References
