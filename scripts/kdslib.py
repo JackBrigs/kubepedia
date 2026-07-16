@@ -136,6 +136,7 @@ def build_index(kb_root, repo_root):
             "kubespray_version": fm.get("kubespray_version"),
             "kubernetes_version": fm.get("kubernetes_version"),
             "component_version": fm.get("component_version"),
+            "aliases": fm.get("aliases") or [],
             "tags": fm.get("tags") or [],
             "path": os.path.relpath(path, repo_root),
         })

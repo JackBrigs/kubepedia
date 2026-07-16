@@ -12,6 +12,11 @@ aliases:
   - KEPs
   - Kubernetes Enhancement Proposals
   - enhancements 1.31 1.35
+  - dynamic resource allocation DRA
+  - node swap KEP
+  - in-place pod resize KEP
+  - nftables proxy KEP
+  - user namespaces KEP
 tags:
   - kubernetes
   - keps
