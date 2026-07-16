@@ -207,6 +207,9 @@
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "TROUBLE-NODE_MEMORY_TOO_SMALL", "type": "see_also"}
+{"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
+{"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "TROUBLE-KUBE_VIP_CAPS_VERSION", "type": "see_also"}
+{"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "VARIABLE-KUBE_VIP_ADDRESS", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_33_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
