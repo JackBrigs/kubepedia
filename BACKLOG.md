@@ -45,24 +45,7 @@ Beyond version support, the full Kubernetes layer is not yet indexed:
 
 ## Ansible run-tags
 
-The `ansible_tag` KDS type exists (D-012). Indexed (24): `etcd-secrets`, `etcd`,
-`control-plane`, `download`, `preinstall`, `container-engine`, `node`, `kubeadm`,
-`network`, `apps`, `client`, `cluster-roles`, `node-label`, `node-taint`,
-`resolvconf`, `reset`, `pre-upgrade`, `system-upgrade`, `post-upgrade`, `etcdctl`,
-`ingress-controller`, `policy-controller`, `external-provisioner`,
-`external-cloud-controller`. Core layer complete.
-
-Verified NON-tags (do not create): `kubelet`, `remove-node`, `upgrade` are not
-standalone role tags (`upgrade` is split into pre/system/post-upgrade;
-`remove-node` is a playbook); `bootstrap-os` is not exposed as a run-tag in
-v2.29.0–v2.31.0. Minor remaining tags if needed: `calico_rr`, `win_nodes`,
-`kubelet-csr-approver`, and the granular `preinstall`/task-level tags.
-
-## Troubleshooting
-
-- migrate the 34 confirmed troubleshooting entries from the 0.1.0 raw cache
-  (`knowledge-base/troubleshooting/`) into KDS `troubleshooting` documents, one at
-  a time, re-verified against the tag.
+The `ansible_tag` KDS type exists (D-012). DONE: all run-tags indexed (113) except non-Cilium CNI tags (calico/flannel/weave/kube-ovn/kube-router/canal/custom_cni/macvlan/multus), which are excluded by owner decision. Bulk of the task-level tags were migrated programmatically from the 0.1.0 cache (confidence: verified).
 
 ## Sources — categories not yet collected (standards/sources.md)
 
