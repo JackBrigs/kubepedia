@@ -52,12 +52,31 @@ The `ansible_tag` KDS type exists (D-012). DONE: all run-tags indexed (113) exce
 So far only the strongest tiers are used: tagged Kubespray source code
 (`confirmed`) and tag docs (`verified`). Not yet touched:
 
-- **Community (category 6)** — Reddit, Stack Overflow, Server Fault, GitHub
-  Discussions, Slack/Discord. **Owner asked to work on this.** Note: per
-  `sources.md`, community knowledge is **never authoritative** — every statement
-  taken from it must be re-verified against higher-priority sources (code / docs /
-  merged PR) before entering the KB, and marked with the appropriate (lower)
-  confidence.
+- **Community (category 6) — RETURN AT END OF PROJECT (owner request, 2026-07-16).**
+  Reconnaissance done (GitHub issues/discuss.kubernetes, Habr ×3 + Habr Q&A, CNCF,
+  kubernetes.io, cilium.io; note: Stack Overflow & Reddit are blocked to the crawler).
+  Per `sources.md`, community is **never authoritative** — every candidate below must be
+  **re-verified against code/docs (tag v2.31.0)** before entering the KB, `sources`
+  marked "re-verified", lower confidence where inference is involved. Candidates the
+  recon surfaced that are **not yet covered** (~14 docs/edits, 8 areas):
+  - etcd: `TROUBLE-ETCD_SLOW_APPLY` (apply-took-too-long / disk I/O / defrag);
+    note "etcd upgrade briefly stalls in-flight apiserver requests".
+  - certs: `TROUBLE-CERT_DIR_SSL_NOT_PKI` (myth — Kubespray sets `certificatesDir=
+    /etc/kubernetes/ssl`, already code-verified); `TROUBLE-CERT_100_YEARS_MYTH`
+    (old non-kubeadm; now 1yr); enrich `CONCEPT-CLUSTER_PKI` (restart CP after renewal).
+  - Cilium: `TROUBLE-CILIUM_PACKET_DROPS` (cilium-dbg monitor drops, identity/kvstore
+    propagation, `CT: Map insertion failed` → conntrack `bpf-ct-global-*-max`).
+  - runtime/registry: `TROUBLE-CRIO_SHORT_NAME_REGISTRY` (unqualified-search);
+    enrich registry doc with insecure-registry (`skip_verify`).
+  - networking: `CONFIG-CNI_MTU` (explicit overlay MTU); `TROUBLE-NODE_CANNOT_REACH_APISERVER`
+    (localhost-LB / firewall / routing).
+  - deploy: `TROUBLE-DEPLOY_HANGS_WAIT_APISERVER` (kubelet/static-pod not up).
+  - control-plane: `TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE` (offline master removal).
+  - security/ops: `PRACTICE-RBAC_LEAST_PRIVILEGE` (no blanket cluster-admin; don't mix
+    SSH+API security models); `PRACTICE-MONITORING_BASELINE` (what to watch; Prometheus
+    not bundled by Kubespray).
+  - Rejected as myths (→ debunk docs above): "copy CA into pki", "certs valid 100 years".
+    Skipped: Calico probe-warnings (Calico deferred), external-LB 502 (niche).
 - Security (category 4) — LARGELY DONE via the **osv.dev API** (curl POST works;
   authoritative, version-filtered → no fabrication). Per-component CVE matrices
   indexed for: kubernetes, runc, containerd, coredns, cilium, cni-plugins,
