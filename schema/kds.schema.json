@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kubepedia/schema/kds.schema.json",
+  "title": "Kubepedia Knowledge Document Specification (frontmatter)",
+  "description": "Machine-readable schema for KDS document YAML front matter. See standards/kds.md. Semantic rules that this schema cannot express (ID prefix must match type, section profiles, version nullability per type, relation targets must resolve) are enforced by scripts/validate_kds.py.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "id",
+    "type",
+    "title",
+    "status",
+    "kubespray_version",
+    "kubernetes_version",
+    "component_version",
+    "verified_at",
+    "confidence",
+    "aliases",
+    "tags",
+    "sources",
+    "relations"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z]+-[A-Z0-9]+(_[A-Z0-9]+)*(__[A-Z0-9]+(_[A-Z0-9]+)*)?$"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "component",
+        "variable",
+        "role",
+        "playbook",
+        "task",
+        "api",
+        "feature_gate",
+        "configuration",
+        "release",
+        "issue",
+        "pull_request",
+        "troubleshooting",
+        "best_practice",
+        "migration",
+        "upgrade",
+        "command",
+        "concept"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "deprecated", "superseded"]
+    },
+    "kubespray_version": {
+      "type": ["string", "null"]
+    },
+    "kubernetes_version": {
+      "type": ["string", "null"]
+    },
+    "component_version": {
+      "type": ["string", "null"]
+    },
+    "verified_at": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["confirmed", "verified", "probable", "hypothesis"]
+    },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["type"],
+        "anyOf": [
+          { "required": ["path"] },
+          { "required": ["url"] }
+        ],
+        "properties": {
+          "type": { "type": "string" },
+          "path": { "type": "string" },
+          "url": { "type": "string" },
+          "lines": { "type": "string" },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "target"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "depends_on",
+              "part_of",
+              "replaces",
+              "replaced_by",
+              "affects",
+              "affected_by",
+              "fixes",
+              "fixed_by",
+              "supersedes",
+              "see_also"
+            ]
+          },
+          "target": {
+            "type": "string",
+            "pattern": "^[A-Z]+-[A-Z0-9]+(_[A-Z0-9]+)*(__[A-Z0-9]+(_[A-Z0-9]+)*)?$"
+          }
+        }
+      }
+    }
+  }
+}
