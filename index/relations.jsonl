@@ -1,11 +1,16 @@
 {"source": "COMPONENT-CILIUM", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
+{"source": "COMPONENT-CNI_PLUGINS", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "COMPONENT-CNI_PLUGINS", "target": "TAG-NETWORK", "type": "see_also"}
 {"source": "COMPONENT-CONTAINERD", "target": "VARIABLE-CONTAINER_MANAGER", "type": "see_also"}
 {"source": "COMPONENT-COREDNS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "COMPONENT-ETCD", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "COMPONENT-KUBE_VIP", "target": "COMPONENT-METALLB", "type": "see_also"}
 {"source": "COMPONENT-KUBE_VIP", "target": "CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "type": "see_also"}
 {"source": "COMPONENT-METALLB", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
+{"source": "COMPONENT-METRICS_SERVER", "target": "TAG-APPS", "type": "see_also"}
 {"source": "COMPONENT-NERDCTL", "target": "COMPONENT-CONTAINERD", "type": "part_of"}
+{"source": "COMPONENT-NODELOCALDNS", "target": "COMPONENT-COREDNS", "type": "see_also"}
+{"source": "COMPONENT-NODELOCALDNS", "target": "VARIABLE-DNS_MODE", "type": "see_also"}
 {"source": "COMPONENT-RUNC", "target": "COMPONENT-CONTAINERD", "type": "part_of"}
 {"source": "CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "target": "VARIABLE-KUBE_VERSION", "type": "depends_on"}
 {"source": "CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "target": "CONFIG-KUBEADM_CONFIG_API_VERSION", "type": "see_also"}
@@ -58,6 +63,8 @@
 {"source": "VARIABLE-CILIUM_KUBE_PROXY_REPLACEMENT", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
 {"source": "VARIABLE-CILIUM_TUNNEL_MODE", "target": "COMPONENT-CILIUM", "type": "part_of"}
 {"source": "VARIABLE-CONTAINER_MANAGER", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
+{"source": "VARIABLE-DNS_MODE", "target": "COMPONENT-COREDNS", "type": "see_also"}
+{"source": "VARIABLE-DNS_MODE", "target": "COMPONENT-NODELOCALDNS", "type": "see_also"}
 {"source": "VARIABLE-ETCD_DEPLOYMENT_TYPE", "target": "COMPONENT-ETCD", "type": "part_of"}
 {"source": "VARIABLE-KUBE_NETWORK_PLUGIN", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "VARIABLE-KUBE_PROXY_MODE", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}

@@ -54,39 +54,9 @@ python3 scripts/validate_kds.py
 
 - v2.29.0, v2.29.1, v2.30.0, v2.31.0 (Kubernetes **1.31 – 1.35**)
 
-## Проиндексированный охват
-
-Версии ниже показаны для **Kubespray v2.31.0** (значения по умолчанию); более
-ранние релизы — таблицами внутри каждого документа.
-
-- Ядро
-  - [kubernetes](kb/kubernetes/version-support.md) 1.35.4 (по умолчанию; поддержка 1.33–1.35)
-  - [etcd](kb/components/etcd/etcd.md) 3.5.29 / 3.6.10 (по минору Kubernetes)
-  - [containerd](kb/components/containerd/containerd.md) 2.2.3
-  - [runc](kb/components/runc/runc.md) 1.4.2
-  - [nerdctl](kb/components/nerdctl/nerdctl.md) 2.2.2
-- Сетевой плагин
-  - [cilium](kb/components/cilium/cilium.md) 1.19.3 *(пока единственный проиндексированный CNI)*
-- Приложения
-  - [coredns](kb/components/coredns/coredns.md) 1.12.4
-  - [metallb](kb/components/metallb/metallb.md) 0.13.9
-  - [kube-vip](kb/components/kube-vip/kube-vip.md) 1.0.3
-- Операции
-  - **24 Ansible run-тега** — `etcd`, `etcd-secrets`, `control-plane`, `download`,
-    `network`, `reset`, весь upgrade-поток и другие
-
 ## Требования
 
 - **Python 3** с **PyYAML** (и **jsonschema** для полной проверки метаданных)
 - `jq` (опционально) для запросов к индексу
 - Локальный чекаут тега Kubespray при расширении базы — факты сверяются по коду
   источника, а не додумываются
-
-## Статус
-
-Kubepedia — версия **0.2.0**, активно наполняется. Архитектура стабильна; база
-знаний пополняется инкрементально, по одному проверенному документу, по правилам
-[`standards/workflow.md`](standards/workflow.md).
-
-Каждый факт должен быть воспроизводим из своих источников. Если нет — ему здесь не
-место.
