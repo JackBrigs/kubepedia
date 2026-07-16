@@ -3,8 +3,8 @@ id: VARIABLE-KUBE_VERSION
 type: variable
 title: kube_version
 status: active
-kubespray_version: ">=v2.29.0 <=v2.30.0"
-kubernetes_version: ">=1.31.0 <=1.34.3"
+kubespray_version: ">=v2.29.0 <=v2.31.0"
+kubernetes_version: ">=1.31.0 <=1.35.4"
 component_version: null
 verified_at: 2026-07-16
 confidence: confirmed
@@ -24,6 +24,11 @@ sources:
     lines: "25,28"
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "v2.30.0: same derivation, values shift with checksums"
+  - type: code
+    path: roles/kubespray_defaults/defaults/main/main.yml
+    lines: "28,31"
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
+    note: "v2.31.0: same derivation (lines shifted to 28/31)"
   - type: code
     path: roles/kubespray_defaults/vars/main/checksums.yml
     lines: "112"
@@ -50,12 +55,12 @@ inventory-validation time.
 
 ## Implementation
 
-The definition is stable across `v2.29.0`–`v2.30.0`
-(`roles/kubespray_defaults/defaults/main/main.yml`):
+The definition is stable across `v2.29.0`–`v2.31.0`
+(`roles/kubespray_defaults/defaults/main/main.yml`; line numbers shift by tag):
 
 ```yaml
-kube_version: "{{ (kubelet_checksums['amd64'] | dict2items)[0].key }}"                 # line 25
-kube_version_min_required: "{{ (kubelet_checksums['amd64'] | dict2items)[-1].key }}"   # line 28
+kube_version: "{{ (kubelet_checksums['amd64'] | dict2items)[0].key }}"
+kube_version_min_required: "{{ (kubelet_checksums['amd64'] | dict2items)[-1].key }}"
 ```
 
 The default is the **first** key of `kubelet_checksums['amd64']`; the minimum is
@@ -65,6 +70,7 @@ the **last**. The concrete values per tag:
 |-----------|--------------------------|----------------------------------------|
 | v2.29.0   | 1.33.5                   | 1.31.0                                  |
 | v2.30.0   | 1.34.3                   | 1.32.0                                  |
+| v2.31.0   | 1.35.4                   | 1.33.0                                  |
 
 Enforcement is identical in both tags
 (`roles/validate_inventory/tasks/main.yml`, task *"Stop if unsupported version of
@@ -84,11 +90,12 @@ set per tag is in [[CONCEPT-KUBERNETES_VERSION_SUPPORT]].
 
 - Kubespray `v2.29.0`: default `1.33.5`, overridable `>=1.31.0 <=1.33.5`.
 - Kubespray `v2.30.0`: default `1.34.3`, overridable `>=1.32.0 <=1.34.3`.
+- Kubespray `v2.31.0`: default `1.35.4`, overridable `>=1.33.0 <=1.35.4`.
 - Below the per-tag minimum: rejected by the inventory-validation assert.
 
 ## References
 
-- `roles/kubespray_defaults/defaults/main/main.yml:25,28` (v2.29.0 `9991412`,
-  v2.30.0 `f4ccdb5`)
+- `roles/kubespray_defaults/defaults/main/main.yml` (default/min) — v2.29.0
+  `9991412`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`
 - `roles/kubespray_defaults/vars/main/checksums.yml` (`kubelet_checksums`)
 - `roles/validate_inventory/tasks/main.yml` (version assert)

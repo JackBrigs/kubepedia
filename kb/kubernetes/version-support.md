@@ -3,8 +3,8 @@ id: CONCEPT-KUBERNETES_VERSION_SUPPORT
 type: concept
 title: Kubernetes version support in Kubespray
 status: active
-kubespray_version: ">=v2.29.0 <=v2.30.0"
-kubernetes_version: ">=1.31.0 <=1.34.3"
+kubespray_version: ">=v2.29.0 <=v2.31.0"
+kubernetes_version: ">=1.31.0 <=1.35.4"
 component_version: null
 verified_at: 2026-07-16
 confidence: confirmed
@@ -26,6 +26,11 @@ sources:
     lines: "112"
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/kubespray_defaults/vars/main/checksums.yml
     note: "v2.30.0 kubelet_checksums['amd64'] — installable versions"
+  - type: code
+    path: roles/kubespray_defaults/vars/main/checksums.yml
+    lines: "112"
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/checksums.yml
+    note: "v2.31.0 kubelet_checksums['amd64'] — installable versions"
   - type: code
     path: roles/kubespray_defaults/defaults/main/main.yml
     lines: "25,28"
@@ -54,7 +59,7 @@ oldest shipped version. This document tracks the window per indexed tag.
 
 ## Context
 
-- Covers Kubespray `v2.29.0`–`v2.30.0` (baseline forward).
+- Covers Kubespray `v2.29.0`–`v2.31.0` (baseline forward).
 - The installed version is [[VARIABLE-KUBE_VERSION]].
 - The etcd version tracks the Kubernetes minor line (see [[COMPONENT-ETCD]]).
 
@@ -72,6 +77,7 @@ Support window per tag:
 |-----------|-------------|--------------|-------|---------|---------|
 | v2.29.0   | 1.31, 1.32, 1.33 | 1.31.0–1.31.13, 1.32.0–1.32.9, 1.33.0–1.33.5 | 30 | 1.33.5 | 1.31.0 |
 | v2.30.0   | 1.32, 1.33, 1.34 | 1.32.0–1.32.11, 1.33.0–1.33.7, 1.34.0–1.34.3 | 24 | 1.34.3 | 1.32.0 |
+| v2.31.0   | 1.33, 1.34, 1.35 | 1.33.0–1.33.11, 1.34.0–1.34.7, 1.35.0–1.35.4 | 25 | 1.35.4 | 1.33.0 |
 
 Notes:
 
@@ -86,12 +92,13 @@ Notes:
 
 - Kubespray `v2.29.0`: `>=1.31.0 <=1.33.5`, default `1.33.5`.
 - Kubespray `v2.30.0`: `>=1.32.0 <=1.34.3`, default `1.34.3`.
+- Kubespray `v2.31.0`: `>=1.33.0 <=1.35.4`, default `1.35.4`.
 - Below the per-tag minimum: rejected by inventory validation.
 
 ## References
 
 - `roles/kubespray_defaults/vars/main/checksums.yml` (`kubelet_checksums`) —
-  v2.29.0 `9991412`, v2.30.0 `f4ccdb5`
+  v2.29.0 `9991412`, v2.30.0 `f4ccdb5`, v2.31.0 `1c9add4`
 - `roles/kubespray_defaults/defaults/main/main.yml:25,28`
 - `roles/validate_inventory/tasks/main.yml` (version assert)
 - `tests/files/` (no `kube_version` override → default is tested)
