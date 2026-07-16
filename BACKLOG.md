@@ -38,11 +38,12 @@ Beyond version support, the full Kubernetes layer is not yet indexed:
 
 ## Ansible run-tags
 
-The `ansible_tag` KDS type exists (D-012) and `TAG-ETCD_SECRETS` is indexed.
-Remaining high-value run-tags to add: `etcd`, `control-plane` (formerly `master`),
-`k8s-cluster`, `network`, `download`, `upgrade`, `bootstrap-os`, `kubelet`,
-`etcdctl`. The 0.1.0 cache (`knowledge-base/versions/*/ansible-tags.yaml`) is a
-pointer; each must be re-verified against the tag.
+The `ansible_tag` KDS type exists (D-012). Indexed: `etcd-secrets`, `etcd`,
+`control-plane`. Remaining high-value run-tags to add: `k8s-cluster`, `node`,
+`network`, `download`, `upgrade`, `bootstrap-os`, `kubelet`, `preinstall`,
+`container-engine`, `etcdctl`. The 0.1.0 cache
+(`knowledge-base/versions/*/ansible-tags.yaml`) is a pointer; each must be
+re-verified against the tag.
 
 ## Troubleshooting
 

@@ -12,6 +12,11 @@
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "CONFIG-KUBEADM_CONFIG_API_VERSION", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "CONFIG-KUBEADM_CONFIG_API_VERSION", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
+{"source": "TAG-CONTROL_PLANE", "target": "CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "type": "see_also"}
+{"source": "TAG-CONTROL_PLANE", "target": "CONFIG-KUBEADM_CONFIG_API_VERSION", "type": "see_also"}
+{"source": "TAG-ETCD", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "TAG-ETCD", "target": "TAG-ETCD_SECRETS", "type": "see_also"}
+{"source": "TAG-ETCD", "target": "VARIABLE-ETCD_DEPLOYMENT_TYPE", "type": "see_also"}
 {"source": "TAG-ETCD_SECRETS", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "TAG-ETCD_SECRETS", "target": "VARIABLE-ETCD_DEPLOYMENT_TYPE", "type": "see_also"}
 {"source": "VARIABLE-CONTAINER_MANAGER", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
