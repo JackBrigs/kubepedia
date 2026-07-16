@@ -19,6 +19,11 @@
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "CONFIG-KUBEADM_CONFIG_API_VERSION", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "CONFIG-KUBEADM_CONFIG_API_VERSION", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
+{"source": "PRACTICE-HA_MODE", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
+{"source": "PRACTICE-HA_MODE", "target": "VARIABLE-LOADBALANCER_APISERVER_LOCALHOST", "type": "see_also"}
+{"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "TAG-DOWNLOAD", "type": "see_also"}
+{"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "VARIABLE-DOWNLOAD_RUN_ONCE", "type": "see_also"}
+{"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "VARIABLE-SKIP_DOWNLOADS", "type": "see_also"}
 {"source": "TAG-APPS", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "TAG-CLIENT", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
 {"source": "TAG-CLUSTER_ROLES", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
@@ -58,6 +63,9 @@
 {"source": "TAG-RESOLVCONF", "target": "TAG-PREINSTALL", "type": "see_also"}
 {"source": "TAG-SYSTEM_UPGRADE", "target": "TAG-POST_UPGRADE", "type": "see_also"}
 {"source": "TAG-SYSTEM_UPGRADE", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
+{"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
+{"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
 {"source": "VARIABLE-CILIUM_ENABLE_HUBBLE", "target": "COMPONENT-CILIUM", "type": "part_of"}
 {"source": "VARIABLE-CILIUM_KUBE_PROXY_REPLACEMENT", "target": "COMPONENT-CILIUM", "type": "part_of"}
 {"source": "VARIABLE-CILIUM_KUBE_PROXY_REPLACEMENT", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
