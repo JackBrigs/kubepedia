@@ -160,6 +160,9 @@
 {"source": "TAG-RESOLVCONF", "target": "TAG-PREINSTALL", "type": "see_also"}
 {"source": "TAG-SYSTEM_UPGRADE", "target": "TAG-POST_UPGRADE", "type": "see_also"}
 {"source": "TAG-SYSTEM_UPGRADE", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
+{"source": "TROUBLE-APISERVER_CERT_SAN", "target": "PRACTICE-CERTIFICATE_EXPIRY", "type": "see_also"}
+{"source": "TROUBLE-APISERVER_CERT_SAN", "target": "VARIABLE-APISERVER_LOADBALANCER_DOMAIN_NAME", "type": "see_also"}
+{"source": "TROUBLE-APISERVER_CERT_SAN", "target": "VARIABLE-SUPPLEMENTARY_ADDRESSES_IN_SSL_KEYS", "type": "see_also"}
 {"source": "TROUBLE-CERT_MANAGER_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CERT_MANAGER_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CGROUP_DRIVER_MISMATCH", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
