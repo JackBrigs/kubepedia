@@ -178,6 +178,9 @@
 {"source": "TROUBLE-COREDNS_RESOLUTION_LOOP", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "TROUBLE-DISK_PRESSURE_EVICTION", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PLAYBOOK-RECOVER_CONTROL_PLANE", "type": "see_also"}
+{"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
+{"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "type": "see_also"}
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "target": "PRACTICE-CONTAINERD_DIAGNOSTICS", "type": "see_also"}
