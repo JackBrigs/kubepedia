@@ -22,8 +22,8 @@ tags:
   - cgroups
 sources:
   - type: code
-    path: roles/container-engine/containerd/defaults/main.yml
-    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/containerd/defaults/main.yml
+    path: roles/kubespray_defaults/defaults/main/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "containerd_use_systemd_cgroup: true (tag v2.31.0)"
   - type: code
     path: roles/kubernetes/node/templates/kubelet-config.v1beta1.yaml.j2

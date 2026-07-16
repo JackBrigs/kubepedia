@@ -25,7 +25,11 @@ sources:
   - type: code
     path: roles/kubernetes/node/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/defaults/main.yml
-    note: "default values of the kubelet_* variables (tag v2.31.0)"
+    note: "kubelet_* defaults such as kubelet_max_pods, kube_read_only_port, kubelet_status_update_frequency (tag v2.31.0)"
+  - type: code
+    path: roles/kubespray_defaults/defaults/main/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
+    note: "other kubelet_* defaults are centralized here: kubelet_fail_swap_on, kubelet_rotate_certificates, kubelet_rotate_server_certificates (tag v2.31.0)"
 relations:
   - type: see_also
     target: VARIABLE-KUBE_VERSION

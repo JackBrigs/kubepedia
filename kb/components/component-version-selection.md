@@ -23,11 +23,11 @@ sources:
   - type: code
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
-    note: "*_version expressions for all managed components (tag v2.31.0)"
+    note: "*_version expressions, pinned add-on versions, and coredns_supported_versions (static) (tag v2.31.0)"
   - type: code
-    path: roles/kubespray_defaults/defaults/main/main.yml
-    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
-    note: "etcd/coredns supported_versions maps, pinned add-on versions (tag v2.31.0)"
+    path: roles/kubespray_defaults/vars/main/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/main.yml
+    note: "etcd_supported_versions map — computed via select('version', ceiling, '<') (tag v2.31.0)"
 relations:
   - type: see_also
     target: CONCEPT-KUBERNETES_VERSION_SUPPORT
@@ -60,11 +60,14 @@ foundation for any upgrade/change report. Values below are for tag **`v2.31.0`**
 ### 1. Derived from the target Kubernetes minor (`*_supported_versions[kube_major_version]`)
 
 Moves **with `kube_version`** — different K8s minors get different component versions.
+Note the two entries here use the map **differently**: CoreDNS values are **static
+literals**, while etcd values are **computed** (newest bundled version under a per-minor
+version ceiling — a hybrid with mechanism 2).
 
-| Component | v2.31.0 mapping |
-|-----------|-----------------|
-| **etcd** | 1.33/1.34 → `3.5.29`; 1.35 → `3.6.10` |
-| **CoreDNS** | 1.33 → `1.12.0`; 1.34 → `1.12.1`; 1.35 → `1.12.4` |
+| Component | v2.31.0 mapping | how the value is set |
+|-----------|-----------------|----------------------|
+| **etcd** | 1.33/1.34 → `3.5.29`; 1.35 → `3.6.10` | computed: newest `etcd_binary_checksums` key `< 3.6` (1.33/1.34) or `< 3.7` (1.35) |
+| **CoreDNS** | 1.33 → `1.12.0`; 1.34 → `1.12.1`; 1.35 → `1.12.4` | static literals in the map |
 
 ### 2. Filtered by the Kubernetes version (`select('version', kube_major_next_version, '<')`)
 

@@ -24,9 +24,9 @@ sources:
     url: https://raw.githubusercontent.com/etcd-io/etcd/main/CHANGELOG/CHANGELOG-3.6.md
     note: "etcd 3.6 changelog: downgrade support, v2 deprecation, flag graduation, feature gates"
   - type: code
-    path: roles/kubespray_defaults/defaults/main/main.yml
-    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
-    note: "etcd_supported_versions: 1.35 -> 3.6.10 (tag v2.31.0)"
+    path: roles/kubespray_defaults/vars/main/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/vars/main/main.yml
+    note: "etcd_supported_versions map (computed newest <3.7 for 1.35 => 3.6.10; <3.6 for 1.33/1.34 => 3.5.29) (tag v2.31.0)"
 relations:
   - type: see_also
     target: COMPONENT-ETCD
