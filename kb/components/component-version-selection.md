@@ -106,6 +106,17 @@ Hard-coded; independent of `kube_version`.
 | **cert-manager** | `1.15.3` |
 | **MetalLB** | `0.13.9` |
 
+### Managed add-ons removed across the range (v2.31.0)
+
+Kubespray **dropped** three managed add-ons in `v2.31.0` (present in `v2.29.0`–`v2.30.0`).
+After upgrading, the cluster no longer manages them — take over their lifecycle yourself:
+
+| Add-on | Last shipped (v2.30.0) | Status in v2.31.0 |
+|--------|------------------------|-------------------|
+| **ingress-nginx** | controller `1.13.3` | removed ([[COMPONENT-INGRESS_NGINX]]) |
+| **Kubernetes Dashboard** | `dashboard_enabled` | removed |
+| **netcheck** | `1.2.2` | removed |
+
 ### Implications for the upgrade report
 
 - **Cross a K8s minor** → categories **1 & 2** change automatically (etcd, CoreDNS,
