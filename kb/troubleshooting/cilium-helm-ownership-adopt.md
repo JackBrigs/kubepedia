@@ -14,6 +14,9 @@ aliases:
   - missing key app.kubernetes.io/managed-by must be set to Helm
   - meta.helm.sh/release-name
   - cilium-operator-tlsinterception-secrets exists
+  - cilium-operator-ingress-secrets
+  - cilium-operator-gateway-secrets
+  - cilium-secrets namespace role conflict
   - Unable to install Cilium
 tags:
   - troubleshooting
@@ -30,6 +33,10 @@ sources:
     path: field-verified resolution (operator report)
     url: https://github.com/kubernetes-sigs/kubespray
     note: "fix confirmed working on a real Kubespray Cilium upgrade; error emitted by Helm during the cilium install"
+  - type: code
+    path: install/kubernetes/cilium/templates/cilium-operator/role.yaml
+    url: https://raw.githubusercontent.com/cilium/cilium/v1.19.3/install/kubernetes/cilium/templates/cilium-operator/role.yaml
+    note: "Cilium chart defines Role cilium-operator-tlsinterception-secrets in tls.secretsNamespace (default cilium-secrets) when secret-sync/TLS is enabled"
 relations:
   - type: see_also
     target: COMPONENT-CILIUM
@@ -67,11 +74,22 @@ must be set to "kube-system"
 
 - Applies to Kubespray `v2.29.0`–`v2.31.0` with `kube_network_plugin: cilium`
   (Helm-based Cilium install).
-- **Why it happens:** the named object (here a `Role` in the `cilium-secrets`
-  namespace, tied to Cilium's TLS-interception/secrets feature) was created **outside**
-  the current release — e.g. by a **previous Cilium version**, a **Cilium CLI / manual**
-  install, or a different Helm `release-name`/`release-namespace`. Such an object lacks
-  the three ownership keys Helm needs to adopt it.
+- **What this specific object is (verified from the Cilium chart).**
+  `cilium-operator-tlsinterception-secrets` is a namespaced **`Role`** the Cilium chart
+  (`cilium-operator/role.yaml`) creates so the **cilium-operator** can `create/delete/
+  update/patch` **secrets** in the TLS secrets namespace (`tls.secretsNamespace.name`,
+  default **`cilium-secrets`**). It is rendered only when Cilium's **secret-sync / TLS
+  interception** is active (`secretSyncEnabled`) — i.e. features like **Ingress**,
+  **Gateway API**, or **TLS** handling that need the operator to sync TLS secrets into
+  `cilium-secrets`. Sibling Roles from the same template: `cilium-operator-ingress-secrets`
+  (Ingress) and `cilium-operator-gateway-secrets` (Gateway API) — expect the identical
+  conflict on those if you use those features.
+- **Why the conflict happens:** the object already exists but was **not** created by the
+  current Helm release — e.g. by a **previous Cilium version** (the RBAC was added/renamed
+  across versions), by the **operator at runtime**, a **Cilium CLI / manual** install, or
+  a different Helm `release-name`/`release-namespace`. Such an object lacks the three
+  ownership keys Helm needs to adopt it, so the chart install/upgrade aborts. This is why
+  it surfaces most often during a **Cilium version upgrade**.
 - **Note on namespaces:** the object lives in `cilium-secrets`, but the required
   `meta.helm.sh/release-namespace` is **`kube-system`** — that annotation names where
   the *Helm release* is tracked (Kubespray installs Cilium as release `cilium` in
