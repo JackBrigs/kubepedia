@@ -89,6 +89,9 @@
 {"source": "CONCEPT-SERVICE_EXPOSURE", "target": "CONCEPT-CILIUM_LOADBALANCING", "type": "see_also"}
 {"source": "CONCEPT-SERVICE_EXPOSURE", "target": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "type": "see_also"}
 {"source": "CONCEPT-SERVICE_EXPOSURE", "target": "TROUBLE-METALLB_SERVICE_PENDING", "type": "see_also"}
+{"source": "CONCEPT-TROUBLESHOOTING_MAP", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
+{"source": "CONCEPT-TROUBLESHOOTING_MAP", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
+{"source": "CONCEPT-TROUBLESHOOTING_MAP", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "CONFIG-APISERVER_AUDIT", "target": "CONCEPT-POD_SECURITY_STANDARDS", "type": "see_also"}
 {"source": "CONFIG-APISERVER_AUDIT", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "CONFIG-APISERVER_AUTHENTICATION_CONFIG", "target": "CONCEPT-K8S_1_34_CHANGES", "type": "see_also"}
