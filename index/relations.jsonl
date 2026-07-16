@@ -6,4 +6,5 @@
 {"source": "CONFIG-KUBEADM_CONFIG_API_VERSION", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
 {"source": "VARIABLE-CONTAINER_MANAGER", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "VARIABLE-ETCD_DEPLOYMENT_TYPE", "target": "COMPONENT-ETCD", "type": "part_of"}
+{"source": "VARIABLE-KUBE_PROXY_MODE", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
 {"source": "VARIABLE-KUBE_VERSION", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "part_of"}
