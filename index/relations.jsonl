@@ -42,6 +42,11 @@
 {"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "VARIABLE-SKIP_DOWNLOADS", "type": "see_also"}
 {"source": "PRACTICE-RECOVER_CONTROL_PLANE", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "PRACTICE-RECOVER_CONTROL_PLANE", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
+{"source": "RELEASE-V2_29_0", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "RELEASE-V2_29_1", "target": "RELEASE-V2_29_0", "type": "see_also"}
+{"source": "RELEASE-V2_30_0", "target": "RELEASE-V2_29_1", "type": "see_also"}
+{"source": "RELEASE-V2_31_0", "target": "CONFIG-KUBEADM_CONFIG_API_VERSION", "type": "see_also"}
+{"source": "RELEASE-V2_31_0", "target": "RELEASE-V2_30_0", "type": "see_also"}
 {"source": "TAG-ALWAYS", "target": "TAG-NEVER", "type": "see_also"}
 {"source": "TAG-APPS", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "TAG-ASSERTS", "target": "TAG-PREINSTALL", "type": "see_also"}
