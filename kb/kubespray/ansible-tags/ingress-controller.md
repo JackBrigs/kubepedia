@@ -31,8 +31,11 @@ relations:
 ## Summary
 
 `ingress-controller` runs the `kubernetes-apps/ingress_controller` role, which
-deploys the enabled ingress controller add-on(s) (e.g. ingress-nginx, ALB) to the
-cluster. It runs only for the add-ons enabled in inventory.
+deploys the enabled ingress controller add-on(s) to the cluster. It runs only for
+the add-ons enabled in inventory. **Version note:** in `v2.29.0`–`v2.30.0` this
+covered **ingress-nginx** (`ingress_nginx_enabled`) and the AWS **ALB** controller;
+in `v2.31.0` ingress-nginx was **removed** and only ALB (`ingress_alb_enabled`)
+remains — see [[COMPONENT-INGRESS_NGINX]].
 
 ## Context
 

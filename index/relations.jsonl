@@ -5,6 +5,9 @@
 {"source": "COMPONENT-CONTAINERD", "target": "VARIABLE-CONTAINER_MANAGER", "type": "see_also"}
 {"source": "COMPONENT-COREDNS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "COMPONENT-ETCD", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
+{"source": "COMPONENT-INGRESS_NGINX", "target": "COMPONENT-METALLB", "type": "see_also"}
+{"source": "COMPONENT-INGRESS_NGINX", "target": "TAG-INGRESS_CONTROLLER", "type": "see_also"}
+{"source": "COMPONENT-INGRESS_NGINX", "target": "UPGRADE-V2_30_0__V2_31_0", "type": "see_also"}
 {"source": "COMPONENT-KUBE_VIP", "target": "COMPONENT-METALLB", "type": "see_also"}
 {"source": "COMPONENT-KUBE_VIP", "target": "CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "type": "see_also"}
 {"source": "COMPONENT-METALLB", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
