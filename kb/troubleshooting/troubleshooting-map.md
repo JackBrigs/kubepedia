@@ -54,6 +54,7 @@ source-verified fix.
   [[TROUBLE-NODE_MEMORY_TOO_SMALL]], nftables kernel [[TROUBLE-NFTABLES_KERNEL_TOO_LOW]]).
 - Cilium config aborts deploy → [[TROUBLE-CILIUM_CONFIG_VALIDATION]].
 - Download/checksum failure → [[TROUBLE-DOWNLOAD_FAILS]].
+- Deploy hangs waiting for API (init) → [[TROUBLE-DEPLOY_HANGS_WAIT_APISERVER]].
 
 ### Upgrade & preflight (the Kubespray↔kubeadm seam)
 
@@ -89,6 +90,8 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
 - Cross-node pod traffic / MTU → [[TROUBLE-VXLAN_MTU_MISMATCH]]; conntrack drops →
   [[TROUBLE-CONNTRACK_TABLE_FULL]].
 - Ports blocked by firewall → [[TROUBLE-FIREWALL_PORTS_BLOCKED]].
+- Node can't reach the API server (localhost LB) → [[TROUBLE-NODE_CANNOT_REACH_APISERVER]].
+- CNI overlay MTU → [[CONFIG-CNI_MTU]].
 - External DNS fails → [[TROUBLE-DNS_EXTERNAL_RESOLUTION]]; CoreDNS crashloop →
   [[TROUBLE-COREDNS_RESOLUTION_LOOP]].
 - Pods can't reach the internet (egress/masquerade) → [[TROUBLE-POD_EGRESS_INTERNET]].
@@ -117,6 +120,7 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
 - `ImagePullBackOff`/`ErrImagePull` (triage) → [[TROUBLE-IMAGEPULLBACKOFF]].
 - Private/mirror pull fails → [[TROUBLE-CONTAINERD_REGISTRY_CONFIG]].
 - `429 Too Many Requests` → [[TROUBLE-IMAGE_PULL_RATE_LIMIT]].
+- CRI-O short-name pull fails → [[TROUBLE-CRIO_SHORT_NAME_REGISTRY]].
 
 ### Runtime & storage
 
@@ -128,11 +132,14 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
 
 - Quorum loss / API down → [[TROUBLE-ETCD_QUORUM_LOSS]].
 - `mvcc: database space exceeded` → [[TROUBLE-ETCD_DB_SPACE_EXCEEDED]].
+- Remove a dead control-plane node → [[TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE]].
 
 ### Cilium (indexed CNI)
 
 - Helm ownership adopt error → [[TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT]].
 - Config validation → [[TROUBLE-CILIUM_CONFIG_VALIDATION]].
+- Packet drops (CT map / identity / policy) → [[TROUBLE-CILIUM_PACKET_DROPS]].
+- Which CNI / plugin options → [[VARIABLE-KUBE_NETWORK_PLUGIN]].
 
 ### Security / CVEs
 
