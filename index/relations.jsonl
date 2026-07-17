@@ -245,6 +245,14 @@
 {"source": "PRACTICE-SERVICE_NETWORKING_DEBUG", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
 {"source": "PRACTICE-UPGRADE_PREFLIGHT", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "PRACTICE-UPGRADE_PREFLIGHT", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
+{"source": "RELEASE-V2_27_0", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}
+{"source": "RELEASE-V2_27_0", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "RELEASE-V2_27_1", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}
+{"source": "RELEASE-V2_27_1", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "RELEASE-V2_28_0", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}
+{"source": "RELEASE-V2_28_0", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "RELEASE-V2_28_1", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}
+{"source": "RELEASE-V2_28_1", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "RELEASE-V2_29_0", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "RELEASE-V2_29_1", "target": "RELEASE-V2_29_0", "type": "see_also"}
 {"source": "RELEASE-V2_30_0", "target": "RELEASE-V2_29_1", "type": "see_also"}

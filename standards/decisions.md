@@ -229,3 +229,21 @@ except the OS domain and ArgoCD (a Kubespray-managed add-on), which draw on Kube
 source too. Version-awareness is expressed relative to the Kubernetes/Kubespray range.
 New content lands under `kb/ecosystem/` (or per-domain dirs); kept bounded to integration
 to avoid scope explosion.
+
+## D-014 — Extend version range back to v2.27.0 (2026-07-17)
+
+**Context.** The owner requested extending the KB's Kubespray coverage **backward** from
+the v2.29.0 baseline to include **v2.27.0, v2.27.1, v2.28.0, v2.28.1**, so the range (and
+the Upgrade-Report tool) spans **v2.27.0 – v2.31.0**.
+
+**Decision.** Add `RELEASE-*` docs for v2.27.0/v2.27.1/v2.28.0/v2.28.1 and `UPGRADE-*` docs
+extending the chain (v2.27.0→…→v2.29.0). Component versions are **code-verified** from the
+fetched upstream tags (`confirmed`); notable/breaking changes from the tags' release notes
+(`verified`).
+
+**Rationale.** Owner task; extends the version envelope and makes the upgrade-report
+capstone usable from v2.27.0. The v2.29.0 baseline remains the *research* baseline; this is
+historical release/upgrade coverage.
+
+**Consequences.** Note the role path changed at v2.28.0 (`kubespray-defaults` →
+`kubespray_defaults`) and versions dropped the leading `v` — reflected in the per-tag docs.
