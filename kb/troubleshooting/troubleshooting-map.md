@@ -75,6 +75,11 @@ source-verified fix.
   [[TROUBLE-KUBE_VIP_VIP_NOT_UP]].
 - Service unreachable / no endpoints → [[TROUBLE-SERVICE_NO_ENDPOINTS]].
 
+### Access & control-plane↔node
+
+- `kubectl exec/logs/port-forward` fails (`error dialing backend`, x509) →
+  [[TROUBLE-KUBECTL_EXEC_LOGS_FAILS]].
+
 ### Certificates & TLS
 
 - `x509 valid for … not <addr>` (apiserver) → [[TROUBLE-APISERVER_CERT_SAN]].
