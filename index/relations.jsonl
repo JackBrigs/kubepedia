@@ -105,6 +105,9 @@
 {"source": "CONCEPT-KUBE_PROXY", "target": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "type": "see_also"}
 {"source": "CONCEPT-KUBE_PROXY", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "CONCEPT-KUBE_PROXY", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
+{"source": "CONCEPT-OBSERVABILITY_STACK", "target": "COMPONENT-METRICS_SERVER", "type": "see_also"}
+{"source": "CONCEPT-OBSERVABILITY_STACK", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
+{"source": "CONCEPT-OBSERVABILITY_STACK", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
 {"source": "CONCEPT-POD_SECURITY_STANDARDS", "target": "CONFIG-APISERVER_AUDIT", "type": "see_also"}
 {"source": "CONCEPT-POD_SECURITY_STANDARDS", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
