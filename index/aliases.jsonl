@@ -242,17 +242,27 @@
 {"alias": "architecture-compatibility", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
 {"alias": "argo-cd 8.5.7", "ids": ["CONCEPT-ADDON_ARGOCD"]}
 {"alias": "argocd", "ids": ["COMPONENT-ARGOCD", "TAG-ARGOCD"]}
+{"alias": "argocd 2.11 to 2.14", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd 3.0 rbac broke", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
 {"alias": "argocd 3.1", "ids": ["CONCEPT-ADDON_ARGOCD"]}
 {"alias": "argocd addon", "ids": ["CONCEPT-ADDON_ARGOCD"]}
+{"alias": "argocd air-gapped image pull", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
 {"alias": "argocd comparison error", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "argocd degraded health", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "argocd haproxy ecr", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
+{"alias": "argocd ignoreResourceUpdatesEnabled", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
+{"alias": "argocd kubernetes compatibility", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd logs rbac", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
 {"alias": "argocd out of sync", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "argocd permission denied after upgrade", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
 {"alias": "argocd rbac sync error", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "argocd redis ecr registry", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
+{"alias": "argocd redis imagepullbackoff", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
+{"alias": "argocd redis-ha dockerhub to ecr", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
 {"alias": "argocd resource tracking annotations", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
+{"alias": "argocd self-heal backoff default", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd sync failed", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "argocd upgrade breaking changes", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd_enabled", "ids": ["CONCEPT-GITOPS", "VARIABLE-ARGOCD_ENABLED"]}
 {"alias": "argocd_install_checksum", "ids": ["VARIABLE-ARGOCD_INSTALL_CHECKSUM"]}
 {"alias": "argocd_install_checksums", "ids": ["VARIABLE-ARGOCD_INSTALL_CHECKSUMS"]}
@@ -396,9 +406,11 @@
 {"alias": "checksum mismatch download", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
 {"alias": "chrony", "ids": ["CONFIG-NTP"]}
 {"alias": "cilium", "ids": ["COMPONENT-CILIUM", "TAG-CILIUM"]}
+{"alias": "cilium 1.15 to 1.19", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium bgp", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium bpf masquerade", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium check failed", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
+{"alias": "cilium clustermesh policy default local cluster", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium connectivity test", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
 {"alias": "cilium conntrack table full", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
 {"alias": "cilium cross node connectivity", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
@@ -407,15 +419,19 @@
 {"alias": "cilium debug", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
 {"alias": "cilium encryption", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "cilium endpoint not ready", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
+{"alias": "cilium envoy version", "ids": ["CONCEPT-CILIUM_ENVOY"]}
+{"alias": "cilium envoy version mismatch", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "cilium hardcoded apiserver ip", "ids": ["TROUBLE-CILIUM_HARDCODED_APISERVER_IP_HA"]}
 {"alias": "cilium helm release", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
 {"alias": "cilium identity allocation mode", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
 {"alias": "cilium identity not propagated", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
 {"alias": "cilium ipam cluster-pool", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium ipsec", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
+{"alias": "cilium kernel requirement 5.10", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium kube-proxy replacement", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium kubeprism talos", "ids": ["CONCEPT-TALOS_CILIUM"]}
 {"alias": "cilium l2 announcements", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
+{"alias": "cilium l7 proxy", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "cilium lb ipam", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium loadbalancer", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium loadbalancer mode ignored", "ids": ["TROUBLE-CILIUM_LOADBALANCER_MODE_NOT_RENDERED"]}
@@ -428,10 +444,13 @@
 {"alias": "cilium security", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
 {"alias": "cilium status", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
 {"alias": "cilium tunnel mode vxlan", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium upgrade breaking changes", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
+{"alias": "cilium version jump kubespray", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium wireguard", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "cilium-bgp-advertisement-labels-undefined", "ids": ["TROUBLE-CILIUM_BGP_ADVERTISEMENT_LABELS"]}
 {"alias": "cilium-empty-string-null-helm-values", "ids": ["TROUBLE-CILIUM_EMPTY_STRING_NULL_HELM"]}
 {"alias": "cilium-enable-prometheus-noop", "ids": ["TROUBLE-CILIUM_ENABLE_PROMETHEUS_NOOP"]}
+{"alias": "cilium-envoy", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "cilium-operator-gateway-secrets", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
 {"alias": "cilium-operator-generic-offline", "ids": ["TROUBLE-CILIUM_OPERATOR_GENERIC_OFFLINE_REGISTRY"]}
 {"alias": "cilium-operator-ingress-secrets", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
@@ -918,7 +937,9 @@
 {"alias": "envoy gateway 1.6 alpn", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
 {"alias": "envoy gateway backend tls broke", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
 {"alias": "envoy gateway sni san required", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
+{"alias": "envoy in cilium", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "envoy-xds-controller", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
+{"alias": "envoy.enabled daemonset", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "error dialing backend", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "error execution phase addon", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
 {"alias": "es flood stage watermark read-only", "ids": ["TROUBLE-ELASTICSEARCH_ECK_CLUSTER"]}
@@ -1087,6 +1108,7 @@
 {"alias": "feast-operator", "ids": ["CONCEPT-ADDON_FEAST_OPERATOR"]}
 {"alias": "feature gate graduations", "ids": ["CONCEPT-K8S_FEATURE_GATES"]}
 {"alias": "feature gates", "ids": ["CONCEPT-K8S_FEATURE_GATES"]}
+{"alias": "feature gates that went GA 1.29 1.30 1.31 1.32 1.33 1.34 1.35", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "feature.node.kubernetes.io labels absent", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
 {"alias": "field is immutable kubeadm upgrade", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
 {"alias": "file descriptor limit kubernetes", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
@@ -1233,6 +1255,7 @@
 {"alias": "image_pull_command_on_localhost", "ids": ["VARIABLE-IMAGE_PULL_COMMAND_ON_LOCALHOST"]}
 {"alias": "immutable kubernetes os", "ids": ["CONCEPT-TALOS_OS_K8S"]}
 {"alias": "in-place pod resize KEP", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "in-place pod resize default", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "index files", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "informer relist thundering herd", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
 {"alias": "ingress 502 bad gateway", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
@@ -1316,6 +1339,7 @@
 {"alias": "kube-prometheus-stack", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
 {"alias": "kube-proxy", "ids": ["CONCEPT-KUBE_PROXY", "TAG-KUBE_PROXY"]}
 {"alias": "kube-proxy debug", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
+{"alias": "kube-proxy replacement toggles removed cilium", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "kube-proxy-free", "ids": ["CONCEPT-KUBE_PROXY"]}
 {"alias": "kube-router", "ids": ["COMPONENT-KUBE_ROUTER"]}
 {"alias": "kube-router bgp", "ids": ["COMPONENT-KUBE_ROUTER"]}
@@ -1646,6 +1670,7 @@
 {"alias": "kubelet_tracing_endpoint", "ids": ["VARIABLE-KUBELET_TRACING_ENDPOINT"]}
 {"alias": "kubelet_tracing_sampling_rate_per_million", "ids": ["VARIABLE-KUBELET_TRACING_SAMPLING_RATE_PER_MILLION"]}
 {"alias": "kubepods.slice memory limit reset", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
+{"alias": "kubeproxyversion field removed", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "kubernetes 1.29 changes", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "kubernetes 1.30 changes", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
 {"alias": "kubernetes 1.31 changes", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}
@@ -1820,6 +1845,7 @@
 {"alias": "nfd labels missing", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
 {"alias": "nfd worker not labeling", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
 {"alias": "nftables kernel too low", "ids": ["TROUBLE-NFTABLES_KERNEL_TOO_LOW"]}
+{"alias": "nftables kube-proxy", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "nftables kube-proxy 1.31", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}
 {"alias": "nftables preflight fail", "ids": ["TROUBLE-NFTABLES_KERNEL_TOO_LOW"]}
 {"alias": "nftables proxy KEP", "ids": ["CONCEPT-K8S_KEPS"]}
@@ -2037,6 +2063,7 @@
 {"alias": "recover-control-plane", "ids": ["PRACTICE-RECOVER_CONTROL_PLANE"]}
 {"alias": "recover-control-plane.yml", "ids": ["PLAYBOOK-RECOVER_CONTROL_PLANE", "PRACTICE-RUNBOOK_ETCD_RESTORE"]}
 {"alias": "redhat_os_family_extensions", "ids": ["VARIABLE-REDHAT_OS_FAMILY_EXTENSIONS"]}
+{"alias": "redis-ha public.ecr.aws", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
 {"alias": "registry", "ids": ["COMPONENT-REGISTRY", "TAG-REGISTRY"]}
 {"alias": "registry config /etc/distribution", "ids": ["TROUBLE-REGISTRY_2_TO_3_MIGRATION"]}
 {"alias": "registry emptyDir data loss", "ids": ["TROUBLE-REGISTRY_ADDON"]}
@@ -2163,6 +2190,7 @@
 {"alias": "serial upgrade", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
 {"alias": "server is currently unable to handle the request", "ids": ["TROUBLE-APISERVER_APF_429"]}
 {"alias": "serverTLSBootstrap", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
+{"alias": "service account secret token removed", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "service exposure", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
 {"alias": "service no endpoints", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "service not reachable", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
@@ -2176,6 +2204,7 @@
 {"alias": "short-name did not resolve to an alias", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
 {"alias": "sidecar containers 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "sidero metal omni", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
+{"alias": "silent default changes kubernetes upgrade", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "single component upgrade runbook", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
 {"alias": "skip_downloads", "ids": ["VARIABLE-SKIP_DOWNLOADS"]}
 {"alias": "skip_kubeadm_images", "ids": ["VARIABLE-SKIP_KUBEADM_IMAGES"]}
@@ -2442,6 +2471,7 @@
 {"alias": "what changed in 1.33", "ids": ["CONCEPT-K8S_1_33_CHANGES"]}
 {"alias": "what changed in 1.34", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
 {"alias": "what changed in 1.35", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
+{"alias": "what changes on kubernetes upgrade", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "what is not secure out of the box", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
 {"alias": "what to back up kubernetes", "ids": ["PRACTICE-BACKUP_DR"]}
 {"alias": "what to monitor kubernetes", "ids": ["CONCEPT-OBSERVABILITY_STACK", "PRACTICE-MONITORING_BASELINE"]}

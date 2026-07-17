@@ -15,3 +15,6 @@ __pycache__/
 .claude/**
 *.claude-session
 .venv/
+
+# upstream source caches (pinned-tag research, never committed)
+src-cache/
