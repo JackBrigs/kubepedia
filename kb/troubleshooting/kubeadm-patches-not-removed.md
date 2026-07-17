@@ -17,7 +17,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/13019
     note: "PR исправления (master -> v2.31.0)"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-KUBEADM_CONFIG
 ---
 
 # kubeadm: устаревшие kubeadm_patches не удаляются при изменении inventory

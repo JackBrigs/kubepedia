@@ -20,7 +20,9 @@ sources:
     path: roles/kubernetes-apps/ansible/templates/nodelocaldns-config.yml.j2
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes-apps/ansible/templates/nodelocaldns-config.yml.j2
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-NODELOCALDNS
 ---
 
 # NodeLocal DNS: IPv6 nodelocaldns_ip not handled in config

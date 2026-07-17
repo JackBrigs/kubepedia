@@ -17,7 +17,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/12908
     note: "PR removing etcd_cert_dir_mode and applying cert dir perms non-recursively (merged 2026-01-27)"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # Recursive 0700 perms on etcd cert dir break Calico in etcd datastore mode

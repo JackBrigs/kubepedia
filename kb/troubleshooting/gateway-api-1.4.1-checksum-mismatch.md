@@ -17,7 +17,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/13006
     note: "Fix Gateway API v1.4.1 unexpected checksum change"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-TROUBLESHOOTING_MAP
 ---
 
 # Gateway API v1.4.1: download fails due to a checksum mismatch

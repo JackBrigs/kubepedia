@@ -20,7 +20,9 @@ sources:
     path: roles/kubernetes/control-plane/tasks/kubeadm-setup.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/kubernetes/control-plane/tasks/kubeadm-setup.yml
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-KUBEADM_CONFIG
 ---
 
 # kubeadm init retry always fails on leftovers from the first try

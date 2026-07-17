@@ -20,7 +20,9 @@ sources:
     path: roles/kubernetes/control-plane/tasks/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/kubernetes/control-plane/tasks/main.yml
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-KUBEADM_CONFIG
 ---
 
 # control-plane: kube_override_hostname breaks first-control-plane delegation

@@ -20,7 +20,9 @@ sources:
     path: roles/network_plugin/cilium/templates/values.yaml.j2
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/network_plugin/cilium/templates/values.yaml.j2
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # Cilium: hostPort/portmap handled via extra conflist instead of Cilium

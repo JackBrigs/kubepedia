@@ -21,7 +21,9 @@ sources:
   - type: github_issue
     url: https://github.com/kubernetes-sigs/kubespray/issues/13252
     note: "Original issue report"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # Cilium operator image mismatch in offline registry (operator vs operator-generic)

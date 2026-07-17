@@ -20,7 +20,9 @@ sources:
     path: roles/kubernetes/preinstall/handlers/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/preinstall/handlers/main.yml
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-TROUBLESHOOTING_MAP
 ---
 
 # Flatcar: apiserver wait skipped after DNS handler caused flakiness

@@ -18,7 +18,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/13343
     note: "PR fixing the inverted ignore_errors condition for etcd-events service startup (merged 2026-07-07, Issue #13342)"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # Inverted ignore_errors condition for etcd-events service startup causes false failures

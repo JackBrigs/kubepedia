@@ -17,7 +17,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/12685
     note: "Fix: identify the etcd member by peerURLs from etcdctl JSON output"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # etcd: removing an external (non-stacked) member aborts the remove-node playbook

@@ -18,7 +18,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/13109
     note: "Merged PR quoting the ipv4/ipv6 NativeRoutingCIDR substitutions"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # Empty Cilium native_routing_cidr renders as null in Helm values

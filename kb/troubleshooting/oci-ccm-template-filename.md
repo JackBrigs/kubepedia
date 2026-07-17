@@ -20,7 +20,9 @@ sources:
     path: roles/kubernetes-apps/external_cloud_controller/oci/tasks/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes-apps/external_cloud_controller/oci/tasks/main.yml
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-TROUBLESHOOTING_MAP
 ---
 
 # OCI external cloud controller: wrong template filename in lookup

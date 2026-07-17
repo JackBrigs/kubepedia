@@ -17,7 +17,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/12705
     note: "Cherry-pick fixing the helm-values key to camelCase loadBalancer"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # Cilium loadBalancer.mode not applied due to lowercase helm-values key

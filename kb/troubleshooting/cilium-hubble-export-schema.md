@@ -17,7 +17,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/12718
     note: "Backport to release-2.29 aligning Hubble export values to the Cilium 1.18 hubble.export.static schema"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # Cilium/Hubble flow export settings ignored after Cilium 1.18 schema change

@@ -20,7 +20,9 @@ sources:
     path: roles/network_plugin/cilium/templates/values.yaml.j2
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/templates/values.yaml.j2
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # cilium_enable_prometheus had no effect (not wired to Helm values)

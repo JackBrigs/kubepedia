@@ -18,7 +18,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/12949
     note: "Fixes #12947 — make etcd member removal idempotent"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-ETCD
 ---
 
 # etcd: remove-node.yml is not idempotent and fails if the etcd member is already gone

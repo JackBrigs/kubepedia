@@ -20,7 +20,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/kubespray_defaults/defaults/main/main.yml
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: TROUBLE-APISERVER_CERT_SAN
 ---
 
 # apiserver_loadbalancer_domain_name default no longer resolves

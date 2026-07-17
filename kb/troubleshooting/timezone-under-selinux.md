@@ -20,7 +20,9 @@ sources:
     path: roles/kubernetes/preinstall/tasks/0081-ntp-configurations.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/kubernetes/preinstall/tasks/0081-ntp-configurations.yml
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-TROUBLESHOOTING_MAP
 ---
 
 # Setting timezone fails under SELinux

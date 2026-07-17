@@ -18,7 +18,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/12624
     note: "Merged PR that points k8sServiceHost/k8sServicePort at kube_apiserver_global_endpoint"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # Cilium hardcoded API server IP breaks HA cluster on first control-plane failure

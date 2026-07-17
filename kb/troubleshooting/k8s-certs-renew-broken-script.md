@@ -20,7 +20,9 @@ sources:
     path: roles/kubernetes/control-plane/templates/k8s-certs-renew.sh.j2
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/kubernetes/control-plane/templates/k8s-certs-renew.sh.j2
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CLUSTER_PKI
 ---
 
 # control-plane: k8s-certs-renew script broken by bad quoting

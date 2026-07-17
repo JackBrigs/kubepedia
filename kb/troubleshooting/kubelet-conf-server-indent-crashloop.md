@@ -18,7 +18,9 @@ sources:
   - type: github_issue
     url: https://github.com/kubernetes-sigs/kubespray/issues/13277
     note: "Issue с подтверждённой корневой причиной; предложенный PR #13284 открыт, не влит"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-KUBEADM_CONFIG
 ---
 
 # kubelet crash-loop после апгрейда: неверный отступ server: в kubelet.conf

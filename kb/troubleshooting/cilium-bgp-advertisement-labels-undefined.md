@@ -20,7 +20,9 @@ sources:
     path: roles/network_plugin/cilium/templates/cilium/cilium-bgp-advertisement.yml.j2
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/templates/cilium/cilium-bgp-advertisement.yml.j2
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # Cilium: undefined variable error for CiliumBGPAdvertisement labels

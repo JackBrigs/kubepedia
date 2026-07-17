@@ -18,7 +18,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/13009
     note: "Fix PR: undefined check for apiserver_loadbalancer_domain_name in apiserver_sans"
-relations: []
+relations:
+  - type: see_also
+    target: TROUBLE-APISERVER_CERT_SAN
 ---
 
 # Undefined apiserver_loadbalancer_domain_name breaks apiserver_sans generation

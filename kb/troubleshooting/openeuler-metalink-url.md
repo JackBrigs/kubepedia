@@ -20,7 +20,9 @@ sources:
     path: roles/bootstrap_os/tasks/openEuler.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/bootstrap_os/tasks/openEuler.yml
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-TROUBLESHOOTING_MAP
 ---
 
 # openEuler: broken package metalink URL during bootstrap

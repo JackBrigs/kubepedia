@@ -20,7 +20,9 @@ sources:
     path: roles/bastion-ssh-config/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/bastion-ssh-config/defaults/main.yml
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-TROUBLESHOOTING_MAP
 ---
 
 # bastion-ssh-config: misspelled variable ssh_bastion_confing__name

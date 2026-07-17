@@ -18,7 +18,9 @@ sources:
   - type: github_pr
     url: https://github.com/kubernetes-sigs/kubespray/pull/13121
     note: "Merged PR moving the cilium_identity_allocation_mode default into shared kubespray defaults"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-CILIUM
 ---
 
 # kubeadm task fails when cilium_identity_allocation_mode is undefined

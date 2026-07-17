@@ -20,7 +20,9 @@ sources:
     path: roles/kubernetes/node/templates/loadbalancer/haproxy.cfg.j2
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/kubernetes/node/templates/loadbalancer/haproxy.cfg.j2
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: PRACTICE-HA_MODE
 ---
 
 # node haproxy: wrong IPv6 bind syntax in haproxy.cfg

@@ -20,7 +20,9 @@ sources:
     path: roles/container-engine/cri-o/templates/config.json.j2
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.30.0/roles/container-engine/cri-o/templates/config.json.j2
     note: "fixed file"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_MANAGER
 ---
 
 # CRI-O: duplicate top-level auths keys make registry config invalid JSON
