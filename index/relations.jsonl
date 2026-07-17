@@ -203,6 +203,9 @@
 {"source": "CONCEPT-KUBEADM_CONFIG", "target": "TROUBLE-APISERVER_CERT_SAN", "type": "see_also"}
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "VARIABLE-KUBE_VERSION", "type": "depends_on"}
 {"source": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "CONCEPT-KUBESPRAY_ETCD_OWNERSHIP", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "CONCEPT-KUBESPRAY_ETCD_OWNERSHIP", "target": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "type": "see_also"}
+{"source": "CONCEPT-KUBESPRAY_ETCD_OWNERSHIP", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
 {"source": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
 {"source": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "target": "TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK", "type": "see_also"}
@@ -606,7 +609,12 @@
 {"source": "TROUBLE-KCM_VOLUME_MULTIATTACH", "target": "TROUBLE-PVC_PENDING_NO_PROVISIONER", "type": "see_also"}
 {"source": "TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING", "target": "CONCEPT-ADDON_KEDA", "type": "see_also"}
 {"source": "TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING", "target": "TROUBLE-HPA_NOT_SCALING", "type": "see_also"}
+{"source": "TROUBLE-KUBEADM_CERT_RENEWAL", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
+{"source": "TROUBLE-KUBEADM_CERT_RENEWAL", "target": "CONCEPT-K8S_1_29_CHANGES", "type": "see_also"}
+{"source": "TROUBLE-KUBEADM_CERT_RENEWAL", "target": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "type": "see_also"}
 {"source": "TROUBLE-KUBEADM_INIT_RETRY_FAILS", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
+{"source": "TROUBLE-KUBEADM_JOIN_NODE", "target": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "type": "see_also"}
+{"source": "TROUBLE-KUBEADM_JOIN_NODE", "target": "TROUBLE-KUBEADM_PREFLIGHT", "type": "see_also"}
 {"source": "TROUBLE-KUBEADM_PATCHES_NOT_REMOVED", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
 {"source": "TROUBLE-KUBEADM_PREFLIGHT", "target": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "type": "see_also"}
 {"source": "TROUBLE-KUBEADM_PREFLIGHT", "target": "TROUBLE-KUBEADM_INIT_RETRY_FAILS", "type": "see_also"}
