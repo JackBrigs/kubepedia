@@ -64,6 +64,7 @@ source-verified fix.
 - Stuck `Terminating` (pod) → [[TROUBLE-POD_STUCK_TERMINATING]]; namespace stuck
   `Terminating` → [[TROUBLE-NAMESPACE_STUCK_TERMINATING]].
 - Evicted under disk pressure → [[TROUBLE-DISK_PRESSURE_EVICTION]].
+- `too many open files` / inotify watch exhaustion → [[TROUBLE-INOTIFY_FILE_LIMITS]].
 
 ### Networking & DNS
 

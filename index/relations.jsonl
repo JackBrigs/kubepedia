@@ -306,6 +306,9 @@
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "target": "PRACTICE-CONTAINERD_DIAGNOSTICS", "type": "see_also"}
+{"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
+{"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "PRACTICE-LARGE_DEPLOYMENTS", "type": "see_also"}
+{"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
 {"source": "TROUBLE-KUBECTL_EXEC_LOGS_FAILS", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "TROUBLE-KUBECTL_EXEC_LOGS_FAILS", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
 {"source": "TROUBLE-KUBECTL_EXEC_LOGS_FAILS", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
