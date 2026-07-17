@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "node_feature_discovery_version / node_feature_discovery_image_repo / node_feature_discovery_image_tag"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
 ---
 
 # node-feature-discovery

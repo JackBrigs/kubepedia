@@ -1,4 +1,5 @@
 {"source": "API-FLOWCONTROL_APISERVER", "target": "CONCEPT-K8S_API_REMOVALS", "type": "see_also"}
+{"source": "COMPONENT-ARGOCD", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "COMPONENT-AWS_EBS_CSI", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "COMPONENT-AZURE_CSI", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "COMPONENT-CERT_MANAGER", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
@@ -26,8 +27,10 @@
 {"source": "COMPONENT-NODELOCALDNS", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "COMPONENT-NODELOCALDNS", "target": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "type": "see_also"}
 {"source": "COMPONENT-NODELOCALDNS", "target": "VARIABLE-DNS_MODE", "type": "see_also"}
+{"source": "COMPONENT-NODE_FEATURE_DISCOVERY", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "COMPONENT-REGISTRY", "target": "CONFIG-PROXY", "type": "see_also"}
 {"source": "COMPONENT-RUNC", "target": "COMPONENT-CONTAINERD", "type": "part_of"}
+{"source": "COMPONENT-SCHEDULER_PLUGINS", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "COMPONENT-SKOPEO", "target": "CONCEPT-CONTAINER_MANAGER", "type": "see_also"}
 {"source": "COMPONENT-YOUKI", "target": "CONCEPT-CONTAINER_RUNTIMES", "type": "see_also"}
 {"source": "CONCEPT-CILIUM_DATAPATH", "target": "COMPONENT-CILIUM", "type": "see_also"}

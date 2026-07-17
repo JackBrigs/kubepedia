@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "argocd_version computed from argocd_install_checksums.no_arch"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
 ---
 
 # argocd

@@ -22,7 +22,9 @@ sources:
     path: roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes-apps/scheduler_plugins/defaults/main.yml
     note: "scheduler_plugins_enabled default"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
 ---
 
 # scheduler-plugins
