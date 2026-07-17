@@ -15,8 +15,8 @@ tags:
   - recovery
 sources:
   - type: code
-    path: playbooks/recover-control-plane.yml
-    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/playbooks/recover-control-plane.yml
+    path: playbooks/recover_control_plane.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/playbooks/recover_control_plane.yml
     note: "recover a degraded control plane / etcd"
 relations:
   - type: see_also
@@ -52,4 +52,4 @@ The full runbook is in [[PRACTICE-RECOVER_CONTROL_PLANE]].
 
 ## References
 
-- `playbooks/recover-control-plane.yml` (tag `v2.31.0` `1c9add4`).
+- `playbooks/recover_control_plane.yml` (tag `v2.31.0` `1c9add4`).

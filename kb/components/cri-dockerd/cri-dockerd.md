@@ -69,6 +69,6 @@ The version changes between tags (0.3.20 -> 0.3.24). Applies to the Kubernetes r
 - roles/kubespray_defaults/defaults/main/download.yml (cri_dockerd_version, cri_dockerd_download_url, download enabled condition)
 - roles/kubespray_defaults/vars/main/checksums.yml (cri_dockerd_archive_checksums)
 - roles/kubespray_defaults/defaults/main/main.yml (container_manager default)
-- roles/container-engine/meta/main.yml / roles/container-engine/tasks/main.yml (cri-dockerd role gating)
+- roles/container-engine/tasks/main.yml / roles/container-engine/tasks/main.yml (cri-dockerd role gating)
 - roles/container-engine/cri-dockerd/defaults/main.yml (cri_dockerd_log_level)
 - Tags: v2.29.0 9991412, v2.29.1 0c6a295, v2.30.0 f4ccdb5, v2.31.0 1c9add4.

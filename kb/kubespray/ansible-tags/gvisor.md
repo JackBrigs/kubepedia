@@ -16,8 +16,8 @@ tags:
   - container-engine
 sources:
   - type: code
-    path: roles/container-engine/meta/main.yml
-    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/meta/main.yml
+    path: roles/container-engine/tasks/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/tasks/main.yml
     note: "run-tag gvisor"
 relations: []
 ---
@@ -41,11 +41,11 @@ relations: []
 ## Compatibility
 
 - Kubespray `v2.29.0`–`v2.31.0`.
-- **Standalone-run safety: risky.** Установка бинарников gVisor ограничена движками docker/containerd (условие в roles/container-engine/meta/main.yml). Требует скачанных артефактов (download); часть RuntimeClass требует готового кластера и kubectl.
+- **Standalone-run safety: risky.** Установка бинарников gVisor ограничена движками docker/containerd (условие в roles/container-engine/tasks/main.yml). Требует скачанных артефактов (download); часть RuntimeClass требует готового кластера и kubectl.
 
 ## References
 
-- `roles/container-engine/meta/main.yml`
+- `roles/container-engine/tasks/main.yml`
 - `roles/container-engine/gvisor/tasks/main.yml`
 - `roles/kubernetes-apps/container_runtimes/meta/main.yml`
 - `roles/kubernetes-apps/container_runtimes/gvisor/tasks/main.yaml`

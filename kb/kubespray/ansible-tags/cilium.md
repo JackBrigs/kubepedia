@@ -16,8 +16,8 @@ tags:
   - network-plugin
 sources:
   - type: code
-    path: roles/network_plugin/meta/main.yml
-    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/meta/main.yml
+    path: roles/network_plugin/tasks/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/tasks/main.yml
     note: "run-tag cilium"
 relations: []
 ---
@@ -45,7 +45,7 @@ relations: []
 
 ## References
 
-- `roles/network_plugin/meta/main.yml`
+- `roles/network_plugin/tasks/main.yml`
 - `roles/network_plugin/cilium/tasks/main.yml`
 - `roles/network_plugin/cilium/tasks/check.yml`
 - `roles/network_plugin/cilium/tasks/install.yml`

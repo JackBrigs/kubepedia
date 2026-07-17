@@ -16,8 +16,8 @@ tags:
   - container-engine
 sources:
   - type: code
-    path: roles/container-engine/meta/main.yml
-    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/meta/main.yml
+    path: roles/container-engine/tasks/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/tasks/main.yml
     note: "run-tag validate-container-engine"
 relations: []
 ---
@@ -45,6 +45,6 @@ relations: []
 
 ## References
 
-- `roles/container-engine/meta/main.yml`
+- `roles/container-engine/tasks/main.yml`
 - `roles/container-engine/validate-container-engine/tasks/main.yml`
 - Migrated from the Kubepedia 0.1.0 analysis (`knowledge-base/versions/v2.31.0/ansible-tags.yaml`); verified against tag `v2.31.0` `1c9add4`.

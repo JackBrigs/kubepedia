@@ -16,8 +16,8 @@ tags:
   - container-engine
 sources:
   - type: code
-    path: roles/container-engine/meta/main.yml
-    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/meta/main.yml
+    path: roles/container-engine/tasks/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/container-engine/tasks/main.yml
     note: "run-tag youki"
 relations: []
 ---
@@ -45,7 +45,7 @@ relations: []
 
 ## References
 
-- `roles/container-engine/meta/main.yml`
+- `roles/container-engine/tasks/main.yml`
 - `roles/container-engine/youki/tasks/main.yml`
 - `roles/kubernetes-apps/container_runtimes/meta/main.yml`
 - `roles/kubernetes-apps/container_runtimes/youki/tasks/main.yaml`
