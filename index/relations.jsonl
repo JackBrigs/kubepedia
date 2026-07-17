@@ -72,6 +72,9 @@
 {"source": "CONCEPT-ETCD_3_6_CHANGES", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "CONCEPT-ETCD_3_6_CHANGES", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "CONCEPT-ETCD_3_6_CHANGES", "target": "UPGRADE-V2_30_0__V2_31_0", "type": "see_also"}
+{"source": "CONCEPT-EXTERNAL_DNS", "target": "COMPONENT-COREDNS", "type": "see_also"}
+{"source": "CONCEPT-EXTERNAL_DNS", "target": "CONCEPT-SERVICE_EXPOSURE", "type": "see_also"}
+{"source": "CONCEPT-EXTERNAL_DNS", "target": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "type": "see_also"}
 {"source": "CONCEPT-GITOPS", "target": "COMPONENT-ARGOCD", "type": "see_also"}
 {"source": "CONCEPT-GITOPS", "target": "PRACTICE-BACKUP_DR", "type": "see_also"}
 {"source": "CONCEPT-GITOPS", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
@@ -115,6 +118,9 @@
 {"source": "CONCEPT-POD_SECURITY_STANDARDS", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
 {"source": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
+{"source": "CONCEPT-SECRETS_MANAGEMENT", "target": "CONCEPT-GITOPS", "type": "see_also"}
+{"source": "CONCEPT-SECRETS_MANAGEMENT", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
+{"source": "CONCEPT-SECRETS_MANAGEMENT", "target": "PRACTICE-SECRETS_ENCRYPTION_AT_REST", "type": "see_also"}
 {"source": "CONCEPT-SECURITY_ADVISORIES", "target": "PRACTICE-HARDENING", "type": "see_also"}
 {"source": "CONCEPT-SECURITY_ADVISORIES", "target": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "type": "see_also"}
 {"source": "CONCEPT-SERVICE_EXPOSURE", "target": "CONCEPT-CILIUM_LOADBALANCING", "type": "see_also"}
