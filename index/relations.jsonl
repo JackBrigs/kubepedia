@@ -33,6 +33,8 @@
 {"source": "COMPONENT-SCHEDULER_PLUGINS", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "COMPONENT-SKOPEO", "target": "CONCEPT-CONTAINER_MANAGER", "type": "see_also"}
 {"source": "COMPONENT-YOUKI", "target": "CONCEPT-CONTAINER_RUNTIMES", "type": "see_also"}
+{"source": "CONCEPT-ADDON_CATALOG", "target": "CONCEPT-HELM_IN_KUBESPRAY", "type": "see_also"}
+{"source": "CONCEPT-ADDON_CATALOG", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-CILIUM_DATAPATH", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "CONCEPT-CILIUM_DATAPATH", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
 {"source": "CONCEPT-CILIUM_DATAPATH", "target": "TROUBLE-CILIUM_CONFIG_VALIDATION", "type": "see_also"}

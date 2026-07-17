@@ -247,3 +247,31 @@ historical release/upgrade coverage.
 
 **Consequences.** Note the role path changed at v2.28.0 (`kubespray-defaults` →
 `kubespray_defaults`) and versions dropped the leading `v` — reflected in the per-tag docs.
+
+## D-015 — Application-platform addon catalog (2026-07-17)
+
+**Context.** The owner supplied a ~65-entry inventory of Helm-chart addons deployed on their
+clusters (observability, GitOps, storage/Ceph, secrets/Vault, gateways, operators, GPU,
+plus in-house charts) and asked to study and add them to the base. These are **not**
+Kubespray-managed; several names overlap Kubespray add-ons (cert-manager, argocd,
+ingress-nginx, velero) but at **different, independently-deployed chart versions**.
+
+**Decision.** New domain `kb/addons/`.
+- **`CONCEPT-ADDON_CATALOG`** — the full inventory index (every entry: addon, upstream
+  chart, chart/app version, class, depth status). Versions are owner-provided facts about
+  the deployed environment (`verified` as inventory).
+- **`COMPONENT-ADDON_<X>`** deep docs — only for **upstream** addons with real researchable
+  engineering knowledge (Kubernetes-compat, breaking changes, known issues, upgrade
+  constraints, CVEs). Evidence tier = upstream chart/docs (`verified`) or code where
+  fetchable. Created in prioritized batches (security/storage/platform-critical first).
+- **In-house ("собственный") addons** — catalog rows only, marked proprietary/no-public-
+  source. No behaviour is fabricated; deepened only if the owner supplies internals.
+- **Overlap rule.** Do NOT overwrite the Kubespray `COMPONENT-*` docs. Addon docs relate to
+  them via `see_also` and note the version divergence (owner runs a newer independent chart).
+
+**Rationale.** Owner task (Final Rule: separate task explicitly requires it). Feeds the
+Upgrade-Report personalization (inventory addons become visible/filterable) and answers real
+"what changes when I bump this chart" questions.
+
+**Consequences.** Catalog is the completeness anchor (100% of inventory, honest confidence);
+deep docs accrete over batches. The catalog's depth-status column is the progress tracker.
