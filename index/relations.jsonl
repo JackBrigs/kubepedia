@@ -279,6 +279,9 @@
 {"source": "TROUBLE-COREDNS_KNOWN_CVES", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "TROUBLE-COREDNS_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-COREDNS_RESOLUTION_LOOP", "target": "COMPONENT-COREDNS", "type": "see_also"}
+{"source": "TROUBLE-CRASHLOOPBACKOFF", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
+{"source": "TROUBLE-CRASHLOOPBACKOFF", "target": "TROUBLE-OOMKILLED", "type": "see_also"}
+{"source": "TROUBLE-CRASHLOOPBACKOFF", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-DISK_PRESSURE_EVICTION", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "target": "PRACTICE-DNS_DEBUG", "type": "see_also"}
 {"source": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "target": "PRACTICE-DNS_STACK", "type": "see_also"}

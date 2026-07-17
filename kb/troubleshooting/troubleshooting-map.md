@@ -59,6 +59,7 @@ source-verified fix.
 
 - `Pending` / Unschedulable (scheduler) → [[TROUBLE-POD_PENDING_UNSCHEDULABLE]].
 - `ContainerCreating` (kubelet/CNI) → [[TROUBLE-POD_CONTAINERCREATING]].
+- `CrashLoopBackOff` (starts then dies) → [[TROUBLE-CRASHLOOPBACKOFF]].
 - `OOMKilled` / exit 137 → [[TROUBLE-OOMKILLED]].
 - Stuck `Terminating` → [[TROUBLE-POD_STUCK_TERMINATING]].
 - Evicted under disk pressure → [[TROUBLE-DISK_PRESSURE_EVICTION]].
