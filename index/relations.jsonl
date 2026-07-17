@@ -2,6 +2,10 @@
 {"source": "COMPONENT-ARGOCD", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "COMPONENT-AWS_EBS_CSI", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "COMPONENT-AZURE_CSI", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
+{"source": "COMPONENT-CALICO", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "depends_on"}
+{"source": "COMPONENT-CALICO", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "COMPONENT-CALICO", "target": "CONCEPT-CLUSTER_NETWORKING", "type": "see_also"}
+{"source": "COMPONENT-CALICO", "target": "CONFIG-CALICO_DATAPLANE", "type": "see_also"}
 {"source": "COMPONENT-CERT_MANAGER", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
 {"source": "COMPONENT-CERT_MANAGER", "target": "CONCEPT-HELM_IN_KUBESPRAY", "type": "see_also"}
 {"source": "COMPONENT-CILIUM", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
@@ -261,6 +265,8 @@
 {"source": "CONFIG-APISERVER_AUTHENTICATION_CONFIG", "target": "CONCEPT-K8S_1_34_CHANGES", "type": "see_also"}
 {"source": "CONFIG-APISERVER_AUTHENTICATION_CONFIG", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONFIG-APISERVER_AUTHENTICATION_CONFIG", "target": "CONFIG-KUBEADM_CONFIG_API_VERSION", "type": "see_also"}
+{"source": "CONFIG-CALICO_DATAPLANE", "target": "COMPONENT-CALICO", "type": "see_also"}
+{"source": "CONFIG-CALICO_DATAPLANE", "target": "CONCEPT-CLUSTER_NETWORKING", "type": "see_also"}
 {"source": "CONFIG-COREDNS_COREFILE", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "CONFIG-COREDNS_COREFILE", "target": "TROUBLE-COREDNS_RESOLUTION_LOOP", "type": "see_also"}
 {"source": "CONFIG-COREDNS_COREFILE", "target": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "type": "see_also"}
@@ -451,6 +457,9 @@
 {"source": "TROUBLE-ARGOCD_UPGRADE_3_RBAC", "target": "CONCEPT-ADDON_ARGOCD", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_UPGRADE_3_RBAC", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_UPGRADE_3_RBAC", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
+{"source": "TROUBLE-CALICO_NODE_ISSUES", "target": "COMPONENT-CALICO", "type": "see_also"}
+{"source": "TROUBLE-CALICO_NODE_ISSUES", "target": "CONFIG-CALICO_DATAPLANE", "type": "see_also"}
+{"source": "TROUBLE-CALICO_NODE_ISSUES", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "TROUBLE-CAPSULE_UPGRADE_013", "target": "CONCEPT-ADDON_CAPSULE", "type": "see_also"}
 {"source": "TROUBLE-CAPSULE_UPGRADE_013", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CAPSULE_UPGRADE_013", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}

@@ -13,11 +13,12 @@ re-create it ad hoc. Owner parked this to a **future version** (2026-07-17).
 
 ## CNI plugins (other than Cilium)
 
-Per owner decision (2026-07-16), only **Cilium** is indexed for CNI. The following
-are deferred:
+Originally (2026-07-16) only **Cilium** was indexed for CNI. **Calico is now indexed**
+(2026-07-17, owner request): `COMPONENT-CALICO` (3.31.5 @ v2.31.0, the default CNI) +
+`CONFIG-CALICO_DATAPLANE` (VXLAN/BGP/IPIP/eBPF/nftables/WireGuard) + `TROUBLE-CALICO_NODE_ISSUES`.
+Possible Calico depth later: BGP-peering config, IP pools/IPAM, Typha at scale, calico/rr
+route-reflector role, per-tag version table. Still deferred:
 
-- **Calico** — note: this is Kubespray's **default** `kube_network_plugin`
-  (`calico`), so it is a high-value future item despite being deferred now.
 - Flannel
 - Kube-OVN
 - Kube-router
