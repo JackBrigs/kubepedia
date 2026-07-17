@@ -12,6 +12,8 @@ aliases:
   - ImagePullBackOff
   - ErrImagePull
   - failed to pull image
+  - cannot pull image
+  - image pull failing triage
   - manifest unknown
   - pull access denied
   - unauthorized image pull
