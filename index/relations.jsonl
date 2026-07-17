@@ -446,6 +446,8 @@
 {"source": "TROUBLE-CNI_PLUGINS_KNOWN_CVES", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
 {"source": "TROUBLE-CNI_PLUGINS_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CONNTRACK_TABLE_FULL", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
+{"source": "TROUBLE-CONTAINERD_IMAGE_PULL_CRI", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
+{"source": "TROUBLE-CONTAINERD_IMAGE_PULL_CRI", "target": "TROUBLE-IMAGEPULLBACKOFF", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_KNOWN_CVES", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
@@ -480,6 +482,8 @@
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "type": "see_also"}
 {"source": "TROUBLE-ETCD_REMOVE_EXTERNAL_MEMBER_FAILS", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "TROUBLE-ETCD_REMOVE_NODE_NOT_IDEMPOTENT", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING", "target": "CONCEPT-ADDON_VAULT", "type": "see_also"}
+{"source": "TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING", "target": "CONCEPT-SECRETS_MANAGEMENT", "type": "see_also"}
 {"source": "TROUBLE-FAILEDMOUNT", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "TROUBLE-FAILEDMOUNT", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-FAILEDMOUNT", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}
@@ -510,6 +514,8 @@
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "PRACTICE-LARGE_DEPLOYMENTS", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
 {"source": "TROUBLE-K8S_CERTS_RENEW_BROKEN_SCRIPT", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
+{"source": "TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING", "target": "CONCEPT-ADDON_KEDA", "type": "see_also"}
+{"source": "TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING", "target": "TROUBLE-HPA_NOT_SCALING", "type": "see_also"}
 {"source": "TROUBLE-KUBEADM_INIT_RETRY_FAILS", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
 {"source": "TROUBLE-KUBEADM_PATCHES_NOT_REMOVED", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
 {"source": "TROUBLE-KUBECTL_EXEC_LOGS_FAILS", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
@@ -524,9 +530,14 @@
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "TROUBLE-NODE_MEMORY_TOO_SMALL", "type": "see_also"}
+{"source": "TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
+{"source": "TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "TROUBLE-KUBE_VIP_CAPS_VERSION", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "VARIABLE-KUBE_VIP_ADDRESS", "type": "see_also"}
+{"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "COMPONENT-METALLB", "type": "see_also"}
+{"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
+{"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "TROUBLE-METALLB_CONFIG_CRD_FRR", "type": "see_also"}
 {"source": "TROUBLE-METALLB_CONFIG_CRD_FRR", "target": "COMPONENT-METALLB", "type": "see_also"}
 {"source": "TROUBLE-METALLB_CONFIG_CRD_FRR", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-METALLB_SERVICE_PENDING", "target": "COMPONENT-METALLB", "type": "see_also"}
@@ -592,6 +603,8 @@
 {"source": "TROUBLE-VELERO_UPGRADE_117", "target": "CONCEPT-ADDON_VELERO", "type": "see_also"}
 {"source": "TROUBLE-VELERO_UPGRADE_117", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-VELERO_UPGRADE_117", "target": "CONCEPT-VELERO", "type": "see_also"}
+{"source": "TROUBLE-VMAGENT_REMOTE_WRITE_FAILING", "target": "CONCEPT-ADDON_VM_K8S_STACK", "type": "see_also"}
+{"source": "TROUBLE-VMAGENT_REMOTE_WRITE_FAILING", "target": "CONCEPT-OBSERVABILITY_STACK", "type": "see_also"}
 {"source": "TROUBLE-VOLUMESNAPSHOTCLASS_V1", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "TROUBLE-VXLAN_MTU_MISMATCH", "target": "VARIABLE-CILIUM_TUNNEL_MODE", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
