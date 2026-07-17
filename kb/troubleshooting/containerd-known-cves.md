@@ -3,9 +3,9 @@ id: TROUBLE-CONTAINERD_KNOWN_CVES
 type: troubleshooting
 title: "containerd: known CVEs by shipped version (osv.dev)"
 status: active
-kubespray_version: ">=v2.29.0 <=v2.31.0"
+kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: null
-component_version: ">=2.1.4 <=2.2.3"
+component_version: ">=1.7.24 <=2.2.3"
 verified_at: "2026-07-16"
 confidence: verified
 aliases:
@@ -41,6 +41,10 @@ Each shipped containerd version carries the CVEs listed below (osv.dev returns o
 
 | Component version | Kubespray | # CVEs | CVEs |
 |---|---|---|---|
+| 1.7.24 | v2.27.0 | 13 | 1.7.x line — larger set (query osv.dev for the full list) |
+| 1.7.27 | v2.27.1 | 13 | 1.7.x line — larger set (query osv.dev for the full list) |
+| 2.0.5 | v2.28.0 | 3 | GO-2026-5064, GO-2026-5338, GO-2026-5622 |
+| 2.0.6 | v2.28.1 | 3 | GO-2026-5064, GO-2026-5338, GO-2026-5622 |
 | 2.1.4 | v2.29.0 | 3 | CVE-2026-50195, CVE-2026-53489, CVE-2026-53492 |
 | 2.1.5 | v2.29.1 | 3 | CVE-2026-50195, CVE-2026-53489, CVE-2026-53492 |
 | 2.2.1 | v2.30.0 | 3 | CVE-2026-50195, CVE-2026-53489, CVE-2026-53492 |

@@ -3,9 +3,9 @@ id: TROUBLE-CNI_PLUGINS_KNOWN_CVES
 type: troubleshooting
 title: "cni-plugins: known CVEs by shipped version (osv.dev)"
 status: active
-kubespray_version: ">=v2.29.0 <=v2.31.0"
+kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: null
-component_version: ">=1.8.0 <=1.9.1"
+component_version: ">=1.4.0 <=1.9.1"
 verified_at: "2026-07-16"
 confidence: verified
 aliases:
@@ -40,6 +40,8 @@ Each shipped cni-plugins version carries the CVEs below (osv.dev returns only vu
 
 | Version | Kubespray | # | CVEs |
 |---|---|---|---|
+| 1.4.0 | v2.27.0 | 0 | — (osv.dev reports none) |
+| 1.4.1 | v2.27.1-v2.28.1 | 0 | — (osv.dev reports none) |
 | 1.8.0 | v2.29.0-v2.30.0 | 1 | CVE-2025-67499 |
 | 1.9.1 | v2.31.0 | 0 | — |
 

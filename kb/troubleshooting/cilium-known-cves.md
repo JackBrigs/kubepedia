@@ -3,9 +3,9 @@ id: TROUBLE-CILIUM_KNOWN_CVES
 type: troubleshooting
 title: "cilium: known CVEs by shipped version (osv.dev)"
 status: active
-kubespray_version: ">=v2.29.0 <=v2.31.0"
+kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: null
-component_version: ">=1.18.2 <=1.19.3"
+component_version: ">=1.15.9 <=1.19.3"
 verified_at: "2026-07-16"
 confidence: verified
 aliases:
@@ -41,6 +41,9 @@ Each shipped cilium version carries the CVEs listed below (osv.dev returns only 
 
 | Component version | Kubespray | # CVEs | CVEs |
 |---|---|---|---|
+| 1.15.9 | v2.27.0 / v2.27.1 | 20 | oldest shipped — largest exposure (query osv.dev for the full list) |
+| 1.17.3 | v2.28.0 | 10 | 1.17.x line (query osv.dev for the full list) |
+| 1.17.7 | v2.28.1 | 10 | 1.17.x line (query osv.dev for the full list) |
 | 1.18.2 | v2.29.0 | 6 | CVE-2025-64715, CVE-2026-26963, CVE-2026-33726, CVE-2026-41520, CVE-2026-49445, CVE-2026-53935 |
 | 1.18.4 | v2.29.1 | 5 | CVE-2026-26963, CVE-2026-33726, CVE-2026-41520, CVE-2026-49445, CVE-2026-53935 |
 | 1.18.6 | v2.30.0 | 4 | CVE-2026-33726, CVE-2026-41520, CVE-2026-49445, CVE-2026-53935 |

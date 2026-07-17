@@ -3,9 +3,9 @@ id: TROUBLE-RUNC_KNOWN_CVES
 type: troubleshooting
 title: "runc: known CVEs by shipped version (osv.dev)"
 status: active
-kubespray_version: ">=v2.29.0 <=v2.31.0"
+kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: null
-component_version: ">=1.3.2 <=1.4.2"
+component_version: ">=1.2.3 <=1.4.2"
 verified_at: "2026-07-16"
 confidence: verified
 aliases:
@@ -31,7 +31,7 @@ relations:
 
 ## Summary
 
-osv.dev reports **4 unique CVEs** affecting the runc versions Kubespray ships (see [COMPONENT-RUNC]). The count drops with newer versions; the newest indexed version **1.4.2** (Kubespray v2.31.0) is still affected by **1** of them — no fully-patched Kubespray release exists yet for those.
+osv.dev reports **4 unique CVEs** affecting the runc versions Kubespray ships (see [COMPONENT-RUNC]). Older shipped versions (1.2.x, Kubespray v2.27.0–v2.28.1) carry **8** — a superset. The count drops with newer versions; the newest indexed version **1.4.2** (Kubespray v2.31.0) is still affected by **1** of them — no fully-patched Kubespray release exists yet for those.
 
 ## Problem
 
@@ -41,6 +41,9 @@ Each shipped runc version carries the CVEs listed below (osv.dev returns only vu
 
 | Component version | Kubespray | # CVEs | CVEs |
 |---|---|---|---|
+| 1.2.3 | v2.27.0 | 8 | superset — incl. the runc container-escape set + older CVEs (query osv.dev for the full list) |
+| 1.2.5 | v2.28.0 | 8 | (as above) |
+| 1.2.6 | v2.27.1 / v2.28.1 | 8 | (as above) |
 | 1.3.2 | v2.29.0 | 4 | CVE-2025-31133, CVE-2025-52565, CVE-2025-52881, CVE-2026-41579 |
 | 1.3.4 | v2.29.1 / v2.30.0 | 1 | CVE-2026-41579 |
 | 1.4.2 | v2.31.0 | 1 | CVE-2026-41579 |
