@@ -81,6 +81,9 @@ source-verified fix.
 - `kubectl exec/logs/port-forward` fails (`error dialing backend`, x509) →
   [[TROUBLE-KUBECTL_EXEC_LOGS_FAILS]].
 
+- admission webhook blocks creates/updates (`failed calling webhook`) →
+  [[TROUBLE-ADMISSION_WEBHOOK_BLOCKING]].
+
 ### Certificates & TLS
 
 - `x509 valid for … not <addr>` (apiserver) → [[TROUBLE-APISERVER_CERT_SAN]].

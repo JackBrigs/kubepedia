@@ -251,6 +251,9 @@
 {"source": "TAG-RESOLVCONF", "target": "TAG-PREINSTALL", "type": "see_also"}
 {"source": "TAG-SYSTEM_UPGRADE", "target": "TAG-POST_UPGRADE", "type": "see_also"}
 {"source": "TAG-SYSTEM_UPGRADE", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
+{"source": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "target": "COMPONENT-CERT_MANAGER", "type": "see_also"}
+{"source": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
+{"source": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "target": "TROUBLE-NAMESPACE_STUCK_TERMINATING", "type": "see_also"}
 {"source": "TROUBLE-APISERVER_CERT_SAN", "target": "PRACTICE-CERTIFICATE_EXPIRY", "type": "see_also"}
 {"source": "TROUBLE-APISERVER_CERT_SAN", "target": "VARIABLE-APISERVER_LOADBALANCER_DOMAIN_NAME", "type": "see_also"}
 {"source": "TROUBLE-APISERVER_CERT_SAN", "target": "VARIABLE-SUPPLEMENTARY_ADDRESSES_IN_SSL_KEYS", "type": "see_also"}
