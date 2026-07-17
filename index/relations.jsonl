@@ -212,6 +212,9 @@
 {"source": "CONCEPT-UBUNTU_24_04_K8S", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-UBUNTU_24_04_K8S", "target": "CONFIG-NTP", "type": "see_also"}
 {"source": "CONCEPT-UBUNTU_24_04_K8S", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
+{"source": "CONCEPT-UPGRADE_HORIZON", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
+{"source": "CONCEPT-UPGRADE_HORIZON", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}
+{"source": "CONCEPT-UPGRADE_HORIZON", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-VELERO", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "CONCEPT-VELERO", "target": "PRACTICE-BACKUP_DR", "type": "see_also"}
 {"source": "CONCEPT-VELERO", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
