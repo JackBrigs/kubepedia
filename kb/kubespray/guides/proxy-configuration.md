@@ -58,14 +58,21 @@ Set in `group_vars/all/all.yml` (see [[CONCEPT-SAMPLE_INVENTORY_LAYOUT]]):
 | `https_proxy_cert_file` | custom CA cert for the HTTPS proxy (sets `SSL_CERT_FILE`) |
 | `no_proxy` | **auto-composed** by Kubespray with cluster-internal addresses — do not blindly override |
 | `additional_no_proxy` | **your** extra no-proxy entries (internal registries, mirrors, DNS names) — the safe way to extend |
+| `no_proxy_exclude_workers` | `true` to keep **only control-plane** nodes in `no_proxy` (see churn note below) |
 | `skip_http_proxy_on_os_packages` | `true` to *not* proxy OS package repos (internal repos) |
 
 - Kubespray combines these into `proxy_env` (`HTTP_PROXY`/`HTTPS_PROXY`/`NO_PROXY` +
   lowercase, plus `SSL_CERT_FILE` when a proxy CA is set) and applies it to tasks, the
   container runtime, and downloads.
-- The auto-built `no_proxy` covers cluster-internal targets (nodes, service/pod networks,
+- The auto-built `no_proxy` (assembled in `roles/kubespray_defaults/tasks/no_proxy.yml`)
+  covers cluster-internal targets (all nodes + the loadbalancer, service/pod networks,
   cluster domain, localhost) so API/etcd/pod traffic bypasses the proxy — extend it, don't
-  replace it.
+  replace it. Setting `no_proxy` explicitly **disables** the auto-generation (no node/LB
+  addresses are added).
+- **Worker-churn gotcha:** by default workers are in `no_proxy`, so adding/removing a
+  worker changes `no_proxy` and **restarts the container engine on all nodes** (all pods
+  restart). Set `no_proxy_exclude_workers: true` to include only control-plane nodes and
+  avoid that churn.
 
 ## Compatibility
 

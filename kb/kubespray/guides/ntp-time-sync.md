@@ -51,7 +51,8 @@ Defaults:
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `ntp_enabled` | `false` | install/enable the NTP client (`ntp_package`, OS-appropriate — chrony/ntp/ntpsec) |
+| `ntp_enabled` | `false` | install/enable the NTP client |
+| `ntp_package` | OS-appropriate (chrony/ntp) | override the package — e.g. `ntpsec` on Ubuntu 24.04 or distros that already ship `systemd-timesyncd` |
 | `ntp_manage_config` | `false` | let Kubespray write the NTP config (servers/pools) |
 | `ntp_servers` | (list) | upstream NTP servers/pools (used when `ntp_manage_config`) |
 | `ntp_timezone` | `""` | set the system timezone (empty = leave as-is) |
