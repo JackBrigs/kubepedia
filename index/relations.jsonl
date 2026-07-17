@@ -420,6 +420,9 @@
 {"source": "TROUBLE-RBAC_FORBIDDEN", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-RBAC_FORBIDDEN", "target": "PRACTICE-CLUSTER_ACCESS", "type": "see_also"}
 {"source": "TROUBLE-RBAC_FORBIDDEN", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
+{"source": "TROUBLE-ROLLOUT_STUCK", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
+{"source": "TROUBLE-ROLLOUT_STUCK", "target": "TROUBLE-CRASHLOOPBACKOFF", "type": "see_also"}
+{"source": "TROUBLE-ROLLOUT_STUCK", "target": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "type": "see_also"}
 {"source": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "target": "COMPONENT-RUNC", "type": "see_also"}
 {"source": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-RUNC_KNOWN_CVES", "target": "COMPONENT-RUNC", "type": "see_also"}
