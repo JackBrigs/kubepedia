@@ -345,6 +345,9 @@
 {"source": "TROUBLE-POD_CONTAINERCREATING", "target": "TROUBLE-CILIUM_CONFIG_VALIDATION", "type": "see_also"}
 {"source": "TROUBLE-POD_CONTAINERCREATING", "target": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "type": "see_also"}
 {"source": "TROUBLE-POD_CONTAINERCREATING", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}
+{"source": "TROUBLE-POD_EGRESS_INTERNET", "target": "CONCEPT-CILIUM_DATAPATH", "type": "see_also"}
+{"source": "TROUBLE-POD_EGRESS_INTERNET", "target": "CONCEPT-CLUSTER_NETWORKING", "type": "see_also"}
+{"source": "TROUBLE-POD_EGRESS_INTERNET", "target": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "type": "see_also"}
 {"source": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "target": "CONFIG-NODE_LABELS_TAINTS", "type": "see_also"}
 {"source": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}

@@ -77,6 +77,7 @@ source-verified fix.
 - Ports blocked by firewall → [[TROUBLE-FIREWALL_PORTS_BLOCKED]].
 - External DNS fails → [[TROUBLE-DNS_EXTERNAL_RESOLUTION]]; CoreDNS crashloop →
   [[TROUBLE-COREDNS_RESOLUTION_LOOP]].
+- Pods can't reach the internet (egress/masquerade) → [[TROUBLE-POD_EGRESS_INTERNET]].
 - `LoadBalancer` `<pending>` → [[TROUBLE-METALLB_SERVICE_PENDING]]; control-plane VIP →
   [[TROUBLE-KUBE_VIP_VIP_NOT_UP]].
 - Service unreachable / no endpoints → [[TROUBLE-SERVICE_NO_ENDPOINTS]].
