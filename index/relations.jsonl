@@ -294,6 +294,9 @@
 {"source": "TROUBLE-APISERVER_CERT_SAN", "target": "VARIABLE-SUPPLEMENTARY_ADDRESSES_IN_SSL_KEYS", "type": "see_also"}
 {"source": "TROUBLE-APISERVER_LB_DOMAIN_DEFAULT", "target": "TROUBLE-APISERVER_CERT_SAN", "type": "see_also"}
 {"source": "TROUBLE-APISERVER_SANS_UNDEFINED_LB_DOMAIN", "target": "TROUBLE-APISERVER_CERT_SAN", "type": "see_also"}
+{"source": "TROUBLE-CERT_DIR_SSL_NOT_PKI", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
+{"source": "TROUBLE-CERT_DIR_SSL_NOT_PKI", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
+{"source": "TROUBLE-CERT_DIR_SSL_NOT_PKI", "target": "PRACTICE-KUBEADM_JOIN_FAILURES", "type": "see_also"}
 {"source": "TROUBLE-CERT_MANAGER_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CERT_MANAGER_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CGROUP_DRIVER_MISMATCH", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
