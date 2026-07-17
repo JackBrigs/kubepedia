@@ -66,6 +66,10 @@ source-verified fix.
 - Evicted under disk pressure → [[TROUBLE-DISK_PRESSURE_EVICTION]].
 - `too many open files` / inotify watch exhaustion → [[TROUBLE-INOTIFY_FILE_LIMITS]].
 
+### Autoscaling & metrics
+
+- HPA not scaling / `TARGETS <unknown>` → [[TROUBLE-HPA_NOT_SCALING]].
+
 ### Networking & DNS
 
 - Cross-node pod traffic / MTU → [[TROUBLE-VXLAN_MTU_MISMATCH]]; conntrack drops →
