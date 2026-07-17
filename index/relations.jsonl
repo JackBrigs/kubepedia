@@ -320,6 +320,8 @@
 {"source": "TROUBLE-METALLB_SERVICE_PENDING", "target": "COMPONENT-METALLB", "type": "see_also"}
 {"source": "TROUBLE-METALLB_SERVICE_PENDING", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
 {"source": "TROUBLE-METALLB_SERVICE_PENDING", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
+{"source": "TROUBLE-NAMESPACE_STUCK_TERMINATING", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
+{"source": "TROUBLE-NAMESPACE_STUCK_TERMINATING", "target": "TROUBLE-POD_STUCK_TERMINATING", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_33_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}

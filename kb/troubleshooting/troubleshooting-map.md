@@ -61,7 +61,8 @@ source-verified fix.
 - `ContainerCreating` (kubelet/CNI) → [[TROUBLE-POD_CONTAINERCREATING]].
 - `CrashLoopBackOff` (starts then dies) → [[TROUBLE-CRASHLOOPBACKOFF]].
 - `OOMKilled` / exit 137 → [[TROUBLE-OOMKILLED]].
-- Stuck `Terminating` → [[TROUBLE-POD_STUCK_TERMINATING]].
+- Stuck `Terminating` (pod) → [[TROUBLE-POD_STUCK_TERMINATING]]; namespace stuck
+  `Terminating` → [[TROUBLE-NAMESPACE_STUCK_TERMINATING]].
 - Evicted under disk pressure → [[TROUBLE-DISK_PRESSURE_EVICTION]].
 
 ### Networking & DNS
