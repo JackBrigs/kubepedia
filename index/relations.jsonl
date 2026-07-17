@@ -459,6 +459,9 @@
 {"source": "TROUBLE-SERVICE_NO_ENDPOINTS", "target": "PRACTICE-SERVICE_NETWORKING_DEBUG", "type": "see_also"}
 {"source": "TROUBLE-SSH_BASTION_CONFIG_NAME_TYPO", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-TIMEZONE_UNDER_SELINUX", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
+{"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
+{"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "CONCEPT-VELERO", "type": "see_also"}
+{"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "PRACTICE-BACKUP_DR", "type": "see_also"}
 {"source": "TROUBLE-VOLUMESNAPSHOTCLASS_V1", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "TROUBLE-VXLAN_MTU_MISMATCH", "target": "VARIABLE-CILIUM_TUNNEL_MODE", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
