@@ -213,6 +213,12 @@
 {"source": "CONCEPT-SERVICE_EXPOSURE", "target": "CONCEPT-CILIUM_LOADBALANCING", "type": "see_also"}
 {"source": "CONCEPT-SERVICE_EXPOSURE", "target": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "type": "see_also"}
 {"source": "CONCEPT-SERVICE_EXPOSURE", "target": "TROUBLE-METALLB_SERVICE_PENDING", "type": "see_also"}
+{"source": "CONCEPT-TALOS_CILIUM", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "CONCEPT-TALOS_CILIUM", "target": "CONCEPT-TALOS_NETWORKING", "type": "see_also"}
+{"source": "CONCEPT-TALOS_CILIUM", "target": "TROUBLE-CILIUM_POD_CONNECTIVITY", "type": "see_also"}
+{"source": "CONCEPT-TALOS_DISK_ENCRYPTION", "target": "CONCEPT-CLEVIS_LUKS2", "type": "see_also"}
+{"source": "CONCEPT-TALOS_DISK_ENCRYPTION", "target": "CONCEPT-TALOS_MACHINE_CONFIG", "type": "see_also"}
+{"source": "CONCEPT-TALOS_DISK_ENCRYPTION", "target": "CONCEPT-TALOS_OS_K8S", "type": "see_also"}
 {"source": "CONCEPT-TALOS_MACHINE_CONFIG", "target": "CONCEPT-TALOS_OS_K8S", "type": "see_also"}
 {"source": "CONCEPT-TALOS_MACHINE_CONFIG", "target": "CONCEPT-TALOS_TALOSCTL_WORKFLOW", "type": "see_also"}
 {"source": "CONCEPT-TALOS_MACHINE_CONFIG", "target": "PRACTICE-TALOS_PRODUCTION", "type": "see_also"}
@@ -222,6 +228,12 @@
 {"source": "CONCEPT-TALOS_OS_K8S", "target": "CONCEPT-CLEVIS_LUKS2", "type": "see_also"}
 {"source": "CONCEPT-TALOS_OS_K8S", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-TALOS_OS_K8S", "target": "CONCEPT-UBUNTU_24_04_K8S", "type": "see_also"}
+{"source": "CONCEPT-TALOS_PROVISIONING", "target": "CONCEPT-TALOS_MACHINE_CONFIG", "type": "see_also"}
+{"source": "CONCEPT-TALOS_PROVISIONING", "target": "CONCEPT-TALOS_OS_K8S", "type": "see_also"}
+{"source": "CONCEPT-TALOS_PROVISIONING", "target": "CONCEPT-TALOS_SYSTEM_EXTENSIONS", "type": "see_also"}
+{"source": "CONCEPT-TALOS_SYSTEM_EXTENSIONS", "target": "CONCEPT-TALOS_OS_K8S", "type": "see_also"}
+{"source": "CONCEPT-TALOS_SYSTEM_EXTENSIONS", "target": "CONCEPT-TALOS_PROVISIONING", "type": "see_also"}
+{"source": "CONCEPT-TALOS_SYSTEM_EXTENSIONS", "target": "CONCEPT-TALOS_UPGRADES", "type": "see_also"}
 {"source": "CONCEPT-TALOS_TALOSCTL_WORKFLOW", "target": "CONCEPT-TALOS_MACHINE_CONFIG", "type": "see_also"}
 {"source": "CONCEPT-TALOS_TALOSCTL_WORKFLOW", "target": "CONCEPT-TALOS_OS_K8S", "type": "see_also"}
 {"source": "CONCEPT-TALOS_TALOSCTL_WORKFLOW", "target": "TROUBLE-TALOS_APID_UNREACHABLE", "type": "see_also"}
@@ -651,6 +663,9 @@
 {"source": "TROUBLE-TALOS_CP_BOOTSTRAP", "target": "CONCEPT-TALOS_OS_K8S", "type": "see_also"}
 {"source": "TROUBLE-TALOS_CP_BOOTSTRAP", "target": "CONCEPT-TALOS_UPGRADES", "type": "see_also"}
 {"source": "TROUBLE-TALOS_CP_BOOTSTRAP", "target": "TROUBLE-TALOS_APID_UNREACHABLE", "type": "see_also"}
+{"source": "TROUBLE-TALOS_ETCD_RESTORE", "target": "CONCEPT-TALOS_UPGRADES", "type": "see_also"}
+{"source": "TROUBLE-TALOS_ETCD_RESTORE", "target": "PRACTICE-TALOS_PRODUCTION", "type": "see_also"}
+{"source": "TROUBLE-TALOS_ETCD_RESTORE", "target": "TROUBLE-TALOS_CP_BOOTSTRAP", "type": "see_also"}
 {"source": "TROUBLE-TIMEZONE_UNDER_SELINUX", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-VAULT_PODS_SEALED", "target": "CONCEPT-ADDON_VAULT", "type": "see_also"}
 {"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
