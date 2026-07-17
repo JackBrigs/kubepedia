@@ -275,3 +275,9 @@ Upgrade-Report personalization (inventory addons become visible/filterable) and 
 
 **Consequences.** Catalog is the completeness anchor (100% of inventory, honest confidence);
 deep docs accrete over batches. The catalog's depth-status column is the progress tracker.
+
+**D-015 addendum (type).** Addon deep docs use type **`concept`** with `CONCEPT-ADDON_<X>`
+IDs, following the project convention that non-Kubespray technologies are `concept` (like
+`CONCEPT-VELERO`, `CONCEPT-OBSERVABILITY_STACK`). The `component` type's version rule requires
+`kubespray_version` (all `COMPONENT-*` are Kubespray-managed); addons set `kubespray_version:
+null`, so `component` does not fit. No validator change was needed.
