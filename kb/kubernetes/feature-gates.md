@@ -161,7 +161,7 @@ it only avoids the start-up failure from referencing an unknown gate.
 - Source of truth for stages: `pkg/features/kube_features.go` at each tag
   (parsed from `v1.35.4`, which carries the full versioned history).
 - Removed-gate list: Kubernetes "Feature Gates (removed)" reference (kubernetes.io).
-- Per-version operator highlights: [[CONCEPT-K8S_1_29_CHANGES]], [[CONCEPT-K8S_1_30_CHANGES]], [[CONCEPT-K8S_1_32_CHANGES]],
+- Per-version operator highlights: [[CONCEPT-K8S_1_29_CHANGES]], [[CONCEPT-K8S_1_30_CHANGES]], [[CONCEPT-K8S_1_31_CHANGES]], [[CONCEPT-K8S_1_32_CHANGES]],
   [[CONCEPT-K8S_1_33_CHANGES]], [[CONCEPT-K8S_1_34_CHANGES]],
   [[CONCEPT-K8S_1_35_CHANGES]].
 - Kubespray version→Kubernetes mapping: [[CONCEPT-KUBERNETES_VERSION_SUPPORT]].
