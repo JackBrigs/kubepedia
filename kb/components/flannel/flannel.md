@@ -5,7 +5,7 @@ title: Flannel (CNI)
 status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: ">=1.31 <=1.35"
-component_version: "0.28.4"
+component_version: ">=0.27.3 <=0.28.4"
 verified_at: "2026-07-17"
 confidence: confirmed
 aliases:
@@ -39,8 +39,9 @@ relations:
 ## Summary
 
 Flannel is the **simplest** Kubespray CNI option (`kube_network_plugin: flannel`) — a plain L3
-overlay with **no NetworkPolicy**. At v2.31.0 it ships **flannel 0.28.4** (flannel-cni
-`1.7.1-flannel1`). Default backend is **VXLAN**.
+overlay with **no NetworkPolicy**. Default backend is **VXLAN**. **Version drifts per tag:**
+`flannel_version` is **0.27.3** at v2.29.0/v2.29.1/v2.30.0 and **0.28.4** at v2.31.0
+(flannel-cni `1.7.1-flannel1` at v2.31.0).
 
 ## Context
 
@@ -53,7 +54,8 @@ overlay with **no NetworkPolicy**. At v2.31.0 it ships **flannel 0.28.4** (flann
 
 - Deploys `kube-flannel` as a DaemonSet (Flannel agent + CNI). It gives each node a pod subnet
   and routes pod traffic over the chosen backend.
-- Images/version track `flannel_version` (0.28.4) and `flannel_cni_version`.
+- Images/version track `flannel_version` (per tag: 0.27.3 on v2.29–v2.30, 0.28.4 on v2.31.0)
+  and `flannel_cni_version`.
 
 ## Configuration
 

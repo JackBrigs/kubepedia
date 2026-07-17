@@ -5,7 +5,7 @@ title: "Calico dataplane & encapsulation modes (Kubespray)"
 status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: ">=1.31 <=1.35"
-component_version: "3.31.5"
+component_version: ">=3.30.3 <=3.31.5"
 verified_at: "2026-07-17"
 confidence: confirmed
 aliases:

@@ -5,7 +5,7 @@ title: Calico (default CNI)
 status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: ">=1.31 <=1.35"
-component_version: "3.31.5"
+component_version: ">=3.30.3 <=3.31.5"
 verified_at: "2026-07-17"
 confidence: confirmed
 aliases:
@@ -40,17 +40,19 @@ relations:
 
 ## Summary
 
-Calico is the **default** Kubespray CNI (`kube_network_plugin: calico`). At tag **v2.31.0** it
-ships **v3.31.5** (`calico_version` is computed per tag as the first/highest key of
-`calicoctl_binary_checksums`). Calico provides pod networking, IPAM, and NetworkPolicy; Kubespray
+Calico is the **default** Kubespray CNI (`kube_network_plugin: calico`). `calico_version` is
+computed per tag (first/highest key of `calicoctl_binary_checksums`) and **drifts**:
+**3.30.3** (v2.29.0), **3.30.5** (v2.29.1), **3.30.6** (v2.30.0), **3.31.5** (v2.31.0). Calico
+provides pod networking, IPAM, and NetworkPolicy; Kubespray
 deploys `calico-node` (a DaemonSet), the CNI plugin, and optionally Typha and an eBPF/WireGuard
 dataplane. Kubespray's default encapsulation is **VXLAN** (not BGP).
 
 ## Context
 
 - This doc covers Kubespray `v2.29.0`–`v2.31.0`; the Calico version is **per-tag computed** from
-  the shipped checksums (3.31.5 at v2.31.0; older tags ship older 3.x). Config is owned by the
-  `roles/network_plugin/calico_defaults` + `roles/network_plugin/calico` roles.
+  the shipped checksums (v2.29.0 → 3.30.3, v2.29.1 → 3.30.5, v2.30.0 → 3.30.6, v2.31.0 → 3.31.5).
+  Config is owned by the `roles/network_plugin/calico_defaults` + `roles/network_plugin/calico`
+  roles.
 - Calico is the alternative to Cilium ([[COMPONENT-CILIUM]]); pick one via
   [[VARIABLE-KUBE_NETWORK_PLUGIN]].
 

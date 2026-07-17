@@ -5,7 +5,7 @@ title: "Calico: calico-node CrashLoop / node NotReady / no pod networking"
 status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: ">=1.31 <=1.35"
-component_version: "3.31.5"
+component_version: ">=3.30.3 <=3.31.5"
 verified_at: "2026-07-17"
 confidence: verified
 aliases:
@@ -51,7 +51,7 @@ prerequisite.
 
 ## Context
 
-- Applies to Calico **3.31.x** (Kubespray default CNI — [[COMPONENT-CALICO]]); dataplane modes
+- Applies to Calico **3.30.x–3.31.x** (per Kubespray tag; 3.30.3 @ v2.29.0 → 3.31.5 @ v2.31.0; Kubespray default CNI — [[COMPONENT-CALICO]]); dataplane modes
   in [[CONFIG-CALICO_DATAPLANE]].
 
 ## Diagnostics
