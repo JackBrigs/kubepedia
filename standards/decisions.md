@@ -308,3 +308,24 @@ minor content bump (not a major) is correct; the tag gives a reproducible refere
 **Consequences.** Future nightly/content work continues on `0.3.x`; the next architecture change
 (if any) would warrant its own decision. Backlog items (Talos OS, Clevis+LUKS2, non-Cilium CNI,
 community sources, README) remain deferred.
+
+## D-017 — Version envelope in frontmatter, precise per-version facts in the body (2026-07-17)
+
+**Context.** The KB has been applying a consistent convention that was never written down (the
+`BACKLOG.md` mislabeled it "the D-005 convention"; D-005 is actually the one-ID-per-entity rule).
+
+**Decision.** A document's **frontmatter version fields** (`kubespray_version`,
+`kubernetes_version`, `component_version`) express the **envelope** — the full range the document
+is valid for (e.g. `kubespray_version: ">=v2.27.0 <=v2.31.0"`). **Precise per-version facts**
+(what changed at which exact tag/version, per-tag values, defaults) live in the **body** (tables,
+per-version bullets), never collapsed into an unqualified statement. This satisfies the
+version-awareness mandate (CLAUDE.md) without one document per version.
+
+**Rationale.** Keeps one atomic document per entity across versions (D-005) while remaining
+version-accurate: the envelope tells retrieval/filters the range; the body preserves the exact
+per-version truth. Already applied consistently (e.g. `CONCEPT-KUBERNETES_VERSION_SUPPORT`,
+`CONCEPT-K8S_FEATURE_GATES`, the component and addon docs).
+
+**Consequences.** Reviewers should reject a doc that states a per-version fact unqualified in the
+body, or whose envelope contradicts the body's per-version detail. Complements D-008
+(version-field nullability).

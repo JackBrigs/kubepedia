@@ -20,18 +20,14 @@ the upgrade-horizon + CVE-remediation layer, and the large troubleshooting layer
   — blocked to the crawler — / Slack / engineering blogs / postmortems) with per-item
   re-verification against tagged code/docs. Never authoritative; lower confidence. Deferred.
 
-## Open — CNI plugins other than Cilium/Calico
+## CNI plugins — DONE (2026-07-17)
 
-**Cilium** and **Calico** (the default) are indexed. Still deferred (owner decision):
-
-- Flannel
-- Kube-OVN
-- Kube-router
-- Weave
-- Macvlan
-- Multus (meta-plugin)
-
-(Their ansible run-tags are also excluded from the tag index by the same decision.)
+All shipped CNI plugins are now indexed as `COMPONENT-*`: Cilium, Calico (default), **Flannel**
+(0.28.4), **Kube-OVN** (1.12.21), **Kube-router** (2.1.1), **Macvlan**, and the meta-plugin
+**Multus** (4.2.2). **Weave was removed upstream** — no `weave` role at v2.31.0 (noted in
+[[VARIABLE-KUBE_NETWORK_PLUGIN]]). Remaining (niche, deferred): `custom_cni` (bring-your-own
+manifests) and `ovn4nfv`; and the CNI-specific ansible run-tags (still excluded from the tag
+index — low value).
 
 ## Open — periodic / maintenance
 
@@ -54,8 +50,7 @@ the upgrade-horizon + CVE-remediation layer, and the large troubleshooting layer
   support-matrix numbers.
 - Curated Kubernetes "Known Issues" / "Urgent Upgrade Notes" per version.
 
-## Possible architecture refinements (only if justified by implementation)
+## Possible architecture refinements
 
-- Formalize the "version envelope in frontmatter, precise per-version facts in the body"
-  convention as an explicit addendum in `standards/decisions.md` (currently applied
-  consistently but not written down as its own decision).
+- **DONE (2026-07-17):** the "version envelope in frontmatter, precise per-version facts in the
+  body" convention is now formalized as **D-017** in `standards/decisions.md`.

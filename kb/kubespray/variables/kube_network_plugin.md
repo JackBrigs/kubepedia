@@ -32,9 +32,10 @@ relations:
 ## Summary
 
 `kube_network_plugin` selects the CNI network plugin Kubespray installs. The
-default is `calico`, unchanged across `v2.29.0`–`v2.31.0`. Kubepedia currently
-indexes only the `cilium` option (see [[COMPONENT-CILIUM]]); other plugins are in
-the backlog.
+default is `calico`, unchanged across `v2.29.0`–`v2.31.0`. All shipped plugins are
+now indexed: [[COMPONENT-CALICO]] (default), [[COMPONENT-CILIUM]], [[COMPONENT-FLANNEL]],
+[[COMPONENT-KUBE_OVN]], [[COMPONENT-KUBE_ROUTER]], [[COMPONENT-MACVLAN]], and the
+meta-plugin [[COMPONENT-MULTUS]].
 
 ## Implementation
 
@@ -43,12 +44,15 @@ Defined in `roles/kubespray_defaults/defaults/main/main.yml`
 selects which `roles/network_plugin/<plugin>` role runs and which manifests are
 templated.
 
-Accepted values (per `docs/ansible/vars.md`): `calico` (default), `cilium`,
-`flannel`, `kube-ovn`, `kube-router`, `weave`, `macvlan`, plus `cni` (custom) and
-`none`. `multus` is a meta-plugin layered on top via a separate flag.
+Accepted values at v2.31.0: `calico` (default), `cilium`, `flannel`, `kube-ovn`,
+`kube-router`, `macvlan`, plus `cni` (custom / `custom_cni` role), `ovn4nfv`, and
+`none`. `multus` is a meta-plugin layered on top of a primary CNI.
 
-> Indexed in Kubepedia: `cilium` only. `calico` (the default) and the rest are
-> tracked in `BACKLOG.md`.
+> **`weave` was removed** — there is no `roles/network_plugin/weave` at v2.31.0
+> (Weave Net is EOL upstream). Don't set `kube_network_plugin: weave`.
+
+> Indexed in Kubepedia: all of the above (calico/cilium/flannel/kube-ovn/
+> kube-router/macvlan/multus). Deferred: `custom_cni`, `ovn4nfv` (niche).
 
 ## Compatibility
 
