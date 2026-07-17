@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "cri_dockerd_version / download binary"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_MANAGER
 ---
 
 # cri-dockerd

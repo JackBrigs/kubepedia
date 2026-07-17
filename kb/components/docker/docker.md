@@ -22,7 +22,9 @@ sources:
     path: roles/container-engine/docker
     url: https://github.com/kubernetes-sigs/kubespray/tree/v2.31.0/roles/container-engine/docker
     note: "docker role: package install and per-distro version maps"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_MANAGER
 ---
 
 # docker

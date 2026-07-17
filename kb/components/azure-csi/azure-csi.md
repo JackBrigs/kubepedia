@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "azure_csi_plugin_version / azure_csi_plugin_image_repo / azure_csi_plugin_image_tag"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CSI_LAYER
 ---
 
 # azure-csi

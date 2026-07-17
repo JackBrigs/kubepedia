@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "youki_version = first key of youki_checksums['amd64']; youki_enabled; youki_download_url"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_RUNTIMES
 ---
 
 # youki

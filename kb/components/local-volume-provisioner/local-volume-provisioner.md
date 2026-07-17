@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "local_volume_provisioner_version / local_volume_provisioner_image_repo / local_volume_provisioner_image_tag"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CSI_LAYER
 ---
 
 # local-volume-provisioner

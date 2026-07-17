@@ -18,7 +18,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "crun_version = first key of crun_checksums['amd64']; crun_enabled; crun_download_url"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_RUNTIMES
 ---
 
 # crun

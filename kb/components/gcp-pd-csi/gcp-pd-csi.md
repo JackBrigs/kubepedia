@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "gcp_pd_csi_plugin_version / gcp_pd_csi_plugin_image_repo / gcp_pd_csi_plugin_image_tag"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CSI_LAYER
 ---
 
 # gcp-pd-csi

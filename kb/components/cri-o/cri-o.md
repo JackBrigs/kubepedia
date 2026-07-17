@@ -26,7 +26,9 @@ sources:
     path: roles/container-engine/cri-o
     url: https://github.com/kubernetes-sigs/kubespray/tree/v2.31.0/roles/container-engine/cri-o
     note: "cri-o role: archive install and /etc/crio configuration"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_MANAGER
 ---
 
 # cri-o

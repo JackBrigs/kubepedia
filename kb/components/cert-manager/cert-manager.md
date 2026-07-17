@@ -19,7 +19,11 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "cert_manager_version and cert_manager_*_image_repo/tag"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CLUSTER_PKI
+  - type: see_also
+    target: CONCEPT-HELM_IN_KUBESPRAY
 ---
 
 # cert-manager

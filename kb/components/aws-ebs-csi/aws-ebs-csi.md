@@ -19,7 +19,9 @@ sources:
     path: roles/kubespray_defaults/defaults/main/download.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
     note: "aws_ebs_csi_plugin_version / aws_ebs_csi_plugin_image_repo / aws_ebs_csi_plugin_image_tag"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CSI_LAYER
 ---
 
 # aws-ebs-csi
