@@ -177,6 +177,45 @@ def main():
             if fm.get("id") not in linked:
                 r.warned(f"{rel}: document '{fm.get('id')}' is not connected to the graph")
 
+    # 7. Consistency guards (warnings — encode the bug classes found by hand)
+    import re as _re
+
+    def _vt(s):
+        return tuple(int(x) if x.isdigit() else 0 for x in str(s).split("."))
+
+    # 7a. broken body [[wikilinks]] (forward-refs are allowed → warning, not failure)
+    for path, rel, fm, sections in docs:
+        try:
+            body = open(path).read().split("---", 2)[-1]
+        except OSError:
+            continue
+        for w in sorted(set(_re.findall(r"\[\[([A-Z][A-Z0-9_]*-[A-Z0-9_]+)\]\]", body))):
+            if w not in known:
+                r.warned(f"{rel}: body wikilink [[{w}]] does not resolve")
+
+    # 7b. duplicate titles across docs (a real collision signal, e.g. the old
+    # COMPONENT-ETCD vs ROLE-ETCD both titled "etcd"). Cross-type *alias* sharing
+    # (COMPONENT/TAG/VARIABLE for the same tech) is intentional, so aliases are
+    # not flagged — only identical titles.
+    title_map = {}
+    for path, rel, fm, sections in docs:
+        t = str(fm.get("title") or "").strip().lower()
+        if t:
+            title_map.setdefault(t, set()).add(fm.get("id"))
+    for t, ids in sorted(title_map.items()):
+        if len(ids) > 1:
+            r.warned(f"title '{t}' shared by {len(ids)} docs: {sorted(ids)}")
+
+    # 7c. version-envelope sanity (well-formed range, low <= high)
+    for path, rel, fm, sections in docs:
+        for field in ("kubespray_version", "kubernetes_version", "component_version"):
+            val = fm.get(field)
+            if not isinstance(val, str) or ">=" not in val or "<=" not in val:
+                continue
+            m = _re.search(r">=\s*v?([0-9][0-9.]*)\D+<=\s*v?([0-9][0-9.]*)", val)
+            if m and _vt(m.group(1)) > _vt(m.group(2)):
+                r.warned(f"{rel}: {field} range looks inverted: {val}")
+
     # 9. Index consistency
     index_dir = os.path.join(repo, "index")
     documents, relations, ids = kdslib.build_index(kb_root, repo)
