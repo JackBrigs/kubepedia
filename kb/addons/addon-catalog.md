@@ -74,7 +74,7 @@ index only; `CONCEPT-ADDON_<X>` = a dedicated deep doc exists.
 | Addon | Upstream | Chart | App | Class | Doc |
 |-------|----------|-------|-----|-------|-----|
 | argocd | argo-cd | 8.5.7 | — | upstream | [[CONCEPT-ADDON_ARGOCD]] |
-| gitlab-agent | gitlab-agent | 2.22.1 / 2.26.0 | — | upstream | catalog |
+| gitlab-agent | gitlab-agent | 2.22.1 / 2.26.0 | — | upstream | [[CONCEPT-ADDON_GITLAB_AGENT]] |
 | gitlab-runner | gitlab-runner | 0.81.0 | 18.4.0 | upstream | [[CONCEPT-ADDON_GITLAB_RUNNER]] |
 | gitlab-com-runner | gitlab-runner | 0.63.0 | 16.10.0 | upstream | [[CONCEPT-ADDON_GITLAB_RUNNER]] |
 | gitlab-ci-control | in-house | 0.0.1 | — | in-house | catalog |
@@ -88,12 +88,12 @@ index only; `CONCEPT-ADDON_<X>` = a dedicated deep doc exists.
 | vm | victoria-metrics-k8s-stack (+ vmalert 0.17.0, grafana-operator v5.18.0, oauth2-proxy 8.1.0, helm-exporter 1.2.16) | 0.42.0 | — | upstream | [[CONCEPT-ADDON_VM_K8S_STACK]] |
 | alertmanager | prometheus-community alertmanager | 0.28.0 | — | upstream | [[CONCEPT-ADDON_ALERTMANAGER]] |
 | grafana | in-house (Grafana Operator CR) | 0.0.1 | 11.6.4 | in-house | catalog |
-| karma | karma (+ oauth2-proxy 8.3.1) | 2.11.0 | v0.121 | upstream | catalog |
+| karma | karma (+ oauth2-proxy 8.3.1) | 2.11.0 | v0.121 | upstream | [[CONCEPT-ADDON_KARMA]] |
 | pyrra | pyrra | 1.1.0 | v0.9.4¹ | upstream | [[CONCEPT-ADDON_PYRRA]] |
 | vector | vector-operator | 0.7.2 | — | upstream | [[CONCEPT-ADDON_VECTOR_OPERATOR]] |
 | opentelemetry | opentelemetry | — | — | upstream | [[CONCEPT-ADDON_OTEL_OPERATOR]] |
 | opentelemetry-operator | opentelemetry-operator (all versions) | — | — | upstream | [[CONCEPT-ADDON_OTEL_OPERATOR]] |
-| release-watcher | release-watcher | 0.0.9 | — | upstream | catalog |
+| release-watcher | release-watcher | 0.0.9 | — | upstream | [[CONCEPT-ADDON_RELEASE_WATCHER]] |
 | headlamp | headlamp | 0.43.0 | — | upstream | [[CONCEPT-ADDON_HEADLAMP]] |
 | dashboard | kubernetes-dashboard (+ oauth2-proxy 8.1.1) | 7.6.1 | — | upstream | [[CONCEPT-ADDON_KUBERNETES_DASHBOARD]] |
 
@@ -111,16 +111,16 @@ index only; `CONCEPT-ADDON_<X>` = a dedicated deep doc exists.
 | k8up | k8up (+ k8upcrd 0.1.0) | 4.8.4 | — | upstream | [[CONCEPT-ADDON_K8UP]] |
 | velero | velero | 11.4.0 | 1.17.1 | upstream | [[CONCEPT-ADDON_VELERO]] |
 | zalando-postgres-operator | postgres-operator | 1.14.0 | — | upstream | [[CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR]] |
-| rabbitmq | rabbitmq-cluster-operator (bitnami) | 3.7.0 | — | upstream | catalog |
-| rabbitmq-cluster-operator | cluster-operator (kustomize) | v2.19.2 | — | upstream | catalog |
-| dragonfly | dragonfly-operator (local) | v1.1.11 | — | upstream | catalog |
+| rabbitmq | rabbitmq-cluster-operator (bitnami) | 3.7.0 | — | upstream | [[CONCEPT-ADDON_RABBITMQ_BITNAMI]] |
+| rabbitmq-cluster-operator | cluster-operator (kustomize) | v2.19.2 | — | upstream | [[CONCEPT-ADDON_RABBITMQ_CLUSTER_OPERATOR]] |
+| dragonfly | dragonfly-operator (local) | v1.1.11 | — | upstream | [[CONCEPT-ADDON_DRAGONFLY]] |
 | elastic | eck-operator | 3.1.0 | — | upstream | [[CONCEPT-ADDON_ECK_OPERATOR]] |
 
 ### Networking, gateways & ingress
 
 | Addon | Upstream | Chart | App | Class | Doc |
 |-------|----------|-------|-----|-------|-----|
-| ingress-nginx | ingress-nginx | 4.12.0 | — | upstream | catalog (overlaps [[COMPONENT-INGRESS_NGINX]]) |
+| ingress-nginx | ingress-nginx | 4.12.0 | — | upstream | [[CONCEPT-ADDON_INGRESS_NGINX]] |
 | eg (envoy gateway) | gateway-helm / gateway-addons-helm | v1.4.1→v1.6.0 | — | upstream | [[CONCEPT-ADDON_ENVOY_GATEWAY]] |
 | exc (envoy-xds-controller) | envoy-xds-controller (+ dex 0.22.1) | 0.87.0 | — | upstream | [[CONCEPT-ADDON_ENVOY_XDS_CONTROLLER]] |
 | exc-stage | envoy-xds-controller (+ dex 0.22.1) | 0.86.0 | — | upstream | [[CONCEPT-ADDON_ENVOY_XDS_CONTROLLER]] |
@@ -133,8 +133,8 @@ index only; `CONCEPT-ADDON_<X>` = a dedicated deep doc exists.
 |-------|----------|-------|-----|-------|-----|
 | capsule-system | capsule / capsule-proxy | 0.10.9→0.13.3 / 0.9.13→0.13.4 | — | upstream | [[CONCEPT-ADDON_CAPSULE]] |
 | operator-lifecycle-manager | OLM (in-house packaging) | 0.32.0 | — | upstream | [[CONCEPT-ADDON_OLM]] |
-| spegel | spegel (in-house packaging) | 0.0.1 | — | upstream | catalog |
-| etcd-defrag-controller | etcd-defrag-controller | 0.0.7 | — | upstream | catalog |
+| spegel | spegel (in-house packaging) | 0.0.1 | — | upstream | [[CONCEPT-ADDON_SPEGEL]] |
+| etcd-defrag-controller | etcd-defrag-controller | 0.0.7 | — | upstream | [[CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER]] |
 | common | in-house (helm library) | 0.0.2 | — | in-house | catalog |
 | quoter | in-house | 0.1.0 | — | in-house | catalog |
 
@@ -153,14 +153,14 @@ index only; `CONCEPT-ADDON_<X>` = a dedicated deep doc exists.
 | Addon | Upstream | Chart | App | Class | Doc |
 |-------|----------|-------|-----|-------|-----|
 | gpu-operator | NVIDIA gpu-operator | v25.10.1 | — | upstream | [[CONCEPT-ADDON_GPU_OPERATOR]] |
-| kvm-device-plugin | kvm-device-plugin | 1.0.0 | — | upstream | catalog |
+| kvm-device-plugin | kvm-device-plugin | 1.0.0 | — | upstream | [[CONCEPT-ADDON_KVM_DEVICE_PLUGIN]] |
 | keda | keda | 2.17.2 | — | upstream | [[CONCEPT-ADDON_KEDA]] |
-| awx | awx-operator (+ awx-operator-awx 0.0.1) | 2.19.1 | — | upstream | catalog |
-| tbot | Teleport tbot | 18.7.3 | — | upstream | catalog |
-| kubernetes-mcp | kubernetes-mcp-server (+ open-webui 14.6.0) | 0.1.0 | — | upstream | catalog |
-| feast-operator | feast-operator | — | — | upstream | catalog |
-| gigapipe-read | gigapipe (qryn) | — | — | upstream | catalog |
-| gigapipe-write | gigapipe (qryn) | — | — | upstream | catalog |
+| awx | awx-operator (+ awx-operator-awx 0.0.1) | 2.19.1 | — | upstream | [[CONCEPT-ADDON_AWX]] |
+| tbot | Teleport tbot | 18.7.3 | — | upstream | [[CONCEPT-ADDON_TBOT]] |
+| kubernetes-mcp | kubernetes-mcp-server (+ open-webui 14.6.0) | 0.1.0 | — | upstream | [[CONCEPT-ADDON_KUBERNETES_MCP]] |
+| feast-operator | feast-operator | — | — | upstream | [[CONCEPT-ADDON_FEAST_OPERATOR]] |
+| gigapipe-read | gigapipe (qryn) | — | — | upstream | [[CONCEPT-ADDON_GIGAPIPE]] |
+| gigapipe-write | gigapipe (qryn) | — | — | upstream | [[CONCEPT-ADDON_GIGAPIPE]] |
 
 > ¹ App version corrected from the owner list against the chart's `Chart.yaml`/release (vault chart ships 1.21.2 not 1.21.4; volsync is 0.15.0 not 3.5.0; pyrra 1.1.0 ships v0.9.4 not v0.8.1) — see the deep doc.
 
