@@ -73,6 +73,7 @@ source-verified fix.
   [[TROUBLE-COREDNS_RESOLUTION_LOOP]].
 - `LoadBalancer` `<pending>` → [[TROUBLE-METALLB_SERVICE_PENDING]]; control-plane VIP →
   [[TROUBLE-KUBE_VIP_VIP_NOT_UP]].
+- Service unreachable / no endpoints → [[TROUBLE-SERVICE_NO_ENDPOINTS]].
 
 ### Certificates & TLS
 
