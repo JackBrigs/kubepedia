@@ -281,3 +281,30 @@ IDs, following the project convention that non-Kubespray technologies are `conce
 `CONCEPT-VELERO`, `CONCEPT-OBSERVABILITY_STACK`). The `component` type's version rule requires
 `kubespray_version` (all `COMPONENT-*` are Kubespray-managed); addons set `kubespray_version:
 null`, so `component` does not fit. No validator change was needed.
+
+## D-016 — Release 0.3.0 (content milestone, tag v0.3.0) (2026-07-17)
+
+**Context.** After 0.2.0 (architecture baseline), a large content layer was built and the owner
+asked to snapshot it as a release before continuing.
+
+**Decision.** Bump the project version **0.2.0 → 0.3.0** (`CLAUDE.md`) and cut annotated git tag
+**`v0.3.0`** at that state. 0.3.0 is a **content** release, not an architecture change.
+
+**Scope captured in 0.3.0.**
+- Kubespray range extended to **v2.27.0–v2.31.0**; Kubernetes layer to **1.29–1.35**
+  (feature gates, changes-1.29/1.30, API removals, version-support); CVE matrices for old
+  shipped versions; Ubuntu matrix + 26.04 future-context (D-014).
+- **Application-platform addon catalog** (D-015): `CONCEPT-ADDON_CATALOG` + ~48
+  `CONCEPT-ADDON_*` deep docs (incl. Kyverno), in-house charts as catalog rows only.
+- **`CONCEPT-UPGRADE_HORIZON`** — latest-upstream vs base for all components/addons
+  (future context) + **`CONCEPT-CVE_REMEDIATION`** runbook.
+- Expanded troubleshooting: upgrade-jump (A) + operational (B) + cross-component/navigator (C)
+  layers, several community-/issue-mined (verified with GitHub issue/PR URLs).
+- Base at tag time: ~1341 documents, validator PASS.
+
+**Rationale.** Owner requested a versioned checkpoint. The 0.2.0 architecture is unchanged, so a
+minor content bump (not a major) is correct; the tag gives a reproducible reference point.
+
+**Consequences.** Future nightly/content work continues on `0.3.x`; the next architecture change
+(if any) would warrant its own decision. Backlog items (Talos OS, Clevis+LUKS2, non-Cilium CNI,
+community sources, README) remain deferred.

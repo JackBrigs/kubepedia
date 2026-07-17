@@ -1,4 +1,4 @@
-# CLAUDE.md — Kubepedia 0.2.0
+# CLAUDE.md — Kubepedia 0.3.0
 ## Purpose
 You are the implementation agent for Kubepedia, an AI-first, version-aware, source-driven engineering knowledge base for Kubernetes, Kubespray, and Kubernetes components managed by Kubespray.
 Your responsibility is to build, maintain, validate, and evolve this knowledge base without sacrificing correctness, traceability, or version accuracy.
@@ -15,8 +15,8 @@ Do not use `master`, `main`, a newer tag, or unpinned documentation as evidence 
 Newer information may be added only when marked as future context relative to `v2.29.0`.
 The Kubepedia 0.1.0 knowledge base under `knowledge-base/` (version slices `v2.27.0`–`v2.31.0`) is retained as a raw, pre-analyzed **source cache**, not as KDS knowledge. It accelerates research, but every fact must be re-verified against the tag before it becomes a KDS document under `kb/`. The KDS graph and the legacy cache never mix.
 ## Project Version
-The current Kubepedia version is `0.2.0`.
-This version establishes the architecture, execution model, source policy, knowledge format, and validation rules.
+The current Kubepedia version is `0.3.0`.
+Version `0.2.0` established the architecture, execution model, source policy, knowledge format, and validation rules; `0.3.0` is the first large **content** release on that architecture (Kubespray range v2.27.0–v2.31.0 / K8s 1.29–1.35, the application-platform addon catalog and its deep docs, the latest-upstream upgrade horizon, and the expanded troubleshooting layer). See `standards/decisions.md` D-016.
 Prioritize implementation over further architecture redesign.
 ## Mandatory Standards
 Before starting any task, read and follow:
