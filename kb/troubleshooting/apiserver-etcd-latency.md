@@ -13,6 +13,8 @@ aliases:
   - etcdserver request timed out
   - etcd wal fsync slow
   - kubectl hangs writes stall
+  - etcd apply took too long
+  - etcd slow apply warnings
 tags:
   - troubleshooting
   - apiserver

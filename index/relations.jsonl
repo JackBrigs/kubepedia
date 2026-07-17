@@ -273,6 +273,8 @@
 {"source": "CONFIG-APISERVER_AUTHENTICATION_CONFIG", "target": "CONFIG-KUBEADM_CONFIG_API_VERSION", "type": "see_also"}
 {"source": "CONFIG-CALICO_DATAPLANE", "target": "COMPONENT-CALICO", "type": "see_also"}
 {"source": "CONFIG-CALICO_DATAPLANE", "target": "CONCEPT-CLUSTER_NETWORKING", "type": "see_also"}
+{"source": "CONFIG-CNI_MTU", "target": "CONFIG-CALICO_DATAPLANE", "type": "see_also"}
+{"source": "CONFIG-CNI_MTU", "target": "TROUBLE-VXLAN_MTU_MISMATCH", "type": "see_also"}
 {"source": "CONFIG-COREDNS_COREFILE", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "CONFIG-COREDNS_COREFILE", "target": "TROUBLE-COREDNS_RESOLUTION_LOOP", "type": "see_also"}
 {"source": "CONFIG-COREDNS_COREFILE", "target": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "type": "see_also"}
@@ -361,6 +363,9 @@
 {"source": "PRACTICE-MIGRATE_DOCKER_TO_CONTAINERD", "target": "VARIABLE-CONTAINER_MANAGER", "type": "see_also"}
 {"source": "PRACTICE-MIRROR", "target": "CONFIG-PROXY", "type": "see_also"}
 {"source": "PRACTICE-MIRROR", "target": "PRACTICE-OFFLINE_ENVIRONMENT", "type": "see_also"}
+{"source": "PRACTICE-MONITORING_BASELINE", "target": "CONCEPT-OBSERVABILITY_STACK", "type": "see_also"}
+{"source": "PRACTICE-MONITORING_BASELINE", "target": "TROUBLE-APISERVER_APF_429", "type": "see_also"}
+{"source": "PRACTICE-MONITORING_BASELINE", "target": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "type": "see_also"}
 {"source": "PRACTICE-NETCHECK", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-ETCD", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-RESET", "type": "see_also"}
@@ -369,6 +374,9 @@
 {"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "TAG-DOWNLOAD", "type": "see_also"}
 {"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "VARIABLE-DOWNLOAD_RUN_ONCE", "type": "see_also"}
 {"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "VARIABLE-SKIP_DOWNLOADS", "type": "see_also"}
+{"source": "PRACTICE-RBAC_LEAST_PRIVILEGE", "target": "CONCEPT-K8S_1_29_CHANGES", "type": "see_also"}
+{"source": "PRACTICE-RBAC_LEAST_PRIVILEGE", "target": "PRACTICE-HARDENING", "type": "see_also"}
+{"source": "PRACTICE-RBAC_LEAST_PRIVILEGE", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
 {"source": "PRACTICE-RECOVER_CONTROL_PLANE", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "PRACTICE-RECOVER_CONTROL_PLANE", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
 {"source": "PRACTICE-REGISTRY", "target": "COMPONENT-REGISTRY", "type": "see_also"}
@@ -505,6 +513,8 @@
 {"source": "TROUBLE-CILIUM_LOADBALANCER_MODE_NOT_RENDERED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_OPERATOR_GENERIC_OFFLINE_REGISTRY", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_PACKET_DROPS", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_PACKET_DROPS", "target": "TROUBLE-CILIUM_POD_CONNECTIVITY", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_POD_CONNECTIVITY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_POD_CONNECTIVITY", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_PORTMAP", "target": "COMPONENT-CILIUM", "type": "see_also"}
@@ -541,6 +551,11 @@
 {"source": "TROUBLE-CRASHLOOPBACKOFF", "target": "TROUBLE-OOMKILLED", "type": "see_also"}
 {"source": "TROUBLE-CRASHLOOPBACKOFF", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-CRIO_REGISTRY_AUTHS_DUPLICATE", "target": "CONCEPT-CONTAINER_MANAGER", "type": "see_also"}
+{"source": "TROUBLE-CRIO_SHORT_NAME_REGISTRY", "target": "COMPONENT-CRI_O", "type": "see_also"}
+{"source": "TROUBLE-CRIO_SHORT_NAME_REGISTRY", "target": "TROUBLE-IMAGEPULLBACKOFF", "type": "see_also"}
+{"source": "TROUBLE-DEPLOY_HANGS_WAIT_APISERVER", "target": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "type": "see_also"}
+{"source": "TROUBLE-DEPLOY_HANGS_WAIT_APISERVER", "target": "TROUBLE-CGROUP_DRIVER_MISMATCH", "type": "see_also"}
+{"source": "TROUBLE-DEPLOY_HANGS_WAIT_APISERVER", "target": "TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK", "type": "see_also"}
 {"source": "TROUBLE-DEX_OIDC_LOGIN_FAILS", "target": "CONCEPT-ADDON_DEX", "type": "see_also"}
 {"source": "TROUBLE-DISK_PRESSURE_EVICTION", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "target": "PRACTICE-DNS_DEBUG", "type": "see_also"}
@@ -684,6 +699,8 @@
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "TROUBLE-NODELOCALDNS_IPV6_IP", "target": "COMPONENT-NODELOCALDNS", "type": "see_also"}
+{"source": "TROUBLE-NODE_CANNOT_REACH_APISERVER", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
+{"source": "TROUBLE-NODE_CANNOT_REACH_APISERVER", "target": "TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP", "type": "see_also"}
 {"source": "TROUBLE-NODE_MEMORY_TOO_SMALL", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
 {"source": "TROUBLE-NODE_MEMORY_TOO_SMALL", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "TROUBLE-OCI_CCM_TEMPLATE_FILENAME", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
@@ -717,6 +734,9 @@
 {"source": "TROUBLE-RBAC_FORBIDDEN", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "TROUBLE-REGISTRY_2_TO_3_MIGRATION", "target": "COMPONENT-REGISTRY", "type": "see_also"}
 {"source": "TROUBLE-REGISTRY_2_TO_3_MIGRATION", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
+{"source": "TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE", "target": "TROUBLE-KCM_NODE_LIFECYCLE", "type": "see_also"}
+{"source": "TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
 {"source": "TROUBLE-ROLLOUT_STUCK", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-ROLLOUT_STUCK", "target": "TROUBLE-CRASHLOOPBACKOFF", "type": "see_also"}
 {"source": "TROUBLE-ROLLOUT_STUCK", "target": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "type": "see_also"}

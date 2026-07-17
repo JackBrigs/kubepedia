@@ -14,6 +14,7 @@ aliases:
   - control plane certificate expired
   - kubeadm certs check-expiration
   - renew certs kubespray
+  - certs valid 100 years myth
 tags:
   - troubleshooting
   - kubeadm
