@@ -357,3 +357,40 @@ graph). Avoids fabricating edges — never assert a relation that isn't real (Pr
 the handful of genuinely-disconnected graph-type docs. Clients querying a variable should use
 `tags.jsonl` / `aliases.jsonl`, documented in `CONCEPT-KB_NAVIGATION`. If a future leaf type is added
 it should be added to the exemption set with its own justification.
+
+## D-019 — Release 0.4.0: usability & assurance layers (2026-07-17)
+
+**Context.** Since 0.3.0 (content baseline, D-016) the project added several cross-cutting layers on
+the **unchanged** 0.2.0/0.3.0 architecture, and the owner requested a versioned checkpoint.
+
+**Decision.** Tag the current state as **`v0.4.0`** — a **minor content/capability release** (no
+architecture change). What 0.4.0 contains beyond 0.3.0:
+
+- **Automated consistency guard** — `scripts/check_versions.py` (per-tag component-version drift
+  check against the tagged Kubespray source, covering v2.27.0–v2.31.0, handling pin-vs-computed,
+  role-path drift, checksums-path move, leading-`v` keys) + validator consistency guards (broken
+  body wikilinks, duplicate titles, inverted version ranges).
+- **Upgrade & Change Report** capstone made KB-driven (`scripts/upgrade_report.py`: component
+  deltas, CVE exposure, K8s-layer changes, required actions).
+- **Runbook layer** — `CONCEPT-RUNBOOKS_INDEX` + 15 ordered, source-verified operational procedures
+  (bootstrap, add/remove nodes, node maintenance, upgrade one minor, component upgrade, config
+  change, CNI/runtime migration, etcd backup/restore, cert rotation, secrets encryption, reset,
+  cold-start), each with a health gate, per-step verify, explicit rollback, and failure jumps.
+- **Security posture layer** — `CONCEPT-SECURITY_INDEX` (CVE matrices + hardening map) and
+  `CONCEPT-INSECURE_DEFAULTS` (the hardening overlay inverted into an audit checklist).
+- **Retrieval/AI-first layer** — inverted facet indexes `index/tags.jsonl` and
+  `index/aliases.jsonl`, the `CONCEPT-KB_NAVIGATION` entry point, and D-018 (leaf docs are
+  facet-reachable, not graph-required) — orphan warnings 439 → 0.
+
+- Base at tag time: **1426 documents**, validator PASS (0 hard failures, 0 warnings),
+  `check_versions.py` PASS (checked 45, 0 mismatches).
+
+**Rationale.** The 0.3.0 content is now navigable, operable, security-auditable, and machine-
+retrievable, and the facts are automatically guarded against version drift — a coherent
+"usability & assurance" increment that deserves a reproducible reference point. Minor (not major):
+the architecture, KDS format, and standards are unchanged.
+
+**Consequences.** Future work continues on `0.4.x`. Deferred items remain: README (design-first,
+owner-led), promoting runbooks to a first-class `runbook` type if retrieval proves it, and the
+monetization MVP (inventory intake over the Upgrade Report). The freshness treadmill (new Kubespray
+tags) is now a product concern, not just hygiene.
