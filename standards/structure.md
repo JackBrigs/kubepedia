@@ -44,7 +44,10 @@ kb/components/       (~44)   32 managed components + version-selection / runtime
 kb/troubleshooting/  (~83)   symptom→cause→fix docs + the navigator map + CVE matrices
 kb/ecosystem/        (~8)    adjacent domains (D-013): observability, GitOps/ArgoCD,
                              Velero, secrets (external/sealed), external-dns
-kb/os/               (~1)    node OS ↔ Kubernetes (e.g. Ubuntu 24.04)
+kb/os/               (~1)    node OS ↔ Kubernetes (e.g. Ubuntu 24.04, 26.04 future)
+kb/addons/           (~47)   application-platform addon catalog (D-015): CONCEPT-ADDON_*
+                             deep docs for ~46 upstream Helm-chart addons + the catalog
+                             index; in-house ("собственный") charts stay catalog rows only
 ```
 
 ## `standards/` — the rules
@@ -57,7 +60,8 @@ kb/os/               (~1)    node OS ↔ Kubernetes (e.g. Ubuntu 24.04)
 - `workflow.md` — the working process.
 - `decisions.md` — **append-only decision log** (D-001…). Notably **D-011** (legacy
   cache vs KDS separation), **D-012** (`ansible_tag` type), **D-013** (ecosystem scope
-  expansion), **D-014** (version range extended back to v2.27.0).
+  expansion), **D-014** (version range extended back to v2.27.0), **D-015** (application-
+  platform addon catalog under `kb/addons/`).
 - `structure.md` — this file.
 
 ## `schema/` and `scripts/`

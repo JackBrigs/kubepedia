@@ -66,7 +66,7 @@ index only; `CONCEPT-ADDON_<X>` = a dedicated deep doc exists.
 | vault-secrets-webhook | bank-vaults | 1.21.4 | — | upstream | [[CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK]] |
 | 1password-connect | connect | 1.17.0 | 1.7.3 | upstream | [[CONCEPT-ADDON_1PASSWORD_CONNECT]] |
 | dex | dex (+ userinfo-provider 0.1.0, kubectl-web 0.0.1) | 0.23.0 | — | upstream | [[CONCEPT-ADDON_DEX]] |
-| cert-manager | cert-manager | — | v1.18.2 | upstream | catalog (overlaps [[COMPONENT-CERT_MANAGER]]) |
+| cert-manager | cert-manager | — | v1.18.2 | upstream | [[CONCEPT-ADDON_CERT_MANAGER]] (overlaps [[COMPONENT-CERT_MANAGER]]) |
 | talos-kms | in-house | 0.0.1 | — | in-house | catalog |
 
 ### GitOps, CI & progressive delivery
@@ -106,7 +106,7 @@ index only; `CONCEPT-ADDON_<X>` = a dedicated deep doc exists.
 | csi-cephfs | ceph-csi-cephfs | 3.14.2 / 3.13.0 | — | upstream | [[CONCEPT-ADDON_CEPH_CSI_CEPHFS]] |
 | cephbucket | in-house | current / v1.1.35 | 1.0.0 | in-house | catalog |
 | lvm-localpv | OpenEBS lvm-localpv | 1.7.0 | — | upstream | [[CONCEPT-ADDON_LVM_LOCALPV]] |
-| snapshotter | external-snapshotter (local) | v6.3.0 | — | upstream | catalog (overlaps [[COMPONENT-SNAPSHOT_CONTROLLER]]) |
+| snapshotter | external-snapshotter (local) | v6.3.0 | — | upstream | [[CONCEPT-ADDON_SNAPSHOTTER]] (overlaps [[COMPONENT-SNAPSHOT_CONTROLLER]]) |
 | volsync | volsync | 0.15.0 | 0.15.0¹ | upstream | [[CONCEPT-ADDON_VOLSYNC]] |
 | k8up | k8up (+ k8upcrd 0.1.0) | 4.8.4 | — | upstream | [[CONCEPT-ADDON_K8UP]] |
 | velero | velero | 11.4.0 | 1.17.1 | upstream | [[CONCEPT-ADDON_VELERO]] |

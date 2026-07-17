@@ -45,6 +45,8 @@
 {"source": "CONCEPT-ADDON_CATALOG", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-ADDON_CEPH_CSI_CEPHFS", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_CEPH_CSI_CEPHFS", "target": "CONCEPT-ADDON_ROOK_CEPH", "type": "see_also"}
+{"source": "CONCEPT-ADDON_CERT_MANAGER", "target": "COMPONENT-CERT_MANAGER", "type": "see_also"}
+{"source": "CONCEPT-ADDON_CERT_MANAGER", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_DEX", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_DRAGONFLY", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_ECK_OPERATOR", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
@@ -86,6 +88,9 @@
 {"source": "CONCEPT-ADDON_RELEASE_WATCHER", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_ROOK_CEPH", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_ROOK_CEPH", "target": "CONCEPT-ADDON_CEPH_CSI_CEPHFS", "type": "see_also"}
+{"source": "CONCEPT-ADDON_SNAPSHOTTER", "target": "COMPONENT-SNAPSHOT_CONTROLLER", "type": "see_also"}
+{"source": "CONCEPT-ADDON_SNAPSHOTTER", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
+{"source": "CONCEPT-ADDON_SNAPSHOTTER", "target": "CONCEPT-ADDON_VOLSYNC", "type": "see_also"}
 {"source": "CONCEPT-ADDON_SPEGEL", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_TBOT", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_VAULT", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
