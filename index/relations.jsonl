@@ -406,6 +406,12 @@
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "CONCEPT-GITOPS", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
+{"source": "TROUBLE-ARGOCD_UPGRADE_3_RBAC", "target": "CONCEPT-ADDON_ARGOCD", "type": "see_also"}
+{"source": "TROUBLE-ARGOCD_UPGRADE_3_RBAC", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-ARGOCD_UPGRADE_3_RBAC", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
+{"source": "TROUBLE-CAPSULE_UPGRADE_013", "target": "CONCEPT-ADDON_CAPSULE", "type": "see_also"}
+{"source": "TROUBLE-CAPSULE_UPGRADE_013", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-CAPSULE_UPGRADE_013", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-CERT_DIR_SSL_NOT_PKI", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
 {"source": "TROUBLE-CERT_DIR_SSL_NOT_PKI", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
 {"source": "TROUBLE-CERT_DIR_SSL_NOT_PKI", "target": "PRACTICE-KUBEADM_JOIN_FAILURES", "type": "see_also"}
@@ -456,6 +462,8 @@
 {"source": "TROUBLE-DOWNLOAD_FAILS", "target": "PRACTICE-OFFLINE_ENVIRONMENT", "type": "see_also"}
 {"source": "TROUBLE-DOWNLOAD_FAILS", "target": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "type": "see_also"}
 {"source": "TROUBLE-DOWNLOAD_FAILS", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}
+{"source": "TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI", "target": "CONCEPT-ADDON_ENVOY_GATEWAY", "type": "see_also"}
+{"source": "TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-ETCD_CERT_DIR_RECURSIVE_PERMS_CALICO", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "TROUBLE-ETCD_EVENTS_INVERTED_IGNORE_ERRORS", "target": "COMPONENT-ETCD", "type": "see_also"}
@@ -473,6 +481,8 @@
 {"source": "TROUBLE-FIREWALL_PORTS_BLOCKED", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "TROUBLE-FLATCAR_APISERVER_WAIT_DNS", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-GATEWAY_API_1_4_1_CHECKSUM_MISMATCH", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
+{"source": "TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS", "target": "CONCEPT-ADDON_GPU_OPERATOR", "type": "see_also"}
+{"source": "TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-HAPROXY_IPV6_BINDING", "target": "PRACTICE-HA_MODE", "type": "see_also"}
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
@@ -483,6 +493,9 @@
 {"source": "TROUBLE-IMAGEPULLBACKOFF", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}
 {"source": "TROUBLE-IMAGEPULLBACKOFF", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "target": "PRACTICE-CONTAINERD_DIAGNOSTICS", "type": "see_also"}
+{"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "CONCEPT-ADDON_INGRESS_NGINX", "type": "see_also"}
+{"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "PRACTICE-LARGE_DEPLOYMENTS", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
@@ -541,6 +554,8 @@
 {"source": "TROUBLE-ROLLOUT_STUCK", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-ROLLOUT_STUCK", "target": "TROUBLE-CRASHLOOPBACKOFF", "type": "see_also"}
 {"source": "TROUBLE-ROLLOUT_STUCK", "target": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "type": "see_also"}
+{"source": "TROUBLE-ROOK_CEPH_UPGRADE_SC_IMMUTABLE", "target": "CONCEPT-ADDON_ROOK_CEPH", "type": "see_also"}
+{"source": "TROUBLE-ROOK_CEPH_UPGRADE_SC_IMMUTABLE", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "target": "COMPONENT-RUNC", "type": "see_also"}
 {"source": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-RUNC_KNOWN_CVES", "target": "COMPONENT-RUNC", "type": "see_also"}
@@ -548,11 +563,16 @@
 {"source": "TROUBLE-SERVICE_NO_ENDPOINTS", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
 {"source": "TROUBLE-SERVICE_NO_ENDPOINTS", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-SERVICE_NO_ENDPOINTS", "target": "PRACTICE-SERVICE_NETWORKING_DEBUG", "type": "see_also"}
+{"source": "TROUBLE-SPEGEL_MIRROR_NOT_USED", "target": "CONCEPT-ADDON_SPEGEL", "type": "see_also"}
+{"source": "TROUBLE-SPEGEL_MIRROR_NOT_USED", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-SSH_BASTION_CONFIG_NAME_TYPO", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-TIMEZONE_UNDER_SELINUX", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "CONCEPT-VELERO", "type": "see_also"}
 {"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "PRACTICE-BACKUP_DR", "type": "see_also"}
+{"source": "TROUBLE-VELERO_UPGRADE_117", "target": "CONCEPT-ADDON_VELERO", "type": "see_also"}
+{"source": "TROUBLE-VELERO_UPGRADE_117", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-VELERO_UPGRADE_117", "target": "CONCEPT-VELERO", "type": "see_also"}
 {"source": "TROUBLE-VOLUMESNAPSHOTCLASS_V1", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "TROUBLE-VXLAN_MTU_MISMATCH", "target": "VARIABLE-CILIUM_TUNNEL_MODE", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
