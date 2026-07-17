@@ -81,6 +81,12 @@
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "COMPONENT-HELM", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT", "type": "see_also"}
+{"source": "CONCEPT-K8S_1_29_CHANGES", "target": "CONCEPT-K8S_API_REMOVALS", "type": "see_also"}
+{"source": "CONCEPT-K8S_1_29_CHANGES", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
+{"source": "CONCEPT-K8S_1_29_CHANGES", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "CONCEPT-K8S_1_30_CHANGES", "target": "CONCEPT-K8S_1_29_CHANGES", "type": "see_also"}
+{"source": "CONCEPT-K8S_1_30_CHANGES", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
+{"source": "CONCEPT-K8S_1_30_CHANGES", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-K8S_1_32_CHANGES", "target": "CONCEPT-K8S_API_REMOVALS", "type": "see_also"}
 {"source": "CONCEPT-K8S_1_32_CHANGES", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
 {"source": "CONCEPT-K8S_1_32_CHANGES", "target": "UPGRADE-V2_29_1__V2_30_0", "type": "see_also"}

@@ -1,10 +1,10 @@
 ---
 id: CONCEPT-K8S_FEATURE_GATES
 type: concept
-title: Kubernetes feature gates — graduations and removals across 1.31–1.35
+title: Kubernetes feature gates — graduations and removals across 1.29–1.35
 status: active
 kubespray_version: null
-kubernetes_version: ">=1.31 <=1.35"
+kubernetes_version: ">=1.29 <=1.35"
 component_version: null
 verified_at: "2026-07-16"
 confidence: confirmed
@@ -32,7 +32,7 @@ relations:
     target: CONCEPT-K8S_API_REMOVALS
 ---
 
-# Kubernetes feature gates — graduations and removals across 1.31–1.35
+# Kubernetes feature gates — graduations and removals across 1.29–1.35
 
 ## Summary
 
@@ -57,7 +57,7 @@ each gate's versioned spec records the exact release where its stage changed.
 
 ## Context
 
-- Applies to Kubernetes `1.31`–`1.35` (the versions Kubespray `v2.29.0`–`v2.31.0`
+- Applies to Kubernetes `1.29`–`1.35` (the versions Kubespray `v2.27.0`–`v2.31.0`
   install — see [[CONCEPT-KUBERNETES_VERSION_SUPPORT]]).
 - Covers the Kubernetes-specific gates in `kube_features.go`. A handful of generic
   apiserver gates (e.g. flowcontrol) live in the apiserver staging tree and are not
@@ -69,6 +69,24 @@ each gate's versioned spec records the exact release where its stage changed.
 ## Implementation
 
 ### Notable graduations per version (behaviour-changing)
+
+**Kubernetes 1.29** — new Beta (on by default):
+
+- **`SidecarContainers`** — native sidecars (`initContainers` with `restartPolicy:
+  Always`); a major workload change.
+- `JobBackoffLimitPerIndex`, `JobPodReplacementPolicy`,
+  `PodReadyToStartContainersCondition`, `SeparateTaintEvictionController`.
+- (Stage data parsed from the 1.35 source, which only retains gates still present at
+  1.35 — gates removed before 1.35 aren't shown here.)
+
+**Kubernetes 1.30** — new GA / new Beta:
+
+- GA (locked): `PodSchedulingReadiness*` (scheduling gates).
+- Beta (on): **`NodeSwap`** (kubelet swap), `ImageMaximumGCAge`, `PodLifecycleSleepAction`,
+  `ContainerCheckpoint`, `ServiceAccountTokenJTI`,
+  `ServiceAccountTokenNodeBindingValidation`, `ServiceAccountTokenPodNodeInfo`.
+- Beta (opt-in): `UserNamespacesSupport [off]`, `OrderedNamespaceDeletion [off]`,
+  `NodeLogQuery [off]`.
 
 **Kubernetes 1.31** — new Beta (on by default):
 
@@ -143,7 +161,7 @@ it only avoids the start-up failure from referencing an unknown gate.
 - Source of truth for stages: `pkg/features/kube_features.go` at each tag
   (parsed from `v1.35.4`, which carries the full versioned history).
 - Removed-gate list: Kubernetes "Feature Gates (removed)" reference (kubernetes.io).
-- Per-version operator highlights: [[CONCEPT-K8S_1_32_CHANGES]],
+- Per-version operator highlights: [[CONCEPT-K8S_1_29_CHANGES]], [[CONCEPT-K8S_1_30_CHANGES]], [[CONCEPT-K8S_1_32_CHANGES]],
   [[CONCEPT-K8S_1_33_CHANGES]], [[CONCEPT-K8S_1_34_CHANGES]],
   [[CONCEPT-K8S_1_35_CHANGES]].
 - Kubespray version→Kubernetes mapping: [[CONCEPT-KUBERNETES_VERSION_SUPPORT]].
