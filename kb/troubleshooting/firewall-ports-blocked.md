@@ -33,6 +33,8 @@ sources:
     note: "recommends disabling the firewall to avoid deployment issues (tag v2.31.0)"
 relations:
   - type: see_also
+    target: PRACTICE-PORT_REQUIREMENTS
+  - type: see_also
     target: TROUBLE-KUBESPRAY_PREFLIGHT_FAILS
   - type: see_also
     target: PRACTICE-NODE_NOT_READY
