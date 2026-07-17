@@ -2,8 +2,17 @@
 """Upgrade & Change Report generator (Kubepedia prototype).
 
 Given two Kubespray versions, walk the chain of KDS UPGRADE-* documents between
-them and assemble a consolidated, source-linked change report. With --inventory,
-personalize it: drop notes about technologies the cluster doesn't use.
+them and assemble a consolidated, source-linked change report. It is KB-driven:
+beyond the upgrade-notes chain it derives, from the KDS graph,
+  * a **component version-change** table (diffed from the RELEASE-V* docs),
+  * a **CVE-exposure** section (per moving component -> its osv.dev CVE matrix
+    + the consolidated remediation runbook),
+  * **Kubernetes layer changes** for the minors that newly enter the support
+    window (CONCEPT-K8S_1_XX_CHANGES), and
+  * cross-cutting upgrade mechanics (kubeadm seam, health-check, version skew,
+    upgrade horizon, preflight/graceful-upgrade practices).
+With --inventory, personalize it: drop notes about technologies the cluster
+doesn't use.
 
 Usage:
     python scripts/upgrade_report.py --from v2.29.0 --to v2.31.0
@@ -165,6 +174,69 @@ def filter_block(text, active, inactive):
     return "\n".join(kept).strip(), dropped
 
 
+# --- KB-driven enrichment (RELEASE tables, CVE matrices, K8s layer) ---
+def release_id(vtok):
+    """v2.29.0 -> RELEASE-V2_29_0"""
+    return "RELEASE-V" + vtok.lstrip("v").replace(".", "_")
+
+
+def parse_release_table(docs, vtok):
+    """From a RELEASE doc: ({component: version}, {k8s_minor, ...})."""
+    rid = release_id(vtok)
+    comps, minors = {}, set()
+    if rid not in docs:
+        return comps, minors
+    sec = read_sections(docs[rid]["path"])
+    for line in sec.get("Implementation", "").splitlines():
+        m = re.match(r"^\|\s*(.+?)\s*\|\s*(.+?)\s*\|\s*$", line)
+        if not m:
+            continue
+        name, ver = m.group(1).strip(), m.group(2).strip()
+        if name.lower() == "component" or set(name) <= set("-| "):
+            continue
+        comps[name] = ver
+    for mm in re.findall(r"1\.(3[0-9])", sec.get("Compatibility", "")):
+        minors.add("1." + mm)
+    return comps, minors
+
+
+def _norm_comp(name):
+    """Normalize a component label so it matches across RELEASE docs:
+    'Cilium' == 'cilium', 'CoreDNS (default)' == 'CoreDNS'."""
+    return re.sub(r"\(.*?\)", "", name).strip().lower()
+
+
+def component_delta(docs, frm, to):
+    """[(component, from_version, to_version)] for components that changed.
+    Matches on a normalized key so label drift across RELEASE docs doesn't
+    show unchanged components as new ('—')."""
+    cf, _ = parse_release_table(docs, frm)
+    ct, _ = parse_release_table(docs, to)
+    fmap = {_norm_comp(n): v for n, v in cf.items()}
+    out = []
+    for n, tv in ct.items():
+        fv = fmap.get(_norm_comp(n), "—")
+        if fv != tv:
+            out.append((n, fv, tv))
+    return out
+
+
+COMP_TO_CVE = {
+    "runc": "TROUBLE-RUNC_KNOWN_CVES",
+    "containerd": "TROUBLE-CONTAINERD_KNOWN_CVES",
+    "cilium": "TROUBLE-CILIUM_KNOWN_CVES",
+    "coredns": "TROUBLE-COREDNS_KNOWN_CVES",
+    "cni-plugins": "TROUBLE-CNI_PLUGINS_KNOWN_CVES",
+    "cert-manager": "TROUBLE-CERT_MANAGER_KNOWN_CVES",
+    "helm": "TROUBLE-HELM_KNOWN_CVES",
+    "kubernetes": "TROUBLE-KUBERNETES_KNOWN_CVES",
+}
+
+
+def cve_id_for(comp_name):
+    return COMP_TO_CVE.get(comp_name.lower().split("(")[0].strip())
+
+
 def render(frm, to, chain, docs, prof=None):
     active = inactive = None
     if prof is not None:
@@ -212,11 +284,70 @@ def render(frm, to, chain, docs, prof=None):
         for s in sec.values():
             cited |= wikilinks(s)
 
-    out.append("\n## Cross-cutting (Kubernetes layer)\n")
+    # --- Component version deltas (from RELEASE docs) ---
+    delta = component_delta(docs, frm, to)
+    shown_delta = []
+    if delta:
+        for name, fv, tv in delta:
+            row = f"| {name} | {fv} | {tv} |"
+            if prof is not None:
+                fl, dropped = filter_block(row, active, inactive)
+                all_dropped.update(dropped)
+                if not fl.strip():
+                    continue
+            shown_delta.append((name, fv, tv))
+    if shown_delta:
+        out.append(f"\n## Component version changes ({frm} → {to})\n")
+        out.append("| Component | " + frm + " | " + to + " |")
+        out.append("|---|---|---|")
+        for name, fv, tv in shown_delta:
+            out.append(f"| {name} | {fv} | {tv} |")
+        cited.add(release_id(frm))
+        cited.add(release_id(to))
+
+    # --- CVE exposure for components that move ---
+    cve_lines = []
+    for name, fv, tv in shown_delta:
+        cid = cve_id_for(name)
+        if cid and cid in docs:
+            cve_lines.append(
+                f"- **{name}** `{fv}` → `{tv}` — compare exposure in the per-version "
+                f"matrix  `[{cid}]`.")
+            cited.add(cid)
+    if cve_lines:
+        out.append("\n## Security / CVE exposure\n")
+        out.append("Moving these components changes their CVE exposure (osv.dev, per shipped "
+                   "version) — compare the from/to rows in each matrix:")
+        out.extend(cve_lines)
+        if "CONCEPT-CVE_REMEDIATION" in docs:
+            out.append("- Consolidated *am I exposed / what to upgrade* runbook  "
+                       "`[CONCEPT-CVE_REMEDIATION]`.")
+            cited.add("CONCEPT-CVE_REMEDIATION")
+
+    # --- Kubernetes layer changes for newly-entered minors ---
+    _, mf = parse_release_table(docs, frm)
+    _, mt = parse_release_table(docs, to)
+    new_minors = sorted(mt - mf)
+    if new_minors:
+        out.append("\n## Kubernetes layer changes (new minors: " +
+                   ", ".join(new_minors) + ")\n")
+        out.append("Minors that enter the support window on this path — read their "
+                   "operator-relevant changes:")
+        for mnr in new_minors:
+            cid = "CONCEPT-K8S_" + mnr.replace(".", "_") + "_CHANGES"
+            if cid in docs:
+                out.append(f"- **Kubernetes {mnr}** — {docs[cid]['title']}  `[{cid}]`")
+                cited.add(cid)
+
+    out.append("\n## Cross-cutting (Kubernetes layer & upgrade mechanics)\n")
     for cid, desc in [
         ("CONCEPT-K8S_API_REMOVALS", "API removals crossing K8s minors"),
         ("CONCEPT-K8S_FEATURE_GATES", "feature-gate graduations/removals"),
         ("CONCEPT-COMPONENT_VERSION_SELECTION", "which component versions move, and why"),
+        ("CONCEPT-UPGRADE_HORIZON", "how far the shipped versions are behind latest upstream"),
+        ("CONCEPT-KUBESPRAY_KUBEADM_SEAM", "who does the upgrade (kubeadm) vs Kubespray"),
+        ("TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK", "if the control plane won't come up mid-upgrade"),
+        ("TROUBLE-KUBEADM_VERSION_SKEW", "one-minor-at-a-time skew rule"),
         ("PRACTICE-UPGRADE_PREFLIGHT", "pre-upgrade checklist"),
         ("PRACTICE-GRACEFUL_UPGRADE", "drain/serial/pause mechanics"),
     ]:
