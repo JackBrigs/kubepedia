@@ -72,6 +72,9 @@
 {"source": "CONCEPT-ETCD_3_6_CHANGES", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "CONCEPT-ETCD_3_6_CHANGES", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "CONCEPT-ETCD_3_6_CHANGES", "target": "UPGRADE-V2_30_0__V2_31_0", "type": "see_also"}
+{"source": "CONCEPT-GITOPS", "target": "COMPONENT-ARGOCD", "type": "see_also"}
+{"source": "CONCEPT-GITOPS", "target": "PRACTICE-BACKUP_DR", "type": "see_also"}
+{"source": "CONCEPT-GITOPS", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "COMPONENT-HELM", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT", "type": "see_also"}
