@@ -109,6 +109,9 @@
 {"source": "CONFIG-COREDNS_COREFILE", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "CONFIG-COREDNS_COREFILE", "target": "TROUBLE-COREDNS_RESOLUTION_LOOP", "type": "see_also"}
 {"source": "CONFIG-COREDNS_COREFILE", "target": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "type": "see_also"}
+{"source": "CONFIG-CPU_ISOLATION", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
+{"source": "CONFIG-CPU_ISOLATION", "target": "PRACTICE-CGROUPS", "type": "see_also"}
+{"source": "CONFIG-CPU_ISOLATION", "target": "TROUBLE-OOMKILLED", "type": "see_also"}
 {"source": "CONFIG-DUAL_STACK", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "CONFIG-DUAL_STACK", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "CONFIG-FEATURE_GATES_AND_FLAGS", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
