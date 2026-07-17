@@ -1,7 +1,7 @@
 ---
 id: ROLE-ETCD
 type: role
-title: etcd
+title: "etcd (Kubespray role)"
 status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
@@ -9,7 +9,8 @@ component_version: null
 verified_at: "2026-07-16"
 confidence: confirmed
 aliases:
-  - etcd
+  - etcd role
+  - etcd ansible role
 tags:
   - role
 sources:
