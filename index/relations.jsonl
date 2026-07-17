@@ -77,6 +77,8 @@
 {"source": "CONCEPT-ADDON_KUBERNETES_DASHBOARD", "target": "CONCEPT-ADDON_HEADLAMP", "type": "see_also"}
 {"source": "CONCEPT-ADDON_KUBERNETES_MCP", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_KVM_DEVICE_PLUGIN", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
+{"source": "CONCEPT-ADDON_KYVERNO", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
+{"source": "CONCEPT-ADDON_KYVERNO", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "CONCEPT-ADDON_LVM_LOCALPV", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_OLM", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_OTEL_OPERATOR", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
@@ -474,6 +476,8 @@
 {"source": "TROUBLE-DOWNLOAD_FAILS", "target": "PRACTICE-OFFLINE_ENVIRONMENT", "type": "see_also"}
 {"source": "TROUBLE-DOWNLOAD_FAILS", "target": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "type": "see_also"}
 {"source": "TROUBLE-DOWNLOAD_FAILS", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}
+{"source": "TROUBLE-DRAGONFLY_FAILOVER_DATALOSS", "target": "CONCEPT-ADDON_DRAGONFLY", "type": "see_also"}
+{"source": "TROUBLE-ELASTICSEARCH_ECK_CLUSTER", "target": "CONCEPT-ADDON_ECK_OPERATOR", "type": "see_also"}
 {"source": "TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI", "target": "CONCEPT-ADDON_ENVOY_GATEWAY", "type": "see_also"}
 {"source": "TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-ETCD_CERT_DIR_RECURSIVE_PERMS_CALICO", "target": "COMPONENT-ETCD", "type": "see_also"}
@@ -496,6 +500,7 @@
 {"source": "TROUBLE-FIREWALL_PORTS_BLOCKED", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "TROUBLE-FLATCAR_APISERVER_WAIT_DNS", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-GATEWAY_API_1_4_1_CHECKSUM_MISMATCH", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
+{"source": "TROUBLE-GITLAB_RUNNER_K8S_EXECUTOR", "target": "CONCEPT-ADDON_GITLAB_RUNNER", "type": "see_also"}
 {"source": "TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS", "target": "CONCEPT-ADDON_GPU_OPERATOR", "type": "see_also"}
 {"source": "TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-HAPROXY_IPV6_BINDING", "target": "PRACTICE-HA_MODE", "type": "see_also"}
@@ -519,6 +524,7 @@
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "PRACTICE-LARGE_DEPLOYMENTS", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
 {"source": "TROUBLE-K8S_CERTS_RENEW_BROKEN_SCRIPT", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
+{"source": "TROUBLE-K8UP_BACKUP_ISSUES", "target": "CONCEPT-ADDON_K8UP", "type": "see_also"}
 {"source": "TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING", "target": "CONCEPT-ADDON_KEDA", "type": "see_also"}
 {"source": "TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING", "target": "TROUBLE-HPA_NOT_SCALING", "type": "see_also"}
 {"source": "TROUBLE-KUBEADM_INIT_RETRY_FAILS", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
@@ -540,6 +546,13 @@
 {"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "TROUBLE-KUBE_VIP_CAPS_VERSION", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_VIP_NOT_UP", "target": "VARIABLE-KUBE_VIP_ADDRESS", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_POLICY_NOT_APPLYING", "target": "CONCEPT-ADDON_KYVERNO", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_REPORTS_ETCD_SCALE", "target": "CONCEPT-ADDON_KYVERNO", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_REPORTS_ETCD_SCALE", "target": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_UPGRADE", "target": "CONCEPT-ADDON_KYVERNO", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_UPGRADE", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_WEBHOOK_HA", "target": "CONCEPT-ADDON_KYVERNO", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_WEBHOOK_HA", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "COMPONENT-METALLB", "type": "see_also"}
 {"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
 {"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "TROUBLE-METALLB_CONFIG_CRD_FRR", "type": "see_also"}
@@ -621,6 +634,8 @@
 {"source": "TROUBLE-VELERO_UPGRADE_117", "target": "CONCEPT-VELERO", "type": "see_also"}
 {"source": "TROUBLE-VMAGENT_REMOTE_WRITE_FAILING", "target": "CONCEPT-ADDON_VM_K8S_STACK", "type": "see_also"}
 {"source": "TROUBLE-VMAGENT_REMOTE_WRITE_FAILING", "target": "CONCEPT-OBSERVABILITY_STACK", "type": "see_also"}
+{"source": "TROUBLE-VOLSYNC_MOVER_ISSUES", "target": "CONCEPT-ADDON_VOLSYNC", "type": "see_also"}
+{"source": "TROUBLE-VOLSYNC_MOVER_ISSUES", "target": "TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS", "type": "see_also"}
 {"source": "TROUBLE-VOLUMESNAPSHOTCLASS_V1", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "TROUBLE-VXLAN_MTU_MISMATCH", "target": "VARIABLE-CILIUM_TUNNEL_MODE", "type": "see_also"}
 {"source": "TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING", "target": "CONCEPT-ADDON_CAPSULE", "type": "see_also"}

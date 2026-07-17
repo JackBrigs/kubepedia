@@ -132,6 +132,7 @@ index only; `CONCEPT-ADDON_<X>` = a dedicated deep doc exists.
 | Addon | Upstream | Chart | App | Class | Doc |
 |-------|----------|-------|-----|-------|-----|
 | capsule-system | capsule / capsule-proxy | 0.10.9→0.13.3 / 0.9.13→0.13.4 | — | upstream | [[CONCEPT-ADDON_CAPSULE]] |
+| kyverno | Kyverno policy engine | — | — (owner unspecified; latest 1.18.2) | upstream | [[CONCEPT-ADDON_KYVERNO]] |
 | operator-lifecycle-manager | OLM (in-house packaging) | 0.32.0 | — | upstream | [[CONCEPT-ADDON_OLM]] |
 | spegel | spegel (in-house packaging) | 0.0.1 | — | upstream | [[CONCEPT-ADDON_SPEGEL]] |
 | etcd-defrag-controller | etcd-defrag-controller | 0.0.7 | — | upstream | [[CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER]] |
