@@ -19,7 +19,9 @@ sources:
     path: docs/CRI/gvisor.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/CRI/gvisor.md
     note: "Enabling gVisor sandboxed runtime via containerd"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_RUNTIMES
 ---
 
 # gVisor sandboxed runtime in Kubespray

@@ -18,7 +18,11 @@ sources:
     path: docs/operations/etcd.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/operations/etcd.md
     note: "etcd deployment methods and Prometheus metrics exposition"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-ETCD_3_6_CHANGES
+  - type: see_also
+    target: PRACTICE-ETCD_BACKUP_RESTORE
 ---
 
 # etcd deployment types and metrics exposition in Kubespray

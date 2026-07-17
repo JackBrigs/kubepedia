@@ -19,7 +19,9 @@ sources:
     path: docs/CRI/kata-containers.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/CRI/kata-containers.md
     note: "Enabling and configuring Kata Containers lightweight-VM runtime"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_RUNTIMES
 ---
 
 # Kata Containers runtime in Kubespray

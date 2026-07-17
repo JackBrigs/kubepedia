@@ -19,7 +19,9 @@ sources:
     path: docs/operations/integration.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/operations/integration.md
     note: "How to embed Kubespray as a git submodule in an existing Ansible repo and contribute changes upstream"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
 ---
 
 # Integrating Kubespray into Your Own Ansible Repo

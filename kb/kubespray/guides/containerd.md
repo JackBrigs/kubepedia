@@ -19,7 +19,9 @@ sources:
     path: docs/CRI/containerd.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/CRI/containerd.md
     note: "Enabling containerd, registry mirrors, custom runtimes, base runtime specs, NRI, static binary"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINERD_2X
 ---
 
 # Using containerd as the Container Runtime in Kubespray

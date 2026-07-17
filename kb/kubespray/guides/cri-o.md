@@ -19,7 +19,9 @@ sources:
     path: docs/CRI/cri-o.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/CRI/cri-o.md
     note: "Enabling CRI-O, registry mirrors and auth, user namespaces, default capabilities, NRI"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_MANAGER
 ---
 
 # Using CRI-O as the Container Runtime in Kubespray

@@ -18,7 +18,11 @@ sources:
     path: docs/advanced/registry.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/advanced/registry.md
     note: "Optional in-cluster private Docker registry addon with per-node localhost proxy"
-relations: []
+relations:
+  - type: see_also
+    target: COMPONENT-REGISTRY
+  - type: see_also
+    target: CONFIG-PROXY
 ---
 
 # Private Docker registry addon in a Kubespray/Kubernetes cluster

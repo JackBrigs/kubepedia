@@ -19,7 +19,9 @@ sources:
     path: docs/operations/kernel-requirements.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/operations/kernel-requirements.md
     note: "Minimum and recommended host kernel versions per OS, plus how to bypass kubeadm preflight when the kernel is too old"
-relations: []
+relations:
+  - type: see_also
+    target: TROUBLE-NFTABLES_KERNEL_TOO_LOW
 ---
 
 # Kernel Requirements for Kubespray Nodes

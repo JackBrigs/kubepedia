@@ -18,7 +18,9 @@ sources:
     path: docs/ansible/inventory.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/ansible/inventory.md
     note: "Inventory group model, node role assignment, bastion host, and a full inventory example"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
 ---
 
 # Kubespray inventory structure and host groups

@@ -19,7 +19,11 @@ sources:
     path: docs/operations/large-deployments.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/operations/large-deployments.md
     note: "Recommended Ansible, download, DNS, resource, reliability, and etcd configuration changes for large clusters"
-relations: []
+relations:
+  - type: see_also
+    target: TROUBLE-INOTIFY_FILE_LIMITS
+  - type: see_also
+    target: PRACTICE-GRACEFUL_UPGRADE
 ---
 
 # Tuning Kubespray for Large Deployments

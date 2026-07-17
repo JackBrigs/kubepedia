@@ -19,7 +19,9 @@ sources:
     path: docs/CNI/cilium.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/CNI/cilium.md
     note: "Cilium install/config options: IPAM, BGP, kube-proxy replacement, encryption, Hubble, upgrade timeouts"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CILIUM_DATAPATH
 ---
 
 # Configuring the Cilium CNI in Kubespray

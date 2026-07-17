@@ -19,7 +19,9 @@ sources:
     path: docs/ansible/ansible.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/ansible/ansible.md
     note: "Ansible install/venv, Python compatibility, variable customization layers, playbook tags reference, and example filtered runs"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
 ---
 
 # Running Kubespray with Ansible — install, vars, and tags

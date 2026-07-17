@@ -18,7 +18,11 @@ sources:
     path: docs/operations/mirror.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/operations/mirror.md
     note: "configuring image and file download mirrors"
-relations: []
+relations:
+  - type: see_also
+    target: PRACTICE-OFFLINE_ENVIRONMENT
+  - type: see_also
+    target: CONFIG-PROXY
 ---
 
 # Using a public download mirror in Kubespray

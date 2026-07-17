@@ -19,7 +19,9 @@ sources:
     path: docs/advanced/netcheck.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/advanced/netcheck.md
     note: "Deploying and using the k8s-netchecker connectivity checker"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-COMPONENT_VERSION_SELECTION
 ---
 
 # Network Checker application (netchecker) in Kubespray

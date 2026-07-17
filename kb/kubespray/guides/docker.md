@@ -19,7 +19,9 @@ sources:
     path: docs/CRI/docker.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/CRI/docker.md
     note: "Configuring Docker as the container manager and its daemon tunables"
-relations: []
+relations:
+  - type: see_also
+    target: CONCEPT-CONTAINER_MANAGER
 ---
 
 # Docker container runtime in Kubespray
