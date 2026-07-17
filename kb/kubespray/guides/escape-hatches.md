@@ -58,10 +58,15 @@ this page collects the hatches in one place.
 ## Context
 
 - Applies to Kubespray **v2.29.0–v2.31.0**. Every variable in the table below was **verified
-  present in v2.29.0, v2.30.0, and v2.31.0** (git-grep per tag) — the names are stable across
-  the range. (Note: there is **no** per-node `kubelet_node_config_extra_args` variable — per-node
-  customization is done by setting the **same** `kubelet_config_extra_args`/`kubelet_custom_flags`
-  in a node's **host_vars/group_vars**, which Ansible variable precedence scopes to that node.)
+  present in v2.27.0 through v2.31.0** (git-grep per tag) — the names are stable across the range.
+- **Renamed variable — `kubelet_node_config_extra_args` → `kubelet_config_extra_args` (in
+  v2.27.0):** the old name existed **≤ v2.26.x** and was removed/renamed at **v2.27.0** (present
+  in the v2.26.0 tree, absent from v2.27.0). If you carry old inventory/host_vars using
+  `kubelet_node_config_extra_args`, **migrate it to `kubelet_config_extra_args`** — the old name
+  is silently ignored on v2.27.0+.
+- **Per-node scope:** there is no separate per-node variable — set the **same**
+  `kubelet_config_extra_args`/`kubelet_custom_flags` in a node's **host_vars/group_vars**, which
+  Ansible variable precedence scopes to that node.
 - **Decision order** (prefer the most specific): **① a dedicated named variable** →
   **② a typed `*_extra_args` map** (merged into the component's config) → **③ raw `*_custom_flags`
   / `kubeadm_patches`** (last resort, unvalidated).
