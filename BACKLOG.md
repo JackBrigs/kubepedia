@@ -4,12 +4,12 @@ Deferred work items. This is a work-tracking file, not KDS knowledge; the base o
 truth about what the KB *contains* is `kb/` + `index/`. Items here are agreed but
 not yet implemented. Pull an item into a focused change when ready, then remove it.
 
-## README (public-facing)
+## README (public-facing) — FUTURE VERSION (owner deferred 2026-07-17)
 
 The repository has **no README** on purpose right now — the previous drafts were
 rejected by the owner. A public README must be **designed separately** (agree the
 audience, structure, and tone with the owner first) before re-adding it. Do not
-re-create it ad hoc.
+re-create it ad hoc. Owner parked this to a **future version** (2026-07-17).
 
 ## CNI plugins (other than Cilium)
 
@@ -52,7 +52,7 @@ The `ansible_tag` KDS type exists (D-012). DONE: all run-tags indexed (113) exce
 So far only the strongest tiers are used: tagged Kubespray source code
 (`confirmed`) and tag docs (`verified`). Not yet touched:
 
-- **Community (category 6) — RETURN AT END OF PROJECT (owner request, 2026-07-16).**
+- **Community (category 6) — FUTURE VERSION (owner deferred 2026-07-17; recon + plan below done).**
   Reconnaissance done (GitHub issues/discuss.kubernetes, Habr ×3 + Habr Q&A, CNCF,
   kubernetes.io, cilium.io; note: Stack Overflow & Reddit are blocked to the crawler).
   Per `sources.md`, community is **never authoritative** — every candidate below must be
