@@ -55,6 +55,16 @@ source-verified fix.
 - Cilium config aborts deploy → [[TROUBLE-CILIUM_CONFIG_VALIDATION]].
 - Download/checksum failure → [[TROUBLE-DOWNLOAD_FAILS]].
 
+### Upgrade & preflight (the Kubespray↔kubeadm seam)
+
+Kubespray delegates the K8s upgrade to **kubeadm** — these errors are kubeadm's, surfaced mid
+Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
+
+- kubeadm **health-check** fails / control plane won't come up → [[TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK]].
+- kubeadm **preflight** errors (upgrade/init/join) → [[TROUBLE-KUBEADM_PREFLIGHT]].
+- `kubeadm upgrade apply/node` fails (config/etcd/addons/certs) → [[TROUBLE-KUBEADM_UPGRADE_APPLY]].
+- **version skew** / can't skip a minor → [[TROUBLE-KUBEADM_VERSION_SKEW]].
+
 ### Pod lifecycle
 
 - `Pending` / Unschedulable (scheduler) → [[TROUBLE-POD_PENDING_UNSCHEDULABLE]].
