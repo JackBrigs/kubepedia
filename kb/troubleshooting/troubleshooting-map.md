@@ -90,6 +90,8 @@ source-verified fix.
 - admission webhook blocks creates/updates (`failed calling webhook`) →
   [[TROUBLE-ADMISSION_WEBHOOK_BLOCKING]].
 
+- `Error from server (Forbidden)` (RBAC) → [[TROUBLE-RBAC_FORBIDDEN]].
+
 ### Certificates & TLS
 
 - `x509 valid for … not <addr>` (apiserver) → [[TROUBLE-APISERVER_CERT_SAN]].
