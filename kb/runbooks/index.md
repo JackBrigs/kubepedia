@@ -68,24 +68,42 @@ shares so the individual runbooks don't repeat it.
 6. **Rollback** — know the reversal *before* you start. For most operations rollback = restore the
    etcd snapshot + re-run at the previous tag; a half-applied change is worse than a clean revert.
 
-**The runbooks** (one per canonical operation ≈ one Kubespray playbook):
+**The runbooks** (one per canonical operation ≈ one Kubespray playbook), grouped by theme:
+
+*Cluster lifecycle:*
 
 | Runbook | Operation | Playbook | Rollback anchor |
 |---------|-----------|----------|-----------------|
 | [[PRACTICE-RUNBOOK_BOOTSTRAP]] | Deploy a new cluster | `cluster.yml` | nothing to lose — reset & redeploy |
 | [[PRACTICE-RUNBOOK_ADD_NODES]] | Add worker / control-plane nodes | `scale.yml` / `cluster.yml` | remove the added node |
-| [[PRACTICE-RUNBOOK_REMOVE_NODE]] | Remove / decommission a node | `remove-node.yml` | re-add; etcd snapshot if quorum touched |
-| [[PRACTICE-RUNBOOK_NODE_MAINTENANCE]] | Drain, patch/reboot, uncordon a node | — (`kubectl`) | per-node, keep cordoned & diagnose |
-| [[PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR]] | Upgrade by exactly one Kubespray minor | `upgrade-cluster.yml` | etcd snapshot + previous tag |
-| [[PRACTICE-RUNBOOK_CERT_ROTATION]] | Renew control-plane / etcd certificates | `kubeadm` / `cluster.yml` | etcd snapshot (forward-only) |
-| [[PRACTICE-RUNBOOK_CNI_MIGRATION]] | Change the CNI plugin | `cluster.yml` | etcd snapshot; not cleanly reversible in place |
-| [[PRACTICE-RUNBOOK_ETCD_RESTORE]] | Restore control-plane state (DR) | `recover-control-plane.yml` | the snapshot itself |
+| [[PRACTICE-RUNBOOK_REMOVE_NODE]] | Remove / decommission a node | `remove-node.yml` | re-add; snapshot if quorum touched |
 | [[PRACTICE-RUNBOOK_RESET]] | Tear down a cluster / node | `reset.yml` | destructive — restore or redeploy |
 
-**Related operations already documented as guides** (not repeated as runbooks): container-runtime
-migration Docker → containerd ([[PRACTICE-MIGRATE_DOCKER_TO_CONTAINERD]]) and enabling
-secrets-encryption at rest ([[PRACTICE-SECRETS_ENCRYPTION_AT_REST]]) — both follow the same spine
-(snapshot → change → verify → rollback).
+*Node operations:*
+
+| Runbook | Operation | Playbook | Rollback anchor |
+|---------|-----------|----------|-----------------|
+| [[PRACTICE-RUNBOOK_NODE_MAINTENANCE]] | Drain, patch/reboot, uncordon a node | — (`kubectl`) | per-node, keep cordoned & diagnose |
+| [[PRACTICE-RUNBOOK_COLD_START]] | Recover after full power loss | — (boot order) | etcd snapshot if quorum lost |
+
+*Change & upgrade:*
+
+| Runbook | Operation | Playbook | Rollback anchor |
+|---------|-----------|----------|-----------------|
+| [[PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR]] | Upgrade by exactly one Kubespray minor | `upgrade-cluster.yml` | etcd snapshot + previous tag |
+| [[PRACTICE-RUNBOOK_COMPONENT_UPGRADE]] | Bump one component out-of-band (CVE fix) | `*_version` + apply | revert the version pin |
+| [[PRACTICE-RUNBOOK_CONFIG_CHANGE]] | Change a kubelet / apiserver setting | `cluster.yml` (canary → roll) | revert the variable |
+| [[PRACTICE-RUNBOOK_CNI_MIGRATION]] | Change the CNI plugin | `cluster.yml` | snapshot; not cleanly reversible in place |
+| [[PRACTICE-RUNBOOK_RUNTIME_MIGRATION]] | Docker → containerd | `cluster.yml` (per node) | snapshot; prefer reset & redeploy |
+
+*Data, DR & security:*
+
+| Runbook | Operation | Playbook | Rollback anchor |
+|---------|-----------|----------|-----------------|
+| [[PRACTICE-RUNBOOK_ETCD_BACKUP]] | Take & verify an etcd snapshot (scheduled) | — (`etcdctl`) | n/a (non-destructive) |
+| [[PRACTICE-RUNBOOK_ETCD_RESTORE]] | Restore control-plane state (DR) | `recover-control-plane.yml` | the snapshot itself |
+| [[PRACTICE-RUNBOOK_CERT_ROTATION]] | Renew control-plane / etcd certificates | `kubeadm` / `cluster.yml` | etcd snapshot (forward-only) |
+| [[PRACTICE-RUNBOOK_SECRETS_ENCRYPTION]] | Enable secrets encryption at rest | `cluster.yml` + re-encrypt | snapshot; provider-order revert |
 
 **When you don't need a runbook.** A single diagnostic lookup (one symptom → one fix) is a
 troubleshooting doc, not a runbook — go straight to the `TROUBLE-*` doc. Reach for a runbook when
