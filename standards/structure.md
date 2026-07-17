@@ -44,7 +44,8 @@ kb/components/       (~44)   32 managed components + version-selection / runtime
 kb/troubleshooting/  (~83)   symptom→cause→fix docs + the navigator map + CVE matrices
 kb/ecosystem/        (~8)    adjacent domains (D-013): observability, GitOps/ArgoCD,
                              Velero, secrets (external/sealed), external-dns
-kb/os/               (~1)    node OS ↔ Kubernetes (e.g. Ubuntu 24.04, 26.04 future)
+kb/os/               (~3)    node OS ↔ Kubernetes: Ubuntu 24.04 (+26.04 future),
+                             Talos OS (immutable), Clevis+LUKS2 disk encryption
 kb/addons/           (~47)   application-platform addon catalog (D-015): CONCEPT-ADDON_*
                              deep docs for ~46 upstream Helm-chart addons + the catalog
                              index; in-house ("собственный") charts stay catalog rows only
