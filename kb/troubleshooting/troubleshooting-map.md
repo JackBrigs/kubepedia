@@ -175,8 +175,34 @@ source-verified fix.
 - vmagent not ingesting → [[TROUBLE-VMAGENT_REMOTE_WRITE_FAILING]].
 - NFD labels missing → [[TROUBLE-NFD_LABELS_MISSING]].
 
+### Control plane internals (apiserver / scheduler / controller-manager)
+
+- **kube-apiserver:** 429 from APF → [[TROUBLE-APISERVER_APF_429]]; OOM from LISTs/relists →
+  [[TROUBLE-APISERVER_MEMORY_LISTS]]; latency from etcd → [[TROUBLE-APISERVER_ETCD_LATENCY]];
+  latency from audit/admission → [[TROUBLE-APISERVER_REQUEST_LATENCY]].
+- **kube-scheduler:** pod Pending → [[TROUBLE-SCHEDULER_POD_PENDING]]; topology spread →
+  [[TROUBLE-SCHEDULER_TOPOLOGY_SPREAD]]; preemption/gates → [[TROUBLE-SCHEDULER_PREEMPTION_GATES]];
+  slow/clumped → [[TROUBLE-SCHEDULER_PERF]].
+- **kube-controller-manager:** node lifecycle → [[TROUBLE-KCM_NODE_LIFECYCLE]]; Multi-Attach →
+  [[TROUBLE-KCM_VOLUME_MULTIATTACH]]; GC/quota stalls → [[TROUBLE-KCM_RECONCILE_STALLS]];
+  legacy SA-token cleanup → [[TROUBLE-KCM_SA_TOKEN_CLEANUP]]; EndpointSlice churn →
+  [[TROUBLE-KCM_ENDPOINTSLICE_CHURN]].
+- **scheduler/kcm restart on lease** → [[TROUBLE-CONTROL_PLANE_LEADER_ELECTION]].
+
+### Node runtime (kubelet / containerd)
+
+- **kubelet:** PLEG not healthy → [[TROUBLE-KUBELET_PLEG_NOT_HEALTHY]]; node NotReady (CNI) →
+  [[TROUBLE-KUBELET_NODE_NOTREADY_CNI]]; memory/OOM → [[TROUBLE-KUBELET_MEMORY_OOM]]; static pod
+  stuck → [[TROUBLE-KUBELET_STATIC_POD_STUCK]]; image GC 'freed 0 bytes' →
+  [[TROUBLE-KUBELET_IMAGE_GC]]; serving-cert rotation skip → [[TROUBLE-KUBELET_SERVING_CERT_ROTATION]].
+- **containerd:** shim task create fails → [[TROUBLE-CONTAINERD_SHIM_TASK_CREATE]]; overlayfs
+  mount → [[TROUBLE-CONTAINERD_OVERLAYFS]]; shim/daemon memory leak →
+  [[TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK]]; stale sandbox/reserved name →
+  [[TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY]]; RuntimeClass handler →
+  [[TROUBLE-CONTAINERD_RUNTIME_HANDLER]].
+
 ## References
 
-- The `kb/troubleshooting/` layer (110+ docs). Version/upgrade context:
+- The `kb/troubleshooting/` layer (150+ docs). Version/upgrade context:
   [[CONCEPT-UPGRADE_HORIZON]]; addon inventory: [[CONCEPT-ADDON_CATALOG]]. Diagnostic
   runbooks live under `kb/kubespray/guides/` (cluster health, DNS debug, node NotReady).
