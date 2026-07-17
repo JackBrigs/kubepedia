@@ -436,6 +436,9 @@
 {"source": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}
 {"source": "TROUBLE-POD_STUCK_TERMINATING", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
+{"source": "TROUBLE-PROMETHEUS_TARGET_DOWN", "target": "CONCEPT-OBSERVABILITY_STACK", "type": "see_also"}
+{"source": "TROUBLE-PROMETHEUS_TARGET_DOWN", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
+{"source": "TROUBLE-PROMETHEUS_TARGET_DOWN", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
 {"source": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "target": "COMPONENT-LOCAL_PATH_PROVISIONER", "type": "see_also"}
 {"source": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "TROUBLE-RBAC_FORBIDDEN", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
