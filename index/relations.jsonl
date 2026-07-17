@@ -639,6 +639,10 @@
 {"source": "TROUBLE-CILIUM_IDENTITY_ALLOCATION_MODE_UNDEFINED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_KNOWN_CVES", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_KPR_TOGGLES_REMOVED", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_KPR_TOGGLES_REMOVED", "target": "CONCEPT-CILIUM_LOADBALANCING", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_KPR_TOGGLES_REMOVED", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_KPR_TOGGLES_REMOVED", "target": "UPGRADE-CILIUM_1_15_TO_1_19", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_LOADBALANCER_MODE_NOT_RENDERED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_OPERATOR_GENERIC_OFFLINE_REGISTRY", "target": "COMPONENT-CILIUM", "type": "see_also"}
@@ -741,6 +745,12 @@
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "PRACTICE-LARGE_DEPLOYMENTS", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
 {"source": "TROUBLE-K8S_CERTS_RENEW_BROKEN_SCRIPT", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
+{"source": "TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
+{"source": "TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
+{"source": "TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
+{"source": "TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
+{"source": "TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
+{"source": "TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED", "target": "PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR", "type": "see_also"}
 {"source": "TROUBLE-K8UP_BACKUP_ISSUES", "target": "CONCEPT-ADDON_K8UP", "type": "see_also"}
 {"source": "TROUBLE-KCM_ENDPOINTSLICE_CHURN", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-KCM_ENDPOINTSLICE_CHURN", "target": "TROUBLE-SERVICE_NO_ENDPOINTS", "type": "see_also"}

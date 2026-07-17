@@ -138,6 +138,7 @@
 {"alias": "CrashLoopBackOff", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "DNS stack", "ids": ["PRACTICE-DNS_STACK"]}
 {"alias": "DR", "ids": ["PRACTICE-BACKUP_DR"]}
+{"alias": "DisableNodeKubeProxyVersion", "ids": ["TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED"]}
 {"alias": "Docker CRI", "ids": ["PRACTICE-DOCKER"]}
 {"alias": "ErrImagePull", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "FailedGetResourceMetric", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
@@ -150,6 +151,7 @@
 {"alias": "Kata VM runtime", "ids": ["PRACTICE-KATA_CONTAINERS"]}
 {"alias": "KubeletConfiguration", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
 {"alias": "Kubernetes Enhancement Proposals", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "LegacyServiceAccountTokenCleanUp", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "MountVolume.SetUp failed", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "NVIDIA_VISIBLE_DEVICES no longer works", "ids": ["TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS"]}
 {"alias": "NetworkAttachmentDefinition", "ids": ["COMPONENT-MULTUS"]}
@@ -407,6 +409,7 @@
 {"alias": "chrony", "ids": ["CONFIG-NTP"]}
 {"alias": "cilium", "ids": ["COMPONENT-CILIUM", "TAG-CILIUM"]}
 {"alias": "cilium 1.15 to 1.19", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
+{"alias": "cilium 1.19 upgrade agent crashloop flag", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "cilium bgp", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium bpf masquerade", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium check failed", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
@@ -417,6 +420,7 @@
 {"alias": "cilium cve", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
 {"alias": "cilium datapath", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium debug", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
+{"alias": "cilium enable-node-port removed", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "cilium encryption", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "cilium endpoint not ready", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
 {"alias": "cilium envoy version", "ids": ["CONCEPT-CILIUM_ENVOY"]}
@@ -429,6 +433,7 @@
 {"alias": "cilium ipsec", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "cilium kernel requirement 5.10", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium kube-proxy replacement", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium kube-proxy-replacement toggles", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "cilium kubeprism talos", "ids": ["CONCEPT-TALOS_CILIUM"]}
 {"alias": "cilium l2 announcements", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium l7 proxy", "ids": ["CONCEPT-CILIUM_ENVOY"]}
@@ -444,6 +449,7 @@
 {"alias": "cilium security", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
 {"alias": "cilium status", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
 {"alias": "cilium tunnel mode vxlan", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium unknown flag enable-host-port", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "cilium upgrade breaking changes", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium version jump kubespray", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium wireguard", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
@@ -916,6 +922,8 @@
 {"alias": "elasticsearch master not discovered", "ids": ["TROUBLE-ELASTICSEARCH_ECK_CLUSTER"]}
 {"alias": "enable feature gate kubespray", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
 {"alias": "enable secrets encryption runbook", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION"]}
+{"alias": "enable-external-ips removed cilium", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
+{"alias": "enable-session-affinity removed", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "enable_cdi", "ids": ["VARIABLE-ENABLE_CDI"]}
 {"alias": "enable_coredns_k8s_endpoint_pod_names", "ids": ["VARIABLE-ENABLE_COREDNS_K8S_ENDPOINT_POD_NAMES"]}
 {"alias": "enable_coredns_k8s_external", "ids": ["VARIABLE-ENABLE_COREDNS_K8S_EXTERNAL"]}
@@ -1246,6 +1254,7 @@
 {"alias": "image pull failure", "ids": ["PRACTICE-CONTAINERD_DIAGNOSTICS"]}
 {"alias": "image-pull-rate-limit", "ids": ["TROUBLE-IMAGE_PULL_RATE_LIMIT"]}
 {"alias": "imageGCHighThresholdPercent", "ids": ["TROUBLE-KUBELET_IMAGE_GC"]}
+{"alias": "imagePullSecrets automount token gone", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "image_arch", "ids": ["VARIABLE-IMAGE_ARCH"]}
 {"alias": "image_command_tool", "ids": ["VARIABLE-IMAGE_COMMAND_TOOL"]}
 {"alias": "image_command_tool_on_localhost", "ids": ["VARIABLE-IMAGE_COMMAND_TOOL_ON_LOCALHOST"]}
@@ -1353,6 +1362,7 @@
 {"alias": "kube-vip vip not working", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
 {"alias": "kube-vip vs metallb vs cilium", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
 {"alias": "kube-vip-capabilities-and-version", "ids": ["TROUBLE-KUBE_VIP_CAPS_VERSION"]}
+{"alias": "kubeProxyVersion empty", "ids": ["TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED"]}
 {"alias": "kube_api_aggregator_routing", "ids": ["VARIABLE-KUBE_API_AGGREGATOR_ROUTING"]}
 {"alias": "kube_api_anonymous_auth", "ids": ["VARIABLE-KUBE_API_ANONYMOUS_AUTH"]}
 {"alias": "kube_api_runtime_config", "ids": ["VARIABLE-KUBE_API_RUNTIME_CONFIG"]}
@@ -1602,6 +1612,7 @@
 {"alias": "kubectl exec error", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "kubectl hangs writes stall", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
 {"alias": "kubectl logs timeout", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "kubectl node kube-proxy version blank", "ids": ["TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED"]}
 {"alias": "kubectl rollout status hangs", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
 {"alias": "kubectl top metrics api not available", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
 {"alias": "kubectl x509 not valid for load balancer", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
@@ -1864,6 +1875,7 @@
 {"alias": "no runtime for kata-qemu is configured", "ids": ["TROUBLE-CONTAINERD_RUNTIME_HANDLER"]}
 {"alias": "no runtime for runsc is configured", "ids": ["TROUBLE-CONTAINERD_RUNTIME_HANDLER"]}
 {"alias": "no space left on device inotify", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
+{"alias": "no token secret for service account", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "no-proxy-char-array", "ids": ["TROUBLE-CONTAINERD_NO_PROXY_CHAR_ARRAY"]}
 {"alias": "no_proxy", "ids": ["CONFIG-PROXY"]}
 {"alias": "node", "ids": ["TAG-NODE"]}
@@ -1877,6 +1889,7 @@
 {"alias": "node encryption", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "node flaps notready pleg", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
 {"alias": "node had taints that the pod did not tolerate", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "node kubeProxyVersion not populated", "ids": ["TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED"]}
 {"alias": "node kubeletnotready after kubeadm init", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
 {"alias": "node maintenance runbook", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "node memory pressure eviction", "ids": ["TROUBLE-OOMKILLED"]}
@@ -2147,6 +2160,7 @@
 {"alias": "runtime-request-timeout kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
 {"alias": "runtimeclass handler not found containerd", "ids": ["TROUBLE-CONTAINERD_RUNTIME_HANDLER"]}
 {"alias": "sa token secret cleanup 1.29", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
+{"alias": "sa token secret not created", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "safe cluster upgrade", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
 {"alias": "safe node restart", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "safe operation checklist", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
@@ -2190,12 +2204,14 @@
 {"alias": "serial upgrade", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
 {"alias": "server is currently unable to handle the request", "ids": ["TROUBLE-APISERVER_APF_429"]}
 {"alias": "serverTLSBootstrap", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
+{"alias": "service account secret missing after upgrade", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "service account secret token removed", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "service exposure", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
 {"alias": "service no endpoints", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "service not reachable", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
 {"alias": "service not working", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "serviceaccount forbidden", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "serviceaccount has no secret", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "servicemonitor no metrics", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
 {"alias": "services", "ids": ["TAG-SERVICES"]}
 {"alias": "set apiserver flag", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
@@ -2241,6 +2257,7 @@
 {"alias": "stacked vs external etcd kubespray", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
 {"alias": "stale endpoints nxdomain", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
 {"alias": "static pod not restarting", "ids": ["TROUBLE-KUBELET_STATIC_POD_STUCK"]}
+{"alias": "status.nodeInfo.kubeProxyVersion deprecated", "ids": ["TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED"]}
 {"alias": "step by step procedure kubespray", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
 {"alias": "stoppodsandbox failed", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
 {"alias": "storage_googleapis_url", "ids": ["VARIABLE-STORAGE_GOOGLEAPIS_URL"]}
