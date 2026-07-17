@@ -3,8 +3,8 @@ id: CONCEPT-KUBERNETES_VERSION_SUPPORT
 type: concept
 title: Kubernetes version support in Kubespray
 status: active
-kubespray_version: ">=v2.29.0 <=v2.31.0"
-kubernetes_version: ">=1.31.0 <=1.35.4"
+kubespray_version: ">=v2.27.0 <=v2.31.0"
+kubernetes_version: ">=1.29.0 <=1.35.4"
 component_version: null
 verified_at: 2026-07-16
 confidence: confirmed
@@ -59,7 +59,7 @@ oldest shipped version. This document tracks the window per indexed tag.
 
 ## Context
 
-- Covers Kubespray `v2.29.0`–`v2.31.0` (baseline forward).
+- Covers Kubespray `v2.27.0`–`v2.31.0` (v2.29.0 is the research baseline; v2.27.0–v2.28.1 added for range extension).
 - The installed version is [[VARIABLE-KUBE_VERSION]].
 - The etcd version tracks the Kubernetes minor line (see [[COMPONENT-ETCD]]).
 
@@ -75,6 +75,10 @@ Support window per tag:
 
 | Kubespray | Minor lines | Patch ranges | Count | Default | Minimum |
 |-----------|-------------|--------------|-------|---------|---------|
+| v2.27.0   | 1.29, 1.30, 1.31 | (per tag checksums) | — | 1.31.4 | 1.29.0 |
+| v2.27.1   | 1.29, 1.30, 1.31 | (per tag checksums) | — | 1.31.9 | 1.29.0 |
+| v2.28.0   | 1.30, 1.31, 1.32 | (per tag checksums) | — | 1.32.5 | 1.30.x |
+| v2.28.1   | 1.30, 1.31, 1.32 | (per tag checksums) | — | 1.32.8 | 1.30.x |
 | v2.29.0   | 1.31, 1.32, 1.33 | 1.31.0–1.31.13, 1.32.0–1.32.9, 1.33.0–1.33.5 | 30 | 1.33.5 | 1.31.0 |
 | v2.29.1   | 1.31, 1.32, 1.33 | 1.31.0–1.31.14, 1.32.0–1.32.10, 1.33.0–1.33.7 | 34 | 1.33.7 | 1.31.0 |
 | v2.30.0   | 1.32, 1.33, 1.34 | 1.32.0–1.32.11, 1.33.0–1.33.7, 1.34.0–1.34.3 | 24 | 1.34.3 | 1.32.0 |
@@ -94,6 +98,11 @@ Notes:
 
 ## Compatibility
 
+- Kubespray `v2.27.0`: default `1.31.4`, minimum `1.29.0` (minor lines 1.29–1.31).
+- Kubespray `v2.27.1`: default `1.31.9`, minimum `1.29.0`.
+- Kubespray `v2.28.0`: default `1.32.5` (minor lines 1.30–1.32); **remove the leading `v`
+  from `kube_version`** from this release on.
+- Kubespray `v2.28.1`: default `1.32.8`.
 - Kubespray `v2.29.0`: `>=1.31.0 <=1.33.5`, default `1.33.5`.
 - Kubespray `v2.29.1`: `>=1.31.0 <=1.33.7`, default `1.33.7`.
 - Kubespray `v2.30.0`: `>=1.32.0 <=1.34.3`, default `1.34.3`.
