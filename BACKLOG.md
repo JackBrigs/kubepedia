@@ -109,6 +109,20 @@ DiskPressure). Total troubleshooting docs: 50.
 - deeper **Community** mining (Reddit / SO / Slack) with re-verification;
 - curated Kubernetes "Known Issues" / "Urgent Upgrade Notes" per version.
 
+## Node OS & disk encryption — FUTURE (owner requested 2026-07-17)
+
+Add to the base:
+
+- **Talos OS** — the immutable, API-managed Kubernetes OS. Scope note: Talos is **not a
+  Kubespray-managed OS** (Kubespray targets traditional distros — Ubuntu/Debian/RHEL-family);
+  so this is an adjacent-domain item like the OS layer (`kb/os/`), covering Talos ↔ Kubernetes
+  (machine config, no SSH/systemd, immutable rootfs, upgrades, cgroup v2, how it differs from a
+  Kubespray node OS). Version-bind to a Talos release when written.
+- **Clevis + LUKS2** — automated LUKS2 volume unlock (network-bound disk encryption via Tang,
+  or TPM2 binding) for node/data-disk encryption at rest. Cover: LUKS2 vs LUKS1, Clevis pins
+  (tang/tpm2/sss), boot-time auto-unlock, relevance to Kubernetes nodes and to encrypted
+  storage backends (e.g. Ceph OSD disks, local PVs). Node-OS-level, adjacent domain.
+
 ## Possible architecture refinements (only if justified by implementation)
 
 - formalize the D-005 "version envelope in frontmatter, precise per-version facts
