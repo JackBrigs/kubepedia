@@ -293,6 +293,9 @@
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PLAYBOOK-RECOVER_CONTROL_PLANE", "type": "see_also"}
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "type": "see_also"}
+{"source": "TROUBLE-FAILEDMOUNT", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
+{"source": "TROUBLE-FAILEDMOUNT", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
+{"source": "TROUBLE-FAILEDMOUNT", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}
 {"source": "TROUBLE-FIREWALL_PORTS_BLOCKED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-FIREWALL_PORTS_BLOCKED", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "TROUBLE-FIREWALL_PORTS_BLOCKED", "target": "PRACTICE-PORT_REQUIREMENTS", "type": "see_also"}

@@ -90,6 +90,7 @@ source-verified fix.
 
 - cgroup driver mismatch → [[TROUBLE-CGROUP_DRIVER_MISMATCH]].
 - PVC `Pending` / no StorageClass → [[TROUBLE-PVC_PENDING_NO_STORAGECLASS]].
+- `FailedMount` (ConfigMap/Secret/PVC) → [[TROUBLE-FAILEDMOUNT]].
 
 ### etcd & control plane
 
