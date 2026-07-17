@@ -165,7 +165,12 @@ def main():
                 if tgt and tgt not in known:
                     r.fail(f"{rel}: relation target '{tgt}' does not resolve to a known document")
 
-    # graph orphan (warning): no inbound and no outbound edges
+    # graph orphan (warning): no inbound and no outbound edges.
+    # Leaf reference types (variable, ansible_tag) are intentionally reached by
+    # tag/alias facet and full-text, NOT by graph edge (decisions.md D-018), so an
+    # orphan there is expected, not debt — exempt them and keep the warning
+    # actionable for types that *should* be in the graph.
+    GRAPH_EXEMPT = {"variable", "ansible_tag"}
     linked = set()
     for path, rel, fm, sections in docs:
         for edge in fm.get("relations") or []:
@@ -174,6 +179,8 @@ def main():
                 linked.add(edge["target"])
     if len(docs) > 1:
         for path, rel, fm, sections in docs:
+            if fm.get("type") in GRAPH_EXEMPT:
+                continue
             if fm.get("id") not in linked:
                 r.warned(f"{rel}: document '{fm.get('id')}' is not connected to the graph")
 
@@ -219,10 +226,13 @@ def main():
     # 9. Index consistency
     index_dir = os.path.join(repo, "index")
     documents, relations, ids = kdslib.build_index(kb_root, repo)
+    tags, aliases = kdslib.build_facets(kb_root, repo)
     expected = {
         "documents.jsonl": [json.dumps(x, ensure_ascii=False, sort_keys=True) for x in documents],
         "relations.jsonl": [json.dumps(x, ensure_ascii=False, sort_keys=True) for x in relations],
         "ids.txt": ids,
+        "tags.jsonl": [json.dumps(x, ensure_ascii=False, sort_keys=True) for x in tags],
+        "aliases.jsonl": [json.dumps(x, ensure_ascii=False, sort_keys=True) for x in aliases],
     }
     for name, exp_lines in expected.items():
         fpath = os.path.join(index_dir, name)

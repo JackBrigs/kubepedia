@@ -219,6 +219,10 @@
 {"source": "CONCEPT-K8S_KEPS", "target": "CONCEPT-K8S_1_33_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_KEPS", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_KEPS", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
+{"source": "CONCEPT-KB_NAVIGATION", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
+{"source": "CONCEPT-KB_NAVIGATION", "target": "CONCEPT-RUNBOOKS_INDEX", "type": "see_also"}
+{"source": "CONCEPT-KB_NAVIGATION", "target": "CONCEPT-SECURITY_INDEX", "type": "see_also"}
+{"source": "CONCEPT-KB_NAVIGATION", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "CONCEPT-KUBEADM_CONFIG", "target": "CONFIG-FEATURE_GATES_AND_FLAGS", "type": "see_also"}
 {"source": "CONCEPT-KUBEADM_CONFIG", "target": "CONFIG-KUBEADM_CONFIG_API_VERSION", "type": "see_also"}
 {"source": "CONCEPT-KUBEADM_CONFIG", "target": "TROUBLE-APISERVER_CERT_SAN", "type": "see_also"}

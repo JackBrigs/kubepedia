@@ -49,11 +49,15 @@ def main():
     os.makedirs(index_dir, exist_ok=True)
 
     documents, relations, ids = kdslib.build_index(kb_root, repo)
+    tags, aliases = kdslib.build_facets(kb_root, repo)
     write_jsonl(os.path.join(index_dir, "documents.jsonl"), documents)
     write_jsonl(os.path.join(index_dir, "relations.jsonl"), relations)
     write_lines(os.path.join(index_dir, "ids.txt"), ids)
+    write_jsonl(os.path.join(index_dir, "tags.jsonl"), tags)
+    write_jsonl(os.path.join(index_dir, "aliases.jsonl"), aliases)
 
-    print(f"documents: {len(documents)}  relations: {len(relations)}  ids: {len(ids)}")
+    print(f"documents: {len(documents)}  relations: {len(relations)}  ids: {len(ids)}  "
+          f"tags: {len(tags)}  aliases: {len(aliases)}")
     print(f"index written to {index_dir}")
     return 0
 

@@ -1,0 +1,2472 @@
+{"alias": "--tags annotate", "ids": ["TAG-ANNOTATE"]}
+{"alias": "--tags apps", "ids": ["TAG-APPS"]}
+{"alias": "--tags argocd", "ids": ["TAG-ARGOCD"]}
+{"alias": "--tags asserts", "ids": ["TAG-ASSERTS"]}
+{"alias": "--tags aws-ebs-csi-driver", "ids": ["TAG-AWS_EBS_CSI_DRIVER"]}
+{"alias": "--tags azure-csi-driver", "ids": ["TAG-AZURE_CSI_DRIVER"]}
+{"alias": "--tags bastion", "ids": ["TAG-BASTION"]}
+{"alias": "--tags bootstrap_os", "ids": ["TAG-BOOTSTRAP_OS"]}
+{"alias": "--tags cert-manager", "ids": ["TAG-CERT_MANAGER"]}
+{"alias": "--tags check", "ids": ["TAG-CHECK"]}
+{"alias": "--tags cilium", "ids": ["TAG-CILIUM"]}
+{"alias": "--tags cinder-csi-driver", "ids": ["TAG-CINDER_CSI_DRIVER"]}
+{"alias": "--tags client", "ids": ["TAG-CLIENT"]}
+{"alias": "--tags cluster-roles", "ids": ["TAG-CLUSTER_ROLES"]}
+{"alias": "--tags cni", "ids": ["TAG-CNI"]}
+{"alias": "--tags container-engine", "ids": ["TAG-CONTAINER_ENGINE"]}
+{"alias": "--tags container-runtimes", "ids": ["TAG-CONTAINER_RUNTIMES"]}
+{"alias": "--tags container_engine_accelerator", "ids": ["TAG-CONTAINER_ENGINE_ACCELERATOR"]}
+{"alias": "--tags containerd", "ids": ["TAG-CONTAINERD"]}
+{"alias": "--tags control-plane", "ids": ["TAG-CONTROL_PLANE"]}
+{"alias": "--tags coredns", "ids": ["TAG-COREDNS"]}
+{"alias": "--tags crio", "ids": ["TAG-CRIO"]}
+{"alias": "--tags crun", "ids": ["TAG-CRUN"]}
+{"alias": "--tags csi-driver", "ids": ["TAG-CSI_DRIVER"]}
+{"alias": "--tags dns", "ids": ["TAG-DNS"]}
+{"alias": "--tags docker", "ids": ["TAG-DOCKER"]}
+{"alias": "--tags download", "ids": ["TAG-DOWNLOAD"]}
+{"alias": "--tags etcd", "ids": ["TAG-ETCD"]}
+{"alias": "--tags etcd-secrets", "ids": ["TAG-ETCD_SECRETS"]}
+{"alias": "--tags etcd_metrics", "ids": ["TAG-ETCD_METRICS"]}
+{"alias": "--tags etcdctl", "ids": ["TAG-ETCDCTL"]}
+{"alias": "--tags etcdutl", "ids": ["TAG-ETCDUTL"]}
+{"alias": "--tags external-cloud-controller", "ids": ["TAG-EXTERNAL_CLOUD_CONTROLLER"]}
+{"alias": "--tags external-hcloud", "ids": ["TAG-EXTERNAL_HCLOUD"]}
+{"alias": "--tags external-huaweicloud", "ids": ["TAG-EXTERNAL_HUAWEICLOUD"]}
+{"alias": "--tags external-oci", "ids": ["TAG-EXTERNAL_OCI"]}
+{"alias": "--tags external-openstack", "ids": ["TAG-EXTERNAL_OPENSTACK"]}
+{"alias": "--tags external-provisioner", "ids": ["TAG-EXTERNAL_PROVISIONER"]}
+{"alias": "--tags external-vsphere", "ids": ["TAG-EXTERNAL_VSPHERE"]}
+{"alias": "--tags facts", "ids": ["TAG-FACTS"]}
+{"alias": "--tags files", "ids": ["TAG-FILES"]}
+{"alias": "--tags gateway_api", "ids": ["TAG-GATEWAY_API"]}
+{"alias": "--tags gcp-pd-csi-driver", "ids": ["TAG-GCP_PD_CSI_DRIVER"]}
+{"alias": "--tags gvisor", "ids": ["TAG-GVISOR"]}
+{"alias": "--tags haproxy", "ids": ["TAG-HAPROXY"]}
+{"alias": "--tags helm", "ids": ["TAG-HELM"]}
+{"alias": "--tags ingress-controller", "ids": ["TAG-INGRESS_CONTROLLER"]}
+{"alias": "--tags ingress_alb", "ids": ["TAG-INGRESS_ALB"]}
+{"alias": "--tags init", "ids": ["TAG-INIT"]}
+{"alias": "--tags ip6tables", "ids": ["TAG-IP6TABLES"]}
+{"alias": "--tags iptables", "ids": ["TAG-IPTABLES"]}
+{"alias": "--tags k8s-pre-upgrade", "ids": ["TAG-K8S_PRE_UPGRADE"]}
+{"alias": "--tags kata-containers", "ids": ["TAG-KATA_CONTAINERS"]}
+{"alias": "--tags kube-apiserver", "ids": ["TAG-KUBE_APISERVER"]}
+{"alias": "--tags kube-controller-manager", "ids": ["TAG-KUBE_CONTROLLER_MANAGER"]}
+{"alias": "--tags kube-proxy", "ids": ["TAG-KUBE_PROXY"]}
+{"alias": "--tags kube-vip", "ids": ["TAG-KUBE_VIP"]}
+{"alias": "--tags kubeadm", "ids": ["TAG-KUBEADM"]}
+{"alias": "--tags kubeadm_token", "ids": ["TAG-KUBEADM_TOKEN"]}
+{"alias": "--tags kubectl", "ids": ["TAG-KUBECTL"]}
+{"alias": "--tags kubelet", "ids": ["TAG-KUBELET"]}
+{"alias": "--tags kubelet-csr-approver", "ids": ["TAG-KUBELET_CSR_APPROVER"]}
+{"alias": "--tags local-path-provisioner", "ids": ["TAG-LOCAL_PATH_PROVISIONER"]}
+{"alias": "--tags local-volume-provisioner", "ids": ["TAG-LOCAL_VOLUME_PROVISIONER"]}
+{"alias": "--tags localhost", "ids": ["TAG-LOCALHOST"]}
+{"alias": "--tags metallb", "ids": ["TAG-METALLB"]}
+{"alias": "--tags metrics_server", "ids": ["TAG-METRICS_SERVER"]}
+{"alias": "--tags mounts", "ids": ["TAG-MOUNTS"]}
+{"alias": "--tags network", "ids": ["TAG-NETWORK"]}
+{"alias": "--tags nginx", "ids": ["TAG-NGINX"]}
+{"alias": "--tags node", "ids": ["TAG-NODE"]}
+{"alias": "--tags node-label", "ids": ["TAG-NODE_LABEL"]}
+{"alias": "--tags node-taint", "ids": ["TAG-NODE_TAINT"]}
+{"alias": "--tags node-webhook", "ids": ["TAG-NODE_WEBHOOK"]}
+{"alias": "--tags node_feature_discovery", "ids": ["TAG-NODE_FEATURE_DISCOVERY"]}
+{"alias": "--tags nodelocaldns", "ids": ["TAG-NODELOCALDNS"]}
+{"alias": "--tags nvidia_gpu", "ids": ["TAG-NVIDIA_GPU"]}
+{"alias": "--tags persistent_volumes", "ids": ["TAG-PERSISTENT_VOLUMES"]}
+{"alias": "--tags persistent_volumes_aws_ebs_csi", "ids": ["TAG-PERSISTENT_VOLUMES_AWS_EBS_CSI"]}
+{"alias": "--tags persistent_volumes_azure_csi", "ids": ["TAG-PERSISTENT_VOLUMES_AZURE_CSI"]}
+{"alias": "--tags persistent_volumes_cinder_csi", "ids": ["TAG-PERSISTENT_VOLUMES_CINDER_CSI"]}
+{"alias": "--tags persistent_volumes_gcp_pd_csi", "ids": ["TAG-PERSISTENT_VOLUMES_GCP_PD_CSI"]}
+{"alias": "--tags persistent_volumes_upcloud_csi", "ids": ["TAG-PERSISTENT_VOLUMES_UPCLOUD_CSI"]}
+{"alias": "--tags policy-controller", "ids": ["TAG-POLICY_CONTROLLER"]}
+{"alias": "--tags post-remove", "ids": ["TAG-POST_REMOVE"]}
+{"alias": "--tags post-upgrade", "ids": ["TAG-POST_UPGRADE"]}
+{"alias": "--tags pre-remove", "ids": ["TAG-PRE_REMOVE"]}
+{"alias": "--tags pre-upgrade", "ids": ["TAG-PRE_UPGRADE"]}
+{"alias": "--tags preinstall", "ids": ["TAG-PREINSTALL"]}
+{"alias": "--tags prometheus_operator_crds", "ids": ["TAG-PROMETHEUS_OPERATOR_CRDS"]}
+{"alias": "--tags registry", "ids": ["TAG-REGISTRY"]}
+{"alias": "--tags reset", "ids": ["TAG-RESET"]}
+{"alias": "--tags reset_containerd", "ids": ["TAG-RESET_CONTAINERD"]}
+{"alias": "--tags reset_crio", "ids": ["TAG-RESET_CRIO"]}
+{"alias": "--tags resolvconf", "ids": ["TAG-RESOLVCONF"]}
+{"alias": "--tags scheduler_plugins", "ids": ["TAG-SCHEDULER_PLUGINS"]}
+{"alias": "--tags services", "ids": ["TAG-SERVICES"]}
+{"alias": "--tags snapshot", "ids": ["TAG-SNAPSHOT"]}
+{"alias": "--tags snapshot-controller", "ids": ["TAG-SNAPSHOT_CONTROLLER"]}
+{"alias": "--tags snapshots", "ids": ["TAG-SNAPSHOTS"]}
+{"alias": "--tags system-packages", "ids": ["TAG-SYSTEM_PACKAGES"]}
+{"alias": "--tags system-upgrade", "ids": ["TAG-SYSTEM_UPGRADE"]}
+{"alias": "--tags system-upgrade-apt", "ids": ["TAG-SYSTEM_UPGRADE_APT"]}
+{"alias": "--tags system-upgrade-yum", "ids": ["TAG-SYSTEM_UPGRADE_YUM"]}
+{"alias": "--tags upcloud-csi-driver", "ids": ["TAG-UPCLOUD_CSI_DRIVER"]}
+{"alias": "--tags upgrade", "ids": ["TAG-UPGRADE"]}
+{"alias": "--tags upload", "ids": ["TAG-UPLOAD"]}
+{"alias": "--tags validate-container-engine", "ids": ["TAG-VALIDATE_CONTAINER_ENGINE"]}
+{"alias": "--tags vsphere-csi-driver", "ids": ["TAG-VSPHERE_CSI_DRIVER"]}
+{"alias": "--tags win_nodes", "ids": ["TAG-WIN_NODES"]}
+{"alias": "--tags youki", "ids": ["TAG-YOUKI"]}
+{"alias": "0 nodes are available insufficient cpu", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
+{"alias": "1.29 upgrade notes", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
+{"alias": "1.30 upgrade notes", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
+{"alias": "1.31 upgrade notes", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}
+{"alias": "1.32 upgrade notes", "ids": ["CONCEPT-K8S_1_32_CHANGES"]}
+{"alias": "1.33 upgrade notes", "ids": ["CONCEPT-K8S_1_33_CHANGES"]}
+{"alias": "1.34 upgrade notes", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
+{"alias": "1.35 upgrade notes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
+{"alias": "10250 unreachable", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "1password connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
+{"alias": "1password-connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
+{"alias": "ArgoCD", "ids": ["CONCEPT-GITOPS"]}
+{"alias": "AuthenticationConfiguration", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
+{"alias": "CIS benchmark kubespray", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
+{"alias": "CRI runtime choice", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
+{"alias": "CRI-O runtime", "ids": ["PRACTICE-CRI_O"]}
+{"alias": "CSI", "ids": ["CONCEPT-CSI_LAYER"]}
+{"alias": "CT Map insertion failed", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "CVE-2025-31133", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
+{"alias": "CVE-2025-52565", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
+{"alias": "CVE-2025-52881", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
+{"alias": "Cilium CNI", "ids": ["PRACTICE-CILIUM"]}
+{"alias": "CiliumLoadBalancerIPPool", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
+{"alias": "ClusterConfiguration", "ids": ["CONCEPT-KUBEADM_CONFIG"]}
+{"alias": "ContainerCreating stuck", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
+{"alias": "Corefile", "ids": ["CONFIG-COREDNS_COREFILE"]}
+{"alias": "CrashLoopBackOff", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
+{"alias": "DNS stack", "ids": ["PRACTICE-DNS_STACK"]}
+{"alias": "DR", "ids": ["PRACTICE-BACKUP_DR"]}
+{"alias": "Docker CRI", "ids": ["PRACTICE-DOCKER"]}
+{"alias": "ErrImagePull", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "FailedGetResourceMetric", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
+{"alias": "FailedMount", "ids": ["TROUBLE-FAILEDMOUNT"]}
+{"alias": "FailedScheduling", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "FlowSchema", "ids": ["API-FLOWCONTROL_APISERVER"]}
+{"alias": "GitOps", "ids": ["CONCEPT-GITOPS"]}
+{"alias": "ImagePullBackOff", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "KEPs", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "Kata VM runtime", "ids": ["PRACTICE-KATA_CONTAINERS"]}
+{"alias": "KubeletConfiguration", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
+{"alias": "Kubernetes Enhancement Proposals", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "MountVolume.SetUp failed", "ids": ["TROUBLE-FAILEDMOUNT"]}
+{"alias": "NVIDIA_VISIBLE_DEVICES no longer works", "ids": ["TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS"]}
+{"alias": "NetworkAttachmentDefinition", "ids": ["COMPONENT-MULTUS"]}
+{"alias": "NetworkPluginNotReady", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI", "TROUBLE-POD_CONTAINERCREATING"]}
+{"alias": "NoSchedule taint", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "Noble Numbat kubernetes", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "OOMKilled", "ids": ["TROUBLE-OOMKILLED"]}
+{"alias": "PLEG is not healthy", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
+{"alias": "PSS", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
+{"alias": "PartialObjectMetadata operation not supported", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
+{"alias": "Pod Security Standards", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
+{"alias": "PodSecurity", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
+{"alias": "PodSecurity restricted", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
+{"alias": "PriorityLevelConfiguration", "ids": ["API-FLOWCONTROL_APISERVER"]}
+{"alias": "Private registry", "ids": ["PRACTICE-REGISTRY"]}
+{"alias": "ProgressDeadlineExceeded", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
+{"alias": "RBAC denied", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "RPO RTO", "ids": ["PRACTICE-BACKUP_DR"]}
+{"alias": "SERVFAIL external dns", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
+{"alias": "SNAT masquerade pods", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
+{"alias": "Stop if", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
+{"alias": "SystemdCgroup", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
+{"alias": "Ubuntu 20.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "Ubuntu 22.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "Ubuntu 24.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "Ubuntu 24.04 kubespray", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "Ubuntu 26.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "Ubuntu 26.04 kubespray support", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "Unable to install Cilium", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "VolumeSnapshotClass", "ids": ["CONCEPT-CSI_LAYER"]}
+{"alias": "access denied kubernetes", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "acme challenge pending", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
+{"alias": "add control plane node", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
+{"alias": "add node", "ids": ["PRACTICE-NODES_ADD_REPLACE"]}
+{"alias": "add node runbook", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
+{"alias": "additional_no_proxy", "ids": ["CONFIG-PROXY"]}
+{"alias": "additional_sysctl", "ids": ["VARIABLE-ADDITIONAL_SYSCTL"]}
+{"alias": "addon catalog", "ids": ["CONCEPT-ADDON_CATALOG"]}
+{"alias": "addon inventory", "ids": ["CONCEPT-ADDON_CATALOG"]}
+{"alias": "admin.conf", "ids": ["PRACTICE-CLUSTER_ACCESS"]}
+{"alias": "admission webhook denied", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
+{"alias": "admission webhook denied ingress", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
+{"alias": "admission webhook latency", "ids": ["TROUBLE-APISERVER_REQUEST_LATENCY"]}
+{"alias": "agentk", "ids": ["CONCEPT-ADDON_GITLAB_AGENT"]}
+{"alias": "air-gapped", "ids": ["PRACTICE-OFFLINE_ENVIRONMENT"]}
+{"alias": "alb_ingress_image_repo", "ids": ["VARIABLE-ALB_INGRESS_IMAGE_REPO"]}
+{"alias": "alb_ingress_image_tag", "ids": ["VARIABLE-ALB_INGRESS_IMAGE_TAG"]}
+{"alias": "alertmanager", "ids": ["CONCEPT-ADDON_ALERTMANAGER"]}
+{"alias": "alertmanager 0.28.0", "ids": ["CONCEPT-ADDON_ALERTMANAGER"]}
+{"alias": "alertmanager dashboard", "ids": ["CONCEPT-ADDON_KARMA"]}
+{"alias": "all nodes down recovery", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "allow_ungraceful_removal", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
+{"alias": "always", "ids": ["TAG-ALWAYS"]}
+{"alias": "am i exposed", "ids": ["CONCEPT-CVE_REMEDIATION"]}
+{"alias": "annotate", "ids": ["TAG-ANNOTATE"]}
+{"alias": "annotations-risk-level", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
+{"alias": "anonymous authentication config", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
+{"alias": "ansible awx", "ids": ["CONCEPT-ADDON_AWX"]}
+{"alias": "ansible usage", "ids": ["PRACTICE-ANSIBLE"]}
+{"alias": "ansible vs kubeadm error", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
+{"alias": "ansible_ssh_common_args", "ids": ["VARIABLE-ANSIBLE_SSH_COMMON_ARGS"]}
+{"alias": "answer without an llm", "ids": ["CONCEPT-KB_NAVIGATION"]}
+{"alias": "apf rejected requests", "ids": ["TROUBLE-APISERVER_APF_429"]}
+{"alias": "api deprecations", "ids": ["CONCEPT-K8S_API_REMOVALS"]}
+{"alias": "api removals", "ids": ["CONCEPT-K8S_API_REMOVALS"]}
+{"alias": "apiserver 429 too many requests", "ids": ["TROUBLE-APISERVER_APF_429"]}
+{"alias": "apiserver VIP unreachable", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP"]}
+{"alias": "apiserver audit log", "ids": ["CONFIG-APISERVER_AUDIT"]}
+{"alias": "apiserver cert does not include IP", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
+{"alias": "apiserver certificate SAN missing", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
+{"alias": "apiserver etcd unavailable", "ids": ["TROUBLE-ETCD_QUORUM_LOSS"]}
+{"alias": "apiserver jwt oidc config file", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
+{"alias": "apiserver load balancing", "ids": ["PRACTICE-HA_MODE"]}
+{"alias": "apiserver memory not released", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
+{"alias": "apiserver oom large list", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
+{"alias": "apiserver read-only etcd full", "ids": ["TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
+{"alias": "apiserver slow create update", "ids": ["TROUBLE-APISERVER_REQUEST_LATENCY"]}
+{"alias": "apiserver slow etcd", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
+{"alias": "apiserver-lb-domain-default-unresolvable", "ids": ["TROUBLE-APISERVER_LB_DOMAIN_DEFAULT"]}
+{"alias": "apiserver_admission_webhook_admission_duration_seconds", "ids": ["TROUBLE-APISERVER_REQUEST_LATENCY"]}
+{"alias": "apiserver_extra_volumes", "ids": ["VARIABLE-APISERVER_EXTRA_VOLUMES"]}
+{"alias": "apiserver_loadbalancer_domain_name", "ids": ["VARIABLE-APISERVER_LOADBALANCER_DOMAIN_NAME"]}
+{"alias": "apiserver_sans undefined LB domain", "ids": ["TROUBLE-APISERVER_SANS_UNDEFINED_LB_DOMAIN"]}
+{"alias": "apiservice unavailable namespace", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
+{"alias": "app of apps", "ids": ["CONCEPT-GITOPS"]}
+{"alias": "application backup kubernetes", "ids": ["CONCEPT-VELERO"]}
+{"alias": "application stuck progressing", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "apply extra_args", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
+{"alias": "apps", "ids": ["TAG-APPS"]}
+{"alias": "architecture-compatibility", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
+{"alias": "argo-cd 8.5.7", "ids": ["CONCEPT-ADDON_ARGOCD"]}
+{"alias": "argocd", "ids": ["COMPONENT-ARGOCD", "TAG-ARGOCD"]}
+{"alias": "argocd 3.0 rbac broke", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
+{"alias": "argocd 3.1", "ids": ["CONCEPT-ADDON_ARGOCD"]}
+{"alias": "argocd addon", "ids": ["CONCEPT-ADDON_ARGOCD"]}
+{"alias": "argocd comparison error", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "argocd degraded health", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "argocd logs rbac", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
+{"alias": "argocd out of sync", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "argocd permission denied after upgrade", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
+{"alias": "argocd rbac sync error", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "argocd resource tracking annotations", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
+{"alias": "argocd sync failed", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "argocd_enabled", "ids": ["CONCEPT-GITOPS", "VARIABLE-ARGOCD_ENABLED"]}
+{"alias": "argocd_install_checksum", "ids": ["VARIABLE-ARGOCD_INSTALL_CHECKSUM"]}
+{"alias": "argocd_install_checksums", "ids": ["VARIABLE-ARGOCD_INSTALL_CHECKSUMS"]}
+{"alias": "argocd_install_url", "ids": ["VARIABLE-ARGOCD_INSTALL_URL"]}
+{"alias": "argocd_version", "ids": ["VARIABLE-ARGOCD_VERSION"]}
+{"alias": "artifacts_dir", "ids": ["PRACTICE-CLUSTER_ACCESS"]}
+{"alias": "assertion failed kubespray", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
+{"alias": "asserts", "ids": ["TAG-ASSERTS"]}
+{"alias": "audit disabled by default", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
+{"alias": "audit log backpressure", "ids": ["TROUBLE-APISERVER_REQUEST_LATENCY"]}
+{"alias": "audit logging", "ids": ["CONFIG-APISERVER_AUDIT", "PRACTICE-CLUSTER_HARDENING"]}
+{"alias": "audit policy file", "ids": ["CONFIG-APISERVER_AUDIT"]}
+{"alias": "audit_log_hostpath", "ids": ["VARIABLE-AUDIT_LOG_HOSTPATH"]}
+{"alias": "audit_log_maxage", "ids": ["VARIABLE-AUDIT_LOG_MAXAGE"]}
+{"alias": "audit_log_maxbackups", "ids": ["VARIABLE-AUDIT_LOG_MAXBACKUPS"]}
+{"alias": "audit_log_maxsize", "ids": ["VARIABLE-AUDIT_LOG_MAXSIZE"]}
+{"alias": "audit_log_mountpath", "ids": ["VARIABLE-AUDIT_LOG_MOUNTPATH"]}
+{"alias": "audit_log_name", "ids": ["VARIABLE-AUDIT_LOG_NAME"]}
+{"alias": "audit_log_path", "ids": ["VARIABLE-AUDIT_LOG_PATH"]}
+{"alias": "audit_policy_file", "ids": ["VARIABLE-AUDIT_POLICY_FILE"]}
+{"alias": "audit_policy_hostpath", "ids": ["VARIABLE-AUDIT_POLICY_HOSTPATH"]}
+{"alias": "audit_policy_mountpath", "ids": ["VARIABLE-AUDIT_POLICY_MOUNTPATH"]}
+{"alias": "audit_policy_name", "ids": ["VARIABLE-AUDIT_POLICY_NAME"]}
+{"alias": "audit_webhook_batch_max_size", "ids": ["VARIABLE-AUDIT_WEBHOOK_BATCH_MAX_SIZE"]}
+{"alias": "audit_webhook_batch_max_wait", "ids": ["VARIABLE-AUDIT_WEBHOOK_BATCH_MAX_WAIT"]}
+{"alias": "audit_webhook_config_file", "ids": ["VARIABLE-AUDIT_WEBHOOK_CONFIG_FILE"]}
+{"alias": "audit_webhook_mode", "ids": ["VARIABLE-AUDIT_WEBHOOK_MODE"]}
+{"alias": "audit_webhook_server_extra_args", "ids": ["VARIABLE-AUDIT_WEBHOOK_SERVER_EXTRA_ARGS"]}
+{"alias": "audit_webhook_server_url", "ids": ["VARIABLE-AUDIT_WEBHOOK_SERVER_URL"]}
+{"alias": "authorization_modes", "ids": ["VARIABLE-AUTHORIZATION_MODES"]}
+{"alias": "auto-generated service account token deleted", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
+{"alias": "auto_renew_certificates", "ids": ["CONCEPT-CLUSTER_PKI", "VARIABLE-AUTO_RENEW_CERTIFICATES"]}
+{"alias": "auto_renew_certificates_systemd_calendar", "ids": ["VARIABLE-AUTO_RENEW_CERTIFICATES_SYSTEMD_CALENDAR"]}
+{"alias": "automatic dns records kubernetes", "ids": ["CONCEPT-EXTERNAL_DNS"]}
+{"alias": "aws-ebs-csi", "ids": ["COMPONENT-AWS_EBS_CSI"]}
+{"alias": "aws-ebs-csi-driver", "ids": ["TAG-AWS_EBS_CSI_DRIVER"]}
+{"alias": "aws_ebs_csi_enabled", "ids": ["VARIABLE-AWS_EBS_CSI_ENABLED"]}
+{"alias": "aws_ebs_csi_plugin_image_repo", "ids": ["VARIABLE-AWS_EBS_CSI_PLUGIN_IMAGE_REPO"]}
+{"alias": "aws_ebs_csi_plugin_image_tag", "ids": ["VARIABLE-AWS_EBS_CSI_PLUGIN_IMAGE_TAG"]}
+{"alias": "aws_ebs_csi_plugin_version", "ids": ["VARIABLE-AWS_EBS_CSI_PLUGIN_VERSION"]}
+{"alias": "awx", "ids": ["CONCEPT-ADDON_AWX"]}
+{"alias": "awx-operator", "ids": ["CONCEPT-ADDON_AWX"]}
+{"alias": "azure-csi", "ids": ["COMPONENT-AZURE_CSI"]}
+{"alias": "azure-csi-driver", "ids": ["TAG-AZURE_CSI_DRIVER"]}
+{"alias": "azure_csi_attacher_image_tag", "ids": ["VARIABLE-AZURE_CSI_ATTACHER_IMAGE_TAG"]}
+{"alias": "azure_csi_enabled", "ids": ["VARIABLE-AZURE_CSI_ENABLED"]}
+{"alias": "azure_csi_image_repo", "ids": ["VARIABLE-AZURE_CSI_IMAGE_REPO"]}
+{"alias": "azure_csi_livenessprobe_image_tag", "ids": ["VARIABLE-AZURE_CSI_LIVENESSPROBE_IMAGE_TAG"]}
+{"alias": "azure_csi_node_registrar_image_tag", "ids": ["VARIABLE-AZURE_CSI_NODE_REGISTRAR_IMAGE_TAG"]}
+{"alias": "azure_csi_plugin_image_repo", "ids": ["VARIABLE-AZURE_CSI_PLUGIN_IMAGE_REPO"]}
+{"alias": "azure_csi_plugin_image_tag", "ids": ["VARIABLE-AZURE_CSI_PLUGIN_IMAGE_TAG"]}
+{"alias": "azure_csi_plugin_version", "ids": ["VARIABLE-AZURE_CSI_PLUGIN_VERSION"]}
+{"alias": "azure_csi_provisioner_image_tag", "ids": ["VARIABLE-AZURE_CSI_PROVISIONER_IMAGE_TAG"]}
+{"alias": "azure_csi_resizer_image_tag", "ids": ["VARIABLE-AZURE_CSI_RESIZER_IMAGE_TAG"]}
+{"alias": "azure_csi_snapshotter_image_tag", "ids": ["VARIABLE-AZURE_CSI_SNAPSHOTTER_IMAGE_TAG"]}
+{"alias": "back up kubernetes cluster state", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
+{"alias": "back-off restarting failed container", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
+{"alias": "backup", "ids": ["PRACTICE-BACKUP_DR"]}
+{"alias": "bank-vaults webhook", "ids": ["CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK"]}
+{"alias": "bare metal storage kubespray", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
+{"alias": "baseline restricted privileged", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
+{"alias": "bastion", "ids": ["TAG-BASTION"]}
+{"alias": "bgppeer not connecting", "ids": ["TROUBLE-METALLB_BGP_SESSION_DOWN"]}
+{"alias": "bin_dir", "ids": ["VARIABLE-BIN_DIR"]}
+{"alias": "bootstrap runbook", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
+{"alias": "bootstrap_os", "ids": ["TAG-BOOTSTRAP_OS"]}
+{"alias": "bpf-ct-global-max", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "bring cluster back after outage", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "bump containerd version", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
+{"alias": "calico", "ids": ["COMPONENT-CALICO"]}
+{"alias": "calico bgp not peering", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
+{"alias": "calico cni", "ids": ["COMPONENT-CALICO"]}
+{"alias": "calico ebpf dataplane", "ids": ["CONFIG-CALICO_DATAPLANE"]}
+{"alias": "calico encapsulation mode", "ids": ["CONFIG-CALICO_DATAPLANE"]}
+{"alias": "calico ip autodetection wrong interface", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
+{"alias": "calico mtu packet drops", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
+{"alias": "calico network backend", "ids": ["CONFIG-CALICO_DATAPLANE"]}
+{"alias": "calico node not ready", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
+{"alias": "calico to cilium migration", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
+{"alias": "calico vxlan bgp ipip", "ids": ["CONFIG-CALICO_DATAPLANE"]}
+{"alias": "calico wireguard nftables", "ids": ["CONFIG-CALICO_DATAPLANE"]}
+{"alias": "calico-node crashloopbackoff", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
+{"alias": "calico_mtu", "ids": ["CONFIG-CNI_MTU"]}
+{"alias": "can't get final child's PID from pipe EOF", "ids": ["TROUBLE-CONTAINERD_SHIM_TASK_CREATE"]}
+{"alias": "canary controller", "ids": ["CONCEPT-ADDON_FLAGGER"]}
+{"alias": "cannot be imported into the current release", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "cannot list resource", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "cannot pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "cannot reach service", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
+{"alias": "cannot scrape controller-manager scheduler", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
+{"alias": "cannot validate certificate for because it doesn't contain any IP SANs", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
+{"alias": "capsule", "ids": ["CONCEPT-ADDON_CAPSULE"]}
+{"alias": "capsule 0.13 upgrade", "ids": ["TROUBLE-CAPSULE_UPGRADE_013"]}
+{"alias": "capsule cert-manager required", "ids": ["TROUBLE-CAPSULE_UPGRADE_013"]}
+{"alias": "capsule crd not updated", "ids": ["TROUBLE-CAPSULE_UPGRADE_013"]}
+{"alias": "capsule webhook broke after upgrade", "ids": ["TROUBLE-CAPSULE_UPGRADE_013"]}
+{"alias": "capsule-proxy", "ids": ["CONCEPT-ADDON_CAPSULE"]}
+{"alias": "capsule-system", "ids": ["CONCEPT-ADDON_CAPSULE"]}
+{"alias": "ceph health_warn", "ids": ["TROUBLE-ROOK_CEPH_HEALTH_WARN_OSD"]}
+{"alias": "ceph osd not creating", "ids": ["TROUBLE-ROOK_CEPH_HEALTH_WARN_OSD"]}
+{"alias": "ceph pgs degraded", "ids": ["TROUBLE-ROOK_CEPH_HEALTH_WARN_OSD"]}
+{"alias": "ceph storage", "ids": ["CONCEPT-ADDON_ROOK_CEPH"]}
+{"alias": "ceph-csi-cephfs", "ids": ["CONCEPT-ADDON_CEPH_CSI_CEPHFS"]}
+{"alias": "cephfs csi driver", "ids": ["CONCEPT-ADDON_CEPH_CSI_CEPHFS"]}
+{"alias": "cert rotation", "ids": ["PRACTICE-CERTIFICATE_EXPIRY"]}
+{"alias": "cert-manager", "ids": ["COMPONENT-CERT_MANAGER", "TAG-CERT_MANAGER"]}
+{"alias": "cert-manager 1.18.2", "ids": ["CONCEPT-ADDON_CERT_MANAGER"]}
+{"alias": "cert-manager addon", "ids": ["CONCEPT-ADDON_CERT_MANAGER"]}
+{"alias": "cert-manager cve", "ids": ["TROUBLE-CERT_MANAGER_KNOWN_CVES"]}
+{"alias": "cert-manager order pending", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
+{"alias": "cert-manager ordering webhooks", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
+{"alias": "cert-manager-setup", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
+{"alias": "cert_management", "ids": ["VARIABLE-CERT_MANAGEMENT"]}
+{"alias": "cert_manager_cainjector_image_repo", "ids": ["VARIABLE-CERT_MANAGER_CAINJECTOR_IMAGE_REPO"]}
+{"alias": "cert_manager_cainjector_image_tag", "ids": ["VARIABLE-CERT_MANAGER_CAINJECTOR_IMAGE_TAG"]}
+{"alias": "cert_manager_controller_image_repo", "ids": ["VARIABLE-CERT_MANAGER_CONTROLLER_IMAGE_REPO"]}
+{"alias": "cert_manager_controller_image_tag", "ids": ["VARIABLE-CERT_MANAGER_CONTROLLER_IMAGE_TAG"]}
+{"alias": "cert_manager_enabled", "ids": ["VARIABLE-CERT_MANAGER_ENABLED"]}
+{"alias": "cert_manager_version", "ids": ["VARIABLE-CERT_MANAGER_VERSION"]}
+{"alias": "cert_manager_webhook_image_repo", "ids": ["VARIABLE-CERT_MANAGER_WEBHOOK_IMAGE_REPO"]}
+{"alias": "cert_manager_webhook_image_tag", "ids": ["VARIABLE-CERT_MANAGER_WEBHOOK_IMAGE_TAG"]}
+{"alias": "certificate directory ssl vs pki", "ids": ["TROUBLE-CERT_DIR_SSL_NOT_PKI"]}
+{"alias": "certificate expired 10250", "ids": ["TROUBLE-KUBELET_SERVING_CERT_ROTATION"]}
+{"alias": "certificate expiry", "ids": ["PRACTICE-CERTIFICATE_EXPIRY"]}
+{"alias": "certificate expiry one year", "ids": ["CONCEPT-CLUSTER_PKI"]}
+{"alias": "certificate lifecycle", "ids": ["CONCEPT-CLUSTER_PKI"]}
+{"alias": "certificate rotation runbook", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
+{"alias": "certificate stuck not ready", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
+{"alias": "certificate valid for not", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
+{"alias": "certificatesDir kubespray", "ids": ["TROUBLE-CERT_DIR_SSL_NOT_PKI"]}
+{"alias": "certificates_duration", "ids": ["VARIABLE-CERTIFICATES_DURATION"]}
+{"alias": "certificates_key_size", "ids": ["VARIABLE-CERTIFICATES_KEY_SIZE"]}
+{"alias": "certs valid 100 years myth", "ids": ["TROUBLE-KUBEADM_CERT_RENEWAL"]}
+{"alias": "certs.d", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
+{"alias": "cgroup driver mismatch", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
+{"alias": "cgroup v1 deprecation", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
+{"alias": "change container_manager", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
+{"alias": "change kube_network_plugin", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
+{"alias": "change kubelet setting safely", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
+{"alias": "check", "ids": ["TAG-CHECK"]}
+{"alias": "checksum mismatch download", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
+{"alias": "chrony", "ids": ["CONFIG-NTP"]}
+{"alias": "cilium", "ids": ["COMPONENT-CILIUM", "TAG-CILIUM"]}
+{"alias": "cilium bgp", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
+{"alias": "cilium bpf masquerade", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium check failed", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
+{"alias": "cilium connectivity test", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
+{"alias": "cilium conntrack table full", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "cilium cross node connectivity", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
+{"alias": "cilium cve", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
+{"alias": "cilium datapath", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium debug", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
+{"alias": "cilium encryption", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
+{"alias": "cilium endpoint not ready", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
+{"alias": "cilium hardcoded apiserver ip", "ids": ["TROUBLE-CILIUM_HARDCODED_APISERVER_IP_HA"]}
+{"alias": "cilium helm release", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
+{"alias": "cilium identity allocation mode", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
+{"alias": "cilium identity not propagated", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "cilium ipam cluster-pool", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium ipsec", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
+{"alias": "cilium kube-proxy replacement", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium kubeprism talos", "ids": ["CONCEPT-TALOS_CILIUM"]}
+{"alias": "cilium l2 announcements", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
+{"alias": "cilium lb ipam", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
+{"alias": "cilium loadbalancer", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
+{"alias": "cilium loadbalancer mode ignored", "ids": ["TROUBLE-CILIUM_LOADBALANCER_MODE_NOT_RENDERED"]}
+{"alias": "cilium monitor drop", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "cilium native routing", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium native routing cidr null", "ids": ["TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL"]}
+{"alias": "cilium observability", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
+{"alias": "cilium pods cant reach each other", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
+{"alias": "cilium replace metallb", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
+{"alias": "cilium security", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
+{"alias": "cilium status", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
+{"alias": "cilium tunnel mode vxlan", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium wireguard", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
+{"alias": "cilium-bgp-advertisement-labels-undefined", "ids": ["TROUBLE-CILIUM_BGP_ADVERTISEMENT_LABELS"]}
+{"alias": "cilium-empty-string-null-helm-values", "ids": ["TROUBLE-CILIUM_EMPTY_STRING_NULL_HELM"]}
+{"alias": "cilium-enable-prometheus-noop", "ids": ["TROUBLE-CILIUM_ENABLE_PROMETHEUS_NOOP"]}
+{"alias": "cilium-operator-gateway-secrets", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "cilium-operator-generic-offline", "ids": ["TROUBLE-CILIUM_OPERATOR_GENERIC_OFFLINE_REGISTRY"]}
+{"alias": "cilium-operator-ingress-secrets", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "cilium-operator-tlsinterception-secrets exists", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "cilium-portmap-hostport", "ids": ["TROUBLE-CILIUM_PORTMAP"]}
+{"alias": "cilium-secrets namespace role conflict", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "cilium_agent_custom_args", "ids": ["VARIABLE-CILIUM_AGENT_CUSTOM_ARGS"]}
+{"alias": "cilium_agent_extra_args", "ids": ["VARIABLE-CILIUM_AGENT_EXTRA_ARGS"]}
+{"alias": "cilium_agent_extra_env_vars", "ids": ["VARIABLE-CILIUM_AGENT_EXTRA_ENV_VARS"]}
+{"alias": "cilium_agent_extra_volume_mounts", "ids": ["VARIABLE-CILIUM_AGENT_EXTRA_VOLUME_MOUNTS"]}
+{"alias": "cilium_agent_extra_volumes", "ids": ["VARIABLE-CILIUM_AGENT_EXTRA_VOLUMES"]}
+{"alias": "cilium_agent_health_port", "ids": ["VARIABLE-CILIUM_AGENT_HEALTH_PORT"]}
+{"alias": "cilium_agent_scrape_port", "ids": ["VARIABLE-CILIUM_AGENT_SCRAPE_PORT"]}
+{"alias": "cilium_auto_direct_node_routes", "ids": ["VARIABLE-CILIUM_AUTO_DIRECT_NODE_ROUTES"]}
+{"alias": "cilium_bgp_advertisements", "ids": ["VARIABLE-CILIUM_BGP_ADVERTISEMENTS"]}
+{"alias": "cilium_bgp_cluster_configs", "ids": ["VARIABLE-CILIUM_BGP_CLUSTER_CONFIGS"]}
+{"alias": "cilium_bgp_node_config_overrides", "ids": ["VARIABLE-CILIUM_BGP_NODE_CONFIG_OVERRIDES"]}
+{"alias": "cilium_bgp_peer_configs", "ids": ["VARIABLE-CILIUM_BGP_PEER_CONFIGS"]}
+{"alias": "cilium_bgp_peering_policies", "ids": ["VARIABLE-CILIUM_BGP_PEERING_POLICIES"]}
+{"alias": "cilium_bpf_map_dynamic_size_ratio", "ids": ["VARIABLE-CILIUM_BPF_MAP_DYNAMIC_SIZE_RATIO"]}
+{"alias": "cilium_cert_dir", "ids": ["VARIABLE-CILIUM_CERT_DIR"]}
+{"alias": "cilium_certgen_args", "ids": ["VARIABLE-CILIUM_CERTGEN_ARGS"]}
+{"alias": "cilium_cgroup_auto_mount", "ids": ["VARIABLE-CILIUM_CGROUP_AUTO_MOUNT"]}
+{"alias": "cilium_cgroup_host_root", "ids": ["VARIABLE-CILIUM_CGROUP_HOST_ROOT"]}
+{"alias": "cilium_cli_version", "ids": ["VARIABLE-CILIUM_CLI_VERSION"]}
+{"alias": "cilium_cluster_id", "ids": ["VARIABLE-CILIUM_CLUSTER_ID"]}
+{"alias": "cilium_cluster_name", "ids": ["VARIABLE-CILIUM_CLUSTER_NAME"]}
+{"alias": "cilium_cni_exclusive", "ids": ["VARIABLE-CILIUM_CNI_EXCLUSIVE"]}
+{"alias": "cilium_cni_log_file", "ids": ["VARIABLE-CILIUM_CNI_LOG_FILE"]}
+{"alias": "cilium_config_extra_vars", "ids": ["VARIABLE-CILIUM_CONFIG_EXTRA_VARS"]}
+{"alias": "cilium_cpu_limit", "ids": ["VARIABLE-CILIUM_CPU_LIMIT"]}
+{"alias": "cilium_cpu_requests", "ids": ["VARIABLE-CILIUM_CPU_REQUESTS"]}
+{"alias": "cilium_debug", "ids": ["VARIABLE-CILIUM_DEBUG"]}
+{"alias": "cilium_deploy_additionally", "ids": ["VARIABLE-CILIUM_DEPLOY_ADDITIONALLY"]}
+{"alias": "cilium_disable_cnp_status_updates", "ids": ["VARIABLE-CILIUM_DISABLE_CNP_STATUS_UPDATES"]}
+{"alias": "cilium_enable_bandwidth_manager", "ids": ["VARIABLE-CILIUM_ENABLE_BANDWIDTH_MANAGER"]}
+{"alias": "cilium_enable_bandwidth_manager_bbr", "ids": ["VARIABLE-CILIUM_ENABLE_BANDWIDTH_MANAGER_BBR"]}
+{"alias": "cilium_enable_bgp_control_plane", "ids": ["VARIABLE-CILIUM_ENABLE_BGP_CONTROL_PLANE"]}
+{"alias": "cilium_enable_bpf_masquerade", "ids": ["VARIABLE-CILIUM_ENABLE_BPF_MASQUERADE"]}
+{"alias": "cilium_enable_host_firewall", "ids": ["VARIABLE-CILIUM_ENABLE_HOST_FIREWALL"]}
+{"alias": "cilium_enable_host_legacy_routing", "ids": ["VARIABLE-CILIUM_ENABLE_HOST_LEGACY_ROUTING"]}
+{"alias": "cilium_enable_hubble", "ids": ["CONCEPT-CILIUM_HUBBLE", "VARIABLE-CILIUM_ENABLE_HUBBLE"]}
+{"alias": "cilium_enable_hubble_metrics", "ids": ["VARIABLE-CILIUM_ENABLE_HUBBLE_METRICS"]}
+{"alias": "cilium_enable_hubble_ui", "ids": ["VARIABLE-CILIUM_ENABLE_HUBBLE_UI"]}
+{"alias": "cilium_enable_ipv4", "ids": ["VARIABLE-CILIUM_ENABLE_IPV4"]}
+{"alias": "cilium_enable_ipv4_masquerade", "ids": ["VARIABLE-CILIUM_ENABLE_IPV4_MASQUERADE"]}
+{"alias": "cilium_enable_ipv6", "ids": ["VARIABLE-CILIUM_ENABLE_IPV6"]}
+{"alias": "cilium_enable_ipv6_masquerade", "ids": ["VARIABLE-CILIUM_ENABLE_IPV6_MASQUERADE"]}
+{"alias": "cilium_enable_portmap", "ids": ["VARIABLE-CILIUM_ENABLE_PORTMAP"]}
+{"alias": "cilium_enable_prometheus", "ids": ["VARIABLE-CILIUM_ENABLE_PROMETHEUS"]}
+{"alias": "cilium_enable_remote_node_identity", "ids": ["VARIABLE-CILIUM_ENABLE_REMOTE_NODE_IDENTITY"]}
+{"alias": "cilium_enable_well_known_identities", "ids": ["VARIABLE-CILIUM_ENABLE_WELL_KNOWN_IDENTITIES"]}
+{"alias": "cilium_encryption_enabled", "ids": ["CONCEPT-CILIUM_ENCRYPTION", "VARIABLE-CILIUM_ENCRYPTION_ENABLED"]}
+{"alias": "cilium_encryption_node_encryption", "ids": ["VARIABLE-CILIUM_ENCRYPTION_NODE_ENCRYPTION"]}
+{"alias": "cilium_encryption_type", "ids": ["VARIABLE-CILIUM_ENCRYPTION_TYPE"]}
+{"alias": "cilium_encryption_type invalid", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
+{"alias": "cilium_extra_values", "ids": ["VARIABLE-CILIUM_EXTRA_VALUES"]}
+{"alias": "cilium_gateway_api_enabled", "ids": ["VARIABLE-CILIUM_GATEWAY_API_ENABLED"]}
+{"alias": "cilium_hubble_certgen_image_repo", "ids": ["VARIABLE-CILIUM_HUBBLE_CERTGEN_IMAGE_REPO"]}
+{"alias": "cilium_hubble_certgen_image_tag", "ids": ["VARIABLE-CILIUM_HUBBLE_CERTGEN_IMAGE_TAG"]}
+{"alias": "cilium_hubble_envoy_image_repo", "ids": ["VARIABLE-CILIUM_HUBBLE_ENVOY_IMAGE_REPO"]}
+{"alias": "cilium_hubble_envoy_image_tag", "ids": ["VARIABLE-CILIUM_HUBBLE_ENVOY_IMAGE_TAG"]}
+{"alias": "cilium_hubble_export_dynamic_config_content", "ids": ["VARIABLE-CILIUM_HUBBLE_EXPORT_DYNAMIC_CONFIG_CONTENT"]}
+{"alias": "cilium_hubble_export_dynamic_enabled", "ids": ["VARIABLE-CILIUM_HUBBLE_EXPORT_DYNAMIC_ENABLED"]}
+{"alias": "cilium_hubble_export_file_max_backups", "ids": ["VARIABLE-CILIUM_HUBBLE_EXPORT_FILE_MAX_BACKUPS"]}
+{"alias": "cilium_hubble_export_file_max_size_mb", "ids": ["VARIABLE-CILIUM_HUBBLE_EXPORT_FILE_MAX_SIZE_MB"]}
+{"alias": "cilium_hubble_install", "ids": ["VARIABLE-CILIUM_HUBBLE_INSTALL"]}
+{"alias": "cilium_hubble_metrics", "ids": ["VARIABLE-CILIUM_HUBBLE_METRICS"]}
+{"alias": "cilium_hubble_peer_service_cluster_domain", "ids": ["VARIABLE-CILIUM_HUBBLE_PEER_SERVICE_CLUSTER_DOMAIN"]}
+{"alias": "cilium_hubble_relay_image_repo", "ids": ["VARIABLE-CILIUM_HUBBLE_RELAY_IMAGE_REPO"]}
+{"alias": "cilium_hubble_relay_image_tag", "ids": ["VARIABLE-CILIUM_HUBBLE_RELAY_IMAGE_TAG"]}
+{"alias": "cilium_hubble_scrape_port", "ids": ["VARIABLE-CILIUM_HUBBLE_SCRAPE_PORT"]}
+{"alias": "cilium_hubble_tls_generate", "ids": ["VARIABLE-CILIUM_HUBBLE_TLS_GENERATE"]}
+{"alias": "cilium_hubble_ui_backend_image_repo", "ids": ["VARIABLE-CILIUM_HUBBLE_UI_BACKEND_IMAGE_REPO"]}
+{"alias": "cilium_hubble_ui_backend_image_tag", "ids": ["VARIABLE-CILIUM_HUBBLE_UI_BACKEND_IMAGE_TAG"]}
+{"alias": "cilium_hubble_ui_image_repo", "ids": ["VARIABLE-CILIUM_HUBBLE_UI_IMAGE_REPO"]}
+{"alias": "cilium_hubble_ui_image_tag", "ids": ["VARIABLE-CILIUM_HUBBLE_UI_IMAGE_TAG"]}
+{"alias": "cilium_identity_allocation_mode", "ids": ["VARIABLE-CILIUM_IDENTITY_ALLOCATION_MODE"]}
+{"alias": "cilium_identity_allocation_mode is undefined", "ids": ["TROUBLE-CILIUM_IDENTITY_ALLOCATION_MODE_UNDEFINED"]}
+{"alias": "cilium_image_repo", "ids": ["VARIABLE-CILIUM_IMAGE_REPO"]}
+{"alias": "cilium_image_tag", "ids": ["VARIABLE-CILIUM_IMAGE_TAG"]}
+{"alias": "cilium_install_extra_flags", "ids": ["VARIABLE-CILIUM_INSTALL_EXTRA_FLAGS"]}
+{"alias": "cilium_ip_masq_agent_enable", "ids": ["VARIABLE-CILIUM_IP_MASQ_AGENT_ENABLE"]}
+{"alias": "cilium_ip_masq_resync_interval", "ids": ["VARIABLE-CILIUM_IP_MASQ_RESYNC_INTERVAL"]}
+{"alias": "cilium_ipam_mode", "ids": ["VARIABLE-CILIUM_IPAM_MODE"]}
+{"alias": "cilium_ipsec_key", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
+{"alias": "cilium_kube_proxy_replacement", "ids": ["VARIABLE-CILIUM_KUBE_PROXY_REPLACEMENT"]}
+{"alias": "cilium_l2announcements", "ids": ["VARIABLE-CILIUM_L2ANNOUNCEMENTS"]}
+{"alias": "cilium_loadbalancer_ip_pools", "ids": ["VARIABLE-CILIUM_LOADBALANCER_IP_POOLS"]}
+{"alias": "cilium_loadbalancer_mode", "ids": ["VARIABLE-CILIUM_LOADBALANCER_MODE"]}
+{"alias": "cilium_masq_link_local", "ids": ["VARIABLE-CILIUM_MASQ_LINK_LOCAL"]}
+{"alias": "cilium_masq_link_local_ipv6", "ids": ["VARIABLE-CILIUM_MASQ_LINK_LOCAL_IPV6"]}
+{"alias": "cilium_memory_limit", "ids": ["VARIABLE-CILIUM_MEMORY_LIMIT"]}
+{"alias": "cilium_memory_requests", "ids": ["VARIABLE-CILIUM_MEMORY_REQUESTS"]}
+{"alias": "cilium_min_version_required", "ids": ["VARIABLE-CILIUM_MIN_VERSION_REQUIRED"]}
+{"alias": "cilium_monitor_aggregation", "ids": ["VARIABLE-CILIUM_MONITOR_AGGREGATION"]}
+{"alias": "cilium_monitor_aggregation_flags", "ids": ["VARIABLE-CILIUM_MONITOR_AGGREGATION_FLAGS"]}
+{"alias": "cilium_mtu", "ids": ["CONFIG-CNI_MTU", "VARIABLE-CILIUM_MTU"]}
+{"alias": "cilium_native_routing_cidr", "ids": ["VARIABLE-CILIUM_NATIVE_ROUTING_CIDR"]}
+{"alias": "cilium_native_routing_cidr_ipv6", "ids": ["VARIABLE-CILIUM_NATIVE_ROUTING_CIDR_IPV6"]}
+{"alias": "cilium_non_masquerade_cidrs", "ids": ["VARIABLE-CILIUM_NON_MASQUERADE_CIDRS"]}
+{"alias": "cilium_operator_api_serve_addr", "ids": ["VARIABLE-CILIUM_OPERATOR_API_SERVE_ADDR"]}
+{"alias": "cilium_operator_custom_args", "ids": ["VARIABLE-CILIUM_OPERATOR_CUSTOM_ARGS"]}
+{"alias": "cilium_operator_extra_args", "ids": ["VARIABLE-CILIUM_OPERATOR_EXTRA_ARGS"]}
+{"alias": "cilium_operator_extra_volume_mounts", "ids": ["VARIABLE-CILIUM_OPERATOR_EXTRA_VOLUME_MOUNTS"]}
+{"alias": "cilium_operator_extra_volumes", "ids": ["VARIABLE-CILIUM_OPERATOR_EXTRA_VOLUMES"]}
+{"alias": "cilium_operator_image_repo", "ids": ["VARIABLE-CILIUM_OPERATOR_IMAGE_REPO"]}
+{"alias": "cilium_operator_image_tag", "ids": ["VARIABLE-CILIUM_OPERATOR_IMAGE_TAG"]}
+{"alias": "cilium_operator_replicas", "ids": ["VARIABLE-CILIUM_OPERATOR_REPLICAS"]}
+{"alias": "cilium_operator_scrape_port", "ids": ["VARIABLE-CILIUM_OPERATOR_SCRAPE_PORT"]}
+{"alias": "cilium_operator_tolerations", "ids": ["VARIABLE-CILIUM_OPERATOR_TOLERATIONS"]}
+{"alias": "cilium_policy_audit_mode", "ids": ["VARIABLE-CILIUM_POLICY_AUDIT_MODE"]}
+{"alias": "cilium_preallocate_bpf_maps", "ids": ["VARIABLE-CILIUM_PREALLOCATE_BPF_MAPS"]}
+{"alias": "cilium_rolling_restart_wait_retries_count", "ids": ["VARIABLE-CILIUM_ROLLING_RESTART_WAIT_RETRIES_COUNT"]}
+{"alias": "cilium_rolling_restart_wait_retries_delay_seconds", "ids": ["VARIABLE-CILIUM_ROLLING_RESTART_WAIT_RETRIES_DELAY_SECONDS"]}
+{"alias": "cilium_tunnel_mode", "ids": ["VARIABLE-CILIUM_TUNNEL_MODE"]}
+{"alias": "cilium_version", "ids": ["VARIABLE-CILIUM_VERSION"]}
+{"alias": "cilium_wireguard_userspace_fallback", "ids": ["VARIABLE-CILIUM_WIREGUARD_USERSPACE_FALLBACK"]}
+{"alias": "ciliumcli_binary_checksum", "ids": ["VARIABLE-CILIUMCLI_BINARY_CHECKSUM"]}
+{"alias": "ciliumcli_binary_checksums", "ids": ["VARIABLE-CILIUMCLI_BINARY_CHECKSUMS"]}
+{"alias": "ciliumcli_download_url", "ids": ["VARIABLE-CILIUMCLI_DOWNLOAD_URL"]}
+{"alias": "cinder-csi", "ids": ["COMPONENT-CINDER_CSI"]}
+{"alias": "cinder-csi-driver", "ids": ["TAG-CINDER_CSI_DRIVER"]}
+{"alias": "cinder_csi_enabled", "ids": ["VARIABLE-CINDER_CSI_ENABLED"]}
+{"alias": "cinder_csi_ignore_volume_az", "ids": ["VARIABLE-CINDER_CSI_IGNORE_VOLUME_AZ"]}
+{"alias": "cinder_csi_plugin_image_repo", "ids": ["VARIABLE-CINDER_CSI_PLUGIN_IMAGE_REPO"]}
+{"alias": "cinder_csi_plugin_image_tag", "ids": ["VARIABLE-CINDER_CSI_PLUGIN_IMAGE_TAG"]}
+{"alias": "cinder_csi_plugin_version", "ids": ["VARIABLE-CINDER_CSI_PLUGIN_VERSION"]}
+{"alias": "cis benchmark", "ids": ["PRACTICE-HARDENING"]}
+{"alias": "clean redeploy", "ids": ["PRACTICE-RUNBOOK_RESET"]}
+{"alias": "clevis luks2", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
+{"alias": "client", "ids": ["TAG-CLIENT"]}
+{"alias": "clock synchronization", "ids": ["CONFIG-NTP"]}
+{"alias": "clock-skew-tls-errors", "ids": ["TROUBLE-CLOCK_SKEW_TLS"]}
+{"alias": "cloki", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "cloud_provider", "ids": ["VARIABLE-CLOUD_PROVIDER"]}
+{"alias": "cloud_resolver", "ids": ["VARIABLE-CLOUD_RESOLVER"]}
+{"alias": "cluster hardening", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
+{"alias": "cluster networking", "ids": ["CONCEPT-CLUSTER_NETWORKING"]}
+{"alias": "cluster pki", "ids": ["CONCEPT-CLUSTER_PKI"]}
+{"alias": "cluster power loss recovery", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "cluster status", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
+{"alias": "cluster-roles", "ids": ["TAG-CLUSTER_ROLES"]}
+{"alias": "cluster.yml", "ids": ["PLAYBOOK-CLUSTER"]}
+{"alias": "cluster.yml first run", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
+{"alias": "cluster_name", "ids": ["VARIABLE-CLUSTER_NAME"]}
+{"alias": "clusterip unreachable", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
+{"alias": "cni", "ids": ["TAG-CNI"]}
+{"alias": "cni migration runbook", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
+{"alias": "cni overlay mtu", "ids": ["CONFIG-CNI_MTU"]}
+{"alias": "cni plugin not initialized", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI", "TROUBLE-POD_CONTAINERCREATING"]}
+{"alias": "cni-generic-plugin", "ids": ["PRACTICE-CNI_GENERIC_PLUGIN"]}
+{"alias": "cni-plugins", "ids": ["COMPONENT-CNI_PLUGINS"]}
+{"alias": "cni-plugins cve", "ids": ["TROUBLE-CNI_PLUGINS_KNOWN_CVES"]}
+{"alias": "cni_binary_checksum", "ids": ["VARIABLE-CNI_BINARY_CHECKSUM"]}
+{"alias": "cni_binary_checksums", "ids": ["VARIABLE-CNI_BINARY_CHECKSUMS"]}
+{"alias": "cni_download_url", "ids": ["VARIABLE-CNI_DOWNLOAD_URL"]}
+{"alias": "cni_version", "ids": ["COMPONENT-CNI_PLUGINS", "VARIABLE-CNI_VERSION"]}
+{"alias": "cold start runbook", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "component matrix", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
+{"alias": "component versions", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
+{"alias": "config change runbook", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
+{"alias": "configmap not found volume", "ids": ["TROUBLE-FAILEDMOUNT"]}
+{"alias": "connect 1.17.0", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
+{"alias": "connection refused 127.0.0.1 metrics", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
+{"alias": "connection refused clusterip", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
+{"alias": "conntrack-table-full", "ids": ["TROUBLE-CONNTRACK_TABLE_FULL"]}
+{"alias": "container engine kubespray", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
+{"alias": "container keeps restarting", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
+{"alias": "container killed memory limit", "ids": ["TROUBLE-OOMKILLED"]}
+{"alias": "container runtime network not ready", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
+{"alias": "container runtimes", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
+{"alias": "container-engine", "ids": ["ROLE-CONTAINER_ENGINE", "TAG-CONTAINER_ENGINE"]}
+{"alias": "container-runtimes", "ids": ["TAG-CONTAINER_RUNTIMES"]}
+{"alias": "container_engine_accelerator", "ids": ["TAG-CONTAINER_ENGINE_ACCELERATOR"]}
+{"alias": "container_manager", "ids": ["CONCEPT-CONTAINER_MANAGER", "VARIABLE-CONTAINER_MANAGER"]}
+{"alias": "container_manager_on_localhost", "ids": ["VARIABLE-CONTAINER_MANAGER_ON_LOCALHOST"]}
+{"alias": "containerd", "ids": ["COMPONENT-CONTAINERD", "TAG-CONTAINERD"]}
+{"alias": "containerd 2 migration", "ids": ["CONCEPT-CONTAINERD_2X"]}
+{"alias": "containerd 2.x", "ids": ["CONCEPT-CONTAINERD_2X"]}
+{"alias": "containerd config version 3", "ids": ["CONCEPT-CONTAINERD_2X"]}
+{"alias": "containerd config.toml v3", "ids": ["CONCEPT-CONTAINERD_2X"]}
+{"alias": "containerd cve", "ids": ["TROUBLE-CONTAINERD_KNOWN_CVES"]}
+{"alias": "containerd data root overlay", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
+{"alias": "containerd debug", "ids": ["PRACTICE-CONTAINERD_DIAGNOSTICS"]}
+{"alias": "containerd failed to pull and unpack", "ids": ["TROUBLE-CONTAINERD_IMAGE_PULL_CRI"]}
+{"alias": "containerd goroutine leak exec", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
+{"alias": "containerd private registry", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
+{"alias": "containerd registry mirror auth", "ids": ["TROUBLE-CONTAINERD_IMAGE_PULL_CRI"]}
+{"alias": "containerd runtime", "ids": ["PRACTICE-CONTAINERD"]}
+{"alias": "containerd security", "ids": ["TROUBLE-CONTAINERD_KNOWN_CVES"]}
+{"alias": "containerd vs cri-o vs docker", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
+{"alias": "containerd-http-proxy-conf", "ids": ["TROUBLE-CONTAINERD_NO_PROXY_CHAR_ARRAY"]}
+{"alias": "containerd-shim-runc-v2 memory leak", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
+{"alias": "containerd_additional_runtimes", "ids": ["VARIABLE-CONTAINERD_ADDITIONAL_RUNTIMES"]}
+{"alias": "containerd_archive_checksum", "ids": ["VARIABLE-CONTAINERD_ARCHIVE_CHECKSUM"]}
+{"alias": "containerd_archive_checksums", "ids": ["VARIABLE-CONTAINERD_ARCHIVE_CHECKSUMS"]}
+{"alias": "containerd_base_runtime_spec_rlimit_nofile", "ids": ["VARIABLE-CONTAINERD_BASE_RUNTIME_SPEC_RLIMIT_NOFILE"]}
+{"alias": "containerd_base_runtime_specs", "ids": ["VARIABLE-CONTAINERD_BASE_RUNTIME_SPECS"]}
+{"alias": "containerd_bin_dir", "ids": ["VARIABLE-CONTAINERD_BIN_DIR"]}
+{"alias": "containerd_cfg_dir", "ids": ["VARIABLE-CONTAINERD_CFG_DIR"]}
+{"alias": "containerd_checksum", "ids": ["VARIABLE-CONTAINERD_CHECKSUM"]}
+{"alias": "containerd_debug_address", "ids": ["VARIABLE-CONTAINERD_DEBUG_ADDRESS"]}
+{"alias": "containerd_debug_format", "ids": ["VARIABLE-CONTAINERD_DEBUG_FORMAT"]}
+{"alias": "containerd_debug_gid", "ids": ["VARIABLE-CONTAINERD_DEBUG_GID"]}
+{"alias": "containerd_debug_level", "ids": ["VARIABLE-CONTAINERD_DEBUG_LEVEL"]}
+{"alias": "containerd_debug_uid", "ids": ["VARIABLE-CONTAINERD_DEBUG_UID"]}
+{"alias": "containerd_default_base_runtime_spec_patch", "ids": ["VARIABLE-CONTAINERD_DEFAULT_BASE_RUNTIME_SPEC_PATCH"]}
+{"alias": "containerd_default_runtime", "ids": ["CONCEPT-CONTAINER_RUNTIMES", "VARIABLE-CONTAINERD_DEFAULT_RUNTIME"]}
+{"alias": "containerd_disable_apparmor", "ids": ["VARIABLE-CONTAINERD_DISABLE_APPARMOR"]}
+{"alias": "containerd_disable_hugetlb_controller", "ids": ["VARIABLE-CONTAINERD_DISABLE_HUGETLB_CONTROLLER"]}
+{"alias": "containerd_discard_unpacked_layers", "ids": ["VARIABLE-CONTAINERD_DISCARD_UNPACKED_LAYERS"]}
+{"alias": "containerd_download_url", "ids": ["VARIABLE-CONTAINERD_DOWNLOAD_URL"]}
+{"alias": "containerd_enable_selinux", "ids": ["VARIABLE-CONTAINERD_ENABLE_SELINUX"]}
+{"alias": "containerd_enable_unprivileged_icmp", "ids": ["VARIABLE-CONTAINERD_ENABLE_UNPRIVILEGED_ICMP"]}
+{"alias": "containerd_enable_unprivileged_ports", "ids": ["VARIABLE-CONTAINERD_ENABLE_UNPRIVILEGED_PORTS"]}
+{"alias": "containerd_extra_args", "ids": ["VARIABLE-CONTAINERD_EXTRA_ARGS"]}
+{"alias": "containerd_extra_runtime_args", "ids": ["VARIABLE-CONTAINERD_EXTRA_RUNTIME_ARGS"]}
+{"alias": "containerd_grpc_max_recv_message_size", "ids": ["VARIABLE-CONTAINERD_GRPC_MAX_RECV_MESSAGE_SIZE"]}
+{"alias": "containerd_grpc_max_send_message_size", "ids": ["VARIABLE-CONTAINERD_GRPC_MAX_SEND_MESSAGE_SIZE"]}
+{"alias": "containerd_image_pull_progress_timeout", "ids": ["VARIABLE-CONTAINERD_IMAGE_PULL_PROGRESS_TIMEOUT"]}
+{"alias": "containerd_limit_core", "ids": ["VARIABLE-CONTAINERD_LIMIT_CORE"]}
+{"alias": "containerd_limit_mem_lock", "ids": ["VARIABLE-CONTAINERD_LIMIT_MEM_LOCK"]}
+{"alias": "containerd_limit_open_file_num", "ids": ["VARIABLE-CONTAINERD_LIMIT_OPEN_FILE_NUM"]}
+{"alias": "containerd_limit_proc_num", "ids": ["VARIABLE-CONTAINERD_LIMIT_PROC_NUM"]}
+{"alias": "containerd_max_container_log_line_size", "ids": ["VARIABLE-CONTAINERD_MAX_CONTAINER_LOG_LINE_SIZE"]}
+{"alias": "containerd_metrics_address", "ids": ["VARIABLE-CONTAINERD_METRICS_ADDRESS"]}
+{"alias": "containerd_metrics_grpc_histogram", "ids": ["VARIABLE-CONTAINERD_METRICS_GRPC_HISTOGRAM"]}
+{"alias": "containerd_min_version_required", "ids": ["VARIABLE-CONTAINERD_MIN_VERSION_REQUIRED"]}
+{"alias": "containerd_oom_score", "ids": ["VARIABLE-CONTAINERD_OOM_SCORE"]}
+{"alias": "containerd_package_info", "ids": ["VARIABLE-CONTAINERD_PACKAGE_INFO"]}
+{"alias": "containerd_registries_mirrors", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG", "VARIABLE-CONTAINERD_REGISTRIES_MIRRORS"]}
+{"alias": "containerd_registry_auth", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG", "VARIABLE-CONTAINERD_REGISTRY_AUTH"]}
+{"alias": "containerd_runc_runtime", "ids": ["VARIABLE-CONTAINERD_RUNC_RUNTIME"]}
+{"alias": "containerd_snapshotter", "ids": ["VARIABLE-CONTAINERD_SNAPSHOTTER"]}
+{"alias": "containerd_state_dir", "ids": ["VARIABLE-CONTAINERD_STATE_DIR"]}
+{"alias": "containerd_static_archive_checksum", "ids": ["VARIABLE-CONTAINERD_STATIC_ARCHIVE_CHECKSUM"]}
+{"alias": "containerd_static_archive_checksums", "ids": ["VARIABLE-CONTAINERD_STATIC_ARCHIVE_CHECKSUMS"]}
+{"alias": "containerd_static_binary", "ids": ["VARIABLE-CONTAINERD_STATIC_BINARY"]}
+{"alias": "containerd_storage_dir", "ids": ["VARIABLE-CONTAINERD_STORAGE_DIR"]}
+{"alias": "containerd_supported_distributions", "ids": ["VARIABLE-CONTAINERD_SUPPORTED_DISTRIBUTIONS"]}
+{"alias": "containerd_systemd_dir", "ids": ["VARIABLE-CONTAINERD_SYSTEMD_DIR"]}
+{"alias": "containerd_tolerate_missing_hugetlb_controller", "ids": ["VARIABLE-CONTAINERD_TOLERATE_MISSING_HUGETLB_CONTROLLER"]}
+{"alias": "containerd_tracing_enabled", "ids": ["VARIABLE-CONTAINERD_TRACING_ENABLED"]}
+{"alias": "containerd_tracing_endpoint", "ids": ["VARIABLE-CONTAINERD_TRACING_ENDPOINT"]}
+{"alias": "containerd_tracing_protocol", "ids": ["VARIABLE-CONTAINERD_TRACING_PROTOCOL"]}
+{"alias": "containerd_tracing_sampling_ratio", "ids": ["VARIABLE-CONTAINERD_TRACING_SAMPLING_RATIO"]}
+{"alias": "containerd_tracing_service_name", "ids": ["VARIABLE-CONTAINERD_TRACING_SERVICE_NAME"]}
+{"alias": "containerd_use_systemd_cgroup", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH", "VARIABLE-CONTAINERD_USE_SYSTEMD_CGROUP"]}
+{"alias": "containerd_version", "ids": ["VARIABLE-CONTAINERD_VERSION"]}
+{"alias": "containers UNKNOWN crictl", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
+{"alias": "context deadline exceeded webhook", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
+{"alias": "continuous delivery kubernetes", "ids": ["CONCEPT-GITOPS"]}
+{"alias": "control plane VIP down", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP"]}
+{"alias": "control plane certificate expired", "ids": ["TROUBLE-KUBEADM_CERT_RENEWAL"]}
+{"alias": "control plane monitoring baseline", "ids": ["PRACTICE-MONITORING_BASELINE"]}
+{"alias": "control plane not healthy after upgrade", "ids": ["TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK"]}
+{"alias": "control plane rebuild", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
+{"alias": "control plane static pod gone after manifest edit", "ids": ["TROUBLE-KUBELET_STATIC_POD_STUCK"]}
+{"alias": "control plane static pods not up deploy", "ids": ["TROUBLE-DEPLOY_HANGS_WAIT_APISERVER"]}
+{"alias": "control plane versions", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
+{"alias": "control plane vip unreachable", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
+{"alias": "control-plane", "ids": ["TAG-CONTROL_PLANE"]}
+{"alias": "control-plane not coming up", "ids": ["PRACTICE-KUBEADM_JOIN_FAILURES"]}
+{"alias": "control-plane-override-hostname-delegation", "ids": ["TROUBLE-CONTROL_PLANE_OVERRIDE_HOSTNAME_DELEGATION"]}
+{"alias": "control_plane_health_retries", "ids": ["VARIABLE-CONTROL_PLANE_HEALTH_RETRIES"]}
+{"alias": "control_plane_node_become_ready_tries", "ids": ["VARIABLE-CONTROL_PLANE_NODE_BECOME_READY_TRIES"]}
+{"alias": "controller_manager_extra_volumes", "ids": ["VARIABLE-CONTROLLER_MANAGER_EXTRA_VOLUMES"]}
+{"alias": "controlplane.yaml worker.yaml", "ids": ["CONCEPT-TALOS_MACHINE_CONFIG"]}
+{"alias": "copy CA to /etc/kubernetes/pki", "ids": ["TROUBLE-CERT_DIR_SSL_NOT_PKI"]}
+{"alias": "cordon drain uncordon", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "coredns", "ids": ["COMPONENT-COREDNS", "TAG-COREDNS"]}
+{"alias": "coredns SERVFAIL loop", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
+{"alias": "coredns cache", "ids": ["CONFIG-COREDNS_COREFILE"]}
+{"alias": "coredns config", "ids": ["CONFIG-COREDNS_COREFILE"]}
+{"alias": "coredns cve", "ids": ["TROUBLE-COREDNS_KNOWN_CVES"]}
+{"alias": "coredns debug", "ids": ["PRACTICE-DNS_DEBUG"]}
+{"alias": "coredns forward", "ids": ["CONFIG-COREDNS_COREFILE"]}
+{"alias": "coredns security", "ids": ["TROUBLE-COREDNS_KNOWN_CVES"]}
+{"alias": "coredns slow resolution", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
+{"alias": "coredns-resolution-loop", "ids": ["TROUBLE-COREDNS_RESOLUTION_LOOP"]}
+{"alias": "coredns_external_zones", "ids": ["CONFIG-COREDNS_COREFILE"]}
+{"alias": "coredns_image_repo", "ids": ["VARIABLE-COREDNS_IMAGE_REPO"]}
+{"alias": "coredns_image_tag", "ids": ["VARIABLE-COREDNS_IMAGE_TAG"]}
+{"alias": "coredns_k8s_external_zone", "ids": ["VARIABLE-COREDNS_K8S_EXTERNAL_ZONE"]}
+{"alias": "coredns_supported_versions", "ids": ["VARIABLE-COREDNS_SUPPORTED_VERSIONS"]}
+{"alias": "coredns_version", "ids": ["VARIABLE-COREDNS_VERSION"]}
+{"alias": "corporate proxy kubespray", "ids": ["CONFIG-PROXY"]}
+{"alias": "couldn't validate the identity of the API server", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
+{"alias": "cpu isolation", "ids": ["CONFIG-CPU_ISOLATION"]}
+{"alias": "cpu pinning kubernetes", "ids": ["CONFIG-CPU_ISOLATION"]}
+{"alias": "cpuManagerPolicy static", "ids": ["CONFIG-CPU_ISOLATION"]}
+{"alias": "credentials_dir", "ids": ["VARIABLE-CREDENTIALS_DIR"]}
+{"alias": "cri-dockerd", "ids": ["COMPONENT-CRI_DOCKERD"]}
+{"alias": "cri-o", "ids": ["COMPONENT-CRI_O"]}
+{"alias": "cri_dockerd_archive_checksum", "ids": ["VARIABLE-CRI_DOCKERD_ARCHIVE_CHECKSUM"]}
+{"alias": "cri_dockerd_archive_checksums", "ids": ["VARIABLE-CRI_DOCKERD_ARCHIVE_CHECKSUMS"]}
+{"alias": "cri_dockerd_download_url", "ids": ["VARIABLE-CRI_DOCKERD_DOWNLOAD_URL"]}
+{"alias": "cri_dockerd_version", "ids": ["VARIABLE-CRI_DOCKERD_VERSION"]}
+{"alias": "cri_socket", "ids": ["CONCEPT-CONTAINER_MANAGER", "VARIABLE-CRI_SOCKET"]}
+{"alias": "crictl", "ids": ["PRACTICE-CONTAINERD_DIAGNOSTICS"]}
+{"alias": "crictl_binary_checksum", "ids": ["VARIABLE-CRICTL_BINARY_CHECKSUM"]}
+{"alias": "crictl_checksums", "ids": ["VARIABLE-CRICTL_CHECKSUMS"]}
+{"alias": "crictl_download_url", "ids": ["VARIABLE-CRICTL_DOWNLOAD_URL"]}
+{"alias": "crictl_image_info_command", "ids": ["VARIABLE-CRICTL_IMAGE_INFO_COMMAND"]}
+{"alias": "crictl_image_pull_command", "ids": ["VARIABLE-CRICTL_IMAGE_PULL_COMMAND"]}
+{"alias": "crictl_version", "ids": ["VARIABLE-CRICTL_VERSION"]}
+{"alias": "crio", "ids": ["TAG-CRIO"]}
+{"alias": "crio short-name resolution", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
+{"alias": "crio-registry-auths-duplicate", "ids": ["TROUBLE-CRIO_REGISTRY_AUTHS_DUPLICATE"]}
+{"alias": "crio_archive_checksum", "ids": ["VARIABLE-CRIO_ARCHIVE_CHECKSUM"]}
+{"alias": "crio_archive_checksums", "ids": ["VARIABLE-CRIO_ARCHIVE_CHECKSUMS"]}
+{"alias": "crio_download_url", "ids": ["VARIABLE-CRIO_DOWNLOAD_URL"]}
+{"alias": "crio_insecure_registries", "ids": ["VARIABLE-CRIO_INSECURE_REGISTRIES"]}
+{"alias": "crio_registries kubespray", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
+{"alias": "crio_version", "ids": ["VARIABLE-CRIO_VERSION"]}
+{"alias": "crun", "ids": ["COMPONENT-CRUN", "TAG-CRUN"]}
+{"alias": "crun_binary_checksum", "ids": ["VARIABLE-CRUN_BINARY_CHECKSUM"]}
+{"alias": "crun_checksums", "ids": ["VARIABLE-CRUN_CHECKSUMS"]}
+{"alias": "crun_download_url", "ids": ["VARIABLE-CRUN_DOWNLOAD_URL"]}
+{"alias": "crun_enabled", "ids": ["VARIABLE-CRUN_ENABLED"]}
+{"alias": "crun_version", "ids": ["VARIABLE-CRUN_VERSION"]}
+{"alias": "csi drivers kubespray", "ids": ["CONCEPT-CSI_LAYER"]}
+{"alias": "csi sidecars", "ids": ["CONCEPT-CSI_LAYER"]}
+{"alias": "csi snapshot backup", "ids": ["CONCEPT-VELERO"]}
+{"alias": "csi-cephfs", "ids": ["CONCEPT-ADDON_CEPH_CSI_CEPHFS"]}
+{"alias": "csi-driver", "ids": ["TAG-CSI_DRIVER"]}
+{"alias": "csi_attacher_image_repo", "ids": ["VARIABLE-CSI_ATTACHER_IMAGE_REPO"]}
+{"alias": "csi_attacher_image_tag", "ids": ["VARIABLE-CSI_ATTACHER_IMAGE_TAG"]}
+{"alias": "csi_livenessprobe_image_repo", "ids": ["VARIABLE-CSI_LIVENESSPROBE_IMAGE_REPO"]}
+{"alias": "csi_livenessprobe_image_tag", "ids": ["VARIABLE-CSI_LIVENESSPROBE_IMAGE_TAG"]}
+{"alias": "csi_node_driver_registrar_image_repo", "ids": ["VARIABLE-CSI_NODE_DRIVER_REGISTRAR_IMAGE_REPO"]}
+{"alias": "csi_node_driver_registrar_image_tag", "ids": ["VARIABLE-CSI_NODE_DRIVER_REGISTRAR_IMAGE_TAG"]}
+{"alias": "csi_provisioner_image_repo", "ids": ["VARIABLE-CSI_PROVISIONER_IMAGE_REPO"]}
+{"alias": "csi_provisioner_image_tag", "ids": ["VARIABLE-CSI_PROVISIONER_IMAGE_TAG"]}
+{"alias": "csi_resizer_image_repo", "ids": ["VARIABLE-CSI_RESIZER_IMAGE_REPO"]}
+{"alias": "csi_resizer_image_tag", "ids": ["VARIABLE-CSI_RESIZER_IMAGE_TAG"]}
+{"alias": "csi_snapshot_controller_enabled", "ids": ["VARIABLE-CSI_SNAPSHOT_CONTROLLER_ENABLED"]}
+{"alias": "csi_snapshotter_image_repo", "ids": ["VARIABLE-CSI_SNAPSHOTTER_IMAGE_REPO"]}
+{"alias": "csi_snapshotter_image_tag", "ids": ["VARIABLE-CSI_SNAPSHOTTER_IMAGE_TAG"]}
+{"alias": "custom apiserver flags", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
+{"alias": "custom flags kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "cve overview kubespray", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "cve remediation", "ids": ["CONCEPT-CVE_REMEDIATION"]}
+{"alias": "cve tracking", "ids": ["CONCEPT-SECURITY_ADVISORIES"]}
+{"alias": "dashboard addon", "ids": ["CONCEPT-ADDON_KUBERNETES_DASHBOARD"]}
+{"alias": "declarative deployment kubernetes", "ids": ["CONCEPT-GITOPS"]}
+{"alias": "decommission node kubespray", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
+{"alias": "dedicate cpu cores to kubelet", "ids": ["CONFIG-CPU_ISOLATION"]}
+{"alias": "dedicate nodes", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "default security posture", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
+{"alias": "default_kubelet_config_dir", "ids": ["VARIABLE-DEFAULT_KUBELET_CONFIG_DIR"]}
+{"alias": "delete node from cluster", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
+{"alias": "deploy new cluster kubespray", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
+{"alias": "deploy_container_engine", "ids": ["VARIABLE-DEPLOY_CONTAINER_ENGINE"]}
+{"alias": "deployment not progressing", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
+{"alias": "destroy cluster", "ids": ["PRACTICE-RUNBOOK_RESET"]}
+{"alias": "devices.kubevirt.io/kvm", "ids": ["CONCEPT-ADDON_KVM_DEVICE_PLUGIN"]}
+{"alias": "dex", "ids": ["CONCEPT-ADDON_DEX"]}
+{"alias": "dex 0.23.0", "ids": ["CONCEPT-ADDON_DEX"]}
+{"alias": "dex connector error", "ids": ["TROUBLE-DEX_OIDC_LOGIN_FAILS"]}
+{"alias": "dex issuer mismatch", "ids": ["TROUBLE-DEX_OIDC_LOGIN_FAILS"]}
+{"alias": "dex login fails", "ids": ["TROUBLE-DEX_OIDC_LOGIN_FAILS"]}
+{"alias": "dexidp", "ids": ["CONCEPT-ADDON_DEX"]}
+{"alias": "diagnose kubespray cluster", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
+{"alias": "didn't match pod topology spread constraints", "ids": ["TROUBLE-SCHEDULER_TOPOLOGY_SPREAD"]}
+{"alias": "disable firewall kubespray", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
+{"alias": "disable kube-proxy", "ids": ["CONCEPT-KUBE_PROXY"]}
+{"alias": "disable_fapolicyd", "ids": ["VARIABLE-DISABLE_FAPOLICYD"]}
+{"alias": "disable_host_nameservers", "ids": ["VARIABLE-DISABLE_HOST_NAMESERVERS"]}
+{"alias": "disable_ipv6_dns", "ids": ["VARIABLE-DISABLE_IPV6_DNS"]}
+{"alias": "disaster recovery", "ids": ["PRACTICE-BACKUP_DR"]}
+{"alias": "disaster recovery kubernetes", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
+{"alias": "disaster recovery workloads", "ids": ["CONCEPT-VELERO"]}
+{"alias": "discovery token ca cert hash", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
+{"alias": "discovery_timeout", "ids": ["VARIABLE-DISCOVERY_TIMEOUT"]}
+{"alias": "disk-pressure-eviction", "ids": ["TROUBLE-DISK_PRESSURE_EVICTION"]}
+{"alias": "distribution 3.0 config path", "ids": ["TROUBLE-REGISTRY_2_TO_3_MIGRATION"]}
+{"alias": "dl_k8s_io_url", "ids": ["VARIABLE-DL_K8S_IO_URL"]}
+{"alias": "dns", "ids": ["TAG-DNS"]}
+{"alias": "dns 5 second timeout", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
+{"alias": "dns not resolving", "ids": ["PRACTICE-DNS_DEBUG"]}
+{"alias": "dns_domain", "ids": ["VARIABLE-DNS_DOMAIN"]}
+{"alias": "dns_late", "ids": ["VARIABLE-DNS_LATE"]}
+{"alias": "dns_mode", "ids": ["VARIABLE-DNS_MODE"]}
+{"alias": "dns_servers", "ids": ["VARIABLE-DNS_SERVERS"]}
+{"alias": "dns_upstream_forward_extra_opts", "ids": ["CONFIG-COREDNS_COREFILE"]}
+{"alias": "dnsautoscaler_image_repo", "ids": ["VARIABLE-DNSAUTOSCALER_IMAGE_REPO"]}
+{"alias": "dnsautoscaler_image_tag", "ids": ["VARIABLE-DNSAUTOSCALER_IMAGE_TAG"]}
+{"alias": "dnsautoscaler_version", "ids": ["VARIABLE-DNSAUTOSCALER_VERSION"]}
+{"alias": "docker", "ids": ["COMPONENT-DOCKER", "TAG-DOCKER"]}
+{"alias": "docker registry v3 upgrade", "ids": ["TROUBLE-REGISTRY_2_TO_3_MIGRATION"]}
+{"alias": "docker to containerd migration", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
+{"alias": "docker_bin_dir", "ids": ["VARIABLE-DOCKER_BIN_DIR"]}
+{"alias": "docker_cgroup_driver", "ids": ["VARIABLE-DOCKER_CGROUP_DRIVER"]}
+{"alias": "docker_cli_version", "ids": ["VARIABLE-DOCKER_CLI_VERSION"]}
+{"alias": "docker_containerd_version", "ids": ["VARIABLE-DOCKER_CONTAINERD_VERSION"]}
+{"alias": "docker_daemon_graph", "ids": ["VARIABLE-DOCKER_DAEMON_GRAPH"]}
+{"alias": "docker_debian_repo_base_url", "ids": ["VARIABLE-DOCKER_DEBIAN_REPO_BASE_URL"]}
+{"alias": "docker_debian_repo_gpgkey", "ids": ["VARIABLE-DOCKER_DEBIAN_REPO_GPGKEY"]}
+{"alias": "docker_debian_repo_repokey", "ids": ["VARIABLE-DOCKER_DEBIAN_REPO_REPOKEY"]}
+{"alias": "docker_dns_options", "ids": ["VARIABLE-DOCKER_DNS_OPTIONS"]}
+{"alias": "docker_dns_search_domains", "ids": ["VARIABLE-DOCKER_DNS_SEARCH_DOMAINS"]}
+{"alias": "docker_dns_servers_strict", "ids": ["VARIABLE-DOCKER_DNS_SERVERS_STRICT"]}
+{"alias": "docker_fedora_repo_base_url", "ids": ["VARIABLE-DOCKER_FEDORA_REPO_BASE_URL"]}
+{"alias": "docker_fedora_repo_gpgkey", "ids": ["VARIABLE-DOCKER_FEDORA_REPO_GPGKEY"]}
+{"alias": "docker_image_info_command", "ids": ["VARIABLE-DOCKER_IMAGE_INFO_COMMAND"]}
+{"alias": "docker_image_pull_command", "ids": ["VARIABLE-DOCKER_IMAGE_PULL_COMMAND"]}
+{"alias": "docker_image_repo", "ids": ["VARIABLE-DOCKER_IMAGE_REPO"]}
+{"alias": "docker_insecure_registries", "ids": ["VARIABLE-DOCKER_INSECURE_REGISTRIES"]}
+{"alias": "docker_iptables_enabled", "ids": ["VARIABLE-DOCKER_IPTABLES_ENABLED"]}
+{"alias": "docker_log_opts", "ids": ["VARIABLE-DOCKER_LOG_OPTS"]}
+{"alias": "docker_orphan_clean_up", "ids": ["VARIABLE-DOCKER_ORPHAN_CLEAN_UP"]}
+{"alias": "docker_package_info", "ids": ["VARIABLE-DOCKER_PACKAGE_INFO"]}
+{"alias": "docker_plugins", "ids": ["VARIABLE-DOCKER_PLUGINS"]}
+{"alias": "docker_registry_mirrors", "ids": ["VARIABLE-DOCKER_REGISTRY_MIRRORS"]}
+{"alias": "docker_remove_packages_apt", "ids": ["VARIABLE-DOCKER_REMOVE_PACKAGES_APT"]}
+{"alias": "docker_remove_packages_yum", "ids": ["VARIABLE-DOCKER_REMOVE_PACKAGES_YUM"]}
+{"alias": "docker_repo_info", "ids": ["VARIABLE-DOCKER_REPO_INFO"]}
+{"alias": "docker_repo_key_info", "ids": ["VARIABLE-DOCKER_REPO_KEY_INFO"]}
+{"alias": "docker_rh_repo_base_url", "ids": ["VARIABLE-DOCKER_RH_REPO_BASE_URL"]}
+{"alias": "docker_rh_repo_gpgkey", "ids": ["VARIABLE-DOCKER_RH_REPO_GPGKEY"]}
+{"alias": "docker_ubuntu_repo_base_url", "ids": ["VARIABLE-DOCKER_UBUNTU_REPO_BASE_URL"]}
+{"alias": "docker_ubuntu_repo_gpgkey", "ids": ["VARIABLE-DOCKER_UBUNTU_REPO_GPGKEY"]}
+{"alias": "docker_ubuntu_repo_repokey", "ids": ["VARIABLE-DOCKER_UBUNTU_REPO_REPOKEY"]}
+{"alias": "docker_version", "ids": ["VARIABLE-DOCKER_VERSION"]}
+{"alias": "download", "ids": ["ROLE-DOWNLOAD", "TAG-DOWNLOAD"]}
+{"alias": "download failed kubespray", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
+{"alias": "download mirror", "ids": ["PRACTICE-MIRROR"]}
+{"alias": "download_always_pull", "ids": ["VARIABLE-DOWNLOAD_ALWAYS_PULL"]}
+{"alias": "download_cache_dir", "ids": ["VARIABLE-DOWNLOAD_CACHE_DIR"]}
+{"alias": "download_compress", "ids": ["VARIABLE-DOWNLOAD_COMPRESS"]}
+{"alias": "download_container", "ids": ["VARIABLE-DOWNLOAD_CONTAINER"]}
+{"alias": "download_defaults", "ids": ["VARIABLE-DOWNLOAD_DEFAULTS"]}
+{"alias": "download_delegate", "ids": ["VARIABLE-DOWNLOAD_DELEGATE"]}
+{"alias": "download_force_cache", "ids": ["TROUBLE-DOWNLOAD_FAILS", "VARIABLE-DOWNLOAD_FORCE_CACHE"]}
+{"alias": "download_keep_remote_cache", "ids": ["VARIABLE-DOWNLOAD_KEEP_REMOTE_CACHE"]}
+{"alias": "download_localhost", "ids": ["VARIABLE-DOWNLOAD_LOCALHOST"]}
+{"alias": "download_retries", "ids": ["TROUBLE-DOWNLOAD_FAILS", "VARIABLE-DOWNLOAD_RETRIES"]}
+{"alias": "download_run_once", "ids": ["VARIABLE-DOWNLOAD_RUN_ONCE"]}
+{"alias": "download_validate_certs", "ids": ["TROUBLE-DOWNLOAD_FAILS", "VARIABLE-DOWNLOAD_VALIDATE_CERTS"]}
+{"alias": "downloads", "ids": ["VARIABLE-DOWNLOADS"]}
+{"alias": "dragonfly", "ids": ["CONCEPT-ADDON_DRAGONFLY"]}
+{"alias": "dragonfly failover data loss", "ids": ["TROUBLE-DRAGONFLY_FAILOVER_DATALOSS"]}
+{"alias": "dragonfly healthcheck wrong port", "ids": ["TROUBLE-DRAGONFLY_FAILOVER_DATALOSS"]}
+{"alias": "dragonfly maxmemory not set", "ids": ["TROUBLE-DRAGONFLY_FAILOVER_DATALOSS"]}
+{"alias": "dragonfly noauth admin port", "ids": ["TROUBLE-DRAGONFLY_FAILOVER_DATALOSS"]}
+{"alias": "dragonfly replica ready during full sync", "ids": ["TROUBLE-DRAGONFLY_FAILOVER_DATALOSS"]}
+{"alias": "dragonfly-operator", "ids": ["CONCEPT-ADDON_DRAGONFLY"]}
+{"alias": "dragonflydb", "ids": ["CONCEPT-ADDON_DRAGONFLY"]}
+{"alias": "drain and reboot node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "drain_nodes", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
+{"alias": "dual stack", "ids": ["CONFIG-DUAL_STACK"]}
+{"alias": "duplicate snapshot crds", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
+{"alias": "dynamic resource allocation DRA", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "eck pvc expansion stuck", "ids": ["TROUBLE-ELASTICSEARCH_ECK_CLUSTER"]}
+{"alias": "eck-operator", "ids": ["CONCEPT-ADDON_ECK_OPERATOR"]}
+{"alias": "eg", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
+{"alias": "egress network policy blocked", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
+{"alias": "elastic", "ids": ["CONCEPT-ADDON_ECK_OPERATOR"]}
+{"alias": "elastic cloud on kubernetes", "ids": ["CONCEPT-ADDON_ECK_OPERATOR"]}
+{"alias": "elasticsearch applyingchanges stuck", "ids": ["TROUBLE-ELASTICSEARCH_ECK_CLUSTER"]}
+{"alias": "elasticsearch master not discovered", "ids": ["TROUBLE-ELASTICSEARCH_ECK_CLUSTER"]}
+{"alias": "enable feature gate kubespray", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
+{"alias": "enable secrets encryption runbook", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION"]}
+{"alias": "enable_cdi", "ids": ["VARIABLE-ENABLE_CDI"]}
+{"alias": "enable_coredns_k8s_endpoint_pod_names", "ids": ["VARIABLE-ENABLE_COREDNS_K8S_ENDPOINT_POD_NAMES"]}
+{"alias": "enable_coredns_k8s_external", "ids": ["VARIABLE-ENABLE_COREDNS_K8S_EXTERNAL"]}
+{"alias": "enable_dns_autoscaler", "ids": ["VARIABLE-ENABLE_DNS_AUTOSCALER"]}
+{"alias": "enable_dual_stack_networks", "ids": ["CONFIG-DUAL_STACK"]}
+{"alias": "enable_network_policy", "ids": ["VARIABLE-ENABLE_NETWORK_POLICY"]}
+{"alias": "enable_nodelocaldns", "ids": ["VARIABLE-ENABLE_NODELOCALDNS"]}
+{"alias": "enable_nodelocaldns_secondary", "ids": ["VARIABLE-ENABLE_NODELOCALDNS_SECONDARY"]}
+{"alias": "encrypt secrets at rest", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION"]}
+{"alias": "encryption at rest", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
+{"alias": "encryption at rest nodes", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
+{"alias": "endpoints empty", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
+{"alias": "endpoints notReadyAddresses stuck", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
+{"alias": "endpointslice empty", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
+{"alias": "endpointslice informer cache out of date", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
+{"alias": "endpointslice rebalancing loop", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
+{"alias": "enhancements 1.31 1.35", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "envoy gateway", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
+{"alias": "envoy gateway 1.6 alpn", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
+{"alias": "envoy gateway backend tls broke", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
+{"alias": "envoy gateway sni san required", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
+{"alias": "envoy-xds-controller", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
+{"alias": "error dialing backend", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "error execution phase addon", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
+{"alias": "es flood stage watermark read-only", "ids": ["TROUBLE-ELASTICSEARCH_ECK_CLUSTER"]}
+{"alias": "es oomkilled exit 137", "ids": ["TROUBLE-ELASTICSEARCH_ECK_CLUSTER"]}
+{"alias": "escape hatch", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "escape hatches", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "etcd", "ids": ["COMPONENT-ETCD", "TAG-ETCD"]}
+{"alias": "etcd 2379 2380 blocked", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
+{"alias": "etcd 3.5 to 3.6", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
+{"alias": "etcd 3.6", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
+{"alias": "etcd NOSPACE alarm", "ids": ["TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
+{"alias": "etcd ansible role", "ids": ["ROLE-ETCD"]}
+{"alias": "etcd apiserver metrics to watch", "ids": ["PRACTICE-MONITORING_BASELINE"]}
+{"alias": "etcd apply took too long", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
+{"alias": "etcd backup", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
+{"alias": "etcd backup runbook", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
+{"alias": "etcd defrag", "ids": ["CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER", "TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
+{"alias": "etcd deployment", "ids": ["PRACTICE-ETCD"]}
+{"alias": "etcd downgrade", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
+{"alias": "etcd health", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
+{"alias": "etcd majority down", "ids": ["TROUBLE-ETCD_QUORUM_LOSS"]}
+{"alias": "etcd metrics down prometheus", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
+{"alias": "etcd quorum after reboot", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "etcd quorum lost", "ids": ["TROUBLE-ETCD_QUORUM_LOSS"]}
+{"alias": "etcd remove external member fails", "ids": ["TROUBLE-ETCD_REMOVE_EXTERNAL_MEMBER_FAILS"]}
+{"alias": "etcd remove-node not idempotent", "ids": ["TROUBLE-ETCD_REMOVE_NODE_NOT_IDEMPOTENT"]}
+{"alias": "etcd restore", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
+{"alias": "etcd restore runbook", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
+{"alias": "etcd role", "ids": ["ROLE-ETCD"]}
+{"alias": "etcd slow apply warnings", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
+{"alias": "etcd snapshot restore procedure", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
+{"alias": "etcd snapshot save", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
+{"alias": "etcd snapshot verify", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
+{"alias": "etcd v2 store removed", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
+{"alias": "etcd wal fsync slow", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
+{"alias": "etcd-defrag-controller", "ids": ["CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER"]}
+{"alias": "etcd-events false failure on scale", "ids": ["TROUBLE-ETCD_EVENTS_INVERTED_IGNORE_ERRORS"]}
+{"alias": "etcd-secrets", "ids": ["TAG-ETCD_SECRETS"]}
+{"alias": "etcd_access_address", "ids": ["VARIABLE-ETCD_ACCESS_ADDRESS"]}
+{"alias": "etcd_access_addresses", "ids": ["VARIABLE-ETCD_ACCESS_ADDRESSES"]}
+{"alias": "etcd_address", "ids": ["VARIABLE-ETCD_ADDRESS"]}
+{"alias": "etcd_backup_prefix", "ids": ["VARIABLE-ETCD_BACKUP_PREFIX"]}
+{"alias": "etcd_backup_retention_count", "ids": ["VARIABLE-ETCD_BACKUP_RETENTION_COUNT"]}
+{"alias": "etcd_binary_checksum", "ids": ["VARIABLE-ETCD_BINARY_CHECKSUM"]}
+{"alias": "etcd_binary_checksums", "ids": ["VARIABLE-ETCD_BINARY_CHECKSUMS"]}
+{"alias": "etcd_blkio_weight", "ids": ["VARIABLE-ETCD_BLKIO_WEIGHT"]}
+{"alias": "etcd_cert_alt_ips", "ids": ["VARIABLE-ETCD_CERT_ALT_IPS"]}
+{"alias": "etcd_cert_alt_names", "ids": ["VARIABLE-ETCD_CERT_ALT_NAMES"]}
+{"alias": "etcd_cert_dir", "ids": ["VARIABLE-ETCD_CERT_DIR"]}
+{"alias": "etcd_cert_dir_mode removal", "ids": ["TROUBLE-ETCD_CERT_DIR_RECURSIVE_PERMS_CALICO"]}
+{"alias": "etcd_cert_group", "ids": ["VARIABLE-ETCD_CERT_GROUP"]}
+{"alias": "etcd_client_url", "ids": ["VARIABLE-ETCD_CLIENT_URL"]}
+{"alias": "etcd_cluster_setup", "ids": ["VARIABLE-ETCD_CLUSTER_SETUP"]}
+{"alias": "etcd_compaction_retention", "ids": ["VARIABLE-ETCD_COMPACTION_RETENTION"]}
+{"alias": "etcd_config_dir", "ids": ["VARIABLE-ETCD_CONFIG_DIR"]}
+{"alias": "etcd_data_dir", "ids": ["VARIABLE-ETCD_DATA_DIR"]}
+{"alias": "etcd_deployment_type", "ids": ["VARIABLE-ETCD_DEPLOYMENT_TYPE"]}
+{"alias": "etcd_deployment_type host", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
+{"alias": "etcd_download_url", "ids": ["VARIABLE-ETCD_DOWNLOAD_URL"]}
+{"alias": "etcd_election_timeout", "ids": ["VARIABLE-ETCD_ELECTION_TIMEOUT"]}
+{"alias": "etcd_events_access_address", "ids": ["VARIABLE-ETCD_EVENTS_ACCESS_ADDRESS"]}
+{"alias": "etcd_events_access_addresses", "ids": ["VARIABLE-ETCD_EVENTS_ACCESS_ADDRESSES"]}
+{"alias": "etcd_events_access_addresses_list", "ids": ["VARIABLE-ETCD_EVENTS_ACCESS_ADDRESSES_LIST"]}
+{"alias": "etcd_events_access_addresses_semicolon", "ids": ["VARIABLE-ETCD_EVENTS_ACCESS_ADDRESSES_SEMICOLON"]}
+{"alias": "etcd_events_client_url", "ids": ["VARIABLE-ETCD_EVENTS_CLIENT_URL"]}
+{"alias": "etcd_events_cluster_enabled", "ids": ["VARIABLE-ETCD_EVENTS_CLUSTER_ENABLED"]}
+{"alias": "etcd_events_cluster_setup", "ids": ["VARIABLE-ETCD_EVENTS_CLUSTER_SETUP"]}
+{"alias": "etcd_events_data_dir", "ids": ["VARIABLE-ETCD_EVENTS_DATA_DIR"]}
+{"alias": "etcd_events_peer_addresses", "ids": ["VARIABLE-ETCD_EVENTS_PEER_ADDRESSES"]}
+{"alias": "etcd_events_peer_url", "ids": ["VARIABLE-ETCD_EVENTS_PEER_URL"]}
+{"alias": "etcd_experimental_distributed_tracing_address", "ids": ["VARIABLE-ETCD_EXPERIMENTAL_DISTRIBUTED_TRACING_ADDRESS"]}
+{"alias": "etcd_experimental_distributed_tracing_sample_rate", "ids": ["VARIABLE-ETCD_EXPERIMENTAL_DISTRIBUTED_TRACING_SAMPLE_RATE"]}
+{"alias": "etcd_experimental_distributed_tracing_service_name", "ids": ["VARIABLE-ETCD_EXPERIMENTAL_DISTRIBUTED_TRACING_SERVICE_NAME"]}
+{"alias": "etcd_experimental_enable_distributed_tracing", "ids": ["VARIABLE-ETCD_EXPERIMENTAL_ENABLE_DISTRIBUTED_TRACING"]}
+{"alias": "etcd_experimental_initial_corrupt_check", "ids": ["VARIABLE-ETCD_EXPERIMENTAL_INITIAL_CORRUPT_CHECK"]}
+{"alias": "etcd_experimental_watch_progress_notify_interval", "ids": ["VARIABLE-ETCD_EXPERIMENTAL_WATCH_PROGRESS_NOTIFY_INTERVAL"]}
+{"alias": "etcd_extra_vars", "ids": ["VARIABLE-ETCD_EXTRA_VARS"]}
+{"alias": "etcd_heartbeat_interval", "ids": ["VARIABLE-ETCD_HEARTBEAT_INTERVAL"]}
+{"alias": "etcd_hosts", "ids": ["VARIABLE-ETCD_HOSTS"]}
+{"alias": "etcd_image_repo", "ids": ["VARIABLE-ETCD_IMAGE_REPO"]}
+{"alias": "etcd_image_tag", "ids": ["VARIABLE-ETCD_IMAGE_TAG"]}
+{"alias": "etcd_kubeadm_enabled", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
+{"alias": "etcd_log_level", "ids": ["VARIABLE-ETCD_LOG_LEVEL"]}
+{"alias": "etcd_max_request_bytes", "ids": ["VARIABLE-ETCD_MAX_REQUEST_BYTES"]}
+{"alias": "etcd_max_snapshots", "ids": ["VARIABLE-ETCD_MAX_SNAPSHOTS"]}
+{"alias": "etcd_max_wals", "ids": ["VARIABLE-ETCD_MAX_WALS"]}
+{"alias": "etcd_member_name", "ids": ["VARIABLE-ETCD_MEMBER_NAME"]}
+{"alias": "etcd_memory_limit", "ids": ["VARIABLE-ETCD_MEMORY_LIMIT"]}
+{"alias": "etcd_metrics", "ids": ["TAG-ETCD_METRICS", "VARIABLE-ETCD_METRICS"]}
+{"alias": "etcd_metrics_addresses", "ids": ["VARIABLE-ETCD_METRICS_ADDRESSES"]}
+{"alias": "etcd_node_cert_hosts", "ids": ["VARIABLE-ETCD_NODE_CERT_HOSTS"]}
+{"alias": "etcd_owner", "ids": ["VARIABLE-ETCD_OWNER"]}
+{"alias": "etcd_peer_addresses", "ids": ["VARIABLE-ETCD_PEER_ADDRESSES"]}
+{"alias": "etcd_peer_client_auth", "ids": ["VARIABLE-ETCD_PEER_CLIENT_AUTH"]}
+{"alias": "etcd_peer_url", "ids": ["VARIABLE-ETCD_PEER_URL"]}
+{"alias": "etcd_quota_backend_bytes", "ids": ["VARIABLE-ETCD_QUOTA_BACKEND_BYTES"]}
+{"alias": "etcd_retries", "ids": ["VARIABLE-ETCD_RETRIES"]}
+{"alias": "etcd_script_dir", "ids": ["VARIABLE-ETCD_SCRIPT_DIR"]}
+{"alias": "etcd_secure_client", "ids": ["VARIABLE-ETCD_SECURE_CLIENT"]}
+{"alias": "etcd_snapshot_count", "ids": ["VARIABLE-ETCD_SNAPSHOT_COUNT"]}
+{"alias": "etcd_supported_versions", "ids": ["VARIABLE-ETCD_SUPPORTED_VERSIONS"]}
+{"alias": "etcd_version", "ids": ["VARIABLE-ETCD_VERSION"]}
+{"alias": "etcdctl", "ids": ["TAG-ETCDCTL"]}
+{"alias": "etcdctl member remove", "ids": ["TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE"]}
+{"alias": "etcdctl snapshot", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
+{"alias": "etcdserver mvcc database space exceeded", "ids": ["TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
+{"alias": "etcdserver request timed out", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
+{"alias": "etcdutl", "ids": ["TAG-ETCDUTL"]}
+{"alias": "etcdutl migrate", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
+{"alias": "event driven autoscaling", "ids": ["CONCEPT-ADDON_KEDA"]}
+{"alias": "event_ttl_duration", "ids": ["VARIABLE-EVENT_TTL_DURATION"]}
+{"alias": "evented pleg panic", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
+{"alias": "eviction_hard", "ids": ["VARIABLE-EVICTION_HARD"]}
+{"alias": "eviction_hard_control_plane", "ids": ["VARIABLE-EVICTION_HARD_CONTROL_PLANE"]}
+{"alias": "exc", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
+{"alias": "exc-stage", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
+{"alias": "exc-test", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
+{"alias": "exceeded quota but usage stale", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
+{"alias": "exclusive cpu cores for pods", "ids": ["CONFIG-CPU_ISOLATION"]}
+{"alias": "exit code 1 container", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
+{"alias": "exit code 137", "ids": ["TROUBLE-OOMKILLED"]}
+{"alias": "expand_persistent_volumes", "ids": ["VARIABLE-EXPAND_PERSISTENT_VOLUMES"]}
+{"alias": "expired apiserver certificate", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
+{"alias": "external connectivity from pod", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
+{"alias": "external domain not resolving in cluster", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
+{"alias": "external ip bare metal", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
+{"alias": "external secrets operator", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
+{"alias": "external-cloud-controller", "ids": ["TAG-EXTERNAL_CLOUD_CONTROLLER"]}
+{"alias": "external-dns", "ids": ["CONCEPT-EXTERNAL_DNS"]}
+{"alias": "external-hcloud", "ids": ["TAG-EXTERNAL_HCLOUD"]}
+{"alias": "external-huaweicloud", "ids": ["TAG-EXTERNAL_HUAWEICLOUD"]}
+{"alias": "external-oci", "ids": ["TAG-EXTERNAL_OCI"]}
+{"alias": "external-openstack", "ids": ["TAG-EXTERNAL_OPENSTACK"]}
+{"alias": "external-provisioner", "ids": ["TAG-EXTERNAL_PROVISIONER"]}
+{"alias": "external-provisioner attacher snapshotter resizer", "ids": ["CONCEPT-CSI_LAYER"]}
+{"alias": "external-secrets provider auth failed", "ids": ["TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING"]}
+{"alias": "external-snapshotter", "ids": ["CONCEPT-ADDON_SNAPSHOTTER"]}
+{"alias": "external-snapshotter v8 upgrade", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}
+{"alias": "external-vsphere", "ids": ["TAG-EXTERNAL_VSPHERE"]}
+{"alias": "external_cloud_provider", "ids": ["VARIABLE-EXTERNAL_CLOUD_PROVIDER"]}
+{"alias": "external_hcloud_cloud", "ids": ["VARIABLE-EXTERNAL_HCLOUD_CLOUD"]}
+{"alias": "external_openstack_cloud_controller_image_repo", "ids": ["VARIABLE-EXTERNAL_OPENSTACK_CLOUD_CONTROLLER_IMAGE_REPO"]}
+{"alias": "external_openstack_cloud_controller_image_tag", "ids": ["VARIABLE-EXTERNAL_OPENSTACK_CLOUD_CONTROLLER_IMAGE_TAG"]}
+{"alias": "external_openstack_lbaas_enabled", "ids": ["VARIABLE-EXTERNAL_OPENSTACK_LBAAS_ENABLED"]}
+{"alias": "external_openstack_network_internal_networks", "ids": ["VARIABLE-EXTERNAL_OPENSTACK_NETWORK_INTERNAL_NETWORKS"]}
+{"alias": "external_openstack_network_ipv6_disabled", "ids": ["VARIABLE-EXTERNAL_OPENSTACK_NETWORK_IPV6_DISABLED"]}
+{"alias": "external_openstack_network_public_networks", "ids": ["VARIABLE-EXTERNAL_OPENSTACK_NETWORK_PUBLIC_NETWORKS"]}
+{"alias": "externalsecret not syncing", "ids": ["TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING"]}
+{"alias": "extra args", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
+{"alias": "extra args kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "facts", "ids": ["TAG-FACTS"]}
+{"alias": "failed calling webhook", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
+{"alias": "failed to create pod sandbox", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
+{"alias": "failed to create sandbox", "ids": ["TROUBLE-CONTAINERD_IMAGE_PULL_CRI"]}
+{"alias": "failed to create shim task", "ids": ["TROUBLE-CONTAINERD_SHIM_TASK_CREATE"]}
+{"alias": "failed to destroy network for sandbox unexpected end of JSON input", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
+{"alias": "failed to download binary", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
+{"alias": "failed to garbage collect required amount of images", "ids": ["TROUBLE-KUBELET_IMAGE_GC"]}
+{"alias": "failed to get cgroup stats", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
+{"alias": "failed to mount overlay operation not permitted", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
+{"alias": "failed to mount volume", "ids": ["TROUBLE-FAILEDMOUNT"]}
+{"alias": "failed to pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "failed to renew lease context deadline exceeded", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
+{"alias": "failed to reserve container name is reserved for", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
+{"alias": "feast feature store", "ids": ["CONCEPT-ADDON_FEAST_OPERATOR"]}
+{"alias": "feast-operator", "ids": ["CONCEPT-ADDON_FEAST_OPERATOR"]}
+{"alias": "feature gate graduations", "ids": ["CONCEPT-K8S_FEATURE_GATES"]}
+{"alias": "feature gates", "ids": ["CONCEPT-K8S_FEATURE_GATES"]}
+{"alias": "feature.node.kubernetes.io labels absent", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
+{"alias": "field is immutable kubeadm upgrade", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
+{"alias": "file descriptor limit kubernetes", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
+{"alias": "files", "ids": ["TAG-FILES"]}
+{"alias": "finalizers blocking namespace", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
+{"alias": "firewalld blocking kubernetes", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
+{"alias": "first_kube_control_plane", "ids": ["VARIABLE-FIRST_KUBE_CONTROL_PLANE"]}
+{"alias": "first_kube_control_plane_address", "ids": ["VARIABLE-FIRST_KUBE_CONTROL_PLANE_ADDRESS"]}
+{"alias": "flagger", "ids": ["CONCEPT-ADDON_FLAGGER"]}
+{"alias": "flannel", "ids": ["COMPONENT-FLANNEL"]}
+{"alias": "flannel cni", "ids": ["COMPONENT-FLANNEL"]}
+{"alias": "flannel to calico", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
+{"alias": "flatcar-apiserver-wait-dns-handler", "ids": ["TROUBLE-FLATCAR_APISERVER_WAIT_DNS"]}
+{"alias": "flowcontrol.apiserver.k8s.io", "ids": ["API-FLOWCONTROL_APISERVER"]}
+{"alias": "flowschema prioritylevelconfiguration", "ids": ["TROUBLE-APISERVER_APF_429"]}
+{"alias": "forbidden", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "force_etcd_cert_refresh", "ids": ["VARIABLE-FORCE_ETCD_CERT_REFRESH"]}
+{"alias": "foregroundDeletion finalizer stuck", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
+{"alias": "freed 0 bytes", "ids": ["TROUBLE-KUBELET_IMAGE_GC"]}
+{"alias": "fresh install kubespray", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
+{"alias": "fs.file-max", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
+{"alias": "fs.inotify.max_user_instances", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
+{"alias": "fs.inotify.max_user_watches", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
+{"alias": "full cluster reboot", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "fuse-overlayfs native snapshotter", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
+{"alias": "gVisor runsc", "ids": ["PRACTICE-GVISOR"]}
+{"alias": "garbage collection stalls", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
+{"alias": "gateway api 1.4.1 checksum mismatch", "ids": ["TROUBLE-GATEWAY_API_1_4_1_CHECKSUM_MISMATCH"]}
+{"alias": "gateway api crd 1.4.0 upgrade", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
+{"alias": "gateway api envoy", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
+{"alias": "gateway-helm", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
+{"alias": "gateway_api", "ids": ["TAG-GATEWAY_API"]}
+{"alias": "gateway_api_channel", "ids": ["VARIABLE-GATEWAY_API_CHANNEL"]}
+{"alias": "gateway_api_crds_download_url", "ids": ["VARIABLE-GATEWAY_API_CRDS_DOWNLOAD_URL"]}
+{"alias": "gateway_api_enabled", "ids": ["VARIABLE-GATEWAY_API_ENABLED"]}
+{"alias": "gateway_api_experimental_crds_checksums", "ids": ["VARIABLE-GATEWAY_API_EXPERIMENTAL_CRDS_CHECKSUMS"]}
+{"alias": "gateway_api_standard_crds_checksums", "ids": ["VARIABLE-GATEWAY_API_STANDARD_CRDS_CHECKSUMS"]}
+{"alias": "gateway_api_version", "ids": ["VARIABLE-GATEWAY_API_VERSION"]}
+{"alias": "gcp-pd-csi", "ids": ["COMPONENT-GCP_PD_CSI"]}
+{"alias": "gcp-pd-csi-driver", "ids": ["TAG-GCP_PD_CSI_DRIVER"]}
+{"alias": "gcp_pd_csi_attacher_image_tag", "ids": ["VARIABLE-GCP_PD_CSI_ATTACHER_IMAGE_TAG"]}
+{"alias": "gcp_pd_csi_driver_image_tag", "ids": ["VARIABLE-GCP_PD_CSI_DRIVER_IMAGE_TAG"]}
+{"alias": "gcp_pd_csi_enabled", "ids": ["VARIABLE-GCP_PD_CSI_ENABLED"]}
+{"alias": "gcp_pd_csi_image_repo", "ids": ["VARIABLE-GCP_PD_CSI_IMAGE_REPO"]}
+{"alias": "gcp_pd_csi_plugin_image_repo", "ids": ["VARIABLE-GCP_PD_CSI_PLUGIN_IMAGE_REPO"]}
+{"alias": "gcp_pd_csi_plugin_image_tag", "ids": ["VARIABLE-GCP_PD_CSI_PLUGIN_IMAGE_TAG"]}
+{"alias": "gcp_pd_csi_plugin_version", "ids": ["VARIABLE-GCP_PD_CSI_PLUGIN_VERSION"]}
+{"alias": "gcp_pd_csi_provisioner_image_tag", "ids": ["VARIABLE-GCP_PD_CSI_PROVISIONER_IMAGE_TAG"]}
+{"alias": "gcp_pd_csi_registrar_image_tag", "ids": ["VARIABLE-GCP_PD_CSI_REGISTRAR_IMAGE_TAG"]}
+{"alias": "gcp_pd_csi_resizer_image_tag", "ids": ["VARIABLE-GCP_PD_CSI_RESIZER_IMAGE_TAG"]}
+{"alias": "gcr_image_repo", "ids": ["VARIABLE-GCR_IMAGE_REPO"]}
+{"alias": "get_helm_url", "ids": ["VARIABLE-GET_HELM_URL"]}
+{"alias": "gigapipe", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "gigapipe-read", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "gigapipe-write", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "github_image_repo", "ids": ["VARIABLE-GITHUB_IMAGE_REPO"]}
+{"alias": "github_url", "ids": ["VARIABLE-GITHUB_URL"]}
+{"alias": "gitlab ci runner", "ids": ["CONCEPT-ADDON_GITLAB_RUNNER"]}
+{"alias": "gitlab kas agent", "ids": ["CONCEPT-ADDON_GITLAB_AGENT"]}
+{"alias": "gitlab runner prepare environment context deadline exceeded", "ids": ["TROUBLE-GITLAB_RUNNER_K8S_EXECUTOR"]}
+{"alias": "gitlab-agent", "ids": ["CONCEPT-ADDON_GITLAB_AGENT"]}
+{"alias": "gitlab-com-runner", "ids": ["CONCEPT-ADDON_GITLAB_RUNNER"]}
+{"alias": "gitlab-runner", "ids": ["CONCEPT-ADDON_GITLAB_RUNNER"]}
+{"alias": "gitops secrets", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
+{"alias": "gpu management pod no runtimeclass", "ids": ["TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS"]}
+{"alias": "gpu nodes not labeled", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
+{"alias": "gpu-operator", "ids": ["CONCEPT-ADDON_GPU_OPERATOR"]}
+{"alias": "gpu-operator cdi enabled by default", "ids": ["TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS"]}
+{"alias": "gpu-operator min kubernetes 1.30", "ids": ["TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS"]}
+{"alias": "gpu-operator v25.10.1", "ids": ["CONCEPT-ADDON_GPU_OPERATOR"]}
+{"alias": "graceful upgrade", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
+{"alias": "group_vars layout", "ids": ["CONCEPT-SAMPLE_INVENTORY_LAYOUT"]}
+{"alias": "grow cluster kubespray", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
+{"alias": "gvisor", "ids": ["TAG-GVISOR"]}
+{"alias": "gvisor kata containerd runtime", "ids": ["TROUBLE-CONTAINERD_RUNTIME_HANDLER"]}
+{"alias": "gvisor_containerd_shim_binary_checksum", "ids": ["VARIABLE-GVISOR_CONTAINERD_SHIM_BINARY_CHECKSUM"]}
+{"alias": "gvisor_containerd_shim_binary_checksums", "ids": ["VARIABLE-GVISOR_CONTAINERD_SHIM_BINARY_CHECKSUMS"]}
+{"alias": "gvisor_containerd_shim_runsc_download_url", "ids": ["VARIABLE-GVISOR_CONTAINERD_SHIM_RUNSC_DOWNLOAD_URL"]}
+{"alias": "gvisor_enabled", "ids": ["VARIABLE-GVISOR_ENABLED"]}
+{"alias": "gvisor_runsc_binary_checksum", "ids": ["VARIABLE-GVISOR_RUNSC_BINARY_CHECKSUM"]}
+{"alias": "gvisor_runsc_binary_checksums", "ids": ["VARIABLE-GVISOR_RUNSC_BINARY_CHECKSUMS"]}
+{"alias": "gvisor_runsc_download_url", "ids": ["VARIABLE-GVISOR_RUNSC_DOWNLOAD_URL"]}
+{"alias": "gvisor_version", "ids": ["VARIABLE-GVISOR_VERSION"]}
+{"alias": "ha endpoints", "ids": ["PRACTICE-HA_MODE"]}
+{"alias": "ha mode", "ids": ["PRACTICE-HA_MODE"]}
+{"alias": "haproxy", "ids": ["TAG-HAPROXY"]}
+{"alias": "haproxy-ipv6-binding-syntax", "ids": ["TROUBLE-HAPROXY_IPV6_BINDING"]}
+{"alias": "haproxy_config_dir", "ids": ["VARIABLE-HAPROXY_CONFIG_DIR"]}
+{"alias": "haproxy_image_repo", "ids": ["VARIABLE-HAPROXY_IMAGE_REPO"]}
+{"alias": "haproxy_image_tag", "ids": ["VARIABLE-HAPROXY_IMAGE_TAG"]}
+{"alias": "hardening", "ids": ["PRACTICE-CLUSTER_HARDENING", "PRACTICE-HARDENING"]}
+{"alias": "hardening overview", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "hashicorp vault", "ids": ["CONCEPT-ADDON_VAULT"]}
+{"alias": "headlamp", "ids": ["CONCEPT-ADDON_HEADLAMP"]}
+{"alias": "health check", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
+{"alias": "helm", "ids": ["COMPONENT-HELM", "TAG-HELM"]}
+{"alias": "helm 3 to 4 migration", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
+{"alias": "helm 4 breaking changes", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
+{"alias": "helm 4 plugin broke", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
+{"alias": "helm 4 server side apply", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
+{"alias": "helm chart inventory", "ids": ["CONCEPT-ADDON_CATALOG"]}
+{"alias": "helm cve", "ids": ["TROUBLE-HELM_KNOWN_CVES"]}
+{"alias": "helm in kubespray", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
+{"alias": "helm-apps", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
+{"alias": "helm_archive_checksum", "ids": ["VARIABLE-HELM_ARCHIVE_CHECKSUM"]}
+{"alias": "helm_archive_checksums", "ids": ["VARIABLE-HELM_ARCHIVE_CHECKSUMS"]}
+{"alias": "helm_download_url", "ids": ["VARIABLE-HELM_DOWNLOAD_URL"]}
+{"alias": "helm_enabled", "ids": ["CONCEPT-HELM_IN_KUBESPRAY", "VARIABLE-HELM_ENABLED"]}
+{"alias": "helm_version", "ids": ["VARIABLE-HELM_VERSION"]}
+{"alias": "host_architecture", "ids": ["VARIABLE-HOST_ARCHITECTURE"]}
+{"alias": "host_os", "ids": ["VARIABLE-HOST_OS"]}
+{"alias": "hosts.toml", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
+{"alias": "how component versions are chosen", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
+{"alias": "how do I upgrade / restore / migrate", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
+{"alias": "how far behind", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
+{"alias": "how to access the cluster", "ids": ["PRACTICE-CLUSTER_ACCESS"]}
+{"alias": "how to expose services", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
+{"alias": "how to query kubepedia", "ids": ["CONCEPT-KB_NAVIGATION"]}
+{"alias": "how to set a flag not exposed by kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "how to upgrade kubespray safely", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
+{"alias": "hpa not scaling", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
+{"alias": "hpa unknown targets", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
+{"alias": "http01 dns01 challenge failing", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
+{"alias": "http_proxy", "ids": ["CONFIG-PROXY"]}
+{"alias": "https_proxy", "ids": ["CONFIG-PROXY"]}
+{"alias": "hubble", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
+{"alias": "hubble export static schema", "ids": ["TROUBLE-CILIUM_HUBBLE_EXPORT_SCHEMA"]}
+{"alias": "hubble metrics", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
+{"alias": "hubble ui", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
+{"alias": "ignore-preflight-errors", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
+{"alias": "ignore_assert_errors", "ids": ["VARIABLE-IGNORE_ASSERT_ERRORS"]}
+{"alias": "image not found", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "image pull during deploy fails", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
+{"alias": "image pull failing triage", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "image pull failure", "ids": ["PRACTICE-CONTAINERD_DIAGNOSTICS"]}
+{"alias": "image-pull-rate-limit", "ids": ["TROUBLE-IMAGE_PULL_RATE_LIMIT"]}
+{"alias": "imageGCHighThresholdPercent", "ids": ["TROUBLE-KUBELET_IMAGE_GC"]}
+{"alias": "image_arch", "ids": ["VARIABLE-IMAGE_ARCH"]}
+{"alias": "image_command_tool", "ids": ["VARIABLE-IMAGE_COMMAND_TOOL"]}
+{"alias": "image_command_tool_on_localhost", "ids": ["VARIABLE-IMAGE_COMMAND_TOOL_ON_LOCALHOST"]}
+{"alias": "image_info_command", "ids": ["VARIABLE-IMAGE_INFO_COMMAND"]}
+{"alias": "image_info_command_on_localhost", "ids": ["VARIABLE-IMAGE_INFO_COMMAND_ON_LOCALHOST"]}
+{"alias": "image_pull_command", "ids": ["VARIABLE-IMAGE_PULL_COMMAND"]}
+{"alias": "image_pull_command_on_localhost", "ids": ["VARIABLE-IMAGE_PULL_COMMAND_ON_LOCALHOST"]}
+{"alias": "immutable kubernetes os", "ids": ["CONCEPT-TALOS_OS_K8S"]}
+{"alias": "in-place pod resize KEP", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "index files", "ids": ["CONCEPT-KB_NAVIGATION"]}
+{"alias": "informer relist thundering herd", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
+{"alias": "ingress 502 bad gateway", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
+{"alias": "ingress 504 gateway timeout", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
+{"alias": "ingress dns automation", "ids": ["CONCEPT-EXTERNAL_DNS"]}
+{"alias": "ingress snippet blocked", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
+{"alias": "ingress to gateway api", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY"]}
+{"alias": "ingress-controller", "ids": ["TAG-INGRESS_CONTROLLER"]}
+{"alias": "ingress-nginx", "ids": ["COMPONENT-INGRESS_NGINX"]}
+{"alias": "ingress-nginx 4.12.0", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
+{"alias": "ingress-nginx addon", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
+{"alias": "ingress-nginx annotation validation error", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
+{"alias": "ingress-nginx upstream error", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
+{"alias": "ingress2gateway", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY"]}
+{"alias": "ingress_alb", "ids": ["TAG-INGRESS_ALB"]}
+{"alias": "ingress_alb_enabled", "ids": ["VARIABLE-INGRESS_ALB_ENABLED"]}
+{"alias": "ingress_nginx_enabled", "ids": ["COMPONENT-INGRESS_NGINX"]}
+{"alias": "ingressnightmare", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
+{"alias": "init", "ids": ["TAG-INIT"]}
+{"alias": "init first master certificate stuck", "ids": ["TROUBLE-CERT_DIR_SSL_NOT_PKI"]}
+{"alias": "initial cluster deployment", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
+{"alias": "inotify watch limit reached", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
+{"alias": "insecure by default kubespray", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
+{"alias": "insecure defaults", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
+{"alias": "insecure registry containerd", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
+{"alias": "install order cert-manager first", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
+{"alias": "installed addons", "ids": ["CONCEPT-ADDON_CATALOG"]}
+{"alias": "insufficient cpu memory", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "insufficient nvidia.com/gpu", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
+{"alias": "intermittent dns failures kubernetes", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
+{"alias": "internal error occurred admission", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
+{"alias": "invalid ownership metadata", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "inventory groups", "ids": ["PRACTICE-INVENTORY"]}
+{"alias": "io.containerd.cri.v1.runtime", "ids": ["CONCEPT-CONTAINERD_2X"]}
+{"alias": "ip6tables", "ids": ["TAG-IP6TABLES"]}
+{"alias": "iptables", "ids": ["TAG-IPTABLES"]}
+{"alias": "ipv4_stack", "ids": ["VARIABLE-IPV4_STACK"]}
+{"alias": "ipv6 kubernetes", "ids": ["CONFIG-DUAL_STACK"]}
+{"alias": "ipv6_stack", "ids": ["VARIABLE-IPV6_STACK"]}
+{"alias": "is forbidden User", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "is my cluster healthy", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
+{"alias": "is my cluster secure", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "is_fedora_coreos", "ids": ["VARIABLE-IS_FEDORA_COREOS"]}
+{"alias": "isolate system cpus from workloads", "ids": ["CONFIG-CPU_ISOLATION"]}
+{"alias": "join new node", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
+{"alias": "k8s-certs-renew", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
+{"alias": "k8s-certs-renew-broken-script", "ids": ["TROUBLE-K8S_CERTS_RENEW_BROKEN_SCRIPT"]}
+{"alias": "k8s-certs-renew.sh", "ids": ["TROUBLE-KUBEADM_CERT_RENEWAL"]}
+{"alias": "k8s-pre-upgrade", "ids": ["TAG-K8S_PRE_UPGRADE"]}
+{"alias": "k8s_image_pull_policy", "ids": ["VARIABLE-K8S_IMAGE_PULL_POLICY"]}
+{"alias": "k8up", "ids": ["CONCEPT-ADDON_K8UP"]}
+{"alias": "k8up backup", "ids": ["CONCEPT-ADDON_K8UP"]}
+{"alias": "k8up backup succeeded but failed", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
+{"alias": "k8up empty snapshot permission denied", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
+{"alias": "k8up repository already locked", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
+{"alias": "k8up rwo volume node affinity conflict", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
+{"alias": "kaasops vector", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
+{"alias": "karma", "ids": ["CONCEPT-ADDON_KARMA"]}
+{"alias": "karma ui", "ids": ["CONCEPT-ADDON_KARMA"]}
+{"alias": "kata gvisor runsc", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
+{"alias": "kata-containers", "ids": ["COMPONENT-KATA_CONTAINERS", "TAG-KATA_CONTAINERS"]}
+{"alias": "kata_containers_binary_checksum", "ids": ["VARIABLE-KATA_CONTAINERS_BINARY_CHECKSUM"]}
+{"alias": "kata_containers_binary_checksums", "ids": ["VARIABLE-KATA_CONTAINERS_BINARY_CHECKSUMS"]}
+{"alias": "kata_containers_download_url", "ids": ["VARIABLE-KATA_CONTAINERS_DOWNLOAD_URL"]}
+{"alias": "kata_containers_enabled", "ids": ["VARIABLE-KATA_CONTAINERS_ENABLED"]}
+{"alias": "kata_containers_version", "ids": ["VARIABLE-KATA_CONTAINERS_VERSION"]}
+{"alias": "kb navigation", "ids": ["CONCEPT-KB_NAVIGATION"]}
+{"alias": "keda", "ids": ["CONCEPT-ADDON_KEDA"]}
+{"alias": "keda 2.17.2", "ids": ["CONCEPT-ADDON_KEDA"]}
+{"alias": "keda not scaling", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
+{"alias": "keda scaler error", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
+{"alias": "keda triggerauthentication failing", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
+{"alias": "kernel upgrade node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "kernel version requirements", "ids": ["PRACTICE-KERNEL_REQUIREMENTS"]}
+{"alias": "kube-apiserver", "ids": ["TAG-KUBE_APISERVER"]}
+{"alias": "kube-apiserver version", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
+{"alias": "kube-controller-manager", "ids": ["TAG-KUBE_CONTROLLER_MANAGER"]}
+{"alias": "kube-controller-manager crashloop lease", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
+{"alias": "kube-controller-manager version", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
+{"alias": "kube-ovn", "ids": ["COMPONENT-KUBE_OVN"]}
+{"alias": "kube-prometheus-stack", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
+{"alias": "kube-proxy", "ids": ["CONCEPT-KUBE_PROXY", "TAG-KUBE_PROXY"]}
+{"alias": "kube-proxy debug", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
+{"alias": "kube-proxy-free", "ids": ["CONCEPT-KUBE_PROXY"]}
+{"alias": "kube-router", "ids": ["COMPONENT-KUBE_ROUTER"]}
+{"alias": "kube-router bgp", "ids": ["COMPONENT-KUBE_ROUTER"]}
+{"alias": "kube-scheduler crashloop lease", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
+{"alias": "kube-scheduler version", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
+{"alias": "kube-vip", "ids": ["COMPONENT-KUBE_VIP", "TAG-KUBE_VIP"]}
+{"alias": "kube-vip VIP not working", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP"]}
+{"alias": "kube-vip arp bgp", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
+{"alias": "kube-vip leader election", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
+{"alias": "kube-vip no mode selected", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP"]}
+{"alias": "kube-vip vip not working", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
+{"alias": "kube-vip vs metallb vs cilium", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
+{"alias": "kube-vip-capabilities-and-version", "ids": ["TROUBLE-KUBE_VIP_CAPS_VERSION"]}
+{"alias": "kube_api_aggregator_routing", "ids": ["VARIABLE-KUBE_API_AGGREGATOR_ROUTING"]}
+{"alias": "kube_api_anonymous_auth", "ids": ["VARIABLE-KUBE_API_ANONYMOUS_AUTH"]}
+{"alias": "kube_api_runtime_config", "ids": ["VARIABLE-KUBE_API_RUNTIME_CONFIG"]}
+{"alias": "kube_apiserver_access_address", "ids": ["VARIABLE-KUBE_APISERVER_ACCESS_ADDRESS"]}
+{"alias": "kube_apiserver_address", "ids": ["VARIABLE-KUBE_APISERVER_ADDRESS"]}
+{"alias": "kube_apiserver_admission_control_config_file", "ids": ["VARIABLE-KUBE_APISERVER_ADMISSION_CONTROL_CONFIG_FILE"]}
+{"alias": "kube_apiserver_admission_event_rate_limits", "ids": ["VARIABLE-KUBE_APISERVER_ADMISSION_EVENT_RATE_LIMITS"]}
+{"alias": "kube_apiserver_admission_plugins_podnodeselector_default_node_selector", "ids": ["VARIABLE-KUBE_APISERVER_ADMISSION_PLUGINS_PODNODESELECTOR_DEFAULT_NODE_SELECTOR"]}
+{"alias": "kube_apiserver_authentication_config_anonymous", "ids": ["VARIABLE-KUBE_APISERVER_AUTHENTICATION_CONFIG_ANONYMOUS"]}
+{"alias": "kube_apiserver_authentication_config_api_version", "ids": ["VARIABLE-KUBE_APISERVER_AUTHENTICATION_CONFIG_API_VERSION"]}
+{"alias": "kube_apiserver_authentication_config_jwt", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG", "VARIABLE-KUBE_APISERVER_AUTHENTICATION_CONFIG_JWT"]}
+{"alias": "kube_apiserver_authorization_config_api_version", "ids": ["VARIABLE-KUBE_APISERVER_AUTHORIZATION_CONFIG_API_VERSION"]}
+{"alias": "kube_apiserver_authorization_config_authorizers", "ids": ["VARIABLE-KUBE_APISERVER_AUTHORIZATION_CONFIG_AUTHORIZERS"]}
+{"alias": "kube_apiserver_bind_address", "ids": ["VARIABLE-KUBE_APISERVER_BIND_ADDRESS"]}
+{"alias": "kube_apiserver_client_cert", "ids": ["VARIABLE-KUBE_APISERVER_CLIENT_CERT"]}
+{"alias": "kube_apiserver_client_key", "ids": ["VARIABLE-KUBE_APISERVER_CLIENT_KEY"]}
+{"alias": "kube_apiserver_count", "ids": ["VARIABLE-KUBE_APISERVER_COUNT"]}
+{"alias": "kube_apiserver_disable_admission_plugins", "ids": ["VARIABLE-KUBE_APISERVER_DISABLE_ADMISSION_PLUGINS"]}
+{"alias": "kube_apiserver_enable_admission_plugins", "ids": ["VARIABLE-KUBE_APISERVER_ENABLE_ADMISSION_PLUGINS"]}
+{"alias": "kube_apiserver_endpoint", "ids": ["VARIABLE-KUBE_APISERVER_ENDPOINT"]}
+{"alias": "kube_apiserver_etcd_compaction_interval", "ids": ["VARIABLE-KUBE_APISERVER_ETCD_COMPACTION_INTERVAL"]}
+{"alias": "kube_apiserver_feature_gates", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS", "VARIABLE-KUBE_APISERVER_FEATURE_GATES"]}
+{"alias": "kube_apiserver_global_endpoint", "ids": ["VARIABLE-KUBE_APISERVER_GLOBAL_ENDPOINT"]}
+{"alias": "kube_apiserver_ip", "ids": ["CONCEPT-CLUSTER_NETWORKING", "VARIABLE-KUBE_APISERVER_IP"]}
+{"alias": "kube_apiserver_node_port_range", "ids": ["VARIABLE-KUBE_APISERVER_NODE_PORT_RANGE"]}
+{"alias": "kube_apiserver_pod_eviction_not_ready_timeout_seconds", "ids": ["VARIABLE-KUBE_APISERVER_POD_EVICTION_NOT_READY_TIMEOUT_SECONDS"]}
+{"alias": "kube_apiserver_pod_eviction_unreachable_timeout_seconds", "ids": ["VARIABLE-KUBE_APISERVER_POD_EVICTION_UNREACHABLE_TIMEOUT_SECONDS"]}
+{"alias": "kube_apiserver_port", "ids": ["VARIABLE-KUBE_APISERVER_PORT"]}
+{"alias": "kube_apiserver_request_timeout", "ids": ["VARIABLE-KUBE_APISERVER_REQUEST_TIMEOUT"]}
+{"alias": "kube_apiserver_service_account_lookup", "ids": ["VARIABLE-KUBE_APISERVER_SERVICE_ACCOUNT_LOOKUP"]}
+{"alias": "kube_apiserver_storage_backend", "ids": ["VARIABLE-KUBE_APISERVER_STORAGE_BACKEND"]}
+{"alias": "kube_apiserver_tracing", "ids": ["VARIABLE-KUBE_APISERVER_TRACING"]}
+{"alias": "kube_apiserver_tracing_endpoint", "ids": ["VARIABLE-KUBE_APISERVER_TRACING_ENDPOINT"]}
+{"alias": "kube_apiserver_tracing_sampling_rate_per_million", "ids": ["VARIABLE-KUBE_APISERVER_TRACING_SAMPLING_RATE_PER_MILLION"]}
+{"alias": "kube_apiserver_use_authentication_config_file", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG", "VARIABLE-KUBE_APISERVER_USE_AUTHENTICATION_CONFIG_FILE"]}
+{"alias": "kube_apiserver_use_authorization_config_file", "ids": ["VARIABLE-KUBE_APISERVER_USE_AUTHORIZATION_CONFIG_FILE"]}
+{"alias": "kube_asymmetric_encryption_algorithm", "ids": ["VARIABLE-KUBE_ASYMMETRIC_ENCRYPTION_ALGORITHM"]}
+{"alias": "kube_ca_cert_validity_period", "ids": ["VARIABLE-KUBE_CA_CERT_VALIDITY_PERIOD"]}
+{"alias": "kube_cert_compat_dir", "ids": ["VARIABLE-KUBE_CERT_COMPAT_DIR"]}
+{"alias": "kube_cert_dir", "ids": ["VARIABLE-KUBE_CERT_DIR"]}
+{"alias": "kube_cert_group", "ids": ["VARIABLE-KUBE_CERT_GROUP"]}
+{"alias": "kube_cert_validity_period", "ids": ["CONCEPT-CLUSTER_PKI", "VARIABLE-KUBE_CERT_VALIDITY_PERIOD"]}
+{"alias": "kube_config_dir", "ids": ["VARIABLE-KUBE_CONFIG_DIR"]}
+{"alias": "kube_controller_feature_gates", "ids": ["VARIABLE-KUBE_CONTROLLER_FEATURE_GATES"]}
+{"alias": "kube_controller_manager_bind_address", "ids": ["VARIABLE-KUBE_CONTROLLER_MANAGER_BIND_ADDRESS"]}
+{"alias": "kube_controller_manager_leader_elect_lease_duration", "ids": ["VARIABLE-KUBE_CONTROLLER_MANAGER_LEADER_ELECT_LEASE_DURATION"]}
+{"alias": "kube_controller_manager_leader_elect_renew_deadline", "ids": ["VARIABLE-KUBE_CONTROLLER_MANAGER_LEADER_ELECT_RENEW_DEADLINE"]}
+{"alias": "kube_controller_node_monitor_grace_period", "ids": ["VARIABLE-KUBE_CONTROLLER_NODE_MONITOR_GRACE_PERIOD"]}
+{"alias": "kube_controller_node_monitor_period", "ids": ["VARIABLE-KUBE_CONTROLLER_NODE_MONITOR_PERIOD"]}
+{"alias": "kube_controller_terminated_pod_gc_threshold", "ids": ["VARIABLE-KUBE_CONTROLLER_TERMINATED_POD_GC_THRESHOLD"]}
+{"alias": "kube_cpu_reserved", "ids": ["VARIABLE-KUBE_CPU_RESERVED"]}
+{"alias": "kube_dns_servers", "ids": ["VARIABLE-KUBE_DNS_SERVERS"]}
+{"alias": "kube_encrypt_secret_data", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION", "VARIABLE-KUBE_ENCRYPT_SECRET_DATA"]}
+{"alias": "kube_encrypt_token", "ids": ["VARIABLE-KUBE_ENCRYPT_TOKEN"]}
+{"alias": "kube_encryption_algorithm", "ids": ["VARIABLE-KUBE_ENCRYPTION_ALGORITHM"]}
+{"alias": "kube_encryption_resources", "ids": ["VARIABLE-KUBE_ENCRYPTION_RESOURCES"]}
+{"alias": "kube_ephemeral_storage_reserved", "ids": ["VARIABLE-KUBE_EPHEMERAL_STORAGE_RESERVED"]}
+{"alias": "kube_etcd_cacert_file", "ids": ["VARIABLE-KUBE_ETCD_CACERT_FILE"]}
+{"alias": "kube_etcd_cert_file", "ids": ["VARIABLE-KUBE_ETCD_CERT_FILE"]}
+{"alias": "kube_etcd_key_file", "ids": ["VARIABLE-KUBE_ETCD_KEY_FILE"]}
+{"alias": "kube_external_ca_mode", "ids": ["VARIABLE-KUBE_EXTERNAL_CA_MODE"]}
+{"alias": "kube_feature_gates", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS", "VARIABLE-KUBE_FEATURE_GATES"]}
+{"alias": "kube_image_repo", "ids": ["VARIABLE-KUBE_IMAGE_REPO"]}
+{"alias": "kube_kubeadm_apiserver_extra_args", "ids": ["CONCEPT-ESCAPE_HATCHES", "CONCEPT-KUBEADM_CONFIG", "VARIABLE-KUBE_KUBEADM_APISERVER_EXTRA_ARGS"]}
+{"alias": "kube_kubeadm_controller_extra_args", "ids": ["VARIABLE-KUBE_KUBEADM_CONTROLLER_EXTRA_ARGS"]}
+{"alias": "kube_kubeadm_scheduler_extra_args", "ids": ["VARIABLE-KUBE_KUBEADM_SCHEDULER_EXTRA_ARGS"]}
+{"alias": "kube_log_level", "ids": ["VARIABLE-KUBE_LOG_LEVEL"]}
+{"alias": "kube_major_next_version", "ids": ["VARIABLE-KUBE_MAJOR_NEXT_VERSION"]}
+{"alias": "kube_major_version", "ids": ["VARIABLE-KUBE_MAJOR_VERSION"]}
+{"alias": "kube_manifest_dir", "ids": ["VARIABLE-KUBE_MANIFEST_DIR"]}
+{"alias": "kube_memory_reserved", "ids": ["VARIABLE-KUBE_MEMORY_RESERVED"]}
+{"alias": "kube_network_node_prefix", "ids": ["CONCEPT-CLUSTER_NETWORKING", "VARIABLE-KUBE_NETWORK_NODE_PREFIX"]}
+{"alias": "kube_network_node_prefix_ipv6", "ids": ["VARIABLE-KUBE_NETWORK_NODE_PREFIX_IPV6"]}
+{"alias": "kube_network_plugin", "ids": ["CONCEPT-CLUSTER_NETWORKING", "VARIABLE-KUBE_NETWORK_PLUGIN"]}
+{"alias": "kube_network_plugin calico", "ids": ["COMPONENT-CALICO"]}
+{"alias": "kube_network_plugin flannel", "ids": ["COMPONENT-FLANNEL"]}
+{"alias": "kube_network_plugin kube-ovn", "ids": ["COMPONENT-KUBE_OVN"]}
+{"alias": "kube_network_plugin kube-router", "ids": ["COMPONENT-KUBE_ROUTER"]}
+{"alias": "kube_network_plugin macvlan", "ids": ["COMPONENT-MACVLAN"]}
+{"alias": "kube_network_plugin_multus", "ids": ["VARIABLE-KUBE_NETWORK_PLUGIN_MULTUS"]}
+{"alias": "kube_next", "ids": ["VARIABLE-KUBE_NEXT"]}
+{"alias": "kube_node_addresses", "ids": ["VARIABLE-KUBE_NODE_ADDRESSES"]}
+{"alias": "kube_oidc_auth", "ids": ["VARIABLE-KUBE_OIDC_AUTH"]}
+{"alias": "kube_override_hostname", "ids": ["VARIABLE-KUBE_OVERRIDE_HOSTNAME"]}
+{"alias": "kube_ovn", "ids": ["COMPONENT-KUBE_OVN"]}
+{"alias": "kube_ovn_mtu", "ids": ["CONFIG-CNI_MTU"]}
+{"alias": "kube_owner", "ids": ["VARIABLE-KUBE_OWNER"]}
+{"alias": "kube_pid_reserved", "ids": ["VARIABLE-KUBE_PID_RESERVED"]}
+{"alias": "kube_pod_security_default_audit", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_AUDIT"]}
+{"alias": "kube_pod_security_default_audit_version", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_AUDIT_VERSION"]}
+{"alias": "kube_pod_security_default_enforce", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_ENFORCE"]}
+{"alias": "kube_pod_security_default_enforce_version", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_ENFORCE_VERSION"]}
+{"alias": "kube_pod_security_default_warn", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_WARN"]}
+{"alias": "kube_pod_security_default_warn_version", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_WARN_VERSION"]}
+{"alias": "kube_pod_security_exemptions_namespaces", "ids": ["VARIABLE-KUBE_POD_SECURITY_EXEMPTIONS_NAMESPACES"]}
+{"alias": "kube_pod_security_exemptions_runtime_class_names", "ids": ["VARIABLE-KUBE_POD_SECURITY_EXEMPTIONS_RUNTIME_CLASS_NAMES"]}
+{"alias": "kube_pod_security_exemptions_usernames", "ids": ["VARIABLE-KUBE_POD_SECURITY_EXEMPTIONS_USERNAMES"]}
+{"alias": "kube_pod_security_use_default", "ids": ["CONCEPT-POD_SECURITY_STANDARDS", "VARIABLE-KUBE_POD_SECURITY_USE_DEFAULT"]}
+{"alias": "kube_pods_subnet", "ids": ["CONCEPT-CLUSTER_NETWORKING", "VARIABLE-KUBE_PODS_SUBNET"]}
+{"alias": "kube_pods_subnet_ipv6", "ids": ["CONFIG-DUAL_STACK", "VARIABLE-KUBE_PODS_SUBNET_IPV6"]}
+{"alias": "kube_pods_subnets", "ids": ["VARIABLE-KUBE_PODS_SUBNETS"]}
+{"alias": "kube_profiling", "ids": ["VARIABLE-KUBE_PROFILING"]}
+{"alias": "kube_proxy_bind_address", "ids": ["VARIABLE-KUBE_PROXY_BIND_ADDRESS"]}
+{"alias": "kube_proxy_client_accept_content_types", "ids": ["VARIABLE-KUBE_PROXY_CLIENT_ACCEPT_CONTENT_TYPES"]}
+{"alias": "kube_proxy_client_burst", "ids": ["VARIABLE-KUBE_PROXY_CLIENT_BURST"]}
+{"alias": "kube_proxy_client_content_type", "ids": ["VARIABLE-KUBE_PROXY_CLIENT_CONTENT_TYPE"]}
+{"alias": "kube_proxy_client_kubeconfig", "ids": ["VARIABLE-KUBE_PROXY_CLIENT_KUBECONFIG"]}
+{"alias": "kube_proxy_client_qps", "ids": ["VARIABLE-KUBE_PROXY_CLIENT_QPS"]}
+{"alias": "kube_proxy_config_sync_period", "ids": ["VARIABLE-KUBE_PROXY_CONFIG_SYNC_PERIOD"]}
+{"alias": "kube_proxy_conntrack_max_per_core", "ids": ["VARIABLE-KUBE_PROXY_CONNTRACK_MAX_PER_CORE"]}
+{"alias": "kube_proxy_conntrack_min", "ids": ["VARIABLE-KUBE_PROXY_CONNTRACK_MIN"]}
+{"alias": "kube_proxy_conntrack_tcp_close_wait_timeout", "ids": ["VARIABLE-KUBE_PROXY_CONNTRACK_TCP_CLOSE_WAIT_TIMEOUT"]}
+{"alias": "kube_proxy_conntrack_tcp_established_timeout", "ids": ["VARIABLE-KUBE_PROXY_CONNTRACK_TCP_ESTABLISHED_TIMEOUT"]}
+{"alias": "kube_proxy_deployed", "ids": ["VARIABLE-KUBE_PROXY_DEPLOYED"]}
+{"alias": "kube_proxy_enable_profiling", "ids": ["VARIABLE-KUBE_PROXY_ENABLE_PROFILING"]}
+{"alias": "kube_proxy_exclude_cidrs", "ids": ["VARIABLE-KUBE_PROXY_EXCLUDE_CIDRS"]}
+{"alias": "kube_proxy_feature_gates", "ids": ["VARIABLE-KUBE_PROXY_FEATURE_GATES"]}
+{"alias": "kube_proxy_healthz_bind_address", "ids": ["VARIABLE-KUBE_PROXY_HEALTHZ_BIND_ADDRESS"]}
+{"alias": "kube_proxy_image_repo", "ids": ["VARIABLE-KUBE_PROXY_IMAGE_REPO"]}
+{"alias": "kube_proxy_ipvs_modules", "ids": ["VARIABLE-KUBE_PROXY_IPVS_MODULES"]}
+{"alias": "kube_proxy_masquerade_all", "ids": ["VARIABLE-KUBE_PROXY_MASQUERADE_ALL"]}
+{"alias": "kube_proxy_masquerade_bit", "ids": ["VARIABLE-KUBE_PROXY_MASQUERADE_BIT"]}
+{"alias": "kube_proxy_metrics_bind_address", "ids": ["VARIABLE-KUBE_PROXY_METRICS_BIND_ADDRESS"]}
+{"alias": "kube_proxy_min_sync_period", "ids": ["VARIABLE-KUBE_PROXY_MIN_SYNC_PERIOD"]}
+{"alias": "kube_proxy_mode", "ids": ["CONCEPT-KUBE_PROXY", "VARIABLE-KUBE_PROXY_MODE"]}
+{"alias": "kube_proxy_mode nftables kernel", "ids": ["TROUBLE-NFTABLES_KERNEL_TOO_LOW"]}
+{"alias": "kube_proxy_nodeport_addresses", "ids": ["VARIABLE-KUBE_PROXY_NODEPORT_ADDRESSES"]}
+{"alias": "kube_proxy_oom_score_adj", "ids": ["VARIABLE-KUBE_PROXY_OOM_SCORE_ADJ"]}
+{"alias": "kube_proxy_port_range", "ids": ["VARIABLE-KUBE_PROXY_PORT_RANGE"]}
+{"alias": "kube_proxy_remove", "ids": ["CONCEPT-KUBE_PROXY"]}
+{"alias": "kube_proxy_scheduler", "ids": ["VARIABLE-KUBE_PROXY_SCHEDULER"]}
+{"alias": "kube_proxy_strict_arp", "ids": ["VARIABLE-KUBE_PROXY_STRICT_ARP"]}
+{"alias": "kube_proxy_strict_arp metallb", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
+{"alias": "kube_proxy_sync_period", "ids": ["VARIABLE-KUBE_PROXY_SYNC_PERIOD"]}
+{"alias": "kube_proxy_tcp_fin_timeout", "ids": ["VARIABLE-KUBE_PROXY_TCP_FIN_TIMEOUT"]}
+{"alias": "kube_proxy_tcp_timeout", "ids": ["VARIABLE-KUBE_PROXY_TCP_TIMEOUT"]}
+{"alias": "kube_proxy_udp_timeout", "ids": ["VARIABLE-KUBE_PROXY_UDP_TIMEOUT"]}
+{"alias": "kube_read_only_port", "ids": ["VARIABLE-KUBE_READ_ONLY_PORT"]}
+{"alias": "kube_reserved", "ids": ["VARIABLE-KUBE_RESERVED"]}
+{"alias": "kube_reserved_cgroups", "ids": ["VARIABLE-KUBE_RESERVED_CGROUPS"]}
+{"alias": "kube_reserved_cgroups_for_service_slice", "ids": ["VARIABLE-KUBE_RESERVED_CGROUPS_FOR_SERVICE_SLICE"]}
+{"alias": "kube_resolv_conf", "ids": ["VARIABLE-KUBE_RESOLV_CONF"]}
+{"alias": "kube_resource_quota_limited_resources", "ids": ["VARIABLE-KUBE_RESOURCE_QUOTA_LIMITED_RESOURCES"]}
+{"alias": "kube_router", "ids": ["COMPONENT-KUBE_ROUTER"]}
+{"alias": "kube_scheduler_bind_address", "ids": ["VARIABLE-KUBE_SCHEDULER_BIND_ADDRESS"]}
+{"alias": "kube_scheduler_client_conn_extra_opts", "ids": ["VARIABLE-KUBE_SCHEDULER_CLIENT_CONN_EXTRA_OPTS"]}
+{"alias": "kube_scheduler_config_extra_opts", "ids": ["VARIABLE-KUBE_SCHEDULER_CONFIG_EXTRA_OPTS"]}
+{"alias": "kube_scheduler_extenders", "ids": ["VARIABLE-KUBE_SCHEDULER_EXTENDERS"]}
+{"alias": "kube_scheduler_feature_gates", "ids": ["VARIABLE-KUBE_SCHEDULER_FEATURE_GATES"]}
+{"alias": "kube_scheduler_leader_elect_extra_opts", "ids": ["VARIABLE-KUBE_SCHEDULER_LEADER_ELECT_EXTRA_OPTS"]}
+{"alias": "kube_scheduler_leader_elect_lease_duration", "ids": ["VARIABLE-KUBE_SCHEDULER_LEADER_ELECT_LEASE_DURATION"]}
+{"alias": "kube_scheduler_leader_elect_renew_deadline", "ids": ["VARIABLE-KUBE_SCHEDULER_LEADER_ELECT_RENEW_DEADLINE"]}
+{"alias": "kube_scheduler_profiles", "ids": ["VARIABLE-KUBE_SCHEDULER_PROFILES"]}
+{"alias": "kube_script_dir", "ids": ["VARIABLE-KUBE_SCRIPT_DIR"]}
+{"alias": "kube_service_addresses", "ids": ["CONCEPT-CLUSTER_NETWORKING", "VARIABLE-KUBE_SERVICE_ADDRESSES"]}
+{"alias": "kube_service_addresses_ipv6", "ids": ["CONFIG-DUAL_STACK", "VARIABLE-KUBE_SERVICE_ADDRESSES_IPV6"]}
+{"alias": "kube_service_cgroups", "ids": ["VARIABLE-KUBE_SERVICE_CGROUPS"]}
+{"alias": "kube_service_subnets", "ids": ["VARIABLE-KUBE_SERVICE_SUBNETS"]}
+{"alias": "kube_token_auth", "ids": ["VARIABLE-KUBE_TOKEN_AUTH"]}
+{"alias": "kube_token_dir", "ids": ["VARIABLE-KUBE_TOKEN_DIR"]}
+{"alias": "kube_version", "ids": ["VARIABLE-KUBE_VERSION"]}
+{"alias": "kube_version_min_required", "ids": ["VARIABLE-KUBE_VERSION_MIN_REQUIRED"]}
+{"alias": "kube_vip_address", "ids": ["VARIABLE-KUBE_VIP_ADDRESS"]}
+{"alias": "kube_vip_arp_enabled", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP", "VARIABLE-KUBE_VIP_ARP_ENABLED"]}
+{"alias": "kube_vip_bgp_enabled", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP", "VARIABLE-KUBE_VIP_BGP_ENABLED"]}
+{"alias": "kube_vip_bgp_peeraddress", "ids": ["VARIABLE-KUBE_VIP_BGP_PEERADDRESS"]}
+{"alias": "kube_vip_bgp_peeras", "ids": ["VARIABLE-KUBE_VIP_BGP_PEERAS"]}
+{"alias": "kube_vip_bgp_peerpass", "ids": ["VARIABLE-KUBE_VIP_BGP_PEERPASS"]}
+{"alias": "kube_vip_bgp_routerid", "ids": ["VARIABLE-KUBE_VIP_BGP_ROUTERID"]}
+{"alias": "kube_vip_bgp_sourceif", "ids": ["VARIABLE-KUBE_VIP_BGP_SOURCEIF"]}
+{"alias": "kube_vip_bgp_sourceip", "ids": ["VARIABLE-KUBE_VIP_BGP_SOURCEIP"]}
+{"alias": "kube_vip_bgppeers", "ids": ["VARIABLE-KUBE_VIP_BGPPEERS"]}
+{"alias": "kube_vip_cidr", "ids": ["VARIABLE-KUBE_VIP_CIDR"]}
+{"alias": "kube_vip_controlplane_enabled", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP", "VARIABLE-KUBE_VIP_CONTROLPLANE_ENABLED"]}
+{"alias": "kube_vip_cp_detect", "ids": ["VARIABLE-KUBE_VIP_CP_DETECT"]}
+{"alias": "kube_vip_ddns_enabled", "ids": ["VARIABLE-KUBE_VIP_DDNS_ENABLED"]}
+{"alias": "kube_vip_dns_mode", "ids": ["VARIABLE-KUBE_VIP_DNS_MODE"]}
+{"alias": "kube_vip_enable_node_labeling", "ids": ["VARIABLE-KUBE_VIP_ENABLE_NODE_LABELING"]}
+{"alias": "kube_vip_enabled", "ids": ["VARIABLE-KUBE_VIP_ENABLED"]}
+{"alias": "kube_vip_image_repo", "ids": ["VARIABLE-KUBE_VIP_IMAGE_REPO"]}
+{"alias": "kube_vip_image_tag", "ids": ["VARIABLE-KUBE_VIP_IMAGE_TAG"]}
+{"alias": "kube_vip_interface", "ids": ["VARIABLE-KUBE_VIP_INTERFACE"]}
+{"alias": "kube_vip_lb_enable", "ids": ["VARIABLE-KUBE_VIP_LB_ENABLE"]}
+{"alias": "kube_vip_lb_fwdmethod", "ids": ["VARIABLE-KUBE_VIP_LB_FWDMETHOD"]}
+{"alias": "kube_vip_leader_election_enabled", "ids": ["VARIABLE-KUBE_VIP_LEADER_ELECTION_ENABLED"]}
+{"alias": "kube_vip_leaseduration", "ids": ["VARIABLE-KUBE_VIP_LEASEDURATION"]}
+{"alias": "kube_vip_leasename", "ids": ["VARIABLE-KUBE_VIP_LEASENAME"]}
+{"alias": "kube_vip_local_as", "ids": ["VARIABLE-KUBE_VIP_LOCAL_AS"]}
+{"alias": "kube_vip_renewdeadline", "ids": ["VARIABLE-KUBE_VIP_RENEWDEADLINE"]}
+{"alias": "kube_vip_retryperiod", "ids": ["VARIABLE-KUBE_VIP_RETRYPERIOD"]}
+{"alias": "kube_vip_services_enabled", "ids": ["VARIABLE-KUBE_VIP_SERVICES_ENABLED"]}
+{"alias": "kube_vip_services_interface", "ids": ["VARIABLE-KUBE_VIP_SERVICES_INTERFACE"]}
+{"alias": "kube_vip_svc_leasename", "ids": ["VARIABLE-KUBE_VIP_SVC_LEASENAME"]}
+{"alias": "kube_vip_version", "ids": ["VARIABLE-KUBE_VIP_VERSION"]}
+{"alias": "kube_webhook_authorization", "ids": ["VARIABLE-KUBE_WEBHOOK_AUTHORIZATION"]}
+{"alias": "kube_webhook_authorization_url_skip_tls_verify", "ids": ["VARIABLE-KUBE_WEBHOOK_AUTHORIZATION_URL_SKIP_TLS_VERIFY"]}
+{"alias": "kube_webhook_token_auth", "ids": ["VARIABLE-KUBE_WEBHOOK_TOKEN_AUTH"]}
+{"alias": "kube_webhook_token_auth_url_skip_tls_verify", "ids": ["VARIABLE-KUBE_WEBHOOK_TOKEN_AUTH_URL_SKIP_TLS_VERIFY"]}
+{"alias": "kubeadm", "ids": ["TAG-KUBEADM"]}
+{"alias": "kubeadm cannot upgrade skip minor", "ids": ["TROUBLE-KUBEADM_VERSION_SKEW"]}
+{"alias": "kubeadm certs", "ids": ["CONCEPT-CLUSTER_PKI"]}
+{"alias": "kubeadm certs check-expiration", "ids": ["TROUBLE-KUBEADM_CERT_RENEWAL"]}
+{"alias": "kubeadm certs renew all", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION", "TROUBLE-KUBEADM_CERT_RENEWAL"]}
+{"alias": "kubeadm config", "ids": ["CONCEPT-KUBEADM_CONFIG"]}
+{"alias": "kubeadm config format", "ids": ["CONFIG-KUBEADM_CONFIG_API_VERSION"]}
+{"alias": "kubeadm config migrate", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
+{"alias": "kubeadm expects pki directory", "ids": ["TROUBLE-CERT_DIR_SSL_NOT_PKI"]}
+{"alias": "kubeadm init hangs kubelet", "ids": ["TROUBLE-DEPLOY_HANGS_WAIT_APISERVER"]}
+{"alias": "kubeadm init phases skip", "ids": ["CONCEPT-KUBEADM_CONFIG"]}
+{"alias": "kubeadm join failed", "ids": ["PRACTICE-KUBEADM_JOIN_FAILURES", "TROUBLE-KUBEADM_JOIN_NODE"]}
+{"alias": "kubeadm preflight error", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
+{"alias": "kubeadm super-admin.conf", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
+{"alias": "kubeadm upgrade apply failed", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
+{"alias": "kubeadm upgrade apply kubespray", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
+{"alias": "kubeadm upgrade node failed", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
+{"alias": "kubeadm upgrade static pod hash", "ids": ["TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK"]}
+{"alias": "kubeadm-config.yaml", "ids": ["CONCEPT-KUBEADM_CONFIG"]}
+{"alias": "kubeadm-init-retry-fails", "ids": ["TROUBLE-KUBEADM_INIT_RETRY_FAILS"]}
+{"alias": "kubeadm-patches-stale", "ids": ["TROUBLE-KUBEADM_PATCHES_NOT_REMOVED"]}
+{"alias": "kubeadm_binary_checksum", "ids": ["VARIABLE-KUBEADM_BINARY_CHECKSUM"]}
+{"alias": "kubeadm_checksums", "ids": ["VARIABLE-KUBEADM_CHECKSUMS"]}
+{"alias": "kubeadm_config_api_version", "ids": ["CONFIG-KUBEADM_CONFIG_API_VERSION"]}
+{"alias": "kubeadm_config_validate_enabled", "ids": ["VARIABLE-KUBEADM_CONFIG_VALIDATE_ENABLED"]}
+{"alias": "kubeadm_download_url", "ids": ["VARIABLE-KUBEADM_DOWNLOAD_URL"]}
+{"alias": "kubeadm_feature_gates", "ids": ["VARIABLE-KUBEADM_FEATURE_GATES"]}
+{"alias": "kubeadm_ignore_preflight_errors", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
+{"alias": "kubeadm_image_pull_serial", "ids": ["VARIABLE-KUBEADM_IMAGE_PULL_SERIAL"]}
+{"alias": "kubeadm_image_repo", "ids": ["VARIABLE-KUBEADM_IMAGE_REPO"]}
+{"alias": "kubeadm_images", "ids": ["VARIABLE-KUBEADM_IMAGES"]}
+{"alias": "kubeadm_init_phases_skip", "ids": ["VARIABLE-KUBEADM_INIT_PHASES_SKIP"]}
+{"alias": "kubeadm_init_phases_skip_default", "ids": ["VARIABLE-KUBEADM_INIT_PHASES_SKIP_DEFAULT"]}
+{"alias": "kubeadm_init_timeout", "ids": ["VARIABLE-KUBEADM_INIT_TIMEOUT"]}
+{"alias": "kubeadm_join_phases_skip", "ids": ["VARIABLE-KUBEADM_JOIN_PHASES_SKIP"]}
+{"alias": "kubeadm_join_phases_skip_default", "ids": ["VARIABLE-KUBEADM_JOIN_PHASES_SKIP_DEFAULT"]}
+{"alias": "kubeadm_join_timeout", "ids": ["VARIABLE-KUBEADM_JOIN_TIMEOUT"]}
+{"alias": "kubeadm_patches", "ids": ["CONCEPT-ESCAPE_HATCHES", "CONCEPT-KUBEADM_CONFIG"]}
+{"alias": "kubeadm_refresh_token", "ids": ["VARIABLE-KUBEADM_REFRESH_TOKEN"]}
+{"alias": "kubeadm_scale_down_coredns_enabled", "ids": ["VARIABLE-KUBEADM_SCALE_DOWN_COREDNS_ENABLED"]}
+{"alias": "kubeadm_token", "ids": ["TAG-KUBEADM_TOKEN"]}
+{"alias": "kubeadm_upgrade_auto_cert_renewal", "ids": ["VARIABLE-KUBEADM_UPGRADE_AUTO_CERT_RENEWAL"]}
+{"alias": "kubeadm_upgrade_node_phases_skip", "ids": ["VARIABLE-KUBEADM_UPGRADE_NODE_PHASES_SKIP"]}
+{"alias": "kubeadm_upgrade_node_phases_skip_default", "ids": ["VARIABLE-KUBEADM_UPGRADE_NODE_PHASES_SKIP_DEFAULT"]}
+{"alias": "kubeadm_use_file_discovery", "ids": ["VARIABLE-KUBEADM_USE_FILE_DISCOVERY"]}
+{"alias": "kubeconfig", "ids": ["PRACTICE-CLUSTER_ACCESS"]}
+{"alias": "kubeconfig_localhost", "ids": ["PRACTICE-CLUSTER_ACCESS", "VARIABLE-KUBECONFIG_LOCALHOST"]}
+{"alias": "kubectl", "ids": ["TAG-KUBECTL", "VARIABLE-KUBECTL"]}
+{"alias": "kubectl exec error", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "kubectl hangs writes stall", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
+{"alias": "kubectl logs timeout", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "kubectl rollout status hangs", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
+{"alias": "kubectl top metrics api not available", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
+{"alias": "kubectl x509 not valid for load balancer", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
+{"alias": "kubectl_binary_checksum", "ids": ["VARIABLE-KUBECTL_BINARY_CHECKSUM"]}
+{"alias": "kubectl_checksums", "ids": ["VARIABLE-KUBECTL_CHECKSUMS"]}
+{"alias": "kubectl_download_url", "ids": ["VARIABLE-KUBECTL_DOWNLOAD_URL"]}
+{"alias": "kubectl_localhost", "ids": ["PRACTICE-CLUSTER_ACCESS", "VARIABLE-KUBECTL_LOCALHOST"]}
+{"alias": "kubelet", "ids": ["TAG-KUBELET"]}
+{"alias": "kubelet 10250 timeout", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
+{"alias": "kubelet cannot reach apiserver", "ids": ["TROUBLE-NODE_CANNOT_REACH_APISERVER"]}
+{"alias": "kubelet cgroup driver from cri", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}
+{"alias": "kubelet cgroupDriver systemd", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
+{"alias": "kubelet config", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
+{"alias": "kubelet container gc leak", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
+{"alias": "kubelet hardening", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
+{"alias": "kubelet memory leak oomkill workloads", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
+{"alias": "kubelet not ready", "ids": ["PRACTICE-NODE_NOT_READY"]}
+{"alias": "kubelet scrape 401 x509", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
+{"alias": "kubelet serving cert not rotating", "ids": ["TROUBLE-KUBELET_SERVING_CERT_ROTATION"]}
+{"alias": "kubelet serving certificate self-signed", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
+{"alias": "kubelet-conf-server-indent", "ids": ["TROUBLE-KUBELET_CONF_SERVER_INDENT_CRASHLOOP"]}
+{"alias": "kubelet-config.yaml", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
+{"alias": "kubelet-csr-approver", "ids": ["TAG-KUBELET_CSR_APPROVER"]}
+{"alias": "kubelet-csr-approver pending CSR", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
+{"alias": "kubelet-serving CSR not auto-approved", "ids": ["TROUBLE-KUBELET_SERVING_CERT_ROTATION"]}
+{"alias": "kubelet_address", "ids": ["VARIABLE-KUBELET_ADDRESS"]}
+{"alias": "kubelet_authentication_token_webhook", "ids": ["VARIABLE-KUBELET_AUTHENTICATION_TOKEN_WEBHOOK"]}
+{"alias": "kubelet_authorization_mode_webhook", "ids": ["VARIABLE-KUBELET_AUTHORIZATION_MODE_WEBHOOK"]}
+{"alias": "kubelet_binary_checksum", "ids": ["VARIABLE-KUBELET_BINARY_CHECKSUM"]}
+{"alias": "kubelet_bind_address", "ids": ["VARIABLE-KUBELET_BIND_ADDRESS"]}
+{"alias": "kubelet_checksums", "ids": ["VARIABLE-KUBELET_CHECKSUMS"]}
+{"alias": "kubelet_config_extra_args", "ids": ["CONCEPT-ESCAPE_HATCHES", "VARIABLE-KUBELET_CONFIG_EXTRA_ARGS"]}
+{"alias": "kubelet_config_extra_args_cgroupfs", "ids": ["VARIABLE-KUBELET_CONFIG_EXTRA_ARGS_CGROUPFS"]}
+{"alias": "kubelet_custom_flags", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS", "VARIABLE-KUBELET_CUSTOM_FLAGS"]}
+{"alias": "kubelet_download_url", "ids": ["VARIABLE-KUBELET_DOWNLOAD_URL"]}
+{"alias": "kubelet_enforce_node_allocatable", "ids": ["VARIABLE-KUBELET_ENFORCE_NODE_ALLOCATABLE"]}
+{"alias": "kubelet_event_record_qps", "ids": ["VARIABLE-KUBELET_EVENT_RECORD_QPS"]}
+{"alias": "kubelet_fail_cgroup_v1", "ids": ["VARIABLE-KUBELET_FAIL_CGROUP_V1"]}
+{"alias": "kubelet_fail_swap_on", "ids": ["VARIABLE-KUBELET_FAIL_SWAP_ON"]}
+{"alias": "kubelet_feature_gates", "ids": ["VARIABLE-KUBELET_FEATURE_GATES"]}
+{"alias": "kubelet_flexvolumes_plugins_dir", "ids": ["VARIABLE-KUBELET_FLEXVOLUMES_PLUGINS_DIR"]}
+{"alias": "kubelet_healthz_bind_address", "ids": ["VARIABLE-KUBELET_HEALTHZ_BIND_ADDRESS"]}
+{"alias": "kubelet_healthz_port", "ids": ["VARIABLE-KUBELET_HEALTHZ_PORT"]}
+{"alias": "kubelet_kubelet_cgroups", "ids": ["VARIABLE-KUBELET_KUBELET_CGROUPS"]}
+{"alias": "kubelet_kubelet_cgroups_cgroupfs", "ids": ["VARIABLE-KUBELET_KUBELET_CGROUPS_CGROUPFS"]}
+{"alias": "kubelet_logfiles_max_nr", "ids": ["VARIABLE-KUBELET_LOGFILES_MAX_NR"]}
+{"alias": "kubelet_logfiles_max_size", "ids": ["VARIABLE-KUBELET_LOGFILES_MAX_SIZE"]}
+{"alias": "kubelet_max_parallel_image_pulls", "ids": ["VARIABLE-KUBELET_MAX_PARALLEL_IMAGE_PULLS"]}
+{"alias": "kubelet_max_pods", "ids": ["VARIABLE-KUBELET_MAX_PODS"]}
+{"alias": "kubelet_node_config_extra_args", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "kubelet_pod_pids_limit", "ids": ["VARIABLE-KUBELET_POD_PIDS_LIMIT"]}
+{"alias": "kubelet_preferred_address_types", "ids": ["VARIABLE-KUBELET_PREFERRED_ADDRESS_TYPES"]}
+{"alias": "kubelet_protect_kernel_defaults", "ids": ["VARIABLE-KUBELET_PROTECT_KERNEL_DEFAULTS"]}
+{"alias": "kubelet_rotate_certificates", "ids": ["VARIABLE-KUBELET_ROTATE_CERTIFICATES"]}
+{"alias": "kubelet_rotate_server_certificates", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS", "VARIABLE-KUBELET_ROTATE_SERVER_CERTIFICATES"]}
+{"alias": "kubelet_runtime_cgroups", "ids": ["VARIABLE-KUBELET_RUNTIME_CGROUPS"]}
+{"alias": "kubelet_runtime_cgroups_cgroupfs", "ids": ["VARIABLE-KUBELET_RUNTIME_CGROUPS_CGROUPFS"]}
+{"alias": "kubelet_secure_addresses", "ids": ["VARIABLE-KUBELET_SECURE_ADDRESSES"]}
+{"alias": "kubelet_shutdown_grace_period", "ids": ["VARIABLE-KUBELET_SHUTDOWN_GRACE_PERIOD"]}
+{"alias": "kubelet_shutdown_grace_period_critical_pods", "ids": ["VARIABLE-KUBELET_SHUTDOWN_GRACE_PERIOD_CRITICAL_PODS"]}
+{"alias": "kubelet_status_update_frequency", "ids": ["VARIABLE-KUBELET_STATUS_UPDATE_FREQUENCY"]}
+{"alias": "kubelet_swap_behavior", "ids": ["VARIABLE-KUBELET_SWAP_BEHAVIOR"]}
+{"alias": "kubelet_systemd_hardening", "ids": ["VARIABLE-KUBELET_SYSTEMD_HARDENING"]}
+{"alias": "kubelet_systemd_wants_dependencies", "ids": ["VARIABLE-KUBELET_SYSTEMD_WANTS_DEPENDENCIES"]}
+{"alias": "kubelet_tracing", "ids": ["VARIABLE-KUBELET_TRACING"]}
+{"alias": "kubelet_tracing_endpoint", "ids": ["VARIABLE-KUBELET_TRACING_ENDPOINT"]}
+{"alias": "kubelet_tracing_sampling_rate_per_million", "ids": ["VARIABLE-KUBELET_TRACING_SAMPLING_RATE_PER_MILLION"]}
+{"alias": "kubepods.slice memory limit reset", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
+{"alias": "kubernetes 1.29 changes", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
+{"alias": "kubernetes 1.30 changes", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
+{"alias": "kubernetes 1.31 changes", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}
+{"alias": "kubernetes 1.32 changes", "ids": ["CONCEPT-K8S_1_32_CHANGES"]}
+{"alias": "kubernetes 1.33 changes", "ids": ["CONCEPT-K8S_1_33_CHANGES"]}
+{"alias": "kubernetes 1.34 changes", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
+{"alias": "kubernetes 1.35 changes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
+{"alias": "kubernetes audit", "ids": ["CONFIG-APISERVER_AUDIT"]}
+{"alias": "kubernetes cve", "ids": ["TROUBLE-KUBERNETES_KNOWN_CVES"]}
+{"alias": "kubernetes ui headlamp", "ids": ["CONCEPT-ADDON_HEADLAMP"]}
+{"alias": "kubernetes version support", "ids": ["CONCEPT-KUBERNETES_VERSION_SUPPORT"]}
+{"alias": "kubernetes-dashboard", "ids": ["CONCEPT-ADDON_KUBERNETES_DASHBOARD"]}
+{"alias": "kubernetes-mcp", "ids": ["CONCEPT-ADDON_KUBERNETES_MCP"]}
+{"alias": "kubernetes-mcp-server", "ids": ["CONCEPT-ADDON_KUBERNETES_MCP"]}
+{"alias": "kubernetes-reliability", "ids": ["PRACTICE-KUBERNETES_RELIABILITY"]}
+{"alias": "kubernetes/control-plane", "ids": ["ROLE-KUBERNETES_CONTROL_PLANE"]}
+{"alias": "kubernetes/kubeadm", "ids": ["ROLE-KUBERNETES_KUBEADM"]}
+{"alias": "kubernetes/node", "ids": ["ROLE-KUBERNETES_NODE"]}
+{"alias": "kubernetes/preinstall", "ids": ["ROLE-KUBERNETES_PREINSTALL"]}
+{"alias": "kubernetes_audit", "ids": ["CONFIG-APISERVER_AUDIT", "VARIABLE-KUBERNETES_AUDIT"]}
+{"alias": "kubernetes_audit_webhook", "ids": ["VARIABLE-KUBERNETES_AUDIT_WEBHOOK"]}
+{"alias": "kubespray 2.27.0", "ids": ["RELEASE-V2_27_0"]}
+{"alias": "kubespray 2.27.1", "ids": ["RELEASE-V2_27_1"]}
+{"alias": "kubespray 2.28.0", "ids": ["RELEASE-V2_28_0"]}
+{"alias": "kubespray 2.28.1", "ids": ["RELEASE-V2_28_1"]}
+{"alias": "kubespray admin.conf security", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
+{"alias": "kubespray etcd not kubeadm", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
+{"alias": "kubespray hangs check api is up", "ids": ["TROUBLE-DEPLOY_HANGS_WAIT_APISERVER"]}
+{"alias": "kubespray in-cluster registry auth", "ids": ["TROUBLE-REGISTRY_ADDON"]}
+{"alias": "kubespray ingress nginx removed", "ids": ["COMPONENT-INGRESS_NGINX"]}
+{"alias": "kubespray kubeadm seam", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
+{"alias": "kubespray no prometheus bundled", "ids": ["PRACTICE-MONITORING_BASELINE"]}
+{"alias": "kubespray submodule", "ids": ["PRACTICE-INTEGRATION"]}
+{"alias": "kubespray upgrade", "ids": ["UPGRADE-KUBESPRAY_SEQUENTIAL"]}
+{"alias": "kubespray upgrade stuck check api healthz", "ids": ["TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK"]}
+{"alias": "kubespray-defaults", "ids": ["ROLE-KUBESPRAY_DEFAULTS"]}
+{"alias": "kubespray_defaults", "ids": ["ROLE-KUBESPRAY_DEFAULTS"]}
+{"alias": "kvm-device-plugin", "ids": ["CONCEPT-ADDON_KVM_DEVICE_PLUGIN"]}
+{"alias": "kyverno", "ids": ["CONCEPT-ADDON_KYVERNO"]}
+{"alias": "kyverno 1.10 no upgrade path", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
+{"alias": "kyverno 1.12.0 etcd growth", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
+{"alias": "kyverno admission controller", "ids": ["CONCEPT-ADDON_KYVERNO"]}
+{"alias": "kyverno admission reports etcd full", "ids": ["TROUBLE-KYVERNO_REPORTS_ETCD_SCALE"]}
+{"alias": "kyverno crd annotations too long", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
+{"alias": "kyverno failurepolicy fail blocks cluster", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
+{"alias": "kyverno generate downstream not synced", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
+{"alias": "kyverno generate infinite loop", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
+{"alias": "kyverno leadership lost crashloop", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
+{"alias": "kyverno leftover webhook configs", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
+{"alias": "kyverno mutate existing not applied", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
+{"alias": "kyverno policy engine", "ids": ["CONCEPT-ADDON_KYVERNO"]}
+{"alias": "kyverno policyreport scale", "ids": ["TROUBLE-KYVERNO_REPORTS_ETCD_SCALE"]}
+{"alias": "kyverno reports controller oom", "ids": ["TROUBLE-KYVERNO_REPORTS_ETCD_SCALE"]}
+{"alias": "kyverno updaterequests flood", "ids": ["TROUBLE-KYVERNO_REPORTS_ETCD_SCALE"]}
+{"alias": "kyverno upgrade breaks", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
+{"alias": "kyverno validationfailureaction moved", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
+{"alias": "kyverno verifyimages cosign fails", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
+{"alias": "kyverno webhook timeout latency", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
+{"alias": "kyverno wildcard crd not found", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
+{"alias": "label nodes kubespray", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "large scale kubespray", "ids": ["PRACTICE-LARGE_DEPLOYMENTS"]}
+{"alias": "latest component versions", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
+{"alias": "latest upstream versions", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
+{"alias": "leaderelection lost", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
+{"alias": "leave_etc_backup_files", "ids": ["VARIABLE-LEAVE_ETC_BACKUP_FILES"]}
+{"alias": "legacy service account token deleted", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
+{"alias": "legacy-token-invalid-since", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
+{"alias": "liveness probe failing restart", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
+{"alias": "loadbalancer options bare metal", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
+{"alias": "loadbalancer service pending", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
+{"alias": "loadbalancer_apiserver_cpu_requests", "ids": ["VARIABLE-LOADBALANCER_APISERVER_CPU_REQUESTS"]}
+{"alias": "loadbalancer_apiserver_keepalive_timeout", "ids": ["VARIABLE-LOADBALANCER_APISERVER_KEEPALIVE_TIMEOUT"]}
+{"alias": "loadbalancer_apiserver_localhost", "ids": ["TROUBLE-NODE_CANNOT_REACH_APISERVER", "VARIABLE-LOADBALANCER_APISERVER_LOCALHOST"]}
+{"alias": "loadbalancer_apiserver_memory_requests", "ids": ["VARIABLE-LOADBALANCER_APISERVER_MEMORY_REQUESTS"]}
+{"alias": "loadbalancer_apiserver_pod_name", "ids": ["VARIABLE-LOADBALANCER_APISERVER_POD_NAME"]}
+{"alias": "loadbalancer_apiserver_type", "ids": ["VARIABLE-LOADBALANCER_APISERVER_TYPE"]}
+{"alias": "local-path-provisioner", "ids": ["COMPONENT-LOCAL_PATH_PROVISIONER", "TAG-LOCAL_PATH_PROVISIONER"]}
+{"alias": "local-volume-provisioner", "ids": ["COMPONENT-LOCAL_VOLUME_PROVISIONER", "TAG-LOCAL_VOLUME_PROVISIONER"]}
+{"alias": "local_path_provisioner_enabled", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_ENABLED"]}
+{"alias": "local_path_provisioner_image_repo", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_IMAGE_REPO"]}
+{"alias": "local_path_provisioner_image_tag", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_IMAGE_TAG"]}
+{"alias": "local_path_provisioner_version", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_VERSION"]}
+{"alias": "local_release_dir", "ids": ["VARIABLE-LOCAL_RELEASE_DIR"]}
+{"alias": "local_volume_provisioner_directory_mode", "ids": ["VARIABLE-LOCAL_VOLUME_PROVISIONER_DIRECTORY_MODE"]}
+{"alias": "local_volume_provisioner_enabled", "ids": ["VARIABLE-LOCAL_VOLUME_PROVISIONER_ENABLED"]}
+{"alias": "local_volume_provisioner_image_repo", "ids": ["VARIABLE-LOCAL_VOLUME_PROVISIONER_IMAGE_REPO"]}
+{"alias": "local_volume_provisioner_image_tag", "ids": ["VARIABLE-LOCAL_VOLUME_PROVISIONER_IMAGE_TAG"]}
+{"alias": "local_volume_provisioner_storage_classes", "ids": ["VARIABLE-LOCAL_VOLUME_PROVISIONER_STORAGE_CLASSES"]}
+{"alias": "local_volume_provisioner_version", "ids": ["VARIABLE-LOCAL_VOLUME_PROVISIONER_VERSION"]}
+{"alias": "localhost", "ids": ["TAG-LOCALHOST"]}
+{"alias": "localhost loadbalancer 6443", "ids": ["TROUBLE-NODE_CANNOT_REACH_APISERVER"]}
+{"alias": "lost quorum", "ids": ["TROUBLE-ETCD_QUORUM_LOSS"]}
+{"alias": "low-level runtime", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
+{"alias": "lstat /proc/0/ns/ipc no such file", "ids": ["TROUBLE-CONTAINERD_SHIM_TASK_CREATE"]}
+{"alias": "luks2 encryption kubernetes nodes", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
+{"alias": "lvm local pv", "ids": ["CONCEPT-ADDON_LVM_LOCALPV"]}
+{"alias": "lvm-localpv", "ids": ["CONCEPT-ADDON_LVM_LOCALPV"]}
+{"alias": "macvlan", "ids": ["COMPONENT-MACVLAN"]}
+{"alias": "macvlan cni", "ids": ["COMPONENT-MACVLAN"]}
+{"alias": "macvlan_interface", "ids": ["COMPONENT-MACVLAN"]}
+{"alias": "manage kubernetes secrets safely", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
+{"alias": "manifest unknown", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "manual_dns_server", "ids": ["VARIABLE-MANUAL_DNS_SERVER"]}
+{"alias": "master", "ids": ["TAG-CONTROL_PLANE"]}
+{"alias": "matchLabelKeys spread regression 1.34", "ids": ["TROUBLE-SCHEDULER_TOPOLOGY_SPREAD"]}
+{"alias": "maxskew donotschedule pending", "ids": ["TROUBLE-SCHEDULER_TOPOLOGY_SPREAD"]}
+{"alias": "memory too small", "ids": ["TROUBLE-NODE_MEMORY_TOO_SMALL"]}
+{"alias": "meta.helm.sh/release-name", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "metallb", "ids": ["COMPONENT-METALLB", "TAG-METALLB"]}
+{"alias": "metallb address pool", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
+{"alias": "metallb bgp session down", "ids": ["TROUBLE-METALLB_BGP_SESSION_DOWN"]}
+{"alias": "metallb configmap ignored", "ids": ["TROUBLE-METALLB_CONFIG_CRD_FRR"]}
+{"alias": "metallb frr mode", "ids": ["TROUBLE-METALLB_CONFIG_CRD_FRR"]}
+{"alias": "metallb frr session idle", "ids": ["TROUBLE-METALLB_BGP_SESSION_DOWN"]}
+{"alias": "metallb ipaddresspool crd", "ids": ["TROUBLE-METALLB_CONFIG_CRD_FRR"]}
+{"alias": "metallb layer2 not working", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
+{"alias": "metallb no ip assigned", "ids": ["TROUBLE-METALLB_CONFIG_CRD_FRR", "TROUBLE-METALLB_SERVICE_PENDING"]}
+{"alias": "metallb pending external-ip", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
+{"alias": "metallb routes not advertised", "ids": ["TROUBLE-METALLB_BGP_SESSION_DOWN"]}
+{"alias": "metallb_controller_image_repo", "ids": ["VARIABLE-METALLB_CONTROLLER_IMAGE_REPO"]}
+{"alias": "metallb_enabled", "ids": ["VARIABLE-METALLB_ENABLED"]}
+{"alias": "metallb_image_tag", "ids": ["VARIABLE-METALLB_IMAGE_TAG"]}
+{"alias": "metallb_speaker_enabled", "ids": ["VARIABLE-METALLB_SPEAKER_ENABLED"]}
+{"alias": "metallb_speaker_image_repo", "ids": ["VARIABLE-METALLB_SPEAKER_IMAGE_REPO"]}
+{"alias": "metallb_version", "ids": ["VARIABLE-METALLB_VERSION"]}
+{"alias": "metrics api not available", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
+{"alias": "metrics not available yet", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
+{"alias": "metrics-server", "ids": ["COMPONENT-METRICS_SERVER"]}
+{"alias": "metrics-server x509 kubelet", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
+{"alias": "metrics_server", "ids": ["TAG-METRICS_SERVER"]}
+{"alias": "metrics_server_enabled", "ids": ["VARIABLE-METRICS_SERVER_ENABLED"]}
+{"alias": "metrics_server_image_repo", "ids": ["VARIABLE-METRICS_SERVER_IMAGE_REPO"]}
+{"alias": "metrics_server_image_tag", "ids": ["VARIABLE-METRICS_SERVER_IMAGE_TAG"]}
+{"alias": "metrics_server_version", "ids": ["VARIABLE-METRICS_SERVER_VERSION"]}
+{"alias": "migrate-docker-to-containerd", "ids": ["PRACTICE-MIGRATE_DOCKER_TO_CONTAINERD"]}
+{"alias": "minDomains ignored", "ids": ["TROUBLE-SCHEDULER_TOPOLOGY_SPREAD"]}
+{"alias": "minimal_master_memory_mb", "ids": ["TROUBLE-NODE_MEMORY_TOO_SMALL", "VARIABLE-MINIMAL_MASTER_MEMORY_MB"]}
+{"alias": "minimal_node_memory_mb", "ids": ["TROUBLE-NODE_MEMORY_TOO_SMALL", "VARIABLE-MINIMAL_NODE_MEMORY_MB"]}
+{"alias": "mirror pod stuck", "ids": ["TROUBLE-KUBELET_STATIC_POD_STUCK"]}
+{"alias": "missing key app.kubernetes.io/managed-by must be set to Helm", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "missing request for cpu hpa", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
+{"alias": "monitoring stack kubernetes", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
+{"alias": "mounts", "ids": ["TAG-MOUNTS"]}
+{"alias": "multi-attach error for volume", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
+{"alias": "multi-tenancy operator", "ids": ["CONCEPT-ADDON_CAPSULE"]}
+{"alias": "multiple pod interfaces", "ids": ["COMPONENT-MULTUS"]}
+{"alias": "multiple upgrades", "ids": ["UPGRADE-KUBESPRAY_SEQUENTIAL"]}
+{"alias": "multus", "ids": ["COMPONENT-MULTUS"]}
+{"alias": "multus cni", "ids": ["COMPONENT-MULTUS"]}
+{"alias": "multus_version", "ids": ["COMPONENT-MULTUS"]}
+{"alias": "mutatingwebhookconfiguration blocking", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
+{"alias": "nameservers", "ids": ["VARIABLE-NAMESERVERS"]}
+{"alias": "namespace backup restore", "ids": ["CONCEPT-VELERO"]}
+{"alias": "namespace stuck terminating", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
+{"alias": "namespace terminating forever", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
+{"alias": "namespace won't delete", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
+{"alias": "nbde tang", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
+{"alias": "ndots", "ids": ["VARIABLE-NDOTS"]}
+{"alias": "nerdctl", "ids": ["COMPONENT-NERDCTL"]}
+{"alias": "nerdctl_archive_checksum", "ids": ["VARIABLE-NERDCTL_ARCHIVE_CHECKSUM"]}
+{"alias": "nerdctl_archive_checksums", "ids": ["VARIABLE-NERDCTL_ARCHIVE_CHECKSUMS"]}
+{"alias": "nerdctl_download_url", "ids": ["VARIABLE-NERDCTL_DOWNLOAD_URL"]}
+{"alias": "nerdctl_image_info_command", "ids": ["VARIABLE-NERDCTL_IMAGE_INFO_COMMAND"]}
+{"alias": "nerdctl_image_pull_command", "ids": ["VARIABLE-NERDCTL_IMAGE_PULL_COMMAND"]}
+{"alias": "nerdctl_version", "ids": ["VARIABLE-NERDCTL_VERSION"]}
+{"alias": "netchecker", "ids": ["PRACTICE-NETCHECK"]}
+{"alias": "network", "ids": ["TAG-NETWORK"]}
+{"alias": "network bound disk encryption", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
+{"alias": "network not ready", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
+{"alias": "network_plugin", "ids": ["ROLE-NETWORK_PLUGIN"]}
+{"alias": "never", "ids": ["TAG-NEVER"]}
+{"alias": "nfd labels missing", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
+{"alias": "nfd worker not labeling", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
+{"alias": "nftables kernel too low", "ids": ["TROUBLE-NFTABLES_KERNEL_TOO_LOW"]}
+{"alias": "nftables kube-proxy 1.31", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}
+{"alias": "nftables preflight fail", "ids": ["TROUBLE-NFTABLES_KERNEL_TOO_LOW"]}
+{"alias": "nftables proxy KEP", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "nginx", "ids": ["TAG-NGINX"]}
+{"alias": "nginx ingress controller", "ids": ["COMPONENT-INGRESS_NGINX"]}
+{"alias": "nginx no endpoints", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
+{"alias": "nginx-proxy not up", "ids": ["TROUBLE-NODE_CANNOT_REACH_APISERVER"]}
+{"alias": "nginx_config_dir", "ids": ["VARIABLE-NGINX_CONFIG_DIR"]}
+{"alias": "nginx_image_repo", "ids": ["VARIABLE-NGINX_IMAGE_REPO"]}
+{"alias": "nginx_image_tag", "ids": ["VARIABLE-NGINX_IMAGE_TAG"]}
+{"alias": "no blanket cluster-admin", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
+{"alias": "no default storageclass", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
+{"alias": "no nodes available", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "no persistent volumes available", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER", "TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
+{"alias": "no preemption victims found", "ids": ["TROUBLE-SCHEDULER_PREEMPTION_GATES"]}
+{"alias": "no runtime for kata-qemu is configured", "ids": ["TROUBLE-CONTAINERD_RUNTIME_HANDLER"]}
+{"alias": "no runtime for runsc is configured", "ids": ["TROUBLE-CONTAINERD_RUNTIME_HANDLER"]}
+{"alias": "no space left on device inotify", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
+{"alias": "no-proxy-char-array", "ids": ["TROUBLE-CONTAINERD_NO_PROXY_CHAR_ARRAY"]}
+{"alias": "no_proxy", "ids": ["CONFIG-PROXY"]}
+{"alias": "node", "ids": ["TAG-NODE"]}
+{"alias": "node NotReady", "ids": ["PRACTICE-NODE_NOT_READY"]}
+{"alias": "node NotReady cgroup", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
+{"alias": "node NotReady firewall", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
+{"alias": "node allocatable", "ids": ["PRACTICE-CGROUPS"]}
+{"alias": "node connection refused 127.0.0.1:6443", "ids": ["TROUBLE-NODE_CANNOT_REACH_APISERVER"]}
+{"alias": "node disk pressure images in use", "ids": ["TROUBLE-KUBELET_IMAGE_GC"]}
+{"alias": "node down", "ids": ["PRACTICE-NODE_NOT_READY"]}
+{"alias": "node encryption", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
+{"alias": "node flaps notready pleg", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
+{"alias": "node had taints that the pod did not tolerate", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "node kubeletnotready after kubeadm init", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
+{"alias": "node maintenance runbook", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "node memory pressure eviction", "ids": ["TROUBLE-OOMKILLED"]}
+{"alias": "node not deleted after vm gone", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "node not joining", "ids": ["PRACTICE-KUBEADM_JOIN_FAILURES"]}
+{"alias": "node not joining cluster", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
+{"alias": "node notready pods not rescheduled", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "node ready false still in endpoints", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "node swap KEP", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "node swap beta", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
+{"alias": "node-exporter kube-state-metrics", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
+{"alias": "node-feature-discovery", "ids": ["COMPONENT-NODE_FEATURE_DISCOVERY"]}
+{"alias": "node-label", "ids": ["TAG-NODE_LABEL"]}
+{"alias": "node-local dns", "ids": ["COMPONENT-NODELOCALDNS"]}
+{"alias": "node-taint", "ids": ["TAG-NODE_TAINT"]}
+{"alias": "node-webhook", "ids": ["TAG-NODE_WEBHOOK"]}
+{"alias": "node_feature_discovery", "ids": ["TAG-NODE_FEATURE_DISCOVERY"]}
+{"alias": "node_feature_discovery_image_repo", "ids": ["VARIABLE-NODE_FEATURE_DISCOVERY_IMAGE_REPO"]}
+{"alias": "node_feature_discovery_image_tag", "ids": ["VARIABLE-NODE_FEATURE_DISCOVERY_IMAGE_TAG"]}
+{"alias": "node_feature_discovery_version", "ids": ["VARIABLE-NODE_FEATURE_DISCOVERY_VERSION"]}
+{"alias": "node_labels", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "node_taints", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "nodelocaldns", "ids": ["COMPONENT-NODELOCALDNS", "TAG-NODELOCALDNS"]}
+{"alias": "nodelocaldns debug", "ids": ["PRACTICE-DNS_DEBUG"]}
+{"alias": "nodelocaldns forwarding", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
+{"alias": "nodelocaldns-ipv6-ip-render", "ids": ["TROUBLE-NODELOCALDNS_IPV6_IP"]}
+{"alias": "nodelocaldns_bind_metrics_host_ip", "ids": ["VARIABLE-NODELOCALDNS_BIND_METRICS_HOST_IP"]}
+{"alias": "nodelocaldns_health_port", "ids": ["VARIABLE-NODELOCALDNS_HEALTH_PORT"]}
+{"alias": "nodelocaldns_image_repo", "ids": ["VARIABLE-NODELOCALDNS_IMAGE_REPO"]}
+{"alias": "nodelocaldns_image_tag", "ids": ["VARIABLE-NODELOCALDNS_IMAGE_TAG"]}
+{"alias": "nodelocaldns_ip", "ids": ["VARIABLE-NODELOCALDNS_IP"]}
+{"alias": "nodelocaldns_second_health_port", "ids": ["VARIABLE-NODELOCALDNS_SECOND_HEALTH_PORT"]}
+{"alias": "nodelocaldns_secondary_skew_seconds", "ids": ["VARIABLE-NODELOCALDNS_SECONDARY_SKEW_SECONDS"]}
+{"alias": "nodelocaldns_version", "ids": ["VARIABLE-NODELOCALDNS_VERSION"]}
+{"alias": "nodeport not reachable firewall", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
+{"alias": "not enough RAM kubespray", "ids": ["TROUBLE-NODE_MEMORY_TOO_SMALL"]}
+{"alias": "nri_enabled", "ids": ["VARIABLE-NRI_ENABLED"]}
+{"alias": "ntp", "ids": ["CONFIG-NTP"]}
+{"alias": "ntp_driftfile", "ids": ["VARIABLE-NTP_DRIFTFILE"]}
+{"alias": "ntp_enabled", "ids": ["CONFIG-NTP", "VARIABLE-NTP_ENABLED"]}
+{"alias": "ntp_filter_interface", "ids": ["VARIABLE-NTP_FILTER_INTERFACE"]}
+{"alias": "ntp_force_sync_immediately", "ids": ["VARIABLE-NTP_FORCE_SYNC_IMMEDIATELY"]}
+{"alias": "ntp_manage_config", "ids": ["VARIABLE-NTP_MANAGE_CONFIG"]}
+{"alias": "ntp_package", "ids": ["VARIABLE-NTP_PACKAGE"]}
+{"alias": "ntp_restrict", "ids": ["VARIABLE-NTP_RESTRICT"]}
+{"alias": "ntp_servers", "ids": ["CONFIG-NTP", "VARIABLE-NTP_SERVERS"]}
+{"alias": "ntp_timezone", "ids": ["VARIABLE-NTP_TIMEZONE"]}
+{"alias": "ntp_tinker_panic", "ids": ["VARIABLE-NTP_TINKER_PANIC"]}
+{"alias": "nvidia gpu operator", "ids": ["CONCEPT-ADDON_GPU_OPERATOR"]}
+{"alias": "nvidia_gpu", "ids": ["TAG-NVIDIA_GPU"]}
+{"alias": "oauth2-proxy", "ids": ["CONCEPT-ADDON_KUBERNETES_DASHBOARD"]}
+{"alias": "oci runtime create failed", "ids": ["TROUBLE-CONTAINERD_SHIM_TASK_CREATE"]}
+{"alias": "oci-ccm-template-filename", "ids": ["TROUBLE-OCI_CCM_TEMPLATE_FILENAME"]}
+{"alias": "offline control plane node removal", "ids": ["TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE"]}
+{"alias": "offline environment", "ids": ["PRACTICE-OFFLINE_ENVIRONMENT"]}
+{"alias": "oidc provider", "ids": ["CONCEPT-ADDON_DEX"]}
+{"alias": "oidc redirect_uri mismatch", "ids": ["TROUBLE-DEX_OIDC_LOGIN_FAILS"]}
+{"alias": "olm", "ids": ["CONCEPT-ADDON_OLM"]}
+{"alias": "olm 0.32.0", "ids": ["CONCEPT-ADDON_OLM"]}
+{"alias": "one minor at a time upgrade", "ids": ["TROUBLE-KUBEADM_VERSION_SKEW"]}
+{"alias": "one minor upgrade procedure", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
+{"alias": "open-webui", "ids": ["CONCEPT-ADDON_KUBERNETES_MCP"]}
+{"alias": "openebs lvm", "ids": ["CONCEPT-ADDON_LVM_LOCALPV"]}
+{"alias": "openeuler-metalink-url", "ids": ["TROUBLE-OPENEULER_METALINK_URL"]}
+{"alias": "openstack_blockstorage_ignore_volume_az", "ids": ["VARIABLE-OPENSTACK_BLOCKSTORAGE_IGNORE_VOLUME_AZ"]}
+{"alias": "openstack_cacert", "ids": ["VARIABLE-OPENSTACK_CACERT"]}
+{"alias": "openstack_lbaas_create_monitor", "ids": ["VARIABLE-OPENSTACK_LBAAS_CREATE_MONITOR"]}
+{"alias": "openstack_lbaas_enabled", "ids": ["VARIABLE-OPENSTACK_LBAAS_ENABLED"]}
+{"alias": "openstack_lbaas_monitor_delay", "ids": ["VARIABLE-OPENSTACK_LBAAS_MONITOR_DELAY"]}
+{"alias": "openstack_lbaas_monitor_max_retries", "ids": ["VARIABLE-OPENSTACK_LBAAS_MONITOR_MAX_RETRIES"]}
+{"alias": "openstack_lbaas_monitor_timeout", "ids": ["VARIABLE-OPENSTACK_LBAAS_MONITOR_TIMEOUT"]}
+{"alias": "opentelemetry", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
+{"alias": "opentelemetry-operator", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
+{"alias": "operational runbook", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
+{"alias": "operator webhook no certs", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
+{"alias": "operator-lifecycle-manager", "ids": ["CONCEPT-ADDON_OLM"]}
+{"alias": "os patching kubernetes node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "otel operator", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
+{"alias": "out of memory pod", "ids": ["TROUBLE-OOMKILLED"]}
+{"alias": "out-of-service taint force detach", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
+{"alias": "overlayfs snapshotter cannot be enabled", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
+{"alias": "override component version", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
+{"alias": "ovn cni", "ids": ["COMPONENT-KUBE_OVN"]}
+{"alias": "p2p image mirror", "ids": ["CONCEPT-ADDON_SPEGEL"]}
+{"alias": "passthrough config", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "patroni no leader", "ids": ["TROUBLE-POSTGRES_OPERATOR_CLUSTER_NOT_READY"]}
+{"alias": "pdb blocks rollout", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
+{"alias": "peer_with_calico_rr", "ids": ["VARIABLE-PEER_WITH_CALICO_RR"]}
+{"alias": "percentageOfNodesToScore", "ids": ["TROUBLE-SCHEDULER_PERF"]}
+{"alias": "persistent volume backup", "ids": ["CONCEPT-VELERO"]}
+{"alias": "persistent_volumes", "ids": ["TAG-PERSISTENT_VOLUMES"]}
+{"alias": "persistent_volumes_aws_ebs_csi", "ids": ["TAG-PERSISTENT_VOLUMES_AWS_EBS_CSI"]}
+{"alias": "persistent_volumes_azure_csi", "ids": ["TAG-PERSISTENT_VOLUMES_AZURE_CSI"]}
+{"alias": "persistent_volumes_cinder_csi", "ids": ["TAG-PERSISTENT_VOLUMES_CINDER_CSI"]}
+{"alias": "persistent_volumes_enabled", "ids": ["VARIABLE-PERSISTENT_VOLUMES_ENABLED"]}
+{"alias": "persistent_volumes_gcp_pd_csi", "ids": ["TAG-PERSISTENT_VOLUMES_GCP_PD_CSI"]}
+{"alias": "persistent_volumes_upcloud_csi", "ids": ["TAG-PERSISTENT_VOLUMES_UPCLOUD_CSI"]}
+{"alias": "persistentvolumeclaim pending", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
+{"alias": "pin component version kubespray", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
+{"alias": "ping_access_ip", "ids": ["VARIABLE-PING_ACCESS_IP"]}
+{"alias": "platform addons", "ids": ["CONCEPT-ADDON_CATALOG"]}
+{"alias": "pleg was last seen active", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
+{"alias": "pod cannot reach internet", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
+{"alias": "pod cidr service cidr", "ids": ["CONCEPT-CLUSTER_NETWORKING"]}
+{"alias": "pod containercreating rwo node down", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
+{"alias": "pod egress fails", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
+{"alias": "pod mtu vxlan overhead", "ids": ["CONFIG-CNI_MTU"]}
+{"alias": "pod networking broken", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
+{"alias": "pod not starting", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
+{"alias": "pod pending", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "pod pending failedscheduling", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
+{"alias": "pod restarting loop", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
+{"alias": "pod scheduling readiness gate", "ids": ["TROUBLE-SCHEDULER_PREEMPTION_GATES"]}
+{"alias": "pod security admission", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
+{"alias": "pod stuck schedulinggated", "ids": ["TROUBLE-SCHEDULER_PREEMPTION_GATES"]}
+{"alias": "pod traffic not natted", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
+{"alias": "pod worker requested for removal still not fully terminated", "ids": ["TROUBLE-KUBELET_STATIC_POD_STUCK"]}
+{"alias": "pod-stuck-terminating", "ids": ["TROUBLE-POD_STUCK_TERMINATING"]}
+{"alias": "pod_infra_image_repo", "ids": ["VARIABLE-POD_INFRA_IMAGE_REPO"]}
+{"alias": "pod_infra_image_tag", "ids": ["VARIABLE-POD_INFRA_IMAGE_TAG"]}
+{"alias": "pod_infra_supported_versions", "ids": ["VARIABLE-POD_INFRA_SUPPORTED_VERSIONS"]}
+{"alias": "pod_infra_version", "ids": ["VARIABLE-POD_INFRA_VERSION"]}
+{"alias": "podman_remove_packages_yum", "ids": ["VARIABLE-PODMAN_REMOVE_PACKAGES_YUM"]}
+{"alias": "pods cannot resolve external names", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
+{"alias": "pods stuck terminating containerd", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
+{"alias": "pods stuck terminating node gone", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "policy-controller", "ids": ["TAG-POLICY_CONTROLLER"]}
+{"alias": "port 6443 in use kubeadm", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
+{"alias": "port requirements", "ids": ["PRACTICE-PORT_REQUIREMENTS"]}
+{"alias": "port-forward failed", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "post-remove", "ids": ["TAG-POST_REMOVE"]}
+{"alias": "post-upgrade", "ids": ["TAG-POST_UPGRADE"]}
+{"alias": "postgres-operator", "ids": ["CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR"]}
+{"alias": "postgres-operator failover stuck", "ids": ["TROUBLE-POSTGRES_OPERATOR_CLUSTER_NOT_READY"]}
+{"alias": "postgresql cluster not coming up", "ids": ["TROUBLE-POSTGRES_OPERATOR_CLUSTER_NOT_READY"]}
+{"alias": "pre-remove", "ids": ["TAG-PRE_REMOVE"]}
+{"alias": "pre-upgrade", "ids": ["TAG-PRE_UPGRADE"]}
+{"alias": "pre-upgrade checklist", "ids": ["PRACTICE-UPGRADE_PREFLIGHT"]}
+{"alias": "preemption is not helpful for scheduling", "ids": ["TROUBLE-SCHEDULER_PREEMPTION_GATES"]}
+{"alias": "preemptionPolicy Never", "ids": ["TROUBLE-SCHEDULER_PREEMPTION_GATES"]}
+{"alias": "preflight cri socket", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
+{"alias": "preflight failed", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
+{"alias": "preinstall", "ids": ["TAG-PREINSTALL"]}
+{"alias": "preinstall_selinux_state", "ids": ["VARIABLE-PREINSTALL_SELINUX_STATE"]}
+{"alias": "progressive delivery", "ids": ["CONCEPT-ADDON_FLAGGER"]}
+{"alias": "prometheus alertmanager", "ids": ["CONCEPT-ADDON_ALERTMANAGER"]}
+{"alias": "prometheus grafana alertmanager", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
+{"alias": "prometheus target down", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
+{"alias": "prometheus_operator_crds", "ids": ["TAG-PROMETHEUS_OPERATOR_CRDS"]}
+{"alias": "prometheus_operator_crds_checksums", "ids": ["VARIABLE-PROMETHEUS_OPERATOR_CRDS_CHECKSUMS"]}
+{"alias": "prometheus_operator_crds_download_url", "ids": ["VARIABLE-PROMETHEUS_OPERATOR_CRDS_DOWNLOAD_URL"]}
+{"alias": "prometheus_operator_crds_enabled", "ids": ["VARIABLE-PROMETHEUS_OPERATOR_CRDS_ENABLED"]}
+{"alias": "prometheus_operator_crds_version", "ids": ["VARIABLE-PROMETHEUS_OPERATOR_CRDS_VERSION"]}
+{"alias": "proxy behind firewall", "ids": ["CONFIG-PROXY"]}
+{"alias": "proxy mode ipvs iptables nftables", "ids": ["CONCEPT-KUBE_PROXY"]}
+{"alias": "proxy_disable_env", "ids": ["VARIABLE-PROXY_DISABLE_ENV"]}
+{"alias": "proxy_env", "ids": ["VARIABLE-PROXY_ENV"]}
+{"alias": "proxy_env_defaults", "ids": ["VARIABLE-PROXY_ENV_DEFAULTS"]}
+{"alias": "publish service dns", "ids": ["CONCEPT-EXTERNAL_DNS"]}
+{"alias": "pull access denied", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "pv replication", "ids": ["CONCEPT-ADDON_VOLSYNC"]}
+{"alias": "pvc pending", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER", "TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
+{"alias": "pyrra", "ids": ["CONCEPT-ADDON_PYRRA"]}
+{"alias": "pyrra 1.1.0", "ids": ["CONCEPT-ADDON_PYRRA"]}
+{"alias": "qryn", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "quay_image_repo", "ids": ["VARIABLE-QUAY_IMAGE_REPO"]}
+{"alias": "queueinghint scheduler oom", "ids": ["TROUBLE-SCHEDULER_PERF"]}
+{"alias": "quota monitor not synced", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
+{"alias": "rabbitmq bitnami", "ids": ["CONCEPT-ADDON_RABBITMQ_BITNAMI"]}
+{"alias": "rabbitmq chart 3.7.0", "ids": ["CONCEPT-ADDON_RABBITMQ_BITNAMI"]}
+{"alias": "rabbitmq erlang cookie mismatch", "ids": ["TROUBLE-RABBITMQ_CLUSTER_NOT_FORMING"]}
+{"alias": "rabbitmq official operator", "ids": ["CONCEPT-ADDON_RABBITMQ_CLUSTER_OPERATOR"]}
+{"alias": "rabbitmq operator v2.19.2", "ids": ["CONCEPT-ADDON_RABBITMQ_CLUSTER_OPERATOR"]}
+{"alias": "rabbitmq pods not clustering", "ids": ["TROUBLE-RABBITMQ_CLUSTER_NOT_FORMING"]}
+{"alias": "rabbitmq quorum queue", "ids": ["TROUBLE-RABBITMQ_CLUSTER_NOT_FORMING"]}
+{"alias": "rabbitmq-cluster-operator", "ids": ["CONCEPT-ADDON_RABBITMQ_CLUSTER_OPERATOR"]}
+{"alias": "rabbitmq-cluster-operator bitnami", "ids": ["CONCEPT-ADDON_RABBITMQ_BITNAMI"]}
+{"alias": "rabbitmqcluster not ready", "ids": ["TROUBLE-RABBITMQ_CLUSTER_NOT_FORMING"]}
+{"alias": "rbac least privilege", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
+{"alias": "rbac_enabled", "ids": ["VARIABLE-RBAC_ENABLED"]}
+{"alias": "reconfigure running cluster", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
+{"alias": "recover control plane", "ids": ["PRACTICE-RECOVER_CONTROL_PLANE"]}
+{"alias": "recover control plane etcd", "ids": ["TROUBLE-ETCD_QUORUM_LOSS"]}
+{"alias": "recover-control-plane", "ids": ["PRACTICE-RECOVER_CONTROL_PLANE"]}
+{"alias": "recover-control-plane.yml", "ids": ["PLAYBOOK-RECOVER_CONTROL_PLANE", "PRACTICE-RUNBOOK_ETCD_RESTORE"]}
+{"alias": "redhat_os_family_extensions", "ids": ["VARIABLE-REDHAT_OS_FAMILY_EXTENSIONS"]}
+{"alias": "registry", "ids": ["COMPONENT-REGISTRY", "TAG-REGISTRY"]}
+{"alias": "registry config /etc/distribution", "ids": ["TROUBLE-REGISTRY_2_TO_3_MIGRATION"]}
+{"alias": "registry emptyDir data loss", "ids": ["TROUBLE-REGISTRY_ADDON"]}
+{"alias": "registry mirror", "ids": ["CONCEPT-ADDON_SPEGEL"]}
+{"alias": "registry mirror not working", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
+{"alias": "registry no tls http insecure", "ids": ["TROUBLE-REGISTRY_ADDON"]}
+{"alias": "registry oss swift driver removed", "ids": ["TROUBLE-REGISTRY_2_TO_3_MIGRATION"]}
+{"alias": "registry_enabled", "ids": ["VARIABLE-REGISTRY_ENABLED"]}
+{"alias": "registry_enabled images disappear", "ids": ["TROUBLE-REGISTRY_ADDON"]}
+{"alias": "registry_htpasswd", "ids": ["TROUBLE-REGISTRY_ADDON"]}
+{"alias": "registry_image_repo", "ids": ["VARIABLE-REGISTRY_IMAGE_REPO"]}
+{"alias": "registry_image_tag", "ids": ["VARIABLE-REGISTRY_IMAGE_TAG"]}
+{"alias": "registry_storage_class pvc", "ids": ["TROUBLE-REGISTRY_ADDON"]}
+{"alias": "registry_version", "ids": ["VARIABLE-REGISTRY_VERSION"]}
+{"alias": "release-watcher", "ids": ["CONCEPT-ADDON_RELEASE_WATCHER"]}
+{"alias": "remove control plane node", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
+{"alias": "remove dead master node", "ids": ["TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE"]}
+{"alias": "remove docker runtime", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
+{"alias": "remove node", "ids": ["PRACTICE-NODES_ADD_REPLACE"]}
+{"alias": "remove node runbook", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
+{"alias": "remove-node.yml", "ids": ["PLAYBOOK-REMOVE_NODE", "PRACTICE-RUNBOOK_REMOVE_NODE"]}
+{"alias": "remove_anonymous_access", "ids": ["VARIABLE-REMOVE_ANONYMOUS_ACCESS"]}
+{"alias": "remove_default_searchdomains", "ids": ["VARIABLE-REMOVE_DEFAULT_SEARCHDOMAINS"]}
+{"alias": "remove_node.yml control plane", "ids": ["TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE"]}
+{"alias": "removed feature gates", "ids": ["CONCEPT-K8S_FEATURE_GATES"]}
+{"alias": "renew certificates kubernetes", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
+{"alias": "renew certs kubespray", "ids": ["TROUBLE-KUBEADM_CERT_RENEWAL"]}
+{"alias": "replace cni on running cluster", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
+{"alias": "required ports kubespray", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
+{"alias": "reservedSystemCPUs", "ids": ["CONFIG-CPU_ISOLATION"]}
+{"alias": "reset", "ids": ["ROLE-RESET", "TAG-RESET"]}
+{"alias": "reset runbook", "ids": ["PRACTICE-RUNBOOK_RESET"]}
+{"alias": "reset.yml", "ids": ["PLAYBOOK-RESET", "PRACTICE-RUNBOOK_RESET"]}
+{"alias": "reset_containerd", "ids": ["TAG-RESET_CONTAINERD"]}
+{"alias": "reset_crio", "ids": ["TAG-RESET_CRIO"]}
+{"alias": "resolvconf", "ids": ["TAG-RESOLVCONF"]}
+{"alias": "resolvconf_mode", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION", "VARIABLE-RESOLVCONF_MODE"]}
+{"alias": "resolveconf_cloud_init_conf", "ids": ["VARIABLE-RESOLVECONF_CLOUD_INIT_CONF"]}
+{"alias": "restic kopia backup failed", "ids": ["TROUBLE-VELERO_BACKUP_RESTORE_FAILS"]}
+{"alias": "restic operator", "ids": ["CONCEPT-ADDON_K8UP"]}
+{"alias": "restic unlock k8up", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
+{"alias": "restore cluster", "ids": ["PRACTICE-BACKUP_DR"]}
+{"alias": "restore from etcd snapshot", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
+{"alias": "retrieval guide", "ids": ["CONCEPT-KB_NAVIGATION"]}
+{"alias": "retry_stagger", "ids": ["VARIABLE-RETRY_STAGGER"]}
+{"alias": "rewrite existing secrets", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION"]}
+{"alias": "rolling node upgrade", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
+{"alias": "rollout config change kubespray", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
+{"alias": "rollout stuck", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
+{"alias": "rook csi operator conversion", "ids": ["TROUBLE-ROOK_CEPH_UPGRADE_SC_IMMUTABLE"]}
+{"alias": "rook helm upgrade storageclass immutable", "ids": ["TROUBLE-ROOK_CEPH_UPGRADE_SC_IMMUTABLE"]}
+{"alias": "rook osd down", "ids": ["TROUBLE-ROOK_CEPH_HEALTH_WARN_OSD"]}
+{"alias": "rook-ceph", "ids": ["CONCEPT-ADDON_ROOK_CEPH"]}
+{"alias": "rook-ceph-cluster", "ids": ["CONCEPT-ADDON_ROOK_CEPH"]}
+{"alias": "rook-ceph-cluster upgrade fails", "ids": ["TROUBLE-ROOK_CEPH_UPGRADE_SC_IMMUTABLE"]}
+{"alias": "rook-operator", "ids": ["CONCEPT-ADDON_ROOK_CEPH"]}
+{"alias": "rotate etcd certs", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
+{"alias": "rotate-server-certificates", "ids": ["TROUBLE-KUBELET_SERVING_CERT_ROTATION"]}
+{"alias": "route53 cloudflare kubernetes", "ids": ["CONCEPT-EXTERNAL_DNS"]}
+{"alias": "run os and kubelet on separate cores", "ids": ["CONFIG-CPU_ISOLATION"]}
+{"alias": "runbook", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
+{"alias": "runbook index", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
+{"alias": "runbooks", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
+{"alias": "runc", "ids": ["COMPONENT-RUNC"]}
+{"alias": "runc container escape", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
+{"alias": "runc crun youki", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
+{"alias": "runc cve", "ids": ["TROUBLE-RUNC_KNOWN_CVES"]}
+{"alias": "runc security", "ids": ["TROUBLE-RUNC_KNOWN_CVES"]}
+{"alias": "runc_bin_dir", "ids": ["VARIABLE-RUNC_BIN_DIR"]}
+{"alias": "runc_binary_checksum", "ids": ["VARIABLE-RUNC_BINARY_CHECKSUM"]}
+{"alias": "runc_checksums", "ids": ["VARIABLE-RUNC_CHECKSUMS"]}
+{"alias": "runc_download_url", "ids": ["VARIABLE-RUNC_DOWNLOAD_URL"]}
+{"alias": "runc_enabled", "ids": ["VARIABLE-RUNC_ENABLED"]}
+{"alias": "runc_package_name", "ids": ["VARIABLE-RUNC_PACKAGE_NAME"]}
+{"alias": "runc_version", "ids": ["VARIABLE-RUNC_VERSION"]}
+{"alias": "runner could not resolve host", "ids": ["TROUBLE-GITLAB_RUNNER_K8S_EXECUTOR"]}
+{"alias": "runner helper oomkilled cgroup v2", "ids": ["TROUBLE-GITLAB_RUNNER_K8S_EXECUTOR"]}
+{"alias": "runner imagepullsecrets ignored", "ids": ["TROUBLE-GITLAB_RUNNER_K8S_EXECUTOR"]}
+{"alias": "runner pods forbidden default serviceaccount", "ids": ["TROUBLE-GITLAB_RUNNER_K8S_EXECUTOR"]}
+{"alias": "runtime migration runbook", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
+{"alias": "runtime-request-timeout kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "runtimeclass handler not found containerd", "ids": ["TROUBLE-CONTAINERD_RUNTIME_HANDLER"]}
+{"alias": "sa token secret cleanup 1.29", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
+{"alias": "safe cluster upgrade", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
+{"alias": "safe node restart", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "safe operation checklist", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
+{"alias": "sample inventory", "ids": ["CONCEPT-SAMPLE_INVENTORY_LAYOUT"]}
+{"alias": "sandbox image pause", "ids": ["TROUBLE-CONTAINERD_IMAGE_PULL_CRI"]}
+{"alias": "sandboxed runtime RuntimeClass", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
+{"alias": "scale", "ids": ["PRACTICE-NODES_ADD_REPLACE"]}
+{"alias": "scale up cluster", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
+{"alias": "scale.yml", "ids": ["PLAYBOOK-SCALE"]}
+{"alias": "scale.yml add worker", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
+{"alias": "scaledobject no external metric", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
+{"alias": "scheduled etcd backup", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
+{"alias": "scheduler slow at scale", "ids": ["TROUBLE-SCHEDULER_PERF"]}
+{"alias": "scheduler-plugins", "ids": ["COMPONENT-SCHEDULER_PLUGINS"]}
+{"alias": "schedulerName pod never scheduled", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
+{"alias": "scheduler_e2e_scheduling_duration_seconds", "ids": ["TROUBLE-SCHEDULER_PERF"]}
+{"alias": "scheduler_extra_volumes", "ids": ["VARIABLE-SCHEDULER_EXTRA_VOLUMES"]}
+{"alias": "scheduler_plugins", "ids": ["TAG-SCHEDULER_PLUGINS"]}
+{"alias": "scheduler_plugins_controller_image_repo", "ids": ["VARIABLE-SCHEDULER_PLUGINS_CONTROLLER_IMAGE_REPO"]}
+{"alias": "scheduler_plugins_controller_image_tag", "ids": ["VARIABLE-SCHEDULER_PLUGINS_CONTROLLER_IMAGE_TAG"]}
+{"alias": "scheduler_plugins_enabled", "ids": ["VARIABLE-SCHEDULER_PLUGINS_ENABLED"]}
+{"alias": "scheduler_plugins_scheduler_image_repo", "ids": ["VARIABLE-SCHEDULER_PLUGINS_SCHEDULER_IMAGE_REPO"]}
+{"alias": "scheduler_plugins_scheduler_image_tag", "ids": ["VARIABLE-SCHEDULER_PLUGINS_SCHEDULER_IMAGE_TAG"]}
+{"alias": "scheduler_plugins_supported_versions", "ids": ["VARIABLE-SCHEDULER_PLUGINS_SUPPORTED_VERSIONS"]}
+{"alias": "scheduler_plugins_version", "ids": ["VARIABLE-SCHEDULER_PLUGINS_VERSION"]}
+{"alias": "sealed secrets", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
+{"alias": "searchdomains", "ids": ["VARIABLE-SEARCHDOMAINS"]}
+{"alias": "secret not found", "ids": ["TROUBLE-FAILEDMOUNT"]}
+{"alias": "secretbox encryption", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION"]}
+{"alias": "secrets in git", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
+{"alias": "secrets not encrypted by default", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
+{"alias": "secrets-encryption-at-rest", "ids": ["PRACTICE-SECRETS_ENCRYPTION_AT_REST"]}
+{"alias": "secrets_encryption_query", "ids": ["VARIABLE-SECRETS_ENCRYPTION_QUERY"]}
+{"alias": "secretstore not ready", "ids": ["TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING"]}
+{"alias": "security advisories", "ids": ["CONCEPT-SECURITY_ADVISORIES"]}
+{"alias": "security hub", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "security index", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "security posture", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "security upgrade runbook", "ids": ["CONCEPT-CVE_REMEDIATION"]}
+{"alias": "selector does not match pods", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
+{"alias": "serial upgrade", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
+{"alias": "server is currently unable to handle the request", "ids": ["TROUBLE-APISERVER_APF_429"]}
+{"alias": "serverTLSBootstrap", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
+{"alias": "service exposure", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
+{"alias": "service no endpoints", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
+{"alias": "service not reachable", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
+{"alias": "service not working", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
+{"alias": "serviceaccount forbidden", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "servicemonitor no metrics", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
+{"alias": "services", "ids": ["TAG-SERVICES"]}
+{"alias": "set apiserver flag", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
+{"alias": "set arbitrary kubeletconfiguration field", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "shim reaper mutex deadlock", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
+{"alias": "short-name did not resolve to an alias", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
+{"alias": "sidecar containers 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
+{"alias": "sidero metal omni", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
+{"alias": "single component upgrade runbook", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
+{"alias": "skip_downloads", "ids": ["VARIABLE-SKIP_DOWNLOADS"]}
+{"alias": "skip_kubeadm_images", "ids": ["VARIABLE-SKIP_KUBEADM_IMAGES"]}
+{"alias": "skopeo", "ids": ["COMPONENT-SKOPEO"]}
+{"alias": "skopeo_binary_checksum", "ids": ["VARIABLE-SKOPEO_BINARY_CHECKSUM"]}
+{"alias": "skopeo_binary_checksums", "ids": ["VARIABLE-SKOPEO_BINARY_CHECKSUMS"]}
+{"alias": "skopeo_download_url", "ids": ["VARIABLE-SKOPEO_DOWNLOAD_URL"]}
+{"alias": "skopeo_version", "ids": ["VARIABLE-SKOPEO_VERSION"]}
+{"alias": "skydns_server", "ids": ["VARIABLE-SKYDNS_SERVER"]}
+{"alias": "skydns_server_secondary", "ids": ["VARIABLE-SKYDNS_SERVER_SECONDARY"]}
+{"alias": "slo controller", "ids": ["CONCEPT-ADDON_PYRRA"]}
+{"alias": "snapshot", "ids": ["TAG-SNAPSHOT"]}
+{"alias": "snapshot controller", "ids": ["CONCEPT-CSI_LAYER"]}
+{"alias": "snapshot controller 8 breaking", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}
+{"alias": "snapshot validation webhook removed", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}
+{"alias": "snapshot-controller", "ids": ["COMPONENT-SNAPSHOT_CONTROLLER", "TAG-SNAPSHOT_CONTROLLER"]}
+{"alias": "snapshot-controller addon", "ids": ["CONCEPT-ADDON_SNAPSHOTTER"]}
+{"alias": "snapshot_controller_image_repo", "ids": ["VARIABLE-SNAPSHOT_CONTROLLER_IMAGE_REPO"]}
+{"alias": "snapshot_controller_image_tag", "ids": ["VARIABLE-SNAPSHOT_CONTROLLER_IMAGE_TAG"]}
+{"alias": "snapshot_controller_supported_versions", "ids": ["VARIABLE-SNAPSHOT_CONTROLLER_SUPPORTED_VERSIONS"]}
+{"alias": "snapshots", "ids": ["TAG-SNAPSHOTS"]}
+{"alias": "snapshotter", "ids": ["CONCEPT-ADDON_SNAPSHOTTER"]}
+{"alias": "specified version to upgrade to is too high", "ids": ["TROUBLE-KUBEADM_VERSION_SKEW"]}
+{"alias": "spegel", "ids": ["CONCEPT-ADDON_SPEGEL"]}
+{"alias": "spegel certs.d containerd", "ids": ["TROUBLE-SPEGEL_MIRROR_NOT_USED"]}
+{"alias": "spegel eks 1.34 transfer service", "ids": ["TROUBLE-SPEGEL_MIRROR_NOT_USED"]}
+{"alias": "spegel images still pulled from registry", "ids": ["TROUBLE-SPEGEL_MIRROR_NOT_USED"]}
+{"alias": "spegel mirror not used", "ids": ["TROUBLE-SPEGEL_MIRROR_NOT_USED"]}
+{"alias": "spilo", "ids": ["CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR"]}
+{"alias": "spilo pod crashloop", "ids": ["TROUBLE-POSTGRES_OPERATOR_CLUSTER_NOT_READY"]}
+{"alias": "ssh vs api trust boundary", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
+{"alias": "ssh-bastion-config-name-typo", "ids": ["TROUBLE-SSH_BASTION_CONFIG_NAME_TYPO"]}
+{"alias": "ssl_ca_dirs", "ids": ["VARIABLE-SSL_CA_DIRS"]}
+{"alias": "stacked vs external etcd kubespray", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
+{"alias": "stale endpoints nxdomain", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
+{"alias": "static pod not restarting", "ids": ["TROUBLE-KUBELET_STATIC_POD_STUCK"]}
+{"alias": "step by step procedure kubespray", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
+{"alias": "stoppodsandbox failed", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
+{"alias": "storage_googleapis_url", "ids": ["VARIABLE-STORAGE_GOOGLEAPIS_URL"]}
+{"alias": "storageclass not found", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER"]}
+{"alias": "structured authentication configuration", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
+{"alias": "supplementary_addresses_in_ssl_keys", "ids": ["TROUBLE-APISERVER_CERT_SAN", "VARIABLE-SUPPLEMENTARY_ADDRESSES_IN_SSL_KEYS"]}
+{"alias": "supported kubernetes versions", "ids": ["CONCEPT-KUBERNETES_VERSION_SUPPORT"]}
+{"alias": "supported ubuntu versions kubespray", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "supported_os_distributions", "ids": ["VARIABLE-SUPPORTED_OS_DISTRIBUTIONS"]}
+{"alias": "switch cni plugin", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
+{"alias": "switch container runtime", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
+{"alias": "symptom map", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
+{"alias": "sysctl_file_path", "ids": ["VARIABLE-SYSCTL_FILE_PATH"]}
+{"alias": "sysctl_ignore_unknown_keys", "ids": ["VARIABLE-SYSCTL_IGNORE_UNKNOWN_KEYS"]}
+{"alias": "system-packages", "ids": ["TAG-SYSTEM_PACKAGES"]}
+{"alias": "system-upgrade", "ids": ["TAG-SYSTEM_UPGRADE"]}
+{"alias": "system-upgrade-apt", "ids": ["TAG-SYSTEM_UPGRADE_APT"]}
+{"alias": "system-upgrade-yum", "ids": ["TAG-SYSTEM_UPGRADE_YUM"]}
+{"alias": "system_cpu_reserved", "ids": ["VARIABLE-SYSTEM_CPU_RESERVED"]}
+{"alias": "system_ephemeral_storage_reserved", "ids": ["VARIABLE-SYSTEM_EPHEMERAL_STORAGE_RESERVED"]}
+{"alias": "system_memory_reserved", "ids": ["VARIABLE-SYSTEM_MEMORY_RESERVED"]}
+{"alias": "system_pid_reserved", "ids": ["VARIABLE-SYSTEM_PID_RESERVED"]}
+{"alias": "system_reserved", "ids": ["VARIABLE-SYSTEM_RESERVED"]}
+{"alias": "system_reserved_cgroups", "ids": ["VARIABLE-SYSTEM_RESERVED_CGROUPS"]}
+{"alias": "system_reserved_cgroups_for_service_slice", "ids": ["VARIABLE-SYSTEM_RESERVED_CGROUPS_FOR_SERVICE_SLICE"]}
+{"alias": "system_upgrade", "ids": ["VARIABLE-SYSTEM_UPGRADE"]}
+{"alias": "system_upgrade_reboot", "ids": ["VARIABLE-SYSTEM_UPGRADE_REBOOT"]}
+{"alias": "systemd cgroup memory limit full ram", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
+{"alias": "systemd_resolved_disable_stub_listener", "ids": ["VARIABLE-SYSTEMD_RESOLVED_DISABLE_STUB_LISTENER"]}
+{"alias": "tag facet", "ids": ["CONCEPT-KB_NAVIGATION"]}
+{"alias": "taint nodes", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "talos backup secrets", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
+{"alias": "talos bare metal provisioning", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
+{"alias": "talos best practices", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
+{"alias": "talos bootstrap etcd", "ids": ["TROUBLE-TALOS_CP_BOOTSTRAP"]}
+{"alias": "talos bootstrap only once", "ids": ["TROUBLE-TALOS_CP_BOOTSTRAP"]}
+{"alias": "talos bootstrap recover-from", "ids": ["TROUBLE-TALOS_ETCD_RESTORE"]}
+{"alias": "talos cilium cgroup securitycontext", "ids": ["CONCEPT-TALOS_CILIUM"]}
+{"alias": "talos cilium install", "ids": ["CONCEPT-TALOS_CILIUM"]}
+{"alias": "talos cni cilium", "ids": ["CONCEPT-TALOS_NETWORKING"]}
+{"alias": "talos cni none cilium", "ids": ["CONCEPT-TALOS_CILIUM"]}
+{"alias": "talos config patch", "ids": ["CONCEPT-TALOS_MACHINE_CONFIG"]}
+{"alias": "talos control plane not ready", "ids": ["TROUBLE-TALOS_CP_BOOTSTRAP"]}
+{"alias": "talos control plane vip", "ids": ["CONCEPT-TALOS_NETWORKING"]}
+{"alias": "talos day 2 operations", "ids": ["CONCEPT-TALOS_TALOSCTL_WORKFLOW"]}
+{"alias": "talos disaster recovery", "ids": ["TROUBLE-TALOS_ETCD_RESTORE"]}
+{"alias": "talos disk encryption", "ids": ["CONCEPT-TALOS_OS_K8S"]}
+{"alias": "talos encrypt disk config", "ids": ["CONCEPT-TALOS_DISK_ENCRYPTION"]}
+{"alias": "talos etcd not forming", "ids": ["TROUBLE-TALOS_CP_BOOTSTRAP"]}
+{"alias": "talos etcd restore", "ids": ["TROUBLE-TALOS_ETCD_RESTORE"]}
+{"alias": "talos extensionserviceconfig", "ids": ["CONCEPT-TALOS_SYSTEM_EXTENSIONS"]}
+{"alias": "talos gitops machine config", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
+{"alias": "talos ha control plane", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
+{"alias": "talos image factory", "ids": ["CONCEPT-TALOS_SYSTEM_EXTENSIONS"]}
+{"alias": "talos iso install", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
+{"alias": "talos kube-proxy replacement", "ids": ["CONCEPT-TALOS_CILIUM"]}
+{"alias": "talos kubernetes upgrade", "ids": ["CONCEPT-TALOS_UPGRADES"]}
+{"alias": "talos kubespan wireguard", "ids": ["CONCEPT-TALOS_NETWORKING"]}
+{"alias": "talos linux", "ids": ["CONCEPT-TALOS_OS_K8S"]}
+{"alias": "talos lost quorum restore snapshot", "ids": ["TROUBLE-TALOS_ETCD_RESTORE"]}
+{"alias": "talos luks2 nodeid tpm kms", "ids": ["CONCEPT-TALOS_DISK_ENCRYPTION"]}
+{"alias": "talos machine config", "ids": ["CONCEPT-TALOS_MACHINE_CONFIG", "CONCEPT-TALOS_OS_K8S"]}
+{"alias": "talos machine network", "ids": ["CONCEPT-TALOS_NETWORKING"]}
+{"alias": "talos maintenance mode insecure", "ids": ["TROUBLE-TALOS_APID_UNREACHABLE"]}
+{"alias": "talos maintenance mode install", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
+{"alias": "talos network config", "ids": ["CONCEPT-TALOS_NETWORKING"]}
+{"alias": "talos nvidia extension", "ids": ["CONCEPT-TALOS_SYSTEM_EXTENSIONS"]}
+{"alias": "talos os", "ids": ["CONCEPT-TALOS_OS_K8S"]}
+{"alias": "talos production guidelines", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
+{"alias": "talos pxe ipxe netboot", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
+{"alias": "talos rollback", "ids": ["CONCEPT-TALOS_UPGRADES"]}
+{"alias": "talos schematic", "ids": ["CONCEPT-TALOS_SYSTEM_EXTENSIONS"]}
+{"alias": "talos secrets bundle", "ids": ["CONCEPT-TALOS_MACHINE_CONFIG"]}
+{"alias": "talos state ephemeral encryption", "ids": ["CONCEPT-TALOS_DISK_ENCRYPTION"]}
+{"alias": "talos support matrix", "ids": ["CONCEPT-TALOS_UPGRADES"]}
+{"alias": "talos system extensions", "ids": ["CONCEPT-TALOS_SYSTEM_EXTENSIONS"]}
+{"alias": "talos systemDiskEncryption", "ids": ["CONCEPT-TALOS_DISK_ENCRYPTION"]}
+{"alias": "talosconfig endpoints nodes", "ids": ["CONCEPT-TALOS_TALOSCTL_WORKFLOW"]}
+{"alias": "talosctl", "ids": ["CONCEPT-TALOS_OS_K8S"]}
+{"alias": "talosctl certificate error", "ids": ["TROUBLE-TALOS_APID_UNREACHABLE"]}
+{"alias": "talosctl commands", "ids": ["CONCEPT-TALOS_TALOSCTL_WORKFLOW"]}
+{"alias": "talosctl connection refused", "ids": ["TROUBLE-TALOS_APID_UNREACHABLE"]}
+{"alias": "talosctl dashboard health", "ids": ["CONCEPT-TALOS_TALOSCTL_WORKFLOW"]}
+{"alias": "talosctl gen config", "ids": ["CONCEPT-TALOS_MACHINE_CONFIG"]}
+{"alias": "talosctl get resources", "ids": ["CONCEPT-TALOS_TALOSCTL_WORKFLOW"]}
+{"alias": "talosctl timeout endpoints nodes", "ids": ["TROUBLE-TALOS_APID_UNREACHABLE"]}
+{"alias": "talosctl upgrade", "ids": ["CONCEPT-TALOS_UPGRADES"]}
+{"alias": "talosctl upgrade-k8s", "ids": ["CONCEPT-TALOS_UPGRADES"]}
+{"alias": "target secret not created", "ids": ["TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING"]}
+{"alias": "tbot", "ids": ["CONCEPT-ADDON_TBOT"]}
+{"alias": "tear down cluster kubespray", "ids": ["PRACTICE-RUNBOOK_RESET"]}
+{"alias": "teleport bot", "ids": ["CONCEPT-ADDON_TBOT"]}
+{"alias": "teleport machine id", "ids": ["CONCEPT-ADDON_TBOT"]}
+{"alias": "time sync", "ids": ["CONFIG-NTP"]}
+{"alias": "timezone-under-selinux", "ids": ["TROUBLE-TIMEZONE_UNDER_SELINUX"]}
+{"alias": "token expired kubeadm join", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
+{"alias": "too many open files", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
+{"alias": "too old resource version relist storm", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
+{"alias": "tpm2 luks auto unlock", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
+{"alias": "transparent encryption cilium", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
+{"alias": "troubleshooting entry points", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
+{"alias": "troubleshooting index", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
+{"alias": "two snapshot controllers conflict", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
+{"alias": "typha_enabled", "ids": ["VARIABLE-TYPHA_ENABLED"]}
+{"alias": "ubuntu cgroup v2", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "ubuntu node os requirements", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "ubuntu ntpsec kubernetes", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "unable to attach or mount volumes", "ids": ["TROUBLE-FAILEDMOUNT"]}
+{"alias": "unable to attach or mount volumes timed out", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
+{"alias": "unable to upgrade connection", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "unauthorized image pull", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "unqualified-search-registries", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
+{"alias": "unreachable taint missing noexecute", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "unsafe_show_logs", "ids": ["VARIABLE-UNSAFE_SHOW_LOGS"]}
+{"alias": "unschedulable", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "untolerated taint", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
+{"alias": "upcloud-csi-driver", "ids": ["TAG-UPCLOUD_CSI_DRIVER"]}
+{"alias": "upcloud_csi_enabled", "ids": ["VARIABLE-UPCLOUD_CSI_ENABLED"]}
+{"alias": "update stuck old pods", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
+{"alias": "upgrade", "ids": ["TAG-UPGRADE"]}
+{"alias": "upgrade 2.27.0 2.27.1", "ids": ["UPGRADE-V2_27_0__V2_27_1"]}
+{"alias": "upgrade 2.27.1 2.28.0", "ids": ["UPGRADE-V2_27_1__V2_28_0"]}
+{"alias": "upgrade 2.28.0 2.28.1", "ids": ["UPGRADE-V2_28_0__V2_28_1"]}
+{"alias": "upgrade 2.28.1 2.29.0", "ids": ["UPGRADE-V2_28_1__V2_29_0"]}
+{"alias": "upgrade 2.29.0 2.29.1", "ids": ["UPGRADE-V2_29_0__V2_29_1"]}
+{"alias": "upgrade 2.29.1 2.30.0", "ids": ["UPGRADE-V2_29_1__V2_30_0"]}
+{"alias": "upgrade 2.30.0 2.31.0", "ids": ["UPGRADE-V2_30_0__V2_31_0"]}
+{"alias": "upgrade calico without kubespray upgrade", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
+{"alias": "upgrade health FATAL", "ids": ["TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK"]}
+{"alias": "upgrade horizon", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
+{"alias": "upgrade preflight seam", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
+{"alias": "upgrade readiness", "ids": ["PRACTICE-UPGRADE_PREFLIGHT"]}
+{"alias": "upgrade rollback", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
+{"alias": "upgrade runbook", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
+{"alias": "upgrade-cluster", "ids": ["UPGRADE-KUBESPRAY_SEQUENTIAL"]}
+{"alias": "upgrade-cluster.yml", "ids": ["PLAYBOOK-UPGRADE_CLUSTER", "PRACTICE-GRACEFUL_UPGRADE"]}
+{"alias": "upgrade-cluster.yml step by step", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
+{"alias": "upgrade_cluster_setup", "ids": ["VARIABLE-UPGRADE_CLUSTER_SETUP"]}
+{"alias": "upgrade_node_confirm", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
+{"alias": "upload", "ids": ["TAG-UPLOAD"]}
+{"alias": "upstream_dns_servers", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION", "VARIABLE-UPSTREAM_DNS_SERVERS"]}
+{"alias": "user cannot get", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "user namespaces KEP", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "v2.27.0", "ids": ["RELEASE-V2_27_0"]}
+{"alias": "v2.27.0 to v2.27.1", "ids": ["UPGRADE-V2_27_0__V2_27_1"]}
+{"alias": "v2.27.1", "ids": ["RELEASE-V2_27_1"]}
+{"alias": "v2.27.1 to v2.28.0", "ids": ["UPGRADE-V2_27_1__V2_28_0"]}
+{"alias": "v2.28.0", "ids": ["RELEASE-V2_28_0"]}
+{"alias": "v2.28.0 to v2.28.1", "ids": ["UPGRADE-V2_28_0__V2_28_1"]}
+{"alias": "v2.28.1", "ids": ["RELEASE-V2_28_1"]}
+{"alias": "v2.28.1 to v2.29.0", "ids": ["UPGRADE-V2_28_1__V2_29_0"]}
+{"alias": "v2.29.0", "ids": ["RELEASE-V2_29_0"]}
+{"alias": "v2.29.0 to v2.29.1", "ids": ["UPGRADE-V2_29_0__V2_29_1"]}
+{"alias": "v2.29.1", "ids": ["RELEASE-V2_29_1"]}
+{"alias": "v2.29.1 to v2.30.0", "ids": ["UPGRADE-V2_29_1__V2_30_0"]}
+{"alias": "v2.30.0", "ids": ["RELEASE-V2_30_0"]}
+{"alias": "v2.30.0 to v2.31.0", "ids": ["UPGRADE-V2_30_0__V2_31_0"]}
+{"alias": "v2.31.0", "ids": ["RELEASE-V2_31_0"]}
+{"alias": "validate-container-engine", "ids": ["TAG-VALIDATE_CONTAINER_ENGINE"]}
+{"alias": "validatingadmissionpolicy GA", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
+{"alias": "validatingwebhookconfiguration failurePolicy", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
+{"alias": "vault", "ids": ["CONCEPT-ADDON_VAULT"]}
+{"alias": "vault 0.32.0", "ids": ["CONCEPT-ADDON_VAULT"]}
+{"alias": "vault auto-unseal", "ids": ["TROUBLE-VAULT_PODS_SEALED"]}
+{"alias": "vault helm chart", "ids": ["CONCEPT-ADDON_VAULT"]}
+{"alias": "vault kubernetes secrets", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
+{"alias": "vault not ready readiness sealed", "ids": ["TROUBLE-VAULT_PODS_SEALED"]}
+{"alias": "vault pods 0/1", "ids": ["TROUBLE-VAULT_PODS_SEALED"]}
+{"alias": "vault sealed", "ids": ["TROUBLE-VAULT_PODS_SEALED"]}
+{"alias": "vault-env", "ids": ["CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK"]}
+{"alias": "vault-secrets-webhook", "ids": ["CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK"]}
+{"alias": "vector logs operator", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
+{"alias": "vector-operator", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
+{"alias": "velero", "ids": ["CONCEPT-VELERO"]}
+{"alias": "velero 1.17 upgrade", "ids": ["TROUBLE-VELERO_UPGRADE_117"]}
+{"alias": "velero 1.17.1", "ids": ["CONCEPT-ADDON_VELERO"]}
+{"alias": "velero 11.4.0", "ids": ["CONCEPT-ADDON_VELERO"]}
+{"alias": "velero addon", "ids": ["CONCEPT-ADDON_VELERO"]}
+{"alias": "velero backup partiallyfailed", "ids": ["TROUBLE-VELERO_BACKUP_RESTORE_FAILS"]}
+{"alias": "velero backupstoragelocation unavailable", "ids": ["TROUBLE-VELERO_BACKUP_RESTORE_FAILS"]}
+{"alias": "velero crd update", "ids": ["TROUBLE-VELERO_UPGRADE_117"]}
+{"alias": "velero must be on 1.16 first", "ids": ["TROUBLE-VELERO_UPGRADE_117"]}
+{"alias": "velero no volume snapshots", "ids": ["TROUBLE-VELERO_BACKUP_RESTORE_FAILS"]}
+{"alias": "velero restic kopia migration", "ids": ["TROUBLE-VELERO_UPGRADE_117"]}
+{"alias": "velero restore failed", "ids": ["TROUBLE-VELERO_BACKUP_RESTORE_FAILS"]}
+{"alias": "velero snapshot not created", "ids": ["TROUBLE-VELERO_BACKUP_RESTORE_FAILS"]}
+{"alias": "velero volsync snapshot conflict", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
+{"alias": "verify-settings failed", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
+{"alias": "version gap", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
+{"alias": "version selection mechanism", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
+{"alias": "version skew policy kubelet", "ids": ["TROUBLE-KUBEADM_VERSION_SKEW"]}
+{"alias": "victoria-metrics-k8s-stack", "ids": ["CONCEPT-ADDON_VM_K8S_STACK"]}
+{"alias": "victoriametrics kubernetes", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
+{"alias": "victoriametrics no data", "ids": ["TROUBLE-VMAGENT_REMOTE_WRITE_FAILING"]}
+{"alias": "victoriametrics stack", "ids": ["CONCEPT-ADDON_VM_K8S_STACK"]}
+{"alias": "vm", "ids": ["CONCEPT-ADDON_VM_K8S_STACK"]}
+{"alias": "vm 0.42.0", "ids": ["CONCEPT-ADDON_VM_K8S_STACK"]}
+{"alias": "vm high cardinality", "ids": ["TROUBLE-VMAGENT_REMOTE_WRITE_FAILING"]}
+{"alias": "vmagent persistentqueue growing", "ids": ["TROUBLE-VMAGENT_REMOTE_WRITE_FAILING"]}
+{"alias": "vmagent remote write failing", "ids": ["TROUBLE-VMAGENT_REMOTE_WRITE_FAILING"]}
+{"alias": "volsync", "ids": ["CONCEPT-ADDON_VOLSYNC"]}
+{"alias": "volsync 0.15.0", "ids": ["CONCEPT-ADDON_VOLSYNC"]}
+{"alias": "volsync cache pvc enospc", "ids": ["TROUBLE-VOLSYNC_MOVER_ISSUES"]}
+{"alias": "volsync restic locked retry loop", "ids": ["TROUBLE-VOLSYNC_MOVER_ISSUES"]}
+{"alias": "volsync restore selinux xattr", "ids": ["TROUBLE-VOLSYNC_MOVER_ISSUES"]}
+{"alias": "volsync setgid failed privileged movers", "ids": ["TROUBLE-VOLSYNC_MOVER_ISSUES"]}
+{"alias": "volsync volume node affinity conflict", "ids": ["TROUBLE-VOLSYNC_MOVER_ISSUES"]}
+{"alias": "volume already exclusively attached to one node", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
+{"alias": "volume node affinity conflict", "ids": ["TROUBLE-FAILEDMOUNT", "TROUBLE-SCHEDULER_POD_PENDING"]}
+{"alias": "volumesnapshot stuck", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
+{"alias": "volumesnapshotclass one per driver", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}
+{"alias": "volumesnapshotclass-v1", "ids": ["TROUBLE-VOLUMESNAPSHOTCLASS_V1"]}
+{"alias": "vsphere-csi-driver", "ids": ["TAG-VSPHERE_CSI_DRIVER"]}
+{"alias": "vsphere_csi_enabled", "ids": ["VARIABLE-VSPHERE_CSI_ENABLED"]}
+{"alias": "vulnerability", "ids": ["CONCEPT-SECURITY_ADVISORIES"]}
+{"alias": "vxlan-mtu-mismatch", "ids": ["TROUBLE-VXLAN_MTU_MISMATCH"]}
+{"alias": "waitforfirstconsumer", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
+{"alias": "waitforfirstconsumer pvc pending", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER"]}
+{"alias": "waiting for apiserver healthz init", "ids": ["TROUBLE-DEPLOY_HANGS_WAIT_APISERVER"]}
+{"alias": "waiting for the kubelet to boot up the control plane", "ids": ["TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK"]}
+{"alias": "watchlist streaming list", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
+{"alias": "webhook connection refused", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
+{"alias": "webhook x509 after install", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
+{"alias": "what changed in 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
+{"alias": "what changed in 1.30", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
+{"alias": "what changed in 1.31", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}
+{"alias": "what changed in 1.32", "ids": ["CONCEPT-K8S_1_32_CHANGES"]}
+{"alias": "what changed in 1.33", "ids": ["CONCEPT-K8S_1_33_CHANGES"]}
+{"alias": "what changed in 1.34", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
+{"alias": "what changed in 1.35", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
+{"alias": "what is not secure out of the box", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
+{"alias": "what to back up kubernetes", "ids": ["PRACTICE-BACKUP_DR"]}
+{"alias": "what to monitor kubernetes", "ids": ["CONCEPT-OBSERVABILITY_STACK", "PRACTICE-MONITORING_BASELINE"]}
+{"alias": "what to patch", "ids": ["CONCEPT-CVE_REMEDIATION"]}
+{"alias": "where do I start", "ids": ["CONCEPT-KB_NAVIGATION"]}
+{"alias": "where to set variables", "ids": ["CONCEPT-SAMPLE_INVENTORY_LAYOUT"]}
+{"alias": "where to start debugging", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
+{"alias": "which addons use helm", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
+{"alias": "which components move with kube_version", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
+{"alias": "who upgrades etcd kubespray", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
+{"alias": "who upgrades kubernetes kubespray", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
+{"alias": "win_nodes", "ids": ["TAG-WIN_NODES"]}
+{"alias": "wipe node kubernetes", "ids": ["PRACTICE-RUNBOOK_RESET"]}
+{"alias": "x509 certificate is valid for", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
+{"alias": "x509 expired", "ids": ["PRACTICE-CERTIFICATE_EXPIRY"]}
+{"alias": "x509 kubelet exec", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "x509 unknown authority pull", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
+{"alias": "youki", "ids": ["COMPONENT-YOUKI", "TAG-YOUKI"]}
+{"alias": "youki_archive_checksum", "ids": ["VARIABLE-YOUKI_ARCHIVE_CHECKSUM"]}
+{"alias": "youki_checksums", "ids": ["VARIABLE-YOUKI_CHECKSUMS"]}
+{"alias": "youki_download_url", "ids": ["VARIABLE-YOUKI_DOWNLOAD_URL"]}
+{"alias": "youki_enabled", "ids": ["VARIABLE-YOUKI_ENABLED"]}
+{"alias": "youki_version", "ids": ["VARIABLE-YOUKI_VERSION"]}
+{"alias": "yq_binary_checksum", "ids": ["VARIABLE-YQ_BINARY_CHECKSUM"]}
+{"alias": "yq_checksums", "ids": ["VARIABLE-YQ_CHECKSUMS"]}
+{"alias": "yq_download_url", "ids": ["VARIABLE-YQ_DOWNLOAD_URL"]}
+{"alias": "yq_version", "ids": ["VARIABLE-YQ_VERSION"]}
+{"alias": "zalando-postgres-operator", "ids": ["CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR"]}

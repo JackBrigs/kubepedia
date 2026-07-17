@@ -329,3 +329,31 @@ per-version truth. Already applied consistently (e.g. `CONCEPT-KUBERNETES_VERSIO
 **Consequences.** Reviewers should reject a doc that states a per-version fact unqualified in the
 body, or whose envelope contradicts the body's per-version detail. Complements D-008
 (version-field nullability).
+
+## D-018 — Leaf reference docs are facet-reachable, not graph-required (2026-07-17)
+
+**Context.** The graph-orphan validator warning (a doc with no inbound/outbound relations) fired on
+439 documents — essentially every `variable` and `ansible_tag` doc (354 + 85). These are atomic
+**leaf reference** facts (one Kubespray variable, one Ansible tag). Forcing each into the relation
+graph would mean auto-linking ~440 docs to an "owning" component/concept inferred from tags; the
+tags are generic (`download`, `image`, `checksum`), so the inferred edges would be **fuzzy and
+wrong**, polluting the graph — worse than leaving the nodes unlinked. Meanwhile 439 expected
+warnings drowned the few actionable ones.
+
+**Decision.** Leaf reference types — currently **`variable`** and **`ansible_tag`** — are reached by
+**tag/alias facet and full-text**, not by graph edge, and are therefore **exempt** from the
+graph-orphan warning. To make facet retrieval concrete, `index/` gains two inverted files,
+`tags.jsonl` (`{tag, ids[]}`) and `aliases.jsonl` (`{alias, ids[]}`), regenerated and consistency-
+checked like the rest of the index. A leaf doc *may* still carry relations when a genuine one exists;
+it is simply not *required* to.
+
+**Rationale.** Aligns the graph-connectivity signal with how the AI-first design actually retrieves
+these docs (CLAUDE.md: "simple clients must answer from metadata and indexes"; multi-modal retrieval
+does not depend on the graph). Keeps every remaining orphan warning **actionable** (a `concept` /
+`component` / `troubleshooting` / `best_practice` / `configuration` that truly fell out of the
+graph). Avoids fabricating edges — never assert a relation that isn't real (Priorities: Accuracy).
+
+**Consequences.** `variable`/`ansible_tag` orphans no longer warn; the orphan count drops from 439 to
+the handful of genuinely-disconnected graph-type docs. Clients querying a variable should use
+`tags.jsonl` / `aliases.jsonl`, documented in `CONCEPT-KB_NAVIGATION`. If a future leaf type is added
+it should be added to the exemption set with its own justification.

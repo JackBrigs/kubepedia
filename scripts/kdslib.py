@@ -151,3 +151,25 @@ def build_index(kb_root, repo_root):
     relations.sort(key=lambda r: (r["source"], r["type"], r["target"]))
     ids.sort()
     return documents, relations, ids
+
+
+def build_facets(kb_root, repo_root):
+    """Inverted retrieval facets: tag -> ids and alias -> ids.
+
+    These let a simple (LLM-free) client answer "which docs are tagged X?" or
+    resolve an alias to document IDs directly from index/, without scanning kb/ or
+    walking the graph — the AI-first retrieval contract for leaf docs (variables,
+    ansible tags) that are intentionally reached by facet, not by graph edge."""
+    tags, aliases = {}, {}
+    for path in iter_doc_paths(kb_root):
+        fm, _sections, _body = parse_doc(path)
+        did = fm.get("id")
+        if not did:
+            continue
+        for t in fm.get("tags") or []:
+            tags.setdefault(t, set()).add(did)
+        for a in fm.get("aliases") or []:
+            aliases.setdefault(a, set()).add(did)
+    tag_rows = [{"ids": sorted(v), "tag": t} for t, v in sorted(tags.items())]
+    alias_rows = [{"alias": a, "ids": sorted(v)} for a, v in sorted(aliases.items())]
+    return tag_rows, alias_rows
