@@ -464,6 +464,7 @@
 {"source": "TROUBLE-CRASHLOOPBACKOFF", "target": "TROUBLE-OOMKILLED", "type": "see_also"}
 {"source": "TROUBLE-CRASHLOOPBACKOFF", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-CRIO_REGISTRY_AUTHS_DUPLICATE", "target": "CONCEPT-CONTAINER_MANAGER", "type": "see_also"}
+{"source": "TROUBLE-DEX_OIDC_LOGIN_FAILS", "target": "CONCEPT-ADDON_DEX", "type": "see_also"}
 {"source": "TROUBLE-DISK_PRESSURE_EVICTION", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "target": "PRACTICE-DNS_DEBUG", "type": "see_also"}
 {"source": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "target": "PRACTICE-DNS_STACK", "type": "see_also"}
@@ -507,6 +508,8 @@
 {"source": "TROUBLE-IMAGEPULLBACKOFF", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}
 {"source": "TROUBLE-IMAGEPULLBACKOFF", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "target": "PRACTICE-CONTAINERD_DIAGNOSTICS", "type": "see_also"}
+{"source": "TROUBLE-INGRESS_NGINX_502_504", "target": "CONCEPT-ADDON_INGRESS_NGINX", "type": "see_also"}
+{"source": "TROUBLE-INGRESS_NGINX_502_504", "target": "TROUBLE-SERVICE_NO_ENDPOINTS", "type": "see_also"}
 {"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "CONCEPT-ADDON_INGRESS_NGINX", "type": "see_also"}
 {"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
@@ -545,6 +548,8 @@
 {"source": "TROUBLE-METALLB_SERVICE_PENDING", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "TROUBLE-NAMESPACE_STUCK_TERMINATING", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-NAMESPACE_STUCK_TERMINATING", "target": "TROUBLE-POD_STUCK_TERMINATING", "type": "see_also"}
+{"source": "TROUBLE-NFD_LABELS_MISSING", "target": "COMPONENT-NODE_FEATURE_DISCOVERY", "type": "see_also"}
+{"source": "TROUBLE-NFD_LABELS_MISSING", "target": "CONCEPT-ADDON_GPU_OPERATOR", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_33_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
@@ -566,11 +571,17 @@
 {"source": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}
 {"source": "TROUBLE-POD_STUCK_TERMINATING", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
+{"source": "TROUBLE-POSTGRES_OPERATOR_CLUSTER_NOT_READY", "target": "CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR", "type": "see_also"}
 {"source": "TROUBLE-PROMETHEUS_TARGET_DOWN", "target": "CONCEPT-OBSERVABILITY_STACK", "type": "see_also"}
 {"source": "TROUBLE-PROMETHEUS_TARGET_DOWN", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "TROUBLE-PROMETHEUS_TARGET_DOWN", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
+{"source": "TROUBLE-PVC_PENDING_NO_PROVISIONER", "target": "COMPONENT-SNAPSHOT_CONTROLLER", "type": "see_also"}
+{"source": "TROUBLE-PVC_PENDING_NO_PROVISIONER", "target": "CONCEPT-ADDON_LVM_LOCALPV", "type": "see_also"}
+{"source": "TROUBLE-PVC_PENDING_NO_PROVISIONER", "target": "CONCEPT-ADDON_ROOK_CEPH", "type": "see_also"}
 {"source": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "target": "COMPONENT-LOCAL_PATH_PROVISIONER", "type": "see_also"}
 {"source": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
+{"source": "TROUBLE-RABBITMQ_CLUSTER_NOT_FORMING", "target": "CONCEPT-ADDON_RABBITMQ_BITNAMI", "type": "see_also"}
+{"source": "TROUBLE-RABBITMQ_CLUSTER_NOT_FORMING", "target": "CONCEPT-ADDON_RABBITMQ_CLUSTER_OPERATOR", "type": "see_also"}
 {"source": "TROUBLE-RBAC_FORBIDDEN", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-RBAC_FORBIDDEN", "target": "PRACTICE-CLUSTER_ACCESS", "type": "see_also"}
 {"source": "TROUBLE-RBAC_FORBIDDEN", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
