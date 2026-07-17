@@ -415,6 +415,8 @@
 {"source": "TROUBLE-CERT_DIR_SSL_NOT_PKI", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
 {"source": "TROUBLE-CERT_DIR_SSL_NOT_PKI", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
 {"source": "TROUBLE-CERT_DIR_SSL_NOT_PKI", "target": "PRACTICE-KUBEADM_JOIN_FAILURES", "type": "see_also"}
+{"source": "TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY", "target": "COMPONENT-CERT_MANAGER", "type": "see_also"}
+{"source": "TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY", "target": "CONCEPT-ADDON_CERT_MANAGER", "type": "see_also"}
 {"source": "TROUBLE-CERT_MANAGER_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CERT_MANAGER_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CGROUP_DRIVER_MISMATCH", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
@@ -437,6 +439,8 @@
 {"source": "TROUBLE-CILIUM_LOADBALANCER_MODE_NOT_RENDERED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_OPERATOR_GENERIC_OFFLINE_REGISTRY", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_POD_CONNECTIVITY", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_POD_CONNECTIVITY", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_PORTMAP", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CLOCK_SKEW_TLS", "target": "PRACTICE-CERTIFICATE_EXPIRY", "type": "see_also"}
 {"source": "TROUBLE-CNI_PLUGINS_KNOWN_CVES", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
@@ -448,6 +452,9 @@
 {"source": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "target": "TROUBLE-CGROUP_DRIVER_MISMATCH", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}
 {"source": "TROUBLE-CONTROL_PLANE_OVERRIDE_HOSTNAME_DELEGATION", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
+{"source": "TROUBLE-COREDNS_INTERMITTENT_DNS", "target": "COMPONENT-COREDNS", "type": "see_also"}
+{"source": "TROUBLE-COREDNS_INTERMITTENT_DNS", "target": "COMPONENT-NODELOCALDNS", "type": "see_also"}
+{"source": "TROUBLE-COREDNS_INTERMITTENT_DNS", "target": "TROUBLE-DNS_EXTERNAL_RESOLUTION", "type": "see_also"}
 {"source": "TROUBLE-COREDNS_KNOWN_CVES", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "TROUBLE-COREDNS_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-COREDNS_RESOLUTION_LOOP", "target": "COMPONENT-COREDNS", "type": "see_also"}
@@ -466,6 +473,7 @@
 {"source": "TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-ETCD_CERT_DIR_RECURSIVE_PERMS_CALICO", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
 {"source": "TROUBLE-ETCD_EVENTS_INVERTED_IGNORE_ERRORS", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PLAYBOOK-RECOVER_CONTROL_PLANE", "type": "see_also"}
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
@@ -560,6 +568,7 @@
 {"source": "TROUBLE-ROLLOUT_STUCK", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-ROLLOUT_STUCK", "target": "TROUBLE-CRASHLOOPBACKOFF", "type": "see_also"}
 {"source": "TROUBLE-ROLLOUT_STUCK", "target": "TROUBLE-POD_PENDING_UNSCHEDULABLE", "type": "see_also"}
+{"source": "TROUBLE-ROOK_CEPH_HEALTH_WARN_OSD", "target": "CONCEPT-ADDON_ROOK_CEPH", "type": "see_also"}
 {"source": "TROUBLE-ROOK_CEPH_UPGRADE_SC_IMMUTABLE", "target": "CONCEPT-ADDON_ROOK_CEPH", "type": "see_also"}
 {"source": "TROUBLE-ROOK_CEPH_UPGRADE_SC_IMMUTABLE", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025", "target": "COMPONENT-RUNC", "type": "see_also"}
@@ -576,6 +585,7 @@
 {"source": "TROUBLE-SPEGEL_MIRROR_NOT_USED", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-SSH_BASTION_CONFIG_NAME_TYPO", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-TIMEZONE_UNDER_SELINUX", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
+{"source": "TROUBLE-VAULT_PODS_SEALED", "target": "CONCEPT-ADDON_VAULT", "type": "see_also"}
 {"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "CONCEPT-VELERO", "type": "see_also"}
 {"source": "TROUBLE-VELERO_BACKUP_RESTORE_FAILS", "target": "PRACTICE-BACKUP_DR", "type": "see_also"}
