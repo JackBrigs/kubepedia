@@ -42,8 +42,7 @@ Each shipped runc version carries the CVEs listed below (osv.dev returns only vu
 | Component version | Kubespray | # CVEs | CVEs |
 |---|---|---|---|
 | 1.2.3 | v2.27.0 | 8 | superset — incl. the runc container-escape set + older CVEs (query osv.dev for the full list) |
-| 1.2.5 | v2.28.0 | 8 | (as above) |
-| 1.2.6 | v2.27.1 / v2.28.1 | 8 | (as above) |
+| 1.2.6 | v2.27.1 / v2.28.0 / v2.28.1 | 8 | (as above) |
 | 1.3.2 | v2.29.0 | 4 | CVE-2025-31133, CVE-2025-52565, CVE-2025-52881, CVE-2026-41579 |
 | 1.3.4 | v2.29.1 / v2.30.0 | 1 | CVE-2026-41579 |
 | 1.4.2 | v2.31.0 | 1 | CVE-2026-41579 |
