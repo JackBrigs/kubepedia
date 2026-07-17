@@ -57,8 +57,11 @@ this page collects the hatches in one place.
 
 ## Context
 
-- Applies to Kubespray **v2.29.0–v2.31.0**. Every variable in the table below was **verified
-  present in v2.27.0 through v2.31.0** (git-grep per tag) — the names are stable across the range.
+- Applies to Kubespray **v2.27.0–v2.31.0** (git-grep verified per tag). The **kubelet, kubeadm,
+  apiserver/controller-manager/scheduler, etcd, containerd, CoreDNS and cert-manager** hatches are
+  present across the **whole** range. The **Cilium** passthroughs were **added over time**:
+  `cilium_config_extra_vars` (all tags), `cilium_agent_extra_args` (**since v2.28.0**),
+  `cilium_extra_values` and `cilium_install_extra_flags` (**since v2.29.0**).
 - **Renamed variable — `kubelet_node_config_extra_args` → `kubelet_config_extra_args` (in
   v2.27.0):** the old name existed **≤ v2.26.x** and was removed/renamed at **v2.27.0** (present
   in the v2.26.0 tree, absent from v2.27.0). If you carry old inventory/host_vars using
@@ -87,7 +90,7 @@ this page collects the hatches in one place.
 | **containerd** | `containerd_base_runtime_specs`, `containerd_additional_runtimes`, `containerd_base_runtime_spec_rlimit_nofile` | runtime-spec / extra-runtime passthrough for the CRI config. |
 | **CoreDNS** | `coredns_external_zones` | inject custom Corefile zones/forwarders not covered by defaults. |
 | **cert-manager** | `cert_manager_controller_extra_args` | extra controller flags. |
-| **Cilium (addon)** | `cilium_extra_values`, `cilium_config_extra_vars`, `cilium_agent_extra_args`, `cilium_agent_extra_env_vars`, `cilium_install_extra_flags` | Helm-values / agent / install passthrough — the addon-style hatch. |
+| **Cilium (addon)** | `cilium_config_extra_vars` (all tags), `cilium_agent_extra_args` (≥v2.28.0), `cilium_agent_extra_env_vars`, `cilium_extra_values` (≥v2.29.0), `cilium_install_extra_flags` (≥v2.29.0) | Helm-values / agent / install passthrough — the addon-style hatch (added incrementally; see Context). |
 
 **Addon Helm-values pattern.** Beyond Cilium, many addons expose a `*_extra_values` / `*_extra_args`
 style variable to pass through to their chart/deployment when a setting isn't wrapped — check the
