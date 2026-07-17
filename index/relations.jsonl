@@ -305,6 +305,9 @@
 {"source": "TROUBLE-FIREWALL_PORTS_BLOCKED", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-HELM_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
+{"source": "TROUBLE-IMAGEPULLBACKOFF", "target": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "type": "see_also"}
+{"source": "TROUBLE-IMAGEPULLBACKOFF", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}
+{"source": "TROUBLE-IMAGEPULLBACKOFF", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "target": "PRACTICE-CONTAINERD_DIAGNOSTICS", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "PRACTICE-LARGE_DEPLOYMENTS", "type": "see_also"}

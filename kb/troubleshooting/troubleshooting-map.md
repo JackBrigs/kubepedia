@@ -93,6 +93,7 @@ source-verified fix.
 
 ### Images & registry
 
+- `ImagePullBackOff`/`ErrImagePull` (triage) → [[TROUBLE-IMAGEPULLBACKOFF]].
 - Private/mirror pull fails → [[TROUBLE-CONTAINERD_REGISTRY_CONFIG]].
 - `429 Too Many Requests` → [[TROUBLE-IMAGE_PULL_RATE_LIMIT]].
 
