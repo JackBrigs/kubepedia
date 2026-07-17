@@ -68,13 +68,24 @@ shares so the individual runbooks don't repeat it.
 6. **Rollback** — know the reversal *before* you start. For most operations rollback = restore the
    etcd snapshot + re-run at the previous tag; a half-applied change is worse than a clean revert.
 
-**The runbooks:**
+**The runbooks** (one per canonical operation ≈ one Kubespray playbook):
 
-| Runbook | Operation | Rollback anchor |
-|---------|-----------|-----------------|
-| [[PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR]] | Upgrade the cluster by exactly one Kubespray minor | etcd snapshot + previous tag |
-| [[PRACTICE-RUNBOOK_ETCD_RESTORE]] | Restore control-plane state from an etcd snapshot (DR) | the snapshot itself + `recover-control-plane.yml` |
-| [[PRACTICE-RUNBOOK_CNI_MIGRATION]] | Change the CNI plugin on a running cluster | etcd snapshot; CNI swap is not cleanly reversible in place |
+| Runbook | Operation | Playbook | Rollback anchor |
+|---------|-----------|----------|-----------------|
+| [[PRACTICE-RUNBOOK_BOOTSTRAP]] | Deploy a new cluster | `cluster.yml` | nothing to lose — reset & redeploy |
+| [[PRACTICE-RUNBOOK_ADD_NODES]] | Add worker / control-plane nodes | `scale.yml` / `cluster.yml` | remove the added node |
+| [[PRACTICE-RUNBOOK_REMOVE_NODE]] | Remove / decommission a node | `remove-node.yml` | re-add; etcd snapshot if quorum touched |
+| [[PRACTICE-RUNBOOK_NODE_MAINTENANCE]] | Drain, patch/reboot, uncordon a node | — (`kubectl`) | per-node, keep cordoned & diagnose |
+| [[PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR]] | Upgrade by exactly one Kubespray minor | `upgrade-cluster.yml` | etcd snapshot + previous tag |
+| [[PRACTICE-RUNBOOK_CERT_ROTATION]] | Renew control-plane / etcd certificates | `kubeadm` / `cluster.yml` | etcd snapshot (forward-only) |
+| [[PRACTICE-RUNBOOK_CNI_MIGRATION]] | Change the CNI plugin | `cluster.yml` | etcd snapshot; not cleanly reversible in place |
+| [[PRACTICE-RUNBOOK_ETCD_RESTORE]] | Restore control-plane state (DR) | `recover-control-plane.yml` | the snapshot itself |
+| [[PRACTICE-RUNBOOK_RESET]] | Tear down a cluster / node | `reset.yml` | destructive — restore or redeploy |
+
+**Related operations already documented as guides** (not repeated as runbooks): container-runtime
+migration Docker → containerd ([[PRACTICE-MIGRATE_DOCKER_TO_CONTAINERD]]) and enabling
+secrets-encryption at rest ([[PRACTICE-SECRETS_ENCRYPTION_AT_REST]]) — both follow the same spine
+(snapshot → change → verify → rollback).
 
 **When you don't need a runbook.** A single diagnostic lookup (one symptom → one fix) is a
 troubleshooting doc, not a runbook — go straight to the `TROUBLE-*` doc. Reach for a runbook when
