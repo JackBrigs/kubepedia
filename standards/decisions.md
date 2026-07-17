@@ -203,3 +203,29 @@ vocabulary.
 
 **Consequences.** `kds.md` 1.2, `schema/kds.schema.json`, and `scripts/kdslib.py`
 updated together. Run-tags now indexed under `kb/kubespray/ansible-tags/`.
+
+## D-013 — Scope expansion: adjacent operator domains (2026-07-17)
+
+**Context.** The owner explicitly requested (2026-07-17) expanding beyond the original
+scope (Kubernetes + Kubespray + Kubespray-managed components) to adjacent domains that
+operators run **on** Kubespray clusters: (1) observability — Prometheus/Grafana/
+Alertmanager and the VictoriaMetrics stack; (2) GitOps — ArgoCD; (3) application/PV
+backup & DR — Velero (complementing the existing etcd backup); (4) the secrets/DNS
+ecosystem — external-dns / external-secrets / sealed-secrets; (5) the operating system —
+Ubuntu 24.04+ and its relationship with Kubernetes.
+
+**Decision.** Expand scope to these domains, but **bounded to their integration with a
+Kubernetes/Kubespray cluster**: how they install on such a cluster, version/Kubernetes
+compatibility, configuration ownership, operational concerns, and troubleshooting — **not**
+a reproduction of each project's full upstream documentation.
+
+**Rationale.** Permitted under the Final Rule: a separate task explicitly requires it. These
+are the most common real "what next after the cluster is up" operator needs and directly
+serve the troubleshooting/administration priority.
+
+**Consequences.** Most of these are **not** Kubespray-managed, so their evidence tier is
+the upstream project's docs/charts (`verified`), not tagged Kubespray code (`confirmed`) —
+except the OS domain and ArgoCD (a Kubespray-managed add-on), which draw on Kubespray
+source too. Version-awareness is expressed relative to the Kubernetes/Kubespray range.
+New content lands under `kb/ecosystem/` (or per-domain dirs); kept bounded to integration
+to avoid scope explosion.

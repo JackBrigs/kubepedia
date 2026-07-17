@@ -117,6 +117,9 @@
 {"source": "CONCEPT-TROUBLESHOOTING_MAP", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
 {"source": "CONCEPT-TROUBLESHOOTING_MAP", "target": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "type": "see_also"}
 {"source": "CONCEPT-TROUBLESHOOTING_MAP", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
+{"source": "CONCEPT-UBUNTU_24_04_K8S", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
+{"source": "CONCEPT-UBUNTU_24_04_K8S", "target": "CONFIG-NTP", "type": "see_also"}
+{"source": "CONCEPT-UBUNTU_24_04_K8S", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "CONFIG-APISERVER_AUDIT", "target": "CONCEPT-POD_SECURITY_STANDARDS", "type": "see_also"}
 {"source": "CONFIG-APISERVER_AUDIT", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "CONFIG-APISERVER_AUTHENTICATION_CONFIG", "target": "CONCEPT-K8S_1_34_CHANGES", "type": "see_also"}
