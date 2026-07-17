@@ -750,6 +750,9 @@
 {"source": "TROUBLE-RBAC_FORBIDDEN", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "TROUBLE-REGISTRY_2_TO_3_MIGRATION", "target": "COMPONENT-REGISTRY", "type": "see_also"}
 {"source": "TROUBLE-REGISTRY_2_TO_3_MIGRATION", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-REGISTRY_ADDON", "target": "COMPONENT-REGISTRY", "type": "see_also"}
+{"source": "TROUBLE-REGISTRY_ADDON", "target": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "type": "see_also"}
+{"source": "TROUBLE-REGISTRY_ADDON", "target": "TROUBLE-KCM_VOLUME_MULTIATTACH", "type": "see_also"}
 {"source": "TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
 {"source": "TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE", "target": "TROUBLE-KCM_NODE_LIFECYCLE", "type": "see_also"}
 {"source": "TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}

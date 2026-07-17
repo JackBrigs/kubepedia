@@ -121,6 +121,7 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
 - Private/mirror pull fails → [[TROUBLE-CONTAINERD_REGISTRY_CONFIG]].
 - `429 Too Many Requests` → [[TROUBLE-IMAGE_PULL_RATE_LIMIT]].
 - CRI-O short-name pull fails → [[TROUBLE-CRIO_SHORT_NAME_REGISTRY]].
+- In-cluster registry addon: image loss / no auth-TLS / can't scale → [[TROUBLE-REGISTRY_ADDON]].
 
 ### Runtime & storage
 
