@@ -1,0 +1,17 @@
+{
+  "components": {
+    "Kubernetes": "1.35.4",
+    "Cilium": "quay.io/cilium/cilium:v1.18.4",
+    "etcd": "3.6.10",
+    "containerd": "2.2.3",
+    "runc": "1.4.2",
+    "CoreDNS": "coredns/coredns:1.12.4"
+  },
+  "nodes": [
+    {"name": "cp1", "ready": true, "kubelet": "v1.35.4"},
+    {"name": "w1", "ready": true, "kubelet": "v1.35.4"},
+    {"name": "w2", "ready": false, "kubelet": "v1.35.4"}
+  ],
+  "pods_bad": ["kube-system/cilium-9xk2p"],
+  "etcd_healthy": true
+}
