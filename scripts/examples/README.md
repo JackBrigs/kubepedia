@@ -57,3 +57,17 @@ Pass **both** folders as separate `--inventory` args to see the composite merge.
   it — the tools provide the facts.
 - **Live clusters (future).** `upgrade_diff.py` reads inventory statically. Collecting facts
   from running nodes (ansible `-m setup` / `--check` dry-run) is a possible extension.
+
+## `impact.py` — graph impact analysis
+
+Query the KDS relation graph: "what depends on X", "what breaks if I change X".
+
+```bash
+.venv/bin/python scripts/impact.py etcd                 # what depends on etcd
+.venv/bin/python scripts/impact.py COMPONENT-CILIUM --depth 2   # impact radius
+.venv/bin/python scripts/impact.py --tag cni            # everything tagged cni
+```
+
+Resolves the target by ID, alias, tag, or title/ID substring; shows inbound edges
+(who depends on / references it), outbound (its dependencies), and — with `--depth N`
+— the transitive impact radius. `--json` for machine output; `--lang ru|en`.

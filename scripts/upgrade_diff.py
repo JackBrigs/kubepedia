@@ -218,7 +218,7 @@ STR = {
         "act_seq": "Идти **по одному минору Kubespray за раз** (пропускать нельзя).",
         "act_snapshot": "Снять snapshot etcd (`etcdctl snapshot save`) и пройти пред-апгрейдный чеклист (health, сертификаты, ёмкость для drain).",
         "act_remove": "Удалить из инвентаря переменные из раздела ⚠ выше: {vars}.",
-        "act_newvars": "Проверить новые переменные (раздел выше) и включить нужные.",
+        "act_newvars": "Проверить новые переменные (раздел «Новые переменные» ниже) и включить нужные.",
         "act_apply": "Апгрейд: `upgrade-cluster.yml`, control-plane `serial: 1`, воркеры батчами; проверять узел за узлом.",
         "act_verify": "После апгрейда: все узлы `Ready`, системные поды `Running`, связность (netcheck), прогнать security-матрицы изменившихся компонентов.",
         "note_inv": "Составной инвентарь: перечислите папки через несколько `--inventory` — они сольются как в Ansible.",
@@ -247,7 +247,7 @@ STR = {
         "act_seq": "Go **one Kubespray minor at a time** (no skipping).",
         "act_snapshot": "Snapshot etcd (`etcdctl snapshot save`) and run the pre-upgrade checklist (health, certs, drain capacity).",
         "act_remove": "Delete the ⚠ variables above from your inventory: {vars}.",
-        "act_newvars": "Review the new variables (section above) and enable what you need.",
+        "act_newvars": "Review the new variables (\"New variables\" section below) and enable what you need.",
         "act_apply": "Upgrade: `upgrade-cluster.yml`, control-plane `serial: 1`, workers in batches; check node-by-node.",
         "act_verify": "After: all nodes `Ready`, system pods `Running`, connectivity (netcheck), run the security matrices for changed components.",
         "note_inv": "Composite inventory: pass several `--inventory` folders — they merge like Ansible.",
@@ -366,6 +366,15 @@ def build_warnings(frm, to, vdelta, values, inv):
     return w
 
 
+def var_link(name, docs):
+    """Render a variable name as a markdown link to its VARIABLE-<NAME> KDS doc if one
+    exists, else as plain inline code."""
+    did = "VARIABLE-" + name.upper()
+    if did in docs:
+        return f"[`{name}`]({docs[did]['path']})"
+    return f"`{name}`"
+
+
 def render(frm, to, docs, vdelta, removed, added, set_vars, values, inv_paths, lang):
     S = STR[lang]
     inv = " ".join(f"-i {p}" for p in inv_paths) or "-i <inventory>"
@@ -392,40 +401,19 @@ def render(frm, to, docs, vdelta, removed, added, set_vars, values, inv_paths, l
     else:
         out.append(S["warn_none"])
 
-    # ⚠ variables to remove (set ∩ removed) — the headline
+    # ⚠ variables to remove (set ∩ removed) — the headline, each linked to its doc
     must = sorted(set_vars & removed)
     out.append(S["must_h"])
     if must:
         out.append(S["must_intro"].format(to=to))
         for v in must:
-            out.append(f"- **`{v}`**")
+            out.append(f"- **{var_link(v, docs)}**")
     else:
         out.append(S["must_none"].format(to=to))
 
-    # all removed (grouped) — reference
-    if removed:
-        out.append(S["rem_h"].format(n=len(removed)))
-        out.append(S["rem_intro"].format(frm=frm, to=to))
-        for pfx, names in sorted(group_by_prefix(removed).items()):
-            if len(names) == 1:
-                out.append(f"- `{names[0]}`")
-            else:
-                out.append(f"- `{pfx}_*` — {len(names)}: " +
-                           ", ".join(f"`{n}`" for n in names[:6]) +
-                           (" …" if len(names) > 6 else ""))
-
-    # added — consider
-    if added:
-        shown = sorted(added)
-        out.append(S["add_h"].format(to=to, n=len(added)))
-        out.append(S["add_intro"])
-        for v in shown[:40]:
-            out.append(f"- `{v}`")
-        if len(shown) > 40:
-            out.append(f"- … (+{len(shown) - 40})")
-
-    # action order — a COMPLETE checklist: each step is a statement + the command to
-    # run it. Assembled from standard steps + every fired warning's remediation.
+    # action order — a COMPLETE checklist right after the must-remove section: each
+    # step is a statement + the command to run it, assembled from standard steps +
+    # every fired warning's remediation.
     items = [
         (S["act_seq"],
          f"git -C kubespray checkout <следующий-минор>   # {frm} → … → {to}, по одному"),
@@ -442,7 +430,7 @@ def render(frm, to, docs, vdelta, removed, added, set_vars, values, inv_paths, l
                       f"grep -rnE '{'|'.join(re.escape(v) for v in must)}' {inv_dirs}"))
     if added:
         items.append((S["act_newvars"],
-                      f"# отредактировать group_vars, затем повторно применить (шаг апгрейда ниже)"))
+                      "# отредактировать group_vars, затем повторно применить (шаг апгрейда ниже)"))
     items += [
         (S["act_apply"], f"ansible-playbook {inv} upgrade-cluster.yml -b -e serial=1"),
         (S["act_verify"],
@@ -455,6 +443,28 @@ def render(frm, to, docs, vdelta, removed, added, set_vars, values, inv_paths, l
         out.append(f"**{i}.** {text}")
         if cmd:
             out.append("```bash\n" + cmd + "\n```")
+
+    # all removed (grouped) — reference, each linked to its doc where one exists
+    if removed:
+        out.append(S["rem_h"].format(n=len(removed)))
+        out.append(S["rem_intro"].format(frm=frm, to=to))
+        for pfx, names in sorted(group_by_prefix(removed).items()):
+            if len(names) == 1:
+                out.append(f"- {var_link(names[0], docs)}")
+            else:
+                out.append(f"- `{pfx}_*` — {len(names)}: " +
+                           ", ".join(var_link(n, docs) for n in names[:6]) +
+                           (" …" if len(names) > 6 else ""))
+
+    # added — consider, each linked to its doc where one exists
+    if added:
+        shown = sorted(added)
+        out.append(S["add_h"].format(to=to, n=len(added)))
+        out.append(S["add_intro"])
+        for v in shown[:40]:
+            out.append(f"- {var_link(v, docs)}")
+        if len(shown) > 40:
+            out.append(f"- … (+{len(shown) - 40})")
 
     out.append("> " + S["note_inv"])
     return "\n".join(out) + "\n"
