@@ -21,6 +21,15 @@ the upgrade-horizon + CVE-remediation layer, and the large troubleshooting layer
   answer version-accurate questions from the KB. This is the bridge from "knowledge base" to "usable
   product" (see the monetization directions discussed 2026-07-17). **Future version.** (added
   2026-07-18)
+- **Post-upgrade cluster & component verification (research)** — after an upgrade the operator needs a
+  way to **test the cluster and every component** and confirm the upgrade actually took. Beyond node
+  `Ready` / pod `Running`, this means: each managed component **actually moved to its target version**
+  (the "Cilium didn't update because `cilium_version` was pinned" class — verify effective vs expected
+  per `RELEASE-V*`), core functions work (DNS, Service/LB, CNI pod-to-pod & pod-to-service —
+  netcheck), etcd health/quorum, and control-plane/kubelet healthy. Could drive a **post-upgrade
+  check** handle that pairs with `upgrade_diff` (pre) — expected-state from the KB (`RELEASE-V*`,
+  `PRACTICE-CLUSTER_HEALTH_CHECKS`, `PRACTICE-NETCHECK`, `check_versions.py`) vs live cluster facts
+  (`ansible -m setup`, `kubectl`/`crictl`). **Needs research** (owner). (added 2026-07-18)
 - **README (public-facing)** — the repo has **no README** on purpose; previous drafts were
   rejected. Must be **designed separately** (audience/structure/tone agreed with owner) before
   re-adding. Do not create ad hoc. Parked to a future version (2026-07-17).
