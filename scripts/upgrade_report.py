@@ -11,17 +11,25 @@ beyond the upgrade-notes chain it derives, from the KDS graph,
     window (CONCEPT-K8S_1_XX_CHANGES), and
   * cross-cutting upgrade mechanics (kubeadm seam, health-check, version skew,
     upgrade horizon, preflight/graceful-upgrade practices).
-With --inventory, personalize it: drop notes about technologies the cluster
-doesn't use.
+With --inventory, personalize it against a real Kubespray inventory: it detects
+the CNI, runtime, kube_proxy_mode, kube_version, cloud provider, and enabled
+add-ons, then
+  * drops notes about technologies the cluster doesn't use,
+  * surfaces the **deep component version-jump** docs for the components you run
+    (e.g. Cilium/Argo CD breaking-change docs — COMP_TO_UPGRADE),
+  * links the **Kubernetes behavior-change** layer (urgent upgrade notes +
+    silent default-flips — K8S_BEHAVIOR), and
+  * adds a **cloud-controller-manager** section when a cloud provider is set.
 
 Usage:
     python scripts/upgrade_report.py --from v2.29.0 --to v2.31.0
     python scripts/upgrade_report.py --from v2.30.0 --to v2.31.0 -o report.md
-    python scripts/upgrade_report.py --from v2.29.0 --to v2.31.0 \
-        --inventory inventory/mycluster
+    python scripts/upgrade_report.py --from v2.28.1 --to v2.31.0 \
+        --inventory scripts/examples/sample-inventory      # demo fixture
 
-Data source: the verified UPGRADE-V*__V* / RELEASE-V* / CONCEPT-* docs in kb/.
-This is not KDS content; it reads the KB and emits a report.
+Data source: the verified UPGRADE-* / RELEASE-V* / CONCEPT-* / TROUBLE-* docs in
+kb/ (read via index/documents.jsonl). This is not KDS content; it reads the KB
+and emits a report — the first consumer "handle" over the knowledge base.
 """
 import argparse
 import glob
@@ -53,8 +61,24 @@ ADDON_ENABLE = {
     "vsphere": "vsphere_csi_enabled",
     "dashboard": "dashboard_enabled",
     "netcheck": "deploy_netchecker",
+    "argocd": "argocd_enabled",
+    "helm": "helm_enabled",
 }
 TRUE = {"true", "yes", "1", "on"}
+
+# active component keyword -> its deep component version-jump UPGRADE doc.
+# Surfaced only when the component is in the inventory (personalized).
+COMP_TO_UPGRADE = {
+    "cilium": "UPGRADE-CILIUM_1_15_TO_1_19",
+    "argocd": "UPGRADE-ARGOCD_2_11_TO_2_14",
+}
+# Kubernetes-layer behavior docs relevant to any multi-version upgrade.
+K8S_BEHAVIOR = [
+    ("CONCEPT-K8S_URGENT_UPGRADE_NOTES",
+     "must-do actions before you upgrade (removed kubelet flags, cgroup-v1 hard error, …)"),
+    ("CONCEPT-K8S_UPGRADE_SILENT_CHANGES",
+     "behavior that changes with no config edit (feature-gate GAs, default flips, deprecations)"),
+]
 
 
 def load_docs():
@@ -128,7 +152,8 @@ def parse_inventory(inv_path):
         glob.glob(os.path.join(inv_path, "**", "*.yaml"), recursive=True)
     if os.path.isfile(inv_path):
         files = [inv_path]
-    wanted = ({"kube_network_plugin", "container_manager", "kube_proxy_mode"}
+    wanted = ({"kube_network_plugin", "container_manager", "kube_proxy_mode",
+               "kube_version", "cloud_provider", "external_cloud_provider"}
               | set(ADDON_ENABLE.values()))
     for fp in files:
         try:
@@ -250,6 +275,11 @@ def render(frm, to, chain, docs, prof=None):
             "runtime": prof.get("container_manager", "containerd (default)"),
             "kube_proxy_mode": prof.get("kube_proxy_mode", "ipvs (default)"),
         }
+        if prof.get("kube_version"):
+            detected["kube_version"] = prof["kube_version"]
+        cloud = prof.get("external_cloud_provider") or prof.get("cloud_provider")
+        if cloud:
+            detected["cloud"] = cloud
         enabled = sorted(k for k, v in ADDON_ENABLE.items()
                          if str(prof.get(v, "false")).lower() in TRUE)
         out.append("**Personalized for your inventory** — profile: " +
@@ -338,6 +368,48 @@ def render(frm, to, chain, docs, prof=None):
             if cid in docs:
                 out.append(f"- **Kubernetes {mnr}** — {docs[cid]['title']}  `[{cid}]`")
                 cited.add(cid)
+
+    # --- Component deep-dive version-jump upgrade docs (personalized) ---
+    comp_lines = []
+    for kw, uid in COMP_TO_UPGRADE.items():
+        if uid not in docs:
+            continue
+        if prof is not None and kw not in active:
+            continue
+        comp_lines.append(f"- **{docs[uid]['title']}**  `[{uid}]`")
+        cited.add(uid)
+    if comp_lines:
+        out.append("\n## Component deep-dive — breaking changes for your components\n")
+        out.append("Your inventory uses these components; read their per-version breaking-change "
+                   "docs (deep upstream-mined notes at the exact versions Kubespray ships, beyond "
+                   "the release-delta table above):")
+        out.extend(comp_lines)
+
+    # --- Kubernetes behavior changes on this path (silent + urgent) ---
+    kb_lines = []
+    for cid, desc in K8S_BEHAVIOR:
+        if cid in docs:
+            kb_lines.append(f"- **{docs[cid]['title']}** — {desc}  `[{cid}]`")
+            cited.add(cid)
+    if kb_lines:
+        out.append("\n## Kubernetes behavior changes on this path\n")
+        out.append("Crossing Kubernetes minors changes behavior two ways — actions you MUST take, "
+                   "and defaults that shift silently:")
+        out.extend(kb_lines)
+
+    # --- Cloud provider (external CCM), only if the inventory uses one ---
+    if prof is not None and (prof.get("cloud_provider") or prof.get("external_cloud_provider")):
+        ccm_lines = []
+        for cid in ("CONCEPT-CLOUD_CONTROLLER_MANAGER",
+                    "TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"):
+            if cid in docs:
+                ccm_lines.append(f"- **{docs[cid]['title']}**  `[{cid}]`")
+                cited.add(cid)
+        if ccm_lines:
+            out.append("\n## Cloud provider (external cloud-controller-manager)\n")
+            out.append("Your cluster uses a cloud provider — the in-tree providers were removed "
+                       "across K8s 1.29–1.31, so confirm the external CCM + CSI are in place:")
+            out.extend(ccm_lines)
 
     out.append("\n## Cross-cutting (Kubernetes layer & upgrade mechanics)\n")
     for cid, desc in [

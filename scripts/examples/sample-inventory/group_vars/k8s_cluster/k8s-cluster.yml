@@ -1,0 +1,5 @@
+# Sample Kubespray inventory (demo fixture for scripts/upgrade_report.py --inventory)
+kube_version: v1.31.4
+kube_network_plugin: cilium
+container_manager: containerd
+kube_proxy_mode: ipvs
