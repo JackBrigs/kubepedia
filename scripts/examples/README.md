@@ -17,10 +17,13 @@ Action-oriented: **what to change in your inventory** to migrate.
 .venv/bin/python scripts/upgrade_diff.py --from v2.30.0 --to v2.31.0
 ```
 
-Emits: **component version diff**, **⚠ variables to REMOVE** (defaults gone in the target
-tag that your inventory still sets — the headline), **all removed** (grouped) and **added**
-variables, a clean action list, and a compact doc appendix (IDs only appear there — no
-`[[wikilink]]` litter in the body).
+Emits: **component version diff**, **⚠ destructive actions & known issues** (inventory-value
+rules like `kubelet_cpu_manager_policy: static` → delete `cpu_manager_state`; version-transition
+rules like the Cilium DaemonSet rollout downtime or etcd 3.6's removed v2-store flags — every
+warning is a **researched, concrete fact with its remediation**, never a "go read it yourself"),
+**⚠ variables to REMOVE** (defaults gone in the target tag that your inventory still sets),
+**all removed** (grouped) and **added** variables, and a **complete action checklist** that folds
+in every remediation step. No `[[wikilink]]`/`[ID]` litter, no doc appendix.
 
 **Data sources.** Versions: the curated `RELEASE-V*` KDS tables. Variables: a direct diff
 of the Kubespray **role defaults** between the two tags in a local checkout (`--src`,

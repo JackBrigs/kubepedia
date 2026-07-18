@@ -213,15 +213,14 @@ STR = {
         "rem_intro": "Дефолты, присутствовавшие в `{frm}` и отсутствующие в `{to}` (сгруппировано по префиксу):",
         "add_h": "\n## Новые переменные в {to} ({n}) — рассмотреть\n",
         "add_intro": "Появились новые дефолты — возможно, новые фичи/ручки, которые стоит включить или проверить:",
-        "actions_h": "\n## Порядок действий\n",
-        "actions": [
-            "Идти **по одному минору Kubespray за раз** (пропускать нельзя).",
-            "**Снять snapshot etcd** и пройти пред-апгрейдный чеклист.",
-            "Удалить из инвентаря переменные из раздела ⚠ выше.",
-            "Проверить новые переменные (раздел выше) — включить нужные.",
-            "Прогнать security-матрицы для компонентов, у которых сменилась версия.",
-        ],
-        "docs_h": "\n## Подробнее (документы базы)\n",
+        "actions_h": "\n## Порядок действий (полный чеклист)\n",
+        "actions_intro": "Выполнять по порядку — включены все шаги, чтобы избежать деструктивных последствий выше:",
+        "act_seq": "Идти **по одному минору Kubespray за раз** (пропускать нельзя).",
+        "act_snapshot": "Снять snapshot etcd (`etcdctl snapshot save`) и пройти пред-апгрейдный чеклист (health, сертификаты, ёмкость для drain).",
+        "act_remove": "Удалить из инвентаря переменные из раздела ⚠ выше: {vars}.",
+        "act_newvars": "Проверить новые переменные (раздел выше) и включить нужные.",
+        "act_apply": "Апгрейд: `upgrade-cluster.yml`, control-plane `serial: 1`, воркеры батчами; проверять узел за узлом.",
+        "act_verify": "После апгрейда: все узлы `Ready`, системные поды `Running`, связность (netcheck), прогнать security-матрицы изменившихся компонентов.",
         "note_inv": "Составной инвентарь: перечислите папки через несколько `--inventory` — они сольются как в Ansible.",
     },
     "en": {
@@ -243,38 +242,17 @@ STR = {
         "rem_intro": "Defaults present in `{frm}` and absent in `{to}` (grouped by prefix):",
         "add_h": "\n## New variables in {to} ({n}) — consider\n",
         "add_intro": "New defaults appeared — possibly new features/knobs to enable or review:",
-        "actions_h": "\n## Action order\n",
-        "actions": [
-            "Go **one Kubespray minor at a time** (no skipping).",
-            "**Snapshot etcd** and run the pre-upgrade checklist.",
-            "Delete the ⚠ variables above from your inventory.",
-            "Review the new variables (section above) — enable what you need.",
-            "Run the security matrices for components whose version changed.",
-        ],
-        "docs_h": "\n## Learn more (KB documents)\n",
+        "actions_h": "\n## Action order (complete checklist)\n",
+        "actions_intro": "Do these in order — every step needed to avoid the destructive effects above is included:",
+        "act_seq": "Go **one Kubespray minor at a time** (no skipping).",
+        "act_snapshot": "Snapshot etcd (`etcdctl snapshot save`) and run the pre-upgrade checklist (health, certs, drain capacity).",
+        "act_remove": "Delete the ⚠ variables above from your inventory: {vars}.",
+        "act_newvars": "Review the new variables (section above) and enable what you need.",
+        "act_apply": "Upgrade: `upgrade-cluster.yml`, control-plane `serial: 1`, workers in batches; check node-by-node.",
+        "act_verify": "After: all nodes `Ready`, system pods `Running`, connectivity (netcheck), run the security matrices for changed components.",
         "note_inv": "Composite inventory: pass several `--inventory` folders — they merge like Ansible.",
     },
 }
-
-# curated, clean doc references (id + human name), shown only in the appendix
-APPENDIX = [
-    ("PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR", {"ru": "Runbook: апгрейд на один минор", "en": "Runbook: upgrade one minor"}),
-    ("PRACTICE-UPGRADE_PREFLIGHT", {"ru": "Пред-апгрейдный чеклист", "en": "Pre-upgrade checklist"}),
-    ("CONCEPT-K8S_URGENT_UPGRADE_NOTES", {"ru": "Обязательные действия перед апгрейдом (K8s)", "en": "Kubernetes urgent upgrade notes"}),
-    ("CONCEPT-K8S_UPGRADE_SILENT_CHANGES", {"ru": "Тихие изменения поведения K8s", "en": "Kubernetes silent behavior changes"}),
-    ("UPGRADE-CILIUM_1_15_TO_1_19", {"ru": "Cilium: ломающие изменения по версиям", "en": "Cilium breaking changes"}),
-    ("UPGRADE-ARGOCD_2_11_TO_2_14", {"ru": "Argo CD: ломающие изменения по версиям", "en": "Argo CD breaking changes"}),
-    ("CONCEPT-CLOUD_CONTROLLER_MANAGER", {"ru": "Внешний cloud-controller-manager", "en": "External cloud-controller-manager"}),
-]
-
-# which appendix docs are relevant to which inventory keyword
-DOC_RELEVANCE = {
-    "UPGRADE-CILIUM_1_15_TO_1_19": lambda p: p.get("kube_network_plugin") == "cilium",
-    "UPGRADE-ARGOCD_2_11_TO_2_14": lambda keys: "argocd_enabled" in keys,
-    "CONCEPT-CLOUD_CONTROLLER_MANAGER": lambda p: bool(
-        p.get("cloud_provider") or p.get("external_cloud_provider")),
-}
-
 
 def _comp_span(vdelta, name):
     for n, f, t in vdelta:
@@ -284,90 +262,113 @@ def _comp_span(vdelta, name):
 
 
 def build_warnings(frm, to, vdelta, values, lang):
-    """Return a list of {ru, en} warnings from inventory-value and version-transition
-    rules. Every rule is grounded (a real Kubespray/kubelet behavior); extend as new
-    gotchas are confirmed."""
+    """Rules -> list of {warn:{ru,en}, steps:{ru:[...], en:[...]}}. Each rule is a
+    RESEARCHED, concrete fact (never a 'go read it yourself' pointer): the warn
+    explains the danger, the steps are the exact remediation folded into the action
+    list. Two groups: inventory-value-triggered and version-transition-triggered."""
     w = []
     cni = str(values.get("kube_network_plugin", "")).lower()
 
-    # --- inventory value-triggered (destructive follow-ups Kubespray doesn't do) ---
+    # --- inventory value-triggered (destructive follow-ups Kubespray does NOT do) ---
     cpu = str(values.get("kubelet_cpu_manager_policy", "")).lower()
     if cpu and cpu != "none":
-        w.append({
-            "ru": f"**CPU Manager (`kubelet_cpu_manager_policy: {cpu}`).** При смене политики "
-                  f"или несовместимом сохранённом состоянии после апгрейда **kubelet не "
-                  f"стартует**, пока вручную не удалить `/var/lib/kubelet/cpu_manager_state` и "
-                  f"не перезапустить kubelet — **на каждом узле**. Kubespray этого не делает. "
-                  f"То же для memory/topology manager (`memory_manager_state`).",
-            "en": f"**CPU Manager (`kubelet_cpu_manager_policy: {cpu}`).** On a policy change or "
-                  f"incompatible saved state after upgrade, **kubelet refuses to start** until "
-                  f"you delete `/var/lib/kubelet/cpu_manager_state` and restart kubelet — **on "
-                  f"each node**. Kubespray doesn't do this. Same for memory/topology manager."})
+        w.append({"warn": {
+            "ru": f"**CPU Manager (`kubelet_cpu_manager_policy: {cpu}`).** Если политика или её "
+                  f"сохранённое состояние станет несовместимым после апгрейда, **kubelet не "
+                  f"стартует** — Kubespray сам это не чинит.",
+            "en": f"**CPU Manager (`kubelet_cpu_manager_policy: {cpu}`).** If the policy or its "
+                  f"saved state becomes incompatible after upgrade, **kubelet won't start** — "
+                  f"Kubespray doesn't fix this itself."},
+            "steps": {
+            "ru": ["На каждом узле после апгрейда kubelet: удалить `/var/lib/kubelet/"
+                   "cpu_manager_state` и перезапустить kubelet (то же для `memory_manager_state` "
+                   "при memory-manager)."],
+            "en": ["On each node after the kubelet upgrade: delete `/var/lib/kubelet/"
+                   "cpu_manager_state` and restart kubelet (same for `memory_manager_state`)."]}})
     top = str(values.get("kubelet_topology_manager_policy", "")).lower()
     if top and top != "none":
-        w.append({
-            "ru": f"**Topology Manager (`{top}`).** Смена политики Topology/Memory Manager "
-                  f"так же требует удаления соответствующего `*_manager_state` в "
-                  f"`/var/lib/kubelet/` и рестарта kubelet на узлах.",
-            "en": f"**Topology Manager (`{top}`).** Changing the Topology/Memory Manager policy "
-                  f"likewise needs the matching `*_manager_state` in `/var/lib/kubelet/` deleted "
-                  f"and kubelet restarted on the nodes."})
+        w.append({"warn": {
+            "ru": f"**Topology Manager (`{top}`).** Смена политики требует сброса состояния "
+                  f"менеджеров ресурсов kubelet.",
+            "en": f"**Topology Manager (`{top}`).** A policy change needs the kubelet resource-"
+                  f"manager state reset."},
+            "steps": {
+            "ru": ["На узлах удалить соответствующий `*_manager_state` в `/var/lib/kubelet/` и "
+                   "перезапустить kubelet."],
+            "en": ["On the nodes delete the matching `*_manager_state` in `/var/lib/kubelet/` and "
+                   "restart kubelet."]}})
     if str(values.get("kube_encrypt_secret_data", "")).lower() in ("true", "yes"):
-        w.append({
+        w.append({"warn": {
             "ru": "**Шифрование Secret'ов включено.** Смена провайдера/ключа не перешифровывает "
-                  "существующие Secret'ы автоматически — после изменения выполните "
-                  "`kubectl get secrets -A -o json | kubectl replace -f -`, соблюдая порядок "
-                  "провайдеров (иначе потеряете возможность их прочитать).",
+                  "существующие Secret'ы автоматически.",
             "en": "**Secret encryption is on.** Changing provider/key does not re-encrypt existing "
-                  "Secrets — after the change run `kubectl get secrets -A -o json | kubectl replace "
-                  "-f -`, respecting provider order (or you lose the ability to read them)."})
+                  "Secrets automatically."},
+            "steps": {
+            "ru": ["После смены провайдера шифрования перешифровать Secret'ы: `kubectl get secrets "
+                   "-A -o json | kubectl replace -f -` (сохраняя порядок провайдеров)."],
+            "en": ["After changing the encryption provider re-encrypt Secrets: `kubectl get secrets "
+                   "-A -o json | kubectl replace -f -` (keeping provider order)."]}})
 
     # --- version-transition-triggered ---
     cil = _comp_span(vdelta, "cilium")
     if cil and cni in ("cilium", ""):
         span = f" (`{cil[0]}` → `{cil[1]}`)"
-        w.append({
-            "ru": f"**Переустановка/роллаут Cilium{span}.** Kubespray переприменяет CNI при "
-                  f"смене версии — DaemonSet Cilium пересоздаётся/перекатывается, что даёт "
-                  f"**простой сети подов на время роллаута** (наблюдалось, напр., на переходе к "
-                  f"v2.29.1). Планируйте окно, делайте по одному узлу, проверьте связность после "
-                  f"(netcheck).",
+        w.append({"warn": {
+            "ru": f"**Переустановка/роллаут Cilium{span}.** Kubespray переприменяет CNI при смене "
+                  f"версии — DaemonSet Cilium перекатывается, что даёт **простой сети подов на "
+                  f"время роллаута** (наблюдалось, напр., на переходе к v2.29.1).",
             "en": f"**Cilium reinstall/rollout{span}.** Kubespray re-applies the CNI on a version "
-                  f"change — the Cilium DaemonSet is recreated/rolled, causing **pod-network "
-                  f"downtime during the rollout** (observed e.g. on the v2.29.1 step). Plan a "
-                  f"window, go node-by-node, verify connectivity after (netcheck)."})
+                  f"change — the Cilium DaemonSet is rolled, causing **pod-network downtime during "
+                  f"the rollout** (observed e.g. on the v2.29.1 step)."},
+            "steps": {
+            "ru": ["Апгрейд Cilium выполнять в окно обслуживания, по одному узлу; после каждого "
+                   "проверять связность подов (netcheck)."],
+            "en": ["Do the Cilium upgrade in a maintenance window, node-by-node; verify pod "
+                   "connectivity after each (netcheck)."]}})
     etc = _comp_span(vdelta, "etcd")
     if etc and "3.6" in etc[1]:
-        w.append({
-            "ru": "**etcd 3.6 (для K8s 1.35).** Мажорный переход etcd `3.5 → 3.6`. **In-place "
-                  "даунгрейда нет** — обязательно snapshot до апгрейда; изучите операционные "
-                  "изменения etcd 3.6 перед переходом на 1.35.",
-            "en": "**etcd 3.6 (for K8s 1.35).** Major etcd `3.5 → 3.6`. **No in-place downgrade** "
-                  "— snapshot before, and review etcd 3.6 operational changes before moving to 1.35."})
+        w.append({"warn": {
+            "ru": "**etcd 3.6 (для K8s 1.35) — операционные изменения (изучено по CHANGELOG-3.6):** "
+                  "v2-хранилище удалено — флаги `--enable-v2` / `--experimental-enable-v2v3` больше "
+                  "не принимаются (etcd **не стартует**, если заданы); `etcdctl snapshot status` и "
+                  "`etcdctl snapshot restore` **убраны** — доступны только в `etcdutl`; режим "
+                  "`--proxy*` удалён. Downgrade 3.6→3.5 **поддержан** (online), но 3.6 не запустится "
+                  "на data-dir от более новой версии.",
+            "en": "**etcd 3.6 (for K8s 1.35) — operational changes (from CHANGELOG-3.6):** the v2 "
+                  "store is removed — `--enable-v2` / `--experimental-enable-v2v3` are no longer "
+                  "accepted (etcd **won't start** if set); `etcdctl snapshot status`/`restore` are "
+                  "**removed** — only in `etcdutl`; `--proxy*` removed. Downgrade 3.6→3.5 **is "
+                  "supported** (online), but 3.6 won't start on a newer version's data dir."},
+            "steps": {
+            "ru": ["Убрать из конфигурации etcd флаги `--enable-v2` / `--experimental-enable-v2v3` "
+                   "(v2-store удалён в 3.6).",
+                   "В скриптах бэкапа/восстановления заменить `etcdctl snapshot status/restore` на "
+                   "`etcdutl snapshot status/restore` (снятие снапшота остаётся `etcdctl snapshot "
+                   "save`)."],
+            "en": ["Remove `--enable-v2` / `--experimental-enable-v2v3` from any etcd config (v2 "
+                   "store gone in 3.6).",
+                   "In backup/restore scripts switch `etcdctl snapshot status/restore` to `etcdutl "
+                   "snapshot status/restore` (taking a snapshot stays `etcdctl snapshot save`)."]}})
     kube = _comp_span(vdelta, "kubernetes")
     if kube and "1.35" in kube[1]:
-        w.append({
+        w.append({"warn": {
             "ru": "**cgroup v1 → жёсткая ошибка на K8s 1.35.** Preflight kubeadm/kubelet **падает** "
-                  "при cgroup v1 на узлах с kubelet ≥1.35. Мигрируйте узлы на **cgroup v2** до "
-                  "апгрейда, либо задайте `failCgroupV1: false` в ConfigMap `kubelet-config`.",
+                  "при cgroup v1 на узлах с kubelet ≥1.35.",
             "en": "**cgroup v1 → hard error on K8s 1.35.** kubeadm/kubelet preflight **fails** on "
-                  "cgroup v1 with kubelet ≥1.35. Migrate nodes to **cgroup v2** before upgrading, "
-                  "or set `failCgroupV1: false` in the `kubelet-config` ConfigMap."})
+                  "cgroup v1 with kubelet ≥1.35."},
+            "steps": {
+            "ru": ["До перехода на K8s 1.35 мигрировать узлы на cgroup v2 (проверка: `stat -fc %T "
+                   "/sys/fs/cgroup` = `cgroup2fs`); либо задать `failCgroupV1: false` в ConfigMap "
+                   "`kube-system/kubelet-config`."],
+            "en": ["Before K8s 1.35 migrate nodes to cgroup v2 (`stat -fc %T /sys/fs/cgroup` = "
+                   "`cgroup2fs`); or set `failCgroupV1: false` in the `kube-system/kubelet-config` "
+                   "ConfigMap."]}})
     return w
 
 
 def render(frm, to, docs, vdelta, removed, added, set_vars, values, profile, how, lang):
     S = STR[lang]
     out = [S["title"].format(frm=frm, to=to) + "\n", S["gen"] + "\n"]
-    if profile:
-        prof = ", ".join(f"{k}=`{v}`" for k, v in profile.items())
-        out.append(S["profile"].format(profile=prof))
-    elif set_vars:
-        out.append(S["resolved_by"].format(how=how))
-    else:
-        out.append(S["no_prof"])
-    if set_vars and profile:
-        out.append(S["resolved_by"].format(how=how))
 
     # version diff
     out.append(S["vers_h"])
@@ -385,7 +386,7 @@ def render(frm, to, docs, vdelta, removed, added, set_vars, values, profile, how
     if warns:
         out.append(S["warn_intro"])
         for wn in warns:
-            out.append(f"- {wn[lang]}")
+            out.append(f"- {wn['warn'][lang]}")
     else:
         out.append(S["warn_none"])
 
@@ -421,26 +422,21 @@ def render(frm, to, docs, vdelta, removed, added, set_vars, values, profile, how
         if len(shown) > 40:
             out.append(f"- … (+{len(shown) - 40})")
 
-    # action order (clean, no litter)
+    # action order — a COMPLETE checklist: standard steps + every remediation step
+    # from the fired warnings + variable removal, in order.
+    steps = [S["act_seq"], S["act_snapshot"]]
+    for wn in warns:
+        steps += wn["steps"][lang]
+    if must:
+        steps.append(S["act_remove"].format(
+            vars=", ".join(f"`{v}`" for v in must)))
+    if added:
+        steps.append(S["act_newvars"])
+    steps += [S["act_apply"], S["act_verify"]]
     out.append(S["actions_h"])
-    for i, a in enumerate(S["actions"], 1):
+    out.append(S["actions_intro"])
+    for i, a in enumerate(steps, 1):
         out.append(f"{i}. {a}")
-
-    # appendix — the only place IDs appear
-    relevant = []
-    for did, name in APPENDIX:
-        rel = DOC_RELEVANCE.get(did)
-        if rel is not None:
-            arg = profile if did != "UPGRADE-ARGOCD_2_11_TO_2_14" else set_vars
-            if not rel(arg):
-                continue
-        if not docs or did in docs:
-            relevant.append((did, name[lang]))
-    if relevant:
-        out.append(S["docs_h"])
-        for did, name in relevant:
-            path = f"  ({docs[did]['path']})" if did in docs else ""
-            out.append(f"- {name} — `{did}`{path}")
 
     out.append("\n> " + S["note_inv"])
     return "\n".join(out) + "\n"
