@@ -7,13 +7,22 @@ source-linked upgrade report from the KDS docs.
 ## Try it
 
 ```bash
-# full (unfiltered) report
+# full (unfiltered) report — Russian framing by default (the admin reads Russian)
 .venv/bin/python scripts/upgrade_report.py --from v2.28.1 --to v2.31.0
 
 # personalized to an inventory (this demo fixture)
 .venv/bin/python scripts/upgrade_report.py --from v2.28.1 --to v2.31.0 \
     --inventory scripts/examples/sample-inventory -o report.md
+
+# English framing
+.venv/bin/python scripts/upgrade_report.py --from v2.28.1 --to v2.31.0 --lang en
 ```
+
+**Language.** The report's own headers/labels/descriptions are **Russian by default**
+(`--lang ru`), because the operator reading it is Russian-speaking. Verbatim excerpts
+pulled from the KDS docs stay **English** (the KB's knowledge language) — the script is
+deterministic and doesn't translate doc bodies; each quoted fact links to its source.
+Use `--lang en` for a fully English report.
 
 ## What the intake reads
 

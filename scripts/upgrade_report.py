@@ -27,6 +27,12 @@ Usage:
     python scripts/upgrade_report.py --from v2.28.1 --to v2.31.0 \
         --inventory scripts/examples/sample-inventory      # demo fixture
 
+The report **framing is Russian by default** (`--lang ru`) because the operator/admin
+reading it is Russian-speaking; pass `--lang en` for English. Verbatim excerpts
+pulled from the KDS docs stay in **English** (the KB's knowledge language, a recorded
+decision) — only the report's own headers/labels/descriptions are localized, and
+every quoted fact links to its source doc.
+
 Data source: the verified UPGRADE-* / RELEASE-V* / CONCEPT-* / TROUBLE-* docs in
 kb/ (read via index/documents.jsonl). This is not KDS content; it reads the KB
 and emits a report — the first consumer "handle" over the knowledge base.
@@ -73,12 +79,8 @@ COMP_TO_UPGRADE = {
     "argocd": "UPGRADE-ARGOCD_2_11_TO_2_14",
 }
 # Kubernetes-layer behavior docs relevant to any multi-version upgrade.
-K8S_BEHAVIOR = [
-    ("CONCEPT-K8S_URGENT_UPGRADE_NOTES",
-     "must-do actions before you upgrade (removed kubelet flags, cgroup-v1 hard error, …)"),
-    ("CONCEPT-K8S_UPGRADE_SILENT_CHANGES",
-     "behavior that changes with no config edit (feature-gate GAs, default flips, deprecations)"),
-]
+K8S_BEHAVIOR = ["CONCEPT-K8S_URGENT_UPGRADE_NOTES",
+                "CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]
 
 
 def load_docs():
@@ -262,13 +264,135 @@ def cve_id_for(comp_name):
     return COMP_TO_CVE.get(comp_name.lower().split("(")[0].strip())
 
 
-def render(frm, to, chain, docs, prof=None):
+# --- i18n: the report framing is user-facing (default Russian for the admin).
+# Verbatim excerpts pulled from KDS docs stay in English (the KB's knowledge
+# language, a recorded decision) — the framing is localized, the quoted facts are
+# linked to their source docs. ---
+STRINGS = {
+    "ru": {
+        "title": "# Отчёт об апгрейде и изменениях — Kubespray {frm} → {to}",
+        "generated": "_Сгенерировано из базы знаний Kubepedia (KDS). Шагов апгрейда на пути: {n}._",
+        "personalized": "**Персонализировано под ваш inventory** — профиль: {profile}",
+        "addons": "; включённые аддоны: {addons}.",
+        "none": "не обнаружено",
+        "filter_note": "_Пункты про технологии, которых у вас нет, отфильтрованы (перечислены в конце для прозрачности)._",
+        "excerpt_note": "_Дословные выдержки из документов базы приведены на английском (язык знаний базы); ссылки на источники — в конце отчёта._",
+        "step": "\n## Шаг: {t}\n",
+        "deltas": "**Изменения версий**\n",
+        "actions": "**Необходимые действия / breaking changes**\n",
+        "compat": "**Ограничения совместимости**\n",
+        "comp_h": "\n## Изменения версий компонентов ({frm} → {to})\n",
+        "component": "Компонент",
+        "cve_h": "\n## Безопасность / экспозиция CVE\n",
+        "cve_intro": "Перемещение этих компонентов меняет их экспозицию к CVE (osv.dev, по конкретной поставляемой версии) — сравните строки from/to в каждой матрице:",
+        "cve_line": "- **{name}** `{fv}` → `{tv}` — сравните экспозицию в матрице по версиям  `[{cid}]`.",
+        "cve_runbook": "- Сводный runbook «уязвим ли я / что обновлять»  `[CONCEPT-CVE_REMEDIATION]`.",
+        "k8s_h": "\n## Изменения слоя Kubernetes (новые миноры: {minors})\n",
+        "k8s_intro": "Миноры, входящие в окно поддержки на этом пути — прочитайте их операторские изменения:",
+        "k8s_line": "- **Kubernetes {mnr}** — {title}  `[{cid}]`",
+        "deep_h": "\n## Глубокий разбор компонентов — breaking changes для ваших компонентов\n",
+        "deep_intro": "Ваш inventory использует эти компоненты; прочитайте их доки breaking changes по версиям (глубокие upstream-факты на точных версиях, что ставит Kubespray — сверх таблицы release-дельт выше):",
+        "behav_h": "\n## Изменения поведения Kubernetes на этом пути\n",
+        "behav_intro": "Переход между минорами Kubernetes меняет поведение двумя путями — действия, которые НУЖНО выполнить, и дефолты, которые меняются молча:",
+        "cloud_h": "\n## Облачный провайдер (внешний cloud-controller-manager)\n",
+        "cloud_intro": "Ваш кластер использует облачный провайдер — in-tree провайдеры удалены в K8s 1.29–1.31, поэтому убедитесь, что внешний CCM + CSI на месте:",
+        "cross_h": "\n## Сквозное (слой Kubernetes и механика апгрейда)\n",
+        "filtered_h": "\n## Отфильтровано (нет в вашем inventory)\n",
+        "filtered_text": "Эти технологии упоминались в исходных upgrade-заметках, но убраны из отчёта выше, потому что ваш inventory их не использует:",
+        "filtered_rerun": "\n_Запустите без `--inventory`, чтобы увидеть полный неотфильтрованный отчёт._",
+        "sources_h": "\n## Источники (документы KDS)\n",
+        "source_ref": "(упомянут; ищите в kb/)",
+    },
+    "en": {
+        "title": "# Upgrade & Change Report — Kubespray {frm} → {to}",
+        "generated": "_Generated from Kubepedia KDS docs. {n} upgrade step(s) on the path._",
+        "personalized": "**Personalized for your inventory** — profile: {profile}",
+        "addons": "; enabled add-ons: {addons}.",
+        "none": "none detected",
+        "filter_note": "_Notes about technologies you don't use are filtered out (listed at the end for transparency)._",
+        "excerpt_note": "_Verbatim excerpts from the KB docs are in English (the KB's knowledge language); source links are at the end._",
+        "step": "\n## Step: {t}\n",
+        "deltas": "**Version deltas**\n",
+        "actions": "**Required actions / breaking changes**\n",
+        "compat": "**Compatibility constraints**\n",
+        "comp_h": "\n## Component version changes ({frm} → {to})\n",
+        "component": "Component",
+        "cve_h": "\n## Security / CVE exposure\n",
+        "cve_intro": "Moving these components changes their CVE exposure (osv.dev, per shipped version) — compare the from/to rows in each matrix:",
+        "cve_line": "- **{name}** `{fv}` → `{tv}` — compare exposure in the per-version matrix  `[{cid}]`.",
+        "cve_runbook": "- Consolidated *am I exposed / what to upgrade* runbook  `[CONCEPT-CVE_REMEDIATION]`.",
+        "k8s_h": "\n## Kubernetes layer changes (new minors: {minors})\n",
+        "k8s_intro": "Minors that enter the support window on this path — read their operator-relevant changes:",
+        "k8s_line": "- **Kubernetes {mnr}** — {title}  `[{cid}]`",
+        "deep_h": "\n## Component deep-dive — breaking changes for your components\n",
+        "deep_intro": "Your inventory uses these components; read their per-version breaking-change docs (deep upstream-mined notes at the exact versions Kubespray ships, beyond the release-delta table above):",
+        "behav_h": "\n## Kubernetes behavior changes on this path\n",
+        "behav_intro": "Crossing Kubernetes minors changes behavior two ways — actions you MUST take, and defaults that shift silently:",
+        "cloud_h": "\n## Cloud provider (external cloud-controller-manager)\n",
+        "cloud_intro": "Your cluster uses a cloud provider — the in-tree providers were removed across K8s 1.29–1.31, so confirm the external CCM + CSI are in place:",
+        "cross_h": "\n## Cross-cutting (Kubernetes layer & upgrade mechanics)\n",
+        "filtered_h": "\n## Filtered out (not in your inventory)\n",
+        "filtered_text": "These technologies were mentioned in the source upgrade notes but removed from the report above because your inventory doesn't use them:",
+        "filtered_rerun": "\n_Re-run without `--inventory` to see the full, unfiltered report._",
+        "sources_h": "\n## Sources (KDS documents)\n",
+        "source_ref": "(referenced; resolve in kb/)",
+    },
+}
+
+# doc-id -> localized one-line description (cross-cutting + behavior sections)
+DESC = {
+    "CONCEPT-K8S_URGENT_UPGRADE_NOTES": {
+        "ru": "обязательные действия перед апгрейдом (удалённые kubelet-флаги, hard-error cgroup v1, …)",
+        "en": "must-do actions before you upgrade (removed kubelet flags, cgroup-v1 hard error, …)"},
+    "CONCEPT-K8S_UPGRADE_SILENT_CHANGES": {
+        "ru": "поведение, меняющееся без правки конфига (GA feature-gate'ов, смена дефолтов, депрекейшены)",
+        "en": "behavior that changes with no config edit (feature-gate GAs, default flips, deprecations)"},
+    "CONCEPT-K8S_API_REMOVALS": {
+        "ru": "удаления API при переходе между минорами Kubernetes",
+        "en": "API removals crossing K8s minors"},
+    "CONCEPT-K8S_FEATURE_GATES": {
+        "ru": "выпуск (GA) и удаление feature-gate'ов",
+        "en": "feature-gate graduations/removals"},
+    "CONCEPT-COMPONENT_VERSION_SELECTION": {
+        "ru": "какие версии компонентов меняются и почему",
+        "en": "which component versions move, and why"},
+    "CONCEPT-UPGRADE_HORIZON": {
+        "ru": "насколько поставляемые версии отстают от последнего upstream",
+        "en": "how far the shipped versions are behind latest upstream"},
+    "CONCEPT-KUBESPRAY_KUBEADM_SEAM": {
+        "ru": "кто выполняет апгрейд (kubeadm) vs Kubespray",
+        "en": "who does the upgrade (kubeadm) vs Kubespray"},
+    "TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK": {
+        "ru": "если control plane не поднимается посреди апгрейда",
+        "en": "if the control plane won't come up mid-upgrade"},
+    "TROUBLE-KUBEADM_VERSION_SKEW": {
+        "ru": "правило «по одному минору за раз» (version skew)",
+        "en": "one-minor-at-a-time skew rule"},
+    "PRACTICE-UPGRADE_PREFLIGHT": {
+        "ru": "пред-апгрейдный чеклист",
+        "en": "pre-upgrade checklist"},
+    "PRACTICE-GRACEFUL_UPGRADE": {
+        "ru": "механика drain/serial/pause",
+        "en": "drain/serial/pause mechanics"},
+}
+
+CROSSCUT_IDS = [
+    "CONCEPT-K8S_API_REMOVALS", "CONCEPT-K8S_FEATURE_GATES",
+    "CONCEPT-COMPONENT_VERSION_SELECTION", "CONCEPT-UPGRADE_HORIZON",
+    "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK",
+    "TROUBLE-KUBEADM_VERSION_SKEW", "PRACTICE-UPGRADE_PREFLIGHT",
+    "PRACTICE-GRACEFUL_UPGRADE",
+]
+
+
+def render(frm, to, chain, docs, prof=None, lang="ru"):
+    S = STRINGS[lang]
     active = inactive = None
     if prof is not None:
         active, inactive = relevance_sets(prof)
     out, cited, all_dropped = [], set(), set()
-    out.append(f"# Upgrade & Change Report — Kubespray {frm} → {to}\n")
-    out.append(f"_Generated from Kubepedia KDS docs. {len(chain)} upgrade step(s) on the path._\n")
+    out.append(S["title"].format(frm=frm, to=to) + "\n")
+    out.append(S["generated"].format(n=len(chain)) + "\n")
     if prof is not None:
         detected = {
             "CNI": prof.get("kube_network_plugin", "calico (default)"),
@@ -282,11 +406,11 @@ def render(frm, to, chain, docs, prof=None):
             detected["cloud"] = cloud
         enabled = sorted(k for k, v in ADDON_ENABLE.items()
                          if str(prof.get(v, "false")).lower() in TRUE)
-        out.append("**Personalized for your inventory** — profile: " +
-                   ", ".join(f"{k}=`{v}`" for k, v in detected.items()) +
-                   (f"; enabled add-ons: {', '.join(enabled) or 'none detected'}." ))
-        out.append("_Notes about technologies you don't use are filtered out "
-                   "(listed at the end for transparency)._\n")
+        profile = ", ".join(f"{k}=`{v}`" for k, v in detected.items())
+        out.append(S["personalized"].format(profile=profile) +
+                   S["addons"].format(addons=", ".join(enabled) or S["none"]))
+        out.append(S["filter_note"])
+    out.append(S["excerpt_note"] + "\n")
 
     def maybe_filter(text):
         if prof is None or not text:
@@ -298,17 +422,17 @@ def render(frm, to, chain, docs, prof=None):
     for did in chain:
         d = docs[did]
         sec = read_sections(d["path"])
-        out.append(f"\n## Step: {d['title'].replace('Upgrade report ', '')}\n")
+        out.append(S["step"].format(t=d['title'].replace('Upgrade report ', '')))
         if sec.get("Summary"):
             out.append(maybe_filter(sec["Summary"]) + "\n")
         if sec.get("Implementation"):
-            out.append("**Version deltas**\n")
+            out.append(S["deltas"])
             out.append(maybe_filter(sec["Implementation"]) + "\n")
         if sec.get("Upgrade Notes"):
-            out.append("**Required actions / breaking changes**\n")
+            out.append(S["actions"])
             out.append(maybe_filter(sec["Upgrade Notes"]) + "\n")
         if sec.get("Compatibility"):
-            out.append("**Compatibility constraints**\n")
+            out.append(S["compat"])
             out.append(maybe_filter(sec["Compatibility"]) + "\n")
         cited.add(did)
         for s in sec.values():
@@ -327,8 +451,8 @@ def render(frm, to, chain, docs, prof=None):
                     continue
             shown_delta.append((name, fv, tv))
     if shown_delta:
-        out.append(f"\n## Component version changes ({frm} → {to})\n")
-        out.append("| Component | " + frm + " | " + to + " |")
+        out.append(S["comp_h"].format(frm=frm, to=to))
+        out.append("| " + S["component"] + " | " + frm + " | " + to + " |")
         out.append("|---|---|---|")
         for name, fv, tv in shown_delta:
             out.append(f"| {name} | {fv} | {tv} |")
@@ -340,18 +464,14 @@ def render(frm, to, chain, docs, prof=None):
     for name, fv, tv in shown_delta:
         cid = cve_id_for(name)
         if cid and cid in docs:
-            cve_lines.append(
-                f"- **{name}** `{fv}` → `{tv}` — compare exposure in the per-version "
-                f"matrix  `[{cid}]`.")
+            cve_lines.append(S["cve_line"].format(name=name, fv=fv, tv=tv, cid=cid))
             cited.add(cid)
     if cve_lines:
-        out.append("\n## Security / CVE exposure\n")
-        out.append("Moving these components changes their CVE exposure (osv.dev, per shipped "
-                   "version) — compare the from/to rows in each matrix:")
+        out.append(S["cve_h"])
+        out.append(S["cve_intro"])
         out.extend(cve_lines)
         if "CONCEPT-CVE_REMEDIATION" in docs:
-            out.append("- Consolidated *am I exposed / what to upgrade* runbook  "
-                       "`[CONCEPT-CVE_REMEDIATION]`.")
+            out.append(S["cve_runbook"])
             cited.add("CONCEPT-CVE_REMEDIATION")
 
     # --- Kubernetes layer changes for newly-entered minors ---
@@ -359,14 +479,12 @@ def render(frm, to, chain, docs, prof=None):
     _, mt = parse_release_table(docs, to)
     new_minors = sorted(mt - mf)
     if new_minors:
-        out.append("\n## Kubernetes layer changes (new minors: " +
-                   ", ".join(new_minors) + ")\n")
-        out.append("Minors that enter the support window on this path — read their "
-                   "operator-relevant changes:")
+        out.append(S["k8s_h"].format(minors=", ".join(new_minors)))
+        out.append(S["k8s_intro"])
         for mnr in new_minors:
             cid = "CONCEPT-K8S_" + mnr.replace(".", "_") + "_CHANGES"
             if cid in docs:
-                out.append(f"- **Kubernetes {mnr}** — {docs[cid]['title']}  `[{cid}]`")
+                out.append(S["k8s_line"].format(mnr=mnr, title=docs[cid]['title'], cid=cid))
                 cited.add(cid)
 
     # --- Component deep-dive version-jump upgrade docs (personalized) ---
@@ -379,22 +497,19 @@ def render(frm, to, chain, docs, prof=None):
         comp_lines.append(f"- **{docs[uid]['title']}**  `[{uid}]`")
         cited.add(uid)
     if comp_lines:
-        out.append("\n## Component deep-dive — breaking changes for your components\n")
-        out.append("Your inventory uses these components; read their per-version breaking-change "
-                   "docs (deep upstream-mined notes at the exact versions Kubespray ships, beyond "
-                   "the release-delta table above):")
+        out.append(S["deep_h"])
+        out.append(S["deep_intro"])
         out.extend(comp_lines)
 
     # --- Kubernetes behavior changes on this path (silent + urgent) ---
     kb_lines = []
-    for cid, desc in K8S_BEHAVIOR:
+    for cid in K8S_BEHAVIOR:
         if cid in docs:
-            kb_lines.append(f"- **{docs[cid]['title']}** — {desc}  `[{cid}]`")
+            kb_lines.append(f"- **{docs[cid]['title']}** — {DESC[cid][lang]}  `[{cid}]`")
             cited.add(cid)
     if kb_lines:
-        out.append("\n## Kubernetes behavior changes on this path\n")
-        out.append("Crossing Kubernetes minors changes behavior two ways — actions you MUST take, "
-                   "and defaults that shift silently:")
+        out.append(S["behav_h"])
+        out.append(S["behav_intro"])
         out.extend(kb_lines)
 
     # --- Cloud provider (external CCM), only if the inventory uses one ---
@@ -406,40 +521,28 @@ def render(frm, to, chain, docs, prof=None):
                 ccm_lines.append(f"- **{docs[cid]['title']}**  `[{cid}]`")
                 cited.add(cid)
         if ccm_lines:
-            out.append("\n## Cloud provider (external cloud-controller-manager)\n")
-            out.append("Your cluster uses a cloud provider — the in-tree providers were removed "
-                       "across K8s 1.29–1.31, so confirm the external CCM + CSI are in place:")
+            out.append(S["cloud_h"])
+            out.append(S["cloud_intro"])
             out.extend(ccm_lines)
 
-    out.append("\n## Cross-cutting (Kubernetes layer & upgrade mechanics)\n")
-    for cid, desc in [
-        ("CONCEPT-K8S_API_REMOVALS", "API removals crossing K8s minors"),
-        ("CONCEPT-K8S_FEATURE_GATES", "feature-gate graduations/removals"),
-        ("CONCEPT-COMPONENT_VERSION_SELECTION", "which component versions move, and why"),
-        ("CONCEPT-UPGRADE_HORIZON", "how far the shipped versions are behind latest upstream"),
-        ("CONCEPT-KUBESPRAY_KUBEADM_SEAM", "who does the upgrade (kubeadm) vs Kubespray"),
-        ("TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK", "if the control plane won't come up mid-upgrade"),
-        ("TROUBLE-KUBEADM_VERSION_SKEW", "one-minor-at-a-time skew rule"),
-        ("PRACTICE-UPGRADE_PREFLIGHT", "pre-upgrade checklist"),
-        ("PRACTICE-GRACEFUL_UPGRADE", "drain/serial/pause mechanics"),
-    ]:
+    out.append(S["cross_h"])
+    for cid in CROSSCUT_IDS:
         if cid in docs:
-            out.append(f"- **{docs[cid]['title']}** — {desc}  `[{cid}]`")
+            out.append(f"- **{docs[cid]['title']}** — {DESC[cid][lang]}  `[{cid}]`")
             cited.add(cid)
 
     if prof is not None and all_dropped:
-        out.append("\n## Filtered out (not in your inventory)\n")
-        out.append("These technologies were mentioned in the source upgrade notes but "
-                   "removed from the report above because your inventory doesn't use them:")
+        out.append(S["filtered_h"])
+        out.append(S["filtered_text"])
         out.append("`" + "`, `".join(sorted(all_dropped)) + "`")
-        out.append("\n_Re-run without `--inventory` to see the full, unfiltered report._")
+        out.append(S["filtered_rerun"])
 
-    out.append("\n## Sources (KDS documents)\n")
+    out.append(S["sources_h"])
     for cid in sorted(cited):
         if cid in docs:
             out.append(f"- `{cid}` — {docs[cid]['title']}  ({docs[cid]['path']})")
         else:
-            out.append(f"- `{cid}` — (referenced; resolve in kb/)")
+            out.append(f"- `{cid}` — {S['source_ref']}")
     return "\n".join(out) + "\n"
 
 
@@ -448,6 +551,9 @@ def main():
     ap.add_argument("--from", dest="frm", required=True, help="from version, e.g. v2.29.0")
     ap.add_argument("--to", dest="to", required=True, help="to version, e.g. v2.31.0")
     ap.add_argument("--inventory", help="inventory dir/file to personalize (filter) the report")
+    ap.add_argument("--lang", choices=["ru", "en"], default="ru",
+                    help="report framing language (default: ru — the admin reads Russian; "
+                         "verbatim doc excerpts stay English, the KB's knowledge language)")
     ap.add_argument("-o", "--out", help="write report to file (default: stdout)")
     args = ap.parse_args()
 
@@ -469,7 +575,7 @@ def main():
         prof = parse_inventory(args.inventory)
         print(f"inventory profile: {prof or '(no relevant keys found)'}", file=sys.stderr)
 
-    report = render(frm, to, chain, docs, prof)
+    report = render(frm, to, chain, docs, prof, lang=args.lang)
     if args.out:
         with open(args.out, "w") as f:
             f.write(report)
