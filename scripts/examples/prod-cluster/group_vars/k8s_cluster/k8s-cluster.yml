@@ -1,3 +1,4 @@
 kube_version: v1.31.4
 kube_network_plugin: cilium
 kubelet_cpu_manager_policy: static
+cilium_version: v1.15.9

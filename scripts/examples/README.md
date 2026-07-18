@@ -90,3 +90,16 @@ Query the KDS relation graph: "what depends on X", "what breaks if I change X".
 Resolves the target by ID, alias, tag, or title/ID substring; shows inbound edges
 (who depends on / references it), outbound (its dependencies), and — with `--depth N`
 — the transitive impact radius. `--json` for machine output; `--lang ru|en`.
+
+## CI gate
+
+`kubepedia gate` exits non-zero when the inventory still sets variables removed in the
+target tag (BLOCK) or pins a component version that won't move (WARN → BLOCK with
+`--strict`). Wire it into a pipeline to fail a PR before a broken upgrade:
+
+```yaml
+# .github/workflows/upgrade-gate.yml (sketch)
+- run: |
+    python scripts/kubepedia.py gate --from v2.30.0 --to v2.31.0 \
+      --inventory inventory/prod --strict
+```

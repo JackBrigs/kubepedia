@@ -21,6 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # subcommand -> (script, one-line description)
 CMDS = {
     "plan":     ("upgrade_diff.py",   "inventory migration diff (pre-upgrade): version + variable changes"),
+    "gate":     ("gate.py",           "CI gate: fail on removed vars still set / version pins blocking upgrade"),
     "check":    ("post_check.py",     "post-upgrade verification: did every component actually move + health"),
     "impact":   ("impact.py",         "graph impact analysis: what depends on X / what breaks if X changes"),
     "report":   ("upgrade_report.py", "KB-narrative upgrade report (personalized to an inventory)"),
