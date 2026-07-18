@@ -261,11 +261,12 @@ def _comp_span(vdelta, name):
     return None
 
 
-def build_warnings(frm, to, vdelta, values, lang):
-    """Rules -> list of {warn:{ru,en}, steps:{ru:[...], en:[...]}}. Each rule is a
-    RESEARCHED, concrete fact (never a 'go read it yourself' pointer): the warn
-    explains the danger, the steps are the exact remediation folded into the action
-    list. Two groups: inventory-value-triggered and version-transition-triggered."""
+def build_warnings(frm, to, vdelta, values, inv):
+    """Rules -> list of {warn:{ru,en}, steps:[{ru,en,cmd}]}. Each rule is a RESEARCHED,
+    concrete fact (never a 'go read it yourself' pointer): the warn explains the danger,
+    each step carries its exact remediation text AND the command to run it (`cmd`), which
+    is folded into the action checklist. `inv` is the `-i ...` inventory flag string so
+    ansible commands target the real inventory."""
     w = []
     cni = str(values.get("kube_network_plugin", "")).lower()
 
@@ -279,35 +280,35 @@ def build_warnings(frm, to, vdelta, values, lang):
             "en": f"**CPU Manager (`kubelet_cpu_manager_policy: {cpu}`).** If the policy or its "
                   f"saved state becomes incompatible after upgrade, **kubelet won't start** — "
                   f"Kubespray doesn't fix this itself."},
-            "steps": {
-            "ru": ["На каждом узле после апгрейда kubelet: удалить `/var/lib/kubelet/"
-                   "cpu_manager_state` и перезапустить kubelet (то же для `memory_manager_state` "
-                   "при memory-manager)."],
-            "en": ["On each node after the kubelet upgrade: delete `/var/lib/kubelet/"
-                   "cpu_manager_state` and restart kubelet (same for `memory_manager_state`)."]}})
+            "steps": [{
+            "ru": "На каждом узле после апгрейда kubelet удалить `cpu_manager_state` и "
+                  "перезапустить kubelet:",
+            "en": "On each node after the kubelet upgrade, delete `cpu_manager_state` and restart "
+                  "kubelet:",
+            "cmd": f"ansible {inv} kube_node -b -m shell -a "
+                   f"'rm -f /var/lib/kubelet/cpu_manager_state && systemctl restart kubelet'"}]})
     top = str(values.get("kubelet_topology_manager_policy", "")).lower()
     if top and top != "none":
         w.append({"warn": {
-            "ru": f"**Topology Manager (`{top}`).** Смена политики требует сброса состояния "
+            "ru": f"**Topology/Memory Manager (`{top}`).** Смена политики требует сброса состояния "
                   f"менеджеров ресурсов kubelet.",
-            "en": f"**Topology Manager (`{top}`).** A policy change needs the kubelet resource-"
-                  f"manager state reset."},
-            "steps": {
-            "ru": ["На узлах удалить соответствующий `*_manager_state` в `/var/lib/kubelet/` и "
-                   "перезапустить kubelet."],
-            "en": ["On the nodes delete the matching `*_manager_state` in `/var/lib/kubelet/` and "
-                   "restart kubelet."]}})
+            "en": f"**Topology/Memory Manager (`{top}`).** A policy change needs the kubelet "
+                  f"resource-manager state reset."},
+            "steps": [{
+            "ru": "Удалить `memory_manager_state` на узлах и перезапустить kubelet:",
+            "en": "Delete `memory_manager_state` on the nodes and restart kubelet:",
+            "cmd": f"ansible {inv} kube_node -b -m shell -a "
+                   f"'rm -f /var/lib/kubelet/memory_manager_state && systemctl restart kubelet'"}]})
     if str(values.get("kube_encrypt_secret_data", "")).lower() in ("true", "yes"):
         w.append({"warn": {
             "ru": "**Шифрование Secret'ов включено.** Смена провайдера/ключа не перешифровывает "
                   "существующие Secret'ы автоматически.",
             "en": "**Secret encryption is on.** Changing provider/key does not re-encrypt existing "
                   "Secrets automatically."},
-            "steps": {
-            "ru": ["После смены провайдера шифрования перешифровать Secret'ы: `kubectl get secrets "
-                   "-A -o json | kubectl replace -f -` (сохраняя порядок провайдеров)."],
-            "en": ["After changing the encryption provider re-encrypt Secrets: `kubectl get secrets "
-                   "-A -o json | kubectl replace -f -` (keeping provider order)."]}})
+            "steps": [{
+            "ru": "После смены провайдера перешифровать все Secret'ы (порядок провайдеров сохранить):",
+            "en": "After changing the provider, re-encrypt all Secrets (keep provider order):",
+            "cmd": "kubectl get secrets -A -o json | kubectl replace -f -"}]})
 
     # --- version-transition-triggered ---
     cil = _comp_span(vdelta, "cilium")
@@ -320,11 +321,13 @@ def build_warnings(frm, to, vdelta, values, lang):
             "en": f"**Cilium reinstall/rollout{span}.** Kubespray re-applies the CNI on a version "
                   f"change — the Cilium DaemonSet is rolled, causing **pod-network downtime during "
                   f"the rollout** (observed e.g. on the v2.29.1 step)."},
-            "steps": {
-            "ru": ["Апгрейд Cilium выполнять в окно обслуживания, по одному узлу; после каждого "
-                   "проверять связность подов (netcheck)."],
-            "en": ["Do the Cilium upgrade in a maintenance window, node-by-node; verify pod "
-                   "connectivity after each (netcheck)."]}})
+            "steps": [{
+            "ru": "Апгрейд Cilium — в окно обслуживания; дождаться завершения роллаута и проверить "
+                  "связность:",
+            "en": "Upgrade Cilium in a maintenance window; wait for the rollout and verify "
+                  "connectivity:",
+            "cmd": "kubectl -n kube-system rollout status ds/cilium --timeout=15m\n"
+                   "cilium connectivity test   # или netchecker, если развёрнут"}]})
     etc = _comp_span(vdelta, "etcd")
     if etc and "3.6" in etc[1]:
         w.append({"warn": {
@@ -339,16 +342,14 @@ def build_warnings(frm, to, vdelta, values, lang):
                   "accepted (etcd **won't start** if set); `etcdctl snapshot status`/`restore` are "
                   "**removed** — only in `etcdutl`; `--proxy*` removed. Downgrade 3.6→3.5 **is "
                   "supported** (online), but 3.6 won't start on a newer version's data dir."},
-            "steps": {
-            "ru": ["Убрать из конфигурации etcd флаги `--enable-v2` / `--experimental-enable-v2v3` "
-                   "(v2-store удалён в 3.6).",
-                   "В скриптах бэкапа/восстановления заменить `etcdctl snapshot status/restore` на "
-                   "`etcdutl snapshot status/restore` (снятие снапшота остаётся `etcdctl snapshot "
-                   "save`)."],
-            "en": ["Remove `--enable-v2` / `--experimental-enable-v2v3` from any etcd config (v2 "
-                   "store gone in 3.6).",
-                   "In backup/restore scripts switch `etcdctl snapshot status/restore` to `etcdutl "
-                   "snapshot status/restore` (taking a snapshot stays `etcdctl snapshot save`)."]}})
+            "steps": [{
+            "ru": "Найти в инвентаре удалённые v2-флаги etcd и убрать их:",
+            "en": "Find the removed etcd v2 flags in the inventory and remove them:",
+            "cmd": f"grep -rn -E 'enable.v2|experimental-enable-v2v3|--proxy' {inv.replace('-i ', '') or 'inventory/'}"},
+            {
+            "ru": "Найти в скриптах устаревшие вызовы `etcdctl snapshot status/restore` (→ `etcdutl`):",
+            "en": "Find stale `etcdctl snapshot status/restore` calls in scripts (→ `etcdutl`):",
+            "cmd": "grep -rn -E 'etcdctl snapshot (status|restore)' ."}]})
     kube = _comp_span(vdelta, "kubernetes")
     if kube and "1.35" in kube[1]:
         w.append({"warn": {
@@ -356,18 +357,19 @@ def build_warnings(frm, to, vdelta, values, lang):
                   "при cgroup v1 на узлах с kubelet ≥1.35.",
             "en": "**cgroup v1 → hard error on K8s 1.35.** kubeadm/kubelet preflight **fails** on "
                   "cgroup v1 with kubelet ≥1.35."},
-            "steps": {
-            "ru": ["До перехода на K8s 1.35 мигрировать узлы на cgroup v2 (проверка: `stat -fc %T "
-                   "/sys/fs/cgroup` = `cgroup2fs`); либо задать `failCgroupV1: false` в ConfigMap "
-                   "`kube-system/kubelet-config`."],
-            "en": ["Before K8s 1.35 migrate nodes to cgroup v2 (`stat -fc %T /sys/fs/cgroup` = "
-                   "`cgroup2fs`); or set `failCgroupV1: false` in the `kube-system/kubelet-config` "
-                   "ConfigMap."]}})
+            "steps": [{
+            "ru": "Проверить, что все узлы на cgroup v2 (ждём `cgroup2fs`); иначе мигрировать ОС на "
+                  "cgroup v2 или задать `failCgroupV1: false` в ConfigMap `kube-system/kubelet-config`:",
+            "en": "Check every node is on cgroup v2 (expect `cgroup2fs`); otherwise migrate the OS to "
+                  "cgroup v2 or set `failCgroupV1: false` in the `kube-system/kubelet-config` ConfigMap:",
+            "cmd": f"ansible {inv} all -b -m shell -a 'stat -fc %T /sys/fs/cgroup'   # ожидаем cgroup2fs"}]})
     return w
 
 
-def render(frm, to, docs, vdelta, removed, added, set_vars, values, profile, how, lang):
+def render(frm, to, docs, vdelta, removed, added, set_vars, values, inv_paths, lang):
     S = STR[lang]
+    inv = " ".join(f"-i {p}" for p in inv_paths) or "-i <inventory>"
+    inv_dirs = " ".join(inv_paths) or "inventory/"
     out = [S["title"].format(frm=frm, to=to) + "\n", S["gen"] + "\n"]
 
     # version diff
@@ -381,7 +383,7 @@ def render(frm, to, docs, vdelta, removed, added, set_vars, values, profile, how
         out.append(S["vers_none"])
 
     # ⚠ destructive actions & known issues (inventory-value + transition rules)
-    warns = build_warnings(frm, to, vdelta, values, lang)
+    warns = build_warnings(frm, to, vdelta, values, inv)
     out.append(S["warn_h"])
     if warns:
         out.append(S["warn_intro"])
@@ -422,23 +424,39 @@ def render(frm, to, docs, vdelta, removed, added, set_vars, values, profile, how
         if len(shown) > 40:
             out.append(f"- … (+{len(shown) - 40})")
 
-    # action order — a COMPLETE checklist: standard steps + every remediation step
-    # from the fired warnings + variable removal, in order.
-    steps = [S["act_seq"], S["act_snapshot"]]
+    # action order — a COMPLETE checklist: each step is a statement + the command to
+    # run it. Assembled from standard steps + every fired warning's remediation.
+    items = [
+        (S["act_seq"],
+         f"git -C kubespray checkout <следующий-минор>   # {frm} → … → {to}, по одному"),
+        (S["act_snapshot"],
+         f"etcdctl snapshot save /var/backups/pre-{to}.db\n"
+         f"kubectl get nodes,pods -A | grep -vE 'Running|Completed'\n"
+         f"kubeadm certs check-expiration"),
+    ]
     for wn in warns:
-        steps += wn["steps"][lang]
+        for st in wn["steps"]:
+            items.append((st[lang], st["cmd"]))
     if must:
-        steps.append(S["act_remove"].format(
-            vars=", ".join(f"`{v}`" for v in must)))
+        items.append((S["act_remove"].format(vars=", ".join(f"`{v}`" for v in must)),
+                      f"grep -rnE '{'|'.join(re.escape(v) for v in must)}' {inv_dirs}"))
     if added:
-        steps.append(S["act_newvars"])
-    steps += [S["act_apply"], S["act_verify"]]
+        items.append((S["act_newvars"],
+                      f"# отредактировать group_vars, затем повторно применить (шаг апгрейда ниже)"))
+    items += [
+        (S["act_apply"], f"ansible-playbook {inv} upgrade-cluster.yml -b -e serial=1"),
+        (S["act_verify"],
+         "kubectl get nodes -o wide\n"
+         "kubectl get pods -A | grep -vE 'Running|Completed'"),
+    ]
     out.append(S["actions_h"])
     out.append(S["actions_intro"])
-    for i, a in enumerate(steps, 1):
-        out.append(f"{i}. {a}")
+    for i, (text, cmd) in enumerate(items, 1):
+        out.append(f"**{i}.** {text}")
+        if cmd:
+            out.append("```bash\n" + cmd + "\n```")
 
-    out.append("\n> " + S["note_inv"])
+    out.append("> " + S["note_inv"])
     return "\n".join(out) + "\n"
 
 
@@ -482,7 +500,7 @@ def main():
     set_vars = set(values)
 
     report = render(frm, to, docs, vdelta, removed, added, set_vars, values,
-                    profile, how, args.lang)
+                    args.inventory, args.lang)
     if args.out:
         open(args.out, "w").write(report)
         print(f"wrote {args.out}", file=sys.stderr)
