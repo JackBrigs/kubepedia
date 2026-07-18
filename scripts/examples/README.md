@@ -1,3 +1,22 @@
+# Kubepedia tools
+
+One CLI over everything — **`scripts/kubepedia.py`**:
+
+```bash
+kubepedia plan   --from v2.28.1 --to v2.31.0 --inventory scripts/examples/prod-cluster
+kubepedia check  --version v2.31.0 --facts facts.json
+kubepedia impact etcd
+kubepedia verify        # KB integrity
+kubepedia               # list commands
+```
+
+`plan` = pre-upgrade migration diff, `check` = post-upgrade verification, `impact` =
+graph analysis, `report` = KB-narrative report, `verify`/`validate`/`index` = KB tooling.
+Each subcommand proxies to its script, so `kubepedia <cmd> --help` shows that command's
+own options. The sections below document the individual tools.
+
+---
+
 # Kubepedia handles — demo
 
 Two consumer **handles** over the KB. Both take two Kubespray versions and (optionally)
