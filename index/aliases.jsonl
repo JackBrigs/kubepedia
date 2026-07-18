@@ -458,6 +458,7 @@
 {"alias": "cgroup v1 maintenance mode", "ids": ["CONCEPT-K8S_CGROUP_V1_REMOVAL"]}
 {"alias": "cgroup v1 removal kubernetes", "ids": ["CONCEPT-K8S_CGROUP_V1_REMOVAL"]}
 {"alias": "cgroupDriver systemd mismatch", "ids": ["CONCEPT-K8S_CGROUP_DRIVER_FROM_CRI"]}
+{"alias": "cgroups v1 hard error kubeadm 1.35", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES"]}
 {"alias": "cgroupv1 deprecated", "ids": ["CONCEPT-K8S_CGROUP_V1_REMOVAL"]}
 {"alias": "change container_manager", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
 {"alias": "change kube_network_plugin", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
@@ -1456,6 +1457,7 @@
 {"alias": "keda not scaling", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
 {"alias": "keda scaler error", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
 {"alias": "keda triggerauthentication failing", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
+{"alias": "keep-terminated-pod-volumes removed", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES", "TROUBLE-K8S_KUBELET_REMOVED_FLAGS"]}
 {"alias": "kernel upgrade node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "kernel version requirements", "ids": ["PRACTICE-KERNEL_REQUIREMENTS"]}
 {"alias": "kms provider apiVersion v1 warning", "ids": ["TROUBLE-K8S_KMS_V1_DEPRECATED"]}
@@ -1685,6 +1687,7 @@
 {"alias": "kube_webhook_token_auth", "ids": ["VARIABLE-KUBE_WEBHOOK_TOKEN_AUTH"]}
 {"alias": "kube_webhook_token_auth_url_skip_tls_verify", "ids": ["VARIABLE-KUBE_WEBHOOK_TOKEN_AUTH_URL_SKIP_TLS_VERIFY"]}
 {"alias": "kubeadm", "ids": ["TAG-KUBEADM"]}
+{"alias": "kubeadm admin super-admin.conf", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES"]}
 {"alias": "kubeadm cannot upgrade skip minor", "ids": ["TROUBLE-KUBEADM_VERSION_SKEW"]}
 {"alias": "kubeadm certs", "ids": ["CONCEPT-CLUSTER_PKI"]}
 {"alias": "kubeadm certs check-expiration", "ids": ["TROUBLE-KUBEADM_CERT_RENEWAL"]}
@@ -1754,9 +1757,12 @@
 {"alias": "kubelet cannot reach apiserver", "ids": ["TROUBLE-NODE_CANNOT_REACH_APISERVER"]}
 {"alias": "kubelet cgroup driver from cri", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}
 {"alias": "kubelet cgroupDriver systemd", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
+{"alias": "kubelet cloud-config removed", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES", "TROUBLE-K8S_KUBELET_REMOVED_FLAGS"]}
 {"alias": "kubelet config", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
 {"alias": "kubelet container gc leak", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
 {"alias": "kubelet credentials forbidden after 1.34", "ids": ["TROUBLE-K8S_NODE_AUTHORIZER_SELECTORS"]}
+{"alias": "kubelet extra args removed flag", "ids": ["TROUBLE-K8S_KUBELET_REMOVED_FLAGS"]}
+{"alias": "kubelet flag removed crashloop", "ids": ["TROUBLE-K8S_KUBELET_REMOVED_FLAGS"]}
 {"alias": "kubelet hardening", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
 {"alias": "kubelet memory leak oomkill workloads", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
 {"alias": "kubelet not ready", "ids": ["PRACTICE-NODE_NOT_READY"]}
@@ -1765,6 +1771,7 @@
 {"alias": "kubelet serving cert not rotating", "ids": ["TROUBLE-KUBELET_SERVING_CERT_ROTATION"]}
 {"alias": "kubelet serving certificate self-signed", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
 {"alias": "kubelet swap LimitedSwap", "ids": ["CONCEPT-K8S_NODE_SWAP"]}
+{"alias": "kubelet won't start after upgrade unknown flag", "ids": ["TROUBLE-K8S_KUBELET_REMOVED_FLAGS"]}
 {"alias": "kubelet-conf-server-indent", "ids": ["TROUBLE-KUBELET_CONF_SERVER_INDENT_CRASHLOOP"]}
 {"alias": "kubelet-config.yaml", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
 {"alias": "kubelet-csr-approver", "ids": ["TAG-KUBELET_CSR_APPROVER"]}
@@ -1970,6 +1977,7 @@
 {"alias": "multus", "ids": ["COMPONENT-MULTUS"]}
 {"alias": "multus cni", "ids": ["COMPONENT-MULTUS"]}
 {"alias": "multus_version", "ids": ["COMPONENT-MULTUS"]}
+{"alias": "must read before upgrade k8s", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES"]}
 {"alias": "mutatingwebhookconfiguration blocking", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "nameservers", "ids": ["VARIABLE-NAMESERVERS"]}
 {"alias": "namespace backup restore", "ids": ["CONCEPT-VELERO"]}
@@ -2161,6 +2169,7 @@
 {"alias": "pod stuck schedulinggated", "ids": ["TROUBLE-SCHEDULER_PREEMPTION_GATES"]}
 {"alias": "pod traffic not natted", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
 {"alias": "pod worker requested for removal still not fully terminated", "ids": ["TROUBLE-KUBELET_STATIC_POD_STUCK"]}
+{"alias": "pod-infra-container-image removed", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES", "TROUBLE-K8S_KUBELET_REMOVED_FLAGS"]}
 {"alias": "pod-stuck-terminating", "ids": ["TROUBLE-POD_STUCK_TERMINATING"]}
 {"alias": "pod_infra_image_repo", "ids": ["VARIABLE-POD_INFRA_IMAGE_REPO"]}
 {"alias": "pod_infra_image_tag", "ids": ["VARIABLE-POD_INFRA_IMAGE_TAG"]}
@@ -2569,6 +2578,7 @@
 {"alias": "upgrade_node_confirm", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
 {"alias": "upload", "ids": ["TAG-UPLOAD"]}
 {"alias": "upstream_dns_servers", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION", "VARIABLE-UPSTREAM_DNS_SERVERS"]}
+{"alias": "urgent upgrade notes kubernetes", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES"]}
 {"alias": "user cannot get", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "user namespaces KEP", "ids": ["CONCEPT-K8S_KEPS"]}
 {"alias": "v2.27.0", "ids": ["RELEASE-V2_27_0"]}
