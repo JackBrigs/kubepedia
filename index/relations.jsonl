@@ -607,6 +607,9 @@
 {"source": "TAG-APPS", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "TAG-ASSERTS", "target": "TAG-PREINSTALL", "type": "see_also"}
 {"source": "TAG-BASTION", "target": "TAG-PREINSTALL", "type": "see_also"}
+{"source": "TAG-CALICO_RR", "target": "COMPONENT-CALICO", "type": "see_also"}
+{"source": "TAG-CALICO_RR", "target": "CONFIG-CALICO_DATAPLANE", "type": "see_also"}
+{"source": "TAG-CALICO_RR", "target": "TAG-NETWORK", "type": "see_also"}
 {"source": "TAG-CLIENT", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
 {"source": "TAG-CLUSTER_ROLES", "target": "TAG-CONTROL_PLANE", "type": "see_also"}
 {"source": "TAG-CONTAINER_ENGINE", "target": "COMPONENT-CONTAINERD", "type": "see_also"}

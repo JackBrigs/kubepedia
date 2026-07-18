@@ -6,6 +6,7 @@
 {"alias": "--tags azure-csi-driver", "ids": ["TAG-AZURE_CSI_DRIVER"]}
 {"alias": "--tags bastion", "ids": ["TAG-BASTION"]}
 {"alias": "--tags bootstrap_os", "ids": ["TAG-BOOTSTRAP_OS"]}
+{"alias": "--tags calico_rr", "ids": ["TAG-CALICO_RR"]}
 {"alias": "--tags cert-manager", "ids": ["TAG-CERT_MANAGER"]}
 {"alias": "--tags check", "ids": ["TAG-CHECK"]}
 {"alias": "--tags cilium", "ids": ["TAG-CILIUM"]}
@@ -395,11 +396,13 @@
 {"alias": "calico mtu packet drops", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
 {"alias": "calico network backend", "ids": ["CONFIG-CALICO_DATAPLANE"]}
 {"alias": "calico node not ready", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
+{"alias": "calico route reflector ansible tag", "ids": ["TAG-CALICO_RR"]}
 {"alias": "calico to cilium migration", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "calico vxlan bgp ipip", "ids": ["CONFIG-CALICO_DATAPLANE"]}
 {"alias": "calico wireguard nftables", "ids": ["CONFIG-CALICO_DATAPLANE"]}
 {"alias": "calico-node crashloopbackoff", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
 {"alias": "calico_mtu", "ids": ["CONFIG-CNI_MTU"]}
+{"alias": "calico_rr tag", "ids": ["TAG-CALICO_RR"]}
 {"alias": "can't get final child's PID from pipe EOF", "ids": ["TROUBLE-CONTAINERD_SHIM_TASK_CREATE"]}
 {"alias": "canary controller", "ids": ["CONCEPT-ADDON_FLAGGER"]}
 {"alias": "cannot be imported into the current release", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
@@ -1359,6 +1362,7 @@
 {"alias": "hubble metrics", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
 {"alias": "hubble ui", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
 {"alias": "hydrator.enabled", "ids": ["CONCEPT-ARGOCD_SOURCE_HYDRATOR"]}
+{"alias": "i-am-a-route-reflector", "ids": ["TAG-CALICO_RR"]}
 {"alias": "identity count spike cilium", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
 {"alias": "ignore-preflight-errors", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
 {"alias": "ignore_assert_errors", "ids": ["VARIABLE-IGNORE_ASSERT_ERRORS"]}
