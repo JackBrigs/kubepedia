@@ -126,6 +126,8 @@
 {"alias": "ArgoCD", "ids": ["CONCEPT-GITOPS"]}
 {"alias": "AuthenticationConfiguration", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
 {"alias": "AuthorizeNodeWithSelectors forbidden", "ids": ["TROUBLE-K8S_NODE_AUTHORIZER_SELECTORS"]}
+{"alias": "CABPT bootstrap provider talos", "ids": ["CONCEPT-TALOS_CLUSTER_API"]}
+{"alias": "CACPPT control plane provider talos", "ids": ["CONCEPT-TALOS_CLUSTER_API"]}
 {"alias": "CCM openstack vsphere hcloud oci", "ids": ["CONCEPT-CLOUD_CONTROLLER_MANAGER"]}
 {"alias": "CEL admission", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "CIS benchmark kubespray", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
@@ -905,6 +907,7 @@
 {"alias": "cve tracking", "ids": ["CONCEPT-SECURITY_ADVISORIES"]}
 {"alias": "dashboard addon", "ids": ["CONCEPT-ADDON_KUBERNETES_DASHBOARD"]}
 {"alias": "declarative deployment kubernetes", "ids": ["CONCEPT-GITOPS"]}
+{"alias": "declarative talos clusters", "ids": ["CONCEPT-TALOS_CLUSTER_API"]}
 {"alias": "decommission node kubespray", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
 {"alias": "dedicate cpu cores to kubelet", "ids": ["CONFIG-CPU_ISOLATION"]}
 {"alias": "dedicate nodes", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
@@ -2107,6 +2110,10 @@
 {"alias": "oidc redirect_uri mismatch", "ids": ["TROUBLE-DEX_OIDC_LOGIN_FAILS"]}
 {"alias": "olm", "ids": ["CONCEPT-ADDON_OLM"]}
 {"alias": "olm 0.32.0", "ids": ["CONCEPT-ADDON_OLM"]}
+{"alias": "omni infrastructure provider bare-metal", "ids": ["CONCEPT-TALOS_OMNI"]}
+{"alias": "omni kubespan", "ids": ["CONCEPT-TALOS_OMNI"]}
+{"alias": "omni self-hosted saas", "ids": ["CONCEPT-TALOS_OMNI"]}
+{"alias": "omni sidebase", "ids": ["CONCEPT-TALOS_OMNI"]}
 {"alias": "one minor at a time upgrade", "ids": ["TROUBLE-KUBEADM_VERSION_SKEW"]}
 {"alias": "one minor upgrade procedure", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
 {"alias": "open-webui", "ids": ["CONCEPT-ADDON_KUBERNETES_MCP"]}
@@ -2398,7 +2405,9 @@
 {"alias": "sidecar containers 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "sidecar lifecycle kubernetes", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
 {"alias": "sidecar startup ordering", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
+{"alias": "sidero metal capi", "ids": ["CONCEPT-TALOS_CLUSTER_API"]}
 {"alias": "sidero metal omni", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
+{"alias": "sidero omni management plane", "ids": ["CONCEPT-TALOS_OMNI"]}
 {"alias": "silent default changes kubernetes upgrade", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "single component upgrade runbook", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
 {"alias": "skip_downloads", "ids": ["VARIABLE-SKIP_DOWNLOADS"]}
@@ -2472,14 +2481,18 @@
 {"alias": "systemd_resolved_disable_stub_listener", "ids": ["VARIABLE-SYSTEMD_RESOLVED_DISABLE_STUB_LISTENER"]}
 {"alias": "tag facet", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "taint nodes", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "talos 1.13 kubernetes versions", "ids": ["CONCEPT-TALOS_K8S_MATRIX"]}
 {"alias": "talos backup secrets", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
 {"alias": "talos bare metal provisioning", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
 {"alias": "talos best practices", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
 {"alias": "talos bootstrap etcd", "ids": ["TROUBLE-TALOS_CP_BOOTSTRAP"]}
 {"alias": "talos bootstrap only once", "ids": ["TROUBLE-TALOS_CP_BOOTSTRAP"]}
 {"alias": "talos bootstrap recover-from", "ids": ["TROUBLE-TALOS_ETCD_RESTORE"]}
+{"alias": "talos capi provider versions", "ids": ["CONCEPT-TALOS_K8S_MATRIX"]}
+{"alias": "talos capi providers", "ids": ["CONCEPT-TALOS_CLUSTER_API"]}
 {"alias": "talos cilium cgroup securitycontext", "ids": ["CONCEPT-TALOS_CILIUM"]}
 {"alias": "talos cilium install", "ids": ["CONCEPT-TALOS_CILIUM"]}
+{"alias": "talos cluster api", "ids": ["CONCEPT-TALOS_CLUSTER_API"]}
 {"alias": "talos cni cilium", "ids": ["CONCEPT-TALOS_NETWORKING"]}
 {"alias": "talos cni none cilium", "ids": ["CONCEPT-TALOS_CILIUM"]}
 {"alias": "talos config patch", "ids": ["CONCEPT-TALOS_MACHINE_CONFIG"]}
@@ -2488,6 +2501,7 @@
 {"alias": "talos day 2 operations", "ids": ["CONCEPT-TALOS_TALOSCTL_WORKFLOW"]}
 {"alias": "talos disaster recovery", "ids": ["TROUBLE-TALOS_ETCD_RESTORE"]}
 {"alias": "talos disk encryption", "ids": ["CONCEPT-TALOS_OS_K8S"]}
+{"alias": "talos docker cluster", "ids": ["CONCEPT-TALOS_LOCAL_CLUSTER"]}
 {"alias": "talos encrypt disk config", "ids": ["CONCEPT-TALOS_DISK_ENCRYPTION"]}
 {"alias": "talos etcd not forming", "ids": ["TROUBLE-TALOS_CP_BOOTSTRAP"]}
 {"alias": "talos etcd restore", "ids": ["TROUBLE-TALOS_ETCD_RESTORE"]}
@@ -2497,9 +2511,11 @@
 {"alias": "talos image factory", "ids": ["CONCEPT-TALOS_SYSTEM_EXTENSIONS"]}
 {"alias": "talos iso install", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
 {"alias": "talos kube-proxy replacement", "ids": ["CONCEPT-TALOS_CILIUM"]}
+{"alias": "talos kubernetes support matrix", "ids": ["CONCEPT-TALOS_K8S_MATRIX"]}
 {"alias": "talos kubernetes upgrade", "ids": ["CONCEPT-TALOS_UPGRADES"]}
 {"alias": "talos kubespan wireguard", "ids": ["CONCEPT-TALOS_NETWORKING"]}
 {"alias": "talos linux", "ids": ["CONCEPT-TALOS_OS_K8S"]}
+{"alias": "talos local dev cluster", "ids": ["CONCEPT-TALOS_LOCAL_CLUSTER"]}
 {"alias": "talos lost quorum restore snapshot", "ids": ["TROUBLE-TALOS_ETCD_RESTORE"]}
 {"alias": "talos luks2 nodeid tpm kms", "ids": ["CONCEPT-TALOS_DISK_ENCRYPTION"]}
 {"alias": "talos machine config", "ids": ["CONCEPT-TALOS_MACHINE_CONFIG", "CONCEPT-TALOS_OS_K8S"]}
@@ -2508,9 +2524,12 @@
 {"alias": "talos maintenance mode install", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
 {"alias": "talos network config", "ids": ["CONCEPT-TALOS_NETWORKING"]}
 {"alias": "talos nvidia extension", "ids": ["CONCEPT-TALOS_SYSTEM_EXTENSIONS"]}
+{"alias": "talos omni", "ids": ["CONCEPT-TALOS_OMNI"]}
+{"alias": "talos omni minimum version", "ids": ["CONCEPT-TALOS_K8S_MATRIX"]}
 {"alias": "talos os", "ids": ["CONCEPT-TALOS_OS_K8S"]}
 {"alias": "talos production guidelines", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
 {"alias": "talos pxe ipxe netboot", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
+{"alias": "talos qemu cluster", "ids": ["CONCEPT-TALOS_LOCAL_CLUSTER"]}
 {"alias": "talos rollback", "ids": ["CONCEPT-TALOS_UPGRADES"]}
 {"alias": "talos schematic", "ids": ["CONCEPT-TALOS_SYSTEM_EXTENSIONS"]}
 {"alias": "talos secrets bundle", "ids": ["CONCEPT-TALOS_MACHINE_CONFIG"]}
@@ -2521,6 +2540,8 @@
 {"alias": "talosconfig endpoints nodes", "ids": ["CONCEPT-TALOS_TALOSCTL_WORKFLOW"]}
 {"alias": "talosctl", "ids": ["CONCEPT-TALOS_OS_K8S"]}
 {"alias": "talosctl certificate error", "ids": ["TROUBLE-TALOS_APID_UNREACHABLE"]}
+{"alias": "talosctl cluster create", "ids": ["CONCEPT-TALOS_LOCAL_CLUSTER"]}
+{"alias": "talosctl cluster destroy", "ids": ["CONCEPT-TALOS_LOCAL_CLUSTER"]}
 {"alias": "talosctl commands", "ids": ["CONCEPT-TALOS_TALOSCTL_WORKFLOW"]}
 {"alias": "talosctl connection refused", "ids": ["TROUBLE-TALOS_APID_UNREACHABLE"]}
 {"alias": "talosctl dashboard health", "ids": ["CONCEPT-TALOS_TALOSCTL_WORKFLOW"]}
@@ -2683,6 +2704,7 @@
 {"alias": "where to start debugging", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
 {"alias": "which addons use helm", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
 {"alias": "which components move with kube_version", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
+{"alias": "which kubernetes version talos supports", "ids": ["CONCEPT-TALOS_K8S_MATRIX"]}
 {"alias": "who upgrades etcd kubespray", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
 {"alias": "who upgrades kubernetes kubespray", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
 {"alias": "win_nodes", "ids": ["TAG-WIN_NODES"]}
