@@ -142,10 +142,9 @@ _ANS_INTERNAL = {"inventory_hostname", "inventory_hostname_short", "group_names"
 
 
 def resolve_inventory(paths):
-    """Return the set of variable names the (possibly composite) inventory sets,
-    merged with Ansible precedence via `ansible-inventory`. Also returns a small
-    dict of a few profile values. Falls back to a light file scan if the tool
-    isn't available."""
+    """Return {var: value} the (possibly composite) inventory sets, merged with
+    Ansible precedence via `ansible-inventory`; plus a small profile dict and the
+    method used. Falls back to a light file scan if the tool isn't available."""
     args = ["ansible-inventory"]
     for p in paths:
         args += ["-i", p]
@@ -157,24 +156,23 @@ def resolve_inventory(paths):
         data = json.loads(p.stdout)
     except (OSError, ValueError, RuntimeError) as e:
         return _scan_inventory(paths), {}, f"scan (ansible-inventory unavailable: {e})"
-    keys = set()
     hv = data.get("_meta", {}).get("hostvars", {})
+    values = {}
+    # group_vars apply cluster-wide; merge every host's resolved vars (last wins)
     for _host, vars_ in hv.items():
-        for k in vars_:
+        for k, v in vars_.items():
             if k.startswith("ansible_") or k in _ANS_INTERNAL:
                 continue
-            keys.add(k)
-    # a representative host's values, for the profile line
-    sample = next(iter(hv.values()), {}) if hv else {}
-    profile = {k: sample.get(k) for k in
+            values[k] = v
+    profile = {k: values[k] for k in
                ("kube_network_plugin", "container_manager", "kube_proxy_mode",
                 "kube_version", "external_cloud_provider", "cloud_provider")
-               if sample.get(k) is not None}
-    return keys, profile, "ansible-inventory"
+               if values.get(k) is not None}
+    return values, profile, "ansible-inventory"
 
 
 def _scan_inventory(paths):
-    keys = set()
+    values = {}
     for base in paths:
         files = []
         if os.path.isfile(base):
@@ -186,12 +184,12 @@ def _scan_inventory(paths):
         for fp in files:
             try:
                 for line in open(fp):
-                    m = re.match(r"^\s*([a-z][a-z0-9_]*)\s*:", line)
+                    m = re.match(r"^\s*([a-z][a-z0-9_]*)\s*:\s*([^#\n]*?)\s*$", line)
                     if m:
-                        keys.add(m.group(1))
+                        values[m.group(1)] = m.group(2).strip().strip('"\'') or None
             except OSError:
                 pass
-    return keys
+    return values
 
 
 # ---- i18n (framing Russian by default; no ID litter in the body) ----
@@ -205,6 +203,9 @@ STR = {
         "vers_h": "\n## Diff версий компонентов\n",
         "vers_none": "Изменений версий компонентов между этими релизами не зафиксировано в RELEASE-таблицах.",
         "th": ("Компонент", "было", "стало"),
+        "warn_h": "\n## ⚠ Деструктивные действия и известные проблемы\n",
+        "warn_intro": "Специфика этого перехода и вашей конфигурации, требующая ручных действий или простоя — прочитайте до апгрейда:",
+        "warn_none": "Для этого перехода и вашей конфигурации особых деструктивных действий не выявлено (но всё равно снимите snapshot etcd).",
         "must_h": "\n## ⚠ Переменные, которые надо УДАЛИТЬ из вашего инвентаря\n",
         "must_intro": "Эти переменные **заданы в вашем инвентаре**, но в `{to}` их дефолтов больше нет — уберите их, иначе они игнорируются молча (а часть — признак удалённого аддона/фичи):",
         "must_none": "✅ Ваш инвентарь не задаёт переменных, удалённых в `{to}`.",
@@ -232,6 +233,9 @@ STR = {
         "vers_h": "\n## Component version diff\n",
         "vers_none": "No component version changes recorded in the RELEASE tables for this range.",
         "th": ("Component", "from", "to"),
+        "warn_h": "\n## ⚠ Destructive actions & known issues\n",
+        "warn_intro": "Specifics of this transition and your config that need a manual action or cause downtime — read before upgrading:",
+        "warn_none": "No special destructive actions found for this transition and your config (still snapshot etcd first).",
         "must_h": "\n## ⚠ Variables to REMOVE from your inventory\n",
         "must_intro": "These are **set in your inventory** but their defaults no longer exist in `{to}` — remove them (they're silently ignored; some mark a removed add-on/feature):",
         "must_none": "✅ Your inventory sets no variables that were removed in `{to}`.",
@@ -272,7 +276,87 @@ DOC_RELEVANCE = {
 }
 
 
-def render(frm, to, docs, vdelta, removed, added, set_vars, profile, how, lang):
+def _comp_span(vdelta, name):
+    for n, f, t in vdelta:
+        if _norm_comp(n) == name:
+            return f, t
+    return None
+
+
+def build_warnings(frm, to, vdelta, values, lang):
+    """Return a list of {ru, en} warnings from inventory-value and version-transition
+    rules. Every rule is grounded (a real Kubespray/kubelet behavior); extend as new
+    gotchas are confirmed."""
+    w = []
+    cni = str(values.get("kube_network_plugin", "")).lower()
+
+    # --- inventory value-triggered (destructive follow-ups Kubespray doesn't do) ---
+    cpu = str(values.get("kubelet_cpu_manager_policy", "")).lower()
+    if cpu and cpu != "none":
+        w.append({
+            "ru": f"**CPU Manager (`kubelet_cpu_manager_policy: {cpu}`).** При смене политики "
+                  f"или несовместимом сохранённом состоянии после апгрейда **kubelet не "
+                  f"стартует**, пока вручную не удалить `/var/lib/kubelet/cpu_manager_state` и "
+                  f"не перезапустить kubelet — **на каждом узле**. Kubespray этого не делает. "
+                  f"То же для memory/topology manager (`memory_manager_state`).",
+            "en": f"**CPU Manager (`kubelet_cpu_manager_policy: {cpu}`).** On a policy change or "
+                  f"incompatible saved state after upgrade, **kubelet refuses to start** until "
+                  f"you delete `/var/lib/kubelet/cpu_manager_state` and restart kubelet — **on "
+                  f"each node**. Kubespray doesn't do this. Same for memory/topology manager."})
+    top = str(values.get("kubelet_topology_manager_policy", "")).lower()
+    if top and top != "none":
+        w.append({
+            "ru": f"**Topology Manager (`{top}`).** Смена политики Topology/Memory Manager "
+                  f"так же требует удаления соответствующего `*_manager_state` в "
+                  f"`/var/lib/kubelet/` и рестарта kubelet на узлах.",
+            "en": f"**Topology Manager (`{top}`).** Changing the Topology/Memory Manager policy "
+                  f"likewise needs the matching `*_manager_state` in `/var/lib/kubelet/` deleted "
+                  f"and kubelet restarted on the nodes."})
+    if str(values.get("kube_encrypt_secret_data", "")).lower() in ("true", "yes"):
+        w.append({
+            "ru": "**Шифрование Secret'ов включено.** Смена провайдера/ключа не перешифровывает "
+                  "существующие Secret'ы автоматически — после изменения выполните "
+                  "`kubectl get secrets -A -o json | kubectl replace -f -`, соблюдая порядок "
+                  "провайдеров (иначе потеряете возможность их прочитать).",
+            "en": "**Secret encryption is on.** Changing provider/key does not re-encrypt existing "
+                  "Secrets — after the change run `kubectl get secrets -A -o json | kubectl replace "
+                  "-f -`, respecting provider order (or you lose the ability to read them)."})
+
+    # --- version-transition-triggered ---
+    cil = _comp_span(vdelta, "cilium")
+    if cil and cni in ("cilium", ""):
+        span = f" (`{cil[0]}` → `{cil[1]}`)"
+        w.append({
+            "ru": f"**Переустановка/роллаут Cilium{span}.** Kubespray переприменяет CNI при "
+                  f"смене версии — DaemonSet Cilium пересоздаётся/перекатывается, что даёт "
+                  f"**простой сети подов на время роллаута** (наблюдалось, напр., на переходе к "
+                  f"v2.29.1). Планируйте окно, делайте по одному узлу, проверьте связность после "
+                  f"(netcheck).",
+            "en": f"**Cilium reinstall/rollout{span}.** Kubespray re-applies the CNI on a version "
+                  f"change — the Cilium DaemonSet is recreated/rolled, causing **pod-network "
+                  f"downtime during the rollout** (observed e.g. on the v2.29.1 step). Plan a "
+                  f"window, go node-by-node, verify connectivity after (netcheck)."})
+    etc = _comp_span(vdelta, "etcd")
+    if etc and "3.6" in etc[1]:
+        w.append({
+            "ru": "**etcd 3.6 (для K8s 1.35).** Мажорный переход etcd `3.5 → 3.6`. **In-place "
+                  "даунгрейда нет** — обязательно snapshot до апгрейда; изучите операционные "
+                  "изменения etcd 3.6 перед переходом на 1.35.",
+            "en": "**etcd 3.6 (for K8s 1.35).** Major etcd `3.5 → 3.6`. **No in-place downgrade** "
+                  "— snapshot before, and review etcd 3.6 operational changes before moving to 1.35."})
+    kube = _comp_span(vdelta, "kubernetes")
+    if kube and "1.35" in kube[1]:
+        w.append({
+            "ru": "**cgroup v1 → жёсткая ошибка на K8s 1.35.** Preflight kubeadm/kubelet **падает** "
+                  "при cgroup v1 на узлах с kubelet ≥1.35. Мигрируйте узлы на **cgroup v2** до "
+                  "апгрейда, либо задайте `failCgroupV1: false` в ConfigMap `kubelet-config`.",
+            "en": "**cgroup v1 → hard error on K8s 1.35.** kubeadm/kubelet preflight **fails** on "
+                  "cgroup v1 with kubelet ≥1.35. Migrate nodes to **cgroup v2** before upgrading, "
+                  "or set `failCgroupV1: false` in the `kubelet-config` ConfigMap."})
+    return w
+
+
+def render(frm, to, docs, vdelta, removed, added, set_vars, values, profile, how, lang):
     S = STR[lang]
     out = [S["title"].format(frm=frm, to=to) + "\n", S["gen"] + "\n"]
     if profile:
@@ -294,6 +378,16 @@ def render(frm, to, docs, vdelta, removed, added, set_vars, profile, how, lang):
             out.append(f"| {n} | {fv} | {tv} |")
     else:
         out.append(S["vers_none"])
+
+    # ⚠ destructive actions & known issues (inventory-value + transition rules)
+    warns = build_warnings(frm, to, vdelta, values, lang)
+    out.append(S["warn_h"])
+    if warns:
+        out.append(S["warn_intro"])
+        for wn in warns:
+            out.append(f"- {wn[lang]}")
+    else:
+        out.append(S["warn_none"])
 
     # ⚠ variables to remove (set ∩ removed) — the headline
     must = sorted(set_vars & removed)
@@ -385,12 +479,14 @@ def main():
         raise SystemExit(f"could not read default vars for {frm}/{to} — are the tags fetched?")
     removed, added = fvars - tvars, tvars - fvars
 
-    set_vars, profile, how = set(), {}, ""
+    values, profile, how = {}, {}, ""
     if args.inventory:
-        set_vars, profile, how = resolve_inventory(args.inventory)
-        print(f"inventory: {len(set_vars)} vars via {how}", file=sys.stderr)
+        values, profile, how = resolve_inventory(args.inventory)
+        print(f"inventory: {len(values)} vars via {how}", file=sys.stderr)
+    set_vars = set(values)
 
-    report = render(frm, to, docs, vdelta, removed, added, set_vars, profile, how, args.lang)
+    report = render(frm, to, docs, vdelta, removed, added, set_vars, values,
+                    profile, how, args.lang)
     if args.out:
         open(args.out, "w").write(report)
         print(f"wrote {args.out}", file=sys.stderr)
