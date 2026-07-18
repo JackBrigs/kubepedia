@@ -12,6 +12,15 @@ the upgrade-horizon + CVE-remediation layer, and the large troubleshooting layer
 
 ## Open — deferred by owner (future version)
 
+- **Access interfaces ("ручки") over the KB — start extracting value** — the knowledge is built and
+  machine-retrievable (`index/documents.jsonl`, `relations.jsonl`, `tags.jsonl`, `aliases.jsonl` —
+  [[CONCEPT-KB_NAVIGATION]]), but there is **no consumer surface** yet. Build the access handles so the
+  base actually produces value: a **query/retrieval API** over `index/` (facet + graph + version
+  filter), an **Upgrade & Change Report intake** (inventory `hosts.yaml` + current/target version →
+  the existing `scripts/upgrade_report.py` output), and an **MCP server / connector** so AI clients
+  answer version-accurate questions from the KB. This is the bridge from "knowledge base" to "usable
+  product" (see the monetization directions discussed 2026-07-17). **Future version.** (added
+  2026-07-18)
 - **README (public-facing)** — the repo has **no README** on purpose; previous drafts were
   rejected. Must be **designed separately** (audience/structure/tone agreed with owner) before
   re-adding. Do not create ad hoc. Parked to a future version (2026-07-17).
