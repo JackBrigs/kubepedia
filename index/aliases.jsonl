@@ -131,9 +131,12 @@
 {"alias": "CSI", "ids": ["CONCEPT-CSI_LAYER"]}
 {"alias": "CT Map insertion failed", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
 {"alias": "CVE-2025-31133", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
+{"alias": "CVE-2025-37959", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "CVE-2025-52565", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
 {"alias": "CVE-2025-52881", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
 {"alias": "Cilium CNI", "ids": ["PRACTICE-CILIUM"]}
+{"alias": "CiliumBGPClusterConfig", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
+{"alias": "CiliumBGPPeeringPolicy removed", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "CiliumLoadBalancerIPPool", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "ClusterConfiguration", "ids": ["CONCEPT-KUBEADM_CONFIG"]}
 {"alias": "ContainerCreating stuck", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
@@ -322,6 +325,7 @@
 {"alias": "audit_webhook_server_extra_args", "ids": ["VARIABLE-AUDIT_WEBHOOK_SERVER_EXTRA_ARGS"]}
 {"alias": "audit_webhook_server_url", "ids": ["VARIABLE-AUDIT_WEBHOOK_SERVER_URL"]}
 {"alias": "authentication-config file", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN"]}
+{"alias": "authentication.enabled cilium", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
 {"alias": "authorization-config file", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "authorization_modes", "ids": ["VARIABLE-AUTHORIZATION_MODES"]}
 {"alias": "authorizer CEL", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
@@ -357,6 +361,7 @@
 {"alias": "bare metal storage kubespray", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
 {"alias": "baseline restricted privileged", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
 {"alias": "bastion", "ids": ["TAG-BASTION"]}
+{"alias": "bgpControlPlane v2alpha1 removed", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "bgppeer not connecting", "ids": ["TROUBLE-METALLB_BGP_SESSION_DOWN"]}
 {"alias": "bin_dir", "ids": ["VARIABLE-BIN_DIR"]}
 {"alias": "bootstrap runbook", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
@@ -446,13 +451,21 @@
 {"alias": "chrony", "ids": ["CONFIG-NTP"]}
 {"alias": "cilium", "ids": ["COMPONENT-CILIUM", "TAG-CILIUM"]}
 {"alias": "cilium 1.15 to 1.19", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
+{"alias": "cilium 1.17 ipsec key", "ids": ["TROUBLE-CILIUM_IPSEC_PER_TUNNEL_KEYS"]}
+{"alias": "cilium 1.18 aws egress broken", "ids": ["TROUBLE-CILIUM_ENI_MASQUERADE_FLIP"]}
+{"alias": "cilium 1.18 packet drops upgrade", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
+{"alias": "cilium 1.19 ipsec kernel bug", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "cilium 1.19 upgrade agent crashloop flag", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "cilium bgp", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
+{"alias": "cilium bgp not advertising after upgrade", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
+{"alias": "cilium bgp v1 to v2 migration", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "cilium bpf masquerade", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium check failed", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
+{"alias": "cilium clustermesh policy broke", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "cilium clustermesh policy default local cluster", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium connectivity test", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
 {"alias": "cilium conntrack table full", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "cilium consul removed", "ids": ["CONCEPT-CILIUM_LEGACY_REMOVALS"]}
 {"alias": "cilium cross node connectivity", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
 {"alias": "cilium cve", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
 {"alias": "cilium datapath", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
@@ -460,14 +473,22 @@
 {"alias": "cilium enable-node-port removed", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "cilium encryption", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "cilium endpoint not ready", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
+{"alias": "cilium eni enableIPv4Masquerade default false", "ids": ["TROUBLE-CILIUM_ENI_MASQUERADE_FLIP"]}
+{"alias": "cilium eni masquerade upgrade", "ids": ["TROUBLE-CILIUM_ENI_MASQUERADE_FLIP"]}
 {"alias": "cilium envoy version", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "cilium envoy version mismatch", "ids": ["CONCEPT-CILIUM_ENVOY"]}
+{"alias": "cilium external workloads removed", "ids": ["CONCEPT-CILIUM_LEGACY_REMOVALS"]}
 {"alias": "cilium hardcoded apiserver ip", "ids": ["TROUBLE-CILIUM_HARDCODED_APISERVER_IP_HA"]}
 {"alias": "cilium helm release", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
 {"alias": "cilium identity allocation mode", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
+{"alias": "cilium identity churn upgrade", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
 {"alias": "cilium identity not propagated", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
 {"alias": "cilium ipam cluster-pool", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium ipsec", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
+{"alias": "cilium ipsec bpf host routing", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
+{"alias": "cilium ipsec per-tunnel keys", "ids": ["TROUBLE-CILIUM_IPSEC_PER_TUNNEL_KEYS"]}
+{"alias": "cilium ipsec single key removed", "ids": ["TROUBLE-CILIUM_IPSEC_PER_TUNNEL_KEYS"]}
+{"alias": "cilium ipsec upgrade drops", "ids": ["TROUBLE-CILIUM_IPSEC_PER_TUNNEL_KEYS"]}
 {"alias": "cilium kernel requirement 5.10", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium kube-proxy replacement", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium kube-proxy-replacement toggles", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
@@ -475,13 +496,19 @@
 {"alias": "cilium l2 announcements", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium l7 proxy", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "cilium lb ipam", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
+{"alias": "cilium legacy flags removed", "ids": ["CONCEPT-CILIUM_LEGACY_REMOVALS"]}
 {"alias": "cilium loadbalancer", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium loadbalancer mode ignored", "ids": ["TROUBLE-CILIUM_LOADBALANCER_MODE_NOT_RENDERED"]}
+{"alias": "cilium managed etcd removed", "ids": ["CONCEPT-CILIUM_LEGACY_REMOVALS"]}
+{"alias": "cilium mesh-auth-enabled default off", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
+{"alias": "cilium metallb-bgp removed", "ids": ["CONCEPT-CILIUM_LEGACY_REMOVALS"]}
 {"alias": "cilium monitor drop", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "cilium mutual auth not enforced 1.19", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
 {"alias": "cilium native routing", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium native routing cidr null", "ids": ["TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL"]}
 {"alias": "cilium observability", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
 {"alias": "cilium pods cant reach each other", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
+{"alias": "cilium policy auth warning", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
 {"alias": "cilium replace metallb", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium security", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
 {"alias": "cilium status", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
@@ -641,6 +668,7 @@
 {"alias": "cluster.yml first run", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
 {"alias": "cluster_name", "ids": ["VARIABLE-CLUSTER_NAME"]}
 {"alias": "clusterip unreachable", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
+{"alias": "clustermesh default deny remote", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "cni", "ids": ["TAG-CNI"]}
 {"alias": "cni migration runbook", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "cni overlay mtu", "ids": ["CONFIG-CNI_MTU"]}
@@ -810,6 +838,7 @@
 {"alias": "crio_insecure_registries", "ids": ["VARIABLE-CRIO_INSECURE_REGISTRIES"]}
 {"alias": "crio_registries kubespray", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
 {"alias": "crio_version", "ids": ["VARIABLE-CRIO_VERSION"]}
+{"alias": "cross-cluster connectivity denied cilium 1.19", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "crun", "ids": ["COMPONENT-CRUN", "TAG-CRUN"]}
 {"alias": "crun_binary_checksum", "ids": ["VARIABLE-CRUN_BINARY_CHECKSUM"]}
 {"alias": "crun_checksums", "ids": ["VARIABLE-CRUN_CHECKSUMS"]}
@@ -951,6 +980,7 @@
 {"alias": "dual stack", "ids": ["CONFIG-DUAL_STACK"]}
 {"alias": "duplicate snapshot crds", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
 {"alias": "dynamic resource allocation DRA", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "ebpf host routing ipsec cve", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "eck pvc expansion stuck", "ids": ["TROUBLE-ELASTICSEARCH_ECK_CLUSTER"]}
 {"alias": "eck-operator", "ids": ["CONCEPT-ADDON_ECK_OPERATOR"]}
 {"alias": "eg", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
@@ -962,6 +992,7 @@
 {"alias": "enable feature gate kubespray", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
 {"alias": "enable secrets encryption runbook", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION"]}
 {"alias": "enable-external-ips removed cilium", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
+{"alias": "enable-host-legacy-routing ipsec", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "enable-session-affinity removed", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "enable_cdi", "ids": ["VARIABLE-ENABLE_CDI"]}
 {"alias": "enable_coredns_k8s_endpoint_pod_names", "ids": ["VARIABLE-ENABLE_COREDNS_K8S_ENDPOINT_POD_NAMES"]}
@@ -1289,6 +1320,7 @@
 {"alias": "hubble export static schema", "ids": ["TROUBLE-CILIUM_HUBBLE_EXPORT_SCHEMA"]}
 {"alias": "hubble metrics", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
 {"alias": "hubble ui", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
+{"alias": "identity count spike cilium", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
 {"alias": "ignore-preflight-errors", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
 {"alias": "ignore_assert_errors", "ids": ["VARIABLE-IGNORE_ASSERT_ERRORS"]}
 {"alias": "image not found", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
@@ -1344,8 +1376,10 @@
 {"alias": "internal error occurred admission", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "invalid ownership metadata", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
 {"alias": "inventory groups", "ids": ["PRACTICE-INVENTORY"]}
+{"alias": "io.cilium.k8s.policy.serviceaccount identity label", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
 {"alias": "io.containerd.cri.v1.runtime", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "ip6tables", "ids": ["TAG-IP6TABLES"]}
+{"alias": "ipsec secret plus sign cilium", "ids": ["TROUBLE-CILIUM_IPSEC_PER_TUNNEL_KEYS"]}
 {"alias": "iptables", "ids": ["TAG-IPTABLES"]}
 {"alias": "ipv4_stack", "ids": ["VARIABLE-IPV4_STACK"]}
 {"alias": "ipv6 kubernetes", "ids": ["CONFIG-DUAL_STACK"]}
@@ -1910,6 +1944,7 @@
 {"alias": "network", "ids": ["TAG-NETWORK"]}
 {"alias": "network bound disk encryption", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
 {"alias": "network not ready", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
+{"alias": "network policy selects only local cluster", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "network_plugin", "ids": ["ROLE-NETWORK_PLUGIN"]}
 {"alias": "never", "ids": ["TAG-NEVER"]}
 {"alias": "nfd labels missing", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
@@ -2060,6 +2095,7 @@
 {"alias": "pod cidr service cidr", "ids": ["CONCEPT-CLUSTER_NETWORKING"]}
 {"alias": "pod containercreating rwo node down", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
 {"alias": "pod egress fails", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
+{"alias": "pod egress snat cilium eni", "ids": ["TROUBLE-CILIUM_ENI_MASQUERADE_FLIP"]}
 {"alias": "pod mtu vxlan overhead", "ids": ["CONFIG-CNI_MTU"]}
 {"alias": "pod networking broken", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
 {"alias": "pod not starting", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
@@ -2082,6 +2118,7 @@
 {"alias": "pods stuck terminating containerd", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
 {"alias": "pods stuck terminating node gone", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
 {"alias": "policy-controller", "ids": ["TAG-POLICY_CONTROLLER"]}
+{"alias": "policy-default-local-cluster", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "port 6443 in use kubeadm", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
 {"alias": "port requirements", "ids": ["PRACTICE-PORT_REQUIREMENTS"]}
 {"alias": "port-forward failed", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
