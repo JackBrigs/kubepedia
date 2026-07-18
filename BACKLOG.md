@@ -21,6 +21,12 @@ the upgrade-horizon + CVE-remediation layer, and the large troubleshooting layer
   answer version-accurate questions from the KB. This is the bridge from "knowledge base" to "usable
   product" (see the monetization directions discussed 2026-07-17). **Future version.** (added
   2026-07-18)
+- **Retrieval HTTP/JSON API over `index/` (deferred — needs a consumer)** — a stdlib, zero-dep
+  read-only API (`/search`, `/doc/{id}`, `/impact/{id}`, `/tag`, `/alias`, `/release/{tag}`) was
+  prototyped and **its shape is proven** (correct `/release`, `/tag`, `/impact` responses), then
+  **parked**: an API with no consumer (web UI / bot / MCP / integration) is infra ahead of demand —
+  same reasoning that deferred the Skill. Build it when a concrete client exists; it's a quick
+  reconstruct from the CLI tools + `index/`. Pairs with the "access interfaces" item above. (2026-07-19)
 - **Post-upgrade cluster & component verification (research)** — after an upgrade the operator needs a
   way to **test the cluster and every component** and confirm the upgrade actually took. Beyond node
   `Ready` / pod `Running`, this means: each managed component **actually moved to its target version**
