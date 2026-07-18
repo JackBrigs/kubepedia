@@ -121,6 +121,7 @@
 {"alias": "10250 unreachable", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "1password connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
 {"alias": "1password-connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
+{"alias": "ACL bootstrap no longer allowed", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
 {"alias": "AdmissionWebhookMatchConditions", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "AnonymousAuthConfigurableEndpoints", "ids": ["CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS"]}
 {"alias": "ArgoCD", "ids": ["CONCEPT-GITOPS"]}
@@ -175,6 +176,7 @@
 {"alias": "KubeletCgroupDriverFromCRI", "ids": ["CONCEPT-K8S_CGROUP_DRIVER_FROM_CRI"]}
 {"alias": "KubeletConfiguration", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
 {"alias": "Kubernetes Enhancement Proposals", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "LabelCleanupTtl", "ids": ["TROUBLE-KYVERNO_TTL_CLEANUP"]}
 {"alias": "LegacyServiceAccountTokenCleanUp", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "MountVolume.SetUp failed", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "MultiCIDRServiceAllocator", "ids": ["CONCEPT-K8S_MULTI_CIDR_SERVICE_ALLOCATOR"]}
@@ -834,6 +836,7 @@
 {"alias": "cinder_username", "ids": ["VARIABLE-CINDER_USERNAME"]}
 {"alias": "cis benchmark", "ids": ["PRACTICE-HARDENING"]}
 {"alias": "clean redeploy", "ids": ["PRACTICE-RUNBOOK_RESET"]}
+{"alias": "cleanup.kyverno.io/ttl", "ids": ["TROUBLE-KYVERNO_TTL_CLEANUP"]}
 {"alias": "clevis luks2", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
 {"alias": "client", "ids": ["TAG-CLIENT"]}
 {"alias": "clock synchronization", "ids": ["CONFIG-NTP"]}
@@ -878,6 +881,28 @@
 {"alias": "conntrack-table-full", "ids": ["TROUBLE-CONNTRACK_TABLE_FULL"]}
 {"alias": "conntrack_modules", "ids": ["VARIABLE-CONNTRACK_MODULES"]}
 {"alias": "consistent reads from cache", "ids": ["CONCEPT-K8S_CONSISTENT_READS_CACHE"]}
+{"alias": "consul acl permission denied loop", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
+{"alias": "consul bootstrap token secret", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
+{"alias": "consul chart 2.0 breaking changes", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
+{"alias": "consul connect-injector webhook down", "ids": ["TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK"]}
+{"alias": "consul failurePolicy Fail", "ids": ["TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK"]}
+{"alias": "consul gateway api v1.5.1", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
+{"alias": "consul helm chart", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
+{"alias": "consul helm upgrade breaking", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
+{"alias": "consul injector blocks pod creation", "ids": ["TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK"]}
+{"alias": "consul leave_on_terminate", "ids": ["TROUBLE-CONSUL_SERVER_QUORUM"]}
+{"alias": "consul lost quorum", "ids": ["TROUBLE-CONSUL_SERVER_QUORUM"]}
+{"alias": "consul no cluster leader", "ids": ["TROUBLE-CONSUL_SERVER_QUORUM"]}
+{"alias": "consul on kubernetes", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
+{"alias": "consul pods stuck pending admission", "ids": ["TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK"]}
+{"alias": "consul pvc data loss", "ids": ["TROUBLE-CONSUL_SERVER_QUORUM"]}
+{"alias": "consul scale down quorum", "ids": ["TROUBLE-CONSUL_SERVER_QUORUM"]}
+{"alias": "consul server statefulset notready", "ids": ["TROUBLE-CONSUL_SERVER_QUORUM"]}
+{"alias": "consul server-acl-init fails", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
+{"alias": "consul service mesh k8s", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
+{"alias": "consul values boolean string field", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
+{"alias": "consul-k8s", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
+{"alias": "consul-k8s 2.0 upgrade", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
 {"alias": "container engine kubespray", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "container keeps restarting", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "container killed memory limit", "ids": ["TROUBLE-OOMKILLED"]}
@@ -1295,6 +1320,7 @@
 {"alias": "enable-external-ips removed cilium", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "enable-host-legacy-routing ipsec", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "enable-session-affinity removed", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
+{"alias": "enablePolicyException", "ids": ["TROUBLE-KYVERNO_POLICY_EXCEPTION_NOT_APPLYING"]}
 {"alias": "enable_cdi", "ids": ["VARIABLE-ENABLE_CDI"]}
 {"alias": "enable_coredns_k8s_endpoint_pod_names", "ids": ["VARIABLE-ENABLE_COREDNS_K8S_ENDPOINT_POD_NAMES"]}
 {"alias": "enable_coredns_k8s_external", "ids": ["VARIABLE-ENABLE_COREDNS_K8S_EXTERNAL"]}
@@ -1444,6 +1470,7 @@
 {"alias": "exc-stage", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
 {"alias": "exc-test", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
 {"alias": "exceeded quota but usage stale", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
+{"alias": "exceptionNamespace", "ids": ["TROUBLE-KYVERNO_POLICY_EXCEPTION_NOT_APPLYING"]}
 {"alias": "exclusive cpu cores for pods", "ids": ["CONFIG-CPU_ISOLATION"]}
 {"alias": "exit code 1 container", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "exit code 137", "ids": ["TROUBLE-OOMKILLED"]}
@@ -1534,6 +1561,7 @@
 {"alias": "extra args kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
 {"alias": "facts", "ids": ["TAG-FACTS"]}
 {"alias": "failed calling webhook", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
+{"alias": "failed calling webhook connect-injector", "ids": ["TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK"]}
 {"alias": "failed to create pod sandbox", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
 {"alias": "failed to create sandbox", "ids": ["TROUBLE-CONTAINERD_IMAGE_PULL_CRI"]}
 {"alias": "failed to create shim task", "ids": ["TROUBLE-CONTAINERD_SHIM_TASK_CREATE"]}
@@ -1584,6 +1612,7 @@
 {"alias": "flowschema prioritylevelconfiguration", "ids": ["TROUBLE-APISERVER_APF_429"]}
 {"alias": "flush_iptables", "ids": ["VARIABLE-FLUSH_IPTABLES"]}
 {"alias": "forbidden", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "forceFailurePolicyIgnore", "ids": ["TROUBLE-KYVERNO_FAILURE_POLICY_SYSTEM_NS"]}
 {"alias": "force_etcd_cert_refresh", "ids": ["VARIABLE-FORCE_ETCD_CERT_REFRESH"]}
 {"alias": "foregroundDeletion finalizer stuck", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
 {"alias": "freed 0 bytes", "ids": ["TROUBLE-KUBELET_IMAGE_GC"]}
@@ -1670,6 +1699,7 @@
 {"alias": "haproxy_image_tag", "ids": ["VARIABLE-HAPROXY_IMAGE_TAG"]}
 {"alias": "hardening", "ids": ["PRACTICE-CLUSTER_HARDENING", "PRACTICE-HARDENING"]}
 {"alias": "hardening overview", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "hashicorp consul kubernetes", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
 {"alias": "hashicorp vault", "ids": ["CONCEPT-ADDON_VAULT"]}
 {"alias": "headlamp", "ids": ["CONCEPT-ADDON_HEADLAMP"]}
 {"alias": "health check", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
@@ -2375,21 +2405,44 @@
 {"alias": "kyverno", "ids": ["CONCEPT-ADDON_KYVERNO"]}
 {"alias": "kyverno 1.10 no upgrade path", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
 {"alias": "kyverno 1.12.0 etcd growth", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
+{"alias": "kyverno CEL policy webhook", "ids": ["CONCEPT-KYVERNO_CEL_POLICIES"]}
+{"alias": "kyverno ImageValidatingPolicy blocks", "ids": ["TROUBLE-KYVERNO_IMAGE_VERIFICATION_BLOCKS"]}
+{"alias": "kyverno ValidatingPolicy MutatingPolicy", "ids": ["CONCEPT-KYVERNO_CEL_POLICIES"]}
 {"alias": "kyverno admission controller", "ids": ["CONCEPT-ADDON_KYVERNO"]}
 {"alias": "kyverno admission reports etcd full", "ids": ["TROUBLE-KYVERNO_REPORTS_ETCD_SCALE"]}
+{"alias": "kyverno auto VAP", "ids": ["CONCEPT-KYVERNO_CEL_POLICIES"]}
+{"alias": "kyverno background controller", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
+{"alias": "kyverno blocks kube-system", "ids": ["TROUBLE-KYVERNO_FAILURE_POLICY_SYSTEM_NS"]}
+{"alias": "kyverno cleanup controller", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
+{"alias": "kyverno controllers architecture", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
+{"alias": "kyverno cosign rekor unreachable", "ids": ["TROUBLE-KYVERNO_IMAGE_VERIFICATION_BLOCKS"]}
 {"alias": "kyverno crd annotations too long", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
+{"alias": "kyverno exception ignored", "ids": ["TROUBLE-KYVERNO_POLICY_EXCEPTION_NOT_APPLYING"]}
+{"alias": "kyverno failurePolicy Fail cluster down", "ids": ["TROUBLE-KYVERNO_FAILURE_POLICY_SYSTEM_NS"]}
 {"alias": "kyverno failurepolicy fail blocks cluster", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
 {"alias": "kyverno generate downstream not synced", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
 {"alias": "kyverno generate infinite loop", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
+{"alias": "kyverno generate mutateExisting logs", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
+{"alias": "kyverno generateValidatingAdmissionPolicy", "ids": ["CONCEPT-KYVERNO_CEL_POLICIES"]}
+{"alias": "kyverno image signature blocks pod", "ids": ["TROUBLE-KYVERNO_IMAGE_VERIFICATION_BLOCKS"]}
+{"alias": "kyverno keyless tuf error", "ids": ["TROUBLE-KYVERNO_IMAGE_VERIFICATION_BLOCKS"]}
+{"alias": "kyverno label based cleanup", "ids": ["TROUBLE-KYVERNO_TTL_CLEANUP"]}
 {"alias": "kyverno leadership lost crashloop", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
 {"alias": "kyverno leftover webhook configs", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
 {"alias": "kyverno mutate existing not applied", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
 {"alias": "kyverno policy engine", "ids": ["CONCEPT-ADDON_KYVERNO"]}
+{"alias": "kyverno policyexception not working", "ids": ["TROUBLE-KYVERNO_POLICY_EXCEPTION_NOT_APPLYING"]}
 {"alias": "kyverno policyreport scale", "ids": ["TROUBLE-KYVERNO_REPORTS_ETCD_SCALE"]}
+{"alias": "kyverno reports controller", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
 {"alias": "kyverno reports controller oom", "ids": ["TROUBLE-KYVERNO_REPORTS_ETCD_SCALE"]}
+{"alias": "kyverno resourceFilters not excluding webhook", "ids": ["TROUBLE-KYVERNO_FAILURE_POLICY_SYSTEM_NS"]}
+{"alias": "kyverno resources disappearing", "ids": ["TROUBLE-KYVERNO_TTL_CLEANUP"]}
+{"alias": "kyverno self dos", "ids": ["TROUBLE-KYVERNO_FAILURE_POLICY_SYSTEM_NS"]}
+{"alias": "kyverno ttl deletes resource", "ids": ["TROUBLE-KYVERNO_TTL_CLEANUP"]}
 {"alias": "kyverno updaterequests flood", "ids": ["TROUBLE-KYVERNO_REPORTS_ETCD_SCALE"]}
 {"alias": "kyverno upgrade breaks", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
 {"alias": "kyverno validationfailureaction moved", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
+{"alias": "kyverno verifyImages fails", "ids": ["TROUBLE-KYVERNO_IMAGE_VERIFICATION_BLOCKS"]}
 {"alias": "kyverno verifyimages cosign fails", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
 {"alias": "kyverno webhook timeout latency", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
 {"alias": "kyverno wildcard crd not found", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
@@ -2450,6 +2503,7 @@
 {"alias": "macvlan cni", "ids": ["COMPONENT-MACVLAN"]}
 {"alias": "macvlan_interface", "ids": ["COMPONENT-MACVLAN", "VARIABLE-MACVLAN_INTERFACE"]}
 {"alias": "manage kubernetes secrets safely", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
+{"alias": "manageSystemACLs", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
 {"alias": "manifest unknown", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "manual_dns_server", "ids": ["VARIABLE-MANUAL_DNS_SERVER"]}
 {"alias": "master", "ids": ["TAG-CONTROL_PLANE"]}
@@ -2812,6 +2866,7 @@
 {"alias": "pods cannot resolve external names", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
 {"alias": "pods stuck terminating containerd", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
 {"alias": "pods stuck terminating node gone", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "policies.kyverno.io", "ids": ["CONCEPT-KYVERNO_CEL_POLICIES"]}
 {"alias": "policy-controller", "ids": ["TAG-POLICY_CONTROLLER"]}
 {"alias": "policy-default-local-cluster", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "populate_inventory_to_hosts_file", "ids": ["VARIABLE-POPULATE_INVENTORY_TO_HOSTS_FILE"]}
@@ -3385,6 +3440,7 @@
 {"alias": "volumesnapshot stuck", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
 {"alias": "volumesnapshotclass one per driver", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}
 {"alias": "volumesnapshotclass-v1", "ids": ["TROUBLE-VOLUMESNAPSHOTCLASS_V1"]}
+{"alias": "vpol mpol ivpol webhook", "ids": ["CONCEPT-KYVERNO_CEL_POLICIES"]}
 {"alias": "vsphere-csi-driver", "ids": ["TAG-VSPHERE_CSI_DRIVER"]}
 {"alias": "vsphere_csi_aggressive_node_drain", "ids": ["VARIABLE-VSPHERE_CSI_AGGRESSIVE_NODE_DRAIN"]}
 {"alias": "vsphere_csi_aggressive_node_not_ready_timeout", "ids": ["VARIABLE-VSPHERE_CSI_AGGRESSIVE_NODE_NOT_READY_TIMEOUT"]}
@@ -3462,6 +3518,7 @@
 {"alias": "which addons use helm", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
 {"alias": "which components move with kube_version", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
 {"alias": "which kubernetes version talos supports", "ids": ["CONCEPT-TALOS_K8S_MATRIX"]}
+{"alias": "which kyverno pod is failing", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
 {"alias": "who upgrades etcd kubespray", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
 {"alias": "who upgrades kubernetes kubespray", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
 {"alias": "win_nodes", "ids": ["TAG-WIN_NODES"]}
