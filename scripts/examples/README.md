@@ -103,3 +103,15 @@ target tag (BLOCK) or pins a component version that won't move (WARN → BLOCK w
     python scripts/kubepedia.py gate --from v2.30.0 --to v2.31.0 \
       --inventory inventory/prod --strict
 ```
+
+## Freshness (nightly)
+
+`kubepedia feed` exits non-zero when upstream Kubespray has tags beyond the KB ceiling,
+or when facts (esp. CVE matrices) have aged past `--stale-days`. Run it nightly to know
+when the base needs a refresh:
+
+```yaml
+# nightly cron (sketch): fail -> open an issue
+- run: python scripts/kubepedia.py feed --stale-days 180 || gh issue create \
+        --title "Kubepedia is stale" --body-file <(python scripts/kubepedia.py feed)
+```

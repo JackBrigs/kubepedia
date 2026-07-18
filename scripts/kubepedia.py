@@ -26,6 +26,7 @@ CMDS = {
     "impact":   ("impact.py",         "graph impact analysis: what depends on X / what breaks if X changes"),
     "report":   ("upgrade_report.py", "KB-narrative upgrade report (personalized to an inventory)"),
     "verify":   ("check_versions.py", "KB integrity: component versions vs the tagged Kubespray source"),
+    "feed":     ("freshness.py",      "freshness monitor: new upstream tags beyond ceiling + aging verified_at"),
     "validate": ("validate_kds.py",   "KDS validation of the knowledge base"),
     "index":    ("generate_index.py", "regenerate the derived index/ from kb/"),
 }
