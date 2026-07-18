@@ -125,6 +125,7 @@
 {"alias": "ArgoCD", "ids": ["CONCEPT-GITOPS"]}
 {"alias": "AuthenticationConfiguration", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
 {"alias": "AuthorizeNodeWithSelectors forbidden", "ids": ["TROUBLE-K8S_NODE_AUTHORIZER_SELECTORS"]}
+{"alias": "CCM openstack vsphere hcloud oci", "ids": ["CONCEPT-CLOUD_CONTROLLER_MANAGER"]}
 {"alias": "CEL admission", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "CIS benchmark kubespray", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
 {"alias": "CRI runtime choice", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
@@ -383,6 +384,7 @@
 {"alias": "bootstrap_os", "ids": ["TAG-BOOTSTRAP_OS"]}
 {"alias": "bpf-ct-global-max", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
 {"alias": "bring cluster back after outage", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "bring your own cni kubespray", "ids": ["CONCEPT-CUSTOM_CNI"]}
 {"alias": "bump containerd version", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
 {"alias": "calico", "ids": ["COMPONENT-CALICO"]}
 {"alias": "calico bgp not peering", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
@@ -671,8 +673,10 @@
 {"alias": "clock synchronization", "ids": ["CONFIG-NTP"]}
 {"alias": "clock-skew-tls-errors", "ids": ["TROUBLE-CLOCK_SKEW_TLS"]}
 {"alias": "cloki", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "cloud-controller-manager", "ids": ["CONCEPT-CLOUD_CONTROLLER_MANAGER"]}
 {"alias": "cloud-provider external", "ids": ["TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"]}
 {"alias": "cloud_provider", "ids": ["VARIABLE-CLOUD_PROVIDER"]}
+{"alias": "cloud_provider external", "ids": ["CONCEPT-CLOUD_CONTROLLER_MANAGER"]}
 {"alias": "cloud_resolver", "ids": ["VARIABLE-CLOUD_RESOLVER"]}
 {"alias": "cluster hardening", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
 {"alias": "cluster networking", "ids": ["CONCEPT-CLUSTER_NETWORKING"]}
@@ -815,18 +819,24 @@
 {"alias": "coredns SERVFAIL loop", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
 {"alias": "coredns cache", "ids": ["CONFIG-COREDNS_COREFILE"]}
 {"alias": "coredns config", "ids": ["CONFIG-COREDNS_COREFILE"]}
+{"alias": "coredns customization", "ids": ["CONCEPT-COREDNS_CUSTOMIZATION"]}
 {"alias": "coredns cve", "ids": ["TROUBLE-COREDNS_KNOWN_CVES"]}
 {"alias": "coredns debug", "ids": ["PRACTICE-DNS_DEBUG"]}
 {"alias": "coredns forward", "ids": ["CONFIG-COREDNS_COREFILE"]}
+{"alias": "coredns forwarding upstream", "ids": ["CONCEPT-COREDNS_CUSTOMIZATION"]}
+{"alias": "coredns rewrite", "ids": ["CONCEPT-COREDNS_CUSTOMIZATION"]}
+{"alias": "coredns scaling autoscaler replicas", "ids": ["CONCEPT-COREDNS_CUSTOMIZATION"]}
 {"alias": "coredns security", "ids": ["TROUBLE-COREDNS_KNOWN_CVES"]}
 {"alias": "coredns slow resolution", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
 {"alias": "coredns-resolution-loop", "ids": ["TROUBLE-COREDNS_RESOLUTION_LOOP"]}
-{"alias": "coredns_external_zones", "ids": ["CONFIG-COREDNS_COREFILE"]}
+{"alias": "coredns_additional_configs", "ids": ["CONCEPT-COREDNS_CUSTOMIZATION"]}
+{"alias": "coredns_external_zones", "ids": ["CONCEPT-COREDNS_CUSTOMIZATION", "CONFIG-COREDNS_COREFILE"]}
 {"alias": "coredns_image_repo", "ids": ["VARIABLE-COREDNS_IMAGE_REPO"]}
 {"alias": "coredns_image_tag", "ids": ["VARIABLE-COREDNS_IMAGE_TAG"]}
 {"alias": "coredns_k8s_external_zone", "ids": ["VARIABLE-COREDNS_K8S_EXTERNAL_ZONE"]}
 {"alias": "coredns_supported_versions", "ids": ["VARIABLE-COREDNS_SUPPORTED_VERSIONS"]}
 {"alias": "coredns_version", "ids": ["VARIABLE-COREDNS_VERSION"]}
+{"alias": "corefile custom zones kubespray", "ids": ["CONCEPT-COREDNS_CUSTOMIZATION"]}
 {"alias": "corporate proxy kubespray", "ids": ["CONFIG-PROXY"]}
 {"alias": "couldn't validate the identity of the API server", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
 {"alias": "cpu isolation", "ids": ["CONFIG-CPU_ISOLATION"]}
@@ -883,6 +893,9 @@
 {"alias": "csi_snapshotter_image_tag", "ids": ["VARIABLE-CSI_SNAPSHOTTER_IMAGE_TAG"]}
 {"alias": "custom apiserver flags", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
 {"alias": "custom flags kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "custom_cni", "ids": ["CONCEPT-CUSTOM_CNI"]}
+{"alias": "custom_cni_chart", "ids": ["CONCEPT-CUSTOM_CNI"]}
+{"alias": "custom_cni_manifests", "ids": ["CONCEPT-CUSTOM_CNI"]}
 {"alias": "cve overview kubespray", "ids": ["CONCEPT-SECURITY_INDEX"]}
 {"alias": "cve remediation", "ids": ["CONCEPT-CVE_REMEDIATION"]}
 {"alias": "cve tracking", "ids": ["CONCEPT-SECURITY_ADVISORIES"]}
@@ -1162,6 +1175,7 @@
 {"alias": "expand_persistent_volumes", "ids": ["VARIABLE-EXPAND_PERSISTENT_VOLUMES"]}
 {"alias": "expired apiserver certificate", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
 {"alias": "extend service cidr", "ids": ["CONCEPT-K8S_MULTI_CIDR_SERVICE_ALLOCATOR"]}
+{"alias": "external cloud provider kubespray", "ids": ["CONCEPT-CLOUD_CONTROLLER_MANAGER"]}
 {"alias": "external cloud-controller-manager required", "ids": ["TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"]}
 {"alias": "external connectivity from pod", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
 {"alias": "external domain not resolving in cluster", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
@@ -1180,7 +1194,7 @@
 {"alias": "external-snapshotter v8 upgrade", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}
 {"alias": "external-vsphere", "ids": ["TAG-EXTERNAL_VSPHERE"]}
 {"alias": "externalTrafficPolicy Cluster terminating", "ids": ["CONCEPT-K8S_KUBE_PROXY_DRAINING_NODES"]}
-{"alias": "external_cloud_provider", "ids": ["VARIABLE-EXTERNAL_CLOUD_PROVIDER"]}
+{"alias": "external_cloud_provider", "ids": ["CONCEPT-CLOUD_CONTROLLER_MANAGER", "VARIABLE-EXTERNAL_CLOUD_PROVIDER"]}
 {"alias": "external_hcloud_cloud", "ids": ["VARIABLE-EXTERNAL_HCLOUD_CLOUD"]}
 {"alias": "external_openstack_cloud_controller_image_repo", "ids": ["VARIABLE-EXTERNAL_OPENSTACK_CLOUD_CONTROLLER_IMAGE_REPO"]}
 {"alias": "external_openstack_cloud_controller_image_tag", "ids": ["VARIABLE-EXTERNAL_OPENSTACK_CLOUD_CONTROLLER_IMAGE_TAG"]}
@@ -1545,10 +1559,12 @@
 {"alias": "kube_network_node_prefix_ipv6", "ids": ["VARIABLE-KUBE_NETWORK_NODE_PREFIX_IPV6"]}
 {"alias": "kube_network_plugin", "ids": ["CONCEPT-CLUSTER_NETWORKING", "VARIABLE-KUBE_NETWORK_PLUGIN"]}
 {"alias": "kube_network_plugin calico", "ids": ["COMPONENT-CALICO"]}
+{"alias": "kube_network_plugin custom_cni", "ids": ["CONCEPT-CUSTOM_CNI"]}
 {"alias": "kube_network_plugin flannel", "ids": ["COMPONENT-FLANNEL"]}
 {"alias": "kube_network_plugin kube-ovn", "ids": ["COMPONENT-KUBE_OVN"]}
 {"alias": "kube_network_plugin kube-router", "ids": ["COMPONENT-KUBE_ROUTER"]}
 {"alias": "kube_network_plugin macvlan", "ids": ["COMPONENT-MACVLAN"]}
+{"alias": "kube_network_plugin ovn4nfv", "ids": ["CONCEPT-OVN4NFV"]}
 {"alias": "kube_network_plugin_multus", "ids": ["VARIABLE-KUBE_NETWORK_PLUGIN_MULTUS"]}
 {"alias": "kube_next", "ids": ["VARIABLE-KUBE_NEXT"]}
 {"alias": "kube_node_addresses", "ids": ["VARIABLE-KUBE_NODE_ADDRESSES"]}
@@ -2054,6 +2070,7 @@
 {"alias": "nodelocaldns_secondary_skew_seconds", "ids": ["VARIABLE-NODELOCALDNS_SECONDARY_SKEW_SECONDS"]}
 {"alias": "nodelocaldns_version", "ids": ["VARIABLE-NODELOCALDNS_VERSION"]}
 {"alias": "nodeport not reachable firewall", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
+{"alias": "nodus cni", "ids": ["CONCEPT-OVN4NFV"]}
 {"alias": "not enough RAM kubespray", "ids": ["TROUBLE-NODE_MEMORY_TOO_SMALL"]}
 {"alias": "nri_enabled", "ids": ["VARIABLE-NRI_ENABLED"]}
 {"alias": "ntp", "ids": ["CONFIG-NTP"]}
@@ -2100,9 +2117,12 @@
 {"alias": "otel operator", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
 {"alias": "out of memory pod", "ids": ["TROUBLE-OOMKILLED"]}
 {"alias": "out-of-service taint force detach", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
+{"alias": "out-of-tree cloud provider", "ids": ["CONCEPT-CLOUD_CONTROLLER_MANAGER"]}
 {"alias": "overlayfs snapshotter cannot be enabled", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
 {"alias": "override component version", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
 {"alias": "ovn cni", "ids": ["COMPONENT-KUBE_OVN"]}
+{"alias": "ovn network function virtualization", "ids": ["CONCEPT-OVN4NFV"]}
+{"alias": "ovn4nfv", "ids": ["CONCEPT-OVN4NFV"]}
 {"alias": "p2p image mirror", "ids": ["CONCEPT-ADDON_SPEGEL"]}
 {"alias": "passthrough config", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
 {"alias": "patroni no leader", "ids": ["TROUBLE-POSTGRES_OPERATOR_CLUSTER_NOT_READY"]}

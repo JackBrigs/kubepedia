@@ -150,6 +150,9 @@
 {"source": "CONCEPT-CLEVIS_LUKS2", "target": "CONCEPT-ADDON_ROOK_CEPH", "type": "see_also"}
 {"source": "CONCEPT-CLEVIS_LUKS2", "target": "CONCEPT-TALOS_OS_K8S", "type": "see_also"}
 {"source": "CONCEPT-CLEVIS_LUKS2", "target": "CONCEPT-UBUNTU_24_04_K8S", "type": "see_also"}
+{"source": "CONCEPT-CLOUD_CONTROLLER_MANAGER", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
+{"source": "CONCEPT-CLOUD_CONTROLLER_MANAGER", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "CONCEPT-CLOUD_CONTROLLER_MANAGER", "target": "TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED", "type": "see_also"}
 {"source": "CONCEPT-CLUSTER_NETWORKING", "target": "CONCEPT-CILIUM_DATAPATH", "type": "see_also"}
 {"source": "CONCEPT-CLUSTER_NETWORKING", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
 {"source": "CONCEPT-CLUSTER_NETWORKING", "target": "CONFIG-DUAL_STACK", "type": "see_also"}
@@ -171,9 +174,16 @@
 {"source": "CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "target": "VARIABLE-KUBE_VERSION", "type": "depends_on"}
 {"source": "CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "target": "CONFIG-KUBEADM_CONFIG_API_VERSION", "type": "see_also"}
 {"source": "CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
+{"source": "CONCEPT-COREDNS_CUSTOMIZATION", "target": "COMPONENT-COREDNS", "type": "see_also"}
+{"source": "CONCEPT-COREDNS_CUSTOMIZATION", "target": "COMPONENT-NODELOCALDNS", "type": "see_also"}
+{"source": "CONCEPT-COREDNS_CUSTOMIZATION", "target": "CONCEPT-ESCAPE_HATCHES", "type": "see_also"}
+{"source": "CONCEPT-COREDNS_CUSTOMIZATION", "target": "PRACTICE-DNS_STACK", "type": "see_also"}
 {"source": "CONCEPT-CSI_LAYER", "target": "COMPONENT-CINDER_CSI", "type": "see_also"}
 {"source": "CONCEPT-CSI_LAYER", "target": "COMPONENT-SNAPSHOT_CONTROLLER", "type": "see_also"}
 {"source": "CONCEPT-CSI_LAYER", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}
+{"source": "CONCEPT-CUSTOM_CNI", "target": "PRACTICE-CNI_GENERIC_PLUGIN", "type": "see_also"}
+{"source": "CONCEPT-CUSTOM_CNI", "target": "ROLE-NETWORK_PLUGIN", "type": "see_also"}
+{"source": "CONCEPT-CUSTOM_CNI", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
 {"source": "CONCEPT-CVE_REMEDIATION", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-CVE_REMEDIATION", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "CONCEPT-ESCAPE_HATCHES", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
@@ -297,6 +307,9 @@
 {"source": "CONCEPT-OBSERVABILITY_STACK", "target": "COMPONENT-METRICS_SERVER", "type": "see_also"}
 {"source": "CONCEPT-OBSERVABILITY_STACK", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "CONCEPT-OBSERVABILITY_STACK", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
+{"source": "CONCEPT-OVN4NFV", "target": "CONCEPT-CUSTOM_CNI", "type": "see_also"}
+{"source": "CONCEPT-OVN4NFV", "target": "ROLE-NETWORK_PLUGIN", "type": "see_also"}
+{"source": "CONCEPT-OVN4NFV", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
 {"source": "CONCEPT-POD_SECURITY_STANDARDS", "target": "CONFIG-APISERVER_AUDIT", "type": "see_also"}
 {"source": "CONCEPT-POD_SECURITY_STANDARDS", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "CONCEPT-RUNBOOKS_INDEX", "target": "CONCEPT-ESCAPE_HATCHES", "type": "see_also"}
