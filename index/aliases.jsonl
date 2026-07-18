@@ -120,8 +120,11 @@
 {"alias": "10250 unreachable", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "1password connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
 {"alias": "1password-connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
+{"alias": "AdmissionWebhookMatchConditions", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "ArgoCD", "ids": ["CONCEPT-GITOPS"]}
 {"alias": "AuthenticationConfiguration", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
+{"alias": "AuthorizeNodeWithSelectors forbidden", "ids": ["TROUBLE-K8S_NODE_AUTHORIZER_SELECTORS"]}
+{"alias": "CEL admission", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "CIS benchmark kubespray", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
 {"alias": "CRI runtime choice", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "CRI-O runtime", "ids": ["PRACTICE-CRI_O"]}
@@ -148,11 +151,14 @@
 {"alias": "GitOps", "ids": ["CONCEPT-GITOPS"]}
 {"alias": "ImagePullBackOff", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "KEPs", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "KMS v1 deprecated", "ids": ["TROUBLE-K8S_KMS_V1_DEPRECATED"]}
+{"alias": "KMSv2 encryption at rest", "ids": ["TROUBLE-K8S_KMS_V1_DEPRECATED"]}
 {"alias": "Kata VM runtime", "ids": ["PRACTICE-KATA_CONTAINERS"]}
 {"alias": "KubeletConfiguration", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
 {"alias": "Kubernetes Enhancement Proposals", "ids": ["CONCEPT-K8S_KEPS"]}
 {"alias": "LegacyServiceAccountTokenCleanUp", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "MountVolume.SetUp failed", "ids": ["TROUBLE-FAILEDMOUNT"]}
+{"alias": "MutatingAdmissionPolicy", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "NVIDIA_VISIBLE_DEVICES no longer works", "ids": ["TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS"]}
 {"alias": "NetworkAttachmentDefinition", "ids": ["COMPONENT-MULTUS"]}
 {"alias": "NetworkPluginNotReady", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI", "TROUBLE-POD_CONTAINERCREATING"]}
@@ -165,6 +171,7 @@
 {"alias": "Pod Security Standards", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
 {"alias": "PodSecurity", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
 {"alias": "PodSecurity restricted", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
+{"alias": "PortForwardWebsockets", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
 {"alias": "PriorityLevelConfiguration", "ids": ["API-FLOWCONTROL_APISERVER"]}
 {"alias": "Private registry", "ids": ["PRACTICE-REGISTRY"]}
 {"alias": "ProgressDeadlineExceeded", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
@@ -172,7 +179,10 @@
 {"alias": "RPO RTO", "ids": ["PRACTICE-BACKUP_DR"]}
 {"alias": "SERVFAIL external dns", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
 {"alias": "SNAT masquerade pods", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
+{"alias": "SPDY proxy broken exec", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
 {"alias": "Stop if", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
+{"alias": "StructuredAuthenticationConfiguration", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN"]}
+{"alias": "StructuredAuthorizationConfig", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "SystemdCgroup", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
 {"alias": "Ubuntu 20.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
 {"alias": "Ubuntu 22.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
@@ -181,6 +191,7 @@
 {"alias": "Ubuntu 26.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
 {"alias": "Ubuntu 26.04 kubespray support", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
 {"alias": "Unable to install Cilium", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "ValidatingAdmissionPolicy", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "VolumeSnapshotClass", "ids": ["CONCEPT-CSI_LAYER"]}
 {"alias": "access denied kubernetes", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "acme challenge pending", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
@@ -226,6 +237,7 @@
 {"alias": "apiserver jwt oidc config file", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
 {"alias": "apiserver load balancing", "ids": ["PRACTICE-HA_MODE"]}
 {"alias": "apiserver memory not released", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
+{"alias": "apiserver oidc CEL", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN"]}
 {"alias": "apiserver oom large list", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
 {"alias": "apiserver read-only etcd full", "ids": ["TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
 {"alias": "apiserver slow create update", "ids": ["TROUBLE-APISERVER_REQUEST_LATENCY"]}
@@ -294,7 +306,10 @@
 {"alias": "audit_webhook_mode", "ids": ["VARIABLE-AUDIT_WEBHOOK_MODE"]}
 {"alias": "audit_webhook_server_extra_args", "ids": ["VARIABLE-AUDIT_WEBHOOK_SERVER_EXTRA_ARGS"]}
 {"alias": "audit_webhook_server_url", "ids": ["VARIABLE-AUDIT_WEBHOOK_SERVER_URL"]}
+{"alias": "authentication-config file", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN"]}
+{"alias": "authorization-config file", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "authorization_modes", "ids": ["VARIABLE-AUTHORIZATION_MODES"]}
+{"alias": "authorizer CEL", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "auto-generated service account token deleted", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
 {"alias": "auto_renew_certificates", "ids": ["CONCEPT-CLUSTER_PKI", "VARIABLE-AUTO_RENEW_CERTIFICATES"]}
 {"alias": "auto_renew_certificates_systemd_calendar", "ids": ["VARIABLE-AUTO_RENEW_CERTIFICATES_SYSTEMD_CALENDAR"]}
@@ -935,6 +950,7 @@
 {"alias": "encrypt secrets at rest", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION"]}
 {"alias": "encryption at rest", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
 {"alias": "encryption at rest nodes", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
+{"alias": "encryption provider migration", "ids": ["TROUBLE-K8S_KMS_V1_DEPRECATED"]}
 {"alias": "endpoints empty", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "endpoints notReadyAddresses stuck", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
 {"alias": "endpointslice empty", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
@@ -1265,6 +1281,7 @@
 {"alias": "immutable kubernetes os", "ids": ["CONCEPT-TALOS_OS_K8S"]}
 {"alias": "in-place pod resize KEP", "ids": ["CONCEPT-K8S_KEPS"]}
 {"alias": "in-place pod resize default", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
+{"alias": "in-tree admission policy", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "index files", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "informer relist thundering herd", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
 {"alias": "ingress 502 bad gateway", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
@@ -1339,6 +1356,7 @@
 {"alias": "keda triggerauthentication failing", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
 {"alias": "kernel upgrade node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "kernel version requirements", "ids": ["PRACTICE-KERNEL_REQUIREMENTS"]}
+{"alias": "kms provider apiVersion v1 warning", "ids": ["TROUBLE-K8S_KMS_V1_DEPRECATED"]}
 {"alias": "kube-apiserver", "ids": ["TAG-KUBE_APISERVER"]}
 {"alias": "kube-apiserver version", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
 {"alias": "kube-controller-manager", "ids": ["TAG-KUBE_CONTROLLER_MANAGER"]}
@@ -1609,7 +1627,9 @@
 {"alias": "kubeconfig", "ids": ["PRACTICE-CLUSTER_ACCESS"]}
 {"alias": "kubeconfig_localhost", "ids": ["PRACTICE-CLUSTER_ACCESS", "VARIABLE-KUBECONFIG_LOCALHOST"]}
 {"alias": "kubectl", "ids": ["TAG-KUBECTL", "VARIABLE-KUBECTL"]}
+{"alias": "kubectl cp hangs proxy", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
 {"alias": "kubectl exec error", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "kubectl exec fails through proxy", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
 {"alias": "kubectl hangs writes stall", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
 {"alias": "kubectl logs timeout", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "kubectl node kube-proxy version blank", "ids": ["TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED"]}
@@ -1627,6 +1647,7 @@
 {"alias": "kubelet cgroupDriver systemd", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
 {"alias": "kubelet config", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
 {"alias": "kubelet container gc leak", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
+{"alias": "kubelet credentials forbidden after 1.34", "ids": ["TROUBLE-K8S_NODE_AUTHORIZER_SELECTORS"]}
 {"alias": "kubelet hardening", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
 {"alias": "kubelet memory leak oomkill workloads", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
 {"alias": "kubelet not ready", "ids": ["PRACTICE-NODE_NOT_READY"]}
@@ -1816,6 +1837,7 @@
 {"alias": "metrics_server_image_repo", "ids": ["VARIABLE-METRICS_SERVER_IMAGE_REPO"]}
 {"alias": "metrics_server_image_tag", "ids": ["VARIABLE-METRICS_SERVER_IMAGE_TAG"]}
 {"alias": "metrics_server_version", "ids": ["VARIABLE-METRICS_SERVER_VERSION"]}
+{"alias": "migrate KMS v2", "ids": ["TROUBLE-K8S_KMS_V1_DEPRECATED"]}
 {"alias": "migrate-docker-to-containerd", "ids": ["PRACTICE-MIGRATE_DOCKER_TO_CONTAINERD"]}
 {"alias": "minDomains ignored", "ids": ["TROUBLE-SCHEDULER_TOPOLOGY_SPREAD"]}
 {"alias": "minimal_master_memory_mb", "ids": ["TROUBLE-NODE_MEMORY_TOO_SMALL", "VARIABLE-MINIMAL_MASTER_MEMORY_MB"]}
@@ -1827,6 +1849,7 @@
 {"alias": "mounts", "ids": ["TAG-MOUNTS"]}
 {"alias": "multi-attach error for volume", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
 {"alias": "multi-tenancy operator", "ids": ["CONCEPT-ADDON_CAPSULE"]}
+{"alias": "multiple OIDC issuers", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN"]}
 {"alias": "multiple pod interfaces", "ids": ["COMPONENT-MULTUS"]}
 {"alias": "multiple upgrades", "ids": ["UPGRADE-KUBESPRAY_SEQUENTIAL"]}
 {"alias": "multus", "ids": ["COMPONENT-MULTUS"]}
@@ -1883,6 +1906,9 @@
 {"alias": "node NotReady cgroup", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
 {"alias": "node NotReady firewall", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
 {"alias": "node allocatable", "ids": ["PRACTICE-CGROUPS"]}
+{"alias": "node authorization selectors", "ids": ["TROUBLE-K8S_NODE_AUTHORIZER_SELECTORS"]}
+{"alias": "node authorizer restricted", "ids": ["TROUBLE-K8S_NODE_AUTHORIZER_SELECTORS"]}
+{"alias": "node cannot list all secrets", "ids": ["TROUBLE-K8S_NODE_AUTHORIZER_SELECTORS"]}
 {"alias": "node connection refused 127.0.0.1:6443", "ids": ["TROUBLE-NODE_CANNOT_REACH_APISERVER"]}
 {"alias": "node disk pressure images in use", "ids": ["TROUBLE-KUBELET_IMAGE_GC"]}
 {"alias": "node down", "ids": ["PRACTICE-NODE_NOT_READY"]}
@@ -1966,6 +1992,7 @@
 {"alias": "operational runbook", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
 {"alias": "operator webhook no certs", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
 {"alias": "operator-lifecycle-manager", "ids": ["CONCEPT-ADDON_OLM"]}
+{"alias": "ordered webhooks", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "os patching kubernetes node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "otel operator", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
 {"alias": "out of memory pod", "ids": ["TROUBLE-OOMKILLED"]}
@@ -2020,6 +2047,7 @@
 {"alias": "port 6443 in use kubeadm", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
 {"alias": "port requirements", "ids": ["PRACTICE-PORT_REQUIREMENTS"]}
 {"alias": "port-forward failed", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "port-forward websocket", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
 {"alias": "post-remove", "ids": ["TAG-POST_REMOVE"]}
 {"alias": "post-upgrade", "ids": ["TAG-POST_UPGRADE"]}
 {"alias": "postgres-operator", "ids": ["CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR"]}
@@ -2104,6 +2132,7 @@
 {"alias": "removed feature gates", "ids": ["CONCEPT-K8S_FEATURE_GATES"]}
 {"alias": "renew certificates kubernetes", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
 {"alias": "renew certs kubespray", "ids": ["TROUBLE-KUBEADM_CERT_RENEWAL"]}
+{"alias": "replace admission webhook with CEL", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "replace cni on running cluster", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "required ports kubespray", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
 {"alias": "reservedSystemCPUs", "ids": ["CONFIG-CPU_ISOLATION"]}
@@ -2262,7 +2291,8 @@
 {"alias": "stoppodsandbox failed", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
 {"alias": "storage_googleapis_url", "ids": ["VARIABLE-STORAGE_GOOGLEAPIS_URL"]}
 {"alias": "storageclass not found", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER"]}
-{"alias": "structured authentication configuration", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
+{"alias": "structured authentication configuration", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN", "CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
+{"alias": "structured authorization configuration", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "supplementary_addresses_in_ssl_keys", "ids": ["TROUBLE-APISERVER_CERT_SAN", "VARIABLE-SUPPLEMENTARY_ADDRESSES_IN_SSL_KEYS"]}
 {"alias": "supported kubernetes versions", "ids": ["CONCEPT-KUBERNETES_VERSION_SUPPORT"]}
 {"alias": "supported ubuntu versions kubespray", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
