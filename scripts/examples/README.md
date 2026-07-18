@@ -1,45 +1,56 @@
-# Upgrade & Change Report — inventory intake (demo)
+# Kubepedia handles — demo
 
-`scripts/upgrade_report.py` is the first consumer **handle** over the Kubepedia KB:
-given two Kubespray versions (and optionally your inventory) it emits a personalized,
-source-linked upgrade report from the KDS docs.
+Two consumer **handles** over the KB. Both take two Kubespray versions and (optionally)
+your inventory, and default to **Russian** framing (`--lang en` for English).
 
-## Try it
+## `upgrade_diff.py` — inventory migration diff (primary)
+
+Action-oriented: **what to change in your inventory** to migrate.
 
 ```bash
-# full (unfiltered) report — Russian framing by default (the admin reads Russian)
-.venv/bin/python scripts/upgrade_report.py --from v2.28.1 --to v2.31.0
+# composite inventory (shared defaults folder + cluster folder), merged like Ansible
+.venv/bin/python scripts/upgrade_diff.py --from v2.28.1 --to v2.31.0 \
+    --inventory scripts/examples/shared-defaults \
+    --inventory scripts/examples/prod-cluster
 
-# personalized to an inventory (this demo fixture)
-.venv/bin/python scripts/upgrade_report.py --from v2.28.1 --to v2.31.0 \
-    --inventory scripts/examples/sample-inventory -o report.md
-
-# English framing
-.venv/bin/python scripts/upgrade_report.py --from v2.28.1 --to v2.31.0 --lang en
+# generic diff, no inventory
+.venv/bin/python scripts/upgrade_diff.py --from v2.30.0 --to v2.31.0
 ```
 
-**Language.** The report's own headers/labels/descriptions are **Russian by default**
-(`--lang ru`), because the operator reading it is Russian-speaking. Verbatim excerpts
-pulled from the KDS docs stay **English** (the KB's knowledge language) — the script is
-deterministic and doesn't translate doc bodies; each quoted fact links to its source.
-Use `--lang en` for a fully English report.
+Emits: **component version diff**, **⚠ variables to REMOVE** (defaults gone in the target
+tag that your inventory still sets — the headline), **all removed** (grouped) and **added**
+variables, a clean action list, and a compact doc appendix (IDs only appear there — no
+`[[wikilink]]` litter in the body).
 
-## What the intake reads
+**Data sources.** Versions: the curated `RELEASE-V*` KDS tables. Variables: a direct diff
+of the Kubespray **role defaults** between the two tags in a local checkout (`--src`,
+default `./kubespray-src`) — authoritative and per-tag. Inventory: resolved with
+**`ansible-inventory`**, so multiple `--inventory` folders merge with real Ansible
+precedence (a composite inventory works exactly as `ansible-playbook` would see it).
 
-Point `--inventory` at a Kubespray inventory dir (or a single vars file). It scans
-`*.yml`/`*.yaml` for the settings that decide relevance:
+## `upgrade_report.py` — KB-narrative report (variant)
 
-| Setting | Effect on the report |
-|---|---|
-| `kube_network_plugin` | keep only your CNI's notes; drop the other CNIs; link its deep version-jump doc (e.g. Cilium) |
-| `container_manager` | keep your runtime (containerd/crio/docker); drop the others |
-| `kube_proxy_mode` | shown in the profile |
-| `kube_version` | shown in the profile |
-| `cloud_provider` / `external_cloud_provider` | adds the external cloud-controller-manager section |
-| `*_enabled` add-ons (`metallb_enabled`, `cert_manager_enabled`, `argocd_enabled`, …) | keep enabled add-ons; drop disabled ones; link deep docs (e.g. Argo CD) |
+Pulls the prose upgrade notes from the `UPGRADE-*` KDS docs and personalizes/filters them.
+Richer narrative, but it references KB docs inline. `--lang ru|en`.
 
-Anything not in your inventory is removed from the report and listed under
-**"Filtered out"** for transparency.
+```bash
+.venv/bin/python scripts/upgrade_report.py --from v2.28.1 --to v2.31.0 \
+    --inventory scripts/examples/prod-cluster
+```
 
-`sample-inventory/` is a minimal fixture (Cilium + containerd + OpenStack cloud +
-a few add-ons) so the personalization is visible end-to-end.
+## Fixtures
+
+- `shared-defaults/` — group_vars shared across many clusters (runtime, proxy, cert-manager…).
+- `prod-cluster/` — a specific cluster: its `hosts.yaml`, CNI/kube_version, cloud, enabled
+  add-ons (incl. `dashboard_enabled`/`ingress_nginx_enabled`/`deploy_netchecker`, which are
+  **removed** in v2.31.0 — so the ⚠ section demonstrates the flag).
+
+Pass **both** folders as separate `--inventory` args to see the composite merge.
+
+## Notes
+
+- **Language.** Framing is Russian by default; verbatim KDS excerpts (only in
+  `upgrade_report.py`) stay English. For a fully human-Russian narrative, ask Claude to render
+  it — the tools provide the facts.
+- **Live clusters (future).** `upgrade_diff.py` reads inventory statically. Collecting facts
+  from running nodes (ansible `-m setup` / `--check` dry-run) is a possible extension.

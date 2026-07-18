@@ -1,0 +1,7 @@
+cloud_provider: external
+external_cloud_provider: openstack
+argocd_enabled: true
+metallb_enabled: true
+ingress_nginx_enabled: true
+dashboard_enabled: true
+deploy_netchecker: true

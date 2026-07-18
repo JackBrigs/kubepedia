@@ -1,0 +1,4 @@
+container_manager: containerd
+kube_proxy_mode: ipvs
+cert_manager_enabled: true
+metrics_server_enabled: true
