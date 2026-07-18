@@ -394,3 +394,44 @@ the architecture, KDS format, and standards are unchanged.
 owner-led), promoting runbooks to a first-class `runbook` type if retrieval proves it, and the
 monetization MVP (inventory intake over the Upgrade Report). The freshness treadmill (new Kubespray
 tags) is now a product concern, not just hygiene.
+
+## D-020 — Release 0.5.0: upstream-mined depth (2026-07-18)
+
+**Context.** Since 0.4.0 the project ran a large **upstream source-mining** program and filled the
+remaining depth areas, on the **unchanged** architecture. The owner requested a versioned checkpoint
+before building consumer interfaces.
+
+**Decision.** Tag the current state as **`v0.5.0`** — a **minor content release** (no architecture
+change). What 0.5.0 adds beyond 0.4.0 (~51 documents, 1426 → 1477):
+
+- **Version-accurate upstream mining** — established the discipline of cloning the real upstream repos
+  (`src-cache/`, gitignored) at the **exact tags Kubespray ships** and mining facts with `file@tag`
+  citations, never from `master`. Sources: cilium/cilium, argoproj/argo-cd, kubernetes/enhancements,
+  kubernetes/kubernetes (CHANGELOG), siderolabs/talos + docs.
+- **Cilium / Envoy** — `UPGRADE-CILIUM_1_15_TO_1_19` (per-Kubespray-minor breaking changes across
+  1.15.9→1.19.3), `CONCEPT-CILIUM_ENVOY`, and atomic troubleshooting for BGPv1 removal, ClusterMesh
+  policy/auth flips, IPsec CVE-2025-37959, KPR-toggle removal, etc.
+- **Argo CD** — `UPGRADE-ARGOCD_2_11_TO_2_14` (cumulative jump), `TROUBLE-ARGOCD_REDIS_ECR_AIRGAP`,
+  source hydrator; k8s-compat caveat (2.14 untested > k8s 1.31).
+- **Kubernetes KEP layer** — `CONCEPT-K8S_UPGRADE_SILENT_CHANGES` (per-minor silent default-flips
+  1.29–1.35 from kep.yaml), `CONCEPT-K8S_URGENT_UPGRADE_NOTES` (curated CHANGELOG Urgent Upgrade
+  Notes), plus ~30 atomic KEP docs (structured authn/authz, admission policies, DRA, in-place resize,
+  cgroup-v1 removal, StatefulSet PVC auto-delete, SA-secret-token removal, and more).
+- **Core-component / niche-CNI depth** — `CONCEPT-CLOUD_CONTROLLER_MANAGER` (external CCM — a gap),
+  `CONCEPT-CUSTOM_CNI`, `CONCEPT-OVN4NFV`, `CONCEPT-COREDNS_CUSTOMIZATION`, `TAG-CALICO_RR` (and the
+  finding that Kubespray has **no per-CNI tags** — all CNI deploy under `network`).
+- **Talos depth** — `CONCEPT-TALOS_K8S_MATRIX` (exact Talos↔K8s support matrix + CAPI/Omni version
+  pairing), `CONCEPT-TALOS_LOCAL_CLUSTER`, `CONCEPT-TALOS_CLUSTER_API`, `CONCEPT-TALOS_OMNI`. Talos is
+  recorded as an alternative-OS domain, not Kubespray-managed (`kubespray_version: null`).
+
+- Base at tag time: **1477 documents**, validator PASS (0 hard failures, 0 warnings),
+  `check_versions.py` PASS.
+
+**Rationale.** A coherent new content pillar (version-accurate upstream depth) that materially deepens
+the upgrade/breaking-change knowledge the Upgrade & Change Report depends on. Minor, not major: the
+KDS format, standards, and architecture are unchanged.
+
+**Consequences.** Next work is **consumer interfaces** ("ручки" — the BACKLOG access-interfaces item):
+a query/retrieval API over `index/`, an Upgrade & Change Report inventory intake, and an MCP
+server/connector. The upstream `src-cache/` clones remain locally for periodic re-mining. Deferred
+items unchanged (README, community deep-mining, Calico depth).
