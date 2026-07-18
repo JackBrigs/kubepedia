@@ -121,6 +121,7 @@
 {"alias": "1password connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
 {"alias": "1password-connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
 {"alias": "AdmissionWebhookMatchConditions", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
+{"alias": "AnonymousAuthConfigurableEndpoints", "ids": ["CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS"]}
 {"alias": "ArgoCD", "ids": ["CONCEPT-GITOPS"]}
 {"alias": "AuthenticationConfiguration", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
 {"alias": "AuthorizeNodeWithSelectors forbidden", "ids": ["TROUBLE-K8S_NODE_AUTHORIZER_SELECTORS"]}
@@ -139,6 +140,7 @@
 {"alias": "CiliumBGPPeeringPolicy removed", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "CiliumLoadBalancerIPPool", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "ClusterConfiguration", "ids": ["CONCEPT-KUBEADM_CONFIG"]}
+{"alias": "ConsistentListFromCache", "ids": ["CONCEPT-K8S_CONSISTENT_READS_CACHE"]}
 {"alias": "ContainerCreating stuck", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
 {"alias": "Corefile", "ids": ["CONFIG-COREDNS_COREFILE"]}
 {"alias": "CrashLoopBackOff", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
@@ -146,6 +148,7 @@
 {"alias": "DR", "ids": ["PRACTICE-BACKUP_DR"]}
 {"alias": "DRA structured parameters", "ids": ["CONCEPT-K8S_DRA"]}
 {"alias": "DisableAllocatorDualWrite", "ids": ["CONCEPT-K8S_MULTI_CIDR_SERVICE_ALLOCATOR"]}
+{"alias": "DisableCloudProviders", "ids": ["TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"]}
 {"alias": "DisableNodeKubeProxyVersion", "ids": ["TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED"]}
 {"alias": "Docker CRI", "ids": ["PRACTICE-DOCKER"]}
 {"alias": "DynamicResourceAllocation", "ids": ["CONCEPT-K8S_DRA"]}
@@ -155,6 +158,7 @@
 {"alias": "FailedScheduling", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "FlowSchema", "ids": ["API-FLOWCONTROL_APISERVER"]}
 {"alias": "GitOps", "ids": ["CONCEPT-GITOPS"]}
+{"alias": "GitRepoVolumeDriver", "ids": ["TROUBLE-K8S_GITREPO_VOLUME_REMOVED"]}
 {"alias": "HonorPVReclaimPolicy", "ids": ["CONCEPT-K8S_HONOR_PV_RECLAIM_POLICY"]}
 {"alias": "IPAddress object", "ids": ["CONCEPT-K8S_MULTI_CIDR_SERVICE_ALLOCATOR"]}
 {"alias": "ImagePullBackOff", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
@@ -178,6 +182,7 @@
 {"alias": "Noble Numbat kubernetes", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
 {"alias": "NodeSwap", "ids": ["CONCEPT-K8S_NODE_SWAP"]}
 {"alias": "OOMKilled", "ids": ["TROUBLE-OOMKILLED"]}
+{"alias": "OrderedNamespaceDeletion", "ids": ["CONCEPT-K8S_ORDERED_NAMESPACE_DELETION"]}
 {"alias": "PLEG is not healthy", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
 {"alias": "PSS", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
 {"alias": "PartialObjectMetadata operation not supported", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
@@ -237,6 +242,7 @@
 {"alias": "am i exposed", "ids": ["CONCEPT-CVE_REMEDIATION"]}
 {"alias": "annotate", "ids": ["TAG-ANNOTATE"]}
 {"alias": "annotations-risk-level", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
+{"alias": "anonymous auth specific paths", "ids": ["CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS"]}
 {"alias": "anonymous authentication config", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
 {"alias": "ansible awx", "ids": ["CONCEPT-ADDON_AWX"]}
 {"alias": "ansible usage", "ids": ["PRACTICE-ANSIBLE"]}
@@ -248,6 +254,7 @@
 {"alias": "api removals", "ids": ["CONCEPT-K8S_API_REMOVALS"]}
 {"alias": "apiserver 429 too many requests", "ids": ["TROUBLE-APISERVER_APF_429"]}
 {"alias": "apiserver VIP unreachable", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP"]}
+{"alias": "apiserver anonymous endpoints config", "ids": ["CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS"]}
 {"alias": "apiserver audit log", "ids": ["CONFIG-APISERVER_AUDIT"]}
 {"alias": "apiserver cert does not include IP", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
 {"alias": "apiserver certificate SAN missing", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
@@ -260,6 +267,7 @@
 {"alias": "apiserver read-only etcd full", "ids": ["TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
 {"alias": "apiserver slow create update", "ids": ["TROUBLE-APISERVER_REQUEST_LATENCY"]}
 {"alias": "apiserver slow etcd", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
+{"alias": "apiserver watch cache list", "ids": ["CONCEPT-K8S_CONSISTENT_READS_CACHE"]}
 {"alias": "apiserver-lb-domain-default-unresolvable", "ids": ["TROUBLE-APISERVER_LB_DOMAIN_DEFAULT"]}
 {"alias": "apiserver_admission_webhook_admission_duration_seconds", "ids": ["TROUBLE-APISERVER_REQUEST_LATENCY"]}
 {"alias": "apiserver_extra_volumes", "ids": ["VARIABLE-APISERVER_EXTRA_VOLUMES"]}
@@ -267,6 +275,9 @@
 {"alias": "apiserver_sans undefined LB domain", "ids": ["TROUBLE-APISERVER_SANS_UNDEFINED_LB_DOMAIN"]}
 {"alias": "apiservice unavailable namespace", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
 {"alias": "app of apps", "ids": ["CONCEPT-GITOPS"]}
+{"alias": "appArmorProfile securityContext", "ids": ["TROUBLE-K8S_APPARMOR_ANNOTATIONS_DEPRECATED"]}
+{"alias": "apparmor GA kubernetes 1.31", "ids": ["TROUBLE-K8S_APPARMOR_ANNOTATIONS_DEPRECATED"]}
+{"alias": "apparmor annotation deprecated", "ids": ["TROUBLE-K8S_APPARMOR_ANNOTATIONS_DEPRECATED"]}
 {"alias": "application backup kubernetes", "ids": ["CONCEPT-VELERO"]}
 {"alias": "application stuck progressing", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "apply extra_args", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
@@ -279,20 +290,24 @@
 {"alias": "argocd 3.1", "ids": ["CONCEPT-ADDON_ARGOCD"]}
 {"alias": "argocd addon", "ids": ["CONCEPT-ADDON_ARGOCD"]}
 {"alias": "argocd air-gapped image pull", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
+{"alias": "argocd commit-server", "ids": ["CONCEPT-ARGOCD_SOURCE_HYDRATOR"]}
 {"alias": "argocd comparison error", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "argocd degraded health", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "argocd haproxy ecr", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
+{"alias": "argocd hydrator", "ids": ["CONCEPT-ARGOCD_SOURCE_HYDRATOR"]}
 {"alias": "argocd ignoreResourceUpdatesEnabled", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd kubernetes compatibility", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd logs rbac", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
 {"alias": "argocd out of sync", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "argocd permission denied after upgrade", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
+{"alias": "argocd push rendered manifests", "ids": ["CONCEPT-ARGOCD_SOURCE_HYDRATOR"]}
 {"alias": "argocd rbac sync error", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "argocd redis ecr registry", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd redis imagepullbackoff", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
 {"alias": "argocd redis-ha dockerhub to ecr", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
 {"alias": "argocd resource tracking annotations", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
 {"alias": "argocd self-heal backoff default", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
+{"alias": "argocd source hydrator", "ids": ["CONCEPT-ARGOCD_SOURCE_HYDRATOR"]}
 {"alias": "argocd sync failed", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "argocd upgrade breaking changes", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd_enabled", "ids": ["CONCEPT-GITOPS", "VARIABLE-ARGOCD_ENABLED"]}
@@ -656,6 +671,7 @@
 {"alias": "clock synchronization", "ids": ["CONFIG-NTP"]}
 {"alias": "clock-skew-tls-errors", "ids": ["TROUBLE-CLOCK_SKEW_TLS"]}
 {"alias": "cloki", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "cloud-provider external", "ids": ["TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"]}
 {"alias": "cloud_provider", "ids": ["VARIABLE-CLOUD_PROVIDER"]}
 {"alias": "cloud_resolver", "ids": ["VARIABLE-CLOUD_RESOLVER"]}
 {"alias": "cluster hardening", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
@@ -689,6 +705,7 @@
 {"alias": "connection refused 127.0.0.1 metrics", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
 {"alias": "connection refused clusterip", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "conntrack-table-full", "ids": ["TROUBLE-CONNTRACK_TABLE_FULL"]}
+{"alias": "consistent reads from cache", "ids": ["CONCEPT-K8S_CONSISTENT_READS_CACHE"]}
 {"alias": "container engine kubespray", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "container keeps restarting", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "container killed memory limit", "ids": ["TROUBLE-OOMKILLED"]}
@@ -696,6 +713,7 @@
 {"alias": "container runtimes", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
 {"alias": "container-engine", "ids": ["ROLE-CONTAINER_ENGINE", "TAG-CONTAINER_ENGINE"]}
 {"alias": "container-runtimes", "ids": ["TAG-CONTAINER_RUNTIMES"]}
+{"alias": "container.apparmor.security.beta.kubernetes.io", "ids": ["TROUBLE-K8S_APPARMOR_ANNOTATIONS_DEPRECATED"]}
 {"alias": "container_engine_accelerator", "ids": ["TAG-CONTAINER_ENGINE_ACCELERATOR"]}
 {"alias": "container_manager", "ids": ["CONCEPT-CONTAINER_MANAGER", "VARIABLE-CONTAINER_MANAGER"]}
 {"alias": "container_manager_on_localhost", "ids": ["VARIABLE-CONTAINER_MANAGER_ON_LOCALHOST"]}
@@ -1043,6 +1061,7 @@
 {"alias": "etcd metrics down prometheus", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
 {"alias": "etcd quorum after reboot", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
 {"alias": "etcd quorum lost", "ids": ["TROUBLE-ETCD_QUORUM_LOSS"]}
+{"alias": "etcd read pressure kubernetes", "ids": ["CONCEPT-K8S_CONSISTENT_READS_CACHE"]}
 {"alias": "etcd remove external member fails", "ids": ["TROUBLE-ETCD_REMOVE_EXTERNAL_MEMBER_FAILS"]}
 {"alias": "etcd remove-node not idempotent", "ids": ["TROUBLE-ETCD_REMOVE_NODE_NOT_IDEMPOTENT"]}
 {"alias": "etcd restore", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
@@ -1143,6 +1162,7 @@
 {"alias": "expand_persistent_volumes", "ids": ["VARIABLE-EXPAND_PERSISTENT_VOLUMES"]}
 {"alias": "expired apiserver certificate", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
 {"alias": "extend service cidr", "ids": ["CONCEPT-K8S_MULTI_CIDR_SERVICE_ALLOCATOR"]}
+{"alias": "external cloud-controller-manager required", "ids": ["TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"]}
 {"alias": "external connectivity from pod", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
 {"alias": "external domain not resolving in cluster", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
 {"alias": "external ip bare metal", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
@@ -1192,6 +1212,7 @@
 {"alias": "feature gates that went GA 1.29 1.30 1.31 1.32 1.33 1.34 1.35", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "feature.node.kubernetes.io labels absent", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
 {"alias": "field is immutable kubeadm upgrade", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
+{"alias": "field manager conflict kubectl", "ids": ["CONCEPT-K8S_KUBECTL_SSA_DEFAULT"]}
 {"alias": "file descriptor limit kubernetes", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
 {"alias": "files", "ids": ["TAG-FILES"]}
 {"alias": "finalizers blocking namespace", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
@@ -1245,6 +1266,8 @@
 {"alias": "gigapipe", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
 {"alias": "gigapipe-read", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
 {"alias": "gigapipe-write", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "gitRepo volume deprecated removed", "ids": ["TROUBLE-K8S_GITREPO_VOLUME_REMOVED"]}
+{"alias": "gitRepo volume disabled", "ids": ["TROUBLE-K8S_GITREPO_VOLUME_REMOVED"]}
 {"alias": "github_image_repo", "ids": ["VARIABLE-GITHUB_IMAGE_REPO"]}
 {"alias": "github_url", "ids": ["VARIABLE-GITHUB_URL"]}
 {"alias": "gitlab ci runner", "ids": ["CONCEPT-ADDON_GITLAB_RUNNER"]}
@@ -1320,6 +1343,7 @@
 {"alias": "hubble export static schema", "ids": ["TROUBLE-CILIUM_HUBBLE_EXPORT_SCHEMA"]}
 {"alias": "hubble metrics", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
 {"alias": "hubble ui", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
+{"alias": "hydrator.enabled", "ids": ["CONCEPT-ARGOCD_SOURCE_HYDRATOR"]}
 {"alias": "identity count spike cilium", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
 {"alias": "ignore-preflight-errors", "ids": ["TROUBLE-KUBEADM_PREFLIGHT"]}
 {"alias": "ignore_assert_errors", "ids": ["VARIABLE-IGNORE_ASSERT_ERRORS"]}
@@ -1342,6 +1366,7 @@
 {"alias": "in-place pod resize default", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "in-place pod vertical scaling", "ids": ["CONCEPT-K8S_IN_PLACE_POD_RESIZE"]}
 {"alias": "in-tree admission policy", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
+{"alias": "in-tree cloud provider removed", "ids": ["TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"]}
 {"alias": "index files", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "informer relist thundering herd", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
 {"alias": "ingress 502 bad gateway", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
@@ -1691,13 +1716,17 @@
 {"alias": "kubeconfig", "ids": ["PRACTICE-CLUSTER_ACCESS"]}
 {"alias": "kubeconfig_localhost", "ids": ["PRACTICE-CLUSTER_ACCESS", "VARIABLE-KUBECONFIG_LOCALHOST"]}
 {"alias": "kubectl", "ids": ["TAG-KUBECTL", "VARIABLE-KUBECTL"]}
+{"alias": "kubectl apply SSA", "ids": ["CONCEPT-K8S_KUBECTL_SSA_DEFAULT"]}
+{"alias": "kubectl apply managedFields", "ids": ["CONCEPT-K8S_KUBECTL_SSA_DEFAULT"]}
 {"alias": "kubectl cp hangs proxy", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
+{"alias": "kubectl delete ns ordering", "ids": ["CONCEPT-K8S_ORDERED_NAMESPACE_DELETION"]}
 {"alias": "kubectl exec error", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "kubectl exec fails through proxy", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
 {"alias": "kubectl hangs writes stall", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
 {"alias": "kubectl logs timeout", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "kubectl node kube-proxy version blank", "ids": ["TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED"]}
 {"alias": "kubectl rollout status hangs", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
+{"alias": "kubectl server-side apply default", "ids": ["CONCEPT-K8S_KUBECTL_SSA_DEFAULT"]}
 {"alias": "kubectl top metrics api not available", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
 {"alias": "kubectl x509 not valid for load balancer", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
 {"alias": "kubectl_binary_checksum", "ids": ["VARIABLE-KUBECTL_BINARY_CHECKSUM"]}
@@ -1839,6 +1868,7 @@
 {"alias": "legacy-token-invalid-since", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
 {"alias": "liveness probe failing restart", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "loadbalancer options bare metal", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
+{"alias": "loadbalancer pending no cloud provider", "ids": ["TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"]}
 {"alias": "loadbalancer service pending", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
 {"alias": "loadbalancer_apiserver_cpu_requests", "ids": ["VARIABLE-LOADBALANCER_APISERVER_CPU_REQUESTS"]}
 {"alias": "loadbalancer_apiserver_keepalive_timeout", "ids": ["VARIABLE-LOADBALANCER_APISERVER_KEEPALIVE_TIMEOUT"]}
@@ -1927,6 +1957,7 @@
 {"alias": "mutatingwebhookconfiguration blocking", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "nameservers", "ids": ["VARIABLE-NAMESERVERS"]}
 {"alias": "namespace backup restore", "ids": ["CONCEPT-VELERO"]}
+{"alias": "namespace delete pods first", "ids": ["CONCEPT-K8S_ORDERED_NAMESPACE_DELETION"]}
 {"alias": "namespace stuck terminating", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
 {"alias": "namespace terminating forever", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
 {"alias": "namespace won't delete", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
@@ -1945,6 +1976,7 @@
 {"alias": "network bound disk encryption", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
 {"alias": "network not ready", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
 {"alias": "network policy selects only local cluster", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
+{"alias": "network policy stays until pods gone", "ids": ["CONCEPT-K8S_ORDERED_NAMESPACE_DELETION"]}
 {"alias": "network_plugin", "ids": ["ROLE-NETWORK_PLUGIN"]}
 {"alias": "never", "ids": ["TAG-NEVER"]}
 {"alias": "nfd labels missing", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
@@ -2096,6 +2128,7 @@
 {"alias": "pod containercreating rwo node down", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
 {"alias": "pod egress fails", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
 {"alias": "pod egress snat cilium eni", "ids": ["TROUBLE-CILIUM_ENI_MASQUERADE_FLIP"]}
+{"alias": "pod gitRepo volume fails 1.33", "ids": ["TROUBLE-K8S_GITREPO_VOLUME_REMOVED"]}
 {"alias": "pod mtu vxlan overhead", "ids": ["CONFIG-CNI_MTU"]}
 {"alias": "pod networking broken", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
 {"alias": "pod not starting", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
@@ -2183,6 +2216,7 @@
 {"alias": "recover-control-plane.yml", "ids": ["PLAYBOOK-RECOVER_CONTROL_PLANE", "PRACTICE-RUNBOOK_ETCD_RESTORE"]}
 {"alias": "redhat_os_family_extensions", "ids": ["VARIABLE-REDHAT_OS_FAMILY_EXTENSIONS"]}
 {"alias": "redis-ha public.ecr.aws", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
+{"alias": "reduce etcd load list", "ids": ["CONCEPT-K8S_CONSISTENT_READS_CACHE"]}
 {"alias": "registry", "ids": ["COMPONENT-REGISTRY", "TAG-REGISTRY"]}
 {"alias": "registry config /etc/distribution", "ids": ["TROUBLE-REGISTRY_2_TO_3_MIGRATION"]}
 {"alias": "registry emptyDir data loss", "ids": ["TROUBLE-REGISTRY_ADDON"]}
@@ -2228,6 +2262,7 @@
 {"alias": "restic unlock k8up", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
 {"alias": "restore cluster", "ids": ["PRACTICE-BACKUP_DR"]}
 {"alias": "restore from etcd snapshot", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
+{"alias": "restrict anonymous access healthz", "ids": ["CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS"]}
 {"alias": "retrieval guide", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "retry_stagger", "ids": ["VARIABLE-RETRY_STAGGER"]}
 {"alias": "rewrite existing secrets", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION"]}

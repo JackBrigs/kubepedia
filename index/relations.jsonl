@@ -126,6 +126,8 @@
 {"source": "CONCEPT-ADDON_VOLSYNC", "target": "COMPONENT-SNAPSHOT_CONTROLLER", "type": "see_also"}
 {"source": "CONCEPT-ADDON_VOLSYNC", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
+{"source": "CONCEPT-ARGOCD_SOURCE_HYDRATOR", "target": "COMPONENT-ARGOCD", "type": "see_also"}
+{"source": "CONCEPT-ARGOCD_SOURCE_HYDRATOR", "target": "UPGRADE-ARGOCD_2_11_TO_2_14", "type": "see_also"}
 {"source": "CONCEPT-CILIUM_DATAPATH", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "CONCEPT-CILIUM_DATAPATH", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
 {"source": "CONCEPT-CILIUM_DATAPATH", "target": "TROUBLE-CILIUM_CONFIG_VALIDATION", "type": "see_also"}
@@ -219,6 +221,9 @@
 {"source": "CONCEPT-K8S_ADMISSION_POLICIES", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_ADMISSION_POLICIES", "target": "CONCEPT-POD_SECURITY_STANDARDS", "type": "see_also"}
 {"source": "CONCEPT-K8S_ADMISSION_POLICIES", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
+{"source": "CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS", "target": "CONCEPT-INSECURE_DEFAULTS", "type": "see_also"}
+{"source": "CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS", "target": "CONCEPT-K8S_STRUCTURED_AUTHN", "type": "see_also"}
+{"source": "CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "CONCEPT-K8S_API_REMOVALS", "target": "API-FLOWCONTROL_APISERVER", "type": "see_also"}
 {"source": "CONCEPT-K8S_API_REMOVALS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-K8S_CGROUP_DRIVER_FROM_CRI", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
@@ -227,6 +232,8 @@
 {"source": "CONCEPT-K8S_CGROUP_V1_REMOVAL", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_CGROUP_V1_REMOVAL", "target": "PRACTICE-CGROUPS", "type": "see_also"}
 {"source": "CONCEPT-K8S_CGROUP_V1_REMOVAL", "target": "PRACTICE-KERNEL_REQUIREMENTS", "type": "see_also"}
+{"source": "CONCEPT-K8S_CONSISTENT_READS_CACHE", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "CONCEPT-K8S_CONSISTENT_READS_CACHE", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
 {"source": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
@@ -241,6 +248,8 @@
 {"source": "CONCEPT-K8S_KEPS", "target": "CONCEPT-K8S_1_33_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_KEPS", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_KEPS", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
+{"source": "CONCEPT-K8S_KUBECTL_SSA_DEFAULT", "target": "CONCEPT-K8S_ADMISSION_POLICIES", "type": "see_also"}
+{"source": "CONCEPT-K8S_KUBECTL_SSA_DEFAULT", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_KUBE_PROXY_DRAINING_NODES", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_KUBE_PROXY_DRAINING_NODES", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
 {"source": "CONCEPT-K8S_KUBE_PROXY_DRAINING_NODES", "target": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "type": "see_also"}
@@ -249,6 +258,8 @@
 {"source": "CONCEPT-K8S_NODE_SWAP", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_NODE_SWAP", "target": "PRACTICE-CGROUPS", "type": "see_also"}
 {"source": "CONCEPT-K8S_NODE_SWAP", "target": "PRACTICE-KERNEL_REQUIREMENTS", "type": "see_also"}
+{"source": "CONCEPT-K8S_ORDERED_NAMESPACE_DELETION", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
+{"source": "CONCEPT-K8S_ORDERED_NAMESPACE_DELETION", "target": "CONCEPT-POD_SECURITY_STANDARDS", "type": "see_also"}
 {"source": "CONCEPT-K8S_SIDECAR_CONTAINERS", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
 {"source": "CONCEPT-K8S_SIDECAR_CONTAINERS", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_STATEFULSET_PVC_AUTODELETE", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
@@ -802,7 +813,14 @@
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "PRACTICE-LARGE_DEPLOYMENTS", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
+{"source": "TROUBLE-K8S_APPARMOR_ANNOTATIONS_DEPRECATED", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
+{"source": "TROUBLE-K8S_APPARMOR_ANNOTATIONS_DEPRECATED", "target": "CONCEPT-POD_SECURITY_STANDARDS", "type": "see_also"}
+{"source": "TROUBLE-K8S_APPARMOR_ANNOTATIONS_DEPRECATED", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "TROUBLE-K8S_CERTS_RENEW_BROKEN_SCRIPT", "target": "CONCEPT-CLUSTER_PKI", "type": "see_also"}
+{"source": "TROUBLE-K8S_GITREPO_VOLUME_REMOVED", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
+{"source": "TROUBLE-K8S_GITREPO_VOLUME_REMOVED", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
+{"source": "TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
+{"source": "TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "TROUBLE-K8S_KMS_V1_DEPRECATED", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
 {"source": "TROUBLE-K8S_KMS_V1_DEPRECATED", "target": "PRACTICE-RUNBOOK_SECRETS_ENCRYPTION", "type": "see_also"}
 {"source": "TROUBLE-K8S_KMS_V1_DEPRECATED", "target": "PRACTICE-SECRETS_ENCRYPTION_AT_REST", "type": "see_also"}
