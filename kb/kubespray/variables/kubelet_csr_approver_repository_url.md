@@ -1,0 +1,49 @@
+---
+id: VARIABLE-KUBELET_CSR_APPROVER_REPOSITORY_URL
+type: variable
+title: kubelet_csr_approver_repository_url
+status: active
+kubespray_version: ">=v2.27.0 <=v2.31.0"
+kubernetes_version: null
+component_version: null
+verified_at: "2026-07-18"
+confidence: verified
+aliases:
+  - kubelet_csr_approver_repository_url
+tags:
+  - kubernetes-apps
+  - kubelet-csr-approver
+  - variable
+sources:
+  - type: code
+    path: roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml
+    note: "default: https://postfinance.github.io/kubelet-csr-approver"
+relations: []
+---
+<!-- generated: variable-stub -->
+
+# kubelet_csr_approver_repository_url
+
+## Summary
+
+Kubespray variable `kubelet_csr_approver_repository_url` — default `https://postfinance.github.io/kubelet-csr-approver`. Defined in `roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml`. Present in Kubespray
+`v2.27.0`–`v2.31.0` of the indexed range. (Source-grounded reference stub; see the file for
+the exact value and surrounding context.)
+
+## Implementation
+
+Defined in `roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml` (Kubespray `v2.31.0`):
+
+```yaml
+kubelet_csr_approver_repository_url: https://postfinance.github.io/kubelet-csr-approver
+```
+
+## Compatibility
+
+Present in the Kubespray tags `v2.27.0`–`v2.31.0`. Read the exact per-tag value from the source
+file, as defaults can change between releases.
+
+## References
+
+- `roles/kubernetes-apps/kubelet-csr-approver/defaults/main.yml` (Kubespray `v2.31.0`).
