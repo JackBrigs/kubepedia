@@ -48,16 +48,20 @@ relations:
 ## Summary
 
 Adding a **worker** and adding a **control-plane** node are different playbooks and this is the #1
-thing operators get wrong: workers use **`scale.yml`** (non-disruptive), control-plane nodes use
-**`cluster.yml`** (`scale.yml` will **not** join a control-plane node — [[PRACTICE-NODES_ADD_REPLACE]]).
-Both start from adding the host to the inventory. Adds are low-risk (the existing cluster keeps
-running); the care is in **not disturbing** the nodes you already have.
+thing operators get wrong: workers use **`scale.yml`**, control-plane nodes use **`cluster.yml`**
+(`scale.yml` will **not** join a control-plane node — [[PRACTICE-NODES_ADD_REPLACE]]). Both start from
+adding the host to the inventory. **"Non-disruptive" is only true with `--limit`:** `scale.yml`
+un-scoped targets **all** `kube_node` (re-runs container-engine / network / kubelet roles across every
+worker, plus a cluster-wide resolv.conf pass) and can restart CNI/runtime/kubelet on nodes you didn't
+mean to touch. Scope it to the new node and the existing cluster keeps running.
 
 ## Context
 
-- **Worker → `scale.yml`.** Only converges the new node; use `--limit=<node>` to avoid touching
-  others — but run **`facts.yml` first without `--limit`** so the fact cache is fresh (a stale cache
-  under `--limit` is a classic source of wrong config on the new node).
+- **Worker → `scale.yml`.** It does **not** target only the new node — `playbooks/scale.yml` runs the
+  `container-engine` / `network` / `kubelet` roles against **`hosts: kube_node`** (all workers) and a
+  final `k8s_cluster`-wide resolv.conf play. So you **must** pass **`--limit=<new-node>`** to avoid
+  re-touching existing workers — but run **`facts.yml` first without `--limit`** so the fact cache is
+  fresh (a stale cache under `--limit` is a classic source of wrong config on the new node).
 - **Control-plane → `cluster.yml`.** You **cannot** use `scale.yml`. **Append** the new control-plane
   host to the **end** of the `kube_control_plane` group — adding it in the **first** position is
   unsupported and fails the run. After the run, **restart the `nginx-proxy`** static pod on every
