@@ -91,6 +91,12 @@ Argo CD has a **serious CVE record** — for clusters on older versions (older K
 - **Path traversal** (1.3.0 to <2.1.11 / 2.2.6 / 2.3.0): a read-only repo user could **leak sensitive files** from repo-server.
 - Treat Argo CD as high-value; keep it on a patched 3.1.x and scope project tokens tightly.
 
+## Guides & how-to (official)
+
+- **Upgrade overview:** https://argo-cd.readthedocs.io/en/stable/operator-manual/upgrading/overview/ + version-pair guides at `.../upgrading/<from>-<to>/`
+- **Operator manual (day-2):** https://argo-cd.readthedocs.io/en/stable/operator-manual/ ; **security:** https://argo-cd.readthedocs.io/en/stable/operator-manual/security/
+- **How to upgrade (key steps):** read the **version-pair** notes for your path (patch = no breaking, minor = possible workarounds, major = breaking); apply with **`kubectl --server-side --force-conflicts`** (CRDs exceed the client-side-apply limit); apply the **full manifest set**, not just the image.
+
 ## References
 
 - `Chart.yaml`, tested-versions page, 2.14→3.0 upgrade guide (above); advisory

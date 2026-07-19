@@ -84,6 +84,12 @@ For clusters still on an **older** cert-manager (older Kubespray tags shipped lo
 - **GHSA-r4pg-vg54-wxx4** (Low): crafted PEM data causes **excessive CPU** (resource exhaustion) — affects **everything below 1.12.14 / 1.15.4 / 1.16.2**.
 - **CVE-2026-62290 / GHSA-8rvj-mm4h-c258** (High, 1.18.0–1.20.2): direct ACME `Challenge`/`Order` creation bypasses Issuer DNS-01 policy and can disclose ClusterIssuer DNS creds — fixed **1.19.6 / 1.20.3**. Upgrade off any of these ranges.
 
+## Guides & how-to (official)
+
+- **Upgrade:** https://cert-manager.io/docs/installation/upgrade/ + per-version notes https://cert-manager.io/docs/releases/
+- **Install (Helm):** https://cert-manager.io/docs/installation/helm/ ; **backup/restore:** https://cert-manager.io/docs/devops-tips/backup/
+- **How to upgrade (key steps):** read the version-path release notes first; upgrade **one minor at a time** (latest patch); **CRDs** — if installed via `crds.enabled=true` Helm handles them, otherwise `kubectl apply` the new CRD manifest **before** the chart; **back up cert-manager resources first**.
+
 ## References
 
 - cert-manager supported releases (1.18 row), advisory GHSA-gx3x-vq4p-mhhv (above).
