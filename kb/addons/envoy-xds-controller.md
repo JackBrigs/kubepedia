@@ -29,6 +29,8 @@ sources:
     note: "v0.17.0 refactor; v0.17.1 fixes"
 relations:
   - type: see_also
+    target: TROUBLE-ENVOY_XDS_CONTROLLER
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

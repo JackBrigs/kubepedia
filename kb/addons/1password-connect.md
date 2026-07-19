@@ -27,6 +27,8 @@ sources:
     note: "app 1.7.3 unchanged since chart 1.15.1; 1.17.0 adds default resources"
 relations:
   - type: see_also
+    target: TROUBLE-1PASSWORD_CONNECT
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

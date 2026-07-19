@@ -27,6 +27,8 @@ sources:
     note: "supported K8s 1.33–1.35; ≥3 production minors"
 relations:
   - type: see_also
+    target: TROUBLE-GITLAB_AGENT
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

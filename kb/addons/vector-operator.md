@@ -28,6 +28,8 @@ sources:
     note: "k8s.io/api v0.31.0, controller-runtime v0.19.0, Go 1.22"
 relations:
   - type: see_also
+    target: TROUBLE-VECTOR_OPERATOR
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

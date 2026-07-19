@@ -120,6 +120,8 @@
 {"alias": "1.35 upgrade notes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
 {"alias": "10250 unreachable", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "1password connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
+{"alias": "1password connect not working", "ids": ["TROUBLE-1PASSWORD_CONNECT"]}
+{"alias": "1password credentials json missing", "ids": ["TROUBLE-1PASSWORD_CONNECT"]}
 {"alias": "1password-connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
 {"alias": "ACL bootstrap no longer allowed", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
 {"alias": "AdmissionWebhookMatchConditions", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
@@ -243,6 +245,8 @@
 {"alias": "admission webhook latency", "ids": ["TROUBLE-APISERVER_REQUEST_LATENCY"]}
 {"alias": "agent_report_interval", "ids": ["VARIABLE-AGENT_REPORT_INTERVAL"]}
 {"alias": "agentk", "ids": ["CONCEPT-ADDON_GITLAB_AGENT"]}
+{"alias": "agentk not connecting", "ids": ["TROUBLE-GITLAB_AGENT"]}
+{"alias": "agentk websocket failed", "ids": ["TROUBLE-GITLAB_AGENT"]}
 {"alias": "air-gapped", "ids": ["PRACTICE-OFFLINE_ENVIRONMENT"]}
 {"alias": "air-gapped kubespray", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
 {"alias": "alb_ingress_aws_debug", "ids": ["VARIABLE-ALB_INGRESS_AWS_DEBUG"]}
@@ -528,6 +532,7 @@
 {"alias": "calicoctl_download_url", "ids": ["VARIABLE-CALICOCTL_DOWNLOAD_URL"]}
 {"alias": "can't get final child's PID from pipe EOF", "ids": ["TROUBLE-CONTAINERD_SHIM_TASK_CREATE"]}
 {"alias": "canary controller", "ids": ["CONCEPT-ADDON_FLAGGER"]}
+{"alias": "canary initialization failed", "ids": ["TROUBLE-FLAGGER_CANARY"]}
 {"alias": "cannot be imported into the current release", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
 {"alias": "cannot evict pod PDB", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
 {"alias": "cannot list resource", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
@@ -902,6 +907,8 @@
 {"alias": "config change runbook", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
 {"alias": "configmap not found volume", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "connect 1.17.0", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
+{"alias": "connect token unauthorized", "ids": ["TROUBLE-1PASSWORD_CONNECT"]}
+{"alias": "connect-sync failing", "ids": ["TROUBLE-1PASSWORD_CONNECT"]}
 {"alias": "connection refused 127.0.0.1 metrics", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
 {"alias": "connection refused clusterip", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "conntrack-table-full", "ids": ["TROUBLE-CONNTRACK_TABLE_FULL"]}
@@ -1378,12 +1385,15 @@
 {"alias": "endpointslice informer cache out of date", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
 {"alias": "endpointslice rebalancing loop", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
 {"alias": "enhancements 1.31 1.35", "ids": ["CONCEPT-K8S_KEPS"]}
+{"alias": "envoy ads not connecting", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
 {"alias": "envoy gateway", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
 {"alias": "envoy gateway 1.6 alpn", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
 {"alias": "envoy gateway backend tls broke", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
 {"alias": "envoy gateway sni san required", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
 {"alias": "envoy in cilium", "ids": ["CONCEPT-CILIUM_ENVOY"]}
-{"alias": "envoy-xds-controller", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
+{"alias": "envoy node id mismatch", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
+{"alias": "envoy xds no config", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
+{"alias": "envoy-xds-controller", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER", "TROUBLE-ENVOY_XDS_CONTROLLER"]}
 {"alias": "envoy.enabled daemonset", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "epel_enabled", "ids": ["VARIABLE-EPEL_ENABLED"]}
 {"alias": "error dialing backend", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
@@ -1504,6 +1514,7 @@
 {"alias": "eviction_hard", "ids": ["VARIABLE-EVICTION_HARD"]}
 {"alias": "eviction_hard_control_plane", "ids": ["VARIABLE-EVICTION_HARD_CONTROL_PLANE"]}
 {"alias": "exc", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
+{"alias": "exc crd invalid", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
 {"alias": "exc-stage", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
 {"alias": "exc-test", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
 {"alias": "exceeded quota but usage stale", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
@@ -1528,6 +1539,7 @@
 {"alias": "external-openstack", "ids": ["TAG-EXTERNAL_OPENSTACK"]}
 {"alias": "external-provisioner", "ids": ["TAG-EXTERNAL_PROVISIONER"]}
 {"alias": "external-provisioner attacher snapshotter resizer", "ids": ["CONCEPT-CSI_LAYER"]}
+{"alias": "external-secrets 1password auth", "ids": ["TROUBLE-1PASSWORD_CONNECT"]}
 {"alias": "external-secrets provider auth failed", "ids": ["TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING"]}
 {"alias": "external-snapshotter", "ids": ["CONCEPT-ADDON_SNAPSHOTTER"]}
 {"alias": "external-snapshotter v8 upgrade", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}
@@ -1612,11 +1624,16 @@
 {"alias": "failed to renew lease context deadline exceeded", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
 {"alias": "failed to reserve container name is reserved for", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
 {"alias": "feast feature store", "ids": ["CONCEPT-ADDON_FEAST_OPERATOR"]}
+{"alias": "feast kubectl apply fails", "ids": ["TROUBLE-FEAST_OPERATOR"]}
+{"alias": "feast online store connection", "ids": ["TROUBLE-FEAST_OPERATOR"]}
+{"alias": "feast operator install fails", "ids": ["TROUBLE-FEAST_OPERATOR"]}
+{"alias": "feast server-side apply", "ids": ["TROUBLE-FEAST_OPERATOR"]}
 {"alias": "feast-operator", "ids": ["CONCEPT-ADDON_FEAST_OPERATOR"]}
 {"alias": "feature gate graduations", "ids": ["CONCEPT-K8S_FEATURE_GATES"]}
 {"alias": "feature gates", "ids": ["CONCEPT-K8S_FEATURE_GATES"]}
 {"alias": "feature gates that went GA 1.29 1.30 1.31 1.32 1.33 1.34 1.35", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "feature.node.kubernetes.io labels absent", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
+{"alias": "featurestore not ready", "ids": ["TROUBLE-FEAST_OPERATOR"]}
 {"alias": "fedora_coreos_packages", "ids": ["VARIABLE-FEDORA_COREOS_PACKAGES"]}
 {"alias": "field is immutable kubeadm upgrade", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
 {"alias": "field manager conflict kubectl", "ids": ["CONCEPT-K8S_KUBECTL_SSA_DEFAULT"]}
@@ -1628,6 +1645,10 @@
 {"alias": "first_kube_control_plane", "ids": ["VARIABLE-FIRST_KUBE_CONTROL_PLANE"]}
 {"alias": "first_kube_control_plane_address", "ids": ["VARIABLE-FIRST_KUBE_CONTROL_PLANE_ADDRESS"]}
 {"alias": "flagger", "ids": ["CONCEPT-ADDON_FLAGGER"]}
+{"alias": "flagger canary not promoting", "ids": ["TROUBLE-FLAGGER_CANARY"]}
+{"alias": "flagger metrics provider", "ids": ["TROUBLE-FLAGGER_CANARY"]}
+{"alias": "flagger no traffic canary", "ids": ["TROUBLE-FLAGGER_CANARY"]}
+{"alias": "flagger rollback halt advancing", "ids": ["TROUBLE-FLAGGER_CANARY"]}
 {"alias": "flannel", "ids": ["COMPONENT-FLANNEL"]}
 {"alias": "flannel cni", "ids": ["COMPONENT-FLANNEL"]}
 {"alias": "flannel to calico", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
@@ -1701,6 +1722,9 @@
 {"alias": "gitRepo volume disabled", "ids": ["TROUBLE-K8S_GITREPO_VOLUME_REMOVED"]}
 {"alias": "github_image_repo", "ids": ["VARIABLE-GITHUB_IMAGE_REPO"]}
 {"alias": "github_url", "ids": ["VARIABLE-GITHUB_URL"]}
+{"alias": "gitlab agent config.yaml", "ids": ["TROUBLE-GITLAB_AGENT"]}
+{"alias": "gitlab agent kas tunnel", "ids": ["TROUBLE-GITLAB_AGENT"]}
+{"alias": "gitlab agent token invalid", "ids": ["TROUBLE-GITLAB_AGENT"]}
 {"alias": "gitlab ci runner", "ids": ["CONCEPT-ADDON_GITLAB_RUNNER"]}
 {"alias": "gitlab kas agent", "ids": ["CONCEPT-ADDON_GITLAB_AGENT"]}
 {"alias": "gitlab runner prepare environment context deadline exceeded", "ids": ["TROUBLE-GITLAB_RUNNER_K8S_EXECUTOR"]}
@@ -1900,6 +1924,7 @@
 {"alias": "k8up repository already locked", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
 {"alias": "k8up rwo volume node affinity conflict", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
 {"alias": "kaasops vector", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
+{"alias": "kaasops vector operator", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
 {"alias": "karma", "ids": ["CONCEPT-ADDON_KARMA"]}
 {"alias": "karma ui", "ids": ["CONCEPT-ADDON_KARMA"]}
 {"alias": "kata gvisor runsc", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
@@ -3493,7 +3518,11 @@
 {"alias": "vault-secrets-webhook", "ids": ["CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK"]}
 {"alias": "vault-secrets-webhook pods stuck", "ids": ["TROUBLE-VAULT_SECRETS_WEBHOOK"]}
 {"alias": "vector logs operator", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
+{"alias": "vector pipeline not working", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
+{"alias": "vector pod crashloop config", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
+{"alias": "vector sink auth failed", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
 {"alias": "vector-operator", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
+{"alias": "vectorpipeline crd invalid", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
 {"alias": "velero", "ids": ["CONCEPT-VELERO"]}
 {"alias": "velero 1.17 upgrade", "ids": ["TROUBLE-VELERO_UPGRADE_117"]}
 {"alias": "velero 1.17.1", "ids": ["CONCEPT-ADDON_VELERO"]}

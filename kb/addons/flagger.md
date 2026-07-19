@@ -27,6 +27,8 @@ sources:
     note: "1.40.0 features; built against K8s client 1.31"
 relations:
   - type: see_also
+    target: TROUBLE-FLAGGER_CANARY
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

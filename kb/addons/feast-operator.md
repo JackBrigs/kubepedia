@@ -27,6 +27,8 @@ sources:
     note: "registry RBAC hardening; selector migration job removed"
 relations:
   - type: see_also
+    target: TROUBLE-FEAST_OPERATOR
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 
