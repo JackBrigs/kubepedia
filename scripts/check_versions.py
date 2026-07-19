@@ -13,8 +13,13 @@ It handles the two extraction traps that broke us:
   * the role path is `kubespray-defaults` (hyphen) pre-v2.28.0 and
     `kubespray_defaults` (underscore) from v2.28.0.
 
-etcd/coredns are computed **per Kubernetes minor** (not a simple first-key), so
-they are reported as "computed-per-k8s (not checked)" rather than guessed.
+etcd/coredns are computed **per Kubernetes minor**. They ARE now verified: the
+resolver reads `etcd_supported_versions` / `coredns_supported_versions` (literal
+dict, checksum-filter `select('version',BOUND,'<')[0]`, or the older inline
+conditional) and checks that every version the RELEASE doc claims is one the
+source actually ships (source-only per-minor versions are an info note, not a
+failure). Only the K8s version itself stays a range (not a single-pin) and the
+`kubernetes` row is left unchecked.
 
 Usage:
     python scripts/check_versions.py                 # src = ./kubespray-src
@@ -33,7 +38,8 @@ REL_DIR = os.path.join(ROOT, "kb", "kubespray", "releases")
 # RELEASE component label (normalized) -> how to resolve the version from source.
 #   ("var", name)      : read `name:` from download.yml (literal or first-key)
 #   ("checksum", name) : first version key of `name:` in checksums.yml
-#   ("perk8s", None)   : computed per Kubernetes minor -> skip comparison
+#   ("perk8s", None)   : per Kubernetes minor -> etcd/coredns resolved & set-checked
+#                        via resolve_perk8s(); `kubernetes` (a range) stays skipped
 RESOLVE = {
     "runc": ("var", "runc_version"),
     "containerd": ("var", "containerd_version"),
@@ -100,6 +106,109 @@ def first_checksum_key(cs_text, name):
     return None
 
 
+def vtuple(s):
+    return tuple(int(x) for x in re.findall(r"\d+", s))
+
+
+def etcd_checksum_keys(cs_text):
+    """Ordered version keys under etcd_binary_checksums: amd64: (file order = desc)."""
+    lines = cs_text.splitlines()
+    top = arch = False
+    keys = []
+    for ln in lines:
+        if re.match(r"^etcd_binary_checksums:\s*$", ln):
+            top = True
+            continue
+        if top:
+            if re.match(r"^\S", ln):  # left the block
+                break
+            if re.match(r"^\s{2}amd64:\s*$", ln):
+                arch = True
+                continue
+            if arch:
+                if re.match(r"^\s{2}\S", ln):  # next arch key
+                    arch = False
+                    continue
+                m = re.match(r"^\s+v?([0-9]+\.[0-9]+\.[0-9]+):", ln)
+                if m:
+                    keys.append(m.group(1))
+    return keys
+
+
+def _supported_block(text, name):
+    """Lines of a `name:` mapping block (until the next top-level key)."""
+    out, grab = [], False
+    for ln in text.splitlines():
+        if re.match(rf"^{re.escape(name)}:\s*$", ln):
+            grab = True
+            continue
+        if grab:
+            if re.match(r"^\S", ln):
+                break
+            out.append(ln)
+    return out
+
+
+def resolve_supported(text, name, etcd_keys):
+    """Parse a *_supported_versions dict -> {minor: 'x.y.z'} resolving both the
+    literal form (v1.31: v3.5.16) and the checksum-filter form
+    (select('version','3.6','<')[0] over etcd_binary_checksums)."""
+    result = {}
+    for ln in _supported_block(text, name):
+        m = re.match(r"^\s+'?v?([0-9]+\.[0-9]+)'?:\s*(.+?)\s*$", ln)
+        if not m:
+            continue
+        minor, val = m.group(1), m.group(2)
+        if "{{" not in val:  # literal
+            vm = re.search(r"[0-9]+\.[0-9]+\.[0-9]+", val)
+            if vm:
+                result[minor] = vm.group(0)
+            continue
+        # checksum-filter: (etcd_binary_checksums['amd64'].keys() | select('version','BOUND','<'))[0]
+        fm = re.search(r"select\(\s*['\"]version['\"]\s*,\s*['\"]([0-9.]+)['\"]\s*,\s*['\"](<=?)['\"]", val)
+        if fm and etcd_keys:
+            bound, op = fm.group(1), fm.group(2)
+            bt = vtuple(bound)
+            for k in etcd_keys:  # file order (descending); [0] == first match
+                kt = vtuple(k)
+                if (kt < bt) if op == "<" else (kt <= bt):
+                    result[minor] = k
+                    break
+    return result
+
+
+def flat_conditional_versions(text, varname):
+    """Literal x.y.z tokens on a `varname: "{{ ... }}"` line — handles the older
+    inline-conditional form (coredns_version: {{ '1.11.3' if ... else '1.11.1' }})."""
+    m = re.search(rf"^{re.escape(varname)}:\s*(.+)$", text, re.M)
+    if not m or "{{" not in m.group(1):
+        return {}
+    # drop the guard versions inside version('X','op') so only the component
+    # versions of the conditional's branches remain
+    expr = re.sub(r"version\([^)]*\)", "", m.group(1))
+    toks = re.findall(r"[0-9]+\.[0-9]+\.[0-9]+", expr)
+    return {str(i): v for i, v in enumerate(toks)}
+
+
+def resolve_perk8s(src, tag):
+    """{'etcd': {minor: ver}, 'coredns': {minor: ver}} from tagged source."""
+    vars_main = file_at(src, tag, "vars/main/main.yml")
+    dl = download_yml(src, tag)
+    cs = checksums_yml(src, tag)
+    etcd_keys = etcd_checksum_keys(cs)
+    both = vars_main + "\n" + dl
+    out = {
+        "etcd": resolve_supported(both, "etcd_supported_versions", etcd_keys),
+        "coredns": resolve_supported(both, "coredns_supported_versions", etcd_keys),
+    }
+    # fallback for the older inline-conditional form (no *_supported_versions dict)
+    if not out["coredns"]:
+        out["coredns"] = flat_conditional_versions(both, "coredns_version")
+    if not out["etcd"]:
+        out["etcd"] = flat_conditional_versions(both, "etcd_version")
+    return out
+
+
 def resolve(src, tag, kind, name, dl, cs):
     if kind == "perk8s":
         return None, "computed-per-k8s"
@@ -164,10 +273,34 @@ def main():
         if not dl:
             print(f"  ! {tag}: source not available (fetch the tag) — skipped")
             continue
+        perk8s = resolve_perk8s(args.src, tag)
         for comp, claimed in comps.items():
             if comp not in RESOLVE:
                 continue
             kind, name = RESOLVE[comp]
+            # etcd/coredns are per-K8s-minor: compare the SET of versions the doc
+            # claims against the set the source resolves (doc must not claim a
+            # version source doesn't ship; source-only versions are an info note).
+            if comp in ("etcd", "coredns"):
+                src_vers = set(perk8s.get(comp, {}).values())
+                doc_vers = set(re.findall(r"\d+\.\d+\.\d+", claimed))
+                if not src_vers or not doc_vers:
+                    skipped += 1
+                    if args.verbose:
+                        print(f"  ~ {tag} {comp}: perk8s unresolved "
+                              f"(claimed '{claimed}') — not checked")
+                    continue
+                missing = doc_vers - src_vers
+                if missing:
+                    mismatches.append((tag, comp, ",".join(sorted(doc_vers)),
+                                       ",".join(sorted(src_vers)), "perk8s"))
+                else:
+                    checked += 1
+                    omitted = src_vers - doc_vers
+                    if args.verbose:
+                        note = f" (source also has {','.join(sorted(omitted))})" if omitted else ""
+                        print(f"  ok {tag} {comp}: {','.join(sorted(doc_vers))} (perk8s){note}")
+                continue
             actual, how = resolve(args.src, tag, kind, name, dl, cs)
             if actual is None:
                 skipped += 1
