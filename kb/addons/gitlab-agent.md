@@ -68,6 +68,11 @@ GitLab **18.x**).
 - **CVEs:** none found for agentk 18.7–18.11 (OSV empty). (Ubuntu-packaged `gitlab-agent` OSV
   hits are a different package.)
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**⚠ Deprecation (from GitLab):** the agent's **built-in pull-based GitOps** (native manifest sync) is **deprecated in favor of Flux** — the **agent (`agentk`) itself is NOT deprecated**, only its built-in pull-deployment feature. New GitOps setups should use Flux behind the agent, not the built-in syncer.
+- **GitLab 19.0** breaking-changes window landed **May 2026** — check agent config-project impacts when moving to 19.x. Connection troubleshooting: [[TROUBLE-GITLAB_AGENT]].
+
 ## References
 
 - gitlab-agent Chart.yaml (2.22.1/2.26.0), GitLab Agent docs (above).

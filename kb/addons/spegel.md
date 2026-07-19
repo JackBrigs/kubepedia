@@ -67,6 +67,14 @@ app are lock-stepped; v0.0.1 is the first release / CI placeholder — current u
   `discard_unpacked_layers=false` set manually.
 - **CVEs:** none found (OSV clean for spegel-org/spegel and legacy xenitab/spegel).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**⚠ Version caveat confirmed:** the inventory pin **`0.0.1` is wrong** — the current stable line is **0.7.x (0.7.4, July 2026)**. Verify the running image tag.
+
+**Future upgrade context** (from upstream releases):
+- **⚠ 0.7.0 breaking:** **removed support for containerd 1.7 and 2.0**, and removed the deprecated resolve-latest functionality — check your containerd version before adopting 0.7.x. Adds QUIC in the p2p router and peer-ID persistence across restarts.
+- 0.7.4: security fix (reject a range whose start is at/beyond content size); containerd client 2.2.6.
+
 ## References
 
 - `Chart.yaml` (v0.0.1), spegel getting-started, PR #1168, issue #1272 (above).

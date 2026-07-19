@@ -77,6 +77,10 @@ CVEs**. Consider migrating to [[CONCEPT-ADDON_HEADLAMP]] and upgrading oauth2-pr
 - **Dashboard CVEs:** none found via OSV, but the split 7.x images are poorly indexed —
   "none found, coverage-limited," not proven clean.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**⚠ Retirement:** the upstream repo is **archived/retired** (`kubernetes-retired/dashboard`) — the latest is **7.14.0** (Oct 2025) but the project receives **no active development**. No new security fixes should be assumed. **Migrate to a maintained UI (Headlamp — [[CONCEPT-ADDON_HEADLAMP]])**; if you keep the dashboard, treat exposure conservatively and stay current. Access/RBAC troubleshooting: [[TROUBLE-KUBERNETES_DASHBOARD]].
+
 ## References
 
 - `Chart.yaml`, 7.0.0 release notes, oauth2-proxy advisories (above).

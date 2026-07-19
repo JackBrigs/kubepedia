@@ -65,6 +65,13 @@ using one cannot reschedule to another node.
   upper end of 1.29–1.35 is **unverified** but expected to work.
 - **CVEs:** none found for `openebs/lvm-localpv` at 1.7.0 (OSV empty).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **1.7.0** (from upstream releases):
+- **1.8.0:** adds **snapshot-restore** and **thinpool space reclamation**; base Alpine 3.18→3.22.
+- **1.9.0:** **VolumeAttributesClass** support + QoS/IOPS profiles (per-volume QoS for thin provisioning).
+- No breaking changes across 1.7→1.9; safe patch/minor line.
+
 ## References
 
 - lvm-localpv v1.7.0 README + release notes (above); OpenEBS prerequisites.

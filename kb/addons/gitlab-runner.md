@@ -73,6 +73,11 @@ single most important migration item here.
   18.4.0 (OSV empty). **Do not conflate** with GitLab **server** 18.4.x security patches —
   those are a different product.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future direction / known limitation (from GitLab):** the **Kubernetes executor's attach-strategy fault tolerance is being discontinued** in favor of **Step Runner (CI Functions)** due to hard-to-resolve **race conditions** in the runner's internal state management — Step-Runner-based fault tolerance targets **Q3/Q4 2026**. So flaky attach-strategy jobs are a known upstream limitation, not just local misconfig ([[TROUBLE-GITLAB_RUNNER_K8S_EXECUTOR]]).
+- **GitLab 19.0** breaking-changes window landed **May 2026** — review the runner deprecations when moving to 19.x.
+
 ## References
 
 - `Chart.yaml` (0.81.0/0.63.0), Kubernetes install + executor troubleshooting docs (above).

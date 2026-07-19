@@ -84,6 +84,12 @@ functional breaking changes.
 - **CVEs:** none found for the webhook / vault-env app at v1.21.4 (OSV empty for both Go
   modules). Transitive base-image CVEs are not individually enumerated.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **1.21.4** (from upstream releases):
+- **⚠ 1.23.1 security/behavior change:** object-supplied Vault addresses are now **validated against an allowlist (SSRF hardening)** — the **`vault-addr` annotation is no longer trusted as-is**. If you use it, set **`VAULT_ADDR_ALLOWLIST`**; loopback/private IPs are **blocked by default** unless `VAULT_ALLOW_PRIVATE_ADDR` is set. Also adds the missing `IPC_LOCK` capability to the vault-agent initContainer.
+- 1.22.1 adds a `matchConditions` webhook filter and a Helm flag to enable mutations in the deploy namespace. Injection/auth troubleshooting: [[TROUBLE-VAULT_SECRETS_WEBHOOK]].
+
 ## References
 
 - `Chart.yaml`, `go.mod`, bank-vaults docs (above); GitHub issues #405/#351/#307.

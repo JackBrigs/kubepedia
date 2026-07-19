@@ -69,6 +69,14 @@ Both require **Ceph Pacific (≥ v16.2.0)+**.
   **CVE-2025-52555** if the Ceph cluster runs an affected patch level (see
   [[CONCEPT-ADDON_ROOK_CEPH]]).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **3.14.2** (from upstream releases):
+- **⚠ 3.17.0 breaking:** the **NFS CSIDriver `spec.attachRequired` becomes `true`** — you must **delete and recreate** the CSIDriver object; NVMe-oF StorageClass now requires publish secrets (recreate); `--setmetadata` deprecated (always on).
+- 3.15/3.16 add RBD QoS, controller-publish-secret caching, and (experimental) NVMe-oF; **Ceph-CSI-Operator is the recommended deploy path from 3.16+**. Kubernetes ServiceAccount-based volume-access restriction landed in 3.17.
+
+**Open upstream issues (as of 2026-07-19):** exclusive **RBD locking to prevent inadvertent multi-node RWO access** (#578) — relevant to the multi-attach class; run-as-non-root / configurable UID/GID (#2519); multi-Ceph topology-aware provisioning (#5177).
+
 ## References
 
 - ceph-csi v3.14.2 / v3.13.0 READMEs + release notes (above).

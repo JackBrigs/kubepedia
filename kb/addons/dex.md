@@ -72,6 +72,15 @@ this platform (envoy-xds-controller, kubernetes-dashboard flows) — check for v
   unique to 2.42.0 in GHSA/OSV. Older dex CVEs (CVE-2020-26290/-27847, CVE-2022-39222) are
   already fixed — scanner hits on those are false positives.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **2.42.0** (from upstream releases):
+- **⚠ 2.45.0 breaking:** bundles **gomplate v5.0.0** (its own breaking changes), and **`ContinueOnConnectorFailure` is now enabled by default** (a behavior change — a failing connector no longer blocks startup). Adds **PKCE** support and a Vault signer for JWTs.
+- **Security:** gomplate carries CVE-2025-68121 / CVE-2026-25934 (gomplate is optional — avoid it if unused).
+- **Maintenance signal:** Dex maintenance is thin (public calls for maintainers) — factor into reliance.
+
+**Open upstream requests (as of 2026-07-19):** no **end-session/logout (RP-initiated logout) endpoint** forwarding to upstream (#1697); no built-in **MFA/2FA** (#352); arbitrary custom claims (#1182).
+
 ## References
 
 - `Chart.yaml` + dex v2.42.0 release (above); TLS advisory GHSA-gr79-9v6v-gc9r.
