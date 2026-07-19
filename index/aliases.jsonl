@@ -878,6 +878,7 @@
 {"alias": "cni_download_url", "ids": ["VARIABLE-CNI_DOWNLOAD_URL"]}
 {"alias": "cni_version", "ids": ["COMPONENT-CNI_PLUGINS", "VARIABLE-CNI_VERSION"]}
 {"alias": "cold start runbook", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "component interaction failures", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
 {"alias": "component matrix", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
 {"alias": "component versions", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
 {"alias": "config change runbook", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
@@ -1117,6 +1118,7 @@
 {"alias": "crio_supported_versions", "ids": ["VARIABLE-CRIO_SUPPORTED_VERSIONS"]}
 {"alias": "crio_version", "ids": ["VARIABLE-CRIO_VERSION"]}
 {"alias": "cross-cluster connectivity denied cilium 1.19", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
+{"alias": "cross-component seams", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
 {"alias": "crun", "ids": ["COMPONENT-CRUN", "TAG-CRUN"]}
 {"alias": "crun_binary_checksum", "ids": ["VARIABLE-CRUN_BINARY_CHECKSUM"]}
 {"alias": "crun_checksums", "ids": ["VARIABLE-CRUN_CHECKSUMS"]}
@@ -1158,6 +1160,7 @@
 {"alias": "cve overview kubespray", "ids": ["CONCEPT-SECURITY_INDEX"]}
 {"alias": "cve remediation", "ids": ["CONCEPT-CVE_REMEDIATION"]}
 {"alias": "cve tracking", "ids": ["CONCEPT-SECURITY_ADVISORIES"]}
+{"alias": "daemonset blocked pod security", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "dashboard addon", "ids": ["CONCEPT-ADDON_KUBERNETES_DASHBOARD"]}
 {"alias": "dashboard_certs_secret_name", "ids": ["VARIABLE-DASHBOARD_CERTS_SECRET_NAME"]}
 {"alias": "dashboard_cpu_limit", "ids": ["VARIABLE-DASHBOARD_CPU_LIMIT"]}
@@ -1733,6 +1736,7 @@
 {"alias": "helm_version", "ids": ["VARIABLE-HELM_VERSION"]}
 {"alias": "host_architecture", "ids": ["VARIABLE-HOST_ARCHITECTURE"]}
 {"alias": "host_os", "ids": ["VARIABLE-HOST_OS"]}
+{"alias": "hostpath hostnetwork rejected psa", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "hosts.toml", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
 {"alias": "how component versions are chosen", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
 {"alias": "how do I upgrade / restore / migrate", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
@@ -1838,6 +1842,7 @@
 {"alias": "installed addons", "ids": ["CONCEPT-ADDON_CATALOG"]}
 {"alias": "insufficient cpu memory", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "insufficient nvidia.com/gpu", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
+{"alias": "integration failure matrix", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
 {"alias": "intermittent dns failures kubernetes", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
 {"alias": "internal error occurred admission", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "invalid ownership metadata", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
@@ -1850,6 +1855,7 @@
 {"alias": "ipv4_stack", "ids": ["VARIABLE-IPV4_STACK"]}
 {"alias": "ipv6 kubernetes", "ids": ["CONFIG-DUAL_STACK"]}
 {"alias": "ipv6_stack", "ids": ["VARIABLE-IPV6_STACK"]}
+{"alias": "ipvs strictarp metallb", "ids": ["TROUBLE-METALLB_L2_STRICTARP_UNREACHABLE"]}
 {"alias": "is forbidden User", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "is my cluster healthy", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
 {"alias": "is my cluster secure", "ids": ["CONCEPT-SECURITY_INDEX"]}
@@ -2097,6 +2103,7 @@
 {"alias": "kube_ovn_vpc_container_image_tag", "ids": ["VARIABLE-KUBE_OVN_VPC_CONTAINER_IMAGE_TAG"]}
 {"alias": "kube_owner", "ids": ["VARIABLE-KUBE_OWNER"]}
 {"alias": "kube_pid_reserved", "ids": ["VARIABLE-KUBE_PID_RESERVED"]}
+{"alias": "kube_pod_security exemptions", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "kube_pod_security_default_audit", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_AUDIT"]}
 {"alias": "kube_pod_security_default_audit_version", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_AUDIT_VERSION"]}
 {"alias": "kube_pod_security_default_enforce", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_ENFORCE"]}
@@ -2142,7 +2149,7 @@
 {"alias": "kube_proxy_remove", "ids": ["CONCEPT-KUBE_PROXY"]}
 {"alias": "kube_proxy_scheduler", "ids": ["VARIABLE-KUBE_PROXY_SCHEDULER"]}
 {"alias": "kube_proxy_strict_arp", "ids": ["VARIABLE-KUBE_PROXY_STRICT_ARP"]}
-{"alias": "kube_proxy_strict_arp metallb", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
+{"alias": "kube_proxy_strict_arp metallb", "ids": ["TROUBLE-METALLB_L2_STRICTARP_UNREACHABLE", "TROUBLE-METALLB_SERVICE_PENDING"]}
 {"alias": "kube_proxy_sync_period", "ids": ["VARIABLE-KUBE_PROXY_SYNC_PERIOD"]}
 {"alias": "kube_proxy_tcp_fin_timeout", "ids": ["VARIABLE-KUBE_PROXY_TCP_FIN_TIMEOUT"]}
 {"alias": "kube_proxy_tcp_timeout", "ids": ["VARIABLE-KUBE_PROXY_TCP_TIMEOUT"]}
@@ -2471,6 +2478,7 @@
 {"alias": "legacy service account token deleted", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
 {"alias": "legacy-token-invalid-since", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
 {"alias": "liveness probe failing restart", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
+{"alias": "loadbalancer ip times out", "ids": ["TROUBLE-METALLB_L2_STRICTARP_UNREACHABLE"]}
 {"alias": "loadbalancer options bare metal", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
 {"alias": "loadbalancer pending no cloud provider", "ids": ["TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"]}
 {"alias": "loadbalancer service pending", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
@@ -2536,7 +2544,9 @@
 {"alias": "metallb configmap ignored", "ids": ["TROUBLE-METALLB_CONFIG_CRD_FRR"]}
 {"alias": "metallb frr mode", "ids": ["TROUBLE-METALLB_CONFIG_CRD_FRR"]}
 {"alias": "metallb frr session idle", "ids": ["TROUBLE-METALLB_BGP_SESSION_DOWN"]}
+{"alias": "metallb ip assigned but not reachable", "ids": ["TROUBLE-METALLB_L2_STRICTARP_UNREACHABLE"]}
 {"alias": "metallb ipaddresspool crd", "ids": ["TROUBLE-METALLB_CONFIG_CRD_FRR"]}
+{"alias": "metallb l2 no arp reply", "ids": ["TROUBLE-METALLB_L2_STRICTARP_UNREACHABLE"]}
 {"alias": "metallb layer2 not working", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
 {"alias": "metallb no ip assigned", "ids": ["TROUBLE-METALLB_CONFIG_CRD_FRR", "TROUBLE-METALLB_SERVICE_PENDING"]}
 {"alias": "metallb pending external-ip", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
@@ -2881,6 +2891,7 @@
 {"alias": "pod traffic not natted", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
 {"alias": "pod worker requested for removal still not fully terminated", "ids": ["TROUBLE-KUBELET_STATIC_POD_STUCK"]}
 {"alias": "pod-infra-container-image removed", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES", "TROUBLE-K8S_KUBELET_REMOVED_FLAGS"]}
+{"alias": "pod-security.kubernetes.io/enforce", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "pod-stuck-terminating", "ids": ["TROUBLE-POD_STUCK_TERMINATING"]}
 {"alias": "pod_infra_image_repo", "ids": ["VARIABLE-POD_INFRA_IMAGE_REPO"]}
 {"alias": "pod_infra_image_tag", "ids": ["VARIABLE-POD_INFRA_IMAGE_TAG"]}
@@ -2914,6 +2925,7 @@
 {"alias": "preflight failed", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
 {"alias": "preinstall", "ids": ["TAG-PREINSTALL"]}
 {"alias": "preinstall_selinux_state", "ids": ["VARIABLE-PREINSTALL_SELINUX_STATE"]}
+{"alias": "privileged pod forbidden namespace", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "progressive delivery", "ids": ["CONCEPT-ADDON_FLAGGER"]}
 {"alias": "prometheus alertmanager", "ids": ["CONCEPT-ADDON_ALERTMANAGER"]}
 {"alias": "prometheus grafana alertmanager", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
@@ -3330,6 +3342,7 @@
 {"alias": "transparent encryption cilium", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "troubleshooting entry points", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
 {"alias": "troubleshooting index", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
+{"alias": "two components break together", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
 {"alias": "two snapshot controllers conflict", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
 {"alias": "typha_enabled", "ids": ["VARIABLE-TYPHA_ENABLED"]}
 {"alias": "typha_max_connections_lower_limit", "ids": ["VARIABLE-TYPHA_MAX_CONNECTIONS_LOWER_LIMIT"]}
@@ -3454,6 +3467,7 @@
 {"alias": "victoriametrics kubernetes", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
 {"alias": "victoriametrics no data", "ids": ["TROUBLE-VMAGENT_REMOTE_WRITE_FAILING"]}
 {"alias": "victoriametrics stack", "ids": ["CONCEPT-ADDON_VM_K8S_STACK"]}
+{"alias": "violates PodSecurity restricted", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "vm", "ids": ["CONCEPT-ADDON_VM_K8S_STACK"]}
 {"alias": "vm 0.42.0", "ids": ["CONCEPT-ADDON_VM_K8S_STACK"]}
 {"alias": "vm high cardinality", "ids": ["TROUBLE-VMAGENT_REMOTE_WRITE_FAILING"]}
@@ -3548,6 +3562,7 @@
 {"alias": "where to set variables", "ids": ["CONCEPT-SAMPLE_INVENTORY_LAYOUT"]}
 {"alias": "where to start debugging", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
 {"alias": "which addons use helm", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
+{"alias": "which components conflict", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
 {"alias": "which components move with kube_version", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
 {"alias": "which kubernetes version talos supports", "ids": ["CONCEPT-TALOS_K8S_MATRIX"]}
 {"alias": "which kyverno pod is failing", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}

@@ -45,6 +45,8 @@ source-verified fix.
 - Covers Kubespray `v2.29.0`–`v2.31.0`. This is a navigator, not the fixes themselves.
 - First move for almost anything Pod-level: **`kubectl describe`** — its Events name the
   cause, which maps to a doc below.
+- **Symptom fits no single component?** The failure may live in a **seam between two
+  components** — see the interaction spine [[CONCEPT-COMPONENT_INTERACTION_FAILURES]].
 
 ## Implementation
 
