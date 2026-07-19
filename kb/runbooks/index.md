@@ -94,6 +94,7 @@ shares so the individual runbooks don't repeat it.
 | [[PRACTICE-RUNBOOK_COMPONENT_UPGRADE]] | Bump one component out-of-band (CVE fix) | `*_version` + apply | revert the version pin |
 | [[PRACTICE-RUNBOOK_CONFIG_CHANGE]] | Change a kubelet / apiserver setting | `cluster.yml` (canary → roll) | revert the variable |
 | [[PRACTICE-RUNBOOK_CNI_MIGRATION]] | Change the CNI plugin | `cluster.yml` | snapshot; not cleanly reversible in place |
+| [[PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18]] | Upgrade Cilium 1.15.9 → 1.18.4 (consecutive-minor) | `cluster.yml --tags=cilium` per hop | per-hop version pin; not clean after CRD/identity migration |
 | [[PRACTICE-RUNBOOK_RUNTIME_MIGRATION]] | Docker → containerd | `cluster.yml` (per node) | snapshot; prefer reset & redeploy |
 
 *Data, DR & security:*

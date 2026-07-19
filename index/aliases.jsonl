@@ -649,6 +649,7 @@
 {"alias": "cilium clustermesh policy default local cluster", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium connectivity test", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
 {"alias": "cilium conntrack table full", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "cilium consecutive minor upgrade path", "ids": ["PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18"]}
 {"alias": "cilium consul removed", "ids": ["CONCEPT-CILIUM_LEGACY_REMOVALS"]}
 {"alias": "cilium cross node connectivity", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
 {"alias": "cilium cve", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
@@ -693,11 +694,13 @@
 {"alias": "cilium observability", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
 {"alias": "cilium pods cant reach each other", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
 {"alias": "cilium policy auth warning", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
+{"alias": "cilium preflight upgrade runbook", "ids": ["PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18"]}
 {"alias": "cilium replace metallb", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium security", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
 {"alias": "cilium status", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
 {"alias": "cilium tunnel mode vxlan", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium unknown flag enable-host-port", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
+{"alias": "cilium upgrade 1.15.9 to 1.18.4 kubespray", "ids": ["PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18"]}
 {"alias": "cilium upgrade breaking changes", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium version jump kubespray", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium wireguard", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
@@ -828,6 +831,7 @@
 {"alias": "cilium_tofqdns_enable_poller", "ids": ["VARIABLE-CILIUM_TOFQDNS_ENABLE_POLLER"]}
 {"alias": "cilium_tunnel_mode", "ids": ["VARIABLE-CILIUM_TUNNEL_MODE"]}
 {"alias": "cilium_version", "ids": ["VARIABLE-CILIUM_VERSION"]}
+{"alias": "cilium_version override intermediate 1.16 1.17", "ids": ["PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18"]}
 {"alias": "cilium_wireguard_userspace_fallback", "ids": ["VARIABLE-CILIUM_WIREGUARD_USERSPACE_FALLBACK"]}
 {"alias": "ciliumcli_binary_checksum", "ids": ["VARIABLE-CILIUMCLI_BINARY_CHECKSUM"]}
 {"alias": "ciliumcli_binary_checksums", "ids": ["VARIABLE-CILIUMCLI_BINARY_CHECKSUMS"]}
@@ -1810,6 +1814,7 @@
 {"alias": "how to expose services", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
 {"alias": "how to query kubepedia", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "how to set a flag not exposed by kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "how to upgrade cilium kubespray step by step", "ids": ["PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18"]}
 {"alias": "how to upgrade kubespray safely", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
 {"alias": "hpa not scaling", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
 {"alias": "hpa unknown targets", "ids": ["TROUBLE-HPA_NOT_SCALING"]}

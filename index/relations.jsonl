@@ -575,6 +575,14 @@
 {"source": "PRACTICE-RUNBOOK_CERT_ROTATION", "target": "TAG-ETCD_SECRETS", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_CERT_ROTATION", "target": "TROUBLE-K8S_CERTS_RENEW_BROKEN_SCRIPT", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_CERT_ROTATION", "target": "TROUBLE-KUBEADM_CERT_RENEWAL", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18", "target": "UPGRADE-CILIUM_1_15_TO_1_19", "type": "depends_on"}
+{"source": "PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18", "target": "CONCEPT-RUNBOOKS_INDEX", "type": "part_of"}
+{"source": "PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18", "target": "PRACTICE-KERNEL_REQUIREMENTS", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18", "target": "TROUBLE-CILIUM_ENI_MASQUERADE_FLIP", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18", "target": "TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18", "target": "TROUBLE-CILIUM_KPR_TOGGLES_REMOVED", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18", "target": "TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_CNI_MIGRATION", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "depends_on"}
 {"source": "PRACTICE-RUNBOOK_CNI_MIGRATION", "target": "CONCEPT-RUNBOOKS_INDEX", "type": "part_of"}
 {"source": "PRACTICE-RUNBOOK_CNI_MIGRATION", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
