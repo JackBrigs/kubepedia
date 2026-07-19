@@ -54,6 +54,12 @@ membership changes, take a snapshot first ([[PRACTICE-ETCD_BACKUP_RESTORE]]) and
 
 ## Context
 
+- **Service impact:** the run is **scoped to the target node** (`remove_node.yml` targets
+  `hosts: {{ node }}`, not the whole cluster), so other nodes aren't reconfigured. But the removed
+  node is **drained** — its running workloads are **evicted and rescheduled elsewhere**, so
+  single-replica / PDB-constrained pods take **downtime** during the move ([[TROUBLE-NODE_DRAIN_GOTCHAS]]),
+  and node-local (local-path) data on it is **destroyed** (pre-check below). Removing an etcd member
+  also briefly perturbs the control plane. Plan a window for the affected workloads.
 - **Always pass `-e node=<NAME>`** to scope the run to the node being removed — without it the
   playbook's target is ambiguous.
 - **Online vs offline node:** a reachable node is drained and reset cleanly. An **unreachable** node

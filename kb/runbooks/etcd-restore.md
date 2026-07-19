@@ -56,6 +56,15 @@ rollback anchor**, so protect it.
 
 ## Context
 
+- **⚠ Service impact — control-plane outage.** A **full snapshot restore** takes the **API server /
+  control plane DOWN** for its duration: no `kubectl`, no scheduling, no new pods, controllers stop
+  reconciling — and on completion the **whole cluster state is rewound to snapshot time** (objects
+  created after it vanish). **Running workloads keep running** (kubelet + CNI operate without the API),
+  so it's primarily a **control-plane** outage, not automatically a data-plane one — but anything that
+  needs the API (scaling, new pods, LB/ingress reconciliation) is stalled until recovery. The
+  **recover-control-plane path** (surviving majority) is much lighter: it replaces dead members without
+  rewinding state — a brief control-plane blip, not a full rollback. Treat a full restore as a **major
+  incident recovery** with a comms plan, not a routine change.
 - **Restore ≠ per-object recovery.** This rewinds the **whole cluster** to snapshot time — anything
   created after the snapshot is gone. If you only lost one object, recover that object, not etcd.
 - **Quorum decides the path.** Surviving-majority etcd → replace the dead members with
