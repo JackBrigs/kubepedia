@@ -117,6 +117,9 @@
 {"source": "CONCEPT-ADDON_OLM", "target": "TROUBLE-OLM_SUBSCRIPTION", "type": "see_also"}
 {"source": "CONCEPT-ADDON_OTEL_OPERATOR", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_OTEL_OPERATOR", "target": "TROUBLE-OTEL_OPERATOR", "type": "see_also"}
+{"source": "CONCEPT-ADDON_PATCH_PRIORITY", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
+{"source": "CONCEPT-ADDON_PATCH_PRIORITY", "target": "CONCEPT-CVE_REMEDIATION", "type": "see_also"}
+{"source": "CONCEPT-ADDON_PATCH_PRIORITY", "target": "CONCEPT-SECURITY_INDEX", "type": "see_also"}
 {"source": "CONCEPT-ADDON_PYRRA", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_PYRRA", "target": "TROUBLE-PYRRA", "type": "see_also"}
 {"source": "CONCEPT-ADDON_RABBITMQ_BITNAMI", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}

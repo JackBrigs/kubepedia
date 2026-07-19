@@ -237,6 +237,7 @@
 {"alias": "additional_no_proxy_list", "ids": ["VARIABLE-ADDITIONAL_NO_PROXY_LIST"]}
 {"alias": "additional_sysctl", "ids": ["VARIABLE-ADDITIONAL_SYSCTL"]}
 {"alias": "addon catalog", "ids": ["CONCEPT-ADDON_CATALOG"]}
+{"alias": "addon cve priority", "ids": ["CONCEPT-ADDON_PATCH_PRIORITY"]}
 {"alias": "addon inventory", "ids": ["CONCEPT-ADDON_CATALOG"]}
 {"alias": "adduser", "ids": ["VARIABLE-ADDUSER"]}
 {"alias": "addusers", "ids": ["VARIABLE-ADDUSERS"]}
@@ -1144,6 +1145,7 @@
 {"alias": "crio_subuid_start", "ids": ["VARIABLE-CRIO_SUBUID_START"]}
 {"alias": "crio_supported_versions", "ids": ["VARIABLE-CRIO_SUPPORTED_VERSIONS"]}
 {"alias": "crio_version", "ids": ["VARIABLE-CRIO_VERSION"]}
+{"alias": "critical addon vulnerabilities", "ids": ["CONCEPT-ADDON_PATCH_PRIORITY"]}
 {"alias": "cross-cluster connectivity denied cilium 1.19", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "cross-component seams", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
 {"alias": "crun", "ids": ["COMPONENT-CRUN", "TAG-CRUN"]}
@@ -2948,6 +2950,7 @@
 {"alias": "ovn4nfv", "ids": ["CONCEPT-OVN4NFV"]}
 {"alias": "p2p image mirror", "ids": ["CONCEPT-ADDON_SPEGEL"]}
 {"alias": "passthrough config", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "patch priority matrix", "ids": ["CONCEPT-ADDON_PATCH_PRIORITY"]}
 {"alias": "patroni no leader", "ids": ["TROUBLE-POSTGRES_OPERATOR_CLUSTER_NOT_READY"]}
 {"alias": "pdb blocks rollout", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
 {"alias": "peer_with_calico_rr", "ids": ["VARIABLE-PEER_WITH_CALICO_RR"]}
@@ -3261,6 +3264,7 @@
 {"alias": "security hub", "ids": ["CONCEPT-SECURITY_INDEX"]}
 {"alias": "security index", "ids": ["CONCEPT-SECURITY_INDEX"]}
 {"alias": "security posture", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "security remediation order", "ids": ["CONCEPT-ADDON_PATCH_PRIORITY"]}
 {"alias": "security upgrade runbook", "ids": ["CONCEPT-CVE_REMEDIATION"]}
 {"alias": "selector does not match pods", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "serial upgrade", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
@@ -3678,6 +3682,7 @@
 {"alias": "what to back up kubernetes", "ids": ["PRACTICE-BACKUP_DR"]}
 {"alias": "what to monitor kubernetes", "ids": ["CONCEPT-OBSERVABILITY_STACK", "PRACTICE-MONITORING_BASELINE"]}
 {"alias": "what to patch", "ids": ["CONCEPT-CVE_REMEDIATION"]}
+{"alias": "what to patch first", "ids": ["CONCEPT-ADDON_PATCH_PRIORITY"]}
 {"alias": "whenDeleted whenScaled", "ids": ["CONCEPT-K8S_STATEFULSET_PVC_AUTODELETE"]}
 {"alias": "where do I start", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "where to set variables", "ids": ["CONCEPT-SAMPLE_INVENTORY_LAYOUT"]}
