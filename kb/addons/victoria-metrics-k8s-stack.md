@@ -84,6 +84,10 @@ For clusters on an **older** VictoriaMetrics:
 - **CVE-2026-61625** (Medium): **path traversal in `vmrestore`** — crafted backup part names escape the restore root; fixed **1.146.0 / 1.136.12 / 1.122.25**.
 - **CVE-2025-65942** (Low): Snappy decoder allows malformed blocks to trigger **excessive memory** consumption; fixed **1.129.1 / 1.122.8 / 1.110.23**. Older VM images in the envelope are affected.
 
+## Guides & how-to (official)
+
+- **Docs:** https://docs.victoriametrics.com/helm/victoriametrics-k8s-stack/ ; **VM operator:** https://docs.victoriametrics.com/operator/
+- **How to upgrade:** `helm upgrade` the `victoria-metrics-k8s-stack` chart; read the chart's **upgrade notes** (CRD/operator changes between majors); upgrade the VM operator CRDs as directed. Patch off vmrestore/snappy CVEs (see CVE section).
 ## References
 
 - `Chart.yaml` + upstream changelog (above); advisory GHSA-66jq-2c23-2xh5.

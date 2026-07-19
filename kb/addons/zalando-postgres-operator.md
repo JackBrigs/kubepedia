@@ -75,6 +75,10 @@ The Zalando **postgres-operator** manages HA PostgreSQL clusters (Spilo/Patroni)
 
 The postgres-operator itself has no notable code-specific CVE record; older-version exposure is the **Spilo/PostgreSQL image** it runs (PostgreSQL CVEs, old Spilo base images) and the **stale image registry** — pre-1.15 releases pulled from `registry.opensource.zalan.do` (now gone), so old deployments both **fail to pull** and **miss Postgres security patches**. Move to 1.15+ with a maintained Spilo image and a patched PostgreSQL major.
 
+## Guides & how-to (official)
+
+- **Docs:** https://github.com/zalando/postgres-operator/blob/master/docs/ (administrator.md covers upgrades) 
+- **How to upgrade:** upgrade the operator deployment/Helm; for major **PostgreSQL** upgrades use the per-cluster maintenance window / automatic-major-upgrade settings. **≥1.15 changed the image registry** (re-pin Spilo images) and the **Endpoints→ConfigMaps** leader-election migration needs a careful multi-step to avoid split-brain.
 ## References
 
 - `Chart.yaml`, v1.14.0 release notes, operator_parameters doc (above).

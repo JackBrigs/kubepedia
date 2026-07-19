@@ -137,6 +137,10 @@ Kyverno's admission controller runs privileged, so its CVEs are severe — the *
 - **GHSA-gg4x-fgg2-h9w9:** policy bypass via **double PolicyExceptions** (ties to the exception-not-applying trouble doc); **CVE-2023-34091:** `deletionTimestamp` resource can circumvent policy.
 - Prioritize Kyverno patching — several of these are RBAC-shattering. The namespace-boundary fix on `generator.apply()` (1.18.2, forward section) is part of the same hardening arc.
 
+## Guides & how-to (official)
+
+- **Install/upgrade:** https://kyverno.io/docs/installation/ (Helm; **upgrade** section within) ; **high-availability:** https://kyverno.io/docs/high-availability/
+- **How to upgrade:** Helm `helm upgrade` the `kyverno/kyverno` chart; upgrade **one minor at a time** and apply matching **CRDs** (chart-managed or `kubectl apply`); check the release notes for policy-behavior changes. **Get onto ≥1.16.3 / ≥1.18.2** for the cross-namespace/SSRF CVEs.
 ## References
 
 - Kyverno release tags + HA/architecture docs (above). Troubleshooting:

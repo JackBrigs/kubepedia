@@ -85,6 +85,10 @@ TLS unless another cert mode is configured.
 
 - **CVE-2026-47701 / GHSA-cxh2-4639-vmc5** (High): a **ServiceMonitor `bearerTokenFile` could read arbitrary files** and send the contents as a bearer token — affects **< 0.152.0**, fixed **0.152.0**. The pinned 0.156.0 is patched, but **older operators in the envelope are vulnerable** — upgrade off anything below 0.152.0.
 
+## Guides & how-to (official)
+
+- **Docs:** https://opentelemetry.io/docs/platforms/kubernetes/operator/ ; **Helm chart:** open-telemetry/opentelemetry-operator
+- **How to upgrade:** ensure **cert-manager** is healthy (webhook TLS), then `helm upgrade`; watch for CRD conversions between versions. **0.154 changed telemetry metric shape** (feature-gate to revert); patch off the **<0.152 bearerTokenFile** CVE.
 ## References
 
 - `Chart.yaml`, `compatibility.md`, `UPGRADING.md`, v0.156.0 release notes (above).

@@ -82,6 +82,10 @@ The official RabbitMQ **cluster-operator** **v2.19.2** (kustomize install), whic
 
 The cluster-operator has no notable code-specific CVE record; older-version exposure is the **RabbitMQ server version** it deploys (RabbitMQ/Erlang CVEs in old images). For older clusters, upgrade the deployed RabbitMQ (mind the 2.22.0 startup-probe requirement for 4.2.4+) rather than chasing operator CVEs.
 
+## Guides & how-to (official)
+
+- **Docs:** https://www.rabbitmq.com/kubernetes/operator/operator-overview ; **upgrade:** https://www.rabbitmq.com/kubernetes/operator/using-operator
+- **How to upgrade:** `kubectl apply` the new operator manifest (or Helm); **operator upgrades roll the StatefulSets** — **pause reconciliation** first, then resume. **2.22.0** needs RabbitMQ **4.2.4+** (or annotation `rabbitmq.com/legacy-startup-probe: "true"`).
 ## References
 
 - Install/supported-K8s doc, v2.19.2 release notes (above).

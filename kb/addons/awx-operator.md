@@ -77,6 +77,10 @@ Operator 2.19.1 pairs with **AWX v24.6.1** and defaults to **PostgreSQL 15** + R
 
 The AWX **Operator** has no notable code-specific CVE record; the real older-version exposure is the **AWX application** it deploys and its **bundled PostgreSQL/Redis** versions (Django/AWX web CVEs, old PG/Redis images). For older clusters, upgrade AWX itself (not just the operator) and the managed DB/cache images to stay patched.
 
+## Guides & how-to (official)
+
+- **Docs/upgrade:** https://ansible.readthedocs.io/projects/awx-operator/en/latest/ (install + upgrade)
+- **How to upgrade:** bump the **operator** version (Helm/kustomize), which reconciles the `AWX` CR to the paired AWX app; back up the **Postgres** DB first; watch the migration job. External-DB (`postgres_configuration_secret`) avoids the managed-DB PVC dependency.
 ## References
 
 - awx-operator 2.19.1 release notes, installer defaults (above).

@@ -95,6 +95,10 @@ For clusters on an **older** GPU Operator (the "NVIDIAScape / LeakyVessels" cont
 - **CVE-2024-0133 (Medium):** crafted container image can create empty files on the host FS — same fix line.
 - The pinned 25.10.1 is patched, but **any GPU Operator below 24.6.1 in the envelope is a critical container-escape risk** — upgrade first.
 
+## Guides & how-to (official)
+
+- **Docs/upgrade:** https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/install-gpu-operator.html + `.../gpu-operator-upgrade.html`
+- **How to upgrade:** `helm upgrade` the operator; NVIDIA supports upgrading the operator without full node reconfig, but driver upgrades drain/reload GPU nodes — plan node cordon. **Get ≥24.6.2** for the CVE-2024-0132 container-escape fix.
 ## References
 
 - Platform-support, `values.yaml`, release notes (above).

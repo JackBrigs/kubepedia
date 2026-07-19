@@ -91,6 +91,10 @@ inventory spans **v1.4.1 → v1.6.0**; v1.6.0 implements **Gateway API v1.4.0** 
 - Older lines: **CVE-2026-22771 (High)** arbitrary code execution via `EnvoyExtensionPolicy` Lua (<1.5.7/<1.6.2); **CVE-2025-24030 (High)** Envoy Admin interface exposed via path traversal (<1.2.6); CVE-2025-25294 log injection (<1.2.7/<1.3.1).
 - **Action: upgrade to ≥1.8.1.** The pin 1.6.0 sits below every one of these fixes.
 
+## Guides & how-to (official)
+
+- **Docs:** https://gateway.envoyproxy.io/docs/ ; **upgrade/releases:** https://gateway.envoyproxy.io/news/releases/
+- **How to upgrade:** `helm upgrade` the `eg` chart and apply the version's Gateway-API + EG CRDs. **⚠ Upgrade to ≥1.8.1** — the pinned 1.6.0 is below the CRITICAL Lua-path-traversal / xDS-auth-bypass fixes (see CVEs).
 ## References
 
 - Compatibility matrix, v1.6.0 release notes, advisory GHSA-xrwg-mqj6-6m22 (above).

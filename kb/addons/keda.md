@@ -102,6 +102,10 @@ pin moves (from upstream releases):
 
 For clusters on an **older** KEDA: the shipped **2.17.2 is affected by CVE-2025-68476** (Vault-credential path-traversal arbitrary-file-read, High ~CVSS 8.2, all <2.17.3), fixed **2.17.3 / 2.18.3** — upgrade off 2.17.2 and any earlier 2.17.x. Also GHSA-w92x-gx4w-j5f2 (CI supply-chain, non-runtime). Older KEDA carries the metrics-adapter and scaler bugs later fixed (paused-annotation races 2.18.2, concurrent-map panic 2.20.1).
 
+## Guides & how-to (official)
+
+- **Operate/upgrade:** https://keda.sh/docs/latest/operate/cluster/ ; **deploy:** https://keda.sh/docs/latest/deploy/
+- **How to upgrade:** Helm `helm upgrade kedacore/keda` (CRDs are chart-managed); follow KEDA's **N-2 Kubernetes** policy. **Before 2.20.0**, grant the operator `create`/`patch` on `events.k8s.io` (events moved API group); mind scaler-field removals (2.18–2.20).
 ## References
 
 - `Chart.yaml`, KEDA 2.17 cluster docs, advisory GHSA-c4p6-qg4m-9jmr (above); upstream releases

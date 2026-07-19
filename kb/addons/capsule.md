@@ -86,6 +86,10 @@ jump carries real operational changes.
 
 For clusters on an **older** Capsule, the tenant-isolation fixes landed in **0.13.7 / 0.13.8** (see the upgrade section): **regex-validation bypass**, forbidden label/annotation enforcement gaps, hostname/NodeMetadata regex validation, and an **incomplete fix for CVE-2026-22872**. Anything **below 0.13.7** has weaker tenant-boundary enforcement — a real concern for a multi-tenancy operator. Move to **0.13.8+**.
 
+## Guides & how-to (official)
+
+- **Docs/upgrade:** https://projectcapsule.dev/docs/ (install + upgrade) ; **Artifact Hub chart:** capsule
+- **How to upgrade:** `helm upgrade projectcapsule/capsule`; review the chart README's major-changes notes per version; ensure **Kubernetes ≥1.35** for recent releases. Move to **≥0.13.8** for the tenant-isolation security fixes.
 ## References
 
 - v0.13.0 release notes, installation/support policy, security advisories (above);

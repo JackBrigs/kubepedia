@@ -75,6 +75,10 @@ version, not a published Helm chart** — OLM v0 is normally installed via relea
 
 OLM v0 publishes few code-specific CVEs; the notable older-version item is **CVE-2025-68121** (Go stdlib), pulled in by the **0.41.0** Go bump — older OLM images below 0.41 carry it and other transitive dependency CVEs. Practical action for older clusters: upgrade the OLM image to pick up the dependency fixes; the operator-registry/bundle-unpack path also hardened over 0.42–0.43.
 
+## Guides & how-to (official)
+
+- **Docs:** https://olm.operatorframework.io/docs/ ; **install/upgrade:** https://olm.operatorframework.io/docs/getting-started/
+- **How to upgrade OLM v0:** apply the release manifests (`crds.yaml` then `olm.yaml`) for the target version, or `operator-sdk olm install --version <x>`; note **0.42 blocks 4.23→5.0 API upgrades**. (Operator installs themselves flow via Subscription/InstallPlan/CSV.)
 ## References
 
 - OLM v0.32.0 release notes (above); OLM v1 successor (operator-controller).

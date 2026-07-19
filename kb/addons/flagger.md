@@ -80,6 +80,10 @@ Splunk Observability metrics provider and AWS Gateway API Controller compatibili
 
 Flagger publishes **no GitHub security advisories** in this window — no version-specific CVEs to flag for older releases. Historical exposure is limited to transitive dependency/base-image CVEs in older images; upgrading for those is optional-not-urgent from a Flagger-code standpoint.
 
+## Guides & how-to (official)
+
+- **Docs:** https://docs.flagger.app/ ; **install:** https://docs.flagger.app/install/flagger-install-on-kubernetes
+- **How to upgrade:** `helm upgrade flagger/flagger` (match the mesh/Gateway provider); no breaking changes 1.40→1.43. Verify the metrics provider + `Canary` CRD after upgrade; the `skipAnalysis` pointer bug (#1660) can affect serialization.
 ## References
 
 - `Chart.yaml`, CHANGELOG, PRs #1733/#1746/#1713 (above).
