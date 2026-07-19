@@ -67,6 +67,10 @@ inventory runs it in three environments — `exc` chart **0.87.0**, `exc-stage` 
   Assumed workable across 1.29–1.35 via CRDs, but not tested-declared.
 - **CVEs:** none found (no GHSA/CVE for the repo).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Upstream (envoy-xds-controller):** **actively maintained** (frequent releases); the pinned **0.17.1** is current. **0.17.0** did a significant internal refactor (removed the legacy resbuilder and adapters) described as cleanup, **not breaking**; 0.17.1 adds wildcard-certificate fallback and node-overview API/UI. Config troubleshooting: [[TROUBLE-ENVOY_XDS_CONTROLLER]].
+
 ## References
 
 - `Chart.yaml`, releases (above).

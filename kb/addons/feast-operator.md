@@ -69,6 +69,10 @@ Installed via **kustomize with Server-Side Apply** (plain `kubectl apply` fails)
   CVE-2026-23538 (`/ws/chat` unauth WebSocket DoS, High), CVE-2026-23536, CVE-2025-11157,
   CVE-2024-11602. Do not expose the Feature Server unauthenticated.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Upstream (Feast Operator):** ships from the **actively-developed `feast-dev/feast` monorepo** (no separate operator tag) — the pinned **0.64.0** tracks the monorepo release; verify the running operator image against the monorepo tag. The dominant operational gotcha remains the **Server-Side-Apply install requirement** and online/offline-store connectivity ([[TROUBLE-FEAST_OPERATOR]]); no separate breaking-change stream beyond the monorepo's Feast releases.
+
 ## References
 
 - feast-operator README, Feast v0.64.0 release, GHSA advisories (above).

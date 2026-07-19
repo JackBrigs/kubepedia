@@ -59,6 +59,12 @@ Headlamp is a CNCF (kubernetes-sigs) web UI for clusters, deployed via chart **0
   macOS **desktop** build's `codeSign.js` 0.31.0 (patched 0.31.1) — does not affect the
   in-cluster chart 0.43.0.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Upstream (Headlamp 0.43.0):** adds **opt-in ServiceAccount-token auth** for in-cluster deployments (behind OIDC/auth-proxies) and **fixes OIDC login with public providers** (Entra ID, Okta, Google) — relevant to the login/RBAC class ([[TROUBLE-HEADLAMP]]).
+
+**Open upstream bugs (as of 2026-07-19):** **in-cluster deployment wrongly looks for a kubeconfig** instead of the SA (#1826); **OIDC in-cluster impersonation headers not added on EKS** → API calls fail after login (#4198); AWS SSO desktop login (#358); proxy support for corporate networks (#1966). These are exactly the "logged in but empty/forbidden" symptoms.
+
 ## References
 
 - `Chart.yaml` (headlamp-helm-0.43.0); advisory GHSA-34rf-485x-g5h7.

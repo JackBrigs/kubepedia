@@ -70,6 +70,12 @@ which is CVE-vulnerable.
   GHSA-frvj-c5qp-xj4w affects even 0.9.6. Ship open-webui ≥0.9.6. mcp-server itself: no CVEs
   found.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **0.0.56** — **pre-1.0, breaking changes on nearly every bump** (from upstream releases):
+- **0.0.63 breaking:** `PodsExec` now returns **separate stdout/stderr** (parsers expecting combined output break); switched to contextual logging; adds **token pass-through auth mode** and output-schema support.
+- 0.0.64/0.0.65: target-specific tool filtering, structured content, NetObserv toolset. Pin exactly and re-test on every upgrade; treat the RBAC of its ServiceAccount as a security boundary ([[TROUBLE-KUBERNETES_MCP]]).
+
 ## References
 
 - kubernetes-mcp-server `Chart.yaml`, open-webui advisory PYSEC-2026-2751 (above).

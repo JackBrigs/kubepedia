@@ -64,6 +64,15 @@ this doc uses the nearest real release **18.7.4** (`confidence: probable` on the
 - **CVEs:** none affecting 18.x. CVE-2025-49825 / GHSA-8cqv-pj7f-pwpc (auth bypass) caps at
   17.x → 18.x not affected.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **18.7.4** — Teleport is at **18.10.0**; several **security fixes** landed since 18.7.4 (tbot is a security agent, so stay current):
+- **18.9.2:** **SSRF in AWS app access**, AWS STS session-duration capping.
+- **18.10.0:** fixed Slack-plugin credential exposure in URLs.
+- **18.8.3:** tightened Device Trust signature handling; restricted symlink traversal in file transfers.
+- **17.7.26 (older line):** Kubernetes API proxy access now requires a new `proxy` verb (RBAC change).
+- Recommend **≥18.9.2** and tracking the 18.x patch stream. Cert-renewal troubleshooting: [[TROUBLE-TBOT]].
+
 ## References
 
 - tbot `Chart.yaml` (v18.7.4), Teleport upgrading overview (above).

@@ -67,6 +67,11 @@ packaging** — `confidence: probable`.
 - **CVEs:** none for this plugin (its Security Overview is empty). Note: `kubevirt/kubevirt`
   CVEs are a different component.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**⚠⚠ Upstream unmaintained:** the referenced `kubevirt/kubernetes-device-plugins` repo is **stale/abandoned — last commit April 2020**. There is no active development, no security fixes, and (as the catalog notes) **no published Helm chart at the pinned version**. Do **not** rely on it for new clusters:
+- **Alternative:** use a **maintained** KVM device plugin (e.g. the `devices.kubevirt.io/kvm` plugin shipped/maintained within current KubeVirt), or run KubeVirt itself which advertises `/dev/kvm`. Verify whatever image you actually run. Scheduling troubleshooting: [[TROUBLE-KVM_DEVICE_PLUGIN]].
+
 ## References
 
 - kubevirt/kubernetes-device-plugins KVM doc, Kubernetes device-plugins doc (above).

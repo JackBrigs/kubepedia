@@ -71,6 +71,12 @@ Operator / external-secrets). The app version **1.7.3** has been unchanged since
 - **CVEs:** none found for Connect 1.7.3 (OSV empty). The only historic CVE-2021-36758
   affects Connect server before 1.2 and does not apply.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond the pinned chart (from upstream releases):
+- **⚠ chart 2.3.0 breaking:** the **double-base64-encoding workaround for the credentials secret no longer works** — credentials are now mounted **as files with single encoding**. If your `1password-credentials.json` secret used the double-encode trick, switch to standard single encoding or Connect fails to read it ([[TROUBLE-1PASSWORD_CONNECT]]).
+- 2.4.0 bumps Connect to 1.8.2 (from the pinned 1.7.3) with configurable operator probes; 2.1.0 adds OCI-registry install.
+
 ## References
 
 - `Chart.yaml` + connect CHANGELOG (above); issue #224.
