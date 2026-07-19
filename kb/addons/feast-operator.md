@@ -77,6 +77,10 @@ Installed via **kustomize with Server-Side Apply** (plain `kubectl apply` fails)
 
 The Feast Operator has no notable addon-specific CVE record; older-version exposure is the **Feast application** and its **online/offline store** components (Redis/DB) plus base images. Track the feast-dev/feast monorepo releases and the store components rather than an operator-specific CVE stream.
 
+## Guides & how-to (official)
+
+- **Docs:** https://docs.feast.dev/ ; **operator:** https://github.com/feast-dev/feast/tree/master/infra/feast-operator
+- **How to upgrade:** re-apply the operator kustomize with **`kubectl apply --server-side --force-conflicts`** (plain apply fails on the large CRDs); then reconcile `FeatureStore` CRs. Verify online/offline-store connectivity after upgrade.
 ## References
 
 - feast-operator README, Feast v0.64.0 release, GHSA advisories (above).

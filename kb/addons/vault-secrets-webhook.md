@@ -94,6 +94,10 @@ functional breaking changes.
 
 bank-vaults' own CVE record is thin; the key security change is **1.23.1's SSRF hardening** (vault-addr allowlist — see the upgrade section), so **versions below 1.23.1 trust object-supplied Vault addresses** (an SSRF vector). Older-version exposure also includes the bundled vault-env/base image. Upgrade to ≥1.23.1 and scope the webhook selector/failurePolicy.
 
+## Guides & how-to (official)
+
+- **Docs:** https://bank-vaults.dev/docs/mutating-webhook/ ; **chart:** bank-vaults/vault-secrets-webhook
+- **How to upgrade:** `helm upgrade`; because it's a mutating webhook, scope `failurePolicy`/selector so an upgrade blip doesn't block pod creation. **1.23.1 adds a `vault-addr` SSRF allowlist** — set `VAULT_ADDR_ALLOWLIST` if you use that annotation.
 ## References
 
 - `Chart.yaml`, `go.mod`, bank-vaults docs (above); GitHub issues #405/#351/#307.

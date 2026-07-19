@@ -76,6 +76,10 @@ using one cannot reschedule to another node.
 
 OpenEBS lvm-localpv has no notable addon-specific CVE record; older-version exposure is base-image/dependency CVEs in old images (Alpine floor was 3.18 before 1.8.0). Upgrade for the newer base image rather than any driver CVE fix.
 
+## Guides & how-to (official)
+
+- **Docs:** https://openebs.io/docs/ (Local PV LVM) ; **repo:** https://github.com/openebs/lvm-localpv
+- **How to upgrade:** `kubectl apply`/Helm the new operator manifest; CRDs are backward-compatible across 1.7→1.9 (no breaking). Snapshot-restore/thinpool-reclaim arrived in 1.8.0; VolumeAttributesClass/QoS in 1.9.0.
 ## References
 
 - lvm-localpv v1.7.0 README + release notes (above); OpenEBS prerequisites.

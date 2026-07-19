@@ -79,6 +79,10 @@ affected by **three CVEs**; override `spec.image` to ≥1.40 to clear them.
 
 The Dragonfly DB GitHub advisories endpoint was not retrievable in this pass (rate-limited). Check the **Dragonfly project security page / releases** for version-specific CVEs before running an older image; historically the operator's data-loss risks (failover/readiness) have been the bigger operational concern than code CVEs — the **replication-aware readiness gate** (operator 1.5.0) is the key mitigation.
 
+## Guides & how-to (official)
+
+- **Docs:** https://www.dragonflydb.io/docs/managing-dragonfly/operator/installation ; **operator:** https://github.com/dragonflydb/dragonfly-operator
+- **How to upgrade:** `helm upgrade`/apply the operator manifest; enable the **replication-aware readiness gate** (operator 1.5.0+) before rolling updates to avoid failover data loss; upgrade the Dragonfly image via the CR.
 ## References
 
 - `Chart.yaml`, `version.go`, Dragonfly security advisories (above).

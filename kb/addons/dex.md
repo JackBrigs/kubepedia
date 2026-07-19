@@ -85,6 +85,10 @@ this platform (envoy-xds-controller, kubernetes-dashboard flows) — check for v
 
 Older Dex exposure is dominated by **bundled gomplate** (CVE-2025-68121, CVE-2026-25934 — optional, avoid if unused) and base-image/Go-stdlib CVEs in old images. Dex has had occasional OIDC-handling advisories historically — verify an old pin against the Dex security advisories. Upgrading also brings PKCE (2.45.0) and the connector-failure default change.
 
+## Guides & how-to (official)
+
+- **Docs:** https://dexidp.io/docs/ ; **Kubernetes/Helm:** https://dexidp.io/docs/getting-started/
+- **How to upgrade:** `helm upgrade dex/dex`; review connector/config changes. **2.45 breaking** — gomplate v5 and `ContinueOnConnectorFailure` default-on (a failing connector no longer blocks startup); avoid gomplate if unused (its CVEs).
 ## References
 
 - `Chart.yaml` + dex v2.42.0 release (above); TLS advisory GHSA-gr79-9v6v-gc9r.

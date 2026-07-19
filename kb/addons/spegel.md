@@ -79,6 +79,10 @@ app are lock-stepped; v0.0.1 is the first release / CI placeholder — current u
 
 Spegel's own CVE record is thin; older-version exposure is the **bundled containerd client** and Go crypto libraries (0.7.4 bumped crypto and fixed a range-handling issue). More important than any CVE: the inventory pin **0.0.1 is wrong** (current 0.7.x) — running a phantom/old version is the real risk. Move to a current 0.7.x with a supported containerd (0.7.0 dropped containerd 1.7/2.0).
 
+## Guides & how-to (official)
+
+- **Docs:** https://spegel.dev/docs/ ; **repo:** https://github.com/spegel-org/spegel
+- **How to upgrade:** `helm upgrade spegel/spegel`; **the pin 0.0.1 is wrong — target current 0.7.x**. **0.7.0 dropped containerd 1.7/2.0 support** — verify your containerd version before upgrading.
 ## References
 
 - `Chart.yaml` (v0.0.1), spegel getting-started, PR #1168, issue #1272 (above).

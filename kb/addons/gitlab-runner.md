@@ -82,6 +82,10 @@ single most important migration item here.
 
 GitLab ships **monthly security releases** across GitLab/Runner; an **older gitlab-runner misses those CVE patches**. Older-version exposure = whatever GitLab security advisories were open for that runner minor (privilege/exec-related fixes are common for the K8s executor). Track a **supported GitLab minor** and upgrade the runner in lockstep; mind the GitLab 19.0 (May 2026) breaking window.
 
+## Guides & how-to (official)
+
+- **Install (Helm):** https://docs.gitlab.com/runner/install/kubernetes.html ; **upgrade:** https://docs.gitlab.com/runner/install/kubernetes.html#upgrade-gitlab-runner-using-the-helm-chart
+- **How to upgrade:** `helm upgrade` the `gitlab/gitlab-runner` chart; keep the runner within one minor of the GitLab server. Attach-strategy fault-tolerance is being replaced by Step Runner (known limitation); mind the **GitLab 19.0** breaking window.
 ## References
 
 - `Chart.yaml` (0.81.0/0.63.0), Kubernetes install + executor troubleshooting docs (above).

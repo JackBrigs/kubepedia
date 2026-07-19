@@ -77,6 +77,10 @@ GitLab **18.x**).
 
 Like the runner, the agent (`agentk`) follows GitLab's **monthly security cadence** — an older agent misses CVE patches from those releases. Older-version exposure is the GitLab-tracked advisories for that agent minor. Keep the agent on a supported GitLab minor; note the built-in pull-GitOps deprecation (move to Flux) when upgrading.
 
+## Guides & how-to (official)
+
+- **Install/manage:** https://docs.gitlab.com/user/clusters/agent/install/ ; **work with the agent:** https://docs.gitlab.com/user/clusters/agent/work_with_agent/
+- **How to upgrade:** `helm upgrade` the `gitlab/gitlab-agent` chart to match the GitLab server version; the config lives in `.gitlab/agents/<name>/config.yaml`. **Built-in pull-GitOps is deprecated → migrate to Flux.**
 ## References
 
 - gitlab-agent Chart.yaml (2.22.1/2.26.0), GitLab Agent docs (above).

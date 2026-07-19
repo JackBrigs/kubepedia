@@ -75,6 +75,10 @@ The operator **orchestrates** the Elastic Stack — it does not bundle a fixed S
 
 The ECK GitHub advisories endpoint was not retrievable in this pass (rate-limited); Elastic tracks CVEs on the **Elastic Security site**. The dominant older-version exposure is **not the ECK operator code** but the **Elasticsearch/Kibana Stack version** it manages — older managed stacks (e.g. 7.17 / 8.x below current) carry their own CVEs. Keep both the operator and the managed Stack patched, and remember 3.3.0 removed ES 6.x / Stack 7.17 support.
 
+## Guides & how-to (official)
+
+- **Upgrade ECK:** https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-upgrading-eck.html ; **upgrade the Stack:** https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-upgrading-stack.html
+- **How to upgrade:** upgrade the **operator** first, then managed Stacks (rolling, orchestrated by ECK). **3.3 removed ES 6.x / Stack 7.17**; **ES 9.0 must go through 8.18** — plan the Stack path accordingly.
 ## References
 
 - `Chart.yaml`, ECK 3.1.0 README, Elastic release/breaking-changes notes (above).

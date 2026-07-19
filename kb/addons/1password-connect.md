@@ -81,6 +81,10 @@ Operator / external-secrets). The app version **1.7.3** has been unchanged since
 
 1Password Connect has no notable public CVE record; older-version exposure is base-image/dependency CVEs and the **credentials-handling change** in chart 2.3.0 (double-base64 workaround removed). Keep Connect (1.8.2+) and the operator current; the credential secret is the sensitive asset — rotate the Connect token if exposed.
 
+## Guides & how-to (official)
+
+- **Docs:** https://developer.1password.com/docs/connect/ ; **Kubernetes/Helm:** https://developer.1password.com/docs/connect/connect-kubernetes/
+- **How to upgrade:** `helm upgrade 1password/connect`; **chart 2.3.0 removed the double-base64 credentials workaround** — ensure `1password-credentials.json` uses standard single encoding. Rotate the Connect token if exposed.
 ## References
 
 - `Chart.yaml` + connect CHANGELOG (above); issue #224.

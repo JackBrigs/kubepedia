@@ -85,6 +85,10 @@ CVEs**. Consider migrating to [[CONCEPT-ADDON_HEADLAMP]] and upgrading oauth2-pr
 
 Because the upstream repo is **archived/retired**, older (and current) Dashboard images receive **no new security fixes** — so any older Dashboard is a **frozen, growing CVE surface** (historically the Dashboard has had auth/exposure advisories, and unauthenticated exposure has caused real breaches). This is the strongest reason to **migrate to a maintained UI (Headlamp)** rather than pin an old Dashboard.
 
+## Guides & how-to (official)
+
+- **Repo (archived):** https://github.com/kubernetes/dashboard ; **migrate to Headlamp:** https://headlamp.dev/docs/latest/
+- **How to upgrade:** the 7.x chart upgrades via `helm upgrade`, **but the project is retired** (no new fixes) — the recommended 'upgrade' is **migration to a maintained UI (Headlamp)**. If you must stay, keep behind auth and current.
 ## References
 
 - `Chart.yaml`, 7.0.0 release notes, oauth2-proxy advisories (above).

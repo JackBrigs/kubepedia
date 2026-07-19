@@ -81,6 +81,10 @@ Both require **Ceph Pacific (≥ v16.2.0)+**.
 
 ceph-csi's own CVE record is thin; the real older-version exposure is the **Ceph cluster version** behind it (Ceph CVEs) and old base images. The RWO exclusive-lock gap (#578) is a data-safety, not a CVE, concern. Keep the driver current (Ceph-CSI-Operator path from 3.16+) and the Ceph cluster patched.
 
+## Guides & how-to (official)
+
+- **Deploy CephFS:** https://github.com/ceph/ceph-csi/blob/devel/docs/deploy-cephfs.md ; **Ceph-CSI-Operator (3.16+):** https://github.com/ceph/ceph-csi-operator
+- **How to upgrade:** update the driver manifests/Helm to the target tag; **3.17 breaking** — the NFS CSIDriver `attachRequired` flips → **delete/recreate the CSIDriver**; from 3.16+ prefer the Ceph-CSI-Operator deploy path. Keep the Ceph cluster patched.
 ## References
 
 - ceph-csi v3.14.2 / v3.13.0 READMEs + release notes (above).
