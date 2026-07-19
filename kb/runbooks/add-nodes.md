@@ -39,6 +39,8 @@ relations:
     target: PRACTICE-CLUSTER_HEALTH_CHECKS
   - type: see_also
     target: PRACTICE-NETCHECK
+  - type: see_also
+    target: TROUBLE-ADD_NODE_GOTCHAS
 ---
 
 # Runbook: add worker or control-plane nodes (scale.yml / cluster.yml)

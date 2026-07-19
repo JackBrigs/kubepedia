@@ -518,6 +518,7 @@
 {"source": "PRACTICE-RUNBOOK_ADD_NODES", "target": "PRACTICE-NETCHECK", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_ADD_NODES", "target": "PRACTICE-NODES_ADD_REPLACE", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_ADD_NODES", "target": "ROLE-KUBERNETES_NODE", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_ADD_NODES", "target": "TROUBLE-ADD_NODE_GOTCHAS", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_BOOTSTRAP", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "depends_on"}
 {"source": "PRACTICE-RUNBOOK_BOOTSTRAP", "target": "PRACTICE-INVENTORY", "type": "depends_on"}
 {"source": "PRACTICE-RUNBOOK_BOOTSTRAP", "target": "CONCEPT-RUNBOOKS_INDEX", "type": "part_of"}
@@ -672,6 +673,11 @@
 {"source": "TAG-RESOLVCONF", "target": "TAG-PREINSTALL", "type": "see_also"}
 {"source": "TAG-SYSTEM_UPGRADE", "target": "TAG-POST_UPGRADE", "type": "see_also"}
 {"source": "TAG-SYSTEM_UPGRADE", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
+{"source": "TROUBLE-ADD_NODE_GOTCHAS", "target": "PRACTICE-NODES_ADD_REPLACE", "type": "see_also"}
+{"source": "TROUBLE-ADD_NODE_GOTCHAS", "target": "PRACTICE-RUNBOOK_ADD_NODES", "type": "see_also"}
+{"source": "TROUBLE-ADD_NODE_GOTCHAS", "target": "TROUBLE-KUBEADM_JOIN_NODE", "type": "see_also"}
+{"source": "TROUBLE-ADD_NODE_GOTCHAS", "target": "TROUBLE-KUBEADM_VERSION_SKEW", "type": "see_also"}
+{"source": "TROUBLE-ADD_NODE_GOTCHAS", "target": "TROUBLE-SCHEDULER_POD_PENDING", "type": "see_also"}
 {"source": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "target": "COMPONENT-CERT_MANAGER", "type": "see_also"}
 {"source": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "target": "TROUBLE-NAMESPACE_STUCK_TERMINATING", "type": "see_also"}

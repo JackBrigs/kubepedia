@@ -66,6 +66,8 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
 - `kubeadm upgrade apply/node` fails (config/etcd/addons/certs) → [[TROUBLE-KUBEADM_UPGRADE_APPLY]].
 - **version skew** / can't skip a minor → [[TROUBLE-KUBEADM_VERSION_SKEW]].
 - **`kubeadm join`** (worker/CP) fails (token/CA-hash/reachability) → [[TROUBLE-KUBEADM_JOIN_NODE]].
+- new node joins but stays **empty / NotReady** (facts, taint, CNI, podCIDR exhausted, skew) →
+  [[TROUBLE-ADD_NODE_GOTCHAS]].
 - CP **cert renewal** (`kubeadm certs renew`) / expiry → [[TROUBLE-KUBEADM_CERT_RENEWAL]].
 - who owns **etcd** (host role vs kubeadm) → [[CONCEPT-KUBESPRAY_ETCD_OWNERSHIP]].
 

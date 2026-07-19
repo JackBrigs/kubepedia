@@ -229,6 +229,7 @@
 {"alias": "add control plane node", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
 {"alias": "add node", "ids": ["PRACTICE-NODES_ADD_REPLACE"]}
 {"alias": "add node runbook", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
+{"alias": "added node NotReady", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
 {"alias": "additional_no_proxy", "ids": ["CONFIG-PROXY", "VARIABLE-ADDITIONAL_NO_PROXY"]}
 {"alias": "additional_no_proxy_list", "ids": ["VARIABLE-ADDITIONAL_NO_PROXY_LIST"]}
 {"alias": "additional_sysctl", "ids": ["VARIABLE-ADDITIONAL_SYSCTL"]}
@@ -1012,6 +1013,7 @@
 {"alias": "control plane versions", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
 {"alias": "control plane vip unreachable", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
 {"alias": "control-plane", "ids": ["TAG-CONTROL_PLANE"]}
+{"alias": "control-plane node no workloads taint", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
 {"alias": "control-plane not coming up", "ids": ["PRACTICE-KUBEADM_JOIN_FAILURES"]}
 {"alias": "control-plane-override-hostname-delegation", "ids": ["TROUBLE-CONTROL_PLANE_OVERRIDE_HOSTNAME_DELEGATION"]}
 {"alias": "control_plane_health_retries", "ids": ["VARIABLE-CONTROL_PLANE_HEALTH_RETRIES"]}
@@ -2003,6 +2005,7 @@
 {"alias": "kube_manifest_dir", "ids": ["VARIABLE-KUBE_MANIFEST_DIR"]}
 {"alias": "kube_memory_reserved", "ids": ["VARIABLE-KUBE_MEMORY_RESERVED"]}
 {"alias": "kube_network_node_prefix", "ids": ["CONCEPT-CLUSTER_NETWORKING", "VARIABLE-KUBE_NETWORK_NODE_PREFIX"]}
+{"alias": "kube_network_node_prefix exhausted", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
 {"alias": "kube_network_node_prefix_ipv6", "ids": ["VARIABLE-KUBE_NETWORK_NODE_PREFIX_IPV6"]}
 {"alias": "kube_network_plugin", "ids": ["CONCEPT-CLUSTER_NETWORKING", "VARIABLE-KUBE_NETWORK_PLUGIN"]}
 {"alias": "kube_network_plugin calico", "ids": ["COMPONENT-CALICO"]}
@@ -2661,6 +2664,8 @@
 {"alias": "network policy stays until pods gone", "ids": ["CONCEPT-K8S_ORDERED_NAMESPACE_DELETION"]}
 {"alias": "network_plugin", "ids": ["ROLE-NETWORK_PLUGIN"]}
 {"alias": "never", "ids": ["TAG-NEVER"]}
+{"alias": "new node no pods scheduling", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
+{"alias": "new node wrong version", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
 {"alias": "nfd labels missing", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
 {"alias": "nfd worker not labeling", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
 {"alias": "nftables kernel too low", "ids": ["TROUBLE-NFTABLES_KERNEL_TOO_LOW"]}
@@ -2705,6 +2710,7 @@
 {"alias": "node kubeletnotready after kubeadm init", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
 {"alias": "node maintenance runbook", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "node memory pressure eviction", "ids": ["TROUBLE-OOMKILLED"]}
+{"alias": "node no podCIDR", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
 {"alias": "node not deleted after vm gone", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
 {"alias": "node not joining", "ids": ["PRACTICE-KUBEADM_JOIN_FAILURES"]}
 {"alias": "node not joining cluster", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
@@ -3099,6 +3105,7 @@
 {"alias": "scale up cluster", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
 {"alias": "scale.yml", "ids": ["PLAYBOOK-SCALE"]}
 {"alias": "scale.yml add worker", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
+{"alias": "scale.yml facts first", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
 {"alias": "scaledobject no external metric", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
 {"alias": "scheduled etcd backup", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
 {"alias": "scheduler slow at scale", "ids": ["TROUBLE-SCHEDULER_PERF"]}
