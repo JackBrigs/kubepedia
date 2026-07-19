@@ -77,6 +77,10 @@ this chart's pinned images **no longer pull** from the free `docker.io/bitnami` 
 **⚠⚠ CRITICAL — Bitnami catalog deprecation (effective 2025-08-28, bitnami/charts #35164):** Bitnami moved most free container images to a frozen **`docker.io/bitnamilegacy`** repo (no further updates), and the paid **Bitnami Secure Images** replaced the public catalog. **RabbitMQ was left out of the secure catalog** — so this chart **breaks when it tries to pull images that no longer exist** at the old paths. Deployments pinned to `docker.io/bitnami/rabbitmq:<tag>` will fail on new pulls.
 - **Fix / migrate:** move to the **RabbitMQ Cluster Operator** ([[CONCEPT-ADDON_RABBITMQ_CLUSTER_OPERATOR]]) or a maintained chart, mirror the needed legacy images before they rot, or subscribe to Bitnami Secure Images. Treat this chart as **end-of-free-life**.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+The security story here **is** the deprecation: since **2025-08-28** the Bitnami RabbitMQ images are frozen in `docker.io/bitnamilegacy` and receive **no further CVE patches**. So **every older (and current) Bitnami RabbitMQ image is now a growing, unpatched CVE surface** by design. This is the strongest reason to migrate off the Bitnami chart to the **RabbitMQ Cluster Operator** ([[CONCEPT-ADDON_RABBITMQ_CLUSTER_OPERATOR]]) or a maintained image.
+
 ## References
 
 - `Chart.yaml`, Bitnami migration issue #35164, RabbitMQ GHSA-w6cq-9cf4-gqpg (above).

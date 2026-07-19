@@ -83,6 +83,14 @@ Argo CD **v3.x** major line, which carries real RBAC/tracking breaking changes v
 - **3.4.4:** fixes an **RBAC regression for the multi-namespace (namespaced) architecture** — relevant if you run apps-in-any-namespace.
 - 3.4.5 rebases onto Ubuntu 26.04 + crypto 0.53.0; 3.5.x in RC. No breaking API changes flagged in the 3.x window, but cluster-informer locking and auto-sync regressions were fixed along the way — stay on a patched 3.4.x.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Argo CD has a **serious CVE record** — for clusters on older versions (older Kubespray tags):
+- **⚠ CVE-2025-55190 (CVSS 10.0, MAX):** a **project-level API token can retrieve repository credentials** (usernames/passwords) via `/api/v1/projects/{project}/detailed` — affects **2.13.0–2.13.8, 2.14.0–2.14.15, 3.0.0–3.0.12, 3.1.0-rc…3.1.1**; fixed **2.13.9 / 2.14.16 / 3.0.14 / 3.1.2**. The pinned 3.1.7 is patched; **any older Argo CD in the envelope leaks repo creds.**
+- **CVE-2024-31989:** Argo CD's **Redis had no password** → any pod could poison the deployment cache.
+- **Path traversal** (1.3.0 to <2.1.11 / 2.2.6 / 2.3.0): a read-only repo user could **leak sensitive files** from repo-server.
+- Treat Argo CD as high-value; keep it on a patched 3.1.x and scope project tokens tightly.
+
 ## References
 
 - `Chart.yaml`, tested-versions page, 2.14→3.0 upgrade guide (above); advisory

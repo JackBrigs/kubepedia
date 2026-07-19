@@ -71,6 +71,10 @@ version, not a published Helm chart** — OLM v0 is normally installed via relea
 - **0.42.0:** **blocks upgrades from 4.23 → 5.0**; fixes a nil-pointer in `sortUnpackJobs`; klog v1→v2.
 - 0.43.0 improves **bundle-unpack failure handling** (relevant to the stuck-Subscription/CSV class in the troubleshooting doc).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+OLM v0 publishes few code-specific CVEs; the notable older-version item is **CVE-2025-68121** (Go stdlib), pulled in by the **0.41.0** Go bump — older OLM images below 0.41 carry it and other transitive dependency CVEs. Practical action for older clusters: upgrade the OLM image to pick up the dependency fixes; the operator-registry/bundle-unpack path also hardened over 0.42–0.43.
+
 ## References
 
 - OLM v0.32.0 release notes (above); OLM v1 successor (operator-controller).

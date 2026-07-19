@@ -78,6 +78,10 @@ The official RabbitMQ **cluster-operator** **v2.19.2** (kustomize install), whic
 - **Every operator upgrade triggers a rolling update of the underlying StatefulSets** — **pause cluster reconciliation** before upgrading the operator, then resume, to control the roll.
 - 2.22.1 fixes a metrics-certificate secret collision; 2.21.x improves imagePullSecrets handling.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+The cluster-operator has no notable code-specific CVE record; older-version exposure is the **RabbitMQ server version** it deploys (RabbitMQ/Erlang CVEs in old images). For older clusters, upgrade the deployed RabbitMQ (mind the 2.22.0 startup-probe requirement for 4.2.4+) rather than chasing operator CVEs.
+
 ## References
 
 - Install/supported-K8s doc, v2.19.2 release notes (above).

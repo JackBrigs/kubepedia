@@ -82,6 +82,10 @@ jump carries real operational changes.
 - **Security (0.13.7 / 0.13.8):** multiple advisories — **regex-validation bypass**, forbidden label/annotation enforcement gaps, hostname/NodeMetadata regex validation, and an **incomplete fix for CVE-2026-22872**. Move to **0.13.8+** for the tenant-isolation hardening.
 - **0.13.9 requires Kubernetes v1.35+** — watch the K8s floor when upgrading Capsule.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+For clusters on an **older** Capsule, the tenant-isolation fixes landed in **0.13.7 / 0.13.8** (see the upgrade section): **regex-validation bypass**, forbidden label/annotation enforcement gaps, hostname/NodeMetadata regex validation, and an **incomplete fix for CVE-2026-22872**. Anything **below 0.13.7** has weaker tenant-boundary enforcement — a real concern for a multi-tenancy operator. Move to **0.13.8+**.
+
 ## References
 
 - v0.13.0 release notes, installation/support policy, security advisories (above);

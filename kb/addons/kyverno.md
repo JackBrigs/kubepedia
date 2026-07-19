@@ -128,6 +128,15 @@ upgrades are frequently breaking — read the per-minor notes before bumping.
 - Dynamic watchers now restart background reporting on **`410 Gone`** (fixes stalled reports); required validation no longer aborts on non-matching images.
 - No breaking changes in this patch; the big webhook/HA and CEL considerations remain (see the Kyverno troubleshooting/upgrade docs).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Kyverno's admission controller runs privileged, so its CVEs are severe — the **envelope floor (1.10–1.16.2) is exposed**:
+- **⚠ CVE-2026-22039 (CVSS 10):** **cross-namespace privilege escalation via a policy `apiCall`** — the resolved `urlPath` runs as Kyverno's admission-controller ServiceAccount **without namespace enforcement**, letting any user who can create a namespaced Policy read/write across namespaces (Secrets, ClusterPolicies). Affects **≤1.16.2 and ≤1.15.2**; fixed **1.16.3 / 1.15.3**.
+- **CVE-2026-41068:** the fix above was **incomplete** — the **ConfigMap context loader** has the same flaw (`configMap.namespace` unvalidated) → cross-namespace ConfigMap reads.
+- **CVE-2026-4789 (SSRF, critical):** namespace-scoped users make **arbitrary HTTP requests from the admission-controller pod** → internal services, cross-namespace theft, **cloud metadata credential exfiltration**. Affects **≥1.16.0**.
+- **GHSA-gg4x-fgg2-h9w9:** policy bypass via **double PolicyExceptions** (ties to the exception-not-applying trouble doc); **CVE-2023-34091:** `deletionTimestamp` resource can circumvent policy.
+- Prioritize Kyverno patching — several of these are RBAC-shattering. The namespace-boundary fix on `generator.apply()` (1.18.2, forward section) is part of the same hardening arc.
+
 ## References
 
 - Kyverno release tags + HA/architecture docs (above). Troubleshooting:

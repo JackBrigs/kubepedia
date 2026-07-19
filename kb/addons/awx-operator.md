@@ -73,6 +73,10 @@ Operator 2.19.1 pairs with **AWX v24.6.1** and defaults to **PostgreSQL 15** + R
 
 **Upstream (AWX Operator 2.19.x):** 2.19.0 added **HPA for web/task**, fixed custom-CA handling across task/web/migration, and enhanced readiness checks; 2.19.1 is a maintenance release paired with AWX 24.6.1 (no DB migration, no breaking). No newer operator line in this window — verify before assuming a higher pin exists.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+The AWX **Operator** has no notable code-specific CVE record; the real older-version exposure is the **AWX application** it deploys and its **bundled PostgreSQL/Redis** versions (Django/AWX web CVEs, old PG/Redis images). For older clusters, upgrade AWX itself (not just the operator) and the managed DB/cache images to stay patched.
+
 ## References
 
 - awx-operator 2.19.1 release notes, installer defaults (above).
