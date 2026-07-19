@@ -333,6 +333,7 @@
 {"alias": "argocd_install_url", "ids": ["VARIABLE-ARGOCD_INSTALL_URL"]}
 {"alias": "argocd_namespace", "ids": ["VARIABLE-ARGOCD_NAMESPACE"]}
 {"alias": "argocd_version", "ids": ["VARIABLE-ARGOCD_VERSION"]}
+{"alias": "arp_cache neighbor table overflow", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "artifacts_dir", "ids": ["PRACTICE-CLUSTER_ACCESS", "VARIABLE-ARTIFACTS_DIR"]}
 {"alias": "assertion failed kubespray", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
 {"alias": "asserts", "ids": ["TAG-ASSERTS"]}
@@ -858,6 +859,7 @@
 {"alias": "cluster networking", "ids": ["CONCEPT-CLUSTER_NETWORKING"]}
 {"alias": "cluster pki", "ids": ["CONCEPT-CLUSTER_PKI"]}
 {"alias": "cluster power loss recovery", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "cluster sizing limits", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "cluster status", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
 {"alias": "cluster-roles", "ids": ["TAG-CLUSTER_ROLES"]}
 {"alias": "cluster.yml", "ids": ["PLAYBOOK-CLUSTER"]}
@@ -1652,6 +1654,7 @@
 {"alias": "gateway_api_experimental_crds_checksums", "ids": ["VARIABLE-GATEWAY_API_EXPERIMENTAL_CRDS_CHECKSUMS"]}
 {"alias": "gateway_api_standard_crds_checksums", "ids": ["VARIABLE-GATEWAY_API_STANDARD_CRDS_CHECKSUMS"]}
 {"alias": "gateway_api_version", "ids": ["VARIABLE-GATEWAY_API_VERSION"]}
+{"alias": "gc_thresh3 kubernetes", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "gcp-pd-csi", "ids": ["COMPONENT-GCP_PD_CSI"]}
 {"alias": "gcp-pd-csi-driver", "ids": ["TAG-GCP_PD_CSI_DRIVER"]}
 {"alias": "gcp_pd_csi_attacher_image_tag", "ids": ["VARIABLE-GCP_PD_CSI_ATTACHER_IMAGE_TAG"]}
@@ -1843,6 +1846,7 @@
 {"alias": "insufficient cpu memory", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "insufficient nvidia.com/gpu", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
 {"alias": "integration failure matrix", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
+{"alias": "intermittent connectivity large cluster", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "intermittent dns failures kubernetes", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
 {"alias": "internal error occurred admission", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "invalid ownership metadata", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
@@ -2394,6 +2398,7 @@
 {"alias": "kubernetes 1.35 changes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
 {"alias": "kubernetes audit", "ids": ["CONFIG-APISERVER_AUDIT"]}
 {"alias": "kubernetes cve", "ids": ["TROUBLE-KUBERNETES_KNOWN_CVES"]}
+{"alias": "kubernetes scale ceilings", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "kubernetes swap support", "ids": ["CONCEPT-K8S_NODE_SWAP"]}
 {"alias": "kubernetes ui headlamp", "ids": ["CONCEPT-ADDON_HEADLAMP"]}
 {"alias": "kubernetes version support", "ids": ["CONCEPT-KUBERNETES_VERSION_SUPPORT"]}
@@ -2470,6 +2475,7 @@
 {"alias": "kyverno webhook timeout latency", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
 {"alias": "kyverno wildcard crd not found", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
 {"alias": "label nodes kubespray", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "large cluster failure modes", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "large scale kubespray", "ids": ["PRACTICE-LARGE_DEPLOYMENTS"]}
 {"alias": "latest component versions", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
 {"alias": "latest upstream versions", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
@@ -2632,6 +2638,8 @@
 {"alias": "native sidecar containers", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
 {"alias": "nbde tang", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
 {"alias": "ndots", "ids": ["VARIABLE-NDOTS"]}
+{"alias": "ndp table full ipv6", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
+{"alias": "neighbour table overflow", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "nerdctl", "ids": ["COMPONENT-NERDCTL"]}
 {"alias": "nerdctl_archive_checksum", "ids": ["VARIABLE-NERDCTL_ARCHIVE_CHECKSUM"]}
 {"alias": "nerdctl_archive_checksums", "ids": ["VARIABLE-NERDCTL_ARCHIVE_CHECKSUMS"]}
@@ -2639,6 +2647,7 @@
 {"alias": "nerdctl_image_info_command", "ids": ["VARIABLE-NERDCTL_IMAGE_INFO_COMMAND"]}
 {"alias": "nerdctl_image_pull_command", "ids": ["VARIABLE-NERDCTL_IMAGE_PULL_COMMAND"]}
 {"alias": "nerdctl_version", "ids": ["VARIABLE-NERDCTL_VERSION"]}
+{"alias": "net.ipv4.neigh.default.gc_thresh", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "netcheck_agent_image_repo", "ids": ["VARIABLE-NETCHECK_AGENT_IMAGE_REPO"]}
 {"alias": "netcheck_agent_image_tag", "ids": ["VARIABLE-NETCHECK_AGENT_IMAGE_TAG"]}
 {"alias": "netcheck_etcd_image_tag", "ids": ["VARIABLE-NETCHECK_ETCD_IMAGE_TAG"]}
@@ -3114,6 +3123,7 @@
 {"alias": "sandbox image pause", "ids": ["TROUBLE-CONTAINERD_IMAGE_PULL_CRI"]}
 {"alias": "sandboxed runtime RuntimeClass", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
 {"alias": "scale", "ids": ["PRACTICE-NODES_ADD_REPLACE"]}
+{"alias": "scale tuning knobs", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "scale up cluster", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
 {"alias": "scale.yml", "ids": ["PLAYBOOK-SCALE"]}
 {"alias": "scale.yml add worker", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
@@ -3545,6 +3555,7 @@
 {"alias": "weave_version", "ids": ["VARIABLE-WEAVE_VERSION"]}
 {"alias": "webhook connection refused", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "webhook x509 after install", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
+{"alias": "what breaks at scale", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "what changed in 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "what changed in 1.30", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
 {"alias": "what changed in 1.31", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}

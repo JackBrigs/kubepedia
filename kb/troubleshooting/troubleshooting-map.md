@@ -47,6 +47,8 @@ source-verified fix.
   cause, which maps to a doc below.
 - **Symptom fits no single component?** The failure may live in a **seam between two
   components** — see the interaction spine [[CONCEPT-COMPONENT_INTERACTION_FAILURES]].
+- **Intermittent / only-at-size failure?** Check the scale spine
+  [[CONCEPT-SCALE_LIMITS]] — the ceiling you crossed and its knob.
 
 ## Implementation
 
