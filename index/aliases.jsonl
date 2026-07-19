@@ -161,6 +161,7 @@
 {"alias": "FailedGetResourceMetric", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
 {"alias": "FailedMount", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "FailedScheduling", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "FileSystemResizePending", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
 {"alias": "FlowSchema", "ids": ["API-FLOWCONTROL_APISERVER"]}
 {"alias": "GitOps", "ids": ["CONCEPT-GITOPS"]}
 {"alias": "GitRepoVolumeDriver", "ids": ["TROUBLE-K8S_GITREPO_VOLUME_REMOVED"]}
@@ -201,6 +202,7 @@
 {"alias": "ProgressDeadlineExceeded", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
 {"alias": "RBAC denied", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "RPO RTO", "ids": ["PRACTICE-BACKUP_DR"]}
+{"alias": "RecoverVolumeExpansionFailure", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
 {"alias": "RemoveCgroupV1", "ids": ["CONCEPT-K8S_CGROUP_V1_REMOVAL"]}
 {"alias": "ResourceClaim ResourceSlice DeviceClass", "ids": ["CONCEPT-K8S_DRA"]}
 {"alias": "SERVFAIL external dns", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
@@ -250,6 +252,7 @@
 {"alias": "alertmanager 0.28.0", "ids": ["CONCEPT-ADDON_ALERTMANAGER"]}
 {"alias": "alertmanager dashboard", "ids": ["CONCEPT-ADDON_KARMA"]}
 {"alias": "all nodes down recovery", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
+{"alias": "allowVolumeExpansion false", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
 {"alias": "allow_ungraceful_removal", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE", "VARIABLE-ALLOW_UNGRACEFUL_REMOVAL"]}
 {"alias": "always", "ids": ["TAG-ALWAYS"]}
 {"alias": "am i exposed", "ids": ["CONCEPT-CVE_REMEDIATION"]}
@@ -517,6 +520,7 @@
 {"alias": "cannot pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "cannot reach service", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "cannot scrape controller-manager scheduler", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
+{"alias": "cannot shrink pvc", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
 {"alias": "cannot validate certificate for because it doesn't contain any IP SANs", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
 {"alias": "capsule", "ids": ["CONCEPT-ADDON_CAPSULE"]}
 {"alias": "capsule 0.13 upgrade", "ids": ["TROUBLE-CAPSULE_UPGRADE_013"]}
@@ -838,6 +842,7 @@
 {"alias": "cis benchmark", "ids": ["PRACTICE-HARDENING"]}
 {"alias": "clean redeploy", "ids": ["PRACTICE-RUNBOOK_RESET"]}
 {"alias": "cleanup.kyverno.io/ttl", "ids": ["TROUBLE-KYVERNO_TTL_CLEANUP"]}
+{"alias": "clear pv claimRef", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "clevis luks2", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
 {"alias": "client", "ids": ["TAG-CLIENT"]}
 {"alias": "clock synchronization", "ids": ["CONFIG-NTP"]}
@@ -1686,6 +1691,7 @@
 {"alias": "graceful upgrade", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
 {"alias": "group_vars layout", "ids": ["CONCEPT-SAMPLE_INVENTORY_LAYOUT"]}
 {"alias": "grow cluster kubespray", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
+{"alias": "grow pvc kubernetes", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
 {"alias": "gvisor", "ids": ["TAG-GVISOR"]}
 {"alias": "gvisor kata containerd runtime", "ids": ["TROUBLE-CONTAINERD_RUNTIME_HANDLER"]}
 {"alias": "gvisor_containerd_shim_binary_checksum", "ids": ["VARIABLE-GVISOR_CONTAINERD_SHIM_BINARY_CHECKSUM"]}
@@ -2815,6 +2821,7 @@
 {"alias": "operator webhook no certs", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
 {"alias": "operator-lifecycle-manager", "ids": ["CONCEPT-ADDON_OLM"]}
 {"alias": "ordered webhooks", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
+{"alias": "orphaned released pv", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "os patching kubernetes node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "otel operator", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
 {"alias": "out of memory pod", "ids": ["TROUBLE-OOMKILLED"]}
@@ -2919,8 +2926,12 @@
 {"alias": "pull access denied", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "pv not deleted storage leak", "ids": ["CONCEPT-K8S_HONOR_PV_RECLAIM_POLICY"]}
 {"alias": "pv reclaim policy honored", "ids": ["CONCEPT-K8S_HONOR_PV_RECLAIM_POLICY"]}
+{"alias": "pv released cannot rebind", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "pv replication", "ids": ["CONCEPT-ADDON_VOLSYNC"]}
 {"alias": "pvc pending", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER", "TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
+{"alias": "pvc resize not working", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
+{"alias": "pvc stuck terminating", "ids": ["TROUBLE-PVC_PV_DELETION"]}
+{"alias": "pvc-protection finalizer", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "pyrra", "ids": ["CONCEPT-ADDON_PYRRA"]}
 {"alias": "pyrra 1.1.0", "ids": ["CONCEPT-ADDON_PYRRA"]}
 {"alias": "qryn", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
@@ -2959,6 +2970,7 @@
 {"alias": "rbd_provisioner_user_secret_name", "ids": ["VARIABLE-RBD_PROVISIONER_USER_SECRET_NAME"]}
 {"alias": "rbd_provisioner_user_secret_namespace", "ids": ["VARIABLE-RBD_PROVISIONER_USER_SECRET_NAMESPACE"]}
 {"alias": "rbd_provisioner_version", "ids": ["VARIABLE-RBD_PROVISIONER_VERSION"]}
+{"alias": "reclaim policy delete data lost", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "reclaim policy delete order", "ids": ["CONCEPT-K8S_HONOR_PV_RECLAIM_POLICY"]}
 {"alias": "reconfigure running cluster", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
 {"alias": "recover control plane", "ids": ["PRACTICE-RECOVER_CONTROL_PLANE"]}
@@ -3448,6 +3460,7 @@
 {"alias": "volsync setgid failed privileged movers", "ids": ["TROUBLE-VOLSYNC_MOVER_ISSUES"]}
 {"alias": "volsync volume node affinity conflict", "ids": ["TROUBLE-VOLSYNC_MOVER_ISSUES"]}
 {"alias": "volume already exclusively attached to one node", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
+{"alias": "volume expansion no effect", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
 {"alias": "volume node affinity conflict", "ids": ["TROUBLE-FAILEDMOUNT", "TROUBLE-SCHEDULER_POD_PENDING"]}
 {"alias": "volumesnapshot stuck", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
 {"alias": "volumesnapshotclass one per driver", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}

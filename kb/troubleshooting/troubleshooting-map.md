@@ -128,6 +128,10 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
 - cgroup driver mismatch → [[TROUBLE-CGROUP_DRIVER_MISMATCH]].
 - PVC `Pending` / no StorageClass → [[TROUBLE-PVC_PENDING_NO_STORAGECLASS]].
 - `FailedMount` (ConfigMap/Secret/PVC) → [[TROUBLE-FAILEDMOUNT]].
+- PVC/PV stuck `Terminating` (finalizers), reclaim-policy data loss, `Released` PV won't rebind →
+  [[TROUBLE-PVC_PV_DELETION]].
+- PVC resize has no effect (`allowVolumeExpansion`, `FileSystemResizePending`, can't shrink) →
+  [[TROUBLE-PVC_VOLUME_EXPANSION]].
 
 ### etcd & control plane
 
