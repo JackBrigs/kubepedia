@@ -79,6 +79,15 @@ to chart **4.12.1** / controller 1.12.1 immediately.
 
 **Open upstream bugs (as of 2026-07-19):** `proxy-ssl-name`/`proxy-ssl-server-name` ignored unless a TLS secret is also set (#6728); can't use `$`/nginx vars in `permanent-redirect` (#11175); **app-root redirect fires before the HTTPS redirect** when `ssl-redirect` is true (#6340, security); Helm upgrade briefly **drops the LB IP from Ingress status** (label mismatch) (#10475).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+ingress-nginx has a **severe historical CVE record** — because the controller by default can read **all cluster Secrets**, an attacker who can edit an Ingress could steal them. For clusters on **older** versions (older Kubespray tags):
+- **CVE-2023-5044** (High): **code injection via the `nginx.ingress.kubernetes.io/permanent-redirect` annotation** → obtain the controller's credentials/all secrets. Fixed in **1.9.0**.
+- **CVE-2023-5043** (High): injection via the **`configuration-snippet`** annotation → controller ServiceAccount token → read all secrets. Fixed in **1.9.0**.
+- **CVE-2022-4886** (High): **path-sanitization bypass** via the `log_format` directive. Fixed in **1.6.4 / 1.7.1**.
+- **CVE-2021-25742**: earlier snippet-based host/secret access.
+- **Mitigations** (any version): set **`allow-snippet-annotations: false`**, enable **`--enable-annotation-validation`**, and tighten who can create/edit Ingress objects. Combined with **CVE-2025-1974 "IngressNightmare"** (see the upgrade section), this is the most breach-prone addon — keep it patched and locked down.
+
 ## References
 
 - `Chart.yaml`, IngressNightmare advisory + controller-v1.12.0/v1.12.1 release notes (above).

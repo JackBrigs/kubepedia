@@ -88,6 +88,10 @@ the **CSI-operator migration** and **StorageClass immutability**.
 
 **Open upstream bugs (as of 2026-07-19):** `MountDevice failed ... operation with the given Volume ID already exists` on some nodes (#4896); **ARM64 OSD crash on Ceph 18.2.4** (arch image mismatch) (#14502); can't replace a single OSD sharing a `metadataDevice` without replacing all (#13240).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Rook itself publishes **no GitHub security advisories** in this window — its security posture is dominated by the **bundled Ceph version's** CVEs, not Rook operator code. For older clusters, the relevant exposure is the **older Ceph** each Rook version shipped (e.g. pre-19.2.x lines); track Ceph advisories for the Ceph version your Rook release deploys, and keep Rook current so it pulls a patched Ceph.
+
 ## References
 
 - Rook v1.18 prerequisites, upgrade guide, ceph-upgrade doc (above); Ceph CVE-2025-52555.

@@ -77,6 +77,13 @@ to **1.18.5+**.
 
 **Open upstream bugs (as of 2026-07-19):** DNS-01 propagation failures despite recursive NS (#5917); **leader-election defaults to `kube-system` → RBAC failure when installed elsewhere** (#6716); ACME `429` rate-limit not handled → permanent issuance failure (#5867); HTTP-01 solver pods don't inherit `imagePullSecrets` (#5959).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+For clusters still on an **older** cert-manager (older Kubespray tags shipped lower versions):
+- **CVE-2026-25518 / GHSA-gx3x-vq4p-mhhv** (Medium): malicious DNS-01 responses **panic the controller (DoS)** — affects **1.18.0–1.19.2**, fixed **1.18.5 / 1.19.3**.
+- **GHSA-r4pg-vg54-wxx4** (Low): crafted PEM data causes **excessive CPU** (resource exhaustion) — affects **everything below 1.12.14 / 1.15.4 / 1.16.2**.
+- **CVE-2026-62290 / GHSA-8rvj-mm4h-c258** (High, 1.18.0–1.20.2): direct ACME `Challenge`/`Order` creation bypasses Issuer DNS-01 policy and can disclose ClusterIssuer DNS creds — fixed **1.19.6 / 1.20.3**. Upgrade off any of these ranges.
+
 ## References
 
 - cert-manager supported releases (1.18 row), advisory GHSA-gx3x-vq4p-mhhv (above).

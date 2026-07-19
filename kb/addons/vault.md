@@ -94,6 +94,15 @@ running image before relying on `1.21.4` behaviour or CVE status. The chart also
 
 **Open upstream bugs (as of 2026-07-19):** raft snapshot on a standby node fails with unclear errors (#15258); AWS auth with IAM role-assumption + MFA → `NoCredentialProviders` (#5767); raft HA rejects the `retry_join` stanza during rolling updates (#10081); **v2.0.0 image fails to start as non-root when using `setcap`** (#31919).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Vault has a **substantial 2025 advisory record** affecting the **1.15–1.21** lines (older Kubespray tags shipped lower Vault). Notable, all via HashiCorp HCSEC bulletins:
+- **HCSEC-2025-22 batch (8 issues)** fixed in **1.18.13 / 1.16.24 / 1.19.8 / 1.20.2**: root-namespace token **privilege elevation**, privileged-operator **host code execution**, userpass **timing side-channel**, userpass/LDAP **user-lockout bypass**, TOTP **code reuse**, cert-auth **CN not validated** for non-CA certs, login-**MFA rate-limit bypass**.
+- **CVE-2025-13357** (LDAP): **`deny_null_bind` defaulted to false** → authentication **without valid credentials**; fixed **1.16.28 / 1.19.12 / 1.20.6 / 1.21.1**.
+- **CVE-2025-11621** (AWS Auth): **account-ID not validated** in caching → impersonation when `bound_iam_principal_arn` matches across accounts / uses wildcards.
+- **CVE-2025-12044**: rate-limiting regression (applied **after** JSON parsing) → DoS.
+- The pinned 1.21.2 is above most fixes, but **any older Vault in the envelope is exposed** — prioritize Vault patching, especially LDAP/AWS auth.
+
 ## References
 
 - `vault-helm` v0.32.0 `Chart.yaml` + release notes; HashiCorp 1.21.4 advisory (all above).

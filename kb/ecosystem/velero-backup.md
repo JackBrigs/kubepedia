@@ -83,6 +83,11 @@ control plane, Velero for app-level backup, migration, and selective restore.
 - **Cross-cluster restore** requires matching CRDs and compatible storage on the target;
   test migrations before relying on them.
 - **Rehearse restores** — an untested backup is a hope, not a plan.
+## Older-version CVEs & security history (mined 2026-07-19)
+
+For clusters on an **older** Velero:
+- **CVE-2020-3996 / GHSA-72xg-3mcq-52v4** (Medium): the restore process could **bind a PersistentVolume to the wrong PVC**, potentially exposing data to unauthorized users — affects **v0.x / v1.x below 1.4.3 / 1.5.2**, fixed **1.4.3 / 1.5.2**. Any very old Velero should be upgraded off this.
+
 ## References
 
 - Velero docs. DR strategy: [[PRACTICE-BACKUP_DR]]; CSI/snapshots: [[CONCEPT-CSI_LAYER]];

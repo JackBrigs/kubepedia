@@ -74,6 +74,10 @@ version); other addons like [[CONCEPT-ADDON_VOLSYNC]] depend on it.
 
 **Open upstream bugs (as of 2026-07-19):** **snapshot-controller throttled by default client-side rate limits → ~8x slower batch snapshotting** (#1344); a release-tagging bug where the **`8.4.0` tag shipped snapshot-controller `8.2.1`** (verify the running image, not the tag) (#1377); dependency CVEs (crypto/tls, gRPC, OTel) (#1401).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+external-snapshotter publishes **no GitHub security advisories** for the controller itself; its historical exposure is **transitive dependency CVEs** (crypto/tls, gRPC, OpenTelemetry — tracked in issue #1401) baked into older images. For older clusters, the practical action is to **move to a current 8.x image** to pick up the dependency and webhook-removal hardening rather than any controller-specific CVE fix.
+
 ## References
 
 - kubernetes-csi/external-snapshotter (above).

@@ -72,6 +72,10 @@ K8up is a restic-based backup operator (`Backup`/`Schedule`/`Restore`/`Archive` 
 
 **Open upstream requests/bugs (as of 2026-07-19):** file include/exclude configuration (#317); PVC backups via **CSI snapshots/clones** for atomicity (#918); Helm-managed CRDs (#1050); S3 subpath/prefix support (#615).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+K8up publishes **no GitHub security advisories** of its own; historical exposure is the **bundled Restic** version and base-image CVEs in older releases (and, pre-2.13, a Bitnami image dependency for cleanup jobs that was later removed). For older clusters the practical action is to upgrade for the newer Restic (0.19.0 in 2.16) and the de-Bitnami'd cleanup path rather than any K8up-specific CVE.
+
 ## References
 
 - k8up-4.8.4 chart tarball + v2.12.0 release notes (above).
