@@ -76,6 +76,12 @@ jump carries real operational changes.
   typo, Moderate, affects **0.13.0–0.13.5** (incl. 0.13.3), fixed **0.13.6**. capsule-proxy's
   older advisories (empty-token auth bypass GHSA-fpvw-6m5v-hqfp, etc.) predate the 0.13.x line.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **0.13.3** (from upstream releases):
+- **Security (0.13.7 / 0.13.8):** multiple advisories — **regex-validation bypass**, forbidden label/annotation enforcement gaps, hostname/NodeMetadata regex validation, and an **incomplete fix for CVE-2026-22872**. Move to **0.13.8+** for the tenant-isolation hardening.
+- **0.13.9 requires Kubernetes v1.35+** — watch the K8s floor when upgrading Capsule.
+
 ## References
 
 - v0.13.0 release notes, installation/support policy, security advisories (above);

@@ -64,6 +64,13 @@ The Zalando **postgres-operator** manages HA PostgreSQL clusters (Spilo/Patroni)
 - **CVEs:** none found for `github.com/zalando/postgres-operator` (OSV empty). Transitive Go
   deps / the Spilo (PostgreSQL) image are out of scope here.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **1.14.0** (from upstream releases):
+- **⚠ 1.15.0/1.15.1 breaking:** **stopped pushing images to `registry.opensource.zalan.do`** — re-pin operator/Spilo images to a maintained registry or deploys fail to pull. Also the **Endpoints → ConfigMaps** leader-election migration (`kubernetes_use_configmaps`) requires a **careful multi-step process to avoid split-brain**; a secondary PDB was added.
+- **1.14.0:** dropped **Postgres 12** support, added **Postgres 17**, per-cluster maintenance windows for major upgrades.
+- **1.13.0:** dropped PG11; **WAL-G backups incompatible without Spilo `ghcr.io/zalando/spilo-16:3.3-p3`**; auto major-version upgrades gated.
+
 ## References
 
 - `Chart.yaml`, v1.14.0 release notes, operator_parameters doc (above).

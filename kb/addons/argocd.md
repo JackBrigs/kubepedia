@@ -77,6 +77,12 @@ Argo CD **v3.x** major line, which carries real RBAC/tracking breaking changes v
   v3.1.0-rc1 through **v3.1.7** (this chart's pin), fixed in **v3.1.8**. Override the image
   to v3.1.8+ to clear it.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **3.1.7** (from upstream releases):
+- **3.4.4:** fixes an **RBAC regression for the multi-namespace (namespaced) architecture** — relevant if you run apps-in-any-namespace.
+- 3.4.5 rebases onto Ubuntu 26.04 + crypto 0.53.0; 3.5.x in RC. No breaking API changes flagged in the 3.x window, but cluster-informer locking and auto-sync regressions were fixed along the way — stay on a patched 3.4.x.
+
 ## References
 
 - `Chart.yaml`, tested-versions page, 2.14→3.0 upgrade guide (above); advisory

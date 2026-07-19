@@ -72,6 +72,11 @@ this chart's pinned images **no longer pull** from the free `docker.io/bitnami` 
 - **Known issues:** `ImagePullBackOff` post-migration; Erlang inter-node/hostname resolution
   on multi-node; broker rolling-restart disruption without pausing reconciliation.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**⚠⚠ CRITICAL — Bitnami catalog deprecation (effective 2025-08-28, bitnami/charts #35164):** Bitnami moved most free container images to a frozen **`docker.io/bitnamilegacy`** repo (no further updates), and the paid **Bitnami Secure Images** replaced the public catalog. **RabbitMQ was left out of the secure catalog** — so this chart **breaks when it tries to pull images that no longer exist** at the old paths. Deployments pinned to `docker.io/bitnami/rabbitmq:<tag>` will fail on new pulls.
+- **Fix / migrate:** move to the **RabbitMQ Cluster Operator** ([[CONCEPT-ADDON_RABBITMQ_CLUSTER_OPERATOR]]) or a maintained chart, mirror the needed legacy images before they rot, or subscribe to Bitnami Secure Images. Treat this chart as **end-of-free-life**.
+
 ## References
 
 - `Chart.yaml`, Bitnami migration issue #35164, RabbitMQ GHSA-w6cq-9cf4-gqpg (above).

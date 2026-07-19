@@ -121,6 +121,13 @@ upgrades are frequently breaking — read the per-minor notes before bumping.
     (CVE-2026-23881), namespace-selector bypass on lister error (CVE-2025-46342, fixed 1.13.5/1.14.0).
   - Older image-verify bypasses: CVE-2022-47633 (fixed 1.8.5), CVE-2023-47630 (fixed 1.10.5/1.11.0).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Upstream (Kyverno 1.18.2, from release notes):**
+- **Security fix:** namespace-boundary enforcement added to `generator.apply()` — generate policies can no longer cross namespace boundaries. Ensure you're on **1.18.2+**.
+- Dynamic watchers now restart background reporting on **`410 Gone`** (fixes stalled reports); required validation no longer aborts on non-matching images.
+- No breaking changes in this patch; the big webhook/HA and CEL considerations remain (see the Kyverno troubleshooting/upgrade docs).
+
 ## References
 
 - Kyverno release tags + HA/architecture docs (above). Troubleshooting:

@@ -71,6 +71,13 @@ The official RabbitMQ **cluster-operator** **v2.19.2** (kustomize install), whic
 - **Known issues:** unsafe scale-down (#223); PVC ownership/permission-denied on the mnesia
   dir (#1363); NodePort churn with custom port overrides (#826).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond the pinned operator (from upstream releases):
+- **⚠ 2.22.0 breaking:** introduces an **HTTP startup probe that requires RabbitMQ 4.2.4+ / 4.3.0+**. For older RabbitMQ, set the annotation **`rabbitmq.com/legacy-startup-probe: "true"`** or the pods fail their startup probe.
+- **Every operator upgrade triggers a rolling update of the underlying StatefulSets** — **pause cluster reconciliation** before upgrading the operator, then resume, to control the roll.
+- 2.22.1 fixes a metrics-certificate secret collision; 2.21.x improves imagePullSecrets handling.
+
 ## References
 
 - Install/supported-K8s doc, v2.19.2 release notes (above).

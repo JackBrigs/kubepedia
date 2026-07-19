@@ -69,6 +69,10 @@ Operator 2.19.1 pairs with **AWX v24.6.1** and defaults to **PostgreSQL 15** + R
   exactly 24.6.1. AWX images accumulate downstream-dependency CVEs with no interim patch
   releases — rebuild/scan periodically.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Upstream (AWX Operator 2.19.x):** 2.19.0 added **HPA for web/task**, fixed custom-CA handling across task/web/migration, and enhanced readiness checks; 2.19.1 is a maintenance release paired with AWX 24.6.1 (no DB migration, no breaking). No newer operator line in this window — verify before assuming a higher pin exists.
+
 ## References
 
 - awx-operator 2.19.1 release notes, installer defaults (above).
