@@ -67,6 +67,16 @@ to **1.18.5+**.
   specially-crafted DNS response, affects **1.18.0–1.18.4** (so **1.18.2 is affected**), fixed
   **1.18.5** (and 1.19.3). Upgrade to 1.18.5+.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **1.18.2** (from upstream releases):
+- **1.20.0 breaking:** container **UID/GID changed 1000/0 → 65532/65532** (fix file-permission assumptions); `DefaultPrivateKeyRotationPolicyAlways` → GA.
+- **1.21.0 breaking:** default `tokenrequest` RBAC removed from the Helm chart; Helm metrics values removed (`prometheus.servicemonitor.targetPort/path`, `podmonitor.path`).
+- **⚠ Security (HIGH) GHSA-8rvj-mm4h-c258:** namespace users could create ACME `Challenge`/`Order` directly (privilege) — `create`/`patch`/`update` removed from the `cert-manager-edit` ClusterRole. Backported to **1.19.6 / 1.20.3**; the shipped 1.18.2 predates it.
+- **1.20.0 (MODERATE):** controller panic (DoS) on unexpected DNS response order.
+
+**Open upstream bugs (as of 2026-07-19):** DNS-01 propagation failures despite recursive NS (#5917); **leader-election defaults to `kube-system` → RBAC failure when installed elsewhere** (#6716); ACME `429` rate-limit not handled → permanent issuance failure (#5867); HTTP-01 solver pods don't inherit `imagePullSecrets` (#5959).
+
 ## References
 
 - cert-manager supported releases (1.18 row), advisory GHSA-gx3x-vq4p-mhhv (above).

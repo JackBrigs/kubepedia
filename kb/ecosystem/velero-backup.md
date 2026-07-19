@@ -83,7 +83,6 @@ control plane, Velero for app-level backup, migration, and selective restore.
 - **Cross-cluster restore** requires matching CRDs and compatible storage on the target;
   test migrations before relying on them.
 - **Rehearse restores** — an untested backup is a hope, not a plan.
-
 ## References
 
 - Velero docs. DR strategy: [[PRACTICE-BACKUP_DR]]; CSI/snapshots: [[CONCEPT-CSI_LAYER]];

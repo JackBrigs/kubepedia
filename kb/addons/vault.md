@@ -84,6 +84,16 @@ running image before relying on `1.21.4` behaviour or CVE status. The chart also
   / -39883 / -39829 were already fixed in 1.21.2.)
 - Upgrades are not fully automated: unseal after restart, leader upgraded last.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **1.21.2** — a **major jump to Vault 2.0.x** landed (from upstream releases):
+- **⚠ 2.0.1 → 2.0.2 mlock flip-flop:** 2.0.1 sets the `cap_ipc_lock` capability (container runtimes must add `IPC_LOCK`); **2.0.2 REMOVES it → operators must set `disable_mlock = true`** and disable swap. Read this carefully before jumping.
+- **⚠ CVE-2026-39829 (2.0.2):** SSH secrets engine RSA keys capped at 8192 bits.
+- **2.0.0 breaking:** rejects non-canonical paths; **several endpoints authenticated by default**; `max_token_header_size` configurable (default 8KB).
+- **2.0.3:** fixes a **LIST ACL bypass** where a trailing-slash request skipped a deny rule — *policies relying on the old (permissive) behavior may now be denied*.
+
+**Open upstream bugs (as of 2026-07-19):** raft snapshot on a standby node fails with unclear errors (#15258); AWS auth with IAM role-assumption + MFA → `NoCredentialProviders` (#5767); raft HA rejects the `retry_join` stanza during rolling updates (#10081); **v2.0.0 image fails to start as non-root when using `setcap`** (#31919).
+
 ## References
 
 - `vault-helm` v0.32.0 `Chart.yaml` + release notes; HashiCorp 1.21.4 advisory (all above).

@@ -65,6 +65,15 @@ version); other addons like [[CONCEPT-ADDON_VOLSYNC]] depend on it.
 - **CVEs:** none found for `github.com/kubernetes-csi/external-snapshotter/v6` at 6.3.0
   (OSV empty).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **6.3.0** (which is old vs the 8.x line — from upstream releases):
+- **v8.2.0 breaking:** the **validation webhook is removed** (deprecated in 8.0.0); v1alpha1 VolumeGroupSnapshot removed; `enable-volume-group-snapshots` flag replaced by `feature-gates`.
+- **v8.4.0:** new **v1beta2 VolumeGroupSnapshot** API (v1beta1 deprecated), several VGS fields now immutable.
+- **v8.6.0:** VolumeGroupSnapshot promoted to **GA (v1)**.
+
+**Open upstream bugs (as of 2026-07-19):** **snapshot-controller throttled by default client-side rate limits → ~8x slower batch snapshotting** (#1344); a release-tagging bug where the **`8.4.0` tag shipped snapshot-controller `8.2.1`** (verify the running image, not the tag) (#1377); dependency CVEs (crypto/tls, gRPC, OTel) (#1401).
+
 ## References
 
 - kubernetes-csi/external-snapshotter (above).

@@ -69,6 +69,14 @@ Kubespray-managed Velero. Operational backup/restore guidance is in [[CONCEPT-VE
   searches (CVE-2025-1734, -61723, -64756) belong to Go stdlib / other packages in downstream
   FIPS/Wolfi rebuilds (`velero-fips`), not the Velero codebase.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **1.17.1** (from upstream releases):
+- **1.18.1:** bumps external-snapshotter to **v8.4.0** and migrates the **VolumeGroupSnapshot API v1beta1 → v1beta2** for **Kubernetes 1.34+** — an upgrade note for 1.34+ clusters; also CSI PVC-backup namespace isolation fixes.
+- **1.18.2:** skips VGS cleanup when the backup didn't use VolumeGroupSnapshots; **fixes a cross-namespace listing perf regression with `includedNamespaces: ["*"]`**; fixes a `DataUploadDeleteAction` that leaked **Kopia snapshots** in object storage.
+
+**Known issue patterns (from release fixes):** Kopia snapshot leaks in object storage on cancelled/deleted data-mover ops (pre-1.18.2); the `["*"]` namespace-include performance regression; wildcard include/exclude edge cases.
+
 ## References
 
 - `Chart.yaml`, upgrade-to-1.17 doc, v1.17.1 release notes (above).

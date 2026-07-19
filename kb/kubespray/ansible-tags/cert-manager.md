@@ -42,7 +42,6 @@ relations: []
 
 - Kubespray `v2.29.0`–`v2.31.0`.
 - **Standalone-run safety: risky.** Включается только при cert_manager_enabled (по умолчанию false), выполняется на kube_control_plane[0]. Метка идёт в связке с apps и ingress-controller. Часть задач помечена дополнительным тегом upgrade (очистка legacy-ресурсов). docs/ansible/ansible.md: «Configuring certificate manager for K8s».
-
 ## References
 
 - `roles/kubernetes-apps/ingress_controller/meta/main.yml`

@@ -71,6 +71,14 @@ to chart **4.12.1** / controller 1.12.1 immediately.
   CVE-2025-24514. Fixed in **controller 1.12.1 (chart 4.12.1)** and 1.11.5. Upgrade now; in
   the meantime restrict access to the admission webhook endpoint.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**⚠ Security — "IngressNightmare" CVE-2025-1974** (critical, unauthenticated RCE via the admission controller; with related CVE-2025-1097/-1098/-24514): fixed in **1.11.5 / 1.12.1**. The pinned **1.12.0 predates the fix** — you must run **≥1.12.1**. Restrict/network-policy the admission webhook.
+
+**Future upgrade context** beyond 1.12.0: chart 4.15 / **controller 1.15.0 dropped v1.12 support** (v1.13+ required).
+
+**Open upstream bugs (as of 2026-07-19):** `proxy-ssl-name`/`proxy-ssl-server-name` ignored unless a TLS secret is also set (#6728); can't use `$`/nginx vars in `permanent-redirect` (#11175); **app-root redirect fires before the HTTPS redirect** when `ssl-redirect` is true (#6340, security); Helm upgrade briefly **drops the LB IP from Ingress status** (label mismatch) (#10475).
+
 ## References
 
 - `Chart.yaml`, IngressNightmare advisory + controller-v1.12.0/v1.12.1 release notes (above).

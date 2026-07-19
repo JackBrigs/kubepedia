@@ -70,6 +70,13 @@ VolSync chart and app are lock-stepped at **0.15.0** (no 3.5.0 exists).
   1.73.5) — exploitable only if the rclone `rcd`/`--rc` server is enabled, which VolSync's
   mover does **not** do (low practical exposure, but the vulnerable binary ships).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **0.15.0** (from upstream releases):
+- **0.16.0:** `rsync-tls` **enforces TLS 1.3 as the minimum** and sets ciphers per OpenShift TLS-profile compliance (may break older rsync-tls peers); Restic → 0.18.1, Rclone → 1.74.2.
+
+**Open upstream bugs (as of 2026-07-19):** **restic repos constantly getting locked, jobs pile up until manually unlocked** (#1042) — corroborates the mover-lock trouble doc; metrics show a volume **out of sync even after the replication object is deleted** (#1194); selective folder include/exclude not supported (#959).
+
 ## References
 
 - `Chart.yaml`, v0.15.0 release notes (above); VolSync install docs.

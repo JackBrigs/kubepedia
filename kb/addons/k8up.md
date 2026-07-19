@@ -64,6 +64,14 @@ K8up is a restic-based backup operator (`Backup`/`Schedule`/`Restore`/`Archive` 
   after interrupted jobs need manual unlock; prune/check jobs are resource-intensive.
 - **CVEs:** none found for `k8up-io/k8up` at v2.12.0 (OSV empty).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **2.12.0** (from upstream releases):
+- **⚠ 2.15.0 breaking:** switched pod-exec streaming from **SPDY → websockets** (system-requirement change). **Upgrade note:** if application-aware backups fail after the upgrade, set **`INSECURE_ALLOW_PODEXEC_SPDY_FALLBACK`** on the operator.
+- 2.16.0 bumps Restic to 0.19.0; 2.14.0 adds restore filtering by snapshot timestamp.
+
+**Open upstream requests/bugs (as of 2026-07-19):** file include/exclude configuration (#317); PVC backups via **CSI snapshots/clones** for atomicity (#918); Helm-managed CRDs (#1050); S3 subpath/prefix support (#615).
+
 ## References
 
 - k8up-4.8.4 chart tarball + v2.12.0 release notes (above).

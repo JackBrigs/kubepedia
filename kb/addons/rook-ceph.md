@@ -80,6 +80,14 @@ the **CSI-operator migration** and **StorageClass immutability**.
   (ceph-fuse/CephFS privilege bypass; affects Ceph 18.2.1–18.2.4, 19.0.0–19.2.2; fixed
   18.2.5 / 19.2.3) if running an affected Ceph patch level.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **1.18.9** (from upstream releases):
+- **⚠ 1.20.0 breaking (major):** the **Ceph CSI operator is now REQUIRED** — CSI configuration **moves out of the Rook operator ConfigMap into Ceph-CSI CRs**; Kubernetes **1.31–1.36 only**. Plan the CSI-config migration before upgrading.
+- 1.19.3 bumped Ceph-CSI to 3.16.2; 1.20 adds experimental two-node clusters and RGW Accounts.
+
+**Open upstream bugs (as of 2026-07-19):** `MountDevice failed ... operation with the given Volume ID already exists` on some nodes (#4896); **ARM64 OSD crash on Ceph 18.2.4** (arch image mismatch) (#14502); can't replace a single OSD sharing a `metadataDevice` without replacing all (#13240).
+
 ## References
 
 - Rook v1.18 prerequisites, upgrade guide, ceph-upgrade doc (above); Ceph CVE-2025-52555.
