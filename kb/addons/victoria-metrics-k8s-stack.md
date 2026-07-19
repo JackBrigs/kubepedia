@@ -70,6 +70,14 @@ metrics stack; deeper operational guidance is in [[CONCEPT-OBSERVABILITY_STACK]]
 - **CVE:** **CVE-2025-65942 / GHSA-66jq-2c23-2xh5** — Snappy decoder DoS/OOM, Low
   (CVSS 2.7), affects VM 1.111.0–<1.122.8 (**includes 1.115.0**), fixed in **1.122.8**.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Open upstream bugs (as of 2026-07-19), VictoriaMetrics ~1.147:**
+- **vmstorage background merge has no self memory limit → OOM-killer** under heavy merges (#10203) — size memory / limit ingestion accordingly.
+- **vmbackup does not retry S3 `429 TooManyRequests`** — backup fails immediately on rate-limit (#11218).
+- multitenant queries with `or` combine tenant + non-tenant filters incorrectly → extra series (#10948).
+- unclean shutdown / power loss can corrupt metadata files and block restart (#5012) — ensure clean shutdown / durable storage.
+
 ## References
 
 - `Chart.yaml` + upstream changelog (above); advisory GHSA-66jq-2c23-2xh5.

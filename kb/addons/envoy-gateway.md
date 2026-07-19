@@ -76,6 +76,12 @@ inventory spans **v1.4.1 → v1.6.0**; v1.6.0 implements **Gateway API v1.4.0** 
   (CVSS 8.8), **v1.6.0 affected, fixed 1.6.2**. Bundled Envoy 1.36.4: CVE-2026-26308 (RBAC
   bypass, fixed Envoy 1.36.5) + a batch fixed in Envoy 1.36.9. Move to EG ≥1.6.2.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **1.6.0** (from upstream releases):
+- **1.8.1:** bumps **Envoy to 1.38.1**; fixes the unary interceptor and **fail-open authentication in `GatewayNamespaceMode`** (a security-relevant fix — verify your auth posture if on GatewayNamespaceMode).
+- 1.7.x/1.8.x are otherwise maintenance; no breaking API changes flagged in this window.
+
 ## References
 
 - Compatibility matrix, v1.6.0 release notes, advisory GHSA-xrwg-mqj6-6m22 (above).

@@ -73,6 +73,14 @@ TLS unless another cert mode is configured.
 - **CVEs (v0.156.0):** none found. GHSA-cxh2-4639-vmc5 (TargetAllocator local file read) is
   fixed in 0.152.0, so 0.156.0 is not affected.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **0.156.0** (from upstream releases):
+- **0.154.0 breaking:** the operator-injected Prometheus telemetry reader now uses collector defaults — **metric names no longer carry type/unit suffixes or `scope_info`**; disable via `--feature-gates=-operator.collector.usedefaulttelemetryshape` if dashboards break.
+- 0.155.0 fixes NetworkPolicy defaulting when webhooks run separately, and OpenShift `fsGroup` for persistent-storage collectors.
+
+**Open upstream bugs (as of 2026-07-19):** **target-allocator RBAC validation incomplete** — webhook passes but runtime fails for `scrapeconfigs`/`probes` permissions (#4456); nested env / **downward-API refs not resolved** (appear literal) (#3022); **upgrading stateful-mode collectors** (e.g. 0.127→0.129) fails with forbidden spec modification, needs manual recreation (#4203); HTTP-receiver ingress path misconfigured → 404 (#2449).
+
 ## References
 
 - `Chart.yaml`, `compatibility.md`, `UPGRADING.md`, v0.156.0 release notes (above).

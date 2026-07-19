@@ -63,6 +63,14 @@ The operator **orchestrates** the Elastic Stack — it does not bundle a fixed S
   adds metadata propagation to child resources; UBI base image minimal→micro).
 - **CVEs:** none affecting the 3.x operator (only historic CVE-2020-7010, fixed ECK 1.1.0).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **3.1.0** (from upstream releases):
+- **⚠ 3.3.0 breaking:** **Elasticsearch 6.x support removed** and **Stack 7.17 support ended** — verify your managed stacks aren't on those before upgrading the operator.
+- **3.4.0 upgrade note:** upgrades to **Elasticsearch 9.0 must go through 8.18** (no direct jump); adds client-cert auth, rolling restart, cosign image signing.
+
+**Open upstream bugs (as of 2026-07-19):** `is_managed` doesn't correctly update agent policies (#8709); **ECK gets `401 Unauthorized` setting up Fleet Server** via Kibana API (#6144); ES-9.0 log-autodiscovery annotation issue (#8680).
+
 ## References
 
 - `Chart.yaml`, ECK 3.1.0 README, Elastic release/breaking-changes notes (above).

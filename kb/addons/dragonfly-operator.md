@@ -67,6 +67,14 @@ affected by **three CVEs**; override `spec.image` to ≥1.40 to clear them.
   doesn't switch on node failure (#302, #250); replication reconcile stuck after OOMKill
   (#348).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** (Dragonfly **operator** releases; the pinned version tracks the DB, operator is on the 1.x line):
+- **1.5.0:** adds a **replication-aware readiness gate to prevent data loss** on failover, PDB customization, and network policies restricting the admin port — worth enabling.
+- 1.6.0: better replica management during rolling updates; snapshot-schedule handling.
+
+**Open upstream bugs (as of 2026-07-19):** **master-failover handling** — clients aren't disconnected when a pod loses master, so they keep talking to a stale master (#238/#324); **NetworkPolicy blocks metrics scraping** from external pods (#495); no headless service for mesh integration (#225).
+
 ## References
 
 - `Chart.yaml`, `version.go`, Dragonfly security advisories (above).

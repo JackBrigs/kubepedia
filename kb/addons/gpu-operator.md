@@ -79,6 +79,15 @@ the key behavioural item.
 - **CVEs:** none affect the shipped versions. Historic Container Toolkit CVEs
   (CVE-2024-0132, CVE-2025-23266 "NVIDIAScape") predate the bundled Toolkit v1.18.1.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context:** the line moved from **25.10.x** to **26.3.x** (2026) — check NVIDIA's release notes for driver/toolkit compatibility before jumping.
+
+**Open upstream bugs (as of 2026-07-19):**
+- **⚠ `nvidia-container-toolkit` restarting containerd wedges other DaemonSets** — a race during runtime-config updates causes pod init failures cluster-wide (#991). A real operational trap on install/upgrade.
+- **nvidia-validator fails on Talos** (library path resolution) (#1687) — relevant for Talos nodes.
+- missing install docs for **Amazon Linux 2023 / Bottlerocket** AMIs (#946).
+
 ## References
 
 - Platform-support, `values.yaml`, release notes (above).

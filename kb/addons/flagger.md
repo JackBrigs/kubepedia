@@ -70,6 +70,12 @@ Splunk Observability metrics provider and AWS Gateway API Controller compatibili
   found are for other Flux components, not the Flagger operator; one transitive dep advisory
   (CVE-2023-48713, `knative.dev/serving`) appears in the tree but is not Flagger code.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Upstream:** releases 1.41–1.43 are patch/feature (CHANGELOG-only; no breaking flagged) beyond the pinned 1.40.0.
+
+**Open upstream issues (as of 2026-07-19):** `skipAnalysis` is a non-pointer bool → **false may not serialize**, desyncing the Canary (#1660, a real API bug); AWS ALB ingress support still open (#659); no GitOps rollback-commit-back (#682); no "keep old version for instant rollback" (#453). Know these before designing canary flows.
+
 ## References
 
 - `Chart.yaml`, CHANGELOG, PRs #1733/#1746/#1713 (above).
