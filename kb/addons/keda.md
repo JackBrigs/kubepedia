@@ -71,7 +71,36 @@ Chart/app **2.17.2**, officially tested on Kubernetes **v1.30–v1.32** (N-2 pol
   (High, ~CVSS 8.2), affects KEDA <2.17.3, **fixed 2.17.3**. Also GHSA-w92x-gx4w-j5f2 (CI
   supply-chain, not runtime). Upgrade to 2.17.3+.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond the shipped **2.17.2** — breaking changes to plan for if/when the
+pin moves (from upstream releases):
+
+- **⚠ 2.20.0 silent-breakage (critical):** KEDA Events **moved to the `events.k8s.io` API group** —
+  **grant the operator `create`/`patch` on events *before* upgrading**, or event emission breaks.
+- **2.18.0 breaking:** CPU/Memory scaler `type` **removed** → use `metricType`; IBM MQ `tls` **removed**
+  → use `unsafeSsl`; Prometheus webhook `prommetrics` deprecations removed.
+- **2.19.0 breaking:** **NATS Streaming Server** scaler support removed.
+- **2.20.0 breaking:** GCP PubSub `subscriptionSize` removed; Huawei Cloudeye `minMetricValue` removed;
+  InfluxDB `authToken` in triggerMetadata removed; IBM MQ `tls` code removed.
+- **Security:** CVE-2025-68476 fixed in **2.17.3** (and 2.18.3) — the shipped 2.17.2 is affected.
+- **Fixed-in-newer bugs of note:** paused-replicas annotation races / `nil` panic (2.18.2); concurrent
+  map race causing panics on simultaneous triggers (2.20.1).
+
+**Open upstream bugs (as of 2026-07-19)** — live, unpinned; relevant while on 2.17.x:
+
+- **metrics adapter TCP-connection leak** (#3387) — the metric server accumulates unclosed TCP
+  connections until it hits system limits (watch fd usage on the operator).
+- **paused annotation not honored** — a `ScaledObject` created with the `paused` annotation reverts to
+  paused after resume (#6421); cron-scaled objects can't be un-suspended (#4044).
+- **Secrets Store CSI timing** (#2315) — KEDA won't scale if the referenced Secret doesn't exist yet
+  (created lazily by the CSI driver).
+- **Kafka scaler:** unsynchronized shared CertPool causes panics / spurious x509 failures (#7910);
+  invalid negative metrics on GKE (#5730).
+
 ## References
 
-- `Chart.yaml`, KEDA 2.17 cluster docs, advisory GHSA-c4p6-qg4m-9jmr (above).
-- Catalog: [[CONCEPT-ADDON_CATALOG]]; HPA: [[TROUBLE-HPA_NOT_SCALING]].
+- `Chart.yaml`, KEDA 2.17 cluster docs, advisory GHSA-c4p6-qg4m-9jmr (above); upstream releases
+  2.17.3–2.20.1 and open `kedacore/keda` issues (mined 2026-07-19).
+- Catalog: [[CONCEPT-ADDON_CATALOG]]; HPA: [[TROUBLE-HPA_NOT_SCALING]]; scaling issues:
+  [[TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING]].
