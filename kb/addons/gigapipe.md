@@ -77,6 +77,12 @@ is v4.3.1). ClickHouse is a required external dependency.
   / 25.1.5.5), CVE-2024-6873 (native-interface heap overflow/DoS), CVE-2024-23689 — keep
   ClickHouse patched.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **4.1.6** (from upstream releases); latest **4.3.1**, active, **no breaking changes**:
+- **4.3.1:** **security hardening against reflected XSS**; bounds time-series label resolution to the query window.
+- 4.3.0: recording-rules ruler with in-process write-back; LogQL `__line__`/`__timestamp__`, error emission on parser failures. ClickHouse-backend/reader-writer split remain the operational concern ([[TROUBLE-GIGAPIPE]]).
+
 ## References
 
 - gigapipe-helm Chart.yaml/values, qryn repo + wiki (above); ClickHouse advisories.

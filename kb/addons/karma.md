@@ -70,6 +70,10 @@ auth-bypass CVEs (see Compatibility).
   `skip_auth_routes`). Chart 8.0.0 also switched the Redis subchart to `dandydeveloper/redis-ha`
   (session-store migration). Upgrade oauth2-proxy app to ≥7.15.2.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Upstream (Karma):** actively maintained; latest **0.131** (the pin 0.121 is a few patches behind). No breaking changes in this window — Karma is a stateless read-only Alertmanager dashboard, so upgrades are low-risk. Reachability/OAuth remain the operational concerns ([[TROUBLE-KARMA]]).
+
 ## References
 
 - karma Chart.yaml (wiremind), karma v0.121 release, oauth2-proxy advisories (above).

@@ -56,6 +56,10 @@ probable`; treat as inventory-level until the source repo is confirmed.
   1.29–1.35 as a simple watcher/notifier.
 - **CVEs:** none found for the closest public project.
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**⚠ Version/identity caveat:** the inventory's `release-watcher` chart at **0.0.9** does **not** clearly map to a maintained upstream — the closest public project is **`rycus86/release-watcher`** ("watcher for new releases", with artifacthub/helmhub providers), which is niche/low-activity and not obviously the same packaging. **Verify what image/chart you actually deploy** before relying on it. Operationally, source-API rate-limit/auth and notifier config are the failure points ([[TROUBLE-RELEASE_WATCHER]]).
+
 ## References
 
 - rycus86/release-watcher (closest public match, above).

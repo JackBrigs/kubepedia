@@ -66,6 +66,13 @@ a one-shot. It is a common migration path off ingress-nginx toward Gateway API
 - **CVEs:** none found for kubernetes-sigs/ingress2gateway (it is cited as a migration path
   away from ingress-nginx CVEs, not itself a vulnerable runtime component).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** (from upstream releases); latest **1.2.0**, **no breaking changes** — and an important improvement:
+- **1.0.0 (major):** pluggable **emitter framework** (standard, Envoy Gateway, kgateway, GCE, Agentgateway) and **extensive ingress-nginx annotation coverage** (headers, GRPC, canary, rewrites, timeouts, CORS, IP control) — this **substantially reduces the "annotations get dropped" gap** the conversion doc warns about ([[TROUBLE-INGRESS2GATEWAY]]).
+- **1.1.0:** Traefik provider + more ingress-nginx annotations (`from-to-www-redirect`, `app-root`, `ssl-passthrough`).
+- **Use ≥1.0.0** for the widest, most faithful conversion; still review the output for anything vendor-specific it can't map.
+
 ## References
 
 - kubernetes-sigs/ingress2gateway (above).

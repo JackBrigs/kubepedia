@@ -61,6 +61,12 @@ the running image). The chart lives in a **separate repo** (`pyrra-dev/helm-char
   beyond that).
 - **CVEs:** none found (OSV empty for `github.com/pyrra-dev/pyrra` at both 0.9.4 and 0.8.1).
 
+## Upstream issues & upgrade notes (mined 2026-07-19)
+
+**Future upgrade context** beyond pinned **0.9.4** (from upstream releases); latest **0.10.1**, **no breaking changes**:
+- **0.10.0:** **Performance Mode (subquery-based SLO calculations)** to cut Prometheus evaluation overhead; **Prometheus v3 native-histogram support** with `le`-label normalization (matters for SLO accuracy on v3); Kubernetes **leader election** config; all alerts now carry `pyrra_url` annotations.
+- Rules-generation/`ruleSelector` remain the operational concern ([[TROUBLE-PYRRA]]).
+
 ## References
 
 - `Chart.yaml` (pyrra-dev/helm-charts); v0.9.0 release notes.
