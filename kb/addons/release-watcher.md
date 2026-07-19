@@ -20,6 +20,8 @@ sources:
     note: "only public release-watcher; ships chart 0.0.2, not 0.0.9"
 relations:
   - type: see_also
+    target: TROUBLE-RELEASE_WATCHER
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

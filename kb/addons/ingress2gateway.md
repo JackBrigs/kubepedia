@@ -23,6 +23,8 @@ sources:
     note: "CLI conversion tool Ingress→Gateway API; upstream ships no Helm chart"
 relations:
   - type: see_also
+    target: TROUBLE-INGRESS2GATEWAY
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
   - type: see_also
     target: CONCEPT-ADDON_ENVOY_GATEWAY

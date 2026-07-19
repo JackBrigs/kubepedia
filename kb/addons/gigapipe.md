@@ -30,6 +30,8 @@ sources:
     note: "ClickHouse-backed; latest app v4.3.1"
 relations:
   - type: see_also
+    target: TROUBLE-GIGAPIPE
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
   - type: see_also
     target: CONCEPT-OBSERVABILITY_STACK

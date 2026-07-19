@@ -23,6 +23,8 @@ sources:
     note: "no kubeVersion; appVersion v0.9.4 (chart repo is pyrra-dev/helm-charts)"
 relations:
   - type: see_also
+    target: TROUBLE-PYRRA
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

@@ -22,6 +22,8 @@ sources:
     note: "no kubeVersion; appVersion 0.43.0 (chart tag headlamp-helm-0.43.0)"
 relations:
   - type: see_also
+    target: TROUBLE-HEADLAMP
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

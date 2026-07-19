@@ -27,6 +27,8 @@ sources:
     note: "device plugin API GA since 1.26, stable through 1.35"
 relations:
   - type: see_also
+    target: TROUBLE-KVM_DEVICE_PLUGIN
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

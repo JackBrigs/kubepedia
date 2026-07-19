@@ -28,6 +28,8 @@ sources:
     note: "open-webui app 0.9.5 vulnerable, fixed 0.9.6"
 relations:
   - type: see_also
+    target: TROUBLE-KUBERNETES_MCP
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

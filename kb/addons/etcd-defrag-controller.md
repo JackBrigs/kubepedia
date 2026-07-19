@@ -22,6 +22,8 @@ sources:
     note: "kaasops project; chart==app v0.0.7; no kubeVersion"
 relations:
   - type: see_also
+    target: TROUBLE-ETCD_DEFRAG_CONTROLLER
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
   - type: see_also
     target: COMPONENT-ETCD

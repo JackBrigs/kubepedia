@@ -28,6 +28,8 @@ sources:
     note: "7.x rearchitecture (Kong, mandatory auth)"
 relations:
   - type: see_also
+    target: TROUBLE-KUBERNETES_DASHBOARD
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
   - type: see_also
     target: CONCEPT-ADDON_HEADLAMP

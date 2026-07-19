@@ -28,6 +28,8 @@ sources:
     note: "additive (receivers keep_re/strip_re)"
 relations:
   - type: see_also
+    target: TROUBLE-KARMA
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
   - type: see_also
     target: CONCEPT-ADDON_ALERTMANAGER

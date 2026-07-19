@@ -110,6 +110,7 @@
 {"alias": "--tags vsphere-csi-driver", "ids": ["TAG-VSPHERE_CSI_DRIVER"]}
 {"alias": "--tags win_nodes", "ids": ["TAG-WIN_NODES"]}
 {"alias": "--tags youki", "ids": ["TAG-YOUKI"]}
+{"alias": "/dev/kvm not available", "ids": ["TROUBLE-KVM_DEVICE_PLUGIN"]}
 {"alias": "0 nodes are available insufficient cpu", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
 {"alias": "1.29 upgrade notes", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "1.30 upgrade notes", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
@@ -268,6 +269,7 @@
 {"alias": "am i exposed", "ids": ["CONCEPT-CVE_REMEDIATION"]}
 {"alias": "amtool config check", "ids": ["TROUBLE-ALERTMANAGER_NOTIFICATIONS"]}
 {"alias": "annotate", "ids": ["TAG-ANNOTATE"]}
+{"alias": "annotations not converted", "ids": ["TROUBLE-INGRESS2GATEWAY"]}
 {"alias": "annotations-risk-level", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
 {"alias": "anonymous auth specific paths", "ids": ["CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS"]}
 {"alias": "anonymous authentication config", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
@@ -1188,6 +1190,9 @@
 {"alias": "cve tracking", "ids": ["CONCEPT-SECURITY_ADVISORIES"]}
 {"alias": "daemonset blocked pod security", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "dashboard addon", "ids": ["CONCEPT-ADDON_KUBERNETES_DASHBOARD"]}
+{"alias": "dashboard oauth2-proxy", "ids": ["TROUBLE-KUBERNETES_DASHBOARD"]}
+{"alias": "dashboard retired", "ids": ["TROUBLE-KUBERNETES_DASHBOARD"]}
+{"alias": "dashboard token", "ids": ["TROUBLE-KUBERNETES_DASHBOARD"]}
 {"alias": "dashboard_certs_secret_name", "ids": ["VARIABLE-DASHBOARD_CERTS_SECRET_NAME"]}
 {"alias": "dashboard_cpu_limit", "ids": ["VARIABLE-DASHBOARD_CPU_LIMIT"]}
 {"alias": "dashboard_cpu_requests", "ids": ["VARIABLE-DASHBOARD_CPU_REQUESTS"]}
@@ -1213,6 +1218,7 @@
 {"alias": "dedicate nodes", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
 {"alias": "default security posture", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
 {"alias": "default_kubelet_config_dir", "ids": ["VARIABLE-DEFAULT_KUBELET_CONFIG_DIR"]}
+{"alias": "defrag stop the world", "ids": ["TROUBLE-ETCD_DEFRAG_CONTROLLER"]}
 {"alias": "delete node from cluster", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
 {"alias": "delete_node_delay_seconds", "ids": ["VARIABLE-DELETE_NODE_DELAY_SECONDS"]}
 {"alias": "delete_node_retries", "ids": ["VARIABLE-DELETE_NODE_RETRIES"]}
@@ -1223,6 +1229,7 @@
 {"alias": "deployment not progressing", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
 {"alias": "destroy cluster", "ids": ["PRACTICE-RUNBOOK_RESET"]}
 {"alias": "devices.kubevirt.io/kvm", "ids": ["CONCEPT-ADDON_KVM_DEVICE_PLUGIN"]}
+{"alias": "devices.kubevirt.io/kvm zero", "ids": ["TROUBLE-KVM_DEVICE_PLUGIN"]}
 {"alias": "dex", "ids": ["CONCEPT-ADDON_DEX"]}
 {"alias": "dex 0.23.0", "ids": ["CONCEPT-ADDON_DEX"]}
 {"alias": "dex connector error", "ids": ["TROUBLE-DEX_OIDC_LOGIN_FAILS"]}
@@ -1414,6 +1421,8 @@
 {"alias": "etcd backup", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
 {"alias": "etcd backup runbook", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
 {"alias": "etcd defrag", "ids": ["CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER", "TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
+{"alias": "etcd defrag controller", "ids": ["TROUBLE-ETCD_DEFRAG_CONTROLLER"]}
+{"alias": "etcd defrag latency", "ids": ["TROUBLE-ETCD_DEFRAG_CONTROLLER"]}
 {"alias": "etcd deployment", "ids": ["PRACTICE-ETCD"]}
 {"alias": "etcd downgrade", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
 {"alias": "etcd health", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
@@ -1431,6 +1440,7 @@
 {"alias": "etcd snapshot restore procedure", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
 {"alias": "etcd snapshot save", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
 {"alias": "etcd snapshot verify", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
+{"alias": "etcd space not reclaimed", "ids": ["TROUBLE-ETCD_DEFRAG_CONTROLLER"]}
 {"alias": "etcd v2 store removed", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
 {"alias": "etcd wal fsync slow", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
 {"alias": "etcd-defrag-controller", "ids": ["CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER"]}
@@ -1716,6 +1726,8 @@
 {"alias": "gcr_image_repo", "ids": ["VARIABLE-GCR_IMAGE_REPO"]}
 {"alias": "get_helm_url", "ids": ["VARIABLE-GET_HELM_URL"]}
 {"alias": "gigapipe", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "gigapipe clickhouse connection", "ids": ["TROUBLE-GIGAPIPE"]}
+{"alias": "gigapipe reader writer", "ids": ["TROUBLE-GIGAPIPE"]}
 {"alias": "gigapipe-read", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
 {"alias": "gigapipe-write", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
 {"alias": "gitRepo volume deprecated removed", "ids": ["TROUBLE-K8S_GITREPO_VOLUME_REMOVED"]}
@@ -1766,6 +1778,10 @@
 {"alias": "hashicorp consul kubernetes", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
 {"alias": "hashicorp vault", "ids": ["CONCEPT-ADDON_VAULT"]}
 {"alias": "headlamp", "ids": ["CONCEPT-ADDON_HEADLAMP"]}
+{"alias": "headlamp empty view", "ids": ["TROUBLE-HEADLAMP"]}
+{"alias": "headlamp login", "ids": ["TROUBLE-HEADLAMP"]}
+{"alias": "headlamp oidc", "ids": ["TROUBLE-HEADLAMP"]}
+{"alias": "headlamp token", "ids": ["TROUBLE-HEADLAMP"]}
 {"alias": "health check", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
 {"alias": "helm", "ids": ["COMPONENT-HELM", "TAG-HELM"]}
 {"alias": "helm 3 to 4 migration", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
@@ -1833,7 +1849,7 @@
 {"alias": "ingress 504 gateway timeout", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
 {"alias": "ingress dns automation", "ids": ["CONCEPT-EXTERNAL_DNS"]}
 {"alias": "ingress snippet blocked", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
-{"alias": "ingress to gateway api", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY"]}
+{"alias": "ingress to gateway api", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY", "TROUBLE-INGRESS2GATEWAY"]}
 {"alias": "ingress-controller", "ids": ["TAG-INGRESS_CONTROLLER"]}
 {"alias": "ingress-nginx", "ids": ["COMPONENT-INGRESS_NGINX"]}
 {"alias": "ingress-nginx 4.12.0", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
@@ -1841,6 +1857,8 @@
 {"alias": "ingress-nginx annotation validation error", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
 {"alias": "ingress-nginx upstream error", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
 {"alias": "ingress2gateway", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY"]}
+{"alias": "ingress2gateway conversion", "ids": ["TROUBLE-INGRESS2GATEWAY"]}
+{"alias": "ingress2gateway missing routes", "ids": ["TROUBLE-INGRESS2GATEWAY"]}
 {"alias": "ingress_alb", "ids": ["TAG-INGRESS_ALB"]}
 {"alias": "ingress_alb_enabled", "ids": ["VARIABLE-INGRESS_ALB_ENABLED"]}
 {"alias": "ingress_nginx_class", "ids": ["VARIABLE-INGRESS_NGINX_CLASS"]}
@@ -1926,6 +1944,10 @@
 {"alias": "kaasops vector", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
 {"alias": "kaasops vector operator", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
 {"alias": "karma", "ids": ["CONCEPT-ADDON_KARMA"]}
+{"alias": "karma alertmanager unreachable", "ids": ["TROUBLE-KARMA"]}
+{"alias": "karma dashboard empty", "ids": ["TROUBLE-KARMA"]}
+{"alias": "karma no alerts", "ids": ["TROUBLE-KARMA"]}
+{"alias": "karma oauth", "ids": ["TROUBLE-KARMA"]}
 {"alias": "karma ui", "ids": ["CONCEPT-ADDON_KARMA"]}
 {"alias": "kata gvisor runsc", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
 {"alias": "kata-containers", "ids": ["COMPONENT-KATA_CONTAINERS", "TAG-KATA_CONTAINERS"]}
@@ -2444,6 +2466,8 @@
 {"alias": "kubernetes 1.35 changes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
 {"alias": "kubernetes audit", "ids": ["CONFIG-APISERVER_AUDIT"]}
 {"alias": "kubernetes cve", "ids": ["TROUBLE-KUBERNETES_KNOWN_CVES"]}
+{"alias": "kubernetes dashboard login", "ids": ["TROUBLE-KUBERNETES_DASHBOARD"]}
+{"alias": "kubernetes mcp server", "ids": ["TROUBLE-KUBERNETES_MCP"]}
 {"alias": "kubernetes scale ceilings", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "kubernetes swap support", "ids": ["CONCEPT-K8S_NODE_SWAP"]}
 {"alias": "kubernetes ui headlamp", "ids": ["CONCEPT-ADDON_HEADLAMP"]}
@@ -2475,6 +2499,7 @@
 {"alias": "kubespray upgrade stuck check api healthz", "ids": ["TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK"]}
 {"alias": "kubespray-defaults", "ids": ["ROLE-KUBESPRAY_DEFAULTS"]}
 {"alias": "kubespray_defaults", "ids": ["ROLE-KUBESPRAY_DEFAULTS"]}
+{"alias": "kvm device plugin", "ids": ["TROUBLE-KVM_DEVICE_PLUGIN"]}
 {"alias": "kvm-device-plugin", "ids": ["CONCEPT-ADDON_KVM_DEVICE_PLUGIN"]}
 {"alias": "kyverno", "ids": ["CONCEPT-ADDON_KYVERNO"]}
 {"alias": "kyverno 1.10 no upgrade path", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
@@ -2587,6 +2612,8 @@
 {"alias": "master", "ids": ["TAG-CONTROL_PLANE"]}
 {"alias": "matchLabelKeys spread regression 1.34", "ids": ["TROUBLE-SCHEDULER_TOPOLOGY_SPREAD"]}
 {"alias": "maxskew donotschedule pending", "ids": ["TROUBLE-SCHEDULER_TOPOLOGY_SPREAD"]}
+{"alias": "mcp llm cluster access", "ids": ["TROUBLE-KUBERNETES_MCP"]}
+{"alias": "mcp rbac scope", "ids": ["TROUBLE-KUBERNETES_MCP"]}
 {"alias": "memory too small", "ids": ["TROUBLE-NODE_MEMORY_TOO_SMALL"]}
 {"alias": "memorySwap swapBehavior", "ids": ["CONCEPT-K8S_NODE_SWAP"]}
 {"alias": "meta.helm.sh/release-name", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
@@ -2694,6 +2721,7 @@
 {"alias": "nerdctl_image_info_command", "ids": ["VARIABLE-NERDCTL_IMAGE_INFO_COMMAND"]}
 {"alias": "nerdctl_image_pull_command", "ids": ["VARIABLE-NERDCTL_IMAGE_PULL_COMMAND"]}
 {"alias": "nerdctl_version", "ids": ["VARIABLE-NERDCTL_VERSION"]}
+{"alias": "nested virtualization kubevirt", "ids": ["TROUBLE-KVM_DEVICE_PLUGIN"]}
 {"alias": "net.ipv4.neigh.default.gc_thresh", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "netcheck_agent_image_repo", "ids": ["VARIABLE-NETCHECK_AGENT_IMAGE_REPO"]}
 {"alias": "netcheck_agent_image_tag", "ids": ["VARIABLE-NETCHECK_AGENT_IMAGE_TAG"]}
@@ -2883,6 +2911,7 @@
 {"alias": "one minor at a time upgrade", "ids": ["TROUBLE-KUBEADM_VERSION_SKEW"]}
 {"alias": "one minor upgrade procedure", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
 {"alias": "open-webui", "ids": ["CONCEPT-ADDON_KUBERNETES_MCP"]}
+{"alias": "open-webui mcp", "ids": ["TROUBLE-KUBERNETES_MCP"]}
 {"alias": "openebs lvm", "ids": ["CONCEPT-ADDON_LVM_LOCALPV"]}
 {"alias": "openeuler-metalink-url", "ids": ["TROUBLE-OPENEULER_METALINK_URL"]}
 {"alias": "openeuler_metalink_enabled", "ids": ["VARIABLE-OPENEULER_METALINK_ENABLED"]}
@@ -2997,6 +3026,7 @@
 {"alias": "progressive delivery", "ids": ["CONCEPT-ADDON_FLAGGER"]}
 {"alias": "prometheus alertmanager", "ids": ["CONCEPT-ADDON_ALERTMANAGER"]}
 {"alias": "prometheus grafana alertmanager", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
+{"alias": "prometheus not loading pyrra rules", "ids": ["TROUBLE-PYRRA"]}
 {"alias": "prometheus target down", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
 {"alias": "prometheus_operator_crds", "ids": ["TAG-PROMETHEUS_OPERATOR_CRDS"]}
 {"alias": "prometheus_operator_crds_checksums", "ids": ["VARIABLE-PROMETHEUS_OPERATOR_CRDS_CHECKSUMS"]}
@@ -3020,7 +3050,11 @@
 {"alias": "pvc-protection finalizer", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "pyrra", "ids": ["CONCEPT-ADDON_PYRRA"]}
 {"alias": "pyrra 1.1.0", "ids": ["CONCEPT-ADDON_PYRRA"]}
+{"alias": "pyrra rules not generated", "ids": ["TROUBLE-PYRRA"]}
+{"alias": "pyrra slo not working", "ids": ["TROUBLE-PYRRA"]}
 {"alias": "qryn", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "qryn no data", "ids": ["TROUBLE-GIGAPIPE"]}
+{"alias": "qryn write failing", "ids": ["TROUBLE-GIGAPIPE"]}
 {"alias": "quay_image_repo", "ids": ["VARIABLE-QUAY_IMAGE_REPO"]}
 {"alias": "queueinghint scheduler oom", "ids": ["TROUBLE-SCHEDULER_PERF"]}
 {"alias": "quota monitor not synced", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
@@ -3097,7 +3131,10 @@
 {"alias": "registry_storage_class pvc", "ids": ["TROUBLE-REGISTRY_ADDON"]}
 {"alias": "registry_tls_secret", "ids": ["VARIABLE-REGISTRY_TLS_SECRET"]}
 {"alias": "registry_version", "ids": ["VARIABLE-REGISTRY_VERSION"]}
+{"alias": "release watcher github rate limit", "ids": ["TROUBLE-RELEASE_WATCHER"]}
+{"alias": "release watcher notifier", "ids": ["TROUBLE-RELEASE_WATCHER"]}
 {"alias": "release-watcher", "ids": ["CONCEPT-ADDON_RELEASE_WATCHER"]}
+{"alias": "release-watcher no notifications", "ids": ["TROUBLE-RELEASE_WATCHER"]}
 {"alias": "remove control plane node", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
 {"alias": "remove dead master node", "ids": ["TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE"]}
 {"alias": "remove docker runtime", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
@@ -3238,6 +3275,7 @@
 {"alias": "service not working", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "serviceaccount forbidden", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "serviceaccount has no secret", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
+{"alias": "servicelevelobjective crd", "ids": ["TROUBLE-PYRRA"]}
 {"alias": "servicemonitor no metrics", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
 {"alias": "services", "ids": ["TAG-SERVICES"]}
 {"alias": "set apiserver flag", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
@@ -3402,9 +3440,13 @@
 {"alias": "talosctl upgrade-k8s", "ids": ["CONCEPT-TALOS_UPGRADES"]}
 {"alias": "target secret not created", "ids": ["TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING"]}
 {"alias": "tbot", "ids": ["CONCEPT-ADDON_TBOT"]}
+{"alias": "tbot not renewing certs", "ids": ["TROUBLE-TBOT"]}
+{"alias": "tbot output config", "ids": ["TROUBLE-TBOT"]}
+{"alias": "tbot proxy address", "ids": ["TROUBLE-TBOT"]}
 {"alias": "tear down cluster kubespray", "ids": ["PRACTICE-RUNBOOK_RESET"]}
 {"alias": "teleport bot", "ids": ["CONCEPT-ADDON_TBOT"]}
 {"alias": "teleport machine id", "ids": ["CONCEPT-ADDON_TBOT"]}
+{"alias": "teleport machine id join failed", "ids": ["TROUBLE-TBOT"]}
 {"alias": "time sync", "ids": ["CONFIG-NTP"]}
 {"alias": "timezone-under-selinux", "ids": ["TROUBLE-TIMEZONE_UNDER_SELINUX"]}
 {"alias": "token expired kubeadm join", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}

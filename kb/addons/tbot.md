@@ -28,6 +28,8 @@ sources:
     note: "no major-skip; version skew rules"
 relations:
   - type: see_also
+    target: TROUBLE-TBOT
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 
