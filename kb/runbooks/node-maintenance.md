@@ -60,6 +60,9 @@ control the host work in between.
   ([[COMPONENT-ETCD]]).
 - **After a reboot**, a node can come back `NotReady` briefly while kubelet/CNI re-init; give it time
   and check [[PRACTICE-NODE_NOT_READY]] if it stays down.
+- **Node-local storage:** a pod using a **local-path / local-volume PVC** can't reschedule off the
+  node (the PV is pinned to it), so draining strands it and the service stays down until you uncordon
+  — pre-check and migrate first ([[TROUBLE-NODE_LOCAL_PVC_DRAIN]]).
 - No playbook, no version coupling — valid across **v2.27.0–v2.31.0** and any running cluster.
 
 ## Implementation

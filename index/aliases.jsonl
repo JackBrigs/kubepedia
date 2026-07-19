@@ -1291,6 +1291,7 @@
 {"alias": "dragonfly-operator", "ids": ["CONCEPT-ADDON_DRAGONFLY"]}
 {"alias": "dragonflydb", "ids": ["CONCEPT-ADDON_DRAGONFLY"]}
 {"alias": "drain and reboot node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "drain node local storage service down", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "drain_fallback_enabled", "ids": ["VARIABLE-DRAIN_FALLBACK_ENABLED"]}
 {"alias": "drain_fallback_grace_period", "ids": ["VARIABLE-DRAIN_FALLBACK_GRACE_PERIOD"]}
 {"alias": "drain_fallback_retries", "ids": ["VARIABLE-DRAIN_FALLBACK_RETRIES"]}
@@ -2464,6 +2465,8 @@
 {"alias": "loadbalancer_apiserver_memory_requests", "ids": ["VARIABLE-LOADBALANCER_APISERVER_MEMORY_REQUESTS"]}
 {"alias": "loadbalancer_apiserver_pod_name", "ids": ["VARIABLE-LOADBALANCER_APISERVER_POD_NAME"]}
 {"alias": "loadbalancer_apiserver_type", "ids": ["VARIABLE-LOADBALANCER_APISERVER_TYPE"]}
+{"alias": "local-path data loss remove node", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
+{"alias": "local-path pvc node drain", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "local-path-provisioner", "ids": ["COMPONENT-LOCAL_PATH_PROVISIONER", "TAG-LOCAL_PATH_PROVISIONER"]}
 {"alias": "local-volume-provisioner", "ids": ["COMPONENT-LOCAL_VOLUME_PROVISIONER", "TAG-LOCAL_VOLUME_PROVISIONER"]}
 {"alias": "local_path_provisioner_claim_root", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_CLAIM_ROOT"]}
@@ -2701,6 +2704,7 @@
 {"alias": "node-feature-discovery", "ids": ["COMPONENT-NODE_FEATURE_DISCOVERY"]}
 {"alias": "node-label", "ids": ["TAG-NODE_LABEL"]}
 {"alias": "node-local dns", "ids": ["COMPONENT-NODELOCALDNS"]}
+{"alias": "node-local pvc can't reschedule", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "node-taint", "ids": ["TAG-NODE_TAINT"]}
 {"alias": "node-webhook", "ids": ["TAG-NODE_WEBHOOK"]}
 {"alias": "node_feature_discovery", "ids": ["TAG-NODE_FEATURE_DISCOVERY"]}
@@ -2848,6 +2852,7 @@
 {"alias": "pod networking broken", "ids": ["PRACTICE-CILIUM_DIAGNOSTICS"]}
 {"alias": "pod not starting", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
 {"alias": "pod pending", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "pod pending after drain volume node affinity", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "pod pending failedscheduling", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
 {"alias": "pod resize policy", "ids": ["CONCEPT-K8S_IN_PLACE_POD_RESIZE"]}
 {"alias": "pod restarting loop", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
@@ -2993,6 +2998,7 @@
 {"alias": "remove docker runtime", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
 {"alias": "remove node", "ids": ["PRACTICE-NODES_ADD_REPLACE"]}
 {"alias": "remove node runbook", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
+{"alias": "remove node with local storage", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "remove-node.yml", "ids": ["PLAYBOOK-REMOVE_NODE", "PRACTICE-RUNBOOK_REMOVE_NODE"]}
 {"alias": "remove_anonymous_access", "ids": ["VARIABLE-REMOVE_ANONYMOUS_ACCESS"]}
 {"alias": "remove_default_searchdomains", "ids": ["VARIABLE-REMOVE_DEFAULT_SEARCHDOMAINS"]}

@@ -64,10 +64,23 @@ membership changes, take a snapshot first ([[PRACTICE-ETCD_BACKUP_RESTORE]]) and
   verify membership after, don't blindly re-run.
 - **Quorum:** removing an etcd member shrinks the quorum — never drop below a healthy majority (go
   3→1 only deliberately). Stable across **v2.27.0–v2.31.0**.
+- **Node-local storage is a silent trap:** if any pod on the node uses a **local-path / local-volume /
+  hostPath PVC**, draining strands that workload (`Pending`, volume node-affinity conflict) and
+  removing the node **destroys its data** — the PV lives on this node's disk. This is a **mandatory
+  pre-check** ([[TROUBLE-NODE_LOCAL_PVC_DRAIN]]).
 
 ## Implementation
 
 **Step 0 — Snapshot etcd** ([[PRACTICE-ETCD_BACKUP_RESTORE]]) — removals touch membership.
+
+**Step 0.5 — Pre-check node-local storage** ([[TROUBLE-NODE_LOCAL_PVC_DRAIN]]): list pods on the node
+and any PVs pinned to it; **migrate that data first** (or confirm it's disposable), or the drain in
+Step 1 takes the service down and loses the volume.
+
+```bash
+kubectl get pods -A --field-selector spec.nodeName=<NAME> -o wide
+kubectl get pv -o wide | grep -Ei 'local-path|local-storage'   # cross-ref claimRef + nodeAffinity
+```
 
 **Step 1 — Remove an online node:**
 
