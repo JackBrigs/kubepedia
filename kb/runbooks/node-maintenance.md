@@ -54,7 +54,8 @@ control the host work in between.
 ## Context
 
 - **One node at a time**, always. Draining respects **PodDisruptionBudgets**, so a too-strict PDB
-  or a single-replica workload blocks the drain — fix headroom first, don't `--force` blindly.
+  or a single-replica workload blocks the drain — fix headroom first, don't `--force` blindly. More
+  drain traps (PDB hang, emptyDir data loss, bare-pod force-delete): [[TROUBLE-NODE_DRAIN_GOTCHAS]].
 - **Control-plane / etcd nodes:** only maintain **one at a time** and confirm quorum is intact
   before touching the next — losing a second etcd member mid-maintenance can lose quorum
   ([[COMPONENT-ETCD]]).

@@ -512,6 +512,7 @@
 {"alias": "can't get final child's PID from pipe EOF", "ids": ["TROUBLE-CONTAINERD_SHIM_TASK_CREATE"]}
 {"alias": "canary controller", "ids": ["CONCEPT-ADDON_FLAGGER"]}
 {"alias": "cannot be imported into the current release", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "cannot evict pod PDB", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
 {"alias": "cannot list resource", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "cannot pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "cannot reach service", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
@@ -1291,7 +1292,11 @@
 {"alias": "dragonfly-operator", "ids": ["CONCEPT-ADDON_DRAGONFLY"]}
 {"alias": "dragonflydb", "ids": ["CONCEPT-ADDON_DRAGONFLY"]}
 {"alias": "drain and reboot node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "drain emptyDir data loss", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
+{"alias": "drain force deletes bare pods", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
 {"alias": "drain node local storage service down", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
+{"alias": "drain single replica downtime", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
+{"alias": "drain stuck PodDisruptionBudget", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
 {"alias": "drain_fallback_enabled", "ids": ["VARIABLE-DRAIN_FALLBACK_ENABLED"]}
 {"alias": "drain_fallback_grace_period", "ids": ["VARIABLE-DRAIN_FALLBACK_GRACE_PERIOD"]}
 {"alias": "drain_fallback_retries", "ids": ["VARIABLE-DRAIN_FALLBACK_RETRIES"]}
@@ -2273,6 +2278,7 @@
 {"alias": "kubectl apply managedFields", "ids": ["CONCEPT-K8S_KUBECTL_SSA_DEFAULT"]}
 {"alias": "kubectl cp hangs proxy", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
 {"alias": "kubectl delete ns ordering", "ids": ["CONCEPT-K8S_ORDERED_NAMESPACE_DELETION"]}
+{"alias": "kubectl drain hangs", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
 {"alias": "kubectl exec error", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "kubectl exec fails through proxy", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
 {"alias": "kubectl hangs writes stall", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}

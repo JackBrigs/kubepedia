@@ -990,6 +990,10 @@
 {"source": "TROUBLE-NODELOCALDNS_IPV6_IP", "target": "COMPONENT-NODELOCALDNS", "type": "see_also"}
 {"source": "TROUBLE-NODE_CANNOT_REACH_APISERVER", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
 {"source": "TROUBLE-NODE_CANNOT_REACH_APISERVER", "target": "TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP", "type": "see_also"}
+{"source": "TROUBLE-NODE_DRAIN_GOTCHAS", "target": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "type": "see_also"}
+{"source": "TROUBLE-NODE_DRAIN_GOTCHAS", "target": "PRACTICE-RUNBOOK_REMOVE_NODE", "type": "see_also"}
+{"source": "TROUBLE-NODE_DRAIN_GOTCHAS", "target": "TROUBLE-KCM_VOLUME_MULTIATTACH", "type": "see_also"}
+{"source": "TROUBLE-NODE_DRAIN_GOTCHAS", "target": "TROUBLE-NODE_LOCAL_PVC_DRAIN", "type": "see_also"}
 {"source": "TROUBLE-NODE_LOCAL_PVC_DRAIN", "target": "COMPONENT-LOCAL_PATH_PROVISIONER", "type": "see_also"}
 {"source": "TROUBLE-NODE_LOCAL_PVC_DRAIN", "target": "COMPONENT-LOCAL_VOLUME_PROVISIONER", "type": "see_also"}
 {"source": "TROUBLE-NODE_LOCAL_PVC_DRAIN", "target": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "type": "see_also"}
