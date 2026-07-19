@@ -18,6 +18,15 @@
 - Сервисы: pod-networking, Service/LB, NetworkPolicy, (опц.) BGP/IPsec/ClusterMesh/Hubble.
 - CIs: `cilium` (DaemonSet), `cilium-operator`, `cilium-envoy`, ConfigMap `cilium-config`, CRD Cilium.
 
+## Влияние на сервис (impact) — ОЖИДАЕТСЯ ПРОСТОЙ СЕТИ
+Апгрейд Cilium — **service-affecting**. На каждом из 4 хопов агент (DaemonSet) катится rolling по нодам;
+на время рестарта: установленные L3/L4-потоки обычно живут (eBPF-датаплейн переживает рестарт агента), но
+**новые соединения, L7-трафик через cilium-envoy и применение NetworkPolicy** на ноде кратко прерываются
+(единицы–десятки секунд). При serial-раскатке затронута одна нода зараз; blast radius — весь кластер (CNI).
+Дополнительно на этом маршруте: **churn serviceaccount-identity (1.18)** → transient policy-drops; **ENI
+masquerade flip** → смена egress-SNAT; **KPR/CRD-миграции** → возможны сбросы соединений. Итог: 4 окна с
+кратковременным по-нодовым простоем сети; критичные single-replica нагрузки лучше drain'ить или поднять до ≥2.
+
 ## Оценка риска
 - Уровень: **High**.
 - Риски и митигации:
