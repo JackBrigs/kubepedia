@@ -26,6 +26,8 @@ relations:
     target: CONCEPT-ADDON_CATALOG
   - type: see_also
     target: CONCEPT-OBSERVABILITY_STACK
+  - type: see_also
+    target: TROUBLE-ALERTMANAGER_NOTIFICATIONS
 ---
 
 # Alertmanager (prometheus-community chart) — addon
