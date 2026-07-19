@@ -73,6 +73,10 @@ this doc uses the nearest real release **18.7.4** (`confidence: probable` on the
 - **17.7.26 (older line):** Kubernetes API proxy access now requires a new `proxy` verb (RBAC change).
 - Recommend **≥18.9.2** and tracking the 18.x patch stream. Cert-renewal troubleshooting: [[TROUBLE-TBOT]].
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+tbot ships as part of **Teleport**, which has a **regular security-advisory cadence (HCSEC)** — an older tbot/Teleport misses those. Concretely, versions **below 18.9.2** miss the AWS-app-access SSRF fix and other 18.x hardening (see the upgrade section); older 17.x/16.x lines carry their own Teleport CVEs. Track the supported Teleport 18.x patch stream — this is a security agent, so currency matters most here.
+
 ## References
 
 - tbot `Chart.yaml` (v18.7.4), Teleport upgrading overview (above).

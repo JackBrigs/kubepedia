@@ -83,6 +83,10 @@ is v4.3.1). ClickHouse is a required external dependency.
 - **4.3.1:** **security hardening against reflected XSS**; bounds time-series label resolution to the query window.
 - 4.3.0: recording-rules ruler with in-process write-back; LogQL `__line__`/`__timestamp__`, error emission on parser failures. ClickHouse-backend/reader-writer split remain the operational concern ([[TROUBLE-GIGAPIPE]]).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+For older Gigapipe/qryn, the notable security item is the **reflected-XSS hardening in 4.3.1** — versions below 4.3.1 are exposed to that XSS class; older images also carry base/dependency CVEs. Upgrade to ≥4.3.1 and front the UI with auth.
+
 ## References
 
 - gigapipe-helm Chart.yaml/values, qryn repo + wiki (above); ClickHouse advisories.

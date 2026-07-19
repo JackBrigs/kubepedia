@@ -65,6 +65,10 @@ Headlamp is a CNCF (kubernetes-sigs) web UI for clusters, deployed via chart **0
 
 **Open upstream bugs (as of 2026-07-19):** **in-cluster deployment wrongly looks for a kubeconfig** instead of the SA (#1826); **OIDC in-cluster impersonation headers not added on EKS** → API calls fail after login (#4198); AWS SSO desktop login (#358); proxy support for corporate networks (#1966). These are exactly the "logged in but empty/forbidden" symptoms.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Headlamp has a limited CVE record; older-version exposure is base-image/dependency CVEs and UI-side (XSS-class) issues fixed over time, plus **OIDC/impersonation bugs** (e.g. EKS impersonation, #4198) that are correctness/security-adjacent. As a UI acting as the logged-in identity, keep it current (0.43.0 fixed OIDC public-provider login) and rely on RBAC for authorization.
+
 ## References
 
 - `Chart.yaml` (headlamp-helm-0.43.0); advisory GHSA-34rf-485x-g5h7.

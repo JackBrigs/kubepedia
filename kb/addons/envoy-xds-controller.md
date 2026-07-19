@@ -71,6 +71,10 @@ inventory runs it in three environments — `exc` chart **0.87.0**, `exc-stage` 
 
 **Upstream (envoy-xds-controller):** **actively maintained** (frequent releases); the pinned **0.17.1** is current. **0.17.0** did a significant internal refactor (removed the legacy resbuilder and adapters) described as cleanup, **not breaking**; 0.17.1 adds wildcard-certificate fallback and node-overview API/UI. Config troubleshooting: [[TROUBLE-ENVOY_XDS_CONTROLLER]].
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+The kaasops envoy-xds-controller is a small (actively-maintained) project with no notable CVE record; older-version exposure is the **user-supplied Envoy data-plane image** (Envoy CVEs — a significant stream) and base images. Patch **Envoy** independently; keep the controller current (0.17.x).
+
 ## References
 
 - `Chart.yaml`, releases (above).

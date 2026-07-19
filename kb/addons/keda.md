@@ -98,6 +98,10 @@ pin moves (from upstream releases):
 - **Kafka scaler:** unsynchronized shared CertPool causes panics / spurious x509 failures (#7910);
   invalid negative metrics on GKE (#5730).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+For clusters on an **older** KEDA: the shipped **2.17.2 is affected by CVE-2025-68476** (Vault-credential path-traversal arbitrary-file-read, High ~CVSS 8.2, all <2.17.3), fixed **2.17.3 / 2.18.3** — upgrade off 2.17.2 and any earlier 2.17.x. Also GHSA-w92x-gx4w-j5f2 (CI supply-chain, non-runtime). Older KEDA carries the metrics-adapter and scaler bugs later fixed (paused-annotation races 2.18.2, concurrent-map panic 2.20.1).
+
 ## References
 
 - `Chart.yaml`, KEDA 2.17 cluster docs, advisory GHSA-c4p6-qg4m-9jmr (above); upstream releases

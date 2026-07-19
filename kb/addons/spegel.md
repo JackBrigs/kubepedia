@@ -75,6 +75,10 @@ app are lock-stepped; v0.0.1 is the first release / CI placeholder — current u
 - **⚠ 0.7.0 breaking:** **removed support for containerd 1.7 and 2.0**, and removed the deprecated resolve-latest functionality — check your containerd version before adopting 0.7.x. Adds QUIC in the p2p router and peer-ID persistence across restarts.
 - 0.7.4: security fix (reject a range whose start is at/beyond content size); containerd client 2.2.6.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Spegel's own CVE record is thin; older-version exposure is the **bundled containerd client** and Go crypto libraries (0.7.4 bumped crypto and fixed a range-handling issue). More important than any CVE: the inventory pin **0.0.1 is wrong** (current 0.7.x) — running a phantom/old version is the real risk. Move to a current 0.7.x with a supported containerd (0.7.0 dropped containerd 1.7/2.0).
+
 ## References
 
 - `Chart.yaml` (v0.0.1), spegel getting-started, PR #1168, issue #1272 (above).

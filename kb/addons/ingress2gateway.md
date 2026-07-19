@@ -73,6 +73,10 @@ a one-shot. It is a common migration path off ingress-nginx toward Gateway API
 - **1.1.0:** Traefik provider + more ingress-nginx annotations (`from-to-www-redirect`, `app-root`, `ssl-passthrough`).
 - **Use ≥1.0.0** for the widest, most faithful conversion; still review the output for anything vendor-specific it can't map.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+ingress2gateway is a **one-shot CLI**, not a running service — it has effectively **no runtime CVE surface**. The only 'security' angle is conversion fidelity (dropped auth/rewrite annotations, largely fixed in 1.x). Use a current build (≥1.0.0) and review the output.
+
 ## References
 
 - kubernetes-sigs/ingress2gateway (above).

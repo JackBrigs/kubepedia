@@ -65,6 +65,10 @@ effectively-undocumented project — most engineering detail is `unverified`.
 
 **Upstream signal:** the `kaasops/etcd-defrag-controller` repo is a **small, low-activity project** (most recent commits ~Aug 2024) at chart/app **0.0.7** — verify the image you actually run. There's no breaking-change stream; the operational risk is the **stop-the-world defrag** behavior, not version churn ([[TROUBLE-ETCD_DEFRAG_CONTROLLER]]). For a critical cluster, consider driving `etcdctl defrag` from a controlled maintenance job instead of a pre-1.0 controller.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+etcd-defrag-controller is a small, low-activity project (~Aug 2024) with no notable CVE record; older-version exposure is base-image/dependency CVEs. The dominant risk is operational (stop-the-world defrag), not a CVE. For a critical cluster, prefer a controlled maintenance job over a pre-1.0 controller.
+
 ## References
 
 - kaasops/etcd-defrag-controller `Chart.yaml` (above).

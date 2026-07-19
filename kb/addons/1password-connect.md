@@ -77,6 +77,10 @@ Operator / external-secrets). The app version **1.7.3** has been unchanged since
 - **⚠ chart 2.3.0 breaking:** the **double-base64-encoding workaround for the credentials secret no longer works** — credentials are now mounted **as files with single encoding**. If your `1password-credentials.json` secret used the double-encode trick, switch to standard single encoding or Connect fails to read it ([[TROUBLE-1PASSWORD_CONNECT]]).
 - 2.4.0 bumps Connect to 1.8.2 (from the pinned 1.7.3) with configurable operator probes; 2.1.0 adds OCI-registry install.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+1Password Connect has no notable public CVE record; older-version exposure is base-image/dependency CVEs and the **credentials-handling change** in chart 2.3.0 (double-base64 workaround removed). Keep Connect (1.8.2+) and the operator current; the credential secret is the sensitive asset — rotate the Connect token if exposed.
+
 ## References
 
 - `Chart.yaml` + connect CHANGELOG (above); issue #224.

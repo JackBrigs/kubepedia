@@ -90,6 +90,10 @@ functional breaking changes.
 - **⚠ 1.23.1 security/behavior change:** object-supplied Vault addresses are now **validated against an allowlist (SSRF hardening)** — the **`vault-addr` annotation is no longer trusted as-is**. If you use it, set **`VAULT_ADDR_ALLOWLIST`**; loopback/private IPs are **blocked by default** unless `VAULT_ALLOW_PRIVATE_ADDR` is set. Also adds the missing `IPC_LOCK` capability to the vault-agent initContainer.
 - 1.22.1 adds a `matchConditions` webhook filter and a Helm flag to enable mutations in the deploy namespace. Injection/auth troubleshooting: [[TROUBLE-VAULT_SECRETS_WEBHOOK]].
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+bank-vaults' own CVE record is thin; the key security change is **1.23.1's SSRF hardening** (vault-addr allowlist — see the upgrade section), so **versions below 1.23.1 trust object-supplied Vault addresses** (an SSRF vector). Older-version exposure also includes the bundled vault-env/base image. Upgrade to ≥1.23.1 and scope the webhook selector/failurePolicy.
+
 ## References
 
 - `Chart.yaml`, `go.mod`, bank-vaults docs (above); GitHub issues #405/#351/#307.

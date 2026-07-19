@@ -73,6 +73,10 @@ Installed via **kustomize with Server-Side Apply** (plain `kubectl apply` fails)
 
 **Upstream (Feast Operator):** ships from the **actively-developed `feast-dev/feast` monorepo** (no separate operator tag) — the pinned **0.64.0** tracks the monorepo release; verify the running operator image against the monorepo tag. The dominant operational gotcha remains the **Server-Side-Apply install requirement** and online/offline-store connectivity ([[TROUBLE-FEAST_OPERATOR]]); no separate breaking-change stream beyond the monorepo's Feast releases.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+The Feast Operator has no notable addon-specific CVE record; older-version exposure is the **Feast application** and its **online/offline store** components (Redis/DB) plus base images. Track the feast-dev/feast monorepo releases and the store components rather than an operator-specific CVE stream.
+
 ## References
 
 - feast-operator README, Feast v0.64.0 release, GHSA advisories (above).

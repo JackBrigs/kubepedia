@@ -74,6 +74,10 @@ auth-bypass CVEs (see Compatibility).
 
 **Upstream (Karma):** actively maintained; latest **0.131** (the pin 0.121 is a few patches behind). No breaking changes in this window — Karma is a stateless read-only Alertmanager dashboard, so upgrades are low-risk. Reachability/OAuth remain the operational concerns ([[TROUBLE-KARMA]]).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Karma has no notable CVE record; it's a read-only dashboard, so older-version exposure is limited to base-image/Go CVEs and any UI (XSS-class) fixes. Low security surface — upgrading (latest 0.131) is low-urgency from a CVE standpoint; the OAuth proxy in front is the real access-control boundary.
+
 ## References
 
 - karma Chart.yaml (wiremind), karma v0.121 release, oauth2-proxy advisories (above).

@@ -76,6 +76,10 @@ which is CVE-vulnerable.
 - **0.0.63 breaking:** `PodsExec` now returns **separate stdout/stderr** (parsers expecting combined output break); switched to contextual logging; adds **token pass-through auth mode** and output-schema support.
 - 0.0.64/0.0.65: target-specific tool filtering, structured content, NetObserv toolset. Pin exactly and re-test on every upgrade; treat the RBAC of its ServiceAccount as a security boundary ([[TROUBLE-KUBERNETES_MCP]]).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+kubernetes-mcp-server is **pre-1.0** with no formal CVE stream, but its security surface is real: it acts as its **ServiceAccount**, so an over-privileged SA on **any** version (old or new) is the dominant risk — treat RBAC as the boundary. Older versions also lack later auth modes (token pass-through) and the PodsExec stdout/stderr split. Pin exactly and minimize SA RBAC.
+
 ## References
 
 - kubernetes-mcp-server `Chart.yaml`, open-webui advisory PYSEC-2026-2751 (above).

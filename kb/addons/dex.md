@@ -81,6 +81,10 @@ this platform (envoy-xds-controller, kubernetes-dashboard flows) — check for v
 
 **Open upstream requests (as of 2026-07-19):** no **end-session/logout (RP-initiated logout) endpoint** forwarding to upstream (#1697); no built-in **MFA/2FA** (#352); arbitrary custom claims (#1182).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Older Dex exposure is dominated by **bundled gomplate** (CVE-2025-68121, CVE-2026-25934 — optional, avoid if unused) and base-image/Go-stdlib CVEs in old images. Dex has had occasional OIDC-handling advisories historically — verify an old pin against the Dex security advisories. Upgrading also brings PKCE (2.45.0) and the connector-failure default change.
+
 ## References
 
 - `Chart.yaml` + dex v2.42.0 release (above); TLS advisory GHSA-gr79-9v6v-gc9r.

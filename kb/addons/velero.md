@@ -77,6 +77,10 @@ Kubespray-managed Velero. Operational backup/restore guidance is in [[CONCEPT-VE
 
 **Known issue patterns (from release fixes):** Kopia snapshot leaks in object storage on cancelled/deleted data-mover ops (pre-1.18.2); the `["*"]` namespace-include performance regression; wildcard include/exclude edge cases.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+For clusters on an **older** Velero: **CVE-2020-3996** — restore could **bind a PV to the wrong PVC** (data exposure), affects **<1.4.3 / 1.5.2**. Older images also predate the 1.18.x Kopia-snapshot-leak and VolumeGroupSnapshot-v1beta2 fixes. Upgrade off very old Velero; keep the bundled plugins/movers current.
+
 ## References
 
 - `Chart.yaml`, upgrade-to-1.17 doc, v1.17.1 release notes (above).

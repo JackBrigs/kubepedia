@@ -67,6 +67,10 @@ the running image). The chart lives in a **separate repo** (`pyrra-dev/helm-char
 - **0.10.0:** **Performance Mode (subquery-based SLO calculations)** to cut Prometheus evaluation overhead; **Prometheus v3 native-histogram support** with `le`-label normalization (matters for SLO accuracy on v3); Kubernetes **leader election** config; all alerts now carry `pyrra_url` annotations.
 - Rules-generation/`ruleSelector` remain the operational concern ([[TROUBLE-PYRRA]]).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Pyrra has no notable CVE record; older-version exposure is base-image/dependency CVEs. Low security surface (it generates Prometheus rules); upgrading (0.10.1) is driven by features/perf, not CVEs.
+
 ## References
 
 - `Chart.yaml` (pyrra-dev/helm-charts); v0.9.0 release notes.

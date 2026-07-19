@@ -75,6 +75,10 @@ image is user-supplied through the CRD.
 
 **Future upgrade context** beyond pinned **0.3.3** (from upstream releases): actively maintained (releases every 1–2 months); latest **0.4.1**. **0.4.0** adds **dual-stack** support and a testing framework; **no breaking changes** in the 0.3→0.4 line. Newer versions may widen the older 1.28–1.31 K8s window — verify before adopting on 1.32+.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+The kaasops vector-operator is a small project with no notable CVE record; older-version exposure is the **user-supplied Vector image** (Vector's own CVEs) and base images. Since the Vector version is set via the CRD, patch **Vector** independently of the operator; the operator itself is low-CVE-surface.
+
 ## References
 
 - `Chart.yaml`, `go.mod`, release v0.3.3 / PR #203 (above).

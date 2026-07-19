@@ -72,6 +72,10 @@ using one cannot reschedule to another node.
 - **1.9.0:** **VolumeAttributesClass** support + QoS/IOPS profiles (per-volume QoS for thin provisioning).
 - No breaking changes across 1.7→1.9; safe patch/minor line.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+OpenEBS lvm-localpv has no notable addon-specific CVE record; older-version exposure is base-image/dependency CVEs in old images (Alpine floor was 3.18 before 1.8.0). Upgrade for the newer base image rather than any driver CVE fix.
+
 ## References
 
 - lvm-localpv v1.7.0 README + release notes (above); OpenEBS prerequisites.

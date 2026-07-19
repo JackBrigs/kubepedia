@@ -60,6 +60,10 @@ probable`; treat as inventory-level until the source repo is confirmed.
 
 **⚠ Version/identity caveat:** the inventory's `release-watcher` chart at **0.0.9** does **not** clearly map to a maintained upstream — the closest public project is **`rycus86/release-watcher`** ("watcher for new releases", with artifacthub/helmhub providers), which is niche/low-activity and not obviously the same packaging. **Verify what image/chart you actually deploy** before relying on it. Operationally, source-API rate-limit/auth and notifier config are the failure points ([[TROUBLE-RELEASE_WATCHER]]).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+release-watcher is niche/low-activity with no notable CVE record; older-version exposure is base-image/dependency CVEs and the handling of the **source API token** (a leaked GitHub PAT is the sensitive asset). Verify the actual image (the 0.0.9 pin doesn't map to a clear maintained upstream) and scope the token minimally.
+
 ## References
 
 - rycus86/release-watcher (closest public match, above).
