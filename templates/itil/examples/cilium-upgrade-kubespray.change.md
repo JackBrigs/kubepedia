@@ -24,8 +24,9 @@
 - CIs: DaemonSet `cilium`, `cilium-operator`, `cilium-envoy`; ConfigMap `cilium-config`; CRD Cilium.
 
 ## Влияние на сервис (impact) — ОЖИДАЕТСЯ ПРОСТОЙ СЕТИ
-Апгрейд Cilium — **service-affecting**, не прозрачный. Cilium-агент это DaemonSet, катится rolling
-по нодам; на время рестарта агента на ноде:
+**Как применяет Kubespray:** роль запускает `cilium` CLI (`cilium install`/`upgrade`, Helm под капотом) с первого control-plane **сразу на весь кластер**, не по-нодово с drain. А при **`cilium_remove_old_resources: true`** Kubespray **сносит весь Cilium** (`kubectl delete` DaemonSet, operator, `cilium-config`, RBAC, Hubble, секреты) и ставит заново — **это переустановка CNI: новые поды без сети, датаплейн может просесть = реальный простой**. Так прошла миграция манифесты→Helm на v2.29.
+
+Дальше — что происходит при обычном (не teardown) апгрейде: агент — DaemonSet, катится rolling по нодам; на время рестарта агента на ноде:
 - **установленные L3/L4-потоки** обычно продолжают форвардиться eBPF-датаплейном (переживают рестарт агента), НО
 - **новые соединения** и распространение изменений NetworkPolicy на этой ноде — с задержкой/краткими дропами (единицы–десятки секунд);
 - **cilium-envoy** (если включены L7-политики / Ingress через Cilium) при рестарте **разрывает L7-проксируемый трафик** на ноде;
@@ -45,7 +46,7 @@
 |---|---|---|---|
 | Кратковременный простой сети при рестарте агента/Envoy (новые conn / L7 / политики) | **Высокая (ожидаемо)** | Средн. | Окно обслуживания; serial-раскатка (одна нода зараз); drain критичных подов; уведомить владельцев сервисов |
 | Skip минора (тег Kubespray прыгает через минор) — вне поддержки Cilium | Средняя | Высок. | Стейджить промежуточный минор через `cilium_version` (только соседние) |
-| Breaking-дефолты целевой версии (masquerade, host-routing, KPR-флаги, identity) | Средняя | **Высок.** (сбросы, потеря SNAT, deny-политики) | Держать старые дефолты `cilium_upgrade_compatibility=<current-minor>`; сверить upgrade-notes целевой версии |
+| Breaking-дефолты целевой версии (masquerade, host-routing, KPR-флаги, identity) | Средняя | **Высок.** (сбросы, потеря SNAT, deny-политики) | Держать старые дефолты `cilium_extra_values: {upgradeCompatibility: <current-minor>}`; сверить upgrade-notes целевой версии |
 | Миграция CRD (BGP v2, IPPool) — точка невозврата | Средняя | Высок. | Мигрировать CRD до апгрейда; после — чистого отката нет |
 | Требование к ядру (напр. ≥5.10 с 1.18) не выполнено | Низкая | **Критич.** (нода не поднимется) | Пре-чек `uname -r` на всех нодах до апгрейда |
 | Kubespray не делает preflight/миграции CRD | Высокая | Средн. | Выполнить cilium preflight и миграции вручную (шаги ниже) |
@@ -54,18 +55,18 @@
 0. Бэкап `cilium-config` + etcd-снапшот; зафиксировать здоровье (`cilium status --brief`).
 1. **Preflight** целевой версии (пред-пул образа + валидация CNP/CRD):
    `helm install cilium-preflight cilium/cilium --version <target> -n kube-system --set preflight.enabled=true --set agent=false --set operator.enabled=false` → дождаться Ready → удалить.
-2. Задать `cilium_version: "<target>"` (+ `cilium_upgrade_compatibility` на текущий минор) в group_vars.
+2. Задать `cilium_version: "<target>"` (+ `upgradeCompatibility` (в `cilium_extra_values`) на текущий минор) в group_vars.
 3. Прогнать: `ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/cluster.yml -b --tags=cilium`
    (метод A — `upgrade-cluster.yml`).
 4. Валидация (гейт go/no-go).
-5. Снять `cilium_upgrade_compatibility`, converge, повторить проверку.
+5. Убрать `upgradeCompatibility` из `cilium_extra_values`, converge, повторить проверку.
 
 ## План проверки (test / validation)
 `cilium status --brief` зелёный · rollout `ds/cilium ds/cilium-envoy deploy/cilium-operator` завершён ·
 `cilium connectivity test` без ошибок · `ciliumendpoints` стабильны (нет массовых дропов identity).
 
 ## План отката (backout / remediation)
-До снятия `cilium_upgrade_compatibility` — вернуть `cilium_version` на прежний минор + converge.
+До снятия `upgradeCompatibility (cilium_extra_values)` — вернуть `cilium_version` на прежний минор + converge.
 **Точка невозврата:** после миграции CRD (BGP v2, IPPool) или churn identity чистого отката нет →
 страховка: бэкап `cilium-config` (шаг 0) и etcd-снапшот.
 
@@ -74,7 +75,7 @@
 другими сетевыми изменениями.
 
 ## PIR
-Целевая версия стабильна, `cilium_upgrade_compatibility` снят, connectivity зелёный, инцидентов нет.
+Целевая версия стабильна, `upgradeCompatibility (cilium_extra_values)` снят, connectivity зелёный, инцидентов нет.
 При стабильной повторяемости — процедура остаётся Standard Change model.
 
 ## Связанные записи

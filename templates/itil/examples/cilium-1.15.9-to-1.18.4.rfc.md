@@ -25,19 +25,20 @@
 - Косвенно: все рабочие нагрузки кластера (сетевая связность).
 
 ## Предлагаемый план (high-level)
-На каждом хопе: preflight-DaemonSet → задать `cilium_version` + `cilium_upgrade_compatibility` →
+На каждом хопе: preflight-DaemonSet → задать `cilium_version` + `upgradeCompatibility (cilium_extra_values)` →
 `cluster.yml --tags=cilium` → валидация (`cilium status`, `cilium connectivity test`). Детали — в
 раннбуке базы и в Change Record.
 
 ## Оценка риска (предварительная)
 - Уровень: **High**.
+- **Простой сети (ожидаемо):** Kubespray катит Cilium через `cilium` CLI (Helm) сразу на весь кластер; при `cilium_remove_old_resources: true` — снос и переустановка CNI (реальный простой). Планировать окно, drain критичных нагрузок.
 - Ключевые риски: Kubespray перескакивает 1.16 (нарушение consecutive-minor); ядро ≥5.10 с 1.18;
   смена дефолтов (ENI-masquerade true→false, churn serviceaccount-identity, BGP CRD v2alpha1→v2,
   депрекация KPR-тогглов); IPsec+KPR+BPF-masq → авто eBPF host-routing, CVE-2025-37959 (нужен патч
   ядра или `--enable-host-legacy-routing=true`).
 
 ## План отката (backout)
-До снятия `cilium_upgrade_compatibility` — возврат `cilium_version` на предыдущий минор + converge.
+До снятия `upgradeCompatibility (cilium_extra_values)` — возврат `cilium_version` на предыдущий минор + converge.
 **Чистого отката нет после миграции CRD (BGP v2, IPPool) или churn identity** — это точка невозврата.
 
 ## Предлагаемое окно

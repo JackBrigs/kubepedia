@@ -65,13 +65,19 @@ hop. The *what-changes-at-each-minor* detail lives in the reference doc
 
 - **Path (4 hops):** `1.15.9 → 1.16.z → 1.17.z → 1.18.4`. Use the **latest patch** of each intermediate
   minor (e.g. a recent `1.16.x`, then a recent `1.17.x`) so you carry that minor's fixes forward.
-- **Kubespray angle:** Kubespray installs Cilium via the `network_plugin/cilium` role at
-  `cilium_version`. To stage an intermediate minor Kubespray doesn't pin, set `cilium_version` in
-  `group_vars` and re-converge — Kubespray renders the manifests/Helm values at that version. Keep the
-  cluster on its current Kubespray tag; you are moving **only** the CNI version between hops.
-- **One node pool at a time / non-disruptive:** Cilium's agent upgrade is a rolling DaemonSet restart;
-  pods keep running (datapath survives agent restarts). Still do it during a maintenance window and
-  validate each hop before the next.
+- **Kubespray angle (how it actually applies):** the `network_plugin/cilium` role runs the **`cilium`
+  CLI** from the **first control-plane node** — `cilium install` (first time) or `cilium upgrade` (Helm
+  under the hood) — with the rendered `cilium-values.yaml`. It applies **cluster-wide at once**, **not**
+  node-by-node with drain. To stage an intermediate minor, set `cilium_version` in `group_vars` and
+  re-converge; keep the cluster on its current Kubespray tag (you move only the CNI version).
+- **⚠ DISRUPTIVE on prod — treat as a CNI reinstall, not a seamless rolling restart.** `cilium upgrade`
+  rolls the **agent DaemonSet cluster-wide** (every node's agent restarts). Worse: if
+  **`cilium_remove_old_resources: true`** (the manifest→Helm migration path, e.g. crossing into v2.29's
+  install method), Kubespray **`kubectl delete`s the entire Cilium** — DaemonSet, `cilium-operator`,
+  `cilium-config`, ClusterRole/Binding, ServiceAccounts, Hubble, secrets — and then **reinstalls** it.
+  During that window the **CNI is torn down**: new pods get no networking and existing dataplane traffic
+  can drop. **Expect real network downtime.** Schedule a proper maintenance window, and for critical
+  workloads drain/relocate or roll zone-by-zone before each hop.
 - **Pre-reqs before starting:**
   - **Kernel ≥ 5.10 on every node** — a **hard requirement from 1.18** ([[PRACTICE-KERNEL_REQUIREMENTS]]);
     verify now so the 1.17→1.18 hop doesn't strand nodes.
@@ -115,7 +121,8 @@ semantics flip to deny; a batch of flags/Helm keys are removed. Hold old default
 # inventory/<cluster>/group_vars/k8s_cluster/k8s-net-cilium.yml
 cilium_version: "1.16.19"                 # latest 1.16 patch
 # hold 1.15 defaults across the jump, then remove after validating:
-cilium_upgrade_compatibility: "1.15"      # -> Helm upgradeCompatibility=1.15
+cilium_extra_values:
+  upgradeCompatibility: "1.15"      # -> Helm upgradeCompatibility=1.15
 ```
 
 ```bash
@@ -132,7 +139,8 @@ IPsec single-key removed. Then:
 
 ```yaml
 cilium_version: "1.17.6"                  # latest 1.17 patch
-cilium_upgrade_compatibility: "1.16"
+cilium_extra_values:
+  upgradeCompatibility: "1.16"
 ```
 
 Re-run the Step 1 pre-flight (TARGET=1.17.z), converge as in Step 2, validate.
@@ -155,7 +163,8 @@ pre-checks first:
 
 ```yaml
 cilium_version: "1.18.4"
-cilium_upgrade_compatibility: "1.17"      # remove once validated on 1.18.4
+cilium_extra_values:
+  upgradeCompatibility: "1.17"      # remove once validated on 1.18.4
 # set any of the above explicitly, e.g. for ENI:
 # cilium_enable_ipv4_masquerade: true
 ```
@@ -170,7 +179,7 @@ cilium connectivity test
 kubectl get ciliumendpoints -A | head        # identities stable, no mass drops
 ```
 
-**Step 5 — Finalize.** Once 1.18.4 is validated and stable, **remove `cilium_upgrade_compatibility`**
+**Step 5 — Finalize.** Once 1.18.4 is validated and stable, **remove `upgradeCompatibility (cilium_extra_values)`**
 (so you adopt 1.18 defaults) and re-converge; re-run `cilium connectivity test`. Update the inventory
 comment noting you're intentionally pinning `cilium_version: 1.18.4` above Kubespray's tag default.
 
