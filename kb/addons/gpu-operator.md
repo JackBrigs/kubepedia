@@ -88,6 +88,13 @@ the key behavioural item.
 - **nvidia-validator fails on Talos** (library path resolution) (#1687) — relevant for Talos nodes.
 - missing install docs for **Amazon Linux 2023 / Bottlerocket** AMIs (#946).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+For clusters on an **older** GPU Operator (the "NVIDIAScape / LeakyVessels" container-escape class):
+- **CVE-2024-0132 (CRITICAL):** **TOCTOU race enabling host-filesystem access** (container escape) — affects GPU Operator **< 24.6.1** (libnvidia-container **< 1.16.2**), fixed **24.6.2 / 1.16.2**.
+- **CVE-2024-0133 (Medium):** crafted container image can create empty files on the host FS — same fix line.
+- The pinned 25.10.1 is patched, but **any GPU Operator below 24.6.1 in the envelope is a critical container-escape risk** — upgrade first.
+
 ## References
 
 - Platform-support, `values.yaml`, release notes (above).

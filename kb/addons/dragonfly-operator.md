@@ -75,6 +75,10 @@ affected by **three CVEs**; override `spec.image` to ≥1.40 to clear them.
 
 **Open upstream bugs (as of 2026-07-19):** **master-failover handling** — clients aren't disconnected when a pod loses master, so they keep talking to a stale master (#238/#324); **NetworkPolicy blocks metrics scraping** from external pods (#495); no headless service for mesh integration (#225).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+The Dragonfly DB GitHub advisories endpoint was not retrievable in this pass (rate-limited). Check the **Dragonfly project security page / releases** for version-specific CVEs before running an older image; historically the operator's data-loss risks (failover/readiness) have been the bigger operational concern than code CVEs — the **replication-aware readiness gate** (operator 1.5.0) is the key mitigation.
+
 ## References
 
 - `Chart.yaml`, `version.go`, Dragonfly security advisories (above).

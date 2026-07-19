@@ -82,6 +82,15 @@ inventory spans **v1.4.1 → v1.6.0**; v1.6.0 implements **Gateway API v1.4.0** 
 - **1.8.1:** bumps **Envoy to 1.38.1**; fixes the unary interceptor and **fail-open authentication in `GatewayNamespaceMode`** (a security-relevant fix — verify your auth posture if on GatewayNamespaceMode).
 - 1.7.x/1.8.x are otherwise maintenance; no breaking API changes flagged in this window.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+**⚠ The pinned 1.6.0 is affected by a large CVE batch** fixed only in **1.7.4 / 1.8.1** — this is a **forward-urgent** finding, not just historical:
+- **CVE-2026-53713 (CRITICAL):** **path traversal in Lua validation → secret disclosure**.
+- **CVE-2026-53714 (High):** **xDS authentication bypass in `GatewayNamespaceMode`**.
+- **CVE-2026-53715/53716/53717/53718/53719 (Medium):** Wasm-cache DoS race, gzip decompression without size limit, OCI-layer memory exhaustion, cross-namespace ReferenceGrant bypass, nil-deref on SecurityPolicy→TCPRoute.
+- Older lines: **CVE-2026-22771 (High)** arbitrary code execution via `EnvoyExtensionPolicy` Lua (<1.5.7/<1.6.2); **CVE-2025-24030 (High)** Envoy Admin interface exposed via path traversal (<1.2.6); CVE-2025-25294 log injection (<1.2.7/<1.3.1).
+- **Action: upgrade to ≥1.8.1.** The pin 1.6.0 sits below every one of these fixes.
+
 ## References
 
 - Compatibility matrix, v1.6.0 release notes, advisory GHSA-xrwg-mqj6-6m22 (above).

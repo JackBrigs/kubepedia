@@ -76,6 +76,10 @@ Splunk Observability metrics provider and AWS Gateway API Controller compatibili
 
 **Open upstream issues (as of 2026-07-19):** `skipAnalysis` is a non-pointer bool → **false may not serialize**, desyncing the Canary (#1660, a real API bug); AWS ALB ingress support still open (#659); no GitOps rollback-commit-back (#682); no "keep old version for instant rollback" (#453). Know these before designing canary flows.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+Flagger publishes **no GitHub security advisories** in this window — no version-specific CVEs to flag for older releases. Historical exposure is limited to transitive dependency/base-image CVEs in older images; upgrading for those is optional-not-urgent from a Flagger-code standpoint.
+
 ## References
 
 - `Chart.yaml`, CHANGELOG, PRs #1733/#1746/#1713 (above).

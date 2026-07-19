@@ -81,6 +81,10 @@ TLS unless another cert mode is configured.
 
 **Open upstream bugs (as of 2026-07-19):** **target-allocator RBAC validation incomplete** — webhook passes but runtime fails for `scrapeconfigs`/`probes` permissions (#4456); nested env / **downward-API refs not resolved** (appear literal) (#3022); **upgrading stateful-mode collectors** (e.g. 0.127→0.129) fails with forbidden spec modification, needs manual recreation (#4203); HTTP-receiver ingress path misconfigured → 404 (#2449).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+- **CVE-2026-47701 / GHSA-cxh2-4639-vmc5** (High): a **ServiceMonitor `bearerTokenFile` could read arbitrary files** and send the contents as a bearer token — affects **< 0.152.0**, fixed **0.152.0**. The pinned 0.156.0 is patched, but **older operators in the envelope are vulnerable** — upgrade off anything below 0.152.0.
+
 ## References
 
 - `Chart.yaml`, `compatibility.md`, `UPGRADING.md`, v0.156.0 release notes (above).

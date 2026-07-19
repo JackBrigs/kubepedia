@@ -78,6 +78,12 @@ metrics stack; deeper operational guidance is in [[CONCEPT-OBSERVABILITY_STACK]]
 - multitenant queries with `or` combine tenant + non-tenant filters incorrectly → extra series (#10948).
 - unclean shutdown / power loss can corrupt metadata files and block restart (#5012) — ensure clean shutdown / durable storage.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+For clusters on an **older** VictoriaMetrics:
+- **CVE-2026-61625** (Medium): **path traversal in `vmrestore`** — crafted backup part names escape the restore root; fixed **1.146.0 / 1.136.12 / 1.122.25**.
+- **CVE-2025-65942** (Low): Snappy decoder allows malformed blocks to trigger **excessive memory** consumption; fixed **1.129.1 / 1.122.8 / 1.110.23**. Older VM images in the envelope are affected.
+
 ## References
 
 - `Chart.yaml` + upstream changelog (above); advisory GHSA-66jq-2c23-2xh5.

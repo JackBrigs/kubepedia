@@ -69,6 +69,10 @@ CVE. Verify the effective `image.tag`; if it is the default 0.25.0, override it 
 
 **Long-standing open requests (as of 2026-07-19)** — UX gaps to be aware of: no built-in **notification on silence create/expire** (#730), no **acknowledge/assign a firing alert** (#1860), no native **Slack-thread** follow-ups (#3221), no **resolved notification for silenced** alerts (#226). These shape what Alertmanager can and can't do out of the box.
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+- **CVE-2023-40577 / GHSA-v86x-5fm3-5p7j** (High): **stored XSS via `/api/v1/alerts`** — affects app **v0.25.0**, fixed **v0.25.1**. The chart's default image can still be 0.25.0, so verify `image.tag`. Older era base-image/Go-stdlib CVEs may also flag on old images.
+
 ## References
 
 - `Chart.yaml` (above); advisory GHSA-v86x-5fm3-5p7j.

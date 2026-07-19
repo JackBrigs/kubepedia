@@ -71,6 +71,10 @@ The operator **orchestrates** the Elastic Stack — it does not bundle a fixed S
 
 **Open upstream bugs (as of 2026-07-19):** `is_managed` doesn't correctly update agent policies (#8709); **ECK gets `401 Unauthorized` setting up Fleet Server** via Kibana API (#6144); ES-9.0 log-autodiscovery annotation issue (#8680).
 
+## Older-version CVEs & security history (mined 2026-07-19)
+
+The ECK GitHub advisories endpoint was not retrievable in this pass (rate-limited); Elastic tracks CVEs on the **Elastic Security site**. The dominant older-version exposure is **not the ECK operator code** but the **Elasticsearch/Kibana Stack version** it manages — older managed stacks (e.g. 7.17 / 8.x below current) carry their own CVEs. Keep both the operator and the managed Stack patched, and remember 3.3.0 removed ES 6.x / Stack 7.17 support.
+
 ## References
 
 - `Chart.yaml`, ECK 3.1.0 README, Elastic release/breaking-changes notes (above).
