@@ -31,3 +31,16 @@ RFC (ask) → авторизация change authority → Change Record ведё
   **Emergency** (срочно; бумагу можно урезать, **тестирование — нет**).
 - **Backout/remediation обязателен.** Если чистого отката нет — явно указать точку невозврата.
 - ID (RFC/CHG/KEDB/PRB) выдаёт ваш ITSM; здесь — иллюстративные.
+
+## Дополнительно (готовые артефакты)
+- `emergency-change.template.md` — Emergency Change (срочный security-патч / устранение инцидента, ECAB).
+- `incident.template.md` — Incident Record.
+- `problems/security-cve-problems.md` — **Problem Records** по P0/P1 CVE (из капстона), 11 записей.
+- `kedb/` — **KEDB export**: 223 Known Error записи, сгенерированы из troubleshooting-слоя базы
+  (`scripts/gen_kedb.py`), сгруппированы по доменам. Не править руками — перегенерируется.
+
+## Регенерация KEDB
+```
+.venv/bin/python scripts/gen_kedb.py
+```
+Рендерит `kedb/*` из актуальных troubleshooting-доков базы. Внутренних KDS-ID в выводе нет.
