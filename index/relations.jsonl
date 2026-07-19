@@ -126,6 +126,11 @@
 {"source": "CONCEPT-ADDON_VOLSYNC", "target": "COMPONENT-SNAPSHOT_CONTROLLER", "type": "see_also"}
 {"source": "CONCEPT-ADDON_VOLSYNC", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
+{"source": "CONCEPT-AIRGAPPED_INSTALL", "target": "CONCEPT-ADDON_SPEGEL", "type": "see_also"}
+{"source": "CONCEPT-AIRGAPPED_INSTALL", "target": "CONCEPT-CONTAINER_MANAGER", "type": "see_also"}
+{"source": "CONCEPT-AIRGAPPED_INSTALL", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
+{"source": "CONCEPT-AIRGAPPED_INSTALL", "target": "CONFIG-PROXY", "type": "see_also"}
+{"source": "CONCEPT-AIRGAPPED_INSTALL", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}
 {"source": "CONCEPT-ARGOCD_SOURCE_HYDRATOR", "target": "COMPONENT-ARGOCD", "type": "see_also"}
 {"source": "CONCEPT-ARGOCD_SOURCE_HYDRATOR", "target": "UPGRADE-ARGOCD_2_11_TO_2_14", "type": "see_also"}
 {"source": "CONCEPT-CILIUM_DATAPATH", "target": "COMPONENT-CILIUM", "type": "see_also"}

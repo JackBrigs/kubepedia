@@ -244,6 +244,7 @@
 {"alias": "agent_report_interval", "ids": ["VARIABLE-AGENT_REPORT_INTERVAL"]}
 {"alias": "agentk", "ids": ["CONCEPT-ADDON_GITLAB_AGENT"]}
 {"alias": "air-gapped", "ids": ["PRACTICE-OFFLINE_ENVIRONMENT"]}
+{"alias": "air-gapped kubespray", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
 {"alias": "alb_ingress_aws_debug", "ids": ["VARIABLE-ALB_INGRESS_AWS_DEBUG"]}
 {"alias": "alb_ingress_aws_region", "ids": ["VARIABLE-ALB_INGRESS_AWS_REGION"]}
 {"alias": "alb_ingress_controller_namespace", "ids": ["VARIABLE-ALB_INGRESS_CONTROLLER_NAMESPACE"]}
@@ -1215,6 +1216,7 @@
 {"alias": "disaster recovery", "ids": ["PRACTICE-BACKUP_DR"]}
 {"alias": "disaster recovery kubernetes", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
 {"alias": "disaster recovery workloads", "ids": ["CONCEPT-VELERO"]}
+{"alias": "disconnected cluster install", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
 {"alias": "discovery token ca cert hash", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
 {"alias": "discovery_timeout", "ids": ["VARIABLE-DISCOVERY_TIMEOUT"]}
 {"alias": "disk-pressure-eviction", "ids": ["TROUBLE-DISK_PRESSURE_EVICTION"]}
@@ -1603,6 +1605,7 @@
 {"alias": "field manager conflict kubectl", "ids": ["CONCEPT-K8S_KUBECTL_SSA_DEFAULT"]}
 {"alias": "file descriptor limit kubernetes", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
 {"alias": "files", "ids": ["TAG-FILES"]}
+{"alias": "files_repo images_repo", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
 {"alias": "finalizers blocking namespace", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
 {"alias": "firewalld blocking kubernetes", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
 {"alias": "first_kube_control_plane", "ids": ["VARIABLE-FIRST_KUBE_CONTROL_PLANE"]}
@@ -2701,6 +2704,7 @@
 {"alias": "nginx_image_tag", "ids": ["VARIABLE-NGINX_IMAGE_TAG"]}
 {"alias": "no blanket cluster-admin", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
 {"alias": "no default storageclass", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
+{"alias": "no internet kubespray deploy", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
 {"alias": "no nodes available", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "no persistent volumes available", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER", "TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
 {"alias": "no preemption victims found", "ids": ["TROUBLE-SCHEDULER_PREEMPTION_GATES"]}
@@ -2818,6 +2822,8 @@
 {"alias": "oci-ccm-template-filename", "ids": ["TROUBLE-OCI_CCM_TEMPLATE_FILENAME"]}
 {"alias": "offline control plane node removal", "ids": ["TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE"]}
 {"alias": "offline environment", "ids": ["PRACTICE-OFFLINE_ENVIRONMENT"]}
+{"alias": "offline environment install", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
+{"alias": "offline.yml group_vars", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
 {"alias": "oidc provider", "ids": ["CONCEPT-ADDON_DEX"]}
 {"alias": "oidc redirect_uri mismatch", "ids": ["TROUBLE-DEX_OIDC_LOGIN_FAILS"]}
 {"alias": "old_dns_domains", "ids": ["VARIABLE-OLD_DNS_DOMAINS"]}
@@ -3018,6 +3024,7 @@
 {"alias": "registry_disk_size", "ids": ["VARIABLE-REGISTRY_DISK_SIZE"]}
 {"alias": "registry_enabled", "ids": ["VARIABLE-REGISTRY_ENABLED"]}
 {"alias": "registry_enabled images disappear", "ids": ["TROUBLE-REGISTRY_ADDON"]}
+{"alias": "registry_host mirror", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
 {"alias": "registry_htpasswd", "ids": ["TROUBLE-REGISTRY_ADDON", "VARIABLE-REGISTRY_HTPASSWD"]}
 {"alias": "registry_image_repo", "ids": ["VARIABLE-REGISTRY_IMAGE_REPO"]}
 {"alias": "registry_image_tag", "ids": ["VARIABLE-REGISTRY_IMAGE_TAG"]}
