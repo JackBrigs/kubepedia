@@ -75,6 +75,10 @@ inventory runs it in three environments — `exc` chart **0.87.0**, `exc-stage` 
 
 The kaasops envoy-xds-controller is a small (actively-maintained) project with no notable CVE record; older-version exposure is the **user-supplied Envoy data-plane image** (Envoy CVEs — a significant stream) and base images. Patch **Envoy** independently; keep the controller current (0.17.x).
 
+## Guides & how-to (official)
+
+- **Docs/repo:** https://github.com/kaasops/envoy-xds-controller (see `docs/`)
+- **How to upgrade:** `helm upgrade` the `exc` chart (paired with dex); 0.17.0 refactor is non-breaking. The **Envoy data-plane image is user-supplied** — patch Envoy separately (Envoy has a heavy CVE stream).
 ## References
 
 - `Chart.yaml`, releases (above).

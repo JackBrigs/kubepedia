@@ -69,6 +69,10 @@ Headlamp is a CNCF (kubernetes-sigs) web UI for clusters, deployed via chart **0
 
 Headlamp has a limited CVE record; older-version exposure is base-image/dependency CVEs and UI-side (XSS-class) issues fixed over time, plus **OIDC/impersonation bugs** (e.g. EKS impersonation, #4198) that are correctness/security-adjacent. As a UI acting as the logged-in identity, keep it current (0.43.0 fixed OIDC public-provider login) and rely on RBAC for authorization.
 
+## Guides & how-to (official)
+
+- **Docs:** https://headlamp.dev/docs/latest/ ; **install:** https://headlamp.dev/docs/latest/installation/
+- **How to upgrade:** `helm upgrade headlamp/headlamp` (or the in-cluster manifest); low-risk (a UI). 0.43.0 fixed OIDC public-provider login and added opt-in SA-token auth — relevant if you run behind OIDC/EKS.
 ## References
 
 - `Chart.yaml` (headlamp-helm-0.43.0); advisory GHSA-34rf-485x-g5h7.

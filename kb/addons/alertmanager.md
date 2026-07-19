@@ -73,6 +73,11 @@ CVE. Verify the effective `image.tag`; if it is the default 0.25.0, override it 
 
 - **CVE-2023-40577 / GHSA-v86x-5fm3-5p7j** (High): **stored XSS via `/api/v1/alerts`** — affects app **v0.25.0**, fixed **v0.25.1**. The chart's default image can still be 0.25.0, so verify `image.tag`. Older era base-image/Go-stdlib CVEs may also flag on old images.
 
+## Guides & how-to (official)
+
+- **Configuration/management:** https://prometheus.io/docs/alerting/latest/configuration/ ; **chart:** prometheus-community/alertmanager
+- **How to upgrade:** `helm upgrade prometheus-community/alertmanager`; validate config with **`amtool check-config`** before/after; for **HA**, ensure the gossip port (9094) stays open across replicas. **Override `image.tag` above 0.25.0** — the chart's default appVersion carries CVE-2023-40577.
+
 ## References
 
 - `Chart.yaml` (above); advisory GHSA-v86x-5fm3-5p7j.

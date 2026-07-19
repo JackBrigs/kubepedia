@@ -79,6 +79,10 @@ image is user-supplied through the CRD.
 
 The kaasops vector-operator is a small project with no notable CVE record; older-version exposure is the **user-supplied Vector image** (Vector's own CVEs) and base images. Since the Vector version is set via the CRD, patch **Vector** independently of the operator; the operator itself is low-CVE-surface.
 
+## Guides & how-to (official)
+
+- **Docs/repo:** https://github.com/kaasops/vector-operator (see `docs/`, quick-start)
+- **How to upgrade:** `helm upgrade` the chart; CRDs backward-compatible 0.3→0.4 (no breaking). The **Vector image is user-supplied via the CRD** — upgrade Vector independently of the operator.
 ## References
 
 - `Chart.yaml`, `go.mod`, release v0.3.3 / PR #203 (above).

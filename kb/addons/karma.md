@@ -78,6 +78,10 @@ auth-bypass CVEs (see Compatibility).
 
 Karma has no notable CVE record; it's a read-only dashboard, so older-version exposure is limited to base-image/Go CVEs and any UI (XSS-class) fixes. Low security surface — upgrading (latest 0.131) is low-urgency from a CVE standpoint; the OAuth proxy in front is the real access-control boundary.
 
+## Guides & how-to (official)
+
+- **Docs/repo:** https://github.com/prymitive/karma (README + `docs/`)
+- **How to upgrade:** `helm upgrade` (or bump the image); stateless read-only dashboard, **low-risk upgrade** (latest 0.131). Reconfigure Alertmanager URIs / OAuth proxy as needed.
 ## References
 
 - karma Chart.yaml (wiremind), karma v0.121 release, oauth2-proxy advisories (above).

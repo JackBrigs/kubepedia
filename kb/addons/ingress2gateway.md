@@ -77,6 +77,10 @@ a one-shot. It is a common migration path off ingress-nginx toward Gateway API
 
 ingress2gateway is a **one-shot CLI**, not a running service — it has effectively **no runtime CVE surface**. The only 'security' angle is conversion fidelity (dropped auth/rewrite annotations, largely fixed in 1.x). Use a current build (≥1.0.0) and review the output.
 
+## Guides & how-to (official)
+
+- **Repo/README:** https://github.com/kubernetes-sigs/ingress2gateway ; **Gateway API:** https://gateway-api.sigs.k8s.io/
+- **How to use/upgrade:** it's a **one-shot CLI**, not a deployed component — install the latest binary (`go install` / release) and re-run `ingress2gateway print`. **≥1.0.0** has far wider ingress-nginx annotation coverage; review output for anything unmapped.
 ## References
 
 - kubernetes-sigs/ingress2gateway (above).

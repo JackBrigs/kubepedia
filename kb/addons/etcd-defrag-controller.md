@@ -69,6 +69,10 @@ effectively-undocumented project — most engineering detail is `unverified`.
 
 etcd-defrag-controller is a small, low-activity project (~Aug 2024) with no notable CVE record; older-version exposure is base-image/dependency CVEs. The dominant risk is operational (stop-the-world defrag), not a CVE. For a critical cluster, prefer a controlled maintenance job over a pre-1.0 controller.
 
+## Guides & how-to (official)
+
+- **Repo:** https://github.com/kaasops/etcd-defrag-controller ; **etcd defrag concept:** https://etcd.io/docs/latest/op-guide/maintenance/
+- **How to upgrade / operate:** small low-activity project — the safer 'how-to' for a critical cluster is a **controlled maintenance job** running `etcdctl defrag` **one member at a time**, off-peak, rather than relying on the pre-1.0 controller.
 ## References
 
 - kaasops/etcd-defrag-controller `Chart.yaml` (above).

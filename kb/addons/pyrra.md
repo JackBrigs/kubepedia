@@ -71,6 +71,10 @@ the running image). The chart lives in a **separate repo** (`pyrra-dev/helm-char
 
 Pyrra has no notable CVE record; older-version exposure is base-image/dependency CVEs. Low security surface (it generates Prometheus rules); upgrading (0.10.1) is driven by features/perf, not CVEs.
 
+## Guides & how-to (official)
+
+- **Docs/repo:** https://github.com/pyrra-dev/pyrra (README)
+- **How to upgrade:** `helm upgrade`; no breaking 0.9→0.10. 0.10.0 adds Performance Mode (subquery SLOs) + Prometheus-v3 histogram support; ensure generated PrometheusRules still match your `ruleSelector`.
 ## References
 
 - `Chart.yaml` (pyrra-dev/helm-charts); v0.9.0 release notes.

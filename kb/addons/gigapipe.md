@@ -87,6 +87,10 @@ is v4.3.1). ClickHouse is a required external dependency.
 
 For older Gigapipe/qryn, the notable security item is the **reflected-XSS hardening in 4.3.1** — versions below 4.3.1 are exposed to that XSS class; older images also carry base/dependency CVEs. Upgrade to ≥4.3.1 and front the UI with auth.
 
+## Guides & how-to (official)
+
+- **Docs:** https://qryn.metrico.in/ (qryn/Gigapipe) ; **repo:** https://github.com/metrico/qryn
+- **How to upgrade:** upgrade the reader/writer images together against the **same ClickHouse** schema; **get ≥4.3.1** for the reflected-XSS fix. Verify ClickHouse migrations after upgrade.
 ## References
 
 - gigapipe-helm Chart.yaml/values, qryn repo + wiki (above); ClickHouse advisories.

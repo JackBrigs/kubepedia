@@ -80,6 +80,10 @@ which is CVE-vulnerable.
 
 kubernetes-mcp-server is **pre-1.0** with no formal CVE stream, but its security surface is real: it acts as its **ServiceAccount**, so an over-privileged SA on **any** version (old or new) is the dominant risk — treat RBAC as the boundary. Older versions also lack later auth modes (token pass-through) and the PodsExec stdout/stderr split. Pin exactly and minimize SA RBAC.
 
+## Guides & how-to (official)
+
+- **Repo/README:** https://github.com/containers/kubernetes-mcp-server
+- **How to upgrade:** **pre-1.0 — pin exactly and re-test each bump** (breaking changes are frequent, e.g. 0.0.63 PodsExec stdout/stderr split). Treat the server's **ServiceAccount RBAC as a security boundary** on every version.
 ## References
 
 - kubernetes-mcp-server `Chart.yaml`, open-webui advisory PYSEC-2026-2751 (above).

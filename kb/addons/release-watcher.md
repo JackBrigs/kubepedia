@@ -64,6 +64,10 @@ probable`; treat as inventory-level until the source repo is confirmed.
 
 release-watcher is niche/low-activity with no notable CVE record; older-version exposure is base-image/dependency CVEs and the handling of the **source API token** (a leaked GitHub PAT is the sensitive asset). Verify the actual image (the 0.0.9 pin doesn't map to a clear maintained upstream) and scope the token minimally.
 
+## Guides & how-to (official)
+
+- **Repo:** https://github.com/rycus86/release-watcher
+- **How to upgrade:** niche/low-activity — **verify the actual image** (the 0.0.9 pin doesn't cleanly map to this upstream) before upgrading. Provide an authenticated source token (avoid rate-limit) and scope it minimally.
 ## References
 
 - rycus86/release-watcher (closest public match, above).

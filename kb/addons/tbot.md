@@ -77,6 +77,10 @@ this doc uses the nearest real release **18.7.4** (`confidence: probable` on the
 
 tbot ships as part of **Teleport**, which has a **regular security-advisory cadence (HCSEC)** — an older tbot/Teleport misses those. Concretely, versions **below 18.9.2** miss the AWS-app-access SSRF fix and other 18.x hardening (see the upgrade section); older 17.x/16.x lines carry their own Teleport CVEs. Track the supported Teleport 18.x patch stream — this is a security agent, so currency matters most here.
 
+## Guides & how-to (official)
+
+- **Docs:** https://goteleport.com/docs/machine-id/ ; **deploy on k8s:** https://goteleport.com/docs/machine-id/deployment/kubernetes/
+- **How to upgrade:** upgrade the tbot image to match the Teleport cluster version (keep within one Teleport minor); **track the 18.x patch stream — this is a security agent** (get ≥18.9.2 for the AWS SSRF fix).
 ## References
 
 - tbot `Chart.yaml` (v18.7.4), Teleport upgrading overview (above).

@@ -76,6 +76,10 @@ packaging** — `confidence: probable`.
 
 Because the upstream repo is **abandoned (last commit April 2020)**, there are **no security fixes at all** — any image is a **permanently-frozen CVE surface** (old Go, old base image, unpatched device-plugin code). This is a security reason on top of the maintenance reason to **replace it** with a maintained KVM device plugin / current KubeVirt.
 
+## Guides & how-to (official)
+
+- **Original repo (abandoned):** https://github.com/kubevirt/kubernetes-device-plugins ; **maintained alternative — KubeVirt:** https://kubevirt.io/user-guide/
+- **How to 'upgrade':** the referenced plugin is **dead (last commit 2020)** — the real action is to **replace it** with a maintained KVM device plugin / current KubeVirt that advertises `devices.kubevirt.io/kvm`.
 ## References
 
 - kubevirt/kubernetes-device-plugins KVM doc, Kubernetes device-plugins doc (above).
