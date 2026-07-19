@@ -28,6 +28,8 @@ sources:
     note: "tested K8s v1.29–v1.31"
 relations:
   - type: see_also
+    target: TROUBLE-CEPH_CSI_CEPHFS_MOUNT
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
   - type: see_also
     target: CONCEPT-ADDON_ROOK_CEPH

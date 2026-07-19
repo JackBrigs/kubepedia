@@ -32,6 +32,8 @@ sources:
     note: "vault-env sidecar, deploy guidance"
 relations:
   - type: see_also
+    target: TROUBLE-VAULT_SECRETS_WEBHOOK
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
   - type: see_also
     target: CONCEPT-ADDON_VAULT

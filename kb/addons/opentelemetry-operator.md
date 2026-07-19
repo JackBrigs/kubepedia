@@ -28,6 +28,8 @@ sources:
     note: "supported K8s v1.25–v1.35"
 relations:
   - type: see_also
+    target: TROUBLE-OTEL_OPERATOR
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

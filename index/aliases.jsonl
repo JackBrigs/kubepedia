@@ -385,6 +385,11 @@
 {"alias": "aws_ebs_csi_plugin_image_tag", "ids": ["VARIABLE-AWS_EBS_CSI_PLUGIN_IMAGE_TAG"]}
 {"alias": "aws_ebs_csi_plugin_version", "ids": ["VARIABLE-AWS_EBS_CSI_PLUGIN_VERSION"]}
 {"alias": "awx", "ids": ["CONCEPT-ADDON_AWX"]}
+{"alias": "awx admin password", "ids": ["TROUBLE-AWX_OPERATOR"]}
+{"alias": "awx migration job", "ids": ["TROUBLE-AWX_OPERATOR"]}
+{"alias": "awx not coming up", "ids": ["TROUBLE-AWX_OPERATOR"]}
+{"alias": "awx operator reconcile stuck", "ids": ["TROUBLE-AWX_OPERATOR"]}
+{"alias": "awx postgres pending", "ids": ["TROUBLE-AWX_OPERATOR"]}
 {"alias": "awx-operator", "ids": ["CONCEPT-ADDON_AWX"]}
 {"alias": "azure-csi", "ids": ["COMPONENT-AZURE_CSI"]}
 {"alias": "azure-csi-driver", "ids": ["TAG-AZURE_CSI_DRIVER"]}
@@ -407,6 +412,7 @@
 {"alias": "back-off restarting failed container", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "backup", "ids": ["PRACTICE-BACKUP_DR"]}
 {"alias": "bank-vaults webhook", "ids": ["CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK"]}
+{"alias": "bank-vaults webhook failurePolicy", "ids": ["TROUBLE-VAULT_SECRETS_WEBHOOK"]}
 {"alias": "bare metal storage kubespray", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
 {"alias": "baseline restricted privileged", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
 {"alias": "bastion", "ids": ["TAG-BASTION"]}
@@ -537,13 +543,17 @@
 {"alias": "capsule webhook broke after upgrade", "ids": ["TROUBLE-CAPSULE_UPGRADE_013"]}
 {"alias": "capsule-proxy", "ids": ["CONCEPT-ADDON_CAPSULE"]}
 {"alias": "capsule-system", "ids": ["CONCEPT-ADDON_CAPSULE"]}
+{"alias": "catalogsource connecting", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "centos_fastestmirror_enabled", "ids": ["VARIABLE-CENTOS_FASTESTMIRROR_ENABLED"]}
 {"alias": "ceph health_warn", "ids": ["TROUBLE-ROOK_CEPH_HEALTH_WARN_OSD"]}
 {"alias": "ceph osd not creating", "ids": ["TROUBLE-ROOK_CEPH_HEALTH_WARN_OSD"]}
 {"alias": "ceph pgs degraded", "ids": ["TROUBLE-ROOK_CEPH_HEALTH_WARN_OSD"]}
 {"alias": "ceph storage", "ids": ["CONCEPT-ADDON_ROOK_CEPH"]}
+{"alias": "ceph-csi mount failed", "ids": ["TROUBLE-CEPH_CSI_CEPHFS_MOUNT"]}
 {"alias": "ceph-csi-cephfs", "ids": ["CONCEPT-ADDON_CEPH_CSI_CEPHFS"]}
+{"alias": "cephfs clusterID mismatch", "ids": ["TROUBLE-CEPH_CSI_CEPHFS_MOUNT"]}
 {"alias": "cephfs csi driver", "ids": ["CONCEPT-ADDON_CEPH_CSI_CEPHFS"]}
+{"alias": "cephfs pvc pending", "ids": ["TROUBLE-CEPH_CSI_CEPHFS_MOUNT"]}
 {"alias": "cephfs_provisioner_admin_id", "ids": ["VARIABLE-CEPHFS_PROVISIONER_ADMIN_ID"]}
 {"alias": "cephfs_provisioner_claim_root", "ids": ["VARIABLE-CEPHFS_PROVISIONER_CLAIM_ROOT"]}
 {"alias": "cephfs_provisioner_cluster", "ids": ["VARIABLE-CEPHFS_PROVISIONER_CLUSTER"]}
@@ -1153,6 +1163,7 @@
 {"alias": "csi_snapshot_controller_enabled", "ids": ["VARIABLE-CSI_SNAPSHOT_CONTROLLER_ENABLED"]}
 {"alias": "csi_snapshotter_image_repo", "ids": ["VARIABLE-CSI_SNAPSHOTTER_IMAGE_REPO"]}
 {"alias": "csi_snapshotter_image_tag", "ids": ["VARIABLE-CSI_SNAPSHOTTER_IMAGE_TAG"]}
+{"alias": "csv pending", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "custom apiserver flags", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
 {"alias": "custom flags kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
 {"alias": "custom_cni", "ids": ["CONCEPT-CUSTOM_CNI"]}
@@ -1852,6 +1863,7 @@
 {"alias": "insecure registry containerd", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
 {"alias": "install order cert-manager first", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
 {"alias": "installed addons", "ids": ["CONCEPT-ADDON_CATALOG"]}
+{"alias": "installplan requires approval", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "insufficient cpu memory", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "insufficient nvidia.com/gpu", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
 {"alias": "integration failure matrix", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
@@ -2634,6 +2646,7 @@
 {"alias": "multus_namespace_isolation", "ids": ["VARIABLE-MULTUS_NAMESPACE_ISOLATION"]}
 {"alias": "multus_version", "ids": ["COMPONENT-MULTUS", "VARIABLE-MULTUS_VERSION"]}
 {"alias": "must read before upgrade k8s", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES"]}
+{"alias": "mutating webhook blocks pod creation", "ids": ["TROUBLE-VAULT_SECRETS_WEBHOOK"]}
 {"alias": "mutatingwebhookconfiguration blocking", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "nameservers", "ids": ["VARIABLE-NAMESERVERS"]}
 {"alias": "namespace", "ids": ["VARIABLE-NAMESPACE"]}
@@ -2711,6 +2724,7 @@
 {"alias": "no blanket cluster-admin", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
 {"alias": "no default storageclass", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
 {"alias": "no internet kubespray deploy", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
+{"alias": "no mds server available", "ids": ["TROUBLE-CEPH_CSI_CEPHFS_MOUNT"]}
 {"alias": "no nodes available", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "no persistent volumes available", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER", "TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
 {"alias": "no preemption victims found", "ids": ["TROUBLE-SCHEDULER_PREEMPTION_GATES"]}
@@ -2835,6 +2849,8 @@
 {"alias": "old_dns_domains", "ids": ["VARIABLE-OLD_DNS_DOMAINS"]}
 {"alias": "olm", "ids": ["CONCEPT-ADDON_OLM"]}
 {"alias": "olm 0.32.0", "ids": ["CONCEPT-ADDON_OLM"]}
+{"alias": "olm operator not installing", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
+{"alias": "olm subscription stuck", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "omni infrastructure provider bare-metal", "ids": ["CONCEPT-TALOS_OMNI"]}
 {"alias": "omni kubespan", "ids": ["CONCEPT-TALOS_OMNI"]}
 {"alias": "omni self-hosted saas", "ids": ["CONCEPT-TALOS_OMNI"]}
@@ -2853,14 +2869,20 @@
 {"alias": "openstack_lbaas_monitor_max_retries", "ids": ["VARIABLE-OPENSTACK_LBAAS_MONITOR_MAX_RETRIES"]}
 {"alias": "openstack_lbaas_monitor_timeout", "ids": ["VARIABLE-OPENSTACK_LBAAS_MONITOR_TIMEOUT"]}
 {"alias": "opentelemetry", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
+{"alias": "opentelemetry operator webhook", "ids": ["TROUBLE-OTEL_OPERATOR"]}
 {"alias": "opentelemetry-operator", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
+{"alias": "opentelemetrycollector crd", "ids": ["TROUBLE-OTEL_OPERATOR"]}
 {"alias": "operational runbook", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
 {"alias": "operator webhook no certs", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
 {"alias": "operator-lifecycle-manager", "ids": ["CONCEPT-ADDON_OLM"]}
+{"alias": "operatorgroup missing", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "ordered webhooks", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "orphaned released pv", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "os patching kubernetes node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "otel auto-instrumentation not working", "ids": ["TROUBLE-OTEL_OPERATOR"]}
+{"alias": "otel collector not created", "ids": ["TROUBLE-OTEL_OPERATOR"]}
 {"alias": "otel operator", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
+{"alias": "otel operator needs cert-manager", "ids": ["TROUBLE-OTEL_OPERATOR"]}
 {"alias": "out of memory pod", "ids": ["TROUBLE-OOMKILLED"]}
 {"alias": "out-of-service taint force detach", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
 {"alias": "out-of-tree cloud provider", "ids": ["CONCEPT-CLOUD_CONTROLLER_MANAGER"]}
@@ -3169,6 +3191,7 @@
 {"alias": "secretbox encryption", "ids": ["PRACTICE-RUNBOOK_SECRETS_ENCRYPTION"]}
 {"alias": "secrets in git", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
 {"alias": "secrets not encrypted by default", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
+{"alias": "secrets not injected vault webhook", "ids": ["TROUBLE-VAULT_SECRETS_WEBHOOK"]}
 {"alias": "secrets-encryption-at-rest", "ids": ["PRACTICE-SECRETS_ENCRYPTION_AT_REST"]}
 {"alias": "secrets_encryption_query", "ids": ["VARIABLE-SECRETS_ENCRYPTION_QUERY"]}
 {"alias": "secretstore not ready", "ids": ["TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING"]}
@@ -3255,6 +3278,7 @@
 {"alias": "storageclass not found", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER"]}
 {"alias": "structured authentication configuration", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN", "CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
 {"alias": "structured authorization configuration", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
+{"alias": "subvolumegroup not found", "ids": ["TROUBLE-CEPH_CSI_CEPHFS_MOUNT"]}
 {"alias": "supplementary_addresses_in_ssl_keys", "ids": ["TROUBLE-APISERVER_CERT_SAN", "VARIABLE-SUPPLEMENTARY_ADDRESSES_IN_SSL_KEYS"]}
 {"alias": "supported kubernetes versions", "ids": ["CONCEPT-KUBERNETES_VERSION_SUPPORT"]}
 {"alias": "supported ubuntu versions kubespray", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
@@ -3465,7 +3489,9 @@
 {"alias": "vault pods 0/1", "ids": ["TROUBLE-VAULT_PODS_SEALED"]}
 {"alias": "vault sealed", "ids": ["TROUBLE-VAULT_PODS_SEALED"]}
 {"alias": "vault-env", "ids": ["CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK"]}
+{"alias": "vault-env cannot authenticate", "ids": ["TROUBLE-VAULT_SECRETS_WEBHOOK"]}
 {"alias": "vault-secrets-webhook", "ids": ["CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK"]}
+{"alias": "vault-secrets-webhook pods stuck", "ids": ["TROUBLE-VAULT_SECRETS_WEBHOOK"]}
 {"alias": "vector logs operator", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
 {"alias": "vector-operator", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
 {"alias": "velero", "ids": ["CONCEPT-VELERO"]}

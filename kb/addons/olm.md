@@ -23,6 +23,8 @@ sources:
     note: "operator-registry v1.55.0, K8s libs 0.32.x, NetworkPolicy support"
 relations:
   - type: see_also
+    target: TROUBLE-OLM_SUBSCRIPTION
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 

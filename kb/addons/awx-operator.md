@@ -28,6 +28,8 @@ sources:
     note: "PostgreSQL 15, Redis 7 defaults"
 relations:
   - type: see_also
+    target: TROUBLE-AWX_OPERATOR
+  - type: see_also
     target: CONCEPT-ADDON_CATALOG
 ---
 
