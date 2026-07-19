@@ -103,6 +103,10 @@ Vault has a **substantial 2025 advisory record** affecting the **1.15–1.21** l
 - **CVE-2025-12044**: rate-limiting regression (applied **after** JSON parsing) → DoS.
 - The pinned 1.21.2 is above most fixes, but **any older Vault in the envelope is exposed** — prioritize Vault patching, especially LDAP/AWS auth.
 
+## Guides & how-to (official)
+
+- **Upgrade:** https://developer.hashicorp.com/vault/docs/upgrade (+ version-specific `.../docs/upgrading/upgrade-to-<x.y.z>`)
+- **How to upgrade (HA):** read the version upgrade notes / change tracker; **take a raft snapshot**; **step-down the active node**, upgrade standbys first, then step-down + upgrade the leader; verify version and **unseal**. Note **2.0.2 requires `disable_mlock=true`** (mlock cap removed).
 ## References
 
 - `vault-helm` v0.32.0 `Chart.yaml` + release notes; HashiCorp 1.21.4 advisory (all above).

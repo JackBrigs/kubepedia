@@ -92,6 +92,10 @@ the **CSI-operator migration** and **StorageClass immutability**.
 
 Rook itself publishes **no GitHub security advisories** in this window — its security posture is dominated by the **bundled Ceph version's** CVEs, not Rook operator code. For older clusters, the relevant exposure is the **older Ceph** each Rook version shipped (e.g. pre-19.2.x lines); track Ceph advisories for the Ceph version your Rook release deploys, and keep Rook current so it pulls a patched Ceph.
 
+## Guides & how-to (official)
+
+- **Rook upgrade:** https://rook.io/docs/rook/latest-release/Upgrade/rook-upgrade/ ; **Ceph upgrade:** https://rook.io/docs/rook/latest-release/Upgrade/ceph-upgrade/
+- **How to upgrade:** cluster **HEALTH_OK first**; **one minor at a time**, tagged releases only; apply common resources + **CRDs first**, then bump the **operator image** (it cascades to mons/mgrs/OSDs). **v1.20 requires migrating CSI config** from the operator ConfigMap to ceph-csi-operator resources before upgrading.
 ## References
 
 - Rook v1.18 prerequisites, upgrade guide, ceph-upgrade doc (above); Ceph CVE-2025-52555.

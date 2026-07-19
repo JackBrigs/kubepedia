@@ -88,6 +88,11 @@ ingress-nginx has a **severe historical CVE record** — because the controller 
 - **CVE-2021-25742**: earlier snippet-based host/secret access.
 - **Mitigations** (any version): set **`allow-snippet-annotations: false`**, enable **`--enable-annotation-validation`**, and tighten who can create/edit Ingress objects. Combined with **CVE-2025-1974 "IngressNightmare"** (see the upgrade section), this is the most breach-prone addon — keep it patched and locked down.
 
+## Guides & how-to (official)
+
+- **Upgrade:** https://kubernetes.github.io/ingress-nginx/deploy/upgrade/
+- **Install/Helm:** https://kubernetes.github.io/ingress-nginx/deploy/
+- **How to upgrade:** Helm — `helm upgrade --reuse-values ingress-nginx ingress-nginx/ingress-nginx`; without Helm — `kubectl set image` the controller Deployment; ensure any **template overrides** are compatible with the new version; check controller↔Kubernetes compatibility. **Patch to ≥1.12.1** for IngressNightmare (see CVEs).
 ## References
 
 - `Chart.yaml`, IngressNightmare advisory + controller-v1.12.0/v1.12.1 release notes (above).

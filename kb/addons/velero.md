@@ -81,6 +81,10 @@ Kubespray-managed Velero. Operational backup/restore guidance is in [[CONCEPT-VE
 
 For clusters on an **older** Velero: **CVE-2020-3996** — restore could **bind a PV to the wrong PVC** (data exposure), affects **<1.4.3 / 1.5.2**. Older images also predate the 1.18.x Kopia-snapshot-leak and VolumeGroupSnapshot-v1beta2 fixes. Upgrade off very old Velero; keep the bundled plugins/movers current.
 
+## Guides & how-to (official)
+
+- **Upgrade:** https://velero.io/docs/main/upgrade-to-1.16/ ; **docs:** https://velero.io/docs/main/
+- **How to upgrade:** update CRDs (`velero install --crds-only`), update the server Deployment image, verify plugin/provider compatibility; VolumeGroupSnapshot v1beta2 for K8s 1.34+.
 ## References
 
 - `Chart.yaml`, upgrade-to-1.17 doc, v1.17.1 release notes (above).

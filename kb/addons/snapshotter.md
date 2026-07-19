@@ -78,6 +78,10 @@ version); other addons like [[CONCEPT-ADDON_VOLSYNC]] depend on it.
 
 external-snapshotter publishes **no GitHub security advisories** for the controller itself; its historical exposure is **transitive dependency CVEs** (crypto/tls, gRPC, OpenTelemetry — tracked in issue #1401) baked into older images. For older clusters, the practical action is to **move to a current 8.x image** to pick up the dependency and webhook-removal hardening rather than any controller-specific CVE fix.
 
+## Guides & how-to (official)
+
+- **Deploy/upgrade:** https://github.com/kubernetes-csi/external-snapshotter (README) ; **VolumeSnapshot concept:** https://kubernetes.io/docs/concepts/storage/volume-snapshots/
+- **How to upgrade:** install the **CRDs once per cluster** (`kubectl kustomize client/config/crd`), run **exactly one snapshot-controller** cluster-wide (kube-system), and the sidecar **once per CSI driver**. On upgrade from ≤8.1, note **v8.2 removed the validating webhook** — delete the old webhook config.
 ## References
 
 - kubernetes-csi/external-snapshotter (above).

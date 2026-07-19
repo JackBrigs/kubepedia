@@ -88,6 +88,10 @@ control plane, Velero for app-level backup, migration, and selective restore.
 For clusters on an **older** Velero:
 - **CVE-2020-3996 / GHSA-72xg-3mcq-52v4** (Medium): the restore process could **bind a PersistentVolume to the wrong PVC**, potentially exposing data to unauthorized users — affects **v0.x / v1.x below 1.4.3 / 1.5.2**, fixed **1.4.3 / 1.5.2**. Any very old Velero should be upgraded off this.
 
+## Guides & how-to (official)
+
+- **Upgrade:** https://velero.io/docs/main/upgrade-to-1.16/ (per-version pages under `velero.io/docs/<version>/upgrade-to-<version>/`)
+- **How to upgrade:** update **CRDs** (`velero install --crds-only` or `kubectl apply`), then update the Velero **server Deployment image**; verify **plugin/provider compatibility** for the target version. For **K8s 1.34+**, mind the VolumeGroupSnapshot v1beta2 migration (1.18.1).
 ## References
 
 - Velero docs. DR strategy: [[PRACTICE-BACKUP_DR]]; CSI/snapshots: [[CONCEPT-CSI_LAYER]];

@@ -81,6 +81,10 @@ VolSync chart and app are lock-stepped at **0.15.0** (no 3.5.0 exists).
 
 VolSync publishes **no GitHub security advisories** of its own; historical exposure is driven by the **bundled mover versions** (Restic/Rclone/Syncthing/rsync-tls) in older images. Older releases carried older Restic/Rclone with their own CVEs and weaker TLS defaults (the TLS-1.3 floor only arrived in 0.16.0). For older clusters, upgrade to pull patched movers and the stricter rsync-tls profile.
 
+## Guides & how-to (official)
+
+- **Docs:** https://volsync.readthedocs.io/en/stable/ ; **install:** https://volsync.readthedocs.io/en/stable/installation/index.html
+- **How to upgrade:** `helm upgrade` (or advance the OLM channel); CRDs applied by the operator. Note **0.16.0 enforces rsync-tls TLS 1.3 minimum** — check peer/mover compatibility before upgrading replication relationships.
 ## References
 
 - `Chart.yaml`, v0.15.0 release notes (above); VolSync install docs.
