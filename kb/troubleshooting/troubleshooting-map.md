@@ -149,6 +149,8 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
 
 - Helm ownership adopt error → [[TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT]].
 - Config validation → [[TROUBLE-CILIUM_CONFIG_VALIDATION]].
+- agent `Init:CrashLoopBackOff` at `mount-cgroup` (`/hostbin/cilium-mount: Permission denied`),
+  node NotReady/`agent-not-ready` → [[TROUBLE-CILIUM_MOUNT_CGROUP_DENIED]].
 - Packet drops (CT map / identity / policy) → [[TROUBLE-CILIUM_PACKET_DROPS]].
 - Which CNI / plugin options → [[VARIABLE-KUBE_NETWORK_PLUGIN]].
 

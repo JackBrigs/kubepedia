@@ -537,6 +537,7 @@
 {"alias": "canary controller", "ids": ["CONCEPT-ADDON_FLAGGER"]}
 {"alias": "canary initialization failed", "ids": ["TROUBLE-FLAGGER_CANARY"]}
 {"alias": "cannot be imported into the current release", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
+{"alias": "cannot create regular file '/hostbin/cilium-mount'", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "cannot evict pod PDB", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
 {"alias": "cannot list resource", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "cannot pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
@@ -640,6 +641,7 @@
 {"alias": "cilium 1.18 packet drops upgrade", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
 {"alias": "cilium 1.19 ipsec kernel bug", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "cilium 1.19 upgrade agent crashloop flag", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
+{"alias": "cilium agent Init CrashLoopBackOff", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "cilium bgp", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium bgp not advertising after upgrade", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "cilium bgp v1 to v2 migration", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
@@ -688,6 +690,7 @@
 {"alias": "cilium mesh-auth-enabled default off", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
 {"alias": "cilium metallb-bgp removed", "ids": ["CONCEPT-CILIUM_LEGACY_REMOVALS"]}
 {"alias": "cilium monitor drop", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "cilium mount-cgroup permission denied", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "cilium mutual auth not enforced 1.19", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
 {"alias": "cilium native routing", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium native routing cidr null", "ids": ["TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL"]}
@@ -708,6 +711,7 @@
 {"alias": "cilium-empty-string-null-helm-values", "ids": ["TROUBLE-CILIUM_EMPTY_STRING_NULL_HELM"]}
 {"alias": "cilium-enable-prometheus-noop", "ids": ["TROUBLE-CILIUM_ENABLE_PROMETHEUS_NOOP"]}
 {"alias": "cilium-envoy", "ids": ["CONCEPT-CILIUM_ENVOY"]}
+{"alias": "cilium-envoy running but cilium agent not ready", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "cilium-operator-gateway-secrets", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
 {"alias": "cilium-operator-generic-offline", "ids": ["TROUBLE-CILIUM_OPERATOR_GENERIC_OFFLINE_REGISTRY"]}
 {"alias": "cilium-operator-ingress-secrets", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
@@ -2186,6 +2190,7 @@
 {"alias": "kube_ovn_vpc_container_image_repo", "ids": ["VARIABLE-KUBE_OVN_VPC_CONTAINER_IMAGE_REPO"]}
 {"alias": "kube_ovn_vpc_container_image_tag", "ids": ["VARIABLE-KUBE_OVN_VPC_CONTAINER_IMAGE_TAG"]}
 {"alias": "kube_owner", "ids": ["VARIABLE-KUBE_OWNER"]}
+{"alias": "kube_owner opt cni bin cilium", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "kube_pid_reserved", "ids": ["VARIABLE-KUBE_PID_RESERVED"]}
 {"alias": "kube_pod_security exemptions", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "kube_pod_security_default_audit", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_AUDIT"]}
@@ -2834,6 +2839,7 @@
 {"alias": "node-local pvc can't reschedule", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "node-taint", "ids": ["TAG-NODE_TAINT"]}
 {"alias": "node-webhook", "ids": ["TAG-NODE_WEBHOOK"]}
+{"alias": "node.cilium.io/agent-not-ready", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "node_feature_discovery", "ids": ["TAG-NODE_FEATURE_DISCOVERY"]}
 {"alias": "node_feature_discovery_enable_nodefeature_api", "ids": ["VARIABLE-NODE_FEATURE_DISCOVERY_ENABLE_NODEFEATURE_API"]}
 {"alias": "node_feature_discovery_enabled", "ids": ["VARIABLE-NODE_FEATURE_DISCOVERY_ENABLED"]}
@@ -2943,6 +2949,7 @@
 {"alias": "operator webhook no certs", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
 {"alias": "operator-lifecycle-manager", "ids": ["CONCEPT-ADDON_OLM"]}
 {"alias": "operatorgroup missing", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
+{"alias": "opt/cni/bin owned by kube not root", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "ordered webhooks", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "orphaned released pv", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "os patching kubernetes node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}

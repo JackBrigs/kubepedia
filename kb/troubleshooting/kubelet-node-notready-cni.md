@@ -81,6 +81,8 @@ reporting a **usable CNI** — the CNI isn't installed or its config hasn't land
 
 - A half-installed CNI (config present but agent crashlooping) shows the same message — always
   check both the config file **and** the CNI pod health.
+- Common concrete cause on Cilium: the agent is `Init:CrashLoopBackOff` at `mount-cgroup` with
+  `cannot create /hostbin/cilium-mount: Permission denied` → [[TROUBLE-CILIUM_MOUNT_CGROUP_DENIED]].
 
 ## References
 

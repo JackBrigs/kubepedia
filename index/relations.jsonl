@@ -825,6 +825,9 @@
 {"source": "TROUBLE-CILIUM_MESH_AUTH_DISABLED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MESH_AUTH_DISABLED", "target": "CONCEPT-CILIUM_ENCRYPTION", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MESH_AUTH_DISABLED", "target": "UPGRADE-CILIUM_1_15_TO_1_19", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "TAG-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "TROUBLE-KUBELET_NODE_NOTREADY_CNI", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_OPERATOR_GENERIC_OFFLINE_REGISTRY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_PACKET_DROPS", "target": "COMPONENT-CILIUM", "type": "see_also"}
