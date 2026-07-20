@@ -1027,6 +1027,7 @@
 {"source": "TROUBLE-KUBELET_MEMORY_OOM", "target": "TROUBLE-KUBELET_PLEG_NOT_HEALTHY", "type": "see_also"}
 {"source": "TROUBLE-KUBELET_NODE_NOTREADY_CNI", "target": "COMPONENT-CALICO", "type": "see_also"}
 {"source": "TROUBLE-KUBELET_NODE_NOTREADY_CNI", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-KUBELET_NODE_NOTREADY_CNI", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "TROUBLE-KUBELET_NODE_NOTREADY_CNI", "target": "TROUBLE-CALICO_NODE_ISSUES", "type": "see_also"}
 {"source": "TROUBLE-KUBELET_PLEG_NOT_HEALTHY", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "TROUBLE-KUBELET_PLEG_NOT_HEALTHY", "target": "TROUBLE-KUBELET_MEMORY_OOM", "type": "see_also"}

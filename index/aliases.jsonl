@@ -896,6 +896,7 @@
 {"alias": "clusterip unreachable", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
 {"alias": "clustermesh default deny remote", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "cni", "ids": ["TAG-CNI"]}
+{"alias": "cni config load failed", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
 {"alias": "cni migration runbook", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "cni overlay mtu", "ids": ["CONFIG-CNI_MTU"]}
 {"alias": "cni plugin not initialized", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI", "TROUBLE-POD_CONTAINERCREATING"]}
@@ -1637,6 +1638,7 @@
 {"alias": "failed to download binary", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
 {"alias": "failed to garbage collect required amount of images", "ids": ["TROUBLE-KUBELET_IMAGE_GC"]}
 {"alias": "failed to get cgroup stats", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
+{"alias": "failed to load cni during init", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
 {"alias": "failed to mount overlay operation not permitted", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
 {"alias": "failed to mount volume", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "failed to pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
@@ -2788,6 +2790,7 @@
 {"alias": "no default storageclass", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
 {"alias": "no internet kubespray deploy", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
 {"alias": "no mds server available", "ids": ["TROUBLE-CEPH_CSI_CEPHFS_MOUNT"]}
+{"alias": "no network config found in /etc/cni/net.d", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
 {"alias": "no nodes available", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "no persistent volumes available", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER", "TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
 {"alias": "no preemption victims found", "ids": ["TROUBLE-SCHEDULER_PREEMPTION_GATES"]}
@@ -2978,6 +2981,7 @@
 {"alias": "pkg_install_retries", "ids": ["VARIABLE-PKG_INSTALL_RETRIES"]}
 {"alias": "pkg_install_timeout", "ids": ["VARIABLE-PKG_INSTALL_TIMEOUT"]}
 {"alias": "platform addons", "ids": ["CONCEPT-ADDON_CATALOG"]}
+{"alias": "please check CRI plugin status before setting up network for pods", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
 {"alias": "pleg was last seen active", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
 {"alias": "pod cannot reach internet", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
 {"alias": "pod cidr service cidr", "ids": ["CONCEPT-CLUSTER_NETWORKING"]}
