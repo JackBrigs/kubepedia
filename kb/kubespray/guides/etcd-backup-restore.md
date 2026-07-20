@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: "2026-07-16"
+verified_at: "2026-07-20"
 confidence: verified
 aliases:
   - etcd backup
@@ -22,6 +22,10 @@ sources:
     path: docs/operations/etcd.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/operations/etcd.md
     note: "etcd operations; etcdctl/etcdutl installed by the etcdctl tag"
+  - type: code
+    path: roles/recover_control_plane/etcd/tasks/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.29.0/roles/recover_control_plane/etcd/tasks/main.yml
+    note: "restore path checks quorum, removes the etcd data dir and rebuilds membership on etcd[0] — evidence for the restore disruption profile"
 relations:
   - type: see_also
     target: COMPONENT-ETCD
@@ -84,6 +88,27 @@ Automate snapshots off-node; keep them with the cluster's PKI.
 etcd membership. For a manual single-node restore, `etcdutl snapshot restore`
 into a fresh data dir, then start etcd pointing at it — but coordinate across all
 members to avoid split-brain.
+
+## Service impact
+
+The three tasks span the full disruption range:
+
+- **Diagnostics + snapshot save: safe, non-disruptive.** `endpoint health/status`,
+  `member list`, and `snapshot save` are **read-only** — run them anytime, including
+  on a healthy production cluster. A snapshot adds only brief disk/CPU I/O; take it
+  **before** any risky change.
+- **`defrag`: brief per-member stall.** Defragmentation **blocks the member it runs
+  on** while it rewrites the DB, so run it **one member at a time** and off-peak;
+  with quorum intact the cluster stays available through it.
+- **Restore: control-plane outage + data rewind — incident recovery, not routine.**
+  Restoring rolls etcd back to the snapshot's point in time, so **everything
+  created or changed after the snapshot is lost**. `recover-control-plane.yml`
+  (verified: `roles/recover_control_plane/etcd`) checks quorum, **removes the etcd
+  data dir**, and **rebuilds membership on `etcd[0]`** — expect **API unavailability**
+  (no `kubectl`, scheduling stalls) while etcd is rebuilt and restarted. Running
+  workloads keep running (kubelet + CNI operate without the API), but objects that
+  existed only after the snapshot **vanish**. A manual `etcdutl snapshot restore`
+  must be coordinated across **all** members or you get split-brain.
 
 ## References
 
