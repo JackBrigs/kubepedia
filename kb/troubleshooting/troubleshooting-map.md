@@ -226,7 +226,9 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
   [[TROUBLE-KUBELET_NODE_NOTREADY_CNI]]; memory/OOM → [[TROUBLE-KUBELET_MEMORY_OOM]]; static pod
   stuck → [[TROUBLE-KUBELET_STATIC_POD_STUCK]]; image GC 'freed 0 bytes' →
   [[TROUBLE-KUBELET_IMAGE_GC]]; serving-cert rotation skip → [[TROUBLE-KUBELET_SERVING_CERT_ROTATION]].
-- **containerd:** shim task create fails → [[TROUBLE-CONTAINERD_SHIM_TASK_CREATE]]; overlayfs
+- **containerd:** shim task create fails → [[TROUBLE-CONTAINERD_SHIM_TASK_CREATE]]; `downgrading
+  client API version` / `task.v3.Task` warning (benign v3→v2 shim fallback) →
+  [[TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE]]; overlayfs
   mount → [[TROUBLE-CONTAINERD_OVERLAYFS]]; shim/daemon memory leak →
   [[TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK]]; stale sandbox/reserved name →
   [[TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY]]; RuntimeClass handler →

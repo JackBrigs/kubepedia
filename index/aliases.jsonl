@@ -968,6 +968,7 @@
 {"alias": "containerd registry mirror auth", "ids": ["TROUBLE-CONTAINERD_IMAGE_PULL_CRI"]}
 {"alias": "containerd runtime", "ids": ["PRACTICE-CONTAINERD"]}
 {"alias": "containerd security", "ids": ["TROUBLE-CONTAINERD_KNOWN_CVES"]}
+{"alias": "containerd task v3 downgrade", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "containerd vs cri-o vs docker", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "containerd-http-proxy-conf", "ids": ["TROUBLE-CONTAINERD_NO_PROXY_CHAR_ARRAY"]}
 {"alias": "containerd-shim-runc-v2 memory leak", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
@@ -1316,6 +1317,7 @@
 {"alias": "docker_ubuntu_repo_gpgkey", "ids": ["VARIABLE-DOCKER_UBUNTU_REPO_GPGKEY"]}
 {"alias": "docker_ubuntu_repo_repokey", "ids": ["VARIABLE-DOCKER_UBUNTU_REPO_REPOKEY"]}
 {"alias": "docker_version", "ids": ["VARIABLE-DOCKER_VERSION"]}
+{"alias": "downgrading client API version to try again", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "download", "ids": ["ROLE-DOWNLOAD", "TAG-DOWNLOAD"]}
 {"alias": "download failed kubespray", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
 {"alias": "download mirror", "ids": ["PRACTICE-MIRROR"]}
@@ -1627,6 +1629,7 @@
 {"alias": "facts", "ids": ["TAG-FACTS"]}
 {"alias": "failed calling webhook", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "failed calling webhook connect-injector", "ids": ["TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK"]}
+{"alias": "failed to call task.Create downgrading client API version", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "failed to create pod sandbox", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
 {"alias": "failed to create sandbox", "ids": ["TROUBLE-CONTAINERD_IMAGE_PULL_CRI"]}
 {"alias": "failed to create shim task", "ids": ["TROUBLE-CONTAINERD_SHIM_TASK_CREATE"]}
@@ -3277,6 +3280,7 @@
 {"alias": "serverTLSBootstrap", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
 {"alias": "service account secret missing after upgrade", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "service account secret token removed", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
+{"alias": "service containerd.task.v3.Task", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "service exposure", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
 {"alias": "service ip exhaustion", "ids": ["CONCEPT-K8S_MULTI_CIDR_SERVICE_ALLOCATOR"]}
 {"alias": "service no endpoints", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
@@ -3486,6 +3490,7 @@
 {"alias": "unreachable taint missing noexecute", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
 {"alias": "unsafe_show_logs", "ids": ["VARIABLE-UNSAFE_SHOW_LOGS"]}
 {"alias": "unschedulable", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "unsupported shim version (3)", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "untolerated taint", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
 {"alias": "upcloud-csi-driver", "ids": ["TAG-UPCLOUD_CSI_DRIVER"]}
 {"alias": "upcloud_cacert", "ids": ["VARIABLE-UPCLOUD_CACERT"]}
