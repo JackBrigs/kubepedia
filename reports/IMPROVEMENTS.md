@@ -3,14 +3,13 @@ _Дата: 2026-07-20. Петля обратной связи: сигналы и
 
 ## P0 — риски корректности (уроки этой сессии, автоматизированы)
 
-### Операционные доки БЕЗ явного impact/простоя (13 сигналов)
+### Операционные доки БЕЗ явного impact/простоя (12 сигналов)
 
 **Нет раздела impact/disruption (runbook/upgrade):**
 - `UPGRADE-V2_28_0__V2_28_1` → `kb/kubespray/releases/upgrade-2.28.0-to-2.28.1.md`
 - `UPGRADE-KUBESPRAY_SEQUENTIAL` → `kb/kubespray/operations/upgrade-sequential.md`
 - `PRACTICE-NODES_ADD_REPLACE` → `kb/kubespray/operations/nodes-add-replace.md`
 - `PRACTICE-HARDENING` → `kb/kubespray/operations/hardening.md`
-- `PRACTICE-RECOVER_CONTROL_PLANE` → `kb/kubespray/operations/recover-control-plane.md`
 - `PRACTICE-INTEGRATION` → `kb/kubespray/guides/integration.md`
 - `PRACTICE-CERTIFICATE_EXPIRY` → `kb/kubespray/guides/certificate-expiry.md`
 - `PRACTICE-ETCD_BACKUP_RESTORE` → `kb/kubespray/guides/etcd-backup-restore.md`

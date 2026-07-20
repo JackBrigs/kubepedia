@@ -40,6 +40,16 @@ node failures (hardware loss, failed upgrade/patch, etcd corruption). It require
 - Applies to Kubespray `v2.29.0`–`v2.31.0`.
 - "Broken" means unrecoverable hardware failure, failure during patch/upgrade,
   etcd database corruption, or other failures leaving the control plane degraded.
+- **Service impact.** The playbook runs `recover_control_plane/etcd` on `etcd[0]`
+  and `recover_control_plane/control-plane` on `kube_control_plane[0]` (the
+  **surviving** nodes) — it **rebuilds etcd membership** and re-joins the control
+  plane. Expect **brief control-plane / API unavailability** on the surviving node
+  while etcd membership is reconfigured and services restart (no `kubectl`,
+  scheduling stalls during that window). Unlike a full snapshot restore it does
+  **not rewind cluster state** — objects are preserved, no data rollback — and
+  **running workloads keep running** (kubelet + CNI operate without the API). You
+  are already in a degraded state, so this is **incident recovery**, not a routine
+  change; snapshot etcd first ([[COMPONENT-ETCD]]).
 
 ## Implementation
 
