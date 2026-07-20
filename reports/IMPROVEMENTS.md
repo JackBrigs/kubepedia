@@ -3,11 +3,10 @@ _Дата: 2026-07-20. Петля обратной связи: сигналы и
 
 ## P0 — риски корректности (уроки этой сессии, автоматизированы)
 
-### Операционные доки БЕЗ явного impact/простоя (12 сигналов)
+### Операционные доки БЕЗ явного impact/простоя (11 сигналов)
 
 **Нет раздела impact/disruption (runbook/upgrade):**
 - `UPGRADE-V2_28_0__V2_28_1` → `kb/kubespray/releases/upgrade-2.28.0-to-2.28.1.md`
-- `UPGRADE-KUBESPRAY_SEQUENTIAL` → `kb/kubespray/operations/upgrade-sequential.md`
 - `PRACTICE-NODES_ADD_REPLACE` → `kb/kubespray/operations/nodes-add-replace.md`
 - `PRACTICE-HARDENING` → `kb/kubespray/operations/hardening.md`
 - `PRACTICE-INTEGRATION` → `kb/kubespray/guides/integration.md`
@@ -41,3 +40,7 @@ _После правки одного дока тот же промах част
 - 8401bd8 Аудит не-сетевых раннбуков по источникам: явный impact в etcd-restore и remove-node
 - 59fd9f9 Аудит 'rolling/non-disruptive' по источникам Kubespray: правка add-nodes
 - e6da74e Cilium upgrade: исправлено по факту исходников Kubespray (прод-критично)
+
+## Темы твоих вопросов (298 реплик; агрегат, без сырого текста)
+_Частые темы = где база активнее всего проверяется/дёргается — кандидаты на углубление._
+`версии`×24, `продолжаем`×20, `можно`×16, `cilium`×15, `продолжим`×14, `kubespray`×14, `добавь`×13, `после`×13, `только`×12, `kubernetes`×12, `базу`×11, `добавить`×10, `проекта`×9, `какой`×9, `базы`×9, `etcd`×8, `план`×7, `вообще`×7, `теперь`×7, `будет`×7
