@@ -694,6 +694,7 @@
 {"alias": "cilium mutual auth not enforced 1.19", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
 {"alias": "cilium native routing", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
 {"alias": "cilium native routing cidr null", "ids": ["TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL"]}
+{"alias": "cilium needs kube_owner root", "ids": ["VARIABLE-KUBE_OWNER"]}
 {"alias": "cilium observability", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
 {"alias": "cilium pods cant reach each other", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
 {"alias": "cilium policy auth warning", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
@@ -901,6 +902,7 @@
 {"alias": "clustermesh default deny remote", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "cni", "ids": ["TAG-CNI"]}
 {"alias": "cni config load failed", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
+{"alias": "cni directory ownership kubespray", "ids": ["VARIABLE-KUBE_OWNER"]}
 {"alias": "cni migration runbook", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "cni overlay mtu", "ids": ["CONFIG-CNI_MTU"]}
 {"alias": "cni plugin not initialized", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI", "TROUBLE-POD_CONTAINERCREATING"]}
@@ -2191,6 +2193,7 @@
 {"alias": "kube_ovn_vpc_container_image_tag", "ids": ["VARIABLE-KUBE_OVN_VPC_CONTAINER_IMAGE_TAG"]}
 {"alias": "kube_owner", "ids": ["VARIABLE-KUBE_OWNER"]}
 {"alias": "kube_owner opt cni bin cilium", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
+{"alias": "kube_owner root or kube", "ids": ["VARIABLE-KUBE_OWNER"]}
 {"alias": "kube_pid_reserved", "ids": ["VARIABLE-KUBE_PID_RESERVED"]}
 {"alias": "kube_pod_security exemptions", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "kube_pod_security_default_audit", "ids": ["VARIABLE-KUBE_POD_SECURITY_DEFAULT_AUDIT"]}
@@ -2950,6 +2953,7 @@
 {"alias": "operator-lifecycle-manager", "ids": ["CONCEPT-ADDON_OLM"]}
 {"alias": "operatorgroup missing", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "opt/cni/bin owned by kube not root", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
+{"alias": "opt/cni/bin owner", "ids": ["VARIABLE-KUBE_OWNER"]}
 {"alias": "ordered webhooks", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "orphaned released pv", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "os patching kubernetes node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}

@@ -48,6 +48,8 @@ sources:
     note: "Kubespray's Cilium CI pins kube_owner: root — so the default kube_owner: kube + Cilium combo is untested (matches issue #12276)"
 relations:
   - type: see_also
+    target: VARIABLE-KUBE_OWNER
+  - type: see_also
     target: COMPONENT-CILIUM
   - type: see_also
     target: TROUBLE-KUBELET_NODE_NOTREADY_CNI
@@ -98,7 +100,16 @@ node stays `NotReady` with the `node.cilium.io/agent-not-ready` taint and
   ("Create cni directories", `owner: {{ kube_owner }}`). `kube_owner` default is
   `kube` (`roles/kubespray_defaults/defaults/main/main.yml`), while the **hardening
   guide and all Cilium CI test files pin `kube_owner: root`** — so stock Cilium is
-  only ever exercised with a root-owned bin dir.
+  only ever exercised with a root-owned bin dir ([[VARIABLE-KUBE_OWNER]]).
+- **Upstream documents the requirement only from v2.30.0**: `docs/CNI/cilium.md`
+  ("Unprivileged agent configuration": *"You need to set the `kube_owner` variable to
+  `root`"*) and the note above `kube_owner: kube` in the sample inventory both appear
+  in v2.30.0. On **v2.27.0–v2.29.1 the tree contains no warning at all**, which is why
+  this bites silently on those tags.
+- Neighbouring CNI plugins are **not** affected: Calico, kube-ovn, Multus and
+  kube-router run their host-writing containers `privileged: true`; Flannel declares no
+  `securityContext` and survives only on the runtime's default capability set. Matrix
+  with source templates: [[VARIABLE-KUBE_OWNER]].
 - Reproduced on **Ubuntu 24.04** with kube-proxy-replacement (Kubespray issue
   #12276, open). Confirmed on a real node: `/opt/cni/bin` is `drwxr-xr-x kube root`,
   the `cni-path` volume is mounted **rw**, `lsattr` shows no immutable bit, `findmnt`

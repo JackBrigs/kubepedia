@@ -828,6 +828,7 @@
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "TAG-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "TROUBLE-KUBELET_NODE_NOTREADY_CNI", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "VARIABLE-KUBE_OWNER", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_OPERATOR_GENERIC_OFFLINE_REGISTRY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_PACKET_DROPS", "target": "COMPONENT-CILIUM", "type": "see_also"}
@@ -1663,6 +1664,9 @@
 {"source": "VARIABLE-KUBE_NETWORK_NODE_PREFIX_IPV6", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
 {"source": "VARIABLE-KUBE_NETWORK_PLUGIN", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "VARIABLE-KUBE_NETWORK_PLUGIN_MULTUS", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
+{"source": "VARIABLE-KUBE_OWNER", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "VARIABLE-KUBE_OWNER", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
+{"source": "VARIABLE-KUBE_OWNER", "target": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "type": "see_also"}
 {"source": "VARIABLE-KUBE_PODS_SUBNET", "target": "VARIABLE-KUBE_NETWORK_NODE_PREFIX", "type": "see_also"}
 {"source": "VARIABLE-KUBE_PODS_SUBNET", "target": "VARIABLE-KUBE_SERVICE_ADDRESSES", "type": "see_also"}
 {"source": "VARIABLE-KUBE_PODS_SUBNETS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
