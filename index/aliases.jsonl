@@ -631,6 +631,7 @@
 {"alias": "cgroupDriver systemd mismatch", "ids": ["CONCEPT-K8S_CGROUP_DRIVER_FROM_CRI"]}
 {"alias": "cgroups v1 hard error kubeadm 1.35", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES"]}
 {"alias": "cgroupv1 deprecated", "ids": ["CONCEPT-K8S_CGROUP_V1_REMOVAL"]}
+{"alias": "change cni bin dir ownership without kube_owner", "ids": ["VARIABLE-CNI_BIN_OWNER"]}
 {"alias": "change container_manager", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
 {"alias": "change kube_network_plugin", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "change kubelet setting safely", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
@@ -2737,6 +2738,7 @@
 {"alias": "namespace stuck terminating", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
 {"alias": "namespace terminating forever", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
 {"alias": "namespace won't delete", "ids": ["TROUBLE-NAMESPACE_STUCK_TERMINATING"]}
+{"alias": "narrow fix for cilium mount-cgroup permission denied", "ids": ["VARIABLE-CNI_BIN_OWNER"]}
 {"alias": "nat_outgoing", "ids": ["VARIABLE-NAT_OUTGOING"]}
 {"alias": "nat_outgoing_ipv6", "ids": ["VARIABLE-NAT_OUTGOING_IPV6"]}
 {"alias": "native sidecar containers", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
@@ -2964,6 +2966,7 @@
 {"alias": "operatorgroup missing", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "opt/cni/bin owned by kube not root", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "opt/cni/bin owner", "ids": ["VARIABLE-KUBE_OWNER"]}
+{"alias": "opt/cni/bin owner variable", "ids": ["VARIABLE-CNI_BIN_OWNER"]}
 {"alias": "opt/cni/bin unpack only", "ids": ["PRACTICE-CNI_GENERIC_PLUGIN"]}
 {"alias": "ordered webhooks", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "orphaned released pv", "ids": ["TROUBLE-PVC_PV_DELETION"]}

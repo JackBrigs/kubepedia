@@ -836,6 +836,7 @@
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "TAG-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "TROUBLE-KUBELET_NODE_NOTREADY_CNI", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "VARIABLE-CNI_BIN_OWNER", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "VARIABLE-KUBE_OWNER", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_NATIVE_ROUTING_CIDR_NULL", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_OPERATOR_GENERIC_OFFLINE_REGISTRY", "target": "COMPONENT-CILIUM", "type": "see_also"}
@@ -1377,6 +1378,9 @@
 {"source": "VARIABLE-CILIUM_WIREGUARD_USERSPACE_FALLBACK", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "VARIABLE-CNI_BINARY_CHECKSUM", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
 {"source": "VARIABLE-CNI_BINARY_CHECKSUMS", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
+{"source": "VARIABLE-CNI_BIN_OWNER", "target": "PRACTICE-CNI_GENERIC_PLUGIN", "type": "see_also"}
+{"source": "VARIABLE-CNI_BIN_OWNER", "target": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "type": "see_also"}
+{"source": "VARIABLE-CNI_BIN_OWNER", "target": "VARIABLE-KUBE_OWNER", "type": "see_also"}
 {"source": "VARIABLE-CNI_DOWNLOAD_URL", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
 {"source": "VARIABLE-CNI_VERSION", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
 {"source": "VARIABLE-CONTAINERD_ADDITIONAL_RUNTIMES", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
@@ -1675,6 +1679,7 @@
 {"source": "VARIABLE-KUBE_OWNER", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "VARIABLE-KUBE_OWNER", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "VARIABLE-KUBE_OWNER", "target": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "type": "see_also"}
+{"source": "VARIABLE-KUBE_OWNER", "target": "VARIABLE-CNI_BIN_OWNER", "type": "see_also"}
 {"source": "VARIABLE-KUBE_PODS_SUBNET", "target": "VARIABLE-KUBE_NETWORK_NODE_PREFIX", "type": "see_also"}
 {"source": "VARIABLE-KUBE_PODS_SUBNET", "target": "VARIABLE-KUBE_SERVICE_ADDRESSES", "type": "see_also"}
 {"source": "VARIABLE-KUBE_PODS_SUBNETS", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}

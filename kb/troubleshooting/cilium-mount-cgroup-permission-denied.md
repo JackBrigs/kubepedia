@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: "2026-07-20"
+verified_at: "2026-07-21"
 confidence: verified
 aliases:
   - cilium mount-cgroup permission denied
@@ -43,12 +43,18 @@ sources:
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.29.0/roles/kubernetes/preinstall/tasks/0050-create_directories.yml
     note: "'Create cni directories' (L68-76) creates /opt/cni/bin with owner: {{ kube_owner }}; kube_owner defaults to 'kube' — the actual root cause"
   - type: code
+    path: roles/network_plugin/cni/tasks/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.29.0/roles/network_plugin/cni/tasks/main.yml
+    note: "re-creates /opt/cni/bin with owner: {{ cni_bin_owner }} (default {{ kube_owner }}), recurse: true, in a later play than preinstall — the narrow durable fix"
+  - type: code
     path: tests/files/debian12-cilium.yml
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.29.0/tests/files/debian12-cilium.yml
     note: "Kubespray's Cilium CI pins kube_owner: root — so the default kube_owner: kube + Cilium combo is untested (matches issue #12276)"
 relations:
   - type: see_also
     target: VARIABLE-KUBE_OWNER
+  - type: see_also
+    target: VARIABLE-CNI_BIN_OWNER
   - type: see_also
     target: COMPONENT-CILIUM
   - type: see_also
@@ -149,6 +155,16 @@ node stays `NotReady` with the `node.cilium.io/agent-not-ready` taint and
   cilium-<x>`). The uid-0 init container becomes the owner and the `cp` succeeds.
   This is **not durable** — a later `cluster.yml`/preinstall run re-applies
   `owner: {{ kube_owner }}` and reverts it — so pair it with a durable fix below.
+- **Durable fix A′ (narrowest, recommended) — `cni_bin_owner: root`.** Kubespray owns
+  `/opt/cni/bin` twice per run: `preinstall` creates it with `owner: {{ kube_owner }}`, and
+  then `roles/network_plugin/cni/tasks/main.yml` re-creates it with
+  `owner: {{ cni_bin_owner }}` and `recurse: true`. Since `network_plugin` runs in a **later
+  play** than `preinstall` (`playbooks/cluster.yml`), `cni_bin_owner` is the value that
+  survives. Setting it to `root` in inventory fixes exactly the directory that fails and
+  leaves certificates, `kube_config_dir` and everything else `kube`-owned — the same effect
+  as the manual `chown`, but durable across re-runs. Details and caveats:
+  [[VARIABLE-CNI_BIN_OWNER]]. (`/etc/cni/net.d` stays `kube`-owned, which the empirical
+  test above shows is fine — the agent only needed the bin dir.)
 - **Durable fix A — align with Kubespray's own Cilium setup: `kube_owner: root`.**
   Set `kube_owner: root` in inventory (this is what the hardening guide and every
   Cilium CI test file use), then re-run `cluster.yml`. `/opt/cni/bin` becomes

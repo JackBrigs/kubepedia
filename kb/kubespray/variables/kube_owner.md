@@ -43,6 +43,8 @@ relations:
   - type: see_also
     target: TROUBLE-CILIUM_MOUNT_CGROUP_DENIED
   - type: see_also
+    target: VARIABLE-CNI_BIN_OWNER
+  - type: see_also
     target: COMPONENT-CILIUM
   - type: see_also
     target: PRACTICE-CLUSTER_HARDENING
@@ -89,6 +91,12 @@ exercised with Cilium.
 together with the note above `kube_owner: kube` in the sample inventory. On **v2.27.0–v2.29.1
 there is no warning anywhere in the tree** — a cluster built on those tags with Cilium hits
 the failure with nothing pointing at the cause.
+
+**For the CNI bin dir there is a narrower lever.** `/opt/cni/bin` is re-created later in the
+run by `roles/network_plugin/cni` with `owner: {{ cni_bin_owner }}` (default
+`{{ kube_owner }}`), so [[VARIABLE-CNI_BIN_OWNER]] overrides the ownership of that one
+directory without touching anything else — prefer it over `kube_owner: root` when the only
+problem is the CNI bin dir.
 
 **Changing `kube_owner` is cluster-wide, not per-node.** It re-owns Kubernetes config,
 certificate and CNI paths on every node in `k8s_cluster`, so it must be set in inventory and
