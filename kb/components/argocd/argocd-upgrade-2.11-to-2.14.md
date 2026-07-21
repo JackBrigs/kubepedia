@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: ">=1.29 <=1.35"
 component_version: ">=2.11.0 <=2.14.21"
-verified_at: "2026-07-17"
+verified_at: "2026-07-21"
 confidence: confirmed
 aliases:
   - argocd upgrade breaking changes
@@ -29,6 +29,14 @@ sources:
     path: docs/operator-manual/tested-kubernetes-versions.md
     url: https://github.com/argoproj/argo-cd/blob/v2.14.5/docs/operator-manual/tested-kubernetes-versions.md
     note: "Argo CD 2.11 tested k8s v1.25–v1.29; 2.14 tested v1.28–v1.31"
+  - type: code
+    path: roles/kubernetes-apps/argocd/tasks/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes-apps/argocd/tasks/main.yml
+    note: "downloads upstream install.yaml, rewrites namespace with yq, applies with the kube module at state: latest (apply, no prune) on kube_control_plane[0]"
+  - type: code
+    path: roles/kubespray_defaults/defaults/main/download.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/download.yml
+    note: "argocd_version is computed as the first key of argocd_install_checksums.no_arch (2.14.20 at v2.29.0, 2.14.21 at v2.31.0), overriding the role default 2.14.5; URL gained the 'v' prefix in v2.28.0"
 relations:
   - type: see_also
     target: COMPONENT-ARGOCD
@@ -56,6 +64,27 @@ matters if you enable it — but if you do, the jump crosses three minors of ups
   `argocd` namespace ([[COMPONENT-ARGOCD]]); upgrading = applying the newer manifest on a cluster
   upgrade. There is no Kubespray-managed data migration — Argo CD's own upgrade notes below are the
   checklist.
+- **The exact mechanism** (`roles/kubernetes-apps/argocd/tasks/main.yml`, verified at v2.31.0): the
+  role downloads `install.yaml` from
+  `https://raw.githubusercontent.com/argoproj/argo-cd/v{{ argocd_version }}/manifests/install.yaml`
+  (checksum-verified via `argocd_install_checksum`), rewrites the namespace with
+  `yq eval-all -i '.metadata.namespace="{{ argocd_namespace }}"'`, and applies it with the `kube`
+  module at **`state: latest`** — i.e. a plain `kubectl apply`, run only on
+  `kube_control_plane[0]`. Optionally it patches `argocd-secret` when `argocd_admin_password` is set.
+  AWX: job tag `argocd`.
+- **`state: latest` applies, it does not prune.** Objects that upstream removed between 2.11 and 2.14
+  are **not** deleted — they stay in the `argocd` namespace unmanaged after the jump. Reconcile them
+  by hand if you care about a clean namespace.
+- **Which version you actually get is computed, not the role default.** The role default is
+  `argocd_version: 2.14.5` (`roles/kubernetes-apps/argocd/defaults/main.yml`), but
+  `roles/kubespray_defaults/defaults/main/download.yml` redefines it as the **first key** of
+  `argocd_install_checksums.no_arch` — which is `2.14.20` at v2.29.0 and `2.14.21` at v2.31.0
+  (`roles/kubespray_defaults/vars/main/checksums.yml`). Pinning your own `argocd_version` only works
+  if a matching checksum entry exists; otherwise the download fails.
+- **v2.27.0 used a different pin format:** `argocd_version: v2.11.0` with the URL interpolating
+  `{{ argocd_version }}` directly; from v2.28.0 the value is unprefixed (`2.14.x`) and the URL adds
+  the `v`. Inventories that pinned a `v`-prefixed version must drop the prefix when moving to
+  v2.28.0+.
 - **Version by Kubespray tag:** 2.11.0 (v2.27.0) → 2.14.20 (v2.29.0) → 2.14.21 (v2.29.1+). Moving
   v2.27.0 → v2.28.0+ is the 2.11 → 2.14 jump.
 

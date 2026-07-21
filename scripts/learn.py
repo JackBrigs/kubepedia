@@ -39,6 +39,15 @@ OPTIMISTIC = ("non-disruptive", "no downtime", "zero downtime", "seamless",
               "pods keep running", "datapath survives")
 KUBESPRAY_CODE = ("kubernetes-sigs/kubespray",)
 # a doc is a *mutating* operation (needs an explicit impact statement) only if it runs something
+# a doc *claims a Kubespray mechanism* when it names a playbook, a job tag, a role path or a
+# Kubespray variable — those are the claims that must be backed by tagged source code.
+MECHANISM = re.compile(
+    r"\b\w*\.yml\b"                       # cluster.yml, scale.yml, upgrade_cluster.yml …
+    r"|--tags|--skip-tags|job tag"        # tag-scoped runs (AWX or CLI)
+    r"|\broles/[\w.\-/]+"                 # a role/task path
+    r"|\b[a-z][a-z0-9]*(?:_[a-z0-9]+)*_(?:version|enabled|owner|mode|dir|repo|image)\b",
+    re.I,
+)
 MUTATING = ("cluster.yml", "upgrade-cluster.yml", "scale.yml", "reset.yml", "remove-node.yml",
             "remove_node.yml", "recover-control-plane.yml", "ansible-playbook", "converge",
             "helm upgrade", "helm install", "kubectl apply", "kubectl delete", "kubectl drain",
@@ -97,8 +106,10 @@ def scan():
             if hit and not any(h in low for h in IMPACT_HINTS):
                 optimistic.append((_id, rel, hit[0]))
             # mechanism claim not backed by a kubespray code source?
-            if ("cluster.yml" in low or "scale.yml" in low or "cilium" in low
-                    or "kubespray" in low) and not any(c in d["_meta"] for c in KUBESPRAY_CODE):
+            # Only when the doc actually *names a mechanism* — a playbook, a tag, a role path
+            # or a Kubespray variable. Merely mentioning "kubespray"/"cilium" is a topic, not
+            # a claim (generic best practices were flagged falsely before this).
+            if MECHANISM.search(body) and not any(c in d["_meta"] for c in KUBESPRAY_CODE):
                 no_code_src.append((_id, rel))
         va = d.get("verified_at")
         if va and not d["_stub"]:

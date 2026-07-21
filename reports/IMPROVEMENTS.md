@@ -8,12 +8,8 @@ _Дата: 2026-07-20. Петля обратной связи: сигналы и
 **Нет раздела impact/disruption (runbook/upgrade):**
 - `UPGRADE-V2_28_0__V2_28_1` → `kb/kubespray/releases/upgrade-2.28.0-to-2.28.1.md`
 
-### Механизм не подкреплён исходником Kubespray (4)
+### Механизм не подкреплён исходником Kubespray (0)
 _Док описывает cluster.yml/scale.yml/cilium/kubespray, но в `sources` нет `type: code` на роль/плейбук → риск выдуманной переменной/механизма (как `cilium_upgrade_compatibility`)._
-- `PRACTICE-MONITORING_BASELINE` → `kb/kubespray/operations/monitoring-baseline.md`
-- `PRACTICE-RBAC_LEAST_PRIVILEGE` → `kb/kubespray/operations/rbac-least-privilege.md`
-- `UPGRADE-ARGOCD_2_11_TO_2_14` → `kb/components/argocd/argocd-upgrade-2.11-to-2.14.md`
-- `UPGRADE-CILIUM_1_15_TO_1_19` → `kb/components/cilium/cilium-upgrade-1.15-to-1.19.md`
 
 ## P1 — свежесть и полнота
 ### Протухший verified_at (>180д): 0

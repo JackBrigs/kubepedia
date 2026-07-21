@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: ">=1.29 <=1.35"
 component_version: ">=1.15.9 <=1.19.3"
-verified_at: "2026-07-17"
+verified_at: "2026-07-21"
 confidence: confirmed
 aliases:
   - cilium upgrade breaking changes
@@ -29,6 +29,18 @@ sources:
     path: install/kubernetes/cilium/values.yaml
     url: https://github.com/cilium/cilium/blob/v1.19.3/install/kubernetes/cilium/values.yaml
     note: "Helm default changes and cilium-envoy image tags per tag"
+  - type: code
+    path: roles/network_plugin/cilium/tasks/apply.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/tasks/apply.yml
+    note: "the apply mechanism per tag: manifests+kube module (v2.27.0), 'cilium install' only (v2.28.0), 'cilium version' probe then install|upgrade with cilium-extra-values.yaml (v2.29.0+)"
+  - type: code
+    path: roles/network_plugin/cilium/tasks/remove_old_resources.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.29.0/roles/network_plugin/cilium/tasks/remove_old_resources.yml
+    note: "v2.29.0-only one-shot cleanup of manifest-installed Cilium/Hubble objects, gated by cilium_remove_old_resources (default false); absent from v2.30.0"
+  - type: code
+    path: roles/network_plugin/cilium/defaults/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/network_plugin/cilium/defaults/main.yml
+    note: "cilium_extra_values {} and cilium_install_extra_flags '' exist from v2.29.0 — not present at v2.28.0; values.yaml.j2 never sets upgradeCompatibility at any tag in range"
 relations:
   - type: see_also
     target: COMPONENT-CILIUM
@@ -62,6 +74,31 @@ Cilium's own upgrade guidance and the 1.16 notes below are **required reading**,
   the tag; upgrading is part of the normal cluster/upgrade run ([[PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR]]).
   It does **not** run Cilium's pre-flight/CRD migrations — you apply the per-jump actions below via
   Helm values / inventory before or during the upgrade.
+- **How Kubespray applies Cilium changes per tag** (`roles/network_plugin/cilium/tasks/apply.yml`,
+  read at each tag) — this is not the same mechanism across the range:
+
+  | Kubespray | Mechanism |
+  |-----------|-----------|
+  | v2.27.0 | rendered **manifests** applied with the `kube` module (`state: latest`) — no Helm release exists |
+  | v2.28.0 | `cilium install --version {{ cilium_version }} -f cilium-values.yaml` — CLI, **always `install`**, no upgrade branch, no extra-values file |
+  | v2.29.0+ | probes `cilium version`, then `cilium install`**\|**`upgrade --version … -f cilium-values.yaml -f cilium-extra-values.yaml {{ cilium_install_extra_flags }}` |
+
+  So **v2.27.0 → v2.28.0 is a change of management model**, not just a version jump: Cilium stops
+  being a set of Kubespray-applied manifests and becomes a CLI/Helm release. v2.29.0 ships a
+  one-shot cleanup for the leftovers (`tasks/remove_old_resources.yml`, gated by
+  `cilium_remove_old_resources`, **default `false`**, removed again in v2.30.0) that deletes the old
+  manifest-installed `cilium`/`hubble-*` ServiceAccounts, Services, Deployments, DaemonSet,
+  ConfigMaps, ClusterRole(Binding)s and Secrets. If you cross v2.27.0→v2.28.0/v2.29.0, decide
+  explicitly whether to enable it — leftovers otherwise stay in the cluster unmanaged.
+- **`upgradeCompatibility` is not a Kubespray variable.** The rendered `values.yaml.j2` never sets it
+  at any tag in this range; the only supported way in is `cilium_extra_values`, which **exists from
+  v2.29.0** (`{}` by default, together with `cilium_install_extra_flags`). At **v2.28.0 — the tag that
+  performs the unsupported 1.15→1.17 jump — there is no supported knob for arbitrary Helm values at
+  all.** Plan that jump accordingly: either pass values another way outside Kubespray, or move
+  through it knowing the new defaults land unheld.
+- Re-applying Cilium alone (AWX: job tag `cilium` on `cluster.yml`) runs the same
+  install/upgrade task, then waits for all `k8s-app=cilium` pods to become ready
+  (`cilium_rolling_restart_wait_retries_count` × `…_delay_seconds`).
 - **Version → Kubespray tag map:**
 
   | Kubespray | Cilium | Notable |
@@ -73,7 +110,9 @@ Cilium's own upgrade guidance and the 1.16 notes below are **required reading**,
   | v2.31.0 | 1.19.3 | ClusterMesh policy/auth default flips |
 
 - Use `upgradeCompatibility` (Helm) set to your **current** minor to hold old defaults across a jump,
-  then remove it once migrated — this is the safety lever for most default changes below.
+  then remove it once migrated — this is the safety lever for most default changes below. In
+  Kubespray that means `cilium_extra_values: {upgradeCompatibility: "1.xx"}` and therefore
+  **v2.29.0 or newer**; see the mechanism note above for what to do at v2.28.0.
 
 ## Upgrade Notes
 
