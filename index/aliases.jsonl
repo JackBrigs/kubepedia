@@ -1248,6 +1248,7 @@
 {"alias": "deploy_netchecker", "ids": ["VARIABLE-DEPLOY_NETCHECKER"]}
 {"alias": "deployment not progressing", "ids": ["TROUBLE-ROLLOUT_STUCK"]}
 {"alias": "destroy cluster", "ids": ["PRACTICE-RUNBOOK_RESET"]}
+{"alias": "destructive tasks kubespray", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "devices.kubevirt.io/kvm", "ids": ["CONCEPT-ADDON_KVM_DEVICE_PLUGIN"]}
 {"alias": "devices.kubevirt.io/kvm zero", "ids": ["TROUBLE-KVM_DEVICE_PLUGIN"]}
 {"alias": "dex", "ids": ["CONCEPT-ADDON_DEX"]}
@@ -1331,6 +1332,7 @@
 {"alias": "docker_ubuntu_repo_repokey", "ids": ["VARIABLE-DOCKER_UBUNTU_REPO_REPOKEY"]}
 {"alias": "docker_version", "ids": ["VARIABLE-DOCKER_VERSION"]}
 {"alias": "does cert renewal restart the control plane", "ids": ["PRACTICE-CERTIFICATE_EXPIRY"]}
+{"alias": "does cluster.yml remove anything", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "downgrading client API version to try again", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "download", "ids": ["ROLE-DOWNLOAD", "TAG-DOWNLOAD"]}
 {"alias": "download failed kubespray", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
@@ -2021,6 +2023,7 @@
 {"alias": "kube-prometheus-stack", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
 {"alias": "kube-proxy", "ids": ["CONCEPT-KUBE_PROXY", "TAG-KUBE_PROXY"]}
 {"alias": "kube-proxy debug", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
+{"alias": "kube-proxy pods force deleted", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "kube-proxy replacement toggles removed cilium", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "kube-proxy terminating node traffic", "ids": ["CONCEPT-K8S_KUBE_PROXY_DRAINING_NODES"]}
 {"alias": "kube-proxy-free", "ids": ["CONCEPT-KUBE_PROXY"]}
@@ -2518,12 +2521,14 @@
 {"alias": "kubespray 2.28.1", "ids": ["RELEASE-V2_28_1"]}
 {"alias": "kubespray admin.conf security", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
 {"alias": "kubespray deletes cert-manager namespace", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
+{"alias": "kubespray deletes namespace", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "kubespray etcd not kubeadm", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
 {"alias": "kubespray hangs check api is up", "ids": ["TROUBLE-DEPLOY_HANGS_WAIT_APISERVER"]}
 {"alias": "kubespray in-cluster registry auth", "ids": ["TROUBLE-REGISTRY_ADDON"]}
 {"alias": "kubespray ingress nginx removed", "ids": ["COMPONENT-INGRESS_NGINX"]}
 {"alias": "kubespray kubeadm seam", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
 {"alias": "kubespray no prometheus bundled", "ids": ["PRACTICE-MONITORING_BASELINE"]}
+{"alias": "kubespray removed my podman", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "kubespray submodule", "ids": ["PRACTICE-INTEGRATION"]}
 {"alias": "kubespray upgrade", "ids": ["UPGRADE-KUBESPRAY_SEQUENTIAL"]}
 {"alias": "kubespray upgrade stuck check api healthz", "ids": ["TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK"]}
@@ -3717,6 +3722,7 @@
 {"alias": "what changed in 1.34", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
 {"alias": "what changed in 1.35", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
 {"alias": "what changes on kubernetes upgrade", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
+{"alias": "what does kubespray delete", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "what is not secure out of the box", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
 {"alias": "what to back up kubernetes", "ids": ["PRACTICE-BACKUP_DR"]}
 {"alias": "what to monitor kubernetes", "ids": ["CONCEPT-OBSERVABILITY_STACK", "PRACTICE-MONITORING_BASELINE"]}

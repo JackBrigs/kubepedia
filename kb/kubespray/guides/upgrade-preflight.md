@@ -25,6 +25,8 @@ relations:
     target: UPGRADE-KUBESPRAY_SEQUENTIAL
   - type: see_also
     target: PRACTICE-ETCD_BACKUP_RESTORE
+  - type: see_also
+    target: CONCEPT-DESTRUCTIVE_ACTIONS
 ---
 
 # Pre-upgrade checklist (Kubespray)

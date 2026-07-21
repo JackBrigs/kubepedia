@@ -37,6 +37,8 @@ sources:
 relations:
   - type: see_also
     target: CONCEPT-SECURITY_ADVISORIES
+  - type: see_also
+    target: CONCEPT-DESTRUCTIVE_ACTIONS
 ---
 
 # cert-manager: enabling and CA setup

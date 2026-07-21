@@ -228,6 +228,10 @@
 {"source": "CONCEPT-CUSTOM_CNI", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}
 {"source": "CONCEPT-CVE_REMEDIATION", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-CVE_REMEDIATION", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "CONCEPT-DESTRUCTIVE_ACTIONS", "target": "CONCEPT-ESCAPE_HATCHES", "type": "see_also"}
+{"source": "CONCEPT-DESTRUCTIVE_ACTIONS", "target": "PRACTICE-ANSIBLE", "type": "see_also"}
+{"source": "CONCEPT-DESTRUCTIVE_ACTIONS", "target": "PRACTICE-CERT_MANAGER_SETUP", "type": "see_also"}
+{"source": "CONCEPT-DESTRUCTIVE_ACTIONS", "target": "PRACTICE-UPGRADE_PREFLIGHT", "type": "see_also"}
 {"source": "CONCEPT-ESCAPE_HATCHES", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
 {"source": "CONCEPT-ESCAPE_HATCHES", "target": "CONFIG-FEATURE_GATES_AND_FLAGS", "type": "see_also"}
 {"source": "CONCEPT-ESCAPE_HATCHES", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
@@ -485,6 +489,7 @@
 {"source": "PLAYBOOK-SCALE", "target": "TAG-NODE", "type": "see_also"}
 {"source": "PLAYBOOK-UPGRADE_CLUSTER", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
 {"source": "PLAYBOOK-UPGRADE_CLUSTER", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
+{"source": "PRACTICE-ANSIBLE", "target": "CONCEPT-DESTRUCTIVE_ACTIONS", "type": "see_also"}
 {"source": "PRACTICE-ANSIBLE", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "PRACTICE-ARCHITECTURE_COMPATIBILITY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "PRACTICE-ARCHITECTURE_COMPATIBILITY", "target": "PRACTICE-RUNBOOK_ADD_NODES", "type": "see_also"}
@@ -493,6 +498,7 @@
 {"source": "PRACTICE-BACKUP_DR", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
 {"source": "PRACTICE-CERTIFICATE_EXPIRY", "target": "TAG-ETCD_SECRETS", "type": "see_also"}
 {"source": "PRACTICE-CERTIFICATE_EXPIRY", "target": "VARIABLE-KUBELET_ROTATE_CERTIFICATES", "type": "see_also"}
+{"source": "PRACTICE-CERT_MANAGER_SETUP", "target": "CONCEPT-DESTRUCTIVE_ACTIONS", "type": "see_also"}
 {"source": "PRACTICE-CERT_MANAGER_SETUP", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "PRACTICE-CILIUM", "target": "CONCEPT-CILIUM_DATAPATH", "type": "see_also"}
 {"source": "PRACTICE-CILIUM_DIAGNOSTICS", "target": "COMPONENT-CILIUM", "type": "see_also"}
@@ -661,6 +667,7 @@
 {"source": "PRACTICE-TALOS_PRODUCTION", "target": "CONCEPT-TALOS_MACHINE_CONFIG", "type": "see_also"}
 {"source": "PRACTICE-TALOS_PRODUCTION", "target": "CONCEPT-TALOS_OS_K8S", "type": "see_also"}
 {"source": "PRACTICE-TALOS_PRODUCTION", "target": "CONCEPT-TALOS_UPGRADES", "type": "see_also"}
+{"source": "PRACTICE-UPGRADE_PREFLIGHT", "target": "CONCEPT-DESTRUCTIVE_ACTIONS", "type": "see_also"}
 {"source": "PRACTICE-UPGRADE_PREFLIGHT", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "PRACTICE-UPGRADE_PREFLIGHT", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
 {"source": "RELEASE-V2_27_0", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}

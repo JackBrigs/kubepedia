@@ -26,6 +26,8 @@ sources:
 relations:
   - type: see_also
     target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
+  - type: see_also
+    target: CONCEPT-DESTRUCTIVE_ACTIONS
 ---
 
 # Running Kubespray with Ansible — install, vars, and tags
