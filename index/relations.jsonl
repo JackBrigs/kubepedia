@@ -487,6 +487,7 @@
 {"source": "PLAYBOOK-UPGRADE_CLUSTER", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
 {"source": "PRACTICE-ANSIBLE", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "PRACTICE-ARCHITECTURE_COMPATIBILITY", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "PRACTICE-ARCHITECTURE_COMPATIBILITY", "target": "PRACTICE-RUNBOOK_ADD_NODES", "type": "see_also"}
 {"source": "PRACTICE-BACKUP_DR", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "PRACTICE-BACKUP_DR", "target": "PRACTICE-RECOVER_CONTROL_PLANE", "type": "see_also"}
 {"source": "PRACTICE-BACKUP_DR", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
@@ -506,6 +507,9 @@
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-DNS_DEBUG", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "PRACTICE-CNI_GENERIC_PLUGIN", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
+{"source": "PRACTICE-CNI_GENERIC_PLUGIN", "target": "CONCEPT-CUSTOM_CNI", "type": "see_also"}
+{"source": "PRACTICE-CNI_GENERIC_PLUGIN", "target": "TROUBLE-KUBELET_NODE_NOTREADY_CNI", "type": "see_also"}
+{"source": "PRACTICE-CNI_GENERIC_PLUGIN", "target": "VARIABLE-CNI_BIN_OWNER", "type": "see_also"}
 {"source": "PRACTICE-CONTAINERD", "target": "CONCEPT-CONTAINERD_2X", "type": "see_also"}
 {"source": "PRACTICE-CONTAINERD_DIAGNOSTICS", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "PRACTICE-CONTAINERD_DIAGNOSTICS", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}

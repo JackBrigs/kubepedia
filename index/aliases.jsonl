@@ -346,6 +346,7 @@
 {"alias": "argocd_install_url", "ids": ["VARIABLE-ARGOCD_INSTALL_URL"]}
 {"alias": "argocd_namespace", "ids": ["VARIABLE-ARGOCD_NAMESPACE"]}
 {"alias": "argocd_version", "ids": ["VARIABLE-ARGOCD_VERSION"]}
+{"alias": "arm64 kubespray", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
 {"alias": "arp_cache neighbor table overflow", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "artifacts_dir", "ids": ["PRACTICE-CLUSTER_ACCESS", "VARIABLE-ARTIFACTS_DIR"]}
 {"alias": "assertion failed kubespray", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
@@ -433,6 +434,7 @@
 {"alias": "bring cluster back after outage", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
 {"alias": "bring your own cni kubespray", "ids": ["CONCEPT-CUSTOM_CNI"]}
 {"alias": "bump containerd version", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
+{"alias": "ca-key-pair secret kubespray", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "calico", "ids": ["COMPONENT-CALICO"]}
 {"alias": "calico bgp not peering", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
 {"alias": "calico cni", "ids": ["COMPONENT-CALICO"]}
@@ -584,6 +586,7 @@
 {"alias": "cert-manager cve", "ids": ["TROUBLE-CERT_MANAGER_KNOWN_CVES"]}
 {"alias": "cert-manager order pending", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
 {"alias": "cert-manager ordering webhooks", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
+{"alias": "cert-manager version kubespray", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "cert-manager-setup", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "cert_management", "ids": ["VARIABLE-CERT_MANAGEMENT"]}
 {"alias": "cert_manager_affinity", "ids": ["VARIABLE-CERT_MANAGER_AFFINITY"]}
@@ -594,7 +597,7 @@
 {"alias": "cert_manager_controller_image_tag", "ids": ["VARIABLE-CERT_MANAGER_CONTROLLER_IMAGE_TAG"]}
 {"alias": "cert_manager_dns_config", "ids": ["VARIABLE-CERT_MANAGER_DNS_CONFIG"]}
 {"alias": "cert_manager_dns_policy", "ids": ["VARIABLE-CERT_MANAGER_DNS_POLICY"]}
-{"alias": "cert_manager_enabled", "ids": ["VARIABLE-CERT_MANAGER_ENABLED"]}
+{"alias": "cert_manager_enabled", "ids": ["PRACTICE-CERT_MANAGER_SETUP", "VARIABLE-CERT_MANAGER_ENABLED"]}
 {"alias": "cert_manager_http_proxy", "ids": ["VARIABLE-CERT_MANAGER_HTTP_PROXY"]}
 {"alias": "cert_manager_https_proxy", "ids": ["VARIABLE-CERT_MANAGER_HTTPS_PROXY"]}
 {"alias": "cert_manager_leader_election_namespace", "ids": ["VARIABLE-CERT_MANAGER_LEADER_ELECTION_NAMESPACE"]}
@@ -1189,6 +1192,7 @@
 {"alias": "csi_snapshotter_image_tag", "ids": ["VARIABLE-CSI_SNAPSHOTTER_IMAGE_TAG"]}
 {"alias": "csv pending", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "custom apiserver flags", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
+{"alias": "custom cni without kubespray", "ids": ["PRACTICE-CNI_GENERIC_PLUGIN"]}
 {"alias": "custom flags kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
 {"alias": "custom_cni", "ids": ["CONCEPT-CUSTOM_CNI"]}
 {"alias": "custom_cni_chart", "ids": ["CONCEPT-CUSTOM_CNI"]}
@@ -1851,6 +1855,7 @@
 {"alias": "imageGCHighThresholdPercent", "ids": ["TROUBLE-KUBELET_IMAGE_GC"]}
 {"alias": "imagePullSecrets automount token gone", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "image_arch", "ids": ["VARIABLE-IMAGE_ARCH"]}
+{"alias": "image_arch host_architecture", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
 {"alias": "image_command_tool", "ids": ["VARIABLE-IMAGE_COMMAND_TOOL"]}
 {"alias": "image_command_tool_on_localhost", "ids": ["VARIABLE-IMAGE_COMMAND_TOOL_ON_LOCALHOST"]}
 {"alias": "image_info_command", "ids": ["VARIABLE-IMAGE_INFO_COMMAND"]}
@@ -2107,6 +2112,7 @@
 {"alias": "kube_network_node_prefix_ipv6", "ids": ["VARIABLE-KUBE_NETWORK_NODE_PREFIX_IPV6"]}
 {"alias": "kube_network_plugin", "ids": ["CONCEPT-CLUSTER_NETWORKING", "VARIABLE-KUBE_NETWORK_PLUGIN"]}
 {"alias": "kube_network_plugin calico", "ids": ["COMPONENT-CALICO"]}
+{"alias": "kube_network_plugin cni", "ids": ["PRACTICE-CNI_GENERIC_PLUGIN"]}
 {"alias": "kube_network_plugin custom_cni", "ids": ["CONCEPT-CUSTOM_CNI"]}
 {"alias": "kube_network_plugin flannel", "ids": ["COMPONENT-FLANNEL"]}
 {"alias": "kube_network_plugin kube-ovn", "ids": ["COMPONENT-KUBE_OVN"]}
@@ -2510,6 +2516,7 @@
 {"alias": "kubespray 2.28.0", "ids": ["RELEASE-V2_28_0"]}
 {"alias": "kubespray 2.28.1", "ids": ["RELEASE-V2_28_1"]}
 {"alias": "kubespray admin.conf security", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
+{"alias": "kubespray deletes cert-manager namespace", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "kubespray etcd not kubeadm", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
 {"alias": "kubespray hangs check api is up", "ids": ["TROUBLE-DEPLOY_HANGS_WAIT_APISERVER"]}
 {"alias": "kubespray in-cluster registry auth", "ids": ["TROUBLE-REGISTRY_ADDON"]}
@@ -2698,6 +2705,7 @@
 {"alias": "mirror pod stuck", "ids": ["TROUBLE-KUBELET_STATIC_POD_STUCK"]}
 {"alias": "missing key app.kubernetes.io/managed-by must be set to Helm", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
 {"alias": "missing request for cpu hpa", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
+{"alias": "mixed arch cluster cni", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
 {"alias": "monitoring stack kubernetes", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
 {"alias": "mounts", "ids": ["TAG-MOUNTS"]}
 {"alias": "multi-attach error for volume", "ids": ["TROUBLE-KCM_VOLUME_MULTIATTACH"]}
@@ -2956,6 +2964,7 @@
 {"alias": "operatorgroup missing", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "opt/cni/bin owned by kube not root", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "opt/cni/bin owner", "ids": ["VARIABLE-KUBE_OWNER"]}
+{"alias": "opt/cni/bin unpack only", "ids": ["PRACTICE-CNI_GENERIC_PLUGIN"]}
 {"alias": "ordered webhooks", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "orphaned released pv", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "os patching kubernetes node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}

@@ -11,17 +11,10 @@ _Док описывает cluster.yml/scale.yml/cilium/kubespray, но в `sour
 ## P1 — свежесть и полнота
 ### Протухший verified_at (>180д): 0
 
-### Тонкие доки (<900 симв.): 3
-- 828c `PRACTICE-CERT_MANAGER_SETUP` → `kb/kubespray/guides/cert-manager-setup.md`
-- 851c `PRACTICE-CNI_GENERIC_PLUGIN` → `kb/kubespray/guides/cni-generic-plugin.md`
-- 872c `PRACTICE-ARCHITECTURE_COMPATIBILITY` → `kb/kubespray/guides/architecture-compatibility.md`
+### Тонкие доки (<900 симв.): 0
 
 ## P2 — недавно исправленное (проверить соседей на тот же класс ошибки): 3
 _После правки одного дока тот же промах часто есть в соседних (Cilium→add-nodes)._
 - 8401bd8 Аудит не-сетевых раннбуков по источникам: явный impact в etcd-restore и remove-node
 - 59fd9f9 Аудит 'rolling/non-disruptive' по источникам Kubespray: правка add-nodes
 - e6da74e Cilium upgrade: исправлено по факту исходников Kubespray (прод-критично)
-
-## Темы твоих вопросов (347 реплик; агрегат, без сырого текста)
-_Частые темы = где база активнее всего проверяется/дёргается — кандидаты на углубление._
-`версии`×27, `продолжаем`×20, `cilium`×18, `можно`×18, `kubespray`×17, `добавь`×15, `продолжим`×14, `после`×13, `переменные`×13, `только`×12, `добавить`×12, `базу`×12, `kubernetes`×12, `какой`×11, `проекта`×10, `теперь`×10, `план`×9, `etcd`×9, `вообще`×9, `будет`×9
