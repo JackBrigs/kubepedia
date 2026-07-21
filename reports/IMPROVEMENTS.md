@@ -3,10 +3,7 @@ _Дата: 2026-07-20. Петля обратной связи: сигналы и
 
 ## P0 — риски корректности (уроки этой сессии, автоматизированы)
 
-### Операционные доки БЕЗ явного impact/простоя (1 сигналов)
-
-**Нет раздела impact/disruption (runbook/upgrade):**
-- `UPGRADE-V2_28_0__V2_28_1` → `kb/kubespray/releases/upgrade-2.28.0-to-2.28.1.md`
+### Операционные доки БЕЗ явного impact/простоя (0 сигналов)
 
 ### Механизм не подкреплён исходником Kubespray (0)
 _Док описывает cluster.yml/scale.yml/cilium/kubespray, но в `sources` нет `type: code` на роль/плейбук → риск выдуманной переменной/механизма (как `cilium_upgrade_compatibility`)._
@@ -14,11 +11,9 @@ _Док описывает cluster.yml/scale.yml/cilium/kubespray, но в `sour
 ## P1 — свежесть и полнота
 ### Протухший verified_at (>180д): 0
 
-### Тонкие доки (<900 симв.): 5
-- 801c `UPGRADE-V2_28_0__V2_28_1` → `kb/kubespray/releases/upgrade-2.28.0-to-2.28.1.md`
+### Тонкие доки (<900 симв.): 3
 - 828c `PRACTICE-CERT_MANAGER_SETUP` → `kb/kubespray/guides/cert-manager-setup.md`
 - 851c `PRACTICE-CNI_GENERIC_PLUGIN` → `kb/kubespray/guides/cni-generic-plugin.md`
-- 871c `UPGRADE-V2_27_0__V2_27_1` → `kb/kubespray/releases/upgrade-2.27.0-to-2.27.1.md`
 - 872c `PRACTICE-ARCHITECTURE_COMPATIBILITY` → `kb/kubespray/guides/architecture-compatibility.md`
 
 ## P2 — недавно исправленное (проверить соседей на тот же класс ошибки): 3

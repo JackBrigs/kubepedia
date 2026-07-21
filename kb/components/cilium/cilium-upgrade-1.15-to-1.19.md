@@ -81,21 +81,25 @@ Cilium's own upgrade guidance and the 1.16 notes below are **required reading**,
   |-----------|-----------|
   | v2.27.0 | rendered **manifests** applied with the `kube` module (`state: latest`) — no Helm release exists |
   | v2.28.0 | `cilium install --version {{ cilium_version }} -f cilium-values.yaml` — CLI, **always `install`**, no upgrade branch, no extra-values file |
-  | v2.29.0+ | probes `cilium version`, then `cilium install`**\|**`upgrade --version … -f cilium-values.yaml -f cilium-extra-values.yaml {{ cilium_install_extra_flags }}` |
+  | v2.28.1 | adds the `cilium version` probe → `cilium install`**\|**`upgrade`, and the one-shot cleanup task; still only `-f cilium-values.yaml` |
+  | v2.29.0+ | adds `-f cilium-extra-values.yaml {{ cilium_install_extra_flags }}` |
 
   So **v2.27.0 → v2.28.0 is a change of management model**, not just a version jump: Cilium stops
-  being a set of Kubespray-applied manifests and becomes a CLI/Helm release. v2.29.0 ships a
-  one-shot cleanup for the leftovers (`tasks/remove_old_resources.yml`, gated by
-  `cilium_remove_old_resources`, **default `false`**, removed again in v2.30.0) that deletes the old
-  manifest-installed `cilium`/`hubble-*` ServiceAccounts, Services, Deployments, DaemonSet,
-  ConfigMaps, ClusterRole(Binding)s and Secrets. If you cross v2.27.0→v2.28.0/v2.29.0, decide
-  explicitly whether to enable it — leftovers otherwise stay in the cluster unmanaged.
+  being a set of Kubespray-applied manifests and becomes a CLI/Helm release. **v2.28.0 has no
+  upgrade path at all** — the task always runs `cilium install`. The `install|upgrade` branch and a
+  one-shot cleanup for the manifest-era leftovers (`tasks/remove_old_resources.yml`, gated by
+  `cilium_remove_old_resources`, **default `false`**; deletes the old `cilium`/`hubble-*`
+  ServiceAccounts, Services, Deployments, DaemonSet, ConfigMaps, ClusterRole(Binding)s and Secrets)
+  arrive in **v2.28.1**, stay through v2.29.x, and are removed again in v2.30.0. If you cross
+  v2.27.0 → v2.28.x/v2.29.x, decide explicitly whether to enable the cleanup — leftovers otherwise
+  stay in the cluster unmanaged.
 - **`upgradeCompatibility` is not a Kubespray variable.** The rendered `values.yaml.j2` never sets it
   at any tag in this range; the only supported way in is `cilium_extra_values`, which **exists from
-  v2.29.0** (`{}` by default, together with `cilium_install_extra_flags`). At **v2.28.0 — the tag that
-  performs the unsupported 1.15→1.17 jump — there is no supported knob for arbitrary Helm values at
-  all.** Plan that jump accordingly: either pass values another way outside Kubespray, or move
-  through it knowing the new defaults land unheld.
+  v2.29.0** (`{}` by default, together with `cilium_install_extra_flags`) — it is absent at v2.28.0
+  **and** v2.28.1. So across the whole v2.28.x line — the tags that perform the unsupported
+  1.15→1.17 jump — there is no supported knob for arbitrary Helm values. Plan that jump accordingly:
+  either pass values another way outside Kubespray, or move through it knowing the new defaults land
+  unheld.
 - Re-applying Cilium alone (AWX: job tag `cilium` on `cluster.yml`) runs the same
   install/upgrade task, then waits for all `k8s-app=cilium` pods to become ready
   (`cilium_rolling_restart_wait_retries_count` × `…_delay_seconds`).

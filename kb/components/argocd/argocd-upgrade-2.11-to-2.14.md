@@ -75,12 +75,15 @@ matters if you enable it — but if you do, the jump crosses three minors of ups
 - **`state: latest` applies, it does not prune.** Objects that upstream removed between 2.11 and 2.14
   are **not** deleted — they stay in the `argocd` namespace unmanaged after the jump. Reconcile them
   by hand if you care about a clean namespace.
-- **Which version you actually get is computed, not the role default.** The role default is
-  `argocd_version: 2.14.5` (`roles/kubernetes-apps/argocd/defaults/main.yml`), but
-  `roles/kubespray_defaults/defaults/main/download.yml` redefines it as the **first key** of
-  `argocd_install_checksums.no_arch` — which is `2.14.20` at v2.29.0 and `2.14.21` at v2.31.0
-  (`roles/kubespray_defaults/vars/main/checksums.yml`). Pinning your own `argocd_version` only works
-  if a matching checksum entry exists; otherwise the download fails.
+- **From v2.28.1 the version you actually get is computed, not the role default.** The role default
+  is still `argocd_version: 2.14.5` (`roles/kubernetes-apps/argocd/defaults/main.yml`), but
+  **v2.28.1** moved the download into the shared machinery: `argocd_version` is redefined in
+  `roles/kubespray_defaults/defaults/main/download.yml` as the **first key** of
+  `argocd_install_checksums.no_arch` — `2.14.20` at v2.29.0, `2.14.21` at v2.31.0
+  (`roles/kubespray_defaults/vars/main/checksums.yml`) — and the install URL moved out of the role
+  defaults into the same file. At v2.28.0 the effective version is the plain pin `2.14.5`. Pinning
+  your own `argocd_version` from v2.28.1 on only works if a matching checksum entry exists;
+  otherwise the download fails.
 - **v2.27.0 used a different pin format:** `argocd_version: v2.11.0` with the URL interpolating
   `{{ argocd_version }}` directly; from v2.28.0 the value is unprefixed (`2.14.x`) and the URL adds
   the `v`. Inventories that pinned a `v`-prefixed version must drop the prefix when moving to
