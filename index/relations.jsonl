@@ -23,6 +23,7 @@
 {"source": "COMPONENT-FLANNEL", "target": "CONFIG-CNI_MTU", "type": "see_also"}
 {"source": "COMPONENT-GCP_PD_CSI", "target": "CONCEPT-CSI_LAYER", "type": "see_also"}
 {"source": "COMPONENT-INGRESS_NGINX", "target": "COMPONENT-METALLB", "type": "see_also"}
+{"source": "COMPONENT-INGRESS_NGINX", "target": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "type": "see_also"}
 {"source": "COMPONENT-INGRESS_NGINX", "target": "TAG-INGRESS_CONTROLLER", "type": "see_also"}
 {"source": "COMPONENT-INGRESS_NGINX", "target": "UPGRADE-V2_30_0__V2_31_0", "type": "see_also"}
 {"source": "COMPONENT-KUBE_OVN", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "depends_on"}
@@ -628,6 +629,12 @@
 {"source": "PRACTICE-RUNBOOK_ETCD_RESTORE", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_ETCD_RESTORE", "target": "PRACTICE-CLUSTER_HEALTH_CHECKS", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_ETCD_RESTORE", "target": "PRACTICE-RECOVER_CONTROL_PLANE", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "target": "COMPONENT-INGRESS_NGINX", "type": "depends_on"}
+{"source": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "target": "CONCEPT-RUNBOOKS_INDEX", "type": "part_of"}
+{"source": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "target": "PRACTICE-UPGRADE_PREFLIGHT", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "target": "TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "target": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "target": "UPGRADE-V2_30_0__V2_31_0", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "target": "CONCEPT-RUNBOOKS_INDEX", "type": "part_of"}
 {"source": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "target": "PRACTICE-CLUSTER_HEALTH_CHECKS", "type": "see_also"}

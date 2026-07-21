@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: ">=1.29 <=1.35"
 component_version: null
-verified_at: "2026-07-17"
+verified_at: "2026-07-21"
 confidence: confirmed
 aliases:
   - runbook
@@ -96,6 +96,7 @@ shares so the individual runbooks don't repeat it.
 | [[PRACTICE-RUNBOOK_CNI_MIGRATION]] | Change the CNI plugin | `cluster.yml` | snapshot; not cleanly reversible in place |
 | [[PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18]] | Upgrade Cilium 1.15.9 → 1.18.4 (consecutive-minor) | `cluster.yml --tags=cilium` per hop | per-hop version pin; not clean after CRD/identity migration |
 | [[PRACTICE-RUNBOOK_RUNTIME_MIGRATION]] | Docker → containerd | `cluster.yml` (per node) | snapshot; prefer reset & redeploy |
+| [[PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH]] | Take ingress-nginx off Kubespray (removed in v2.31.0) | `cluster.yml --tags ingress-controller` → Helm | re-enable the variable — only while on ≤ v2.30.0 |
 
 *Data, DR & security:*
 

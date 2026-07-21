@@ -30,6 +30,8 @@ sources:
     note: "v2.31.0 ingress_controller depends only on cert_manager + alb_ingress_controller — no nginx"
 relations:
   - type: see_also
+    target: PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH
+  - type: see_also
     target: TAG-INGRESS_CONTROLLER
   - type: see_also
     target: UPGRADE-V2_30_0__V2_31_0
@@ -77,7 +79,8 @@ Common knobs (managed range only): `ingress_nginx_host_network`,
 - **`v2.31.0`: not available.** Do not set `ingress_nginx_enabled` on `v2.31.0` — it is
   no longer honored. Migrate to a self-managed ingress-nginx (upstream Helm chart) or a
   different ingress solution **before/around** the `v2.30.0 → v2.31.0` upgrade
-  ([[UPGRADE-V2_30_0__V2_31_0]]).
+  ([[UPGRADE-V2_30_0__V2_31_0]]). Ordered procedure with rollback:
+  [[PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH]].
 - For LoadBalancer-type exposure (not HTTP ingress), MetalLB remains available
   ([[COMPONENT-METALLB]]).
 - Controller `1.13.3` corresponds to the ingress-nginx project's `1.13.x` line; consult

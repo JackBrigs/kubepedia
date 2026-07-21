@@ -1876,6 +1876,7 @@
 {"alias": "ingress 502 bad gateway", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
 {"alias": "ingress 504 gateway timeout", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
 {"alias": "ingress dns automation", "ids": ["CONCEPT-EXTERNAL_DNS"]}
+{"alias": "ingress nginx orphaned after upgrade", "ids": ["PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH"]}
 {"alias": "ingress snippet blocked", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
 {"alias": "ingress to gateway api", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY", "TROUBLE-INGRESS2GATEWAY"]}
 {"alias": "ingress-controller", "ids": ["TAG-INGRESS_CONTROLLER"]}
@@ -1883,6 +1884,7 @@
 {"alias": "ingress-nginx 4.12.0", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
 {"alias": "ingress-nginx addon", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
 {"alias": "ingress-nginx annotation validation error", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
+{"alias": "ingress-nginx removed in v2.31.0 what to do", "ids": ["PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH"]}
 {"alias": "ingress-nginx upstream error", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
 {"alias": "ingress2gateway", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY"]}
 {"alias": "ingress2gateway conversion", "ids": ["TROUBLE-INGRESS2GATEWAY"]}
@@ -1897,6 +1899,7 @@
 {"alias": "ingress_nginx_controller_image_tag", "ids": ["VARIABLE-INGRESS_NGINX_CONTROLLER_IMAGE_TAG"]}
 {"alias": "ingress_nginx_default", "ids": ["VARIABLE-INGRESS_NGINX_DEFAULT"]}
 {"alias": "ingress_nginx_enabled", "ids": ["COMPONENT-INGRESS_NGINX", "VARIABLE-INGRESS_NGINX_ENABLED"]}
+{"alias": "ingress_nginx_enabled no longer works", "ids": ["PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH"]}
 {"alias": "ingress_nginx_extra_args", "ids": ["VARIABLE-INGRESS_NGINX_EXTRA_ARGS"]}
 {"alias": "ingress_nginx_host_network", "ids": ["VARIABLE-INGRESS_NGINX_HOST_NETWORK"]}
 {"alias": "ingress_nginx_insecure_port", "ids": ["VARIABLE-INGRESS_NGINX_INSECURE_PORT"]}
@@ -2703,6 +2706,7 @@
 {"alias": "metrics_server_requests_memory", "ids": ["VARIABLE-METRICS_SERVER_REQUESTS_MEMORY"]}
 {"alias": "metrics_server_version", "ids": ["VARIABLE-METRICS_SERVER_VERSION"]}
 {"alias": "migrate KMS v2", "ids": ["TROUBLE-K8S_KMS_V1_DEPRECATED"]}
+{"alias": "migrate ingress-nginx to helm kubespray", "ids": ["PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH"]}
 {"alias": "migrate to cgroup v2", "ids": ["CONCEPT-K8S_CGROUP_V1_REMOVAL"]}
 {"alias": "migrate-docker-to-containerd", "ids": ["PRACTICE-MIGRATE_DOCKER_TO_CONTAINERD"]}
 {"alias": "minDomains ignored", "ids": ["TROUBLE-SCHEDULER_TOPOLOGY_SPREAD"]}
@@ -3309,6 +3313,7 @@
 {"alias": "security remediation order", "ids": ["CONCEPT-ADDON_PATCH_PRIORITY"]}
 {"alias": "security upgrade runbook", "ids": ["CONCEPT-CVE_REMEDIATION"]}
 {"alias": "selector does not match pods", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
+{"alias": "self-manage ingress controller kubespray", "ids": ["PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH"]}
 {"alias": "serial upgrade", "ids": ["PRACTICE-GRACEFUL_UPGRADE"]}
 {"alias": "server is currently unable to handle the request", "ids": ["TROUBLE-APISERVER_APF_429"]}
 {"alias": "serverTLSBootstrap", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
