@@ -62,6 +62,25 @@ python3 scripts/validate_kds.py      # затем проверить
 правила версий), построение индекса. Держать в синхроне с `standards/kds.md` при
 изменении KDS.
 
+### versions_lookup.py (`kubepedia versions`)
+
+Отвечает на самый частый практический вопрос: **какая версия компонента едет в
+каждом теге Kubespray, чем она задана и согласна ли с этим база**.
+
+```bash
+python3 scripts/versions_lookup.py cilium
+python3 scripts/versions_lookup.py runc --tags v2.29.0,v2.31.0
+python3 scripts/versions_lookup.py etcd        # компонент, вычисляемый по минору K8s
+python3 scripts/versions_lookup.py --list      # что известно точно (остальное угадывается)
+```
+
+Резолвер не свой: переиспользуется из `check_versions.py`, поэтому он различает
+статический пин и вычисляемое значение (первый ключ таблицы чек-сумм) и знает про
+переезд роли `kubespray-defaults` → `kubespray_defaults` в v2.28.0. Если переменной
+нет в общей download-машинерии, ищется пин в defaults самой роли (так живут,
+например, версии Argo CD до v2.28.1). Колонка `KB` сверяет значение с тем, что
+заявляет соответствующий документ релиза.
+
 ---
 
 ## validate_kb.py — валидатор консистентности (легаси 0.1.0)

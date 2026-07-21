@@ -4,6 +4,7 @@
     kubepedia plan   --from v2.28.1 --to v2.31.0 --inventory <dir>   # migration diff (pre)
     kubepedia check  --version v2.31.0 --facts facts.json            # post-upgrade verify
     kubepedia impact etcd                                            # graph impact
+    kubepedia versions cilium                                        # version per tag + how it is pinned
     kubepedia report --from v2.28.1 --to v2.31.0                     # KB-narrative report
     kubepedia verify                                                 # KB version consistency
     kubepedia validate                                              # KDS validation
@@ -26,6 +27,7 @@ CMDS = {
     "impact":   ("impact.py",         "graph impact analysis: what depends on X / what breaks if X changes"),
     "report":   ("upgrade_report.py", "KB-narrative upgrade report (personalized to an inventory)"),
     "verify":   ("check_versions.py", "KB integrity: component versions vs the tagged Kubespray source"),
+    "versions": ("versions_lookup.py", "which version of a component ships per tag, and how it is defined"),
     "feed":     ("freshness.py",      "freshness monitor: new upstream tags beyond ceiling + aging verified_at"),
     "validate": ("validate_kds.py",   "KDS validation of the knowledge base"),
     "index":    ("generate_index.py", "regenerate the derived index/ from kb/"),

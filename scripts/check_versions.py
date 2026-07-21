@@ -222,7 +222,8 @@ def resolve(src, tag, kind, name, dl, cs):
     val = m.group(1)
     if "{{" not in val:
         return clean_ver(val), "literal-pin"
-    cm = re.search(r"\(\s*(\w+)\s*\[", val)  # {{ (X_checksums['amd64'] ...) }}
+    # {{ (X_checksums['amd64'] ...) }} or {{ (X_checksums.no_arch | ...) }}
+    cm = re.search(r"\(\s*(\w+)\s*[\[.]", val)
     if cm:
         v = first_checksum_key(cs, cm.group(1))
         if v:
