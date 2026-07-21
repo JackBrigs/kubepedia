@@ -6,8 +6,8 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: ">=1.31 <=1.35"
 component_version: null
-verified_at: "2026-07-16"
-confidence: confirmed
+verified_at: "2026-07-21"
+confidence: verified
 aliases:
   - backup
   - disaster recovery
@@ -25,6 +25,10 @@ sources:
     path: docs/operations/recover-control-plane.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/operations/recover-control-plane.md
     note: "recovery flows incl. lost-quorum snapshot restore (tag v2.31.0)"
+  - type: code
+    path: playbooks/recover_control_plane.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/playbooks/recover_control_plane.yml
+    note: "recovers etcd on etcd[0] and the control plane on kube_control_plane[0], then imports cluster.yml in full — evidence that recovery is a whole-cluster operation"
 relations:
   - type: see_also
     target: PRACTICE-ETCD_BACKUP_RESTORE
@@ -83,6 +87,35 @@ failure.
   is unchanged ([[CONCEPT-ETCD_3_6_CHANGES]]).
 - Match snapshot cadence to your **RPO**; match rebuild automation (inventory-in-Git) to
   your **RTO** — a cluster you can `cluster.yml` from scratch recovers far faster.
+
+## Service impact
+
+Backing up is free; recovering is not — and the recovery paths differ by an order of
+magnitude, so pick the narrowest one that fits the failure.
+
+- **Taking backups is non-disruptive.** `etcdctl snapshot save`, copying `/etc/kubernetes/ssl`
+  and committing the inventory are read-only against a live cluster (brief disk/CPU I/O
+  only). Take a snapshot **before** any risky change — see the disruption profiles in
+  [[PRACTICE-ETCD_BACKUP_RESTORE]].
+- **Replacing one control-plane node with quorum intact** is the cheap path: the API stays
+  available through the remaining nodes, workloads are untouched
+  ([[PRACTICE-RECOVER_CONTROL_PLANE]]).
+- **`recover-control-plane.yml` is a whole-cluster operation, not a surgical one.** The
+  playbook recovers etcd on `etcd[0]` and the control plane on `kube_control_plane[0]`, and
+  then **imports `cluster.yml` in full** before running post-recover tasks. That means every
+  node is reconfigured, and every impact of a full `cluster.yml` run applies on top of the
+  restore itself. Budget a maintenance window, not a quick fix.
+- **A restore rewinds the cluster.** Everything written to etcd after the snapshot is lost:
+  objects created since then disappear, deleted ones come back, and controllers reconcile
+  the difference on start-up. The API is down while etcd is restored; **running pods survive**
+  (kubelet and CNI keep going), but nothing can be scheduled, scaled or updated meanwhile.
+- **Full rebuild** is the longest path — node provisioning plus `cluster.yml` plus restore
+  plus re-applying workloads — and is a complete outage of the control plane for its whole
+  duration. Losing the CA additionally invalidates every existing kubeconfig and every
+  service-account token consumer, so preserving the PKI is what keeps a rebuild from
+  becoming a re-onboarding of all clients.
+- **Rehearsals belong on a throwaway clone**, never on production: a rehearsal restore has
+  exactly the same blast radius as a real one.
 
 ## References
 

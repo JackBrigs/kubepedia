@@ -378,6 +378,7 @@
 {"alias": "authorizer CEL", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "auto-generated service account token deleted", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
 {"alias": "auto_renew_certificates", "ids": ["CONCEPT-CLUSTER_PKI", "VARIABLE-AUTO_RENEW_CERTIFICATES"]}
+{"alias": "auto_renew_certificates downtime", "ids": ["PRACTICE-CERTIFICATE_EXPIRY"]}
 {"alias": "auto_renew_certificates_systemd_calendar", "ids": ["VARIABLE-AUTO_RENEW_CERTIFICATES_SYSTEMD_CALENDAR"]}
 {"alias": "automatic dns records kubernetes", "ids": ["CONCEPT-EXTERNAL_DNS"]}
 {"alias": "aws-ebs-csi", "ids": ["COMPONENT-AWS_EBS_CSI"]}
@@ -1324,6 +1325,7 @@
 {"alias": "docker_ubuntu_repo_gpgkey", "ids": ["VARIABLE-DOCKER_UBUNTU_REPO_GPGKEY"]}
 {"alias": "docker_ubuntu_repo_repokey", "ids": ["VARIABLE-DOCKER_UBUNTU_REPO_REPOKEY"]}
 {"alias": "docker_version", "ids": ["VARIABLE-DOCKER_VERSION"]}
+{"alias": "does cert renewal restart the control plane", "ids": ["PRACTICE-CERTIFICATE_EXPIRY"]}
 {"alias": "downgrading client API version to try again", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "download", "ids": ["ROLE-DOWNLOAD", "TAG-DOWNLOAD"]}
 {"alias": "download failed kubespray", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}

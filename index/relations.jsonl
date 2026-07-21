@@ -500,7 +500,9 @@
 {"source": "PRACTICE-CLUSTER_ACCESS", "target": "TROUBLE-APISERVER_CERT_SAN", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HARDENING", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HARDENING", "target": "PRACTICE-SECRETS_ENCRYPTION_AT_REST", "type": "see_also"}
+{"source": "PRACTICE-CLUSTER_HARDENING", "target": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HARDENING", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
+{"source": "PRACTICE-CLUSTER_HARDENING", "target": "VARIABLE-KUBE_OWNER", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-DNS_DEBUG", "type": "see_also"}
 {"source": "PRACTICE-CLUSTER_HEALTH_CHECKS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "PRACTICE-CNI_GENERIC_PLUGIN", "target": "COMPONENT-CNI_PLUGINS", "type": "see_also"}
@@ -521,12 +523,14 @@
 {"source": "PRACTICE-GRACEFUL_UPGRADE", "target": "PRACTICE-UPGRADE_PREFLIGHT", "type": "see_also"}
 {"source": "PRACTICE-GRACEFUL_UPGRADE", "target": "UPGRADE-KUBESPRAY_SEQUENTIAL", "type": "see_also"}
 {"source": "PRACTICE-GVISOR", "target": "CONCEPT-CONTAINER_RUNTIMES", "type": "see_also"}
+{"source": "PRACTICE-HARDENING", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "PRACTICE-HARDENING", "target": "VARIABLE-KUBERNETES_AUDIT", "type": "see_also"}
 {"source": "PRACTICE-HARDENING", "target": "VARIABLE-KUBE_ENCRYPT_SECRET_DATA", "type": "see_also"}
 {"source": "PRACTICE-HARDENING", "target": "VARIABLE-KUBE_POD_SECURITY_USE_DEFAULT", "type": "see_also"}
 {"source": "PRACTICE-HA_MODE", "target": "COMPONENT-KUBE_VIP", "type": "see_also"}
 {"source": "PRACTICE-HA_MODE", "target": "VARIABLE-LOADBALANCER_APISERVER_LOCALHOST", "type": "see_also"}
 {"source": "PRACTICE-INTEGRATION", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
+{"source": "PRACTICE-INTEGRATION", "target": "PRACTICE-ANSIBLE", "type": "see_also"}
 {"source": "PRACTICE-INVENTORY", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "PRACTICE-KATA_CONTAINERS", "target": "CONCEPT-CONTAINER_RUNTIMES", "type": "see_also"}
 {"source": "PRACTICE-KERNEL_REQUIREMENTS", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}

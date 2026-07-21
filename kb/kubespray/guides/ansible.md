@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: "2026-07-16"
+verified_at: "2026-07-21"
 confidence: verified
 aliases:
   - ansible usage
@@ -19,6 +19,10 @@ sources:
     path: docs/ansible/ansible.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/ansible/ansible.md
     note: "Ansible install/venv, Python compatibility, variable customization layers, playbook tags reference, and example filtered runs"
+  - type: code
+    path: playbooks/upgrade_cluster.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/playbooks/upgrade_cluster.yml
+    note: "serial: 1 for the control plane and serial: 20% for nodes — unlike cluster.yml, whose control-plane play has no serial"
 relations:
   - type: see_also
     target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
@@ -81,5 +85,32 @@ docker run --rm -it --mount type=bind,source="$(pwd)"/inventory/sample,dst=/inve
   quay.io/kubespray/kubespray:v2.31.0 bash
 ```
 
+## Service impact
+
+Installing Ansible and editing `group_vars` is free; **running a playbook against a live
+cluster never is**, and tag filtering changes the blast radius rather than removing it.
+
+- **Control-host work is non-disruptive:** creating the venv, `pip install -r
+  requirements.txt`, pulling the Quay image, editing inventory — nothing touches the
+  cluster.
+- **Any `cluster.yml` run is a converge, not a no-op.** Every template task whose output
+  differs notifies a restart handler — apiserver sandbox removal, `Node | restart kubelet`,
+  `Restart containerd`. A run made "just to check" can restart the control plane if
+  someone's inventory drifted from what is deployed. Use `--check --diff` to see the
+  difference without applying it, and `--limit` to bound it to one node.
+- **Tags narrow the work but not the risk.** `--tags resolvconf` rewrites `/etc/resolv.conf`
+  on every host; `--tags network`/`--tags cilium` re-apply the CNI; `--tags containerd`
+  restarts the runtime. Conversely `--skip-tags` can leave the cluster half-converged: skipping
+  `preinstall`/`facts` means later roles run against stale facts. Run a tag only when you know
+  which handlers it can fire.
+- **Extra vars win over everything**, including values you keep in `group_vars`. Overriding
+  Kubespray internals (`roles/*/vars/`) with `-e` is unsupported and can silently change
+  behaviour between tags.
+- **The control-plane play has no `serial`** in `cluster.yml`, so restarts there are parallel
+  by default; `upgrade_cluster.yml` uses `serial: 1` (control plane) and `serial: 20%`
+  (nodes). If you need staged behaviour, use the upgrade playbook or `--limit`, not
+  `cluster.yml`.
+
 ## References
-- docs/ansible/ansible.md (tag v2.31.0 1c9add4)
+- docs/ansible/ansible.md (tag v2.31.0 1c9add4); `playbooks/cluster.yml` /
+  `playbooks/upgrade_cluster.yml` (serial settings) at tag v2.31.0.

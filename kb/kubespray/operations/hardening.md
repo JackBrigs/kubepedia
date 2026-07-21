@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: 2026-07-16
+verified_at: 2026-07-21
 confidence: verified
 aliases:
   - hardening
@@ -20,7 +20,13 @@ sources:
     path: docs/operations/hardening.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/operations/hardening.md
     note: "CIS-aligned hardening.yaml example (apiserver, audit, PodSecurity, kubelet)"
+  - type: code
+    path: roles/kubernetes/control-plane/handlers/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/handlers/main.yml
+    note: "'Control plane | Restart apiserver' — the restart the hardening overlay triggers"
 relations:
+  - type: see_also
+    target: PRACTICE-CLUSTER_HARDENING
   - type: see_also
     target: VARIABLE-KUBERNETES_AUDIT
   - type: see_also
@@ -69,6 +75,18 @@ Apply by passing the file as extra vars to `cluster.yml`.
   indexed range. Roll out PodSecurity in audit/warn mode first to avoid rejecting
   workloads.
 
+## Service impact
+
+Applying the overlay to a **running** cluster is disruptive: the apiserver config changes
+notify `Control plane | Restart apiserver` (pod sandbox removed) and the kubelet flags
+notify `Node | restart kubelet`, so the API plane bounces and every node goes briefly
+`NotReady`; `cluster.yml`'s control-plane play has no `serial`, so the control-plane
+restart is parallel by default. Running workloads survive, but `PodSecurity` enforce
+`restricted` starts **rejecting new pods** cluster-wide, which surfaces on the next
+rollout or drain. The per-setting breakdown, the encryption-key caveat and the backout
+path are in [[PRACTICE-CLUSTER_HARDENING]].
+
 ## References
 
-- `docs/operations/hardening.md` (tag `v2.31.0` `1c9add4`).
+- `docs/operations/hardening.md` (tag `v2.31.0` `1c9add4`). Full settings list and
+  disruption breakdown: [[PRACTICE-CLUSTER_HARDENING]].

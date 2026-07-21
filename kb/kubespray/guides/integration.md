@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: "2026-07-16"
+verified_at: "2026-07-21"
 confidence: verified
 aliases:
   - kubespray submodule
@@ -22,6 +22,8 @@ sources:
 relations:
   - type: see_also
     target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
+  - type: see_also
+    target: PRACTICE-ANSIBLE
 ---
 
 # Integrating Kubespray into Your Own Ansible Repo
@@ -55,6 +57,20 @@ Contributing changes upstream:
 6. Squash temporary commits with `git rebase -i HEAD~N` and drop commits you do not want to contribute.
 7. Re-check upstream before pushing: `git status`, then `git pull --rebase upstream master`.
 8. Push to your fork (`git push`, or `git push --set-upstream origin <branch>`), then open the PR from GitHub, review the diff, add a clear description, and confirm. A bad branch can be deleted locally and remotely to restart.
+
+## Service impact
+
+**None — this is control-host and repository work only.** Adding the submodule, rearranging
+`ansible.cfg` paths, mapping inventory groups and preparing an upstream PR touch no cluster
+node and start no playbook.
+
+The risk shows up on the **first run after integration**, and it is a correctness risk, not a
+disruption one: role and library paths now resolve across two trees (`roles_path`,
+`library`), and a name collision or a stale submodule pointer means a run executes a
+**different** role than you reviewed. Before pointing the integrated tree at production,
+confirm the submodule is on the intended Kubespray tag (`git submodule status`) and do a
+`--check --diff` run — the impact of what it then applies is the impact of `cluster.yml`
+([[PRACTICE-ANSIBLE]]).
 
 ## References
 - docs/operations/integration.md (tag v2.31.0 1c9add4)

@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: ">=1.31 <=1.35"
 component_version: null
-verified_at: "2026-07-16"
+verified_at: "2026-07-21"
 confidence: verified
 aliases:
   - hardening
@@ -27,7 +27,23 @@ sources:
     path: docs/operations/hardening.md
     url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/docs/operations/hardening.md
     note: "authoritative hardening.yaml reference (tag v2.31.0)"
+  - type: code
+    path: roles/kubernetes/control-plane/handlers/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/control-plane/handlers/main.yml
+    note: "'Control plane | Restart apiserver' removes the apiserver pod sandbox — the restart triggered by apiserver/audit/admission config changes"
+  - type: code
+    path: roles/kubernetes/node/handlers/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubernetes/node/handlers/main.yml
+    note: "'Node | restart kubelet' — kubelet hardening flags restart kubelet on every node"
+  - type: code
+    path: roles/kubespray_defaults/defaults/main/main.yml
+    url: https://github.com/kubernetes-sigs/kubespray/blob/v2.31.0/roles/kubespray_defaults/defaults/main/main.yml
+    note: "remove_anonymous_access default false (L79); docs/ansible/vars.md L318 — it removes the kubeadm:bootstrap-signer-clusterinfo rolebinding and drives kubeadm_use_file_discovery"
 relations:
+  - type: see_also
+    target: VARIABLE-KUBE_OWNER
+  - type: see_also
+    target: TROUBLE-CILIUM_MOUNT_CGROUP_DENIED
   - type: see_also
     target: CONFIG-KUBELET_CONFIGURATION
   - type: see_also
@@ -104,6 +120,49 @@ and admission controls. None of it is on by default; you opt in per cluster.
 - `kube_pod_security_use_default: true`, `kube_pod_security_default_enforce: restricted`
   (deny insecure pods cluster-wide; `kube-system` exempt by default).
 - `kube_owner: root`, `kube_cert_group: root` (tighten file ownership).
+
+## Service impact
+
+Applying `hardening.yaml` to an **existing** cluster is a full `cluster.yml` run plus a set
+of behaviour changes that can reject workloads. Treat it as a change window, not a tweak.
+
+- **Control plane restarts.** The apiserver flags, audit config, admission-control config
+  and encryption config are written by the control-plane role, and each of those template
+  tasks notifies `Control plane | Restart apiserver`, which removes the apiserver pod
+  sandbox (`crictl stopp/rmp`). The `cluster.yml` control-plane play has **no `serial`**, so
+  by default this happens on **all control-plane nodes in parallel** — with a single
+  control-plane node, that is a hard API outage; with HA, limit the run or accept a
+  simultaneous bounce. Running workloads are unaffected; scheduling and API access are.
+- **Every node's kubelet restarts.** The kubelet hardening flags change
+  `kubelet-config.yaml`, which notifies `Node | restart kubelet`
+  (`roles/kubernetes/node/handlers/main.yml`). A kubelet restart does not kill running
+  containers, but the node is briefly `NotReady` and no pod on it can be started, probed or
+  updated meanwhile.
+- **`PodSecurity` enforce `restricted` is the sharpest edge.** It does **not** evict what is
+  already running — it rejects **new** pods that violate the policy. Every deployment
+  rollout, node drain, or pod recreation after the change can fail cluster-wide. Audit
+  namespaces in `warn`/`audit` mode first and exempt what you must; only `kube-system` is
+  exempt by default.
+- **`kube_owner: root` re-owns files on every node** (Kubernetes config, certs and the CNI
+  directories) — see [[VARIABLE-KUBE_OWNER]]. Note this is also the setting that makes stock
+  Cilium work ([[TROUBLE-CILIUM_MOUNT_CGROUP_DENIED]]), so hardened clusters do not hit that
+  failure.
+- **`remove_anonymous_access: true` removes the `kubeadm:bootstrap-signer-clusterinfo`
+  rolebinding** and switches node joins to file discovery
+  (`kubeadm_use_file_discovery`). Kubespray-driven joins keep working; anything external
+  that read `cluster-info` anonymously stops working.
+- **Encryption at rest applies going forward only.** `kube_encrypt_secret_data: true`
+  encrypts secrets as they are written; existing secrets stay in clear text in etcd until
+  rewritten — see [[PRACTICE-SECRETS_ENCRYPTION_AT_REST]]. Losing the generated encryption
+  key later makes those secrets unreadable, so back it up with the PKI.
+- **`kubelet_systemd_hardening` + `kubelet_secure_addresses` install a host-level
+  restriction around the kubelet.** A wrong address list locks the control plane out of the
+  kubelet API: `kubectl logs/exec` and metrics break on that node.
+- **Audit logging costs disk.** `audit_log_maxsize: 100` × `audit_log_maxbackups: 10` is up
+  to ~1 GB per control-plane node; a full partition takes the apiserver down with it.
+- **Rollout order:** apply to a staging cluster first, then one production control-plane
+  node at a time via a limited run. **Backout** is another `cluster.yml` run without the
+  overlay — plus manual work for anything the policy already rejected.
 
 ## References
 
