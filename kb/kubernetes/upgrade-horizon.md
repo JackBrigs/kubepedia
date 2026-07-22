@@ -23,7 +23,7 @@ tags:
 sources:
   - type: other
     path: git ls-remote --tags (upstream repos)
-    note: "latest stable tags observed live 2026-07-17 via git protocol (avoids GitHub API rate limits); Kubernetes + cilium/containerd/etcd/runc/coredns re-checked 2026-07-22"
+    note: "latest stable tags observed live via git protocol (avoids GitHub API rate limits); full sweep of 66 upstream repositories on 2026-07-22, previous sweep 2026-07-17"
 relations:
   - type: see_also
     target: CONCEPT-KUBERNETES_VERSION_SUPPORT
@@ -53,8 +53,8 @@ never overwrites them.
   actually ships ([[CONCEPT-KUBERNETES_VERSION_SUPPORT]]). Bumping a `COMPONENT-*` doc to an
   unshipped upstream version would misrepresent reality, so the "latest" horizon lives here.
 - **Source:** `git ls-remote --tags` on each upstream repo, latest stable semver (pre-release
-  tags excluded), 2026-07-17; **Kubernetes and the five core components re-checked
-  2026-07-22** (see the freshness note below). Kubespray itself is at its ceiling —
+  tags excluded). **Full re-sweep 2026-07-22: 65 tracked entries across 66 repositories** —
+  53 unchanged since the 2026-07-17 sweep, 12 moved (listed below). Kubespray itself is at its ceiling —
   **`v2.31.0` is the newest release** (2026-04-25); there is no newer Kubespray to extend to.
 - **Kubernetes 1.36 is out upstream (1.36.0–1.36.2) and Kubespray does not ship it.**
   `v2.31.0`'s `kubelet_checksums` top out at **1.35.4** (installable floor `1.33.0`, since
@@ -65,14 +65,25 @@ never overwrites them.
   **future context with no in-tree support**.
 - The 1.35 line has also moved on upstream (**1.35.6**) while `v2.31.0` pins **1.35.4** — a
   two-patch gap, normal for a released tag ([[CONCEPT-COMPONENT_VERSION_SELECTION]]).
-- **Freshness re-check 2026-07-22:** cilium `1.19.6`, containerd `2.3.3`, etcd `3.7.0`, runc
-  `1.5.1`, coredns `1.14.6` — all unchanged since the 2026-07-17 sweep, so the tables below
-  still hold for them. The remaining rows carry their 2026-07-17 observation date.
+- **What moved between 2026-07-17 and 2026-07-22** (5 days): `vault` 1.23.0 → **2.0.3**
+  (major), `kata-containers` 3.32.0 → **4.0.0** (major), `crun` 1.27.1 → 1.28, `nerdctl`
+  2.3.4 → 2.3.5, `aws-ebs-csi` 1.62.0 → 1.63.0, `vm-k8s-stack` 1.147.0 → 1.148.0,
+  `vector-operator` 0.4.1 → 0.5.0, `k8up` 2.15.0 → 2.16.0, `rabbitmq-cluster-operator`
+  2.22.2 → 2.22.3, `feast` 0.64.0 → 0.65.0, `kubernetes-dashboard` chart → 7.14.0, `docker`
+  → 28.5.2. Everything else held, including all five core components (cilium `1.19.6`,
+  containerd `2.3.3`, etcd `3.7.0`, runc `1.5.1`, coredns `1.14.6`).
+- **Tag-scheme traps for the next sweep** (a plain semver filter gives the wrong answer):
+  `kubernetes/ingress-nginx` tags releases as `controller-vX.Y.Z`;
+  `VictoriaMetrics/helm-charts` uses chart-prefixed tags, so the app version comes from
+  `VictoriaMetrics/VictoriaMetrics`; `kubernetes/dashboard` keeps plain `vX` tags stuck at
+  2.7.0 while the v7 line lives under `kubernetes-dashboard-*`;
+  `gcp-compute-persistent-disk-csi-driver` carries placeholder `v999.*` tags that sort above
+  every real release.
 - **⚠ = a major-version jump** (highest upgrade risk — API/CRD/behaviour breaks likely).
 
 ## Implementation
 
-### Kubespray-managed components (shipped by v2.31.0 → latest upstream)
+### Kubespray-managed components (shipped by v2.31.0 → latest upstream, 2026-07-22)
 
 | Component | In base (v2.31.0) | Latest upstream | Note |
 |-----------|-------------------|------------------------------|------|
@@ -81,10 +92,10 @@ never overwrites them.
 | containerd | 2.2.3 | **2.3.3** | CRI config `imports` care |
 | runc | 1.4.2 | **1.5.1** | closes the 2025 escape CVE set |
 | CRI-O | ≤1.35.0 | **1.36.2** | track K8s minor |
-| crun | 1.17 | **1.27.1** | |
+| crun | 1.17 | **1.28** | |
 | youki | ≤0.5.7 | **0.6.0** | |
 | cri-dockerd | ≤0.3.24 | **0.4.6** | |
-| nerdctl | ≤2.2.2 | **2.3.4** | |
+| nerdctl | ≤2.2.2 | **2.3.5** | |
 | skopeo | 1.16.1 | **1.23.0** | |
 | cni-plugins | ≤1.9.1 | **1.9.1** | at latest |
 | cilium | ≤1.19.3 | **1.19.6** | patch; closes several CVEs |
@@ -95,39 +106,39 @@ never overwrites them.
 | ingress-nginx (KS) | 1.13.3 | **1.15.1** | annotation-validation defaults |
 | argocd (KS) | 2.14.x | **3.4.5** ⚠ | 2.x→3.x RBAC/tracking breaks |
 | helm | 3.18.4 | **4.2.3** ⚠ | **Helm 3→4 major** |
-| kata-containers | 3.7.0 | **3.32.0** | large jump |
+| kata-containers | 3.7.0 | **4.0.0** ⚠ | **major 3→4**, on top of an already large jump |
 | kube-vip | ≤1.0.3 | **1.2.1** | |
 | local-path-provisioner | 0.0.32 | **0.0.36** | |
 | node-feature-discovery | 0.16.4 | **0.19.0** | |
 | registry (distribution) | 2.8.1 | **3.1.1** ⚠ | **registry v2→v3 major** |
 | snapshot-controller | 7.0.2 | **8.6.0** ⚠ | v7→v8 major |
 | scheduler-plugins | (tracks K8s) | **0.34.7** | pin to K8s minor |
-| aws-ebs-csi | 0.5.0 | **1.62.0** ⚠ | very old pin |
+| aws-ebs-csi | 0.5.0 | **1.63.0** ⚠ | very old pin |
 | gcp-pd-csi | 1.9.2 | **1.26.4** | |
-| docker | 28.3 | (28.x line) | engine |
+| docker | 28.3 | **28.5.2** | engine |
 
 ### Addons (deployed → latest upstream)
 
-| Addon | Deployed | Latest upstream (2026-07-17) | Note |
+| Addon | Deployed | Latest upstream (2026-07-22) | Note |
 |-------|----------|------------------------------|------|
-| vault | 1.21.2 | **1.23.0** | closes CVE-2026-1229 |
+| vault | 1.21.2 | **2.0.3** ⚠ | **major 1→2** (2.0.0 released after 2026-07-17); 1.23.0 is the last 1.x, it closes CVE-2026-1229 |
 | vault-secrets-webhook | 1.21.4 | **1.23.1** | |
 | dex | 2.42.0 | **2.45.1** | |
 | argocd (addon) | 3.1.7 | **3.4.5** | closes CVE-2025-55191 |
 | cert-manager (addon) | 1.18.2 | **1.21.0** | 1.18 EOL; closes DoS CVE |
 | flagger | 1.40.0 | **1.44.0** | |
-| vm-k8s-stack | 1.115.0 | **1.147.0** | closes Snappy DoS CVE |
+| vm-k8s-stack | 1.115.0 | **1.148.0** | closes Snappy DoS CVE |
 | alertmanager | 0.25.0 | **0.33.1** ⚠ | closes stored-XSS; big gap |
-| vector-operator | 0.3.3 | **0.4.1** | |
+| vector-operator | 0.3.3 | **0.5.0** | |
 | otel-operator | 0.156.0 | **0.156.0** | at latest |
 | pyrra | 0.9.4 | **0.10.1** | |
 | headlamp | 0.43.0 | **0.43.0** | at latest |
-| kubernetes-dashboard | 7.6.1 (chart) | v7 line (repo archived) | migrate → headlamp |
+| kubernetes-dashboard | 7.6.1 (chart) | **7.14.0** (chart; repo archived) | migrate → headlamp |
 | rook-ceph | 1.18.9 | **1.20.2** | K8s min rises |
 | ceph-csi | 3.14.2 | **3.17.0** | |
 | lvm-localpv | 1.7.0 | **1.9.1** | |
 | volsync | 0.15.0 | **0.16.0** | |
-| k8up | 2.12.0 | **2.15.0** | |
+| k8up | 2.12.0 | **2.16.0** | |
 | zalando-postgres-operator | 1.14.0 | **1.15.1** | |
 | velero | 1.17.1 | **1.18.2** | |
 | envoy-gateway | 1.6.0 | **1.8.2** | closes RCE CVE-2026-22771 |
@@ -137,10 +148,10 @@ never overwrites them.
 | keda | 2.17.2 | **2.20.1** | closes CVE-2025-68476 |
 | eck-operator | 3.1.0 | **3.4.1** | |
 | olm | 0.32.0 | **0.45.0** | |
-| rabbitmq-cluster-operator | 2.19.2 | **2.22.2** | broker → 4.x |
+| rabbitmq-cluster-operator | 2.19.2 | **2.22.3** | broker → 4.x |
 | dragonfly-operator | (op) 1.1.11 / (db) 1.28.1 | **1.6.1 / 1.39.0** | db closes 3 CVEs |
 | awx-operator | 2.19.1 | **2.19.1** | at latest |
-| feast | 0.64.0 | **0.64.0** | at latest |
+| feast | 0.64.0 | **0.65.0** | |
 | gigapipe/qryn | 4.1.6 | **4.3.1** | |
 | karma | 0.121 | **0.131** | |
 | spegel | 0.0.1 | **0.7.4** ⚠ | huge gap; needs containerd 2.1+ |
@@ -165,8 +176,8 @@ never overwrites them.
 
 ## References
 
-- `git ls-remote --tags` per upstream repo (2026-07-17; Kubernetes and the five core
-  components re-checked 2026-07-22). Kubespray ceiling and installable Kubernetes range read
+- `git ls-remote --tags` per upstream repo — full sweep 2026-07-22 (66 repositories),
+  previous sweep 2026-07-17. Kubespray ceiling and installable Kubernetes range read
   from `roles/kubespray_defaults/vars/main/checksums.yml`@v2.31.0. Base version window:
   [[CONCEPT-KUBERNETES_VERSION_SUPPORT]]; addon inventory: [[CONCEPT-ADDON_CATALOG]];
   Kubespray selection mechanism: [[CONCEPT-COMPONENT_VERSION_SELECTION]].
