@@ -6,7 +6,7 @@ status: active
 kubespray_version: null
 kubernetes_version: ">=1.29 <=1.35"
 component_version: null
-verified_at: "2026-07-17"
+verified_at: "2026-07-22"
 confidence: verified
 aliases:
   - upgrade horizon
@@ -23,7 +23,7 @@ tags:
 sources:
   - type: other
     path: git ls-remote --tags (upstream repos)
-    note: "latest stable tags observed live 2026-07-17 via git protocol (avoids GitHub API rate limits)"
+    note: "latest stable tags observed live 2026-07-17 via git protocol (avoids GitHub API rate limits); Kubernetes + cilium/containerd/etcd/runc/coredns re-checked 2026-07-22"
 relations:
   - type: see_also
     target: CONCEPT-KUBERNETES_VERSION_SUPPORT
@@ -31,6 +31,8 @@ relations:
     target: CONCEPT-ADDON_CATALOG
   - type: see_also
     target: CONCEPT-COMPONENT_VERSION_SELECTION
+  - type: see_also
+    target: CONCEPT-K8S_1_35_CHANGES
 ---
 
 # Upgrade horizon — latest upstream versions vs the base (future context)
@@ -51,16 +53,30 @@ never overwrites them.
   actually ships ([[CONCEPT-KUBERNETES_VERSION_SUPPORT]]). Bumping a `COMPONENT-*` doc to an
   unshipped upstream version would misrepresent reality, so the "latest" horizon lives here.
 - **Source:** `git ls-remote --tags` on each upstream repo, latest stable semver (pre-release
-  tags excluded), 2026-07-17. Kubespray itself is at its ceiling — **`v2.31.0` is the newest
-  release** (2026-04-25); there is no newer Kubespray to extend to.
+  tags excluded), 2026-07-17; **Kubernetes and the five core components re-checked
+  2026-07-22** (see the freshness note below). Kubespray itself is at its ceiling —
+  **`v2.31.0` is the newest release** (2026-04-25); there is no newer Kubespray to extend to.
+- **Kubernetes 1.36 is out upstream (1.36.0–1.36.2) and Kubespray does not ship it.**
+  `v2.31.0`'s `kubelet_checksums` top out at **1.35.4** (installable floor `1.33.0`, since
+  `kube_version_min_required` is the last checksum key), so 1.36 is unreachable through
+  Kubespray until a new release adds the checksums — overriding `kube_version` to a version
+  with no checksum entry simply fails the download. The base's Kubernetes layer
+  (`1.29`–`1.35`) is therefore still complete for what Kubespray can install; 1.36 is
+  **future context with no in-tree support**.
+- The 1.35 line has also moved on upstream (**1.35.6**) while `v2.31.0` pins **1.35.4** — a
+  two-patch gap, normal for a released tag ([[CONCEPT-COMPONENT_VERSION_SELECTION]]).
+- **Freshness re-check 2026-07-22:** cilium `1.19.6`, containerd `2.3.3`, etcd `3.7.0`, runc
+  `1.5.1`, coredns `1.14.6` — all unchanged since the 2026-07-17 sweep, so the tables below
+  still hold for them. The remaining rows carry their 2026-07-17 observation date.
 - **⚠ = a major-version jump** (highest upgrade risk — API/CRD/behaviour breaks likely).
 
 ## Implementation
 
 ### Kubespray-managed components (shipped by v2.31.0 → latest upstream)
 
-| Component | In base (v2.31.0) | Latest upstream (2026-07-17) | Note |
+| Component | In base (v2.31.0) | Latest upstream | Note |
 |-----------|-------------------|------------------------------|------|
+| **Kubernetes** | 1.35.4 (default; installable 1.33.0–1.35.4) | **1.36.2** (1.35 head: **1.35.6**) | re-checked 2026-07-22 — Kubespray ships no 1.36 yet; see below |
 | etcd | 3.6.x (≤3.6.10) | **3.7.0** | minor jump; test defrag/downgrade path |
 | containerd | 2.2.3 | **2.3.3** | CRI config `imports` care |
 | runc | 1.4.2 | **1.5.1** | closes the 2025 escape CVE set |
@@ -149,6 +165,8 @@ never overwrites them.
 
 ## References
 
-- `git ls-remote --tags` per upstream repo (2026-07-17). Base version window:
+- `git ls-remote --tags` per upstream repo (2026-07-17; Kubernetes and the five core
+  components re-checked 2026-07-22). Kubespray ceiling and installable Kubernetes range read
+  from `roles/kubespray_defaults/vars/main/checksums.yml`@v2.31.0. Base version window:
   [[CONCEPT-KUBERNETES_VERSION_SUPPORT]]; addon inventory: [[CONCEPT-ADDON_CATALOG]];
   Kubespray selection mechanism: [[CONCEPT-COMPONENT_VERSION_SELECTION]].
