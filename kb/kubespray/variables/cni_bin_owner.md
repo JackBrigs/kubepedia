@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: "2026-07-21"
+verified_at: "2026-07-22"
 confidence: verified
 aliases:
   - cni_bin_owner
@@ -84,6 +84,13 @@ The role runs for every `kube_network_plugin` except `none`
 (`roles/network_plugin/tasks/main.yml`), so this applies to Cilium, Calico, Flannel,
 kube-ovn, kube-router, macvlan and the bare `cni` value alike
 ([[PRACTICE-CNI_GENERIC_PLUGIN]]).
+
+**Which run tag applies it — not the one you would guess.** In
+`roles/network_plugin/tasks/main.yml` the task that includes `network_plugin/cni` declares
+**no tags of its own**, so it inherits only `network` from `{ role: network_plugin, tags:
+network }` in `playbooks/cluster.yml`. A run scoped to `--tags cilium` (AWX job tag `cilium`)
+**skips it**, and the ownership is never applied. Use the `network` tag — which also runs the
+CNI plugin's own role, since that include carries `network` too.
 
 ## Known Issues
 

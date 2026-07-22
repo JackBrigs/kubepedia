@@ -969,6 +969,7 @@
 {"alias": "containerd", "ids": ["COMPONENT-CONTAINERD", "TAG-CONTAINERD"]}
 {"alias": "containerd 2 migration", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd 2.x", "ids": ["CONCEPT-CONTAINERD_2X"]}
+{"alias": "containerd ImagePullBackOff after disabling proxy", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "containerd config version 3", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd config.toml v3", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd cve", "ids": ["TROUBLE-CONTAINERD_KNOWN_CVES"]}
@@ -980,6 +981,7 @@
 {"alias": "containerd registry mirror auth", "ids": ["TROUBLE-CONTAINERD_IMAGE_PULL_CRI"]}
 {"alias": "containerd runtime", "ids": ["PRACTICE-CONTAINERD"]}
 {"alias": "containerd security", "ids": ["TROUBLE-CONTAINERD_KNOWN_CVES"]}
+{"alias": "containerd still uses proxy after removing http_proxy", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "containerd task v3 downgrade", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "containerd vs cri-o vs docker", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "containerd-http-proxy-conf", "ids": ["TROUBLE-CONTAINERD_NO_PROXY_CHAR_ARRAY"]}
@@ -1831,6 +1833,7 @@
 {"alias": "how do I upgrade / restore / migrate", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
 {"alias": "how far behind", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
 {"alias": "how to access the cluster", "ids": ["PRACTICE-CLUSTER_ACCESS"]}
+{"alias": "how to disable proxy for containerd kubespray", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "how to expose services", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
 {"alias": "how to query kubepedia", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "how to set a flag not exposed by kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
@@ -1838,6 +1841,7 @@
 {"alias": "how to upgrade kubespray safely", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
 {"alias": "hpa not scaling", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
 {"alias": "hpa unknown targets", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
+{"alias": "http-proxy.conf containerd.service.d", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "http01 dns01 challenge failing", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
 {"alias": "http_proxy", "ids": ["CONFIG-PROXY"]}
 {"alias": "https_proxy", "ids": ["CONFIG-PROXY"]}
@@ -2531,6 +2535,7 @@
 {"alias": "kubespray ingress nginx removed", "ids": ["COMPONENT-INGRESS_NGINX"]}
 {"alias": "kubespray kubeadm seam", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
 {"alias": "kubespray no prometheus bundled", "ids": ["PRACTICE-MONITORING_BASELINE"]}
+{"alias": "kubespray remove proxy settings", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "kubespray removed my podman", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "kubespray submodule", "ids": ["PRACTICE-INTEGRATION"]}
 {"alias": "kubespray upgrade", "ids": ["UPGRADE-KUBESPRAY_SEQUENTIAL"]}

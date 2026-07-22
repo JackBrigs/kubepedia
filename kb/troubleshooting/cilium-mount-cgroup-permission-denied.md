@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: "2026-07-21"
+verified_at: "2026-07-22"
 confidence: verified
 aliases:
   - cilium mount-cgroup permission denied
@@ -61,6 +61,8 @@ relations:
     target: TROUBLE-KUBELET_NODE_NOTREADY_CNI
   - type: see_also
     target: TAG-CILIUM
+  - type: see_also
+    target: PRACTICE-ANSIBLE
 ---
 
 # Cilium agent Init:CrashLoopBackOff — mount-cgroup 'cannot create /hostbin/cilium-mount: Permission denied'
@@ -128,6 +130,15 @@ node stays `NotReady` with the `node.cilium.io/agent-not-ready` taint and
   `cilium-extra-values.yaml` and passed to Helm — the supported way to set any chart
   value, including `securityContext.privileged`.
 
+- **A healthy-looking cluster can already be broken.** `mount-cgroup` only writes at pod
+  start-up, so a cluster whose `/opt/cni/bin` is `kube`-owned keeps running normally for as
+  long as the agent pods are not recreated — `kubectl get nodes` shows every node `Ready`.
+  The failure appears at the next pod recreation: a node reboot, an eviction, a drain, or a
+  Cilium upgrade. That is why the breakage typically hits **some** nodes and not the whole
+  cluster at once. On any cluster where the fix is not applied yet, treat
+  `ls -ld /opt/cni/bin` returning a non-`root` owner as a latent outage, not as "fine for
+  now".
+
 ## Diagnostics
 
 - Confirm the failing init step and message:
@@ -142,6 +153,14 @@ node stays `NotReady` with the `node.cilium.io/agent-not-ready` taint and
   **`root`-owned** dir would be writable by the uid-0 container and would *not* fail.
   Also check `lsattr -d /opt/cni/bin` (immutable `+i`?) and `findmnt /opt/cni/bin`
   (a separate/`ro` mount would give EROFS instead).
+- **Check the fix actually reached the release, not just the inventory.** The DaemonSet is
+  authoritative:
+  `kubectl -n kube-system get ds cilium -o jsonpath='{range .spec.template.spec.initContainers[*]}{.name}{" privileged="}{.securityContext.privileged}{"\n"}{end}'`.
+  `mount-cgroup` must report `privileged=true`. Note `mount-bpf-fs` is privileged
+  unconditionally in the chart — seeing it alone proves nothing. The rendered
+  `{{ kube_config_dir }}/cilium-extra-values.yaml` on `kube_control_plane[0]` shows what was
+  passed to Helm, but it is an artefact of the **last run**: if the cluster has not converged
+  since the inventory change, it is stale rather than wrong ([[PRACTICE-ANSIBLE]]).
 - Rule out LSM quickly: Cilium already annotates these init containers
   `container.apparmor.security.beta.kubernetes.io/mount-cgroup: unconfined`; only a
   **host-level** AppArmor/SELinux policy could still deny — check

@@ -848,6 +848,7 @@
 {"source": "TROUBLE-CILIUM_MESH_AUTH_DISABLED", "target": "CONCEPT-CILIUM_ENCRYPTION", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MESH_AUTH_DISABLED", "target": "UPGRADE-CILIUM_1_15_TO_1_19", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "PRACTICE-ANSIBLE", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "TAG-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "TROUBLE-KUBELET_NODE_NOTREADY_CNI", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_MOUNT_CGROUP_DENIED", "target": "VARIABLE-CNI_BIN_OWNER", "type": "see_also"}
@@ -881,6 +882,10 @@
 {"source": "TROUBLE-CONTAINERD_KNOWN_CVES", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_OVERLAYFS", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
+{"source": "TROUBLE-CONTAINERD_PROXY_NOT_REMOVED", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
+{"source": "TROUBLE-CONTAINERD_PROXY_NOT_REMOVED", "target": "CONCEPT-DESTRUCTIVE_ACTIONS", "type": "see_also"}
+{"source": "TROUBLE-CONTAINERD_PROXY_NOT_REMOVED", "target": "CONFIG-PROXY", "type": "see_also"}
+{"source": "TROUBLE-CONTAINERD_PROXY_NOT_REMOVED", "target": "TAG-CONTAINERD", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "target": "TROUBLE-CGROUP_DRIVER_MISMATCH", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_REGISTRY_CONFIG", "target": "TROUBLE-IMAGE_PULL_RATE_LIMIT", "type": "see_also"}

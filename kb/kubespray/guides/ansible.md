@@ -87,6 +87,29 @@ docker run --rm -it --mount type=bind,source="$(pwd)"/inventory/sample,dst=/inve
   quay.io/kubespray/kubespray:v2.31.0 bash
 ```
 
+## Known Issues
+
+**`group_vars` must sit next to the inventory file, or the whole layer is silently ignored.**
+Ansible loads group variables from a `group_vars/` directory adjacent to the inventory
+(`inventory/<cluster>/group_vars/all/…`, `…/group_vars/k8s_cluster/…`). Directories named
+`all/` or `k8s_cluster/` placed **directly** in the inventory root are not group_vars — they
+are just directories, and every variable in them is unused. Nothing warns: the run is green,
+the cluster is simply built from defaults. The symptom reaches you later and disguised — a
+component behaving as if its setting was never set, an inventory pin that "does not work".
+Cheap check: `ansible -i <inventory> <host> -m debug -a 'var=<your_var>'` before blaming the
+role.
+
+**Dictionaries are replaced, not merged.** Ansible's default `hash_behaviour` is `replace`,
+so when the same dict variable is defined in two places (a shared defaults layer and a
+per-cluster file), the winner **replaces the whole dict** — it does not merge keys. Redefining
+`cilium_extra_values` to add one key silently drops every key the other definition had. Always
+restate the full dict, and verify the rendered artefact rather than the inventory.
+
+**Rendered artefacts on the node show the *last run*, not the inventory.** Files such as
+`{{ kube_config_dir }}/cilium-extra-values.yaml` are written during a run. Reading one is an
+excellent way to see what actually reached a component — but it is evidence about the moment
+of the last run, so always pair it with "when did this cluster last converge".
+
 ## Service impact
 
 Installing Ansible and editing `group_vars` is free; **running a playbook against a live
