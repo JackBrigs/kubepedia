@@ -814,6 +814,12 @@
 {"source": "TROUBLE-CILIUM_BGP_V1_REMOVED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_BGP_V1_REMOVED", "target": "TROUBLE-CILIUM_BGP_ADVERTISEMENT_LABELS", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_BGP_V1_REMOVED", "target": "UPGRADE-CILIUM_1_15_TO_1_19", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "TAG-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "TAG-DOWNLOAD", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "VARIABLE-BIN_DIR", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "VARIABLE-CILIUMCLI_DOWNLOAD_URL", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "VARIABLE-LOCAL_RELEASE_DIR", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY", "target": "PRACTICE-RUNBOOK_CONFIG_CHANGE", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY", "target": "UPGRADE-CILIUM_1_15_TO_1_19", "type": "see_also"}

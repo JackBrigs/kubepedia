@@ -10,6 +10,7 @@
 {"alias": "--tags cert-manager", "ids": ["TAG-CERT_MANAGER"]}
 {"alias": "--tags check", "ids": ["TAG-CHECK"]}
 {"alias": "--tags cilium", "ids": ["TAG-CILIUM"]}
+{"alias": "--tags cilium without download", "ids": ["TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED"]}
 {"alias": "--tags cinder-csi-driver", "ids": ["TAG-CINDER_CSI_DRIVER"]}
 {"alias": "--tags client", "ids": ["TAG-CLIENT"]}
 {"alias": "--tags cluster-roles", "ids": ["TAG-CLUSTER_ROLES"]}
@@ -144,6 +145,7 @@
 {"alias": "CVE-2025-52565", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
 {"alias": "CVE-2025-52881", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
 {"alias": "Cilium CNI", "ids": ["PRACTICE-CILIUM"]}
+{"alias": "Cilium Copy Ciliumcli binary from download dir failed", "ids": ["TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED"]}
 {"alias": "CiliumBGPClusterConfig", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "CiliumBGPPeeringPolicy removed", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "CiliumLoadBalancerIPPool", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
@@ -213,6 +215,7 @@
 {"alias": "SPDY proxy broken exec", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
 {"alias": "ServiceCIDR object", "ids": ["CONCEPT-K8S_MULTI_CIDR_SERVICE_ALLOCATOR"]}
 {"alias": "SidecarContainers", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
+{"alias": "Source /tmp/releases/cilium not found", "ids": ["TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED"]}
 {"alias": "StatefulSetAutoDeletePVC", "ids": ["CONCEPT-K8S_STATEFULSET_PVC_AUTODELETE"]}
 {"alias": "Stop if", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
 {"alias": "StructuredAuthenticationConfiguration", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN"]}
@@ -714,6 +717,7 @@
 {"alias": "cilium version jump kubespray", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium wireguard", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "cilium-bgp-advertisement-labels-undefined", "ids": ["TROUBLE-CILIUM_BGP_ADVERTISEMENT_LABELS"]}
+{"alias": "cilium-cli binary missing", "ids": ["TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED"]}
 {"alias": "cilium-empty-string-null-helm-values", "ids": ["TROUBLE-CILIUM_EMPTY_STRING_NULL_HELM"]}
 {"alias": "cilium-enable-prometheus-noop", "ids": ["TROUBLE-CILIUM_ENABLE_PROMETHEUS_NOOP"]}
 {"alias": "cilium-envoy", "ids": ["CONCEPT-CILIUM_ENVOY"]}
@@ -1103,6 +1107,7 @@
 {"alias": "corefile custom zones kubespray", "ids": ["CONCEPT-COREDNS_CUSTOMIZATION"]}
 {"alias": "coreos_locksmithd_disable", "ids": ["VARIABLE-COREOS_LOCKSMITHD_DISABLE"]}
 {"alias": "corporate proxy kubespray", "ids": ["CONFIG-PROXY"]}
+{"alias": "could not find src /tmp/releases/cilium", "ids": ["TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED"]}
 {"alias": "couldn't validate the identity of the API server", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
 {"alias": "cpu isolation", "ids": ["CONFIG-CPU_ISOLATION"]}
 {"alias": "cpu pinning kubernetes", "ids": ["CONFIG-CPU_ISOLATION"]}
@@ -2626,6 +2631,7 @@
 {"alias": "local_path_provisioner_storage_class", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_STORAGE_CLASS"]}
 {"alias": "local_path_provisioner_version", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_VERSION"]}
 {"alias": "local_release_dir", "ids": ["VARIABLE-LOCAL_RELEASE_DIR"]}
+{"alias": "local_release_dir cilium not found", "ids": ["TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED"]}
 {"alias": "local_volume_provisioner_directory_mode", "ids": ["VARIABLE-LOCAL_VOLUME_PROVISIONER_DIRECTORY_MODE"]}
 {"alias": "local_volume_provisioner_enabled", "ids": ["VARIABLE-LOCAL_VOLUME_PROVISIONER_ENABLED"]}
 {"alias": "local_volume_provisioner_image_repo", "ids": ["VARIABLE-LOCAL_VOLUME_PROVISIONER_IMAGE_REPO"]}
@@ -3386,6 +3392,7 @@
 {"alias": "ssl_ca_dirs", "ids": ["VARIABLE-SSL_CA_DIRS"]}
 {"alias": "stacked vs external etcd kubespray", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
 {"alias": "stale endpoints nxdomain", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
+{"alias": "standalone cilium tag fails", "ids": ["TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED"]}
 {"alias": "statefulset data loss retention policy", "ids": ["CONCEPT-K8S_STATEFULSET_PVC_AUTODELETE"]}
 {"alias": "statefulset deletes pvc", "ids": ["CONCEPT-K8S_STATEFULSET_PVC_AUTODELETE"]}
 {"alias": "static pod not restarting", "ids": ["TROUBLE-KUBELET_STATIC_POD_STUCK"]}
