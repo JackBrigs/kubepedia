@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: ">=1.33 <=1.35"
 component_version: null
-verified_at: "2026-07-16"
+verified_at: "2026-07-27"
 confidence: verified
 aliases:
   - kubernetes cve
@@ -63,5 +63,5 @@ CVEs (id — summary — fixed in):
 
 ## References
 
-- osv.dev (queried per version) for `k8s.io/kubernetes` — verified 2026-07-16.
+- osv.dev (queried per version) for `k8s.io/kubernetes` — verified 2026-07-27.
 - Tracking: [[CONCEPT-SECURITY_ADVISORIES]].

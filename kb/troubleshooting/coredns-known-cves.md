@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: ">=1.11.3 <=1.12.4"
-verified_at: "2026-07-16"
+verified_at: "2026-07-27"
 confidence: verified
 aliases:
   - coredns cve
@@ -71,5 +71,5 @@ CVEs (id — summary — fixed in):
 
 ## References
 
-- osv.dev (queried per version) for `github.com/coredns/coredns` — verified 2026-07-16.
+- osv.dev (queried per version) for `github.com/coredns/coredns` — verified 2026-07-27.
 - Component: [[COMPONENT-COREDNS]]; tracking: [[CONCEPT-SECURITY_ADVISORIES]].

@@ -435,3 +435,45 @@ KDS format, standards, and architecture are unchanged.
 a query/retrieval API over `index/`, an Upgrade & Change Report inventory intake, and an MCP
 server/connector. The upstream `src-cache/` clones remain locally for periodic re-mining. Deferred
 items unchanged (README, community deep-mining, Calico depth).
+
+---
+
+## D-021 — CVE matrices are swept, not trusted: osv.dev query rules (2026-07-27)
+
+**Context.** The per-component CVE matrices (`kb/troubleshooting/*known-cves.md`) were written by
+hand from osv.dev queries. Two silent failure modes were found on the first periodic re-sweep, both
+of which made the KB *understate* exposure:
+
+1. **Go module major-version path.** From major 2 on, a Go module path carries a `/vN` suffix.
+   containerd 2.x is indexed on osv.dev as `github.com/containerd/containerd/v2`; querying the
+   unsuffixed path for version `2.2.3` returns a **subset with no error**. The matrix therefore
+   recorded **3** CVEs for Kubespray v2.28.0–v2.31.0 where there are **5–8** — the current shipped
+   runtime (containerd 2.2.3, Kubespray v2.31.0) is affected by 6, including `CVE-2026-53488`
+   (host-root command execution triggered by an image pull).
+2. **Double-counted records.** osv.dev returns one record *per database* (GHSA **and** GO) for the
+   same advisory, so a raw record count is roughly double the number of vulnerabilities. Rows that
+   stated a count without listing ids ("13 — query osv.dev for the full list") were counting records:
+   containerd 1.7.24 said 13 (actual 8), runc 1.2.3 said 8 (actual 4), cilium 1.15.9 said 20
+   (actual 10).
+
+**Decision.** CVE matrices are treated as **derived, date-sensitive data that must be re-swept**, not
+as facts that stay true. Concretely:
+
+- `scripts/cve_sweep.py` re-queries osv.dev for every version listed in every matrix and reports
+  three drift classes: new CVEs, CVEs no longer affecting, and **count drift** (a stated count that
+  no longer matches). It reports only — editing a matrix stays a normal KDS change.
+- Every osv.dev query derives the Go module path from the queried version (`/vN` for major ≥ 2).
+- Counts in matrices mean **distinct advisories**, collapsed by CVE alias; each row enumerates its
+  ids. "Query osv.dev for the full list" is no longer an acceptable cell value — an unenumerated row
+  cannot be re-verified.
+- A row whose fix state changes (upstream released a fix Kubespray does not ship yet) must carry the
+  concrete remediation, including whether the pinned version has a checksum entry at that tag.
+
+**Rationale.** A security matrix that under-reports is worse than no matrix: it is read as an
+all-clear. Making the sweep a one-command tool is what makes the periodic obligation in `BACKLOG.md`
+actually cheap enough to honour.
+
+**Consequences.** All 8 matrices re-verified at 2026-07-27 (cilium, containerd, runc rewritten;
+cert-manager, cni-plugins, coredns, helm, kubernetes confirmed unchanged). The sweep is part of the
+periodic maintenance loop next to `freshness.py` and `check_versions.py`. Kubespray v2.31.0 no longer
+counts as "the safe containerd" — the matrix now names the 2.2.5 pin and the missing checksum key.

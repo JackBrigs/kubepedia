@@ -125,9 +125,9 @@ def main():
         oldest_cve = cve[0]
         out.append((f"CVE-матрицы ({len(cve)}) — самая старая: `{oldest_cve[2]}` "
                     f"({oldest_cve[1]}, {oldest_cve[0]} дн. назад). CVE date-sensitive — "
-                    f"пере-свипить osv.dev при устаревании." if ru else
+                    f"пере-свип: `python3 scripts/cve_sweep.py`." if ru else
                     f"CVE matrices ({len(cve)}) — oldest: `{oldest_cve[2]}` "
-                    f"({oldest_cve[1]}, {oldest_cve[0]}d old). Re-sweep osv.dev when stale."))
+                    f"({oldest_cve[1]}, {oldest_cve[0]}d old). Re-sweep: `python3 scripts/cve_sweep.py`."))
     if stale[:8]:
         out.append(("\nСамые старые доки:" if ru else "\nOldest docs:"))
         out += [f"  - {age} дн — `{rel}` ({date})" for age, date, rel in stale[:8]]

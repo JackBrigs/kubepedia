@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: null
 component_version: ">=1.4.0 <=1.9.1"
-verified_at: "2026-07-16"
+verified_at: "2026-07-27"
 confidence: verified
 aliases:
   - cni-plugins cve
@@ -61,5 +61,5 @@ CVEs (id — summary — fixed in):
 
 ## References
 
-- osv.dev (queried per version) for `github.com/containernetworking/plugins` — verified 2026-07-16.
+- osv.dev (queried per version) for `github.com/containernetworking/plugins` — verified 2026-07-27.
 - Tracking: [[CONCEPT-SECURITY_ADVISORIES]].

@@ -56,9 +56,11 @@ index — low value).
 ## Open — periodic / maintenance
 
 - **osv.dev CVE re-sweep** — the per-component CVE matrices and the upgrade-horizon are
-  **date-sensitive**; re-run the osv.dev sweep and refresh `verified_at` when component versions
-  change or new CVEs land. Optionally extend to the long tail of minor add-ons / per-K8s-patch
-  versions.
+  **date-sensitive**. Now one command: `python3 scripts/cve_sweep.py` re-queries osv.dev for every
+  version in every matrix and reports new CVEs, cleared CVEs and count drift (D-021). Re-run when
+  component versions change or on a periodic tick; last sweep **2026-07-27** (all 8 matrices clean
+  after the cilium/containerd/runc rewrite). Still open: the matrices cover only the 8 mined
+  components — the long tail of minor add-ons and per-K8s-patch versions has none.
 - **New Kubespray release** — v2.31.0 is the current ceiling. When a newer tag ships, add its
   RELEASE + UPGRADE docs, advance the K8s window, and refresh the component/addon versions
   (nightly-update workflow, separate PR).

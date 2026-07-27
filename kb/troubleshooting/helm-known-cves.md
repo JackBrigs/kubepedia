@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: ">=3.18.4 <=3.18.4"
-verified_at: "2026-07-16"
+verified_at: "2026-07-27"
 confidence: verified
 aliases:
   - helm cve
@@ -60,5 +60,5 @@ CVEs (id — summary — fixed in):
 
 ## References
 
-- osv.dev (queried per version) for `helm.sh/helm/v3` — verified 2026-07-16.
+- osv.dev (queried per version) for `helm.sh/helm/v3` — verified 2026-07-27.
 - Tracking: [[CONCEPT-SECURITY_ADVISORIES]].
