@@ -264,6 +264,53 @@ def cve_id_for(comp_name):
     return COMP_TO_CVE.get(comp_name.lower().split("(")[0].strip())
 
 
+CVE_ID_RE = re.compile(r"\bCVE-\d{4}-\d{4,}\b")
+
+
+def _first_version(cell):
+    """The first bare version in a RELEASE table cell ('**1.35.4** / **1.33.0**' -> '1.35.4')."""
+    m = re.search(r"\d+\.\d+(?:\.\d+)?", cell)
+    return m.group(0) if m else cell.strip("*` ").lstrip("v")
+
+
+def parse_cve_matrix(docs, cve_doc_id):
+    """From a CVE matrix doc: {component_version: [CVE ids]} out of its Context table.
+
+    The matrix enumerates ids per shipped version (D-021 — 'query osv.dev yourself'
+    is no longer an allowed cell), so the report can state real exposure instead of
+    telling the operator to go compare rows.
+    """
+    rows = {}
+    if cve_doc_id not in docs:
+        return rows
+    sec = read_sections(docs[cve_doc_id]["path"])
+    for line in sec.get("Context", "").splitlines():
+        if not line.startswith("|"):
+            continue
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) < 4 or not re.match(r"^v?\d+\.\d+", cells[0]):
+            continue
+        rows[cells[0].lstrip("v")] = CVE_ID_RE.findall(cells[3])
+    return rows
+
+
+def cve_exposure(docs, cve_doc_id, fv, tv):
+    """(cleared, remaining, introduced, from_key, to_key) when a component moves
+    fv -> tv, or None when either version is absent from the matrix (then we say
+    nothing rather than guess)."""
+    rows = parse_cve_matrix(docs, cve_doc_id)
+    # A RELEASE cell may hold two versions ("1.33.5 / 1.31.0" — default / min);
+    # exposure is about what actually runs, so take the first (default).
+    fkey = _first_version(fv)
+    tkey = _first_version(tv)
+    if fkey not in rows or tkey not in rows:
+        return None
+    before, after = rows[fkey], rows[tkey]
+    cleared = [c for c in before if c not in after]
+    introduced = [c for c in after if c not in before]
+    return cleared, after, introduced, fkey, tkey
+
+
 # --- i18n: the report framing is user-facing (default Russian for the admin).
 # Verbatim excerpts pulled from KDS docs stay in English (the KB's knowledge
 # language, a recorded decision) — the framing is localized, the quoted facts are
@@ -284,8 +331,13 @@ STRINGS = {
         "comp_h": "\n## Изменения версий компонентов ({frm} → {to})\n",
         "component": "Компонент",
         "cve_h": "\n## Безопасность / экспозиция CVE\n",
-        "cve_intro": "Перемещение этих компонентов меняет их экспозицию к CVE (osv.dev, по конкретной поставляемой версии) — сравните строки from/to в каждой матрице:",
+        "cve_intro": "Экспозиция к CVE по конкретной поставляемой версии (osv.dev, число — различимые advisory):",
         "cve_line": "- **{name}** `{fv}` → `{tv}` — сравните экспозицию в матрице по версиям  `[{cid}]`.",
+        "cve_counts": "- **{name}** `{fv}` ({nf} CVE{sf}) → `{tv}` (**{nt} CVE{st}**)  `[{cid}]`",
+        "cve_cleared": "    - закрывается: {ids}",
+        "cve_remaining": "    - **остаётся после апгрейда**: {ids}",
+        "cve_introduced": "    - появляется на новой версии: {ids}",
+        "cve_clean": "    - на целевой версии CVE не числится",
         "cve_runbook": "- Сводный runbook «уязвим ли я / что обновлять»  `[CONCEPT-CVE_REMEDIATION]`.",
         "k8s_h": "\n## Изменения слоя Kubernetes (новые миноры: {minors})\n",
         "k8s_intro": "Миноры, входящие в окно поддержки на этом пути — прочитайте их операторские изменения:",
@@ -318,8 +370,13 @@ STRINGS = {
         "comp_h": "\n## Component version changes ({frm} → {to})\n",
         "component": "Component",
         "cve_h": "\n## Security / CVE exposure\n",
-        "cve_intro": "Moving these components changes their CVE exposure (osv.dev, per shipped version) — compare the from/to rows in each matrix:",
+        "cve_intro": "CVE exposure per shipped version (osv.dev; counts are distinct advisories):",
         "cve_line": "- **{name}** `{fv}` → `{tv}` — compare exposure in the per-version matrix  `[{cid}]`.",
+        "cve_counts": "- **{name}** `{fv}` ({nf} CVE{sf}) → `{tv}` (**{nt} CVE{st}**)  `[{cid}]`",
+        "cve_cleared": "    - cleared: {ids}",
+        "cve_remaining": "    - **still exposed after the upgrade**: {ids}",
+        "cve_introduced": "    - new at the target version: {ids}",
+        "cve_clean": "    - no CVEs recorded at the target version",
         "cve_runbook": "- Consolidated *am I exposed / what to upgrade* runbook  `[CONCEPT-CVE_REMEDIATION]`.",
         "k8s_h": "\n## Kubernetes layer changes (new minors: {minors})\n",
         "k8s_intro": "Minors that enter the support window on this path — read their operator-relevant changes:",
@@ -463,9 +520,28 @@ def render(frm, to, chain, docs, prof=None, lang="ru"):
     cve_lines = []
     for name, fv, tv in shown_delta:
         cid = cve_id_for(name)
-        if cid and cid in docs:
+        if not (cid and cid in docs):
+            continue
+        exposure = cve_exposure(docs, cid, fv, tv)
+        if exposure is None:
+            # A version the matrix does not cover — say so by linking, never invent.
             cve_lines.append(S["cve_line"].format(name=name, fv=fv, tv=tv, cid=cid))
-            cited.add(cid)
+        else:
+            cleared, remaining, introduced, fkey, tkey = exposure
+            nf = len(cleared) + len([c for c in remaining if c not in introduced])
+            cve_lines.append(S["cve_counts"].format(
+                name=name, fv=fkey, tv=tkey, nf=nf, nt=len(remaining), cid=cid,
+                sf="s" if nf != 1 and lang == "en" else "",
+                st="s" if len(remaining) != 1 and lang == "en" else ""))
+            if cleared:
+                cve_lines.append(S["cve_cleared"].format(ids=", ".join(cleared)))
+            if introduced:
+                cve_lines.append(S["cve_introduced"].format(ids=", ".join(introduced)))
+            if remaining:
+                cve_lines.append(S["cve_remaining"].format(ids=", ".join(remaining)))
+            else:
+                cve_lines.append(S["cve_clean"])
+        cited.add(cid)
     if cve_lines:
         out.append(S["cve_h"])
         out.append(S["cve_intro"])
