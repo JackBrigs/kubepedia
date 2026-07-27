@@ -2,6 +2,7 @@
 """kubepedia — one CLI over the Kubepedia tools.
 
     kubepedia ask "Permission denied /hostbin/cilium-mount"          # симптом -> разбор
+    kubectl -n kube-system describe pod cilium-x | kubepedia ask -   # сырой вывод -> триаж
     kubepedia plan   --from v2.28.1 --to v2.31.0 --inventory <dir>   # migration diff (pre)
     kubepedia check  --version v2.31.0 --facts facts.json            # post-upgrade verify
     kubepedia impact etcd                                            # graph impact
@@ -22,7 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 # subcommand -> (script, one-line description)
 CMDS = {
-    "ask":      ("ask.py",            "поиск по симптому: текст ошибки -> причина и что делать"),
+    "ask":      ("ask.py",            "поиск по симптому: текст ошибки (или сырой вывод на stdin) -> причина и что делать"),
     "plan":     ("upgrade_diff.py",   "inventory migration diff (pre-upgrade): version + variable changes"),
     "gate":     ("gate.py",           "CI gate: fail on removed vars still set / version pins blocking upgrade"),
     "check":    ("post_check.py",     "post-upgrade verification: did every component actually move + health"),

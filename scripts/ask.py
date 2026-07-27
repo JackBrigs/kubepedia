@@ -5,6 +5,18 @@
     kubepedia ask "node NotReady cni plugin not initialized" --tag cilium
     kubepedia ask "Source /tmp/releases/cilium not found" --full
 
+Принимает и **сырой вывод** — не нужно вытаскивать строку ошибки руками:
+
+    kubectl -n kube-system describe pod cilium-abcde | kubepedia ask -
+    kubectl -n kube-system logs ds/cilium --tail=200 | kubepedia ask -
+    journalctl -u kubelet -n 300 --no-pager | kubepedia ask -
+
+В этом режиме из вывода выделяются значимые сигналы (Warning-события, Reason,
+строки уровня error/fatal/panic, отказы systemd), шум вроде таймстампов, IP и
+хешей вычищается, близкие строки схлопываются — и каждый сигнал разбирается
+отдельно. Сигналы, на которые в базе ответа нет, показываются явно: это дыры,
+а не «ничего не найдено».
+
 Ищет по алиасам (там лежат реальные строки ошибок), заголовкам, телу и тегам.
 Печатает СУТЬ и ФИКС, а не только путь к файлу: причина + что делать.
 """
@@ -25,6 +37,10 @@ TYPE_BOOST = {"troubleshooting": 10, "runbook": 6, "best_practice": 3, "upgrade"
 # секции, где лежит «что делать»
 FIX_SECTIONS = ("Known Issues", "Resolution", "Fix", "Remediation", "Procedure", "Steps")
 CAUSE_SECTIONS = ("Summary", "Problem")
+# типы, которые отвечают на вопрос «что случилось и что делать»
+ANSWER_TYPES = {"troubleshooting", "runbook", "best_practice", "upgrade", "concept"}
+# порог уверенности для строк лога (см. confident): ниже — честное «нет ответа»
+TRIAGE_FLOOR = 90
 STOP = {
     "the", "and", "for", "not", "with", "that", "this", "from", "was", "are", "has",
     "при", "для", "как", "что", "это", "все", "или", "нет", "the", "los",
@@ -64,6 +80,92 @@ def bullets(text, limit):
     if not items:
         items = [p for p in re.split(r"\n\s*\n", text) if p.strip()]
     return [norm(re.sub(r"\s+", " ", i))[:400] for i in items[:limit]]
+
+
+# --- разбор сырого вывода (kubectl describe / logs / journalctl) ---
+
+# строки, которые стоит разбирать, и их вес: чем конкретнее сигнал, тем выше
+# Порядок весов важнее самих чисел: конкретная ошибка должна обгонять состояние.
+# `Reason: CrashLoopBackOff` описывает СИМПТОМ, а `Permission denied ...` — причину;
+# если состояние весит больше, разбор уходит в общий док про CrashLoopBackOff и
+# настоящая строка отказа теряется в хвосте.
+SIGNAL_PATTERNS = [
+    # конкретный отказ — то, ради чего вывод и вставляют
+    (re.compile(r"\b(?:Permission denied|no such file or directory|connection refused|"
+                r"context deadline exceeded|i/o timeout|no route to host|"
+                r"certificate has expired|certificate is not valid|x509|"
+                r"exec format error|address already in use|too many open files|"
+                r"read-only file system|invalid capacity|quorum|"
+                r"unauthorized|forbidden)\b", re.I), 36),
+    (re.compile(r"panic:\s*(.+)$"), 34),
+    (re.compile(r"\blevel=(?:error|fatal)\b(.*)$"), 26),
+    (re.compile(r"^[EF]\d{4}\s+[\d:.]+\s+\d+\s+\S+\]\s*(.+)$"), 26),   # klog E0727 …
+    (re.compile(r"\b(?:Failed to|failed to|Unable to|unable to|cannot|Cannot|"
+                r"Error:|error:)\s(.{6,})$"), 24),
+    (re.compile(r"^\s*Warning\s+(\S+)\s+.*?\s(.+)$"), 22),        # события describe
+    # состояние — контекст, а не причина: намеренно ниже конкретных строк
+    (re.compile(r"\b(CrashLoopBackOff|ImagePullBackOff|ErrImagePull|CreateContainerConfigError|"
+                r"CreateContainerError|RunContainerError|FailedScheduling|FailedMount|"
+                r"FailedAttachVolume|NetworkNotReady|ContainerStatusUnknown|OOMKilled|Evicted|"
+                r"NodeNotReady|InvalidImageName|ErrImageNeverPull)\b"), 16),
+]
+
+# шум, который мешает схлопывать одинаковые по смыслу строки
+NOISE = [
+    # journalctl: «Jul 27 05:58:14 worker-03 kubelet[1842]:» целиком
+    (re.compile(r"^\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}\s+\S+\s+[\w.-]+\[\d+\]:\s*"), ""),
+    (re.compile(r"\b\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?\b"), " "),
+    (re.compile(r"\b\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}\b"), " "),      # journalctl без юнита
+    # klog: «E0727 05:58:14.100221    1842 remote_runtime.go:222]» где бы ни стоял
+    (re.compile(r"[IWEF]\d{4}\s+[\d:.]+\s+\d+\s+[\w.-]+:\d+\]\s*"), ""),
+    (re.compile(r"^[IWEF]\d{4}\s+[\d:.]+\s+\d+\s+\S+?\]"), " "),          # klog, иные формы
+    (re.compile(r"\b\d{1,3}(?:\.\d{1,3}){3}(?::\d+)?\b"), "<ip>"),
+    (re.compile(r"\b[0-9a-f]{7,}\b"), "<hash>"),
+    (re.compile(r"\b\d+m?s\b"), "<dur>"),
+    (re.compile(r"\b\d{3,}\b"), "<n>"),
+    (re.compile(r"\s+"), " "),
+]
+
+
+def looks_raw(text):
+    """Похоже ли на вставленный вывод команды, а не на короткий запрос."""
+    return text.count("\n") >= 2 or len(text) > 400
+
+
+def denoise(line):
+    out = line.strip()
+    for rx, rep in NOISE:
+        out = rx.sub(rep, out)
+    return out.strip(" |·-")
+
+
+def extract_signals(text, limit=4):
+    """Значимые строки из сырого вывода -> [(строка_для_поиска, вес, сколько_раз)].
+
+    Одинаковые по смыслу строки схлопываются после вычистки шума: повтор в логе
+    усиливает сигнал, но не должен занимать все места в выдаче.
+    """
+    found = {}
+    for raw in text.splitlines():
+        line = raw.rstrip()
+        if not line.strip() or len(line.strip()) < 12:
+            continue
+        weight = 0
+        for rx, w in SIGNAL_PATTERNS:
+            if rx.search(line):
+                weight = max(weight, w)
+        if not weight:
+            continue
+        key = denoise(line).lower()
+        if len(key) < 12:
+            continue
+        if key in found:
+            found[key]["n"] += 1
+            found[key]["w"] = max(found[key]["w"], weight)
+        else:
+            found[key] = {"text": denoise(line), "w": weight, "n": 1}
+    ranked = sorted(found.values(), key=lambda x: (-(x["w"] + min(x["n"], 5) * 2), x["text"]))
+    return [(x["text"], x["w"], x["n"]) for x in ranked[:limit]]
 
 
 def load_docs():
@@ -169,10 +271,129 @@ def envelope(doc):
     return "; ".join(parts) or "версия не ограничена"
 
 
+def search(query, docs, args):
+    """[(счёт, причины, док)] по убыванию — отфильтровано по тегу/типу и порогу."""
+    terms = terms_of(query)
+    if not terms:
+        return []
+    pool = docs
+    if args.tag:
+        want = {t.lower() for t in args.tag}
+        pool = [d for d in pool if want & {x.lower() for x in d["tags"]}]
+    if args.dtype:
+        pool = [d for d in pool if d["type"] == args.dtype]
+    scored = []
+    for d in pool:
+        sc, why = score(d, query, terms)
+        if sc > 0:
+            scored.append((sc, why, d))
+    scored.sort(key=lambda x: (-x[0], x[2]["title"]))
+    return scored
+
+
+def confident(scored, top, floor=25):
+    """Совпадения, которые не стыдно показать: не сильно слабее лидера и выше порога.
+
+    В триаже порог выше: там запрос — строка лога целиком, и почти любой док
+    наберёт очки на общих словах вроде `failed`, `node`, `container`. Без
+    абсолютного пола незнакомая ошибка получает уверенный, но случайный разбор —
+    хуже, чем честное «в базе этого нет».
+    """
+    if not scored:
+        return []
+    best = scored[0][0]
+    return [x for x in scored[:top] if x[0] >= max(floor, best * 0.35)]
+
+
+def print_hit(rank, sc, why, d, titles, full):
+    print("=" * 78)
+    print(f"[{rank}] {d['title']}")
+    print(f"    {envelope(d)} · достоверность: {d['confidence'] or 'н/д'} · {d['path']}")
+    if why:
+        print(f"    почему найдено: {', '.join(why[:3])} (счёт {sc})")
+    cause = section_text(d["body"], CAUSE_SECTIONS)
+    if cause:
+        print("\n  ПРИЧИНА / СУТЬ")
+        if full:
+            for line in deref(cause, titles).splitlines():
+                print("    " + line)
+        else:
+            txt = norm(deref(cause, titles))
+            print("    " + txt[:600] + ("…" if len(txt) > 600 else ""))
+    fix = section_text(d["body"], FIX_SECTIONS)
+    if fix:
+        print("\n  ЧТО ДЕЛАТЬ")
+        if full:
+            for line in deref(fix, titles).splitlines():
+                print("    " + line)
+        else:
+            for b in bullets(deref(fix, titles), 3):
+                print("    • " + b)
+    print()
+
+
+def triage(raw, docs, args):
+    """Разбор сырого вывода: выделить сигналы и разобрать каждый отдельно."""
+    signals = extract_signals(raw, limit=max(args.signals, 1) + 2)
+    titles = {d["id"]: d["title"] for d in docs}
+    if not signals:
+        print("В этом выводе не нашлось строк, похожих на ошибку.")
+        print("Похоже, вывод чистый — или ошибка в форме, которую разбор не знает.")
+        print("Тогда передайте саму строку:  kubepedia ask \"текст ошибки\"")
+        return 1
+
+    lines = len(raw.splitlines())
+    print(f"Разобрано строк вывода: {lines}. Значимых сигналов: {len(signals)}.")
+    print("Ниже — по одному разбору на сигнал, в порядке значимости.\n")
+
+    answered = unanswered = 0
+    shown = {}
+    for i, (sig, _w, n) in enumerate(signals[: args.signals], 1):
+        repeat = f" ×{n}" if n > 1 else ""
+        print("─" * 78)
+        print(f"СИГНАЛ {i}{repeat}: {sig[:200]}")
+        print()
+        scored = search(sig, docs, args)
+        # в триаже нужен разбор проблемы, а не справочник: доки-справки
+        # (теги ansible, переменные) отбрасываются, если есть хоть один разбор
+        answers = [x for x in scored if x[2]["type"] in ANSWER_TYPES]
+        hits = confident(answers or scored, min(args.top, 2), floor=TRIAGE_FLOOR)
+        if not hits:
+            unanswered += 1
+            print("  В базе разбора на этот сигнал нет.")
+            print("  Это дыра в покрытии, а не отсутствие ответа: если причина найдётся,")
+            print("  её стоит внести отдельным разбором.\n")
+            continue
+        answered += 1
+        fresh = [h for h in hits if h[2]["id"] not in shown]
+        if not fresh:
+            first = hits[0][2]
+            print(f"  Тот же разбор, что и по сигналу {shown[first['id']]}: "
+                  f"«{first['title']}» — сигналы описывают одну и ту же проблему.\n")
+            continue
+        for rank, (sc, why, d) in enumerate(fresh, 1):
+            shown[d["id"]] = i
+            print_hit(rank, sc, why, d, titles, args.full)
+
+    rest = signals[args.signals:]
+    if rest:
+        print("─" * 78)
+        print(f"Ещё сигналов в выводе: {len(rest)} (не разбирались, "
+              f"поднимите порог: --signals {args.signals + len(rest)})")
+        for sig, _w, n in rest:
+            print(f"  · {sig[:150]}{' ×%d' % n if n > 1 else ''}")
+    print()
+    print(f"Итог: разобрано сигналов — {answered}, без ответа в базе — {unanswered}.")
+    if not args.full:
+        print("Подробнее (полная причина и все шаги):  … | kubepedia ask - --full")
+    return 0 if answered else 1
+
+
 def main():
     ap = argparse.ArgumentParser(
         description="Поиск по симптому: текст ошибки -> разбор из базы")
-    ap.add_argument("query", nargs="+", help="текст ошибки или симптом")
+    ap.add_argument("query", nargs="*",
+                    help="текст ошибки или симптом; «-» или пустой ввод — читать stdin")
     ap.add_argument("-n", "--top", type=int, default=3, help="сколько разборов показать")
     ap.add_argument("--tag", action="append", default=[],
                     help="сузить по тегу (можно несколько раз)")
@@ -180,40 +401,34 @@ def main():
     ap.add_argument("--full", action="store_true",
                     help="показать полностью причину и все шаги фикса")
     ap.add_argument("--paths", action="store_true", help="только пути к файлам")
+    ap.add_argument("--signals", type=int, default=3,
+                    help="сколько сигналов разбирать из сырого вывода (по умолчанию 3)")
     args = ap.parse_args()
 
     query = " ".join(args.query)
-    terms = terms_of(query)
-    if not terms:
-        print("нужен более содержательный запрос", file=sys.stderr)
+    # «-», либо запуск без аргументов с данными на входе -> читаем сырой вывод
+    if query.strip() == "-" or (not query and not sys.stdin.isatty()):
+        query = sys.stdin.read()
+    if not query.strip():
+        ap.print_usage(sys.stderr)
+        print("нужен текст ошибки, либо подайте вывод команды на stdin", file=sys.stderr)
         return 2
 
     docs = load_docs()
+    if looks_raw(query):
+        return triage(query, docs, args)
+
     titles = {d["id"]: d["title"] for d in docs}
-    if args.tag:
-        want = {t.lower() for t in args.tag}
-        docs = [d for d in docs if want & {x.lower() for x in d["tags"]}]
-    if args.dtype:
-        docs = [d for d in docs if d["type"] == args.dtype]
-
-    scored = []
-    for d in docs:
-        s, why = score(d, query, terms)
-        if s > 0:
-            scored.append((s, why, d))
-    scored.sort(key=lambda x: (-x[0], x[2]["title"]))
-
-    # отсечь шум: заметно слабее лидера — не показывать
+    scored = search(query, docs, args)
     if not scored:
         print(f"По запросу «{query}» в базе ничего не найдено.")
         print("Знания в базе на английском: попробуйте слова прямо из текста ошибки")
         print("(например «NotReady cni», «Permission denied») или сузьте: --tag cilium")
         return 1
-    best = scored[0][0]
-    hits = [x for x in scored[: args.top] if x[0] >= max(25, best * 0.35)]
+    hits = confident(scored, args.top)
     if not hits:
         print(f"По запросу «{query}» уверенных совпадений нет "
-              f"(лучший счёт {best} — слишком слабо).")
+              f"(лучший счёт {scored[0][0]} — слишком слабо).")
         print("Знания в базе на английском: попробуйте слова прямо из текста ошибки")
         print("(например «NotReady cni», «Permission denied») или сузьте: --tag cilium")
         print("\nБлижайшее по смыслу:")
@@ -228,32 +443,8 @@ def main():
 
     print(f"Запрос: {query}")
     print(f"Найдено разборов: {len(hits)} (из {len(scored)} совпадений)\n")
-
-    for rank, (s, why, d) in enumerate(hits, 1):
-        print("=" * 78)
-        print(f"[{rank}] {d['title']}")
-        print(f"    {envelope(d)} · достоверность: {d['confidence'] or 'н/д'} · {d['path']}")
-        if why:
-            print(f"    почему найдено: {', '.join(why[:3])} (счёт {s})")
-        cause = section_text(d["body"], CAUSE_SECTIONS)
-        if cause:
-            print("\n  ПРИЧИНА / СУТЬ")
-            if args.full:
-                for line in deref(cause, titles).splitlines():
-                    print("    " + line)
-            else:
-                txt = norm(deref(cause, titles))
-                print("    " + txt[:600] + ("…" if len(txt) > 600 else ""))
-        fix = section_text(d["body"], FIX_SECTIONS)
-        if fix:
-            print("\n  ЧТО ДЕЛАТЬ")
-            if args.full:
-                for line in deref(fix, titles).splitlines():
-                    print("    " + line)
-            else:
-                for b in bullets(deref(fix, titles), 3):
-                    print("    • " + b)
-        print()
+    for rank, (sc, why, d) in enumerate(hits, 1):
+        print_hit(rank, sc, why, d, titles, args.full)
     if not args.full:
         print("Подробнее (полная причина и все шаги):  kubepedia ask \"…\" --full")
     return 0
