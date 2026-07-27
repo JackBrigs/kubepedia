@@ -58,13 +58,29 @@ directly:
 | Component | CVE matrix |
 |-----------|------------|
 | Kubernetes | [[TROUBLE-KUBERNETES_KNOWN_CVES]] |
+| etcd | [[TROUBLE-ETCD_KNOWN_CVES]] |
 | containerd | [[TROUBLE-CONTAINERD_KNOWN_CVES]] |
+| CRI-O | [[TROUBLE-CRI_O_KNOWN_CVES]] |
 | runc | [[TROUBLE-RUNC_KNOWN_CVES]] |
 | Cilium | [[TROUBLE-CILIUM_KNOWN_CVES]] |
+| Calico | [[TROUBLE-CALICO_KNOWN_CVES]] |
 | CNI plugins | [[TROUBLE-CNI_PLUGINS_KNOWN_CVES]] |
 | CoreDNS | [[TROUBLE-COREDNS_KNOWN_CVES]] |
 | cert-manager | [[TROUBLE-CERT_MANAGER_KNOWN_CVES]] |
+| Argo CD | [[TROUBLE-ARGOCD_KNOWN_CVES]] |
 | Helm | [[TROUBLE-HELM_KNOWN_CVES]] |
+
+The matrices are **re-swept, not trusted**: `scripts/cve_sweep.py` re-queries osv.dev for every
+version in every matrix and reports new CVEs, cleared CVEs and count drift (`standards/decisions.md`
+D-021). Last full sweep **2026-07-27** — 12 components, 61 versions, no drift.
+
+**Components deliberately without a matrix.** A matrix is only written where osv.dev can answer
+*per version*. **ingress-nginx is the counter-example**: its advisories carry only git-commit
+ranges, so `k8s.io/ingress-nginx` returns the same ten CVEs for 1.11.0, 1.13.3 and a nonsense
+version alike — the answer is not version-filtered and a matrix built from it would be fiction.
+Read ingress-nginx affectedness from the advisory text instead. **MetalLB** and **kube-vip** have no
+Go-ecosystem advisories on osv.dev at any shipped version — nothing to record, which is not the same
+as "verified safe".
 
 Upstream Kubernetes security-advisory tracking: [[CONCEPT-SECURITY_ADVISORIES]]. The
 [[PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR]] runbook is how you close a CVE gap (move to a fixed version).

@@ -44,13 +44,16 @@ class Matrix:
         fm = text.split("---", 2)[1] if text.startswith("---") else ""
         self.doc_id = _fm_value(fm, "id")
         self.verified_at = _fm_value(fm, "verified_at").strip('"')
-        m = OSV_PKG_RE.search(fm)
-        self.package = m.group("pkg") if m else None
+        # A component can span several Go modules (etcd: go.etcd.io/etcd/v3 +
+        # .../server/v3). Every osv.dev source is queried and the results unioned,
+        # so a matrix can never under-report because one module path was missed.
+        self.packages = OSV_PKG_RE.findall(fm)
+        self.package = self.packages[0] if self.packages else None
         self.rows = _parse_rows(text)
 
     @property
     def usable(self) -> bool:
-        return bool(self.package and self.rows)
+        return bool(self.packages and self.rows)
 
 
 def _fm_value(fm: str, key: str) -> str:
@@ -97,23 +100,42 @@ def load_matrices(kb: Path, only: list[str]) -> list[Matrix]:
     return out
 
 
-def module_path(package: str, version: str) -> str:
-    """Go module path for `version` of `package`.
+def packages_for(packages: list[str], version: str) -> list[str]:
+    """The declared module paths that can legitimately answer for `version`.
 
-    Go requires a `/vN` suffix from major 2 on, and osv.dev indexes containerd 2.x
-    under `github.com/containerd/containerd/v2`. Querying the unsuffixed path for a
-    2.x version silently returns a *subset* — that is how the containerd matrix came
-    to under-report v2.28.0–v2.31.0 (3 CVEs recorded, 6 actual).
+    A `/vN` suffix pins a module to major N, and the two failure modes are
+    symmetric — both were observed on containerd:
+
+    * querying `.../containerd/v2` with 1.7.27 compares an out-of-module version
+      against the v2 ranges and returns advisories that do not apply;
+    * querying the **unsuffixed** `.../containerd` with 2.0.5 matches the v1
+      entries of the checkpoint advisories (`introduced: 0`, never fixed on 1.x)
+      and over-reports 8 where there are 5.
+
+    So: when the document declares a `/vN` path matching the version's major, that
+    path is authoritative and the unsuffixed one is dropped. Otherwise every
+    non-conflicting declared path is used (Calico 3.x legitimately lives on an
+    unsuffixed module).
     """
-    if re.search(r"/v\d+$", package):
-        return package
     major = version.split(".")[0]
-    return f"{package}/v{major}" if major.isdigit() and int(major) >= 2 else package
+    exact = [
+        p for p in packages
+        if (m := re.search(r"/v(\d+)$", p)) and m.group(1) == major
+    ]
+    if exact:
+        return exact
+    return [p for p in packages if not re.search(r"/v\d+$", p)]
 
 
 def osv_query(package: str, version: str, cache: dict) -> list[dict] | None:
-    """Vulns affecting `version` of `package`, or None when osv.dev is unreachable."""
-    package = module_path(package, version)
+    """Vulns affecting `version` of `package`, or None when osv.dev is unreachable.
+
+    The package is queried **exactly as the document declares it**. Deriving a `/vN`
+    suffix from the version looks helpful and is a guess: containerd 2.x really does
+    live at `.../containerd/v2`, while Calico 3.x stays on the unsuffixed path. A
+    matrix that needs two module paths lists both in its `sources` and they are
+    unioned.
+    """
     key = (package, version)
     if key in cache:
         return cache[key]
@@ -134,12 +156,34 @@ def osv_query(package: str, version: str, cache: dict) -> list[dict] | None:
     return vulns
 
 
+def version_resolvable(vuln: dict) -> bool:
+    """Can this advisory's affectedness be decided from a version number?
+
+    An osv record whose only ranges are GIT commit ranges cannot: osv.dev then
+    answers a version query by matching the *package*, not the version, and hands
+    back the same set for 1.11.0, 1.13.3 and 999.0.0 alike (k8s.io/ingress-nginx is
+    the live example). Rows built on such records look precise and are not.
+    """
+    for a in vuln.get("affected", []):
+        for r in a.get("ranges", []):
+            if r.get("type") in ("SEMVER", "ECOSYSTEM"):
+                return True
+    return False
+
+
 def canonical_ids(vulns: list[dict]) -> dict[str, dict]:
     """Map an advisory to the id form the KB uses: CVE alias when osv has one."""
     out = {}
     for v in vulns:
         cve = next((a for a in v.get("aliases", []) if a.startswith("CVE-")), None)
-        out[cve or v["id"]] = v
+        key = cve or v["id"]
+        # The same advisory is filed in several databases; keep the record that can
+        # actually be reasoned about by version (the GO/GHSA one) over a git-only CVE
+        # record, so both the fix data and the version-resolvable guard are accurate.
+        if key not in out or (
+            version_resolvable(v) and not version_resolvable(out[key])
+        ):
+            out[key] = v
     return out
 
 
@@ -156,7 +200,7 @@ def sweep(matrices: list[Matrix], offline: bool) -> list[dict]:
             "component": m.name,
             "doc": str(m.path.relative_to(KB.parent)),
             "id": m.doc_id,
-            "package": m.package,
+            "package": ", ".join(m.packages),
             "verified_at": m.verified_at,
             "rows": [],
             "usable": m.usable,
@@ -173,8 +217,14 @@ def sweep(matrices: list[Matrix], offline: bool) -> list[dict]:
             ]
         elif m.usable:
             for row in m.rows:
-                vulns = osv_query(m.package, row["version"], cache)
-                if vulns is None:
+                vulns, failed = [], False
+                for pkg in packages_for(m.packages, row["version"]):
+                    got = osv_query(pkg, row["version"], cache)
+                    if got is None:
+                        failed = True
+                    else:
+                        vulns.extend(got)
+                if failed and not vulns:
                     entry["rows"].append({**row, "error": True})
                     continue
                 live = canonical_ids(vulns)
@@ -209,6 +259,9 @@ def sweep(matrices: list[Matrix], offline: bool) -> list[dict]:
                         "new": new,
                         "gone": gone,
                         "details": {k: summarize(v) for k, v in live.items() if k in new},
+                        "git_only": sorted(
+                            cid for cid, v in live.items() if not version_resolvable(v)
+                        ),
                     }
                 )
         results.append(entry)
@@ -226,6 +279,7 @@ T = {
         "verified": "проверено",
         "count": "счётчик разошёлся",
         "doc_says": "в доке",
+        "git_only": "affectedness не проверяется по версии (в osv только git-диапазоны)",
         "unenumerated": "не перечислялись в доке; сейчас на osv.dev",
         "errors": "запросов не удалось",
         "verdict": "Вердикт",
@@ -242,6 +296,7 @@ T = {
         "verified": "verified",
         "count": "count drift",
         "doc_says": "doc says",
+        "git_only": "affectedness not version-resolvable (osv has git ranges only)",
         "unenumerated": "not enumerated in the doc; osv.dev now reports",
         "errors": "failed queries",
         "verdict": "Verdict",
@@ -290,6 +345,10 @@ def render(results: list[dict], lang: str, today: str) -> str:
             if row["gone"]:
                 drift += 1
                 lines.append(f"- `{tag}` — {t['gone']}: {', '.join(row['gone'])}")
+            if row.get("git_only"):
+                lines.append(
+                    f"- `{tag}` — {t['git_only']}: {', '.join(row['git_only'])}"
+                )
         head = f"## {entry['component']} (`{entry['package']}`, {t['verified']} {entry['verified_at']})"
         out.append(head)
         out.extend(lines or [f"- ✅ {len(entry['rows'])} {t['versions']} — ok"])

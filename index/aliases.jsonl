@@ -318,6 +318,7 @@
 {"alias": "apply extra_args", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
 {"alias": "apps", "ids": ["TAG-APPS"]}
 {"alias": "architecture-compatibility", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
+{"alias": "argo cd security", "ids": ["TROUBLE-ARGOCD_KNOWN_CVES"]}
 {"alias": "argo-cd 8.5.7", "ids": ["CONCEPT-ADDON_ARGOCD"]}
 {"alias": "argocd", "ids": ["COMPONENT-ARGOCD", "TAG-ARGOCD"]}
 {"alias": "argocd 2.11 to 2.14", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
@@ -327,6 +328,7 @@
 {"alias": "argocd air-gapped image pull", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
 {"alias": "argocd commit-server", "ids": ["CONCEPT-ARGOCD_SOURCE_HYDRATOR"]}
 {"alias": "argocd comparison error", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
+{"alias": "argocd cve", "ids": ["TROUBLE-ARGOCD_KNOWN_CVES"]}
 {"alias": "argocd degraded health", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "argocd haproxy ecr", "ids": ["TROUBLE-ARGOCD_REDIS_ECR_AIRGAP"]}
 {"alias": "argocd hydrator", "ids": ["CONCEPT-ARGOCD_SOURCE_HYDRATOR"]}
@@ -443,6 +445,7 @@
 {"alias": "calico", "ids": ["COMPONENT-CALICO"]}
 {"alias": "calico bgp not peering", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
 {"alias": "calico cni", "ids": ["COMPONENT-CALICO"]}
+{"alias": "calico cve", "ids": ["TROUBLE-CALICO_KNOWN_CVES"]}
 {"alias": "calico ebpf dataplane", "ids": ["CONFIG-CALICO_DATAPLANE"]}
 {"alias": "calico encapsulation mode", "ids": ["CONFIG-CALICO_DATAPLANE"]}
 {"alias": "calico ip autodetection wrong interface", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
@@ -450,6 +453,7 @@
 {"alias": "calico network backend", "ids": ["CONFIG-CALICO_DATAPLANE"]}
 {"alias": "calico node not ready", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
 {"alias": "calico route reflector ansible tag", "ids": ["TAG-CALICO_RR"]}
+{"alias": "calico security", "ids": ["TROUBLE-CALICO_KNOWN_CVES"]}
 {"alias": "calico to cilium migration", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "calico vxlan bgp ipip", "ids": ["CONFIG-CALICO_DATAPLANE"]}
 {"alias": "calico wireguard nftables", "ids": ["CONFIG-CALICO_DATAPLANE"]}
@@ -1117,6 +1121,7 @@
 {"alias": "credentials_dir", "ids": ["VARIABLE-CREDENTIALS_DIR"]}
 {"alias": "cri-dockerd", "ids": ["COMPONENT-CRI_DOCKERD"]}
 {"alias": "cri-o", "ids": ["COMPONENT-CRI_O"]}
+{"alias": "cri-o cve", "ids": ["TROUBLE-CRI_O_KNOWN_CVES"]}
 {"alias": "cri_dockerd_archive_checksum", "ids": ["VARIABLE-CRI_DOCKERD_ARCHIVE_CHECKSUM"]}
 {"alias": "cri_dockerd_archive_checksums", "ids": ["VARIABLE-CRI_DOCKERD_ARCHIVE_CHECKSUMS"]}
 {"alias": "cri_dockerd_download_url", "ids": ["VARIABLE-CRI_DOCKERD_DOWNLOAD_URL"]}
@@ -1133,6 +1138,7 @@
 {"alias": "crictl_supported_versions", "ids": ["VARIABLE-CRICTL_SUPPORTED_VERSIONS"]}
 {"alias": "crictl_version", "ids": ["VARIABLE-CRICTL_VERSION"]}
 {"alias": "crio", "ids": ["TAG-CRIO"]}
+{"alias": "crio security", "ids": ["TROUBLE-CRI_O_KNOWN_CVES"]}
 {"alias": "crio short-name resolution", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
 {"alias": "crio-registry-auths-duplicate", "ids": ["TROUBLE-CRIO_REGISTRY_AUTHS_DUPLICATE"]}
 {"alias": "crio_additional_mounts", "ids": ["VARIABLE-CRIO_ADDITIONAL_MOUNTS"]}
@@ -1453,6 +1459,7 @@
 {"alias": "etcd apply took too long", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
 {"alias": "etcd backup", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
 {"alias": "etcd backup runbook", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
+{"alias": "etcd cve", "ids": ["TROUBLE-ETCD_KNOWN_CVES"]}
 {"alias": "etcd defrag", "ids": ["CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER", "TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
 {"alias": "etcd defrag controller", "ids": ["TROUBLE-ETCD_DEFRAG_CONTROLLER"]}
 {"alias": "etcd defrag latency", "ids": ["TROUBLE-ETCD_DEFRAG_CONTROLLER"]}
@@ -1469,6 +1476,7 @@
 {"alias": "etcd restore", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
 {"alias": "etcd restore runbook", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
 {"alias": "etcd role", "ids": ["ROLE-ETCD"]}
+{"alias": "etcd security", "ids": ["TROUBLE-ETCD_KNOWN_CVES"]}
 {"alias": "etcd slow apply warnings", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
 {"alias": "etcd snapshot restore procedure", "ids": ["PRACTICE-RUNBOOK_ETCD_RESTORE"]}
 {"alias": "etcd snapshot save", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}

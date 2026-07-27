@@ -784,6 +784,9 @@
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "CONCEPT-GITOPS", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
+{"source": "TROUBLE-ARGOCD_KNOWN_CVES", "target": "COMPONENT-ARGOCD", "type": "see_also"}
+{"source": "TROUBLE-ARGOCD_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
+{"source": "TROUBLE-ARGOCD_KNOWN_CVES", "target": "UPGRADE-ARGOCD_2_11_TO_2_14", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_REDIS_ECR_AIRGAP", "target": "COMPONENT-ARGOCD", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_REDIS_ECR_AIRGAP", "target": "PRACTICE-OFFLINE_ENVIRONMENT", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_REDIS_ECR_AIRGAP", "target": "TROUBLE-IMAGEPULLBACKOFF", "type": "see_also"}
@@ -797,6 +800,8 @@
 {"source": "TROUBLE-ARP_NEIGH_TABLE_OVERFLOW", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
 {"source": "TROUBLE-AWX_OPERATOR", "target": "CONCEPT-ADDON_AWX", "type": "see_also"}
 {"source": "TROUBLE-AWX_OPERATOR", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}
+{"source": "TROUBLE-CALICO_KNOWN_CVES", "target": "COMPONENT-CALICO", "type": "see_also"}
+{"source": "TROUBLE-CALICO_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CALICO_NODE_ISSUES", "target": "COMPONENT-CALICO", "type": "see_also"}
 {"source": "TROUBLE-CALICO_NODE_ISSUES", "target": "CONFIG-CALICO_DATAPLANE", "type": "see_also"}
 {"source": "TROUBLE-CALICO_NODE_ISSUES", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
@@ -929,6 +934,8 @@
 {"source": "TROUBLE-CRIO_REGISTRY_AUTHS_DUPLICATE", "target": "CONCEPT-CONTAINER_MANAGER", "type": "see_also"}
 {"source": "TROUBLE-CRIO_SHORT_NAME_REGISTRY", "target": "COMPONENT-CRI_O", "type": "see_also"}
 {"source": "TROUBLE-CRIO_SHORT_NAME_REGISTRY", "target": "TROUBLE-IMAGEPULLBACKOFF", "type": "see_also"}
+{"source": "TROUBLE-CRI_O_KNOWN_CVES", "target": "COMPONENT-CRI_O", "type": "see_also"}
+{"source": "TROUBLE-CRI_O_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-DEPLOY_HANGS_WAIT_APISERVER", "target": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "type": "see_also"}
 {"source": "TROUBLE-DEPLOY_HANGS_WAIT_APISERVER", "target": "TROUBLE-CGROUP_DRIVER_MISMATCH", "type": "see_also"}
 {"source": "TROUBLE-DEPLOY_HANGS_WAIT_APISERVER", "target": "TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK", "type": "see_also"}
@@ -953,6 +960,8 @@
 {"source": "TROUBLE-ETCD_DEFRAG_CONTROLLER", "target": "CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER", "type": "see_also"}
 {"source": "TROUBLE-ETCD_DEFRAG_CONTROLLER", "target": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "type": "see_also"}
 {"source": "TROUBLE-ETCD_EVENTS_INVERTED_IGNORE_ERRORS", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "TROUBLE-ETCD_KNOWN_CVES", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "TROUBLE-ETCD_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PLAYBOOK-RECOVER_CONTROL_PLANE", "type": "see_also"}
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "see_also"}
 {"source": "TROUBLE-ETCD_QUORUM_LOSS", "target": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "type": "see_also"}

@@ -477,3 +477,47 @@ actually cheap enough to honour.
 cert-manager, cni-plugins, coredns, helm, kubernetes confirmed unchanged). The sweep is part of the
 periodic maintenance loop next to `freshness.py` and `check_versions.py`. Kubespray v2.31.0 no longer
 counts as "the safe containerd" — the matrix now names the 2.2.5 pin and the missing checksum key.
+
+---
+
+## D-022 — CVE matrices cover 12 components; module paths are declared, not guessed (2026-07-27)
+
+**Context.** D-021 made the CVE matrices re-sweepable but left them covering 8 of ~40 components,
+with the Kubernetes matrix rowed for only 4 of the 8 shipped defaults. The first sweep also showed
+that osv.dev's Go-module handling is sharper than a single rule can capture.
+
+**Decision — coverage.** Four matrices added and one widened, all verified by re-sweep
+(12 components, 61 versions, no drift):
+
+- **etcd** — 8 rows (3.5.16–3.6.10). Multi-module: advisories split between `go.etcd.io/etcd/v3`
+  and `go.etcd.io/etcd/server/v3`; neither path alone is complete (8 vs 1 at 3.5.16).
+- **Calico** — 7 rows. Exposure is flat across the envelope: two of the three are first fixed in
+  **3.31.6**, one patch above the newest Kubespray ships.
+- **Argo CD** — 4 rows. The widest spread in the KB: 14 advisories at 2.11.0 (v2.27.0/v2.27.1),
+  four of them needing **no authentication**, down to 3 at 2.14.21.
+- **CRI-O** — 4 rows. Both advisories unfixed upstream; exposure is identical on every shipped
+  version, so it is a containment problem, not a patching one.
+- **Kubernetes** — widened 4 → 8 rows (1.31.4 … 1.35.4), covering every tag's default.
+
+**Decision — module paths.** A matrix declares its osv.dev module path(s) in `sources`, and the
+sweep queries **exactly those**. Auto-deriving a `/vN` suffix from the version was tried and
+rejected: it is right for containerd 2.x and wrong for Calico 3.x, whose module is unsuffixed. For
+each version the sweep uses the declared paths whose `/vN` major matches; if none match, the
+unsuffixed paths. Both failure directions were observed on containerd — the unsuffixed path
+over-reports 2.0.5 (8 vs 5, matching `introduced: 0` v1 entries) and the `/v2` path over-reports
+1.7.27.
+
+**Decision — what gets no matrix.** A matrix is written only where osv.dev answers *per version*.
+**ingress-nginx** does not: its advisories carry git-commit ranges, and `k8s.io/ingress-nginx`
+returns the same ten CVEs for 1.11.0, 1.13.3 and an impossible version alike. A matrix built from
+that would look precise and be fiction, so none exists and `CONCEPT-SECURITY_INDEX` records why.
+**MetalLB** and **kube-vip** have no Go-ecosystem advisories at any shipped version — recorded as
+"nothing indexed", which is not the same as "verified safe".
+
+**Rationale.** The security layer is only as good as its coverage, and the components added are the
+ones where the answer changes a decision: etcd holds the cluster state, Argo CD holds deploy
+credentials, Calico is the default CNI, CRI-O is a runtime with no fix available.
+
+**Consequences.** `scripts/cve_sweep.py` no longer guesses module paths; adding a component now
+means adding its matrix with the right `sources` entries. The remaining uncovered surface is the
+add-on catalog (owner-supplied chart versions with no tagged-source authority) and the niche CNIs.
