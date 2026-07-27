@@ -101,6 +101,9 @@ ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/cluster.yml -b \
   --tags network    # or a full run if node-level changes are needed
 ```
 
+**AWX** — playbook `cluster.yml`, **Job Tags** `network`, Limit empty, Privilege Escalation on
+([[PRACTICE-AWX]]). The tag narrows the work, not the risk: it re-applies the CNI on every node.
+
 **Step 5 — Recycle pods.** Existing pods keep their **old** network until recreated — roll every
 workload (and CoreDNS) so they get new-CNI networking:
 

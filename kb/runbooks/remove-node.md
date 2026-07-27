@@ -94,6 +94,11 @@ kubectl get pv -o wide | grep -Ei 'local-path|local-storage'   # cross-ref claim
 ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/remove-node.yml -b -e node=<NAME>
 ```
 
+**AWX** — playbook `remove-node.yml`, **Extra Variables** `node: <NAME>` **and**
+`skip_confirmation: true` (the play pauses for an interactive `yes` otherwise), Limit empty,
+Privilege Escalation on. On **v2.27.0** an empty `node` targets the entire cluster — never leave it
+optional there ([[PRACTICE-AWX]]).
+
 This cordons/drains ([[TAG-PRE_REMOVE]]), resets the node, and removes its etcd member
 ([[TAG-POST_REMOVE]]).
 
@@ -103,6 +108,9 @@ This cordons/drains ([[TAG-PRE_REMOVE]]), resets the node, and removes its etcd 
 ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/remove-node.yml -b \
   -e node=<NAME> -e reset_nodes=false -e allow_ungraceful_removal=true
 ```
+
+**AWX** — same template, **Extra Variables** `node: <NAME>`, `reset_nodes: false`,
+`allow_ungraceful_removal: true`, `skip_confirmation: true` ([[PRACTICE-AWX]]).
 
 **Step 3 — Special case: the first control-plane/etcd node** (cannot be removed directly). Reorder
 so it is no longer first, converge, then remove:

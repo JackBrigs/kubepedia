@@ -25,6 +25,8 @@ sources:
     note: "serial: 1 for the control plane and serial: 20% for nodes — unlike cluster.yml, whose control-plane play has no serial"
 relations:
   - type: see_also
+    target: PRACTICE-AWX
+  - type: see_also
     target: CONCEPT-SAMPLE_INVENTORY_LAYOUT
   - type: see_also
     target: CONCEPT-DESTRUCTIVE_ACTIONS

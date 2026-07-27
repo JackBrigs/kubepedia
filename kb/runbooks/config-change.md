@@ -81,6 +81,9 @@ kubelet_config_extra_args:
 ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/cluster.yml -b --limit=<one-node>
 ```
 
+**AWX** — playbook `cluster.yml`, **Limit** `<one-node>`, Privilege Escalation on. Enable *prompt on
+launch* for Limit so the canary and the full run share one template ([[PRACTICE-AWX]]).
+
 **Step 3 — Verify the canary:** the target component restarted cleanly (kubelet `Running`, or the CP
 static pod back up), the setting took effect (`kubectl get --raw /configz` / the pod's `--flag`), node
 `Ready`, no crash-loop. If it fails, this is where you catch it — **one** node down, not all.
@@ -91,6 +94,9 @@ static pod back up), the setting took effect (`kubectl get --raw /configz` / the
 ```bash
 ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/cluster.yml -b
 ```
+
+**AWX** — same template, **clear the Limit field** before launching. A leftover canary Limit is the
+usual cause of a half-converged cluster ([[PRACTICE-AWX]]).
 
 **Step 5 — Verify cluster-wide:** all components healthy, the setting present everywhere, no
 regressions in system pods.

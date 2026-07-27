@@ -27,6 +27,8 @@ sources:
     note: "graceful upgrade, recover-control-plane, etcd ops — the procedures these runbooks order"
 relations:
   - type: see_also
+    target: PRACTICE-AWX
+  - type: see_also
     target: PRACTICE-UPGRADE_PREFLIGHT
   - type: see_also
     target: PRACTICE-CLUSTER_HEALTH_CHECKS
@@ -110,6 +112,14 @@ shares so the individual runbooks don't repeat it.
 **When you don't need a runbook.** A single diagnostic lookup (one symptom → one fix) is a
 troubleshooting doc, not a runbook — go straight to the `TROUBLE-*` doc. Reach for a runbook when
 the operation has **ordering, a health gate, and a rollback** that must not be improvised.
+
+**Running these from AWX / AAP.** Every runbook states the CLI form (`ansible-playbook …`) as the
+canonical procedure; each run step also carries an **AWX** line with the same run expressed as job
+template fields — Playbook, Limit, Job Tags, Extra Variables, Privilege Escalation. Three things do
+not survive the translation and are called out where they apply: privilege escalation is **off**
+unless the template enables it, `reset.yml` / `remove-node.yml` **pause for a typed confirmation**
+that never arrives in AWX, and `upgrade_node_confirm` hangs a job instead of pausing it. The full
+mapping and its traps: [[PRACTICE-AWX]].
 
 **Version scope.** The upgrade model (`upgrade-cluster.yml`, `serial`, `drain_nodes`,
 one-minor-at-a-time), etcd snapshot/restore, and CNI selection are **stable across

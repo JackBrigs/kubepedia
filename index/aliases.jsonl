@@ -230,6 +230,7 @@
 {"alias": "Unable to install Cilium", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
 {"alias": "ValidatingAdmissionPolicy", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "VolumeSnapshotClass", "ids": ["CONCEPT-CSI_LAYER"]}
+{"alias": "aap", "ids": ["PRACTICE-AWX"]}
 {"alias": "access denied kubernetes", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "acme challenge pending", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
 {"alias": "add control plane node", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
@@ -277,6 +278,7 @@
 {"alias": "annotations-risk-level", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
 {"alias": "anonymous auth specific paths", "ids": ["CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS"]}
 {"alias": "anonymous authentication config", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
+{"alias": "ansible automation platform", "ids": ["PRACTICE-AWX"]}
 {"alias": "ansible awx", "ids": ["CONCEPT-ADDON_AWX"]}
 {"alias": "ansible usage", "ids": ["PRACTICE-ANSIBLE"]}
 {"alias": "ansible vs kubeadm error", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
@@ -396,7 +398,7 @@
 {"alias": "aws_ebs_csi_plugin_image_repo", "ids": ["VARIABLE-AWS_EBS_CSI_PLUGIN_IMAGE_REPO"]}
 {"alias": "aws_ebs_csi_plugin_image_tag", "ids": ["VARIABLE-AWS_EBS_CSI_PLUGIN_IMAGE_TAG"]}
 {"alias": "aws_ebs_csi_plugin_version", "ids": ["VARIABLE-AWS_EBS_CSI_PLUGIN_VERSION"]}
-{"alias": "awx", "ids": ["CONCEPT-ADDON_AWX"]}
+{"alias": "awx", "ids": ["CONCEPT-ADDON_AWX", "PRACTICE-AWX"]}
 {"alias": "awx admin password", "ids": ["TROUBLE-AWX_OPERATOR"]}
 {"alias": "awx migration job", "ids": ["TROUBLE-AWX_OPERATOR"]}
 {"alias": "awx not coming up", "ids": ["TROUBLE-AWX_OPERATOR"]}
@@ -1968,6 +1970,8 @@
 {"alias": "is my cluster secure", "ids": ["CONCEPT-SECURITY_INDEX"]}
 {"alias": "is_fedora_coreos", "ids": ["VARIABLE-IS_FEDORA_COREOS"]}
 {"alias": "isolate system cpus from workloads", "ids": ["CONFIG-CPU_ISOLATION"]}
+{"alias": "job tags", "ids": ["PRACTICE-AWX"]}
+{"alias": "job template", "ids": ["PRACTICE-AWX"]}
 {"alias": "join new node", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
 {"alias": "k8s-certs-renew", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
 {"alias": "k8s-certs-renew-broken-script", "ids": ["TROUBLE-K8S_CERTS_RENEW_BROKEN_SCRIPT"]}
@@ -3516,6 +3520,7 @@
 {"alias": "token expired kubeadm join", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
 {"alias": "too many open files", "ids": ["TROUBLE-INOTIFY_FILE_LIMITS"]}
 {"alias": "too old resource version relist storm", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}
+{"alias": "tower", "ids": ["PRACTICE-AWX"]}
 {"alias": "tpm2 luks auto unlock", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
 {"alias": "transparent encryption cilium", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "troubleshooting entry points", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}

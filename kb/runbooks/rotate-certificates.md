@@ -111,6 +111,9 @@ ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/cluster.yml -b --ta
 # a cert change triggers an etcd restart in a full run.
 ```
 
+**AWX** — playbook `cluster.yml`, **Job Tags** `etcd-secrets`, Limit empty, Privilege Escalation on.
+The renewal on a normal run (Step 4) is the same template with Job Tags cleared ([[PRACTICE-AWX]]).
+
 **Step 6 — Verify:** `kubeadm certs check-expiration` shows fresh dates; apiserver/etcd serve without
 `x509: certificate has expired`; `kubectl get nodes` works; `etcdctl endpoint health` green
 ([[COMPONENT-ETCD]]). If the packaged `k8s-certs-renew` cron/script misbehaves, see

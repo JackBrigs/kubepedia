@@ -133,6 +133,11 @@ kubectl -n kube-system exec ds/cilium -- cilium status --brief
 cilium connectivity test        # validate before the next hop
 ```
 
+**AWX** — playbook `cluster.yml`, **Job Tags** `cilium`, Limit empty, Privilege Escalation on. The
+tag is real at these tags: `roles/network_plugin/tasks/main.yml` tags the CNI include with the
+plugin name plus `network`, and the preinstall CNI-directory tasks carry `cilium` too
+([[PRACTICE-AWX]]).
+
 **Step 3 — Hop 1.16.z → 1.17.z.** Pre-stage 1.17 actions: **Consul / Cilium-managed etcd / `metallb-bgp`
 removed** (move BGP to Cilium's BGP control plane), service protocol-differentiation on by default,
 IPsec single-key removed. Then:

@@ -85,6 +85,11 @@ ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/upgrade-cluster.yml
 # or scope to a role/tag when the component maps to one (e.g. --tags network for CNI)
 ```
 
+**AWX** — playbook `upgrade-cluster.yml`, **Extra Variables** `serial: 1`, Job Tags for the
+component's role when it maps to one, Privilege Escalation on. Do **not** set
+`upgrade_node_confirm` — its per-node pause has no terminal to answer it and the job hangs
+([[PRACTICE-AWX]]).
+
 **Step 4 — Verify:** the component reports the new version (`crictl version`, DaemonSet image,
 `etcdctl version`), all nodes `Ready`, workloads healthy, and the CVE you targeted is no longer
 applicable.

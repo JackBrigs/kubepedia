@@ -78,9 +78,13 @@ mean to touch. Scope it to the new node and the existing cluster keeps running.
 **Step 2 — Refresh facts (no limit), then scale (limited):**
 
 ```bash
-ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/facts.yml
+ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/playbooks/facts.yml
 ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/scale.yml -b --limit=<new-node>
 ```
+
+**AWX** ([[PRACTICE-AWX]]) — two launches. First: playbook `playbooks/facts.yml` (there is no root
+`facts.yml`), **Limit empty**, Privilege Escalation on. Then: playbook `scale.yml`, **Limit**
+`<new-node>`, Job Tags empty, Extra Variables empty, Privilege Escalation on.
 
 **Step 3 — Verify:** `kubectl get node <new-node>` is `Ready`, CNI pod scheduled on it, a test pod
 runs there ([[PRACTICE-NETCHECK]]).
@@ -95,6 +99,9 @@ also an etcd member). Never insert at the front.
 ```bash
 ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/cluster.yml -b
 ```
+
+**AWX** — playbook `cluster.yml`, **Limit empty** (this run must touch every node), Job Tags empty,
+Privilege Escalation on ([[PRACTICE-AWX]]).
 
 **Step 3 — Reload the API proxy on every node** (Kubespray updates the config but the pod must
 restart):

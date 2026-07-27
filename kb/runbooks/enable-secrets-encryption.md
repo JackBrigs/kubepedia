@@ -79,6 +79,9 @@ kube_encryption_algorithm: "secretbox"   # or aesgcm / kms
 ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/cluster.yml -b
 ```
 
+**AWX** — playbook `cluster.yml`, Limit empty, Job Tags empty, Privilege Escalation on
+([[PRACTICE-AWX]]).
+
 **Step 3 — Re-encrypt every existing Secret** (the critical step — rewrites them through the new
 provider):
 

@@ -81,6 +81,9 @@ ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/cluster.yml -b --li
 kubectl uncordon <node>
 ```
 
+**AWX** — playbook `cluster.yml`, **Limit** `<node>` (one node per launch), Privilege Escalation on
+([[PRACTICE-AWX]]).
+
 **Step 4 — Verify the node** before the next: `kubectl get node <node> -o wide` shows
 `containerd://…` as the runtime, node `Ready`, its pods rescheduled and `Running`, `crictl ps` works
 on the node. Only then proceed to the next node.

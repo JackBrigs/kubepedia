@@ -109,6 +109,9 @@ ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/recover-control-pla
   --limit etcd,kube_control_plane -e etcd_retries=10
 ```
 
+**AWX** — playbook `recover-control-plane.yml`, **Limit** `etcd,kube_control_plane`, **Extra
+Variables** `etcd_retries: 10`, Privilege Escalation on ([[PRACTICE-AWX]]).
+
 Increase `etcd_retries` if recovery stalls — the required count is hard to predict.
 
 **Step 3 — Manual snapshot restore** (only if Step 2 can't apply — total etcd loss): restore into a

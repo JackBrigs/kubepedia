@@ -85,6 +85,11 @@ ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/reset.yml -b \
   --limit=<node> -e reset_confirmation=yes
 ```
 
+**AWX** — playbook `reset.yml`, **Limit** the target (empty Limit = the whole cluster), Privilege
+Escalation on, and **Extra Variables `reset_confirmation: true` is mandatory**: without it the play
+either hangs on its interactive prompt or fails the *Check confirmation* task. `skip_confirmation`
+alone is not enough ([[PRACTICE-AWX]]).
+
 **Step 3 — Verify the wipe:** on the target(s), no kubelet/etcd/containerd cluster state — `crictl
 ps` empty of cluster pods, `/etc/kubernetes` gone, no `cni0`/CNI interfaces lingering. A leftover CNI
 interface or iptables rule is the usual cause of a broken **re-deploy**.

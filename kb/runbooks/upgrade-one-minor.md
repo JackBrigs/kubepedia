@@ -113,6 +113,12 @@ ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/upgrade-cluster.yml
 # faster, still safe once confident:  -e serial=1   (or the default 20% for workers)
 ```
 
+**AWX** ([[PRACTICE-AWX]]) — playbook `upgrade-cluster.yml`, Limit empty, Job Tags empty, Privilege
+Escalation on, **Extra Variables** `serial: 1`. **`upgrade_node_confirm` has no AWX equivalent** — it
+pauses for a typed answer that never arrives and the job hangs until it is cancelled. To get the same
+caution under AWX, pace with `serial: 1` and watch the job output between nodes; the target tag is
+set on the **project revision**, not in the template.
+
 **Step 5 — Verify after each node** (the roll pauses if you set confirm/pause): node `Ready`,
 system pods `Running`, a smoke workload reschedules ([[PRACTICE-CLUSTER_HEALTH_CHECKS]]). If the
 run **halts at a control-plane node with a kubeadm health-check timeout**, that is the kubeadm

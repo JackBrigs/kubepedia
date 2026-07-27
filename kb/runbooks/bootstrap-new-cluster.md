@@ -81,14 +81,20 @@ ansible -i inventory/<cluster>/hosts.yaml all -m ping
 **Step 2 — Refresh facts** (cheap, avoids stale-fact surprises):
 
 ```bash
-ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/facts.yml
+ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/playbooks/facts.yml
 ```
+
+**AWX** — playbook `playbooks/facts.yml` (no root `facts.yml` exists), Limit empty, Privilege
+Escalation on ([[PRACTICE-AWX]]).
 
 **Step 3 — Deploy:**
 
 ```bash
 ansible-playbook -i inventory/<cluster>/hosts.yaml kubespray/cluster.yml -b
 ```
+
+**AWX** — playbook `cluster.yml`, Limit empty, Job Tags empty, Extra Variables empty, Privilege
+Escalation on ([[PRACTICE-AWX]]).
 
 **Step 4 — Get admin access** ([[PRACTICE-CLUSTER_ACCESS]]): copy
 `/etc/kubernetes/admin.conf` from a control-plane node to your kubeconfig (rewrite the server to a
