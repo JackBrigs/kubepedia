@@ -570,3 +570,24 @@ plain Russian to the right tool, applies the version filter, and renders the ans
 Report) in human language. The retrieval HTTP API and MCP server stay parked until a non-chat consumer
 exists. The measured gap is no longer ranking but coverage — the proposed instrument is a gap log fed
 by queries that ended without a confident answer.
+
+---
+
+## D-024 — Skills live in the repository; `.claude/` keeps only a symlink (2026-07-28)
+
+**Context.** `.claude/` is excluded from the repository as Claude Code service state. The first
+AI-facing handle — the `kubepedia` skill — is not service state: it defines what counts as a correct
+answer (version as a hard filter, facts instead of pointers, Kubespray runs expressed as AWX job
+template fields, internal document IDs never shown to the user). Left only under `.claude/` it would
+be unversioned, unreviewable and easy to lose.
+
+**Decision.** The canonical text of every skill lives in `skills/<name>/SKILL.md` under version
+control. `.claude/skills/<name>/SKILL.md` is a **symlink** to it, so the deployed copy cannot drift
+from the reviewed one. `.claude/` itself stays out of the repository. Edits are made in `skills/`.
+
+**Rationale.** A skill is product surface, on par with `standards/`: it constrains the answer, not the
+tooling. Anything that changes what the base is allowed to say belongs under review.
+
+**Consequences.** `skills/README.md` documents the layout and the one-line redeploy for a fresh
+checkout (or a plain copy where an environment does not follow symlinks). The `learn` skill remains
+`.claude`-only for now — it is a maintenance loop, not an answering contract; move it if that changes.
