@@ -352,6 +352,9 @@
 {"source": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "target": "CONCEPT-KUBEADM_CONFIG", "type": "see_also"}
 {"source": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "target": "TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK", "type": "see_also"}
+{"source": "CONCEPT-KUBESPRAY_NODE_IP", "target": "CONCEPT-TUNED_SYSCTL_OWNERSHIP", "type": "see_also"}
+{"source": "CONCEPT-KUBESPRAY_NODE_IP", "target": "CONCEPT-UBUNTU_NETPLAN", "type": "see_also"}
+{"source": "CONCEPT-KUBESPRAY_NODE_IP", "target": "PRACTICE-NODE_NETWORK_CHANGE", "type": "see_also"}
 {"source": "CONCEPT-KUBE_PROXY", "target": "CONCEPT-K8S_CONTROL_PLANE_VERSIONS", "type": "see_also"}
 {"source": "CONCEPT-KUBE_PROXY", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "CONCEPT-KUBE_PROXY", "target": "VARIABLE-KUBE_PROXY_MODE", "type": "see_also"}
@@ -441,6 +444,7 @@
 {"source": "CONCEPT-TROUBLESHOOTING_MAP", "target": "TROUBLE-POD_CONTAINERCREATING", "type": "see_also"}
 {"source": "CONCEPT-TUNED_SYSCTL_OWNERSHIP", "target": "CONCEPT-KUBE_PROXY", "type": "see_also"}
 {"source": "CONCEPT-TUNED_SYSCTL_OWNERSHIP", "target": "CONCEPT-TUNED_UBUNTU", "type": "see_also"}
+{"source": "CONCEPT-TUNED_SYSCTL_OWNERSHIP", "target": "PRACTICE-NODE_NETWORK_CHANGE", "type": "see_also"}
 {"source": "CONCEPT-TUNED_SYSCTL_OWNERSHIP", "target": "TROUBLE-TUNED_VERIFY_FLAPS", "type": "see_also"}
 {"source": "CONCEPT-TUNED_UBUNTU", "target": "CONCEPT-TUNED_SYSCTL_OWNERSHIP", "type": "see_also"}
 {"source": "CONCEPT-TUNED_UBUNTU", "target": "CONCEPT-UBUNTU_24_04_K8S", "type": "see_also"}
@@ -448,6 +452,9 @@
 {"source": "CONCEPT-UBUNTU_24_04_K8S", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-UBUNTU_24_04_K8S", "target": "CONFIG-NTP", "type": "see_also"}
 {"source": "CONCEPT-UBUNTU_24_04_K8S", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
+{"source": "CONCEPT-UBUNTU_NETPLAN", "target": "CONCEPT-KUBESPRAY_NODE_IP", "type": "see_also"}
+{"source": "CONCEPT-UBUNTU_NETPLAN", "target": "CONCEPT-UBUNTU_24_04_K8S", "type": "see_also"}
+{"source": "CONCEPT-UBUNTU_NETPLAN", "target": "PRACTICE-NODE_NETWORK_CHANGE", "type": "see_also"}
 {"source": "CONCEPT-UPGRADE_HORIZON", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-UPGRADE_HORIZON", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}
 {"source": "CONCEPT-UPGRADE_HORIZON", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
@@ -573,6 +580,9 @@
 {"source": "PRACTICE-NETCHECK", "target": "CONCEPT-COMPONENT_VERSION_SELECTION", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-ETCD", "type": "see_also"}
 {"source": "PRACTICE-NODES_ADD_REPLACE", "target": "TAG-RESET", "type": "see_also"}
+{"source": "PRACTICE-NODE_NETWORK_CHANGE", "target": "CONCEPT-KUBESPRAY_NODE_IP", "type": "see_also"}
+{"source": "PRACTICE-NODE_NETWORK_CHANGE", "target": "CONCEPT-UBUNTU_NETPLAN", "type": "see_also"}
+{"source": "PRACTICE-NODE_NETWORK_CHANGE", "target": "PRACTICE-CLUSTER_HEALTH_CHECKS", "type": "see_also"}
 {"source": "PRACTICE-NODE_NOT_READY", "target": "PRACTICE-CILIUM_DIAGNOSTICS", "type": "see_also"}
 {"source": "PRACTICE-NODE_NOT_READY", "target": "PRACTICE-CLUSTER_HEALTH_CHECKS", "type": "see_also"}
 {"source": "PRACTICE-OFFLINE_ENVIRONMENT", "target": "TAG-DOWNLOAD", "type": "see_also"}
@@ -806,6 +816,8 @@
 {"source": "TROUBLE-ARP_NEIGH_TABLE_OVERFLOW", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
 {"source": "TROUBLE-AWX_OPERATOR", "target": "CONCEPT-ADDON_AWX", "type": "see_also"}
 {"source": "TROUBLE-AWX_OPERATOR", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}
+{"source": "TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR", "target": "CONCEPT-UBUNTU_NETPLAN", "type": "see_also"}
+{"source": "TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR", "target": "PRACTICE-NODE_NETWORK_CHANGE", "type": "see_also"}
 {"source": "TROUBLE-CALICO_KNOWN_CVES", "target": "COMPONENT-CALICO", "type": "see_also"}
 {"source": "TROUBLE-CALICO_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CALICO_NODE_ISSUES", "target": "COMPONENT-CALICO", "type": "see_also"}
@@ -1131,6 +1143,9 @@
 {"source": "TROUBLE-KYVERNO_UPGRADE", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KYVERNO_WEBHOOK_HA", "target": "CONCEPT-ADDON_KYVERNO", "type": "see_also"}
 {"source": "TROUBLE-KYVERNO_WEBHOOK_HA", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
+{"source": "TROUBLE-LEFTOVER_SECONDARY_BOND", "target": "CONCEPT-KUBESPRAY_NODE_IP", "type": "see_also"}
+{"source": "TROUBLE-LEFTOVER_SECONDARY_BOND", "target": "CONCEPT-UBUNTU_NETPLAN", "type": "see_also"}
+{"source": "TROUBLE-LEFTOVER_SECONDARY_BOND", "target": "PRACTICE-NODE_NETWORK_CHANGE", "type": "see_also"}
 {"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "COMPONENT-METALLB", "type": "see_also"}
 {"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
 {"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "TROUBLE-METALLB_CONFIG_CRD_FRR", "type": "see_also"}

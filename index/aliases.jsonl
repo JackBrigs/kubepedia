@@ -121,11 +121,14 @@
 {"alias": "1.34 upgrade notes", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
 {"alias": "1.35 upgrade notes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
 {"alias": "10250 unreachable", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
+{"alias": "169.254 /31 interface node", "ids": ["TROUBLE-LEFTOVER_SECONDARY_BOND"]}
 {"alias": "1password connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
 {"alias": "1password connect not working", "ids": ["TROUBLE-1PASSWORD_CONNECT"]}
 {"alias": "1password credentials json missing", "ids": ["TROUBLE-1PASSWORD_CONNECT"]}
 {"alias": "1password-connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
+{"alias": "802.3ad second aggregator", "ids": ["TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR"]}
 {"alias": "ACL bootstrap no longer allowed", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
+{"alias": "Actor Churn State churned", "ids": ["TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR"]}
 {"alias": "AdmissionWebhookMatchConditions", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
 {"alias": "AnonymousAuthConfigurableEndpoints", "ids": ["CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS"]}
 {"alias": "ArgoCD", "ids": ["CONCEPT-GITOPS"]}
@@ -233,6 +236,7 @@
 {"alias": "VolumeSnapshotClass", "ids": ["CONCEPT-CSI_LAYER"]}
 {"alias": "aap", "ids": ["PRACTICE-AWX"]}
 {"alias": "access denied kubernetes", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "access_ip", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "acme challenge pending", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
 {"alias": "add control plane node", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
 {"alias": "add node", "ids": ["PRACTICE-NODES_ADD_REPLACE"]}
@@ -284,6 +288,7 @@
 {"alias": "ansible awx", "ids": ["CONCEPT-ADDON_AWX"]}
 {"alias": "ansible usage", "ids": ["PRACTICE-ANSIBLE"]}
 {"alias": "ansible vs kubeadm error", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
+{"alias": "ansible_default_ipv4", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "ansible_ssh_common_args", "ids": ["VARIABLE-ANSIBLE_SSH_COMMON_ARGS"]}
 {"alias": "answer without an llm", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "apf rejected requests", "ids": ["TROUBLE-APISERVER_APF_429"]}
@@ -293,6 +298,7 @@
 {"alias": "apiserver VIP unreachable", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP"]}
 {"alias": "apiserver anonymous endpoints config", "ids": ["CONCEPT-K8S_ANONYMOUS_AUTH_ENDPOINTS"]}
 {"alias": "apiserver audit log", "ids": ["CONFIG-APISERVER_AUDIT"]}
+{"alias": "apiserver cert SAN node ip", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "apiserver cert does not include IP", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
 {"alias": "apiserver certificate SAN missing", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
 {"alias": "apiserver etcd unavailable", "ids": ["TROUBLE-ETCD_QUORUM_LOSS"]}
@@ -438,6 +444,8 @@
 {"alias": "bgppeer not connecting", "ids": ["TROUBLE-METALLB_BGP_SESSION_DOWN"]}
 {"alias": "bin_dir", "ids": ["VARIABLE-BIN_DIR"]}
 {"alias": "bind address already in use kubelet", "ids": ["TROUBLE-TUNED_PORT_RANGE_COLLISION"]}
+{"alias": "bond slave down aggregator 2", "ids": ["TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR"]}
+{"alias": "bond vlan ubuntu node", "ids": ["CONCEPT-UBUNTU_NETPLAN"]}
 {"alias": "bootstrap runbook", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
 {"alias": "bootstrap_os", "ids": ["TAG-BOOTSTRAP_OS"]}
 {"alias": "bpf-ct-global-max", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
@@ -1257,6 +1265,7 @@
 {"alias": "default security posture", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
 {"alias": "default_kubelet_config_dir", "ids": ["VARIABLE-DEFAULT_KUBELET_CONFIG_DIR"]}
 {"alias": "defrag stop the world", "ids": ["TROUBLE-ETCD_DEFRAG_CONTROLLER"]}
+{"alias": "delete bond vlan node safely", "ids": ["PRACTICE-NODE_NETWORK_CHANGE"]}
 {"alias": "delete node from cluster", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
 {"alias": "delete_node_delay_seconds", "ids": ["VARIABLE-DELETE_NODE_DELAY_SECONDS"]}
 {"alias": "delete_node_retries", "ids": ["VARIABLE-DELETE_NODE_RETRIES"]}
@@ -1663,6 +1672,7 @@
 {"alias": "externalsecret not syncing", "ids": ["TROUBLE-EXTERNAL_SECRETS_NOT_SYNCING"]}
 {"alias": "extra args", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
 {"alias": "extra args kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
+{"alias": "extra slave in bond", "ids": ["TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR"]}
 {"alias": "facts", "ids": ["TAG-FACTS"]}
 {"alias": "failed calling webhook", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "failed calling webhook connect-injector", "ids": ["TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK"]}
@@ -1985,6 +1995,7 @@
 {"alias": "is forbidden User", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "is my cluster healthy", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
 {"alias": "is my cluster secure", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "is this interface used", "ids": ["PRACTICE-NODE_NETWORK_CHANGE"]}
 {"alias": "is_fedora_coreos", "ids": ["VARIABLE-IS_FEDORA_COREOS"]}
 {"alias": "isolate system cpus from workloads", "ids": ["CONFIG-CPU_ISOLATION"]}
 {"alias": "job tags", "ids": ["PRACTICE-AWX"]}
@@ -2458,6 +2469,7 @@
 {"alias": "kubelet flag removed crashloop", "ids": ["TROUBLE-K8S_KUBELET_REMOVED_FLAGS"]}
 {"alias": "kubelet hardening", "ids": ["PRACTICE-CLUSTER_HARDENING"]}
 {"alias": "kubelet memory leak oomkill workloads", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
+{"alias": "kubelet node-ip", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "kubelet not ready", "ids": ["PRACTICE-NODE_NOT_READY"]}
 {"alias": "kubelet runtime cgroup driver", "ids": ["CONCEPT-K8S_CGROUP_DRIVER_FROM_CRI"]}
 {"alias": "kubelet scrape 401 x509", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
@@ -2615,12 +2627,14 @@
 {"alias": "kyverno webhook timeout latency", "ids": ["TROUBLE-KYVERNO_WEBHOOK_HA"]}
 {"alias": "kyverno wildcard crd not found", "ids": ["TROUBLE-KYVERNO_POLICY_NOT_APPLYING"]}
 {"alias": "label nodes kubespray", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "lacp slave not aggregating", "ids": ["TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR"]}
 {"alias": "large cluster failure modes", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "large scale kubespray", "ids": ["PRACTICE-LARGE_DEPLOYMENTS"]}
 {"alias": "latest component versions", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
 {"alias": "latest upstream versions", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
 {"alias": "leaderelection lost", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
 {"alias": "leave_etc_backup_files", "ids": ["VARIABLE-LEAVE_ETC_BACKUP_FILES"]}
+{"alias": "leftover vlan interface node", "ids": ["TROUBLE-LEFTOVER_SECONDARY_BOND"]}
 {"alias": "legacy service account token deleted", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
 {"alias": "legacy-token-invalid-since", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
 {"alias": "liveness probe failing restart", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
@@ -2675,6 +2689,7 @@
 {"alias": "macvlan", "ids": ["COMPONENT-MACVLAN"]}
 {"alias": "macvlan cni", "ids": ["COMPONENT-MACVLAN"]}
 {"alias": "macvlan_interface", "ids": ["COMPONENT-MACVLAN", "VARIABLE-MACVLAN_INTERFACE"]}
+{"alias": "main_ip", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "manage kubernetes secrets safely", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
 {"alias": "manageSystemACLs", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
 {"alias": "manifest unknown", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
@@ -2824,6 +2839,10 @@
 {"alias": "netchecker_server_memory_limit", "ids": ["VARIABLE-NETCHECKER_SERVER_MEMORY_LIMIT"]}
 {"alias": "netchecker_server_memory_requests", "ids": ["VARIABLE-NETCHECKER_SERVER_MEMORY_REQUESTS"]}
 {"alias": "netchecker_server_user", "ids": ["VARIABLE-NETCHECKER_SERVER_USER"]}
+{"alias": "netplan", "ids": ["CONCEPT-UBUNTU_NETPLAN"]}
+{"alias": "netplan apply", "ids": ["CONCEPT-UBUNTU_NETPLAN"]}
+{"alias": "netplan get", "ids": ["CONCEPT-UBUNTU_NETPLAN"]}
+{"alias": "netplan try", "ids": ["CONCEPT-UBUNTU_NETPLAN"]}
 {"alias": "network", "ids": ["TAG-NETWORK"]}
 {"alias": "network bound disk encryption", "ids": ["CONCEPT-CLEVIS_LUKS2"]}
 {"alias": "network not ready", "ids": ["TROUBLE-POD_CONTAINERCREATING"]}
@@ -2877,16 +2896,21 @@
 {"alias": "node encryption", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "node flaps notready pleg", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
 {"alias": "node had taints that the pod did not tolerate", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
+{"alias": "node ip changed after network change", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
+{"alias": "node ip kubespray", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "node kubeProxyVersion not populated", "ids": ["TROUBLE-K8S_KUBEPROXYVERSION_FIELD_REMOVED"]}
 {"alias": "node kubeletnotready after kubeadm init", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
 {"alias": "node maintenance runbook", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "node memory pressure eviction", "ids": ["TROUBLE-OOMKILLED"]}
+{"alias": "node network change procedure", "ids": ["PRACTICE-NODE_NETWORK_CHANGE"]}
 {"alias": "node no podCIDR", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
 {"alias": "node not deleted after vm gone", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
 {"alias": "node not joining", "ids": ["PRACTICE-KUBEADM_JOIN_FAILURES"]}
 {"alias": "node not joining cluster", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
 {"alias": "node notready pods not rescheduled", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "node re-registered under different address", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "node ready false still in endpoints", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "node registered with wrong ip", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "node swap KEP", "ids": ["CONCEPT-K8S_KEPS"]}
 {"alias": "node swap beta", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
 {"alias": "node-exporter kube-state-metrics", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
@@ -3220,9 +3244,11 @@
 {"alias": "remove control plane node", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
 {"alias": "remove dead master node", "ids": ["TROUBLE-REMOVE_DEAD_CONTROL_PLANE_NODE"]}
 {"alias": "remove docker runtime", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
+{"alias": "remove interface kubernetes node", "ids": ["PRACTICE-NODE_NETWORK_CHANGE"]}
 {"alias": "remove node", "ids": ["PRACTICE-NODES_ADD_REPLACE"]}
 {"alias": "remove node runbook", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
 {"alias": "remove node with local storage", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
+{"alias": "remove second bond safely", "ids": ["TROUBLE-LEFTOVER_SECONDARY_BOND"]}
 {"alias": "remove-node.yml", "ids": ["PLAYBOOK-REMOVE_NODE", "PRACTICE-RUNBOOK_REMOVE_NODE"]}
 {"alias": "remove_anonymous_access", "ids": ["VARIABLE-REMOVE_ANONYMOUS_ACCESS"]}
 {"alias": "remove_default_searchdomains", "ids": ["VARIABLE-REMOVE_DEFAULT_SEARCHDOMAINS"]}
@@ -3571,6 +3597,7 @@
 {"alias": "typha_replicas", "ids": ["VARIABLE-TYPHA_REPLICAS"]}
 {"alias": "typha_secure", "ids": ["VARIABLE-TYPHA_SECURE"]}
 {"alias": "ubuntu cgroup v2", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
+{"alias": "ubuntu network configuration", "ids": ["CONCEPT-UBUNTU_NETPLAN"]}
 {"alias": "ubuntu node os requirements", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
 {"alias": "ubuntu ntpsec kubernetes", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
 {"alias": "ubuntu_kernel_unattended_upgrades_disabled", "ids": ["VARIABLE-UBUNTU_KERNEL_UNATTENDED_UPGRADES_DISABLED"]}
@@ -3587,6 +3614,7 @@
 {"alias": "unschedulable", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "unsupported shim version (3)", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "untolerated taint", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
+{"alias": "unused bond on kubernetes node", "ids": ["TROUBLE-LEFTOVER_SECONDARY_BOND"]}
 {"alias": "upcloud-csi-driver", "ids": ["TAG-UPCLOUD_CSI_DRIVER"]}
 {"alias": "upcloud_cacert", "ids": ["VARIABLE-UPCLOUD_CACERT"]}
 {"alias": "upcloud_csi_attacher_image_tag", "ids": ["VARIABLE-UPCLOUD_CSI_ATTACHER_IMAGE_TAG"]}
@@ -3804,6 +3832,7 @@
 {"alias": "who upgrades kubernetes kubespray", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
 {"alias": "win_nodes", "ids": ["TAG-WIN_NODES"]}
 {"alias": "wipe node kubernetes", "ids": ["PRACTICE-RUNBOOK_RESET"]}
+{"alias": "wrong INTERNAL-IP on node", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "x509 certificate is valid for", "ids": ["TROUBLE-APISERVER_CERT_SAN"]}
 {"alias": "x509 expired", "ids": ["PRACTICE-CERTIFICATE_EXPIRY"]}
 {"alias": "x509 kubelet exec", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}

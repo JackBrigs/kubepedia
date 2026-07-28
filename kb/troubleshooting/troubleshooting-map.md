@@ -236,6 +236,22 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
   [[TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY]]; RuntimeClass handler →
   [[TROUBLE-CONTAINERD_RUNTIME_HANDLER]].
 
+### Node networking on Ubuntu (netplan, bonds)
+
+Kubespray не настраивает сеть на существующих хостах — netplan встречается только в cloud-init
+шаблонах `contrib/terraform/` ([[CONCEPT-UBUNTU_NETPLAN]]). Отсюда весь класс расхождений между
+конфигом и рантаймом.
+
+- **Лишний слейв в бонде**: `MII down`, другой `Aggregator ID`, `Actor Churn State: churned` — порт
+  трафика не несёт, но может увести бонд, если основные линки одновременно моргнут →
+  [[TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR]].
+- **Лишний второй бонд / VLAN** (тест дополнительной сети, которую так и не выделили) — как доказать,
+  что он никем не используется, прежде чем удалять → [[TROUBLE-LEFTOVER_SECONDARY_BOND]].
+- **Нода перерегистрировалась под другим адресом** после изменений в сети — адрес идёт от интерфейса
+  маршрута по умолчанию, если в inventory нет `ip:` → [[CONCEPT-KUBESPRAY_NODE_IP]].
+- **Процедура безопасного изменения сети на живой ноде** (доказательства → рантайм → проверка →
+  конфиг) → [[PRACTICE-NODE_NETWORK_CHANGE]].
+
 ### Node OS tuning (tuned)
 
 Kubespray does not manage tuned — the profile arrives from the OS image or a separate

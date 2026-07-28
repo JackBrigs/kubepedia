@@ -202,11 +202,21 @@ def score(doc, query, terms):
     al = [a.lower() for a in doc["aliases"]]
     ttl = doc["title"].lower()
 
-    # фраза целиком — самый сильный сигнал
+    # фраза целиком — самый сильный сигнал, но с оглядкой на покрытие:
+    # короткий общий алиас («network»), попавший внутрь длинного запроса, не должен
+    # весить столько же, сколько строка ошибки, совпавшая целиком.
     for a in al:
-        if q and (q in a or a in q) and len(a) >= 6:
+        if not q or len(a) < 6:
+            continue
+        if q in a:                       # запрос — часть алиаса
             s += 120
             why.append(f"алиас «{a}»")
+            break
+        if a in q:                       # алиас — часть запроса: вес по доле покрытия
+            cover = len(a) / len(q)
+            s += int(120 * min(cover * 2, 1))
+            if cover >= 0.3:
+                why.append(f"алиас «{a}»")
             break
     if q and len(q) >= 8:
         if q in ttl:

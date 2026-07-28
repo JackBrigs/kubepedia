@@ -41,6 +41,8 @@ relations:
     target: TROUBLE-TUNED_VERIFY_FLAPS
   - type: see_also
     target: CONCEPT-KUBE_PROXY
+  - type: see_also
+    target: PRACTICE-NODE_NETWORK_CHANGE
 ---
 
 # Who owns a sysctl on a Kubespray node — tuned, Kubespray, or kube-proxy
