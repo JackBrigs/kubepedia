@@ -252,6 +252,9 @@ Kubespray не настраивает сеть на существующих х�
 - **Процедура безопасного изменения сети на живой ноде** (доказательства → рантайм → проверка →
   конфиг) → [[PRACTICE-NODE_NETWORK_CHANGE]].
 
+- **Остаток в `/etc/fstab`: `bpffs /sys/fs/bpf`** после того, как Kubespray перестал им управлять
+  (апстрим убрал задачу на `master`) → [[TROUBLE-CILIUM_BPFFS_FSTAB_LEFTOVER]].
+
 ### Node OS tuning (tuned)
 
 Kubespray does not manage tuned — the profile arrives from the OS image or a separate

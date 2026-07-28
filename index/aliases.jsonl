@@ -112,6 +112,7 @@
 {"alias": "--tags win_nodes", "ids": ["TAG-WIN_NODES"]}
 {"alias": "--tags youki", "ids": ["TAG-YOUKI"]}
 {"alias": "/dev/kvm not available", "ids": ["TROUBLE-KVM_DEVICE_PLUGIN"]}
+{"alias": "/sys/fs/bpf fstab entry", "ids": ["TROUBLE-CILIUM_BPFFS_FSTAB_LEFTOVER"]}
 {"alias": "0 nodes are available insufficient cpu", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
 {"alias": "1.29 upgrade notes", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "1.30 upgrade notes", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
@@ -149,6 +150,7 @@
 {"alias": "CVE-2025-52881", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
 {"alias": "Cilium CNI", "ids": ["PRACTICE-CILIUM"]}
 {"alias": "Cilium Copy Ciliumcli binary from download dir failed", "ids": ["TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED"]}
+{"alias": "Cilium | Ensure BPFFS mounted", "ids": ["TROUBLE-CILIUM_BPFFS_FSTAB_LEFTOVER"]}
 {"alias": "CiliumBGPClusterConfig", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "CiliumBGPPeeringPolicy removed", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "CiliumLoadBalancerIPPool", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
@@ -449,7 +451,9 @@
 {"alias": "bond vlan ubuntu node", "ids": ["CONCEPT-UBUNTU_NETPLAN"]}
 {"alias": "bootstrap runbook", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
 {"alias": "bootstrap_os", "ids": ["TAG-BOOTSTRAP_OS"]}
+{"alias": "bpf mount left in fstab", "ids": ["TROUBLE-CILIUM_BPFFS_FSTAB_LEFTOVER"]}
 {"alias": "bpf-ct-global-max", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
+{"alias": "bpffs fstab kubespray", "ids": ["TROUBLE-CILIUM_BPFFS_FSTAB_LEFTOVER"]}
 {"alias": "bring cluster back after outage", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
 {"alias": "bring your own cni kubespray", "ids": ["CONCEPT-CUSTOM_CNI"]}
 {"alias": "bump containerd version", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}

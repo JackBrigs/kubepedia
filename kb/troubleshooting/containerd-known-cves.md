@@ -82,6 +82,11 @@ CVEs (id — summary — fixed in):
 
 **Recommendation:** moving to the newest Kubespray release (v2.31.0, containerd 2.2.3) does **not** clear the runtime — 6 CVEs remain, `CVE-2026-53488` among them. Containerd **2.2.5** (released 2026-06-18) fixes all six on the 2.2 line, so the remediation is to stay on Kubespray v2.31.0 and pin `containerd_version: 2.2.5` (see [[VARIABLE-CONTAINERD_VERSION]] — the default is *computed* from the newest checksum key, so it must be pinned explicitly).
 
+Since 2026-07-24 the checksums for 2.2.5 and newer exist on Kubespray `master`
+(`roles/kubespray_defaults/vars/main/checksums.yml`, PR #13393), so the sha256 for the pin can be
+copied from there instead of computed by hand — and the next release will ship a fixed containerd
+outright ([[CONCEPT-UPGRADE_HORIZON]]).
+
 That pin needs a checksum: `containerd_archive_checksums` at v2.31.0 tops out at **2.2.3** (`roles/kubespray_defaults/vars/main/checksums.yml`), so add the amd64/arm64 sha256 for 2.2.5 in your inventory before the run — otherwise the download task fails on the missing key. Then re-run the `container-engine` scope and confirm with `containerd --version` on every node. Reduce blast radius with PRACTICE-HARDENING.
 
 ## References

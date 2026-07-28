@@ -843,6 +843,8 @@
 {"source": "TROUBLE-CILIUM_BGP_V1_REMOVED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_BGP_V1_REMOVED", "target": "TROUBLE-CILIUM_BGP_ADVERTISEMENT_LABELS", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_BGP_V1_REMOVED", "target": "UPGRADE-CILIUM_1_15_TO_1_19", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_BPFFS_FSTAB_LEFTOVER", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_BPFFS_FSTAB_LEFTOVER", "target": "PRACTICE-NODE_NETWORK_CHANGE", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "TAG-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "TAG-DOWNLOAD", "type": "see_also"}
