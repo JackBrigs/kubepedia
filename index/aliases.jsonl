@@ -229,6 +229,7 @@
 {"alias": "Ubuntu 26.04 kubespray support", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
 {"alias": "Unable to install Cilium", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
 {"alias": "ValidatingAdmissionPolicy", "ids": ["CONCEPT-K8S_ADMISSION_POLICIES"]}
+{"alias": "Verification failed, current system settings differ from the preset profile", "ids": ["TROUBLE-TUNED_VERIFY_MISSING_SYSCTL"]}
 {"alias": "VolumeSnapshotClass", "ids": ["CONCEPT-CSI_LAYER"]}
 {"alias": "aap", "ids": ["PRACTICE-AWX"]}
 {"alias": "access denied kubernetes", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
@@ -243,6 +244,7 @@
 {"alias": "addon catalog", "ids": ["CONCEPT-ADDON_CATALOG"]}
 {"alias": "addon cve priority", "ids": ["CONCEPT-ADDON_PATCH_PRIORITY"]}
 {"alias": "addon inventory", "ids": ["CONCEPT-ADDON_CATALOG"]}
+{"alias": "address already in use 10250", "ids": ["TROUBLE-TUNED_PORT_RANGE_COLLISION"]}
 {"alias": "adduser", "ids": ["VARIABLE-ADDUSER"]}
 {"alias": "addusers", "ids": ["VARIABLE-ADDUSERS"]}
 {"alias": "admin.conf", "ids": ["PRACTICE-CLUSTER_ACCESS"]}
@@ -435,6 +437,7 @@
 {"alias": "bgpControlPlane v2alpha1 removed", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "bgppeer not connecting", "ids": ["TROUBLE-METALLB_BGP_SESSION_DOWN"]}
 {"alias": "bin_dir", "ids": ["VARIABLE-BIN_DIR"]}
+{"alias": "bind address already in use kubelet", "ids": ["TROUBLE-TUNED_PORT_RANGE_COLLISION"]}
 {"alias": "bootstrap runbook", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
 {"alias": "bootstrap_os", "ids": ["TAG-BOOTSTRAP_OS"]}
 {"alias": "bpf-ct-global-max", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
@@ -1442,6 +1445,7 @@
 {"alias": "envoy-xds-controller", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER", "TROUBLE-ENVOY_XDS_CONTROLLER"]}
 {"alias": "envoy.enabled daemonset", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "epel_enabled", "ids": ["VARIABLE-EPEL_ENABLED"]}
+{"alias": "ephemeral port conflict kubelet etcd", "ids": ["TROUBLE-TUNED_PORT_RANGE_COLLISION"]}
 {"alias": "error dialing backend", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "error execution phase addon", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
 {"alias": "es flood stage watermark read-only", "ids": ["TROUBLE-ELASTICSEARCH_ECK_CLUSTER"]}
@@ -1956,6 +1960,7 @@
 {"alias": "install order cert-manager first", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
 {"alias": "installed addons", "ids": ["CONCEPT-ADDON_CATALOG"]}
 {"alias": "installplan requires approval", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
+{"alias": "instance video: no matching devices available", "ids": ["TROUBLE-TUNED_VM_WARNING_NOISE"]}
 {"alias": "insufficient cpu memory", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "insufficient nvidia.com/gpu", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
 {"alias": "integration failure matrix", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
@@ -1967,6 +1972,10 @@
 {"alias": "io.cilium.k8s.policy.serviceaccount identity label", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
 {"alias": "io.containerd.cri.v1.runtime", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "ip6tables", "ids": ["TAG-IP6TABLES"]}
+{"alias": "ip_local_port_range 1024 65535 kubernetes", "ids": ["TROUBLE-TUNED_PORT_RANGE_COLLISION"]}
+{"alias": "ip_local_reserved_ports kubernetes", "ids": ["TROUBLE-TUNED_PORT_RANGE_COLLISION"]}
+{"alias": "ip_local_reserved_ports kubespray", "ids": ["CONCEPT-TUNED_SYSCTL_OWNERSHIP"]}
+{"alias": "ip_local_reserved_ports reset after ansible", "ids": ["TROUBLE-TUNED_VERIFY_FLAPS"]}
 {"alias": "ipsec secret plus sign cilium", "ids": ["TROUBLE-CILIUM_IPSEC_PER_TUNNEL_KEYS"]}
 {"alias": "iptables", "ids": ["TAG-IPTABLES"]}
 {"alias": "ipv4_stack", "ids": ["VARIABLE-IPV4_STACK"]}
@@ -2824,6 +2833,7 @@
 {"alias": "never", "ids": ["TAG-NEVER"]}
 {"alias": "new node no pods scheduling", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
 {"alias": "new node wrong version", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
+{"alias": "nf_conntrack_max changed by itself", "ids": ["TROUBLE-TUNED_VERIFY_FLAPS"]}
 {"alias": "nfd labels missing", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
 {"alias": "nfd worker not labeling", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
 {"alias": "nftables kernel too low", "ids": ["TROUBLE-NFTABLES_KERNEL_TOO_LOW"]}
@@ -3426,6 +3436,8 @@
 {"alias": "switch cni plugin", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "switch container runtime", "ids": ["PRACTICE-RUNBOOK_RUNTIME_MIGRATION"]}
 {"alias": "symptom map", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
+{"alias": "sysctl overwritten after ansible run", "ids": ["CONCEPT-TUNED_SYSCTL_OWNERSHIP"]}
+{"alias": "sysctl ownership kubernetes node", "ids": ["CONCEPT-TUNED_SYSCTL_OWNERSHIP"]}
 {"alias": "sysctl_file_path", "ids": ["VARIABLE-SYSCTL_FILE_PATH"]}
 {"alias": "sysctl_ignore_unknown_keys", "ids": ["VARIABLE-SYSCTL_IGNORE_UNKNOWN_KEYS"]}
 {"alias": "system-packages", "ids": ["TAG-SYSTEM_PACKAGES"]}
@@ -3533,6 +3545,23 @@
 {"alias": "transparent encryption cilium", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "troubleshooting entry points", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
 {"alias": "troubleshooting index", "ids": ["CONCEPT-TROUBLESHOOTING_MAP"]}
+{"alias": "tuned alert flapping", "ids": ["TROUBLE-TUNED_VERIFY_FLAPS"]}
+{"alias": "tuned kubernetes node", "ids": ["CONCEPT-TUNED_UBUNTU"]}
+{"alias": "tuned log noise", "ids": ["TROUBLE-TUNED_VM_WARNING_NOISE"]}
+{"alias": "tuned modules section empty value", "ids": ["TROUBLE-TUNED_MODULES_EMPTY_OPTION"]}
+{"alias": "tuned plugin_modules warning", "ids": ["TROUBLE-TUNED_MODULES_EMPTY_OPTION"]}
+{"alias": "tuned profile kubernetes", "ids": ["CONCEPT-TUNED_UBUNTU"]}
+{"alias": "tuned ptrace_scope none", "ids": ["TROUBLE-TUNED_VERIFY_MISSING_SYSCTL"]}
+{"alias": "tuned settings reverted after kubespray run", "ids": ["TROUBLE-TUNED_VERIFY_FLAPS"]}
+{"alias": "tuned sysctl ubuntu", "ids": ["CONCEPT-TUNED_UBUNTU"]}
+{"alias": "tuned ubuntu", "ids": ["CONCEPT-TUNED_UBUNTU"]}
+{"alias": "tuned verify failed None expected", "ids": ["TROUBLE-TUNED_VERIFY_MISSING_SYSCTL"]}
+{"alias": "tuned verify intermittent failure", "ids": ["TROUBLE-TUNED_VERIFY_FLAPS"]}
+{"alias": "tuned vs kube-proxy sysctl", "ids": ["CONCEPT-TUNED_SYSCTL_OWNERSHIP"]}
+{"alias": "tuned warnings virtual machine", "ids": ["TROUBLE-TUNED_VM_WARNING_NOISE"]}
+{"alias": "tuned-adm", "ids": ["CONCEPT-TUNED_UBUNTU"]}
+{"alias": "tuned-adm verify", "ids": ["CONCEPT-TUNED_UBUNTU"]}
+{"alias": "tuned-adm verify always fails", "ids": ["TROUBLE-TUNED_VERIFY_MISSING_SYSCTL"]}
 {"alias": "two components break together", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
 {"alias": "two snapshot controllers conflict", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
 {"alias": "typha_enabled", "ids": ["VARIABLE-TYPHA_ENABLED"]}
@@ -3552,6 +3581,8 @@
 {"alias": "unauthorized image pull", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "unqualified-search-registries", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
 {"alias": "unreachable taint missing noexecute", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "unrecognized module option for module 'nf_conntrack'", "ids": ["TROUBLE-TUNED_MODULES_EMPTY_OPTION"]}
+{"alias": "unrecognized module option tuned", "ids": ["TROUBLE-TUNED_MODULES_EMPTY_OPTION"]}
 {"alias": "unsafe_show_logs", "ids": ["VARIABLE-UNSAFE_SHOW_LOGS"]}
 {"alias": "unschedulable", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
 {"alias": "unsupported shim version (3)", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
@@ -3658,6 +3689,7 @@
 {"alias": "velero snapshot not created", "ids": ["TROUBLE-VELERO_BACKUP_RESTORE_FAILS"]}
 {"alias": "velero volsync snapshot conflict", "ids": ["TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS"]}
 {"alias": "verify-settings failed", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
+{"alias": "verify: failed: 'kernel.yama.ptrace_scope' = 'None'", "ids": ["TROUBLE-TUNED_VERIFY_MISSING_SYSCTL"]}
 {"alias": "version gap", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
 {"alias": "version selection mechanism", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
 {"alias": "version skew policy kubelet", "ids": ["TROUBLE-KUBEADM_VERSION_SKEW"]}
@@ -3767,6 +3799,7 @@
 {"alias": "which components move with kube_version", "ids": ["CONCEPT-COMPONENT_VERSION_SELECTION"]}
 {"alias": "which kubernetes version talos supports", "ids": ["CONCEPT-TALOS_K8S_MATRIX"]}
 {"alias": "which kyverno pod is failing", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
+{"alias": "who sets nf_conntrack_max", "ids": ["CONCEPT-TUNED_SYSCTL_OWNERSHIP"]}
 {"alias": "who upgrades etcd kubespray", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
 {"alias": "who upgrades kubernetes kubespray", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
 {"alias": "win_nodes", "ids": ["TAG-WIN_NODES"]}
@@ -3783,6 +3816,7 @@
 {"alias": "youki_enabled", "ids": ["VARIABLE-YOUKI_ENABLED"]}
 {"alias": "youki_runtime", "ids": ["VARIABLE-YOUKI_RUNTIME"]}
 {"alias": "youki_version", "ids": ["VARIABLE-YOUKI_VERSION"]}
+{"alias": "your CPU doesn't support MSR_IA32_ENERGY_PERF_BIAS", "ids": ["TROUBLE-TUNED_VM_WARNING_NOISE"]}
 {"alias": "yq_binary_checksum", "ids": ["VARIABLE-YQ_BINARY_CHECKSUM"]}
 {"alias": "yq_checksums", "ids": ["VARIABLE-YQ_CHECKSUMS"]}
 {"alias": "yq_download_url", "ids": ["VARIABLE-YQ_DOWNLOAD_URL"]}

@@ -236,6 +236,24 @@ Ansible-run. Start at the seam map [[CONCEPT-KUBESPRAY_KUBEADM_SEAM]].
   [[TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY]]; RuntimeClass handler →
   [[TROUBLE-CONTAINERD_RUNTIME_HANDLER]].
 
+### Node OS tuning (tuned)
+
+Kubespray does not manage tuned — the profile arrives from the OS image or a separate
+configuration-management repo ([[CONCEPT-TUNED_UBUNTU]]), and its settings collide with the ones
+Kubespray and kube-proxy write ([[CONCEPT-TUNED_SYSCTL_OWNERSHIP]]).
+
+- **`tuned-adm verify` fails on every run**, log shows `= 'None', expected …` (kernel does not expose
+  the key) → [[TROUBLE-TUNED_VERIFY_MISSING_SYSCTL]].
+- **verify passes, then fails hours later** with nobody touching the node (kube-proxy re-set
+  `nf_conntrack_max`, or a Kubespray run re-set `ip_local_reserved_ports`) →
+  [[TROUBLE-TUNED_VERIFY_FLAPS]].
+- **`unrecognized module option for module 'X':`** with nothing after the colon (empty value in
+  `[modules]`) → [[TROUBLE-TUNED_MODULES_EMPTY_OPTION]].
+- **`bind: address already in use` after a reboot** on 10250/2379/10257… (ephemeral range lowered to
+  1024) → [[TROUBLE-TUNED_PORT_RANGE_COLLISION]].
+- **`MSR_IA32_ENERGY_PERF_BIAS` / `instance video: no matching devices`** on a VM — benign noise that
+  hides real errors → [[TROUBLE-TUNED_VM_WARNING_NOISE]].
+
 ## References
 
 - The `kb/troubleshooting/` layer (150+ docs). Version/upgrade context:
