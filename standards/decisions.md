@@ -521,3 +521,52 @@ credentials, Calico is the default CNI, CRI-O is a runtime with no fix available
 **Consequences.** `scripts/cve_sweep.py` no longer guesses module paths; adding a component now
 means adding its matrix with the right `sources` entries. The remaining uncovered surface is the
 add-on catalog (owner-supplied chart versions with no tagged-source authority) and the niche CNIs.
+
+---
+
+## D-023 — Release 0.6.0: consumer handles and operational depth (2026-07-28)
+
+**Context.** Since 0.5.0 (upstream-mined depth, D-020) the project crossed the line the backlog called
+"access interfaces": the knowledge stopped being something you read and became something tools query.
+In parallel the content grew by ~57% and gained two layers that exist nowhere upstream. 83 commits,
+**1477 → 2322 documents**.
+
+**Decision.** Tag the current state as **`v0.6.0`** — a **minor capability/content release** (no
+architecture change). What it contains beyond 0.5.0:
+
+- **A CLI over the whole base** — `kubepedia` dispatches to every tool, so the base is a product, not
+  a folder of scripts: `ask` (symptom → analysis, and raw `describe`/log/journal triage), `plan`
+  (inventory migration diff), `report` (personalised Upgrade & Change Report, Russian by default),
+  `check` (post-upgrade verification), `impact` (graph impact), `versions` (per-tag component lookup),
+  `gate` (CI enforcement), `feed` (freshness/drift), `verify` / `validate` / `index`.
+- **Periodic guards** — `cve_sweep.py` (osv.dev re-sweep with drift classes, D-021/D-022),
+  `freshness.py`, `check_versions.py`. The base now tells you when it has gone stale instead of
+  waiting to be doubted.
+- **Self-improvement loop** — `learn.py` turns base + git + question topics into a ranked backlog;
+  `bench_search.py` measures retrieval so ranking changes are decided by numbers.
+- **Retrieval rewritten to BM25 with IDF** — prose queries 59% → 92% top-1, error strings 93%,
+  titles 100%; triage of raw output gained a specificity anchor so an unknown error gets an honest
+  "not in the base" instead of a confident wrong answer.
+- **Content**: the addon layer completed (47/47 deep guides, upstream + backward mining), blind-spot
+  sweeps (scale ceilings, air-gapped, component seams, storage/PVC and drain gotchas), ~775
+  source-grounded variable stubs, ITIL 4 service-management templates with a KEDB export, and the
+  Cilium/Argo CD version-jump docs corrected against tagged sources.
+- **Two operational layers born from real incidents**, both absent upstream: the **tuned** layer
+  (verify-vs-kernel mismatches, sysctl ownership between tuned / kube-proxy / Kubespray) and the
+  **Ubuntu networking** layer (netplan's stateless apply, LACP aggregator traps, how Kubespray derives
+  the node IP and where it lands in apiserver certificate SANs).
+- **AWX layer** — every runbook step that runs a playbook now also states the job-template form, plus
+  the traps that do not survive the translation (privilege escalation, interactive confirmation
+  prompts, `upgrade_node_confirm`).
+- Base at tag time: **2322 documents**, validator PASS (0 hard failures, 0 warnings),
+  `check_versions.py` PASS, CVE sweep clean across 12 components / 61 versions.
+
+**Rationale.** 0.5.0 made the knowledge deep; 0.6.0 made it reachable — by a CLI, by a symptom, by a
+log paste, by a scheduled guard — and proved the loop works by turning two live incidents into
+verified documents that answer the same question next time.
+
+**Consequences.** The next increment is the **AI-facing handle**: a Skill that routes a question in
+plain Russian to the right tool, applies the version filter, and renders the answer (and the Upgrade
+Report) in human language. The retrieval HTTP API and MCP server stay parked until a non-chat consumer
+exists. The measured gap is no longer ranking but coverage — the proposed instrument is a gap log fed
+by queries that ended without a confident answer.
