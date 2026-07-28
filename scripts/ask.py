@@ -21,6 +21,7 @@
 Печатает СУТЬ и ФИКС, а не только путь к файлу: причина + что делать.
 """
 import argparse
+import math
 import os
 import re
 import sys
@@ -33,6 +34,9 @@ REPO = os.path.dirname(HERE)
 KB = os.path.join(REPO, "kb")
 
 # разборы проблем и раннбуки — обычно то, что ищут по симптому
+# бонус типа намеренно мал: по симптому ищут разбор проблемы, но перевешивать
+# содержательное совпадение он не должен — замер показал, что при большом весе
+# он начинает тасовать доки внутри отвечающего слоя и портит выдачу
 TYPE_BOOST = {"troubleshooting": 10, "runbook": 6, "best_practice": 3, "upgrade": 3}
 # секции, где лежит «что делать»
 FIX_SECTIONS = ("Known Issues", "Resolution", "Fix", "Remediation", "Procedure", "Steps")
@@ -40,7 +44,9 @@ CAUSE_SECTIONS = ("Summary", "Problem")
 # типы, которые отвечают на вопрос «что случилось и что делать»
 ANSWER_TYPES = {"troubleshooting", "runbook", "best_practice", "upgrade", "concept"}
 # порог уверенности для строк лога (см. confident): ниже — честное «нет ответа»
-TRIAGE_FLOOR = 90
+# пороги калиброваны по замеру: мусорный запрос набирает 17-26, самый слабый
+# реальный сигнал из лога — 65, точное совпадение строки ошибки — сотни
+TRIAGE_FLOOR = 60
 STOP = {
     "the", "and", "for", "not", "with", "that", "this", "from", "was", "are", "has",
     "при", "для", "как", "что", "это", "все", "или", "нет", "the", "los",
@@ -189,63 +195,134 @@ def load_docs():
             "path": os.path.relpath(path, REPO),
             "body": body,
             "lbody": body.lower(),
+            "ltitle": (fm.get("title") or "").lower(),
+            "laliases": " ".join(str(a).lower() for a in (fm.get("aliases") or [])),
+            "ltags": " ".join(str(t).lower() for t in (fm.get("tags") or [])),
+            "dl": max(len(body), 1),
         })
     return docs
 
 
-def score(doc, query, terms):
-    """Счёт релевантности + причины совпадения."""
+def query_stats(query, terms, pool):
+    """Веса терминов и средняя длина документа — считаются один раз на запрос.
+
+    Без IDF длинный запрос прозой тонет в общих словах: `node`, `version`,
+    `kubespray` встречаются в сотнях документов и дают столько же очков, сколько
+    `nf_conntrack`. Редкость термина — главный сигнал, а не факт совпадения.
+    """
+    n = max(len(pool), 1)
+    idf = {}
+    for t in set(terms):
+        df = 0
+        for d in pool:
+            if t in d["lbody"] or t in d["ltitle"] or t in d["laliases"]:
+                df += 1
+        # BM25-овский idf: термин, встречающийся почти везде, весит около нуля
+        idf[t] = math.log(1 + (n - df + 0.5) / (df + 0.5))
+    avgdl = sum(d["dl"] for d in pool) / n
+    return {"idf": idf, "avgdl": avgdl, "mass": sum(idf.values()) or 1.0}
+
+
+K1 = 1.2      # насыщение по частоте: третье вхождение термина почти не добавляет
+B = 0.75      # нормировка по длине документа
+W_BODY = 1.0
+W_TITLE = 2.5
+W_ALIAS = 3.0
+W_TAG = 0.8
+# бонусы за совпадение фразой: после нормировки базовый счёт живёт в сотнях,
+# поэтому точное совпадение алиаса должно весить сопоставимо, иначе строка
+# ошибки проигрывает документу, где просто много общих слов
+PHRASE_ALIAS = 400
+PHRASE_TITLE = 200
+PHRASE_BODY = 120
+
+
+def score(doc, query, terms, stats):
+    """Счёт релевантности + причины совпадения.
+
+    Итог нормируется на суммарный вес терминов запроса, чтобы пороги
+    (`confident`, `TRIAGE_FLOOR`) означали одно и то же для короткой строки
+    ошибки и для длинного предложения прозой.
+    """
     q = query.lower().strip()
-    s = 0
+    idf, avgdl = stats["idf"], stats["avgdl"]
+    s = 0.0
     why = []
+    al, ttl = doc["laliases"], doc["ltitle"]
+    ltags = doc["ltags"]
 
-    al = [a.lower() for a in doc["aliases"]]
-    ttl = doc["title"].lower()
+    hit_alias = hit_title = covered = 0
+    for t in set(terms):
+        w = idf.get(t, 0.0)
+        if w <= 0:
+            continue
+        found = False
+        tf = doc["lbody"].count(t)
+        if tf:
+            norm = tf * (K1 + 1) / (tf + K1 * (1 - B + B * doc["dl"] / avgdl))
+            s += w * norm * W_BODY
+            found = True
+        if t in ttl:
+            s += w * W_TITLE
+            hit_title += 1
+            found = True
+        if t in al:
+            s += w * W_ALIAS
+            hit_alias += 1
+            found = True
+        if t in ltags:
+            s += w * W_TAG
+            found = True
+        covered += 1 if found else 0
 
-    # фраза целиком — самый сильный сигнал, но с оглядкой на покрытие:
-    # короткий общий алиас («network»), попавший внутрь длинного запроса, не должен
-    # весить столько же, сколько строка ошибки, совпавшая целиком.
-    for a in al:
+    # доля покрытия запроса: документ, где нашлась половина слов, не равен тому,
+    # где нашлись все — даже если суммарные частоты близки
+    if terms:
+        frac = covered / len(set(terms))
+        s *= 0.25 + 0.75 * frac * frac
+
+    s = 100.0 * s / stats["mass"]
+
+    # фраза целиком — сигнал сильнее любой поштучной суммы, но с оглядкой на
+    # покрытие: короткий общий алиас внутри длинного запроса не равен строке
+    # ошибки, совпавшей целиком
+    for a in doc["aliases"]:
+        a = a.lower()
         if not q or len(a) < 6:
             continue
-        if q in a:                       # запрос — часть алиаса
-            s += 120
+        if q in a:
+            s += PHRASE_ALIAS
             why.append(f"алиас «{a}»")
             break
-        if a in q:                       # алиас — часть запроса: вес по доле покрытия
+        if a in q:
+            # алиас внутри длинного запроса: до 30% покрытия это шум (общее слово
+            # вроде «network» внутри предложения), дальше вес растёт до полного
             cover = len(a) / len(q)
-            s += int(120 * min(cover * 2, 1))
+            s += PHRASE_ALIAS * max(0.0, (cover - 0.3) / 0.7)
             if cover >= 0.3:
                 why.append(f"алиас «{a}»")
             break
     if q and len(q) >= 8:
         if q in ttl:
-            s += 70
+            s += PHRASE_TITLE
             why.append("фраза в заголовке")
         elif q in doc["lbody"]:
-            s += 45
+            s += PHRASE_BODY
             why.append("фраза в тексте")
 
-    # по токенам
-    hit_alias = hit_title = 0
-    body_hits = 0
-    for t in terms:
-        if any(t in a for a in al):
-            s += 14
-            hit_alias += 1
-        if t in ttl:
-            s += 9
-            hit_title += 1
-        if t in [x.lower() for x in doc["tags"]]:
-            s += 6
-        c = doc["lbody"].count(t)
-        if c:
-            body_hits += 1
-            s += min(c, 4) * 2
+    # соседние слова запроса, стоящие рядом и в документе
+    # соседние слова запроса, стоящие рядом и в документе. Вес — по редкости пары:
+    # «warning failed» встречается в половине базы и не должен ничего значить,
+    # а «cilium-cni failed» — сильный сигнал
+    near = gain = 0
+    for a, b in zip(terms, terms[1:]):
+        if f"{a} {b}" in ttl or f"{a} {b}" in doc["lbody"]:
+            near += 1
+            gain += min(idf.get(a, 0.0), idf.get(b, 0.0))
+    if gain:
+        s += 25 * gain
+        why.append(f"словосочетаний: {near}")
 
-    if terms:
-        # доля покрытия запроса телом — защищает от случайных совпадений
-        s += int(20 * body_hits / len(terms))
     if hit_alias:
         why.append(f"совпало слов в алиасах: {hit_alias}")
     if hit_title:
@@ -254,7 +331,7 @@ def score(doc, query, terms):
     s += TYPE_BOOST.get(doc["type"], 0)
     if doc["confidence"] in ("verified", "confirmed"):
         s += 4
-    return s, why
+    return int(s), why
 
 
 def deref(text, titles):
@@ -292,16 +369,36 @@ def search(query, docs, args):
         pool = [d for d in pool if want & {x.lower() for x in d["tags"]}]
     if args.dtype:
         pool = [d for d in pool if d["type"] == args.dtype]
+    stats = query_stats(query, terms, pool)
     scored = []
     for d in pool:
-        sc, why = score(d, query, terms)
+        sc, why = score(d, query, terms, stats)
         if sc > 0:
             scored.append((sc, why, d))
     scored.sort(key=lambda x: (-x[0], x[2]["title"]))
     return scored
 
 
-def confident(scored, top, floor=25):
+IDF_SPECIFIC = 4.0     # термин примерно из <1.5% документов базы
+
+
+def anchored(doc, terms, stats):
+    """Опирается ли совпадение хоть на один специфичный термин запроса.
+
+    Строка лога всегда содержит общие слова (`warning`, `failed`, `kubelet`), и
+    по ним найдётся «похожий» документ для чего угодно. Ответ засчитывается,
+    только если он держится на редком термине — имени параметра, компонента,
+    вызова. Иначе честнее сказать, что разбора нет.
+    """
+    idf = stats["idf"]
+    return any(
+        idf.get(t, 0.0) >= IDF_SPECIFIC
+        and (t in doc["lbody"] or t in doc["ltitle"] or t in doc["laliases"])
+        for t in set(terms)
+    )
+
+
+def confident(scored, top, floor=40):
     """Совпадения, которые не стыдно показать: не сильно слабее лидера и выше порога.
 
     В триаже порог выше: там запрос — строка лога целиком, и почти любой док
@@ -367,7 +464,9 @@ def triage(raw, docs, args):
         # в триаже нужен разбор проблемы, а не справочник: доки-справки
         # (теги ansible, переменные) отбрасываются, если есть хоть один разбор
         answers = [x for x in scored if x[2]["type"] in ANSWER_TYPES]
-        hits = confident(answers or scored, min(args.top, 2), floor=TRIAGE_FLOOR)
+        stats = query_stats(sig, terms_of(sig), docs)
+        grounded = [x for x in (answers or scored) if anchored(x[2], terms_of(sig), stats)]
+        hits = confident(grounded, min(args.top, 2), floor=TRIAGE_FLOOR)
         if not hits:
             unanswered += 1
             print("  В базе разбора на этот сигнал нет.")
