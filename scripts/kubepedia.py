@@ -31,7 +31,7 @@ CMDS = {
     "report":   ("upgrade_report.py", "KB-narrative upgrade report (personalized to an inventory)"),
     "verify":   ("check_versions.py", "KB integrity: component versions vs the tagged Kubespray source"),
     "versions": ("versions_lookup.py", "which version of a component ships per tag, and how it is defined"),
-    "feed":     ("freshness.py",      "freshness monitor: new upstream tags beyond ceiling + aging verified_at"),
+    "feed":     ("freshness.py",      "монитор свежести: новые теги, влитые PR апстрима (--upstream/--journal), протухание verified_at"),
     "validate": ("validate_kds.py",   "KDS validation of the knowledge base"),
     "index":    ("generate_index.py", "regenerate the derived index/ from kb/"),
 }

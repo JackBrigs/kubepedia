@@ -18,3 +18,6 @@ __pycache__/
 
 # upstream source caches (pinned-tag research, never committed)
 src-cache/
+
+# журнал пробелов поиска: сырые запросы (могут содержать имена хостов)
+reports/gaps.jsonl

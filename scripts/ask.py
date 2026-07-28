@@ -21,6 +21,7 @@
 Печатает СУТЬ и ФИКС, а не только путь к файлу: причина + что делать.
 """
 import argparse
+import json
 import math
 import os
 import re
@@ -172,6 +173,34 @@ def extract_signals(text, limit=4):
             found[key] = {"text": denoise(line), "w": weight, "n": 1}
     ranked = sorted(found.values(), key=lambda x: (-(x["w"] + min(x["n"], 5) * 2), x["text"]))
     return [(x["text"], x["w"], x["n"]) for x in ranked[:limit]]
+
+
+GAP_LOG = os.path.join(REPO, "reports", "gaps.jsonl")
+
+
+def log_gap(query, mode, best_score=0, best_title=""):
+    """Записать запрос, на который база не ответила.
+
+    Это единственный сигнал, которого не хватало петле самоулучшения: learn.py
+    видит, О ЧЁМ спрашивают (темы), но не видел, на чём база промолчала. Файл
+    локальный и не коммитится — в строку ошибки попадают имена хостов и адреса;
+    наружу идёт только агрегат, который собирает learn.py.
+    """
+    if os.environ.get("KUBEPEDIA_NO_GAP_LOG"):
+        return
+    rec = {
+        "ts": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
+        "query": norm(query)[:300],
+        "mode": mode,
+        "best_score": int(best_score),
+        "best_title": best_title[:120],
+    }
+    try:
+        os.makedirs(os.path.dirname(GAP_LOG), exist_ok=True)
+        with open(GAP_LOG, "a", encoding="utf-8") as f:
+            f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+    except OSError:
+        pass          # журнал не должен ломать ответ
 
 
 def load_docs():
@@ -469,6 +498,8 @@ def triage(raw, docs, args):
         hits = confident(grounded, min(args.top, 2), floor=TRIAGE_FLOOR)
         if not hits:
             unanswered += 1
+            top = scored[0] if scored else None
+            log_gap(sig, "triage", top[0] if top else 0, top[2]["title"] if top else "")
             print("  В базе разбора на этот сигнал нет.")
             print("  Это дыра в покрытии, а не отсутствие ответа: если причина найдётся,")
             print("  её стоит внести отдельным разбором.\n")
@@ -530,12 +561,14 @@ def main():
     titles = {d["id"]: d["title"] for d in docs}
     scored = search(query, docs, args)
     if not scored:
+        log_gap(query, "query")
         print(f"По запросу «{query}» в базе ничего не найдено.")
         print("Знания в базе на английском: попробуйте слова прямо из текста ошибки")
         print("(например «NotReady cni», «Permission denied») или сузьте: --tag cilium")
         return 1
     hits = confident(scored, args.top)
     if not hits:
+        log_gap(query, "query", scored[0][0], scored[0][2]["title"])
         print(f"По запросу «{query}» уверенных совпадений нет "
               f"(лучший счёт {scored[0][0]} — слишком слабо).")
         print("Знания в базе на английском: попробуйте слова прямо из текста ошибки")

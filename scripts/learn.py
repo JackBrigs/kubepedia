@@ -21,6 +21,7 @@ Usage:
     .venv/bin/python scripts/learn.py --stale-days 180
 """
 import argparse
+import collections
 import json
 import glob
 import os
@@ -150,6 +151,37 @@ def transcript_themes(d):
     return qcount, [(w, c) for w, c in words.most_common(60) if w not in STOP and len(w) > 3][:20]
 
 
+GAP_LOG = os.path.join(ROOT, "reports", "gaps.jsonl")
+
+
+def gaps(path=None):
+    """Запросы, на которые база не ответила: сгруппированы по нормализованному тексту.
+
+    Сигнал, которого не хватало: темы вопросов показывают, где базу дёргают, а
+    журнал пробелов — где она промолчала. Второе прямо указывает, что писать.
+    """
+    path = path or GAP_LOG
+    if not os.path.exists(path):
+        return []
+    seen = {}
+    for line in open(path, encoding="utf-8"):
+        try:
+            rec = json.loads(line)
+        except ValueError:
+            continue
+        # схлопываем по первым словам: одна и та же ошибка из разных прогонов
+        key = " ".join(re.split(r"\W+", rec.get("query", "").lower())[:8])
+        if not key.strip():
+            continue
+        cur = seen.setdefault(key, {"n": 0, "query": rec.get("query", ""),
+                                    "mode": rec.get("mode", ""), "best": rec.get("best_title", ""),
+                                    "score": rec.get("best_score", 0), "last": rec.get("ts", "")})
+        cur["n"] += 1
+        if rec.get("ts", "") > cur["last"]:
+            cur["last"] = rec.get("ts", "")
+    return sorted(seen.values(), key=lambda x: (-x["n"], x["last"]), reverse=False)
+
+
 def main():
     global STALE_DAYS
     ap = argparse.ArgumentParser()
@@ -178,6 +210,18 @@ def main():
     L.append("_Док описывает cluster.yml/scale.yml/cilium/kubespray, но в `sources` нет `type: code` на роль/плейбук → риск выдуманной переменной/механизма (как `cilium_upgrade_compatibility`)._")
     for _id, rel in no_code_src[:20]:
         L.append(f"- `{_id}` → `{rel}`")
+
+    g = gaps()
+    L.append(f"\n## P0 — пробелы: запросы, на которые база не ответила ({len(g)})")
+    L.append("_Прямое указание, что писать: это уже спрашивали, и ответа не нашлось._")
+    L.append("_Источник: `reports/gaps.jsonl` (пишет `ask.py`, не коммитится — в строках"
+             " ошибок бывают имена хостов)._")
+    if not g:
+        L.append("- пусто (или журнала ещё нет)")
+    for it in sorted(g, key=lambda x: (-x["n"], x["last"]))[:15]:
+        mode = "триаж лога" if it["mode"] == "triage" else "запрос"
+        near = f" ближайшее: «{it['best']}» (счёт {it['score']})" if it["best"] else ""
+        L.append(f"- **×{it['n']}** [{mode}] `{it['query'][:120]}` —{near or ' ничего похожего'}")
 
     L.append(f"\n## P1 — свежесть и полнота\n### Протухший verified_at (>{STALE_DAYS}д): {len(stale)}")
     for ds, _id, rel in sorted(stale, reverse=True)[:15]:

@@ -14,6 +14,8 @@ New Kubespray tags are read from the upstream remote (`git ls-remote`), falling 
 the local `kubespray-src` checkout when the network is unavailable.
 """
 import argparse
+import json
+import urllib.request
 import datetime
 import os
 import re
@@ -84,10 +86,53 @@ def verified_ages(today):
     return sorted(rows, reverse=True), sorted(cve, reverse=True)
 
 
+UPSTREAM_REPO = "kubernetes-sigs/kubespray"
+JOURNAL = os.path.join(ROOT, "reports", "UPSTREAM-WATCH.md")
+
+
+def merged_prs(since, limit=100):
+    """Влитые PR апстрима начиная с даты `since` (YYYY-MM-DD).
+
+    Возрождает то, что раньше велось руками в ежевечернем отчёте базы 0.1.0:
+    что изменилось в Kubespray с прошлой проверки. Триаж остаётся за человеком —
+    инструмент показывает список, а не решает, что важно.
+    """
+    url = (f"https://api.github.com/repos/{UPSTREAM_REPO}/pulls"
+           f"?state=closed&sort=updated&direction=desc&per_page={min(limit, 100)}")
+    req = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json",
+                                               "User-Agent": "kubepedia-freshness"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            data = json.load(r)
+    except Exception as exc:                     # noqa: BLE001 — сеть не должна ронять отчёт
+        return None, str(exc)
+    out = []
+    for pr in data:
+        m = pr.get("merged_at")
+        if not m or m[:10] < since:
+            continue
+        out.append({"n": pr["number"], "date": m[:10], "title": pr["title"],
+                    "url": pr["html_url"]})
+    return sorted(out, key=lambda x: x["date"], reverse=True), None
+
+
+def last_journal_date(default_since):
+    """Дата последней записи в журнале — отсюда считается «что нового»."""
+    if not os.path.exists(JOURNAL):
+        return default_since
+    dates = re.findall(r"^## (\d{4}-\d{2}-\d{2})", open(JOURNAL, encoding="utf-8").read(), re.M)
+    return max(dates) if dates else default_since
+
+
 def main():
     ap = argparse.ArgumentParser(description="Kubepedia freshness / drift monitor")
     ap.add_argument("--stale-days", type=int, default=180)
     ap.add_argument("--no-remote", action="store_true", help="skip network; use local checkout")
+    ap.add_argument("--upstream", action="store_true",
+                    help="добавить раздел «что влито в апстрим с прошлой проверки»")
+    ap.add_argument("--since", help="считать изменения апстрима с этой даты (YYYY-MM-DD)")
+    ap.add_argument("--journal", action="store_true",
+                    help="дописать отчёт в reports/UPSTREAM-WATCH.md")
     ap.add_argument("--today", help="reference date YYYY-MM-DD (default: system today)")
     ap.add_argument("--lang", choices=["ru", "en"], default="ru")
     args = ap.parse_args()
@@ -117,6 +162,21 @@ def main():
         out.append("✅ " + (f"база на потолке апстрима ({ceiling})" if ru
                             else f"KB is at the upstream ceiling ({ceiling})"))
 
+    if args.upstream or args.journal:
+        since = args.since or last_journal_date(str(today - datetime.timedelta(days=7)))
+        prs, err = merged_prs(since)
+        out.append(f"\n## {'Влито в апстрим с ' if ru else 'Merged upstream since '}{since}\n")
+        if err:
+            out.append(("⚪ не удалось получить список PR: " if ru else "⚪ could not fetch PRs: ") + err)
+        elif not prs:
+            out.append("✅ " + ("новых влитых PR нет" if ru else "no new merged PRs"))
+        else:
+            out.append(("Триаж за человеком: смотреть те, что трогают роли и плейбуки — "
+                        "они меняют поведение на нодах." if ru else
+                        "Human triage: the ones touching roles/playbooks change node behaviour."))
+            for pr in prs:
+                out.append(f"- `{pr['date']}` [#{pr['n']}]({pr['url']}) {pr['title']}")
+
     out.append(f"\n## {'Устаревание (verified_at)' if ru else 'Staleness (verified_at)'}\n")
     out.append((f"Порог: {args.stale_days} дн. Просрочено: **{len(stale)}** из {len(ages)} доков."
                 if ru else
@@ -138,7 +198,29 @@ def main():
                 else "✅ база свежа." if ru
                 else "❌ KB is behind / stale — see above." if behind_or_stale
                 else "✅ KB is fresh."))
-    sys.stdout.write("\n".join(out) + "\n")
+    report = "\n".join(out) + "\n"
+    sys.stdout.write(report)
+
+    if args.journal:
+        # запись дописывается сверху: свежая проверка первой, история остаётся историей
+        head = ("# Наблюдение за апстримом\n\n"
+                "Дневник проверок: что появилось в Kubespray с прошлого раза и в каком "
+                "состоянии база. Дописывается `kubepedia feed --journal`; дата последней "
+                "записи служит точкой отсчёта для следующей.\n\n"
+                "Преемник ручного «ежевечернего отчёта» базы 0.1.0 "
+                "(`knowledge-base/reports/nightly/`), заглохшего 2026-07-15.\n")
+        # внутренние заголовки отчёта уходят на уровень ниже даты
+        entry = re.sub(r"^## ", "### ", report, flags=re.M)
+        entry = re.sub(r"^# (Свежесть базы|KB freshness) — ", "## ", entry, flags=re.M)
+        prev = ""
+        if os.path.exists(JOURNAL):
+            body = open(JOURNAL, encoding="utf-8").read().split("\n## ", 1)
+            prev = ("\n## " + body[1]) if len(body) > 1 else ""
+        os.makedirs(os.path.dirname(JOURNAL), exist_ok=True)
+        with open(JOURNAL, "w", encoding="utf-8") as f:
+            f.write(head + "\n" + entry + prev)
+        sys.stderr.write(f"[feed] запись добавлена в {os.path.relpath(JOURNAL, ROOT)}\n")
+
     return 1 if behind_or_stale else 0
 
 
