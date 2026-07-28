@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: "2026-07-21"
+verified_at: "2026-07-28"
 confidence: verified
 aliases:
   - kube_owner
@@ -120,6 +120,17 @@ fragile neighbour — its init containers inherit privileges rather than declari
 
 ## Compatibility
 Kubespray v2.29.0 through v2.31.0. Related variables: `kube_cert_group`, `kube_config_dir`. Consumed by the `adduser` role to create the user.
+
+**Future context — `root` becomes mandatory with Cilium (unreleased).** PR
+[#13385](https://github.com/kubernetes-sigs/kubespray/pull/13385) (merged **2026-07-22** into
+`master`, closes issue [#13378](https://github.com/kubernetes-sigs/kubespray/issues/13378)) adds a
+preflight assert in `roles/kubernetes/preinstall/tasks/0040-verify-settings.yml`: when
+`kube_network_plugin == 'cilium'` or `cilium_deploy_additionally` is set, the run **fails unless
+`kube_owner == 'root'`**. The default itself is unchanged — still `kube` on `master` as of
+2026-07-28 — so every Cilium inventory that never overrode it becomes a failing run on the first
+release carrying this change. Verified: not in any released tag (v2.31.0 predates the merge).
+Bypass is `ignore_assert_errors: true`, which restores the old runtime failure
+([[TROUBLE-CILIUM_MOUNT_CGROUP_DENIED]]).
 
 ## References
 - roles/kubespray_defaults/defaults/main/main.yml

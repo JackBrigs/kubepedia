@@ -6,7 +6,7 @@ status: active
 kubespray_version: ">=v2.27.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: "2026-07-22"
+verified_at: "2026-07-28"
 confidence: verified
 aliases:
   - cni_bin_owner
@@ -118,6 +118,14 @@ own Cilium CI files use `kube_owner: root` rather than this variable, so the
 
 Kubespray `v2.27.0`–`v2.31.0`, unchanged. Related: [[VARIABLE-KUBE_OWNER]] (its default
 value), `kube_cert_group`.
+
+**The narrow fix has an expiry date.** Setting `cni_bin_owner: root` while leaving
+`kube_owner: kube` fixes the Cilium failure with the smallest blast radius today, but PR
+[#13385](https://github.com/kubernetes-sigs/kubespray/pull/13385) (merged 2026-07-22 into `master`,
+unreleased) asserts on **`kube_owner`**, not on this variable. A cluster fixed this way keeps
+working, and then fails preflight on the first release that carries the assert — with a message
+about `kube_owner` that does not mention `cni_bin_owner` at all. Before taking that upgrade, set
+`kube_owner: root` as well ([[VARIABLE-KUBE_OWNER]]).
 
 ## References
 

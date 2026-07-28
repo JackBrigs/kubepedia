@@ -221,6 +221,7 @@
 {"alias": "Source /tmp/releases/cilium not found", "ids": ["TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED"]}
 {"alias": "StatefulSetAutoDeletePVC", "ids": ["CONCEPT-K8S_STATEFULSET_PVC_AUTODELETE"]}
 {"alias": "Stop if", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
+{"alias": "Stop if kube_owner is not root when using cilium", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "StructuredAuthenticationConfiguration", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN"]}
 {"alias": "StructuredAuthorizationConfig", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "SystemdCgroup", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
@@ -2248,6 +2249,7 @@
 {"alias": "kube_ovn_vpc_container_image_repo", "ids": ["VARIABLE-KUBE_OVN_VPC_CONTAINER_IMAGE_REPO"]}
 {"alias": "kube_ovn_vpc_container_image_tag", "ids": ["VARIABLE-KUBE_OVN_VPC_CONTAINER_IMAGE_TAG"]}
 {"alias": "kube_owner", "ids": ["VARIABLE-KUBE_OWNER"]}
+{"alias": "kube_owner is set to 'kube', but cilium requires it to be 'root'", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "kube_owner opt cni bin cilium", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "kube_owner root or kube", "ids": ["VARIABLE-KUBE_OWNER"]}
 {"alias": "kube_pid_reserved", "ids": ["VARIABLE-KUBE_PID_RESERVED"]}

@@ -6,9 +6,11 @@ status: active
 kubespray_version: ">=v2.29.0 <=v2.31.0"
 kubernetes_version: null
 component_version: null
-verified_at: "2026-07-22"
+verified_at: "2026-07-28"
 confidence: verified
 aliases:
+  - "kube_owner is set to 'kube', but cilium requires it to be 'root'"
+  - Stop if kube_owner is not root when using cilium
   - cilium mount-cgroup permission denied
   - cannot create regular file '/hostbin/cilium-mount'
   - cilium agent Init CrashLoopBackOff
@@ -207,6 +209,45 @@ node stays `NotReady` with the `node.cilium.io/agent-not-ready` taint and
 - **Don't confuse with `Read-only file system`** — that is a wrong/RO CNI bin path
   (e.g. GKE's `/home/kubernetes/bin`), fixed by pointing Cilium at the writable bin
   dir, not by ownership or `privileged`.
+
+## Upgrade Notes
+
+**Upstream turned this into a preflight failure — future context, not yet released.**
+Kubespray PR [#13385](https://github.com/kubernetes-sigs/kubespray/pull/13385)
+("fix(cilium): fail fast when kube_owner is not root", merged **2026-07-22** into
+`master`, closing issue
+[#13378](https://github.com/kubernetes-sigs/kubespray/issues/13378)) adds an assert to
+`roles/kubernetes/preinstall/tasks/0040-verify-settings.yml`:
+
+```yaml
+- name: Stop if kube_owner is not root when using cilium
+  assert:
+    that: kube_owner == 'root'
+  when:
+    - kube_network_plugin == 'cilium' or cilium_deploy_additionally
+    - not ignore_assert_errors
+```
+
+Three consequences, all verified against `master` (2026-07-28):
+
+- **The symptom moves earlier.** Instead of a `Init:CrashLoopBackOff` discovered after
+  deployment, the run aborts in preinstall with a message naming `kube_owner`. Better
+  feedback, but it is a **new hard blocker** for inventories that deploy Cilium with the
+  default `kube_owner: kube`.
+- **The narrow fix stops being accepted.** The assert tests `kube_owner`, *not*
+  `cni_bin_owner`. A cluster fixed the low-blast-radius way (`cni_bin_owner: root`,
+  see [[VARIABLE-CNI_BIN_OWNER]]) still has `kube_owner: kube` and will fail preflight
+  on the first release that carries this change — even though the cluster works.
+  Plan to set `kube_owner: root` before taking that upgrade.
+- **The root cause is unchanged.** Despite what the PR description says about
+  decoupling `/opt/cni/bin` ownership from `kube_owner`, only the assert was merged:
+  on `master` today `roles/kubernetes/preinstall/tasks/0050-create_directories.yml`
+  still creates `/opt/cni/bin` with `owner: "{{ kube_owner }}"`, and the default is
+  still `kube`. Upstream chose to require root rather than to stop depending on it.
+
+Not present in any released tag: v2.31.0 is dated 2026-04-24, the merge is
+2026-07-22. `ignore_assert_errors: true` bypasses the check — and returns you to the
+runtime failure described above.
 
 ## References
 
