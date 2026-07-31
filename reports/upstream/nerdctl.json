@@ -1,55 +1,50 @@
 {
  "2.3.4": {
   "bug fixes": [
-   "Fix format errors (#5019, thanks to @immanuwell)"
+   "`nerdctl (container|image|network) inspect` Fix format errors (#5019, thanks to @immanuwell)"
   ]
  },
  "2.3.3": {
   "security updates": [
-   "Fixes CVE-2026-53488 \"image-config LABEL flows to host-root command execution from an image pull\" (affected nerdctl as well as CRI)",
-   "Fixes CVE-2026-50195, CVE-2026-53488, CVE-2026-53492, CVE-2026-53489, CVE-2026-47262"
+   "`go.mod`: Update containerd library to [v2.3.2](https://github.com/containerd/containerd/releases/tag/v2.3.2) and use the new `WithImageConfigLabels` function (#4985, #4982) Fixes CVE-2026-53488 \"image-config LABEL flows to host-root command execution from an image pull\" (affected nerdctl as well as CRI)",
+   "`nerdctl-full`: Update containerd to [v2.3.2](https://github.com/containerd/containerd/releases/tag/v2.3.2) (#4976) Fixes CVE-2026-50195, CVE-2026-53488, CVE-2026-53492, CVE-2026-53489, CVE-2026-47262 Update BuildKit to [v0.31.0](https://github.com/moby/buildkit/releases/tag/v0.31.0) (#4983)"
   ]
  },
  "2.3.2": {
   "bug fixes": [
-   "Fixed `nerdctl load` failures (#4888, thanks to @ningmingxiao)",
-   "Fixed a panic when statting an invalid CNI config path (#4890, thanks to @immanuwell)",
-   "Fixed syslog test timing and startup behavior (#4898, thanks to @ogulcanaydogan)",
-   "Fixed a typo and a missing import in `tools.md` (#4917, thanks to @opjt)"
+   "`nerdctl image`: Added the overlaybd `vsize` option (#4960, thanks to @fourierrr) Fixed `nerdctl load` failures (#4888, thanks to @ningmingxiao)",
+   "`nerdctl network`: Fixed a panic when statting an invalid CNI config path (#4890, thanks to @immanuwell)",
+   "CI and tests: Continued migrating container tests to Tigron (#4897, #4900, #4898, #4916, thanks to @ogulcanaydogan and @opjt) Migrated compose run tests to the `nerdtest` framework (#4845, #4911, thanks to @sathiraumesh and @haytok) Replaced Vagrant with Lima for FreeBSD tests (#4952, thanks to @AkihiroSuda) Fixed syslog test timing and startup behavior (#4898, thanks to @ogulcanaydogan)",
+   "Documentation: Updated the Windows installation section in `README.md` (#4949, thanks to @ofek) Fixed a typo and a missing import in `tools.md` (#4917, thanks to @opjt)"
   ]
  },
  "2.3.1": {
   "bug fixes": [
-   "Fixed a panic when statting an invalid CNI config path (#4890, thanks to @immanuwell)",
-   "Fixed the spelling of the `--sig-proxy` flag in the command reference (#4903, thanks to @MukundaKatta)",
-   "Added zizmor workflow linting and fixed reported workflow issues (#4909, thanks to @omribz156)"
+   "`nerdctl network`: Fixed a panic when statting an invalid CNI config path (#4890, thanks to @immanuwell)",
+   "Documentation: Fixed the spelling of the `--sig-proxy` flag in the command reference (#4903, thanks to @MukundaKatta) Removed a stray quote from the `--interactive` flag documentation (#4904, thanks to @MukundaKatta)",
+   "CI and tests: Added zizmor workflow linting and fixed reported workflow issues (#4909, thanks to @omribz156) Continued migrating container tests to Tigron (#4863, #4865, thanks to @opjt)"
   ]
  },
  "2.3.0": {
   "bug fixes": [
-   "Fixed shared IPC namespace handling for `nerdctl run` (#4718, thanks to @weiyuhang2011)",
-   "Fixed reading logs of stopped containers by waiting for the logger to finish (#4857, thanks to @haytok)",
-   "Fixed binding containers on different IP addresses to the same port (#4800, thanks to @yankay)",
-   "Fixed cleanup of port-reserver state and unused iptables chains after container removal (#4801, #4811, #4820, #4835, thanks to @haytok)",
-   "Fixed freeing reserved ports in rootful mode (#4862, thanks to @unsuman)",
-   "Fixed compose pull policy handling for invalid options (#4686, thanks to @haytok)",
-   "Fixed the formatting of the `--security-opt label=<selinuxlabel>` entry in the command reference (#4882, thanks to @ogulcanaydogan)",
-   "Fixed a nil pointer panic in `commonLock` cleanup (#4819, thanks to @fedebram)",
-   "Fixed building newer runc versions (#4653, thanks to @zhangyoufu)"
+   "`nerdctl container`: Added SELinux support for `nerdctl run` and `nerdctl info` (#4639, thanks to @ningmingxiao) Improved `nerdctl run --gpus` handling by using CDI (#4617, thanks to @elezar) Improved GPU vendor detection for CDI device IDs (#4728, thanks to @shiv-tyagi) Fixed shared IPC namespace handling for `nerdctl run` (#4718, thanks to @weiyuhang2011) Added missing `--ipc` options to `nerdctl run` help text and shell completion (#4731, thanks to @haytok) Added support for `nerdctl cp` with tarballs (#4704, thanks to @sondavidb) Added missing `HostConfig` fields to the Docker-compatible `nerdctl container inspect` response (#4850, thanks to @ayush-panta) Fixed reading logs of stopped containers by waiting for the logger to finish (#4857, thanks to @haytok)",
+   "`nerdctl network`: Added MAC, IPv4, and IPv6 addresses to `nerdctl network inspect` output (#4680, thanks to @coderbirju) Fixed binding containers on different IP addresses to the same port (#4800, thanks to @yankay) Fixed cleanup of port-reserver state and unused iptables chains after container removal (#4801, #4811, #4820, #4835, thanks to @haytok) Fixed freeing reserved ports in rootful mode (#4862, thanks to @unsuman) Ignored missing `/proc/net/tcp6` and `/proc/net/udp6` on IPv6-disabled systems (#4824, thanks to @shouhei)",
+   "`nerdctl compose`: Fixed compose pull policy handling for invalid options (#4686, thanks to @haytok)",
+   "Documentation: Fixed the formatting of the `--security-opt label=<selinuxlabel>` entry in the command reference (#4882, thanks to @ogulcanaydogan)",
+   "Misc: Added `make uninstall` (#4797, thanks to @mvanhorn) Fixed a nil pointer panic in `commonLock` cleanup (#4819, thanks to @fedebram) Corrected usage display to show `[command]` instead of `[flags]` (#4733, thanks to @niveshdandyan) Fixed building newer runc versions (#4653, thanks to @zhangyoufu) Updated the list of unimplemented Docker features (#4747, #4809, thanks to @rohansood10 and @IstvanCsVarga)"
   ]
  },
  "2.2.1": {
   "bug fixes": [
-   "Fix global options (#4575, thanks to @coderbirju)"
+   "healthcheck: Fix global options (#4575, thanks to @coderbirju)"
   ]
  },
  "2.2.0": {
   "bug fixes": [
-   "Fix namestore directory regression: `/var/lib/nerdctl/1935db59/default/foo` → `/var/lib/nerdctl/1935db59/names/default/foo`(#4535, thanks to @yankay)"
+   "`nerdctl run`: Fix namestore directory regression: `/var/lib/nerdctl/1935db59/default/foo` → `/var/lib/nerdctl/1935db59/names/default/foo`(#4535, thanks to @yankay) This change was once misunderstood as a breaking change, but it turned out to be a non-breaking change for typical users (https://github.com/containerd/nerdctl/issues/4525#issuecomment-3473396840) Support mount manager (e.g., for erofs) (#4568, thanks to @hsiangkao)"
   ],
   "security updates": [
-   "containerd v2.2.0 fixes CVE-2024-25621 and CVE-2025-64329",
-   "runc v1.3.3 fixes CVE-2025-31133, CVE-2025-52565, CVE-2025-52881"
+   "nerdctl-full: Update containerd (2.2.0), runc (1.3.3), BuildKit (0.25.2), stargz-snapshotter (0.18.1), fuse-overlayfs (1.16), containerd-fuse-overlayfs (2.1.7) (#4566, #4569, #4582, #4589, #4590 thanks to @ChengyuZhu6 @Shubhranshu153) containerd v2.2.0 fixes CVE-2024-25621 and CVE-2025-64329 runc v1.3.3 fixes CVE-2025-31133, CVE-2025-52565, CVE-2025-52881"
   ]
  },
  "2.1.1": {
@@ -59,27 +54,27 @@
  },
  "2.0.5": {
   "bug fixes": [
-   "Fix double carriage returns with pty (#4054, thanks to @apostasie)",
-   "Fix incompatibility with Docker (array vs stream of array) (#3961, thanks to @weiyuhang2011)",
-   "Fix `env_file` with profile (#4073, thanks to @yankay)",
-   "Fix parsing `BUILDKIT_HOST` (#4115, thanks to @Shubhranshu153)"
+   "`nerdctl run` Add `--cpu-rt-period` and `--cpu-rt-runtime` flags (#4078, thanks to @swagatbora90) Fix double carriage returns with pty (#4054, thanks to @apostasie)",
+   "`nerdctl inspect` Add `env` and `user` properties (#4007, thanks to @Shubhranshu153) Fix incompatibility with Docker (array vs stream of array) (#3961, thanks to @weiyuhang2011)",
+   "`nerdctl compose` Fix `env_file` with profile (#4073, thanks to @yankay)",
+   "`nerdctl system prune` Fix parsing `BUILDKIT_HOST` (#4115, thanks to @Shubhranshu153)"
   ]
  },
  "2.0.4": {
   "bug fixes": [
-   "Lots of fixes, refactoring, and the introduction of the [Tigron testing framework](https://github.com/containerd/nerdctl/tree/v2.0.4/mod/tigron) (several PRs, thanks to @apostasie)"
+   "CI: Lots of fixes, refactoring, and the introduction of the [Tigron testing framework](https://github.com/containerd/nerdctl/tree/v2.0.4/mod/tigron) (several PRs, thanks to @apostasie)"
   ]
  },
  "2.0.2": {
   "bug fixes": [
-   "Fixed `hosts.toml` resolution for `index.docker.io` (#3720, thanks to @apostasie)",
-   "Fix an issue about bypass4netns on restarting the host (#3724, thanks to @apostasie)"
+   "`nerdctl pull`: Fixed `hosts.toml` resolution for `index.docker.io` (#3720, thanks to @apostasie)",
+   "Rootless: Fix an issue about bypass4netns on restarting the host (#3724, thanks to @apostasie)"
   ]
  },
  "2.0.1": {
   "bug fixes": [
-   "Fix permissions for `/etc/{resolv.conf, hosts}` with umask 0077 (#3708, thanks to @apostasie)",
-   "Fix the support for `devices` (#3683, thanks to @ryfow)"
+   "Network: Fix permissions for `/etc/{resolv.conf, hosts}` with umask 0077 (#3708, thanks to @apostasie)",
+   "Compose: Fix the support for `devices` (#3683, thanks to @ryfow)"
   ]
  },
  "1.7.6": {
@@ -89,119 +84,117 @@
  },
  "1.7.4": {
   "bug fixes": [
-   "Fix incompatibility with firewalld (`Not Authorized(uid): org.fedoraproject.FirewallD1.config`) (#2822)"
+   "rootless: Fix incompatibility with firewalld (`Not Authorized(uid): org.fedoraproject.FirewallD1.config`) (#2822)"
   ]
  },
  "1.7.3": {
   "security updates": [
-   "Update runc to v1.1.12 (fixes CVE-2024-21626) (#2779)",
-   "Update BuildKit to v0.12.5 (fixes CVE-2024-23651, CVE-2024-23652, CVE-2024-23653, CVE-2024-23650) (#2779)"
+   "`nerdctl-full`: Update RootlessKit to v2.0.0 (#2779) Update containerd to v1.7.13 (#2779) Update runc to v1.1.12 (fixes CVE-2024-21626) (#2779) Update bypass4netns to v0.4.0 (#2779) Update Kubo to v0.26.0 (#2779) Update BuildKit to v0.12.5 (fixes CVE-2024-23651, CVE-2024-23652, CVE-2024-23653, CVE-2024-23650) (#2779)"
   ]
  },
  "1.7.1": {
   "bug fixes": [
-   "Fix TTY compatibility issues with `docker compose exec` (#2650, thanks to @yankay)"
+   "`nerdctl compose exec`: Fix TTY compatibility issues with `docker compose exec` (#2650, thanks to @yankay)"
   ]
  },
  "1.7.0": {
   "bug fixes": [
-   "Fix `--format '{{.Names}}'` incompatibility (#2595, thanks to @yankay)"
+   "`nerdctl ps`: Fix `--format '{{.Names}}'` incompatibility (#2595, thanks to @yankay) Implement `--format '{{Label \"foo\"}}'` (#2619)"
   ]
  },
  "1.6.2": {
   "bug fixes": [
-   "Fix `--env-file` (was broken since v1.6.0) (#2567)"
+   "`nerdctl compose`: Fix `--env-file` (was broken since v1.6.0) (#2567)"
   ]
  },
  "1.5.0": {
   "bug fixes": [
-   "Fix a conflict on TCP port 49154 (#2263, thanks to @tces1)",
-   "Fix the behavior of `--restart` (#2308, #2314, #2330, thanks to @yankay)",
-   "Fix overlap on 10.4.0.0/24 (#2358, thanks to @yldoge)",
-   "Fix concurrent push (#2404, thanks to @zhenxuanxin)"
+   "`nerdctl run`: Support lazy-pulling with [SOCI](https://github.com/awslabs/soci-snapshotter) (#2347, thanks to @CodeChanning @ningziwen) Add `--detach-keys` flag (#2128, thanks to @davidhsingyuchen) Add `--volumes-from` flag (#2241, thanks to @ningziwen) Fix a conflict on TCP port 49154 (#2263, thanks to @tces1)",
+   "`nerdctl create`, `nerdctl update`, `nerdctl kill`: Fix the behavior of `--restart` (#2308, #2314, #2330, thanks to @yankay)",
+   "`nerdctl network create`: Fix overlap on 10.4.0.0/24 (#2358, thanks to @yldoge)",
+   "`nerdctl push`: Fix concurrent push (#2404, thanks to @zhenxuanxin)"
   ]
  },
  "1.4.0": {
   "bug fixes": [
-   "Fix console size (#2182, thanks to @ChangJH-Mark)"
+   "`nerdctl exec`: Fix console size (#2182, thanks to @ChangJH-Mark)"
   ]
  },
  "1.3.1": {
   "bug fixes": [
-   "Fix #2164 `sudo nerdctl run -p <container port> <image> always defaults to 49153 host port` (#2169, thanks to @vsiravar)",
-   "Fix cosign regression in nerdctl v1.3.0 (#2172, thanks to @ningziwen)"
+   "`nerdctl run`: Fix #2164 `sudo nerdctl run -p <container port> <image> always defaults to 49153 host port` (#2169, thanks to @vsiravar) Make tty behavior compatible to Docker (#2167, thanks to @ktock)",
+   "`nerdctl push`: Fix cosign regression in nerdctl v1.3.0 (#2172, thanks to @ningziwen)"
   ]
  },
  "1.3.0": {
   "bug fixes": [
    "Fix operation not permitted with `systemd-homed` for rootless mode (#2056 , thanks to @AkihiroSuda )",
-   "Resolve special ip host-gateway (#1978, thanks to @ningziwen)",
-   "Fix the top command on Windows (#2038 , thanks to @dardelean)",
-   "Fix show hidden commands (#2125 , thanks to @yuchanns)"
+   "`nerdctl top`: Fix the top command on Windows (#2038 , thanks to @dardelean)",
+   "`nerdctl help`: Fix show hidden commands (#2125 , thanks to @yuchanns)"
   ]
  },
  "1.2.1": {
   "bug fixes": [
-   "Fix checking containers with deleted image (#1998, thanks to @djdongjin)",
-   "Fix confirmation prompt (#2036, #2039, #2044, thanks to @suyanhanx)",
-   "Fix checking networks that are in use (#2051, thanks to @Retrospection)"
+   "`nerdctl rmi`: Fix checking containers with deleted image (#1998, thanks to @djdongjin)",
+   "`nerdctl system prune`: Fix confirmation prompt (#2036, #2039, #2044, thanks to @suyanhanx)",
+   "`nerdctl compose down`: Fix checking networks that are in use (#2051, thanks to @Retrospection)"
   ],
   "security updates": [
-   "Update containerd library to v1.7.0-rc.0 to fix CVE-2023-25173 (https://github.com/advisories/GHSA-hmfx-3pcx-653p) (#2019, #2055)"
+   "misc: Update containerd library to v1.7.0-rc.0 to fix CVE-2023-25173 (https://github.com/advisories/GHSA-hmfx-3pcx-653p) (#2019, #2055) Update Go to 1.20 (#2025)"
   ]
  },
  "0.23.0": {
   "bug fixes": [
-   "Fix incompatibility with crun (#1352)",
-   "Fix output (#1298, thanks to @fahedouch)"
+   "`nerdctl run`: Add `--privileged-without-host-devices` flag, for safe privileged containers with Kata (#1291, thanks to @liubin) Support 3rd party log URIs in `--log-driver` (#1354, thanks to @manugupt1) Fix incompatibility with crun (#1352)",
+   "`nerdctl stats`: Fix output (#1298, thanks to @fahedouch)"
+  ]
+ },
+ "0.22.1": {
+  "bug fixes": [
+   "`nerdctl pull`: Pass `https://index.docker.io/v1/` to `GetAuthConfig()` for Docker Hub (#1270, thanks to @jandubois). Fixes https://github.com/rancher-sandbox/rancher-desktop/issues/2553 ."
   ]
  },
  "0.21.0": {
   "bug fixes": [
-   "Fix `failed to open \"...-json.log\"` error (#1071, #1132)",
-   "Fix FreeBSD build (#1093, thanks to @akhramov)"
+   "`nerdctl compose up`: Fix `failed to open \"...-json.log\"` error (#1071, #1132) Enable entrypoint as stringArray (#1070, thanks to @fahedouch)",
+   "Misc: Persist the built-in default network config as a file (#1092, thanks to @junnplus) Fix FreeBSD build (#1093, thanks to @akhramov)"
   ]
  },
  "0.19.0": {
   "bug fixes": [
-   "Fix `content digest ... not found` for multi-platform images (#952, thanks to @ktock)",
-   "Fix the format of `Created` field for Docker compatibility (#944, thanks to @knqyf263)"
+   "`nerdctl build`: Fix `content digest ... not found` for multi-platform images (#952, thanks to @ktock)",
+   "`nerdctl image inspect`: Fix the format of `Created` field for Docker compatibility (#944, thanks to @knqyf263)"
   ]
  },
  "0.18.0": {
   "security updates": [
-   "Update containerd library to 1.6.2 (#927). Contains fix for [`CVE-2022-24769: \"Default inheritable capabilities for linux container should be empty\"`](https://github.com/containerd/containerd/security/advisories/GHSA-c9cp-9c75-9v8c) (low severity)"
+   "Misc: Update containerd library to 1.6.2 (#927). Contains fix for [`CVE-2022-24769: \"Default inheritable capabilities for linux container should be empty\"`](https://github.com/containerd/containerd/security/advisories/GHSA-c9cp-9c75-9v8c) (low severity) Update the build pipeline to use Go 1.18 (#914, thanks to @Junnplus)"
   ]
  },
  "0.17.1": {
   "security updates": [
-   "This containerd release fixes a vulnerability of CRI plugin ([CVE-2022-23648](https://github.com/containerd/containerd/security/advisories/GHSA-crp2-qrr5-8pq7)). nerdctl does NOT use CRI and is NOT affected by this vulnerability."
+   "nerdctl-full: Update containerd ([1.6.1](https://github.com/containerd/containerd/releases/tag/v1.6.1)), CNI plugins (1.1.0), IPFS (0.12.0), Stargz Snapshotter (0.11.1) (#856) This containerd release fixes a vulnerability of CRI plugin ([CVE-2022-23648](https://github.com/containerd/containerd/security/advisories/GHSA-crp2-qrr5-8pq7)). nerdctl does NOT use CRI and is NOT affected by this vulnerability."
   ]
  },
  "0.16.1": {
   "bug fixes": [
-   "Fix HTTP error 400 with Alibaba Cloud Container Registry (#718, thanks to @Junnplus)",
-   "Fix HTTP error 400 with Azure Container Registry (#753, thanks to @Junnplus)",
-   "Fix HTTP error 404 with GitHub Container Registry (#724, #735, thanks @dylanrhysscott and @Junnplus)",
-   "Fix `invalid URL escape \"%2F\"` error with JFrog Artifactory (#721, thanks to @fahedouch)",
-   "Fix a bug that required pressing the Enter key twice (#752, thanks to @fahedouch)",
-   "Fix duplicated mount of `/dev/shm` (#728, thanks to @Junnplus)"
+   "`nerdctl login`: Fix HTTP error 400 with Alibaba Cloud Container Registry (#718, thanks to @Junnplus) Fix HTTP error 400 with Azure Container Registry (#753, thanks to @Junnplus) Fix HTTP error 404 with GitHub Container Registry (#724, #735, thanks @dylanrhysscott and @Junnplus) Fix `invalid URL escape \"%2F\"` error with JFrog Artifactory (#721, thanks to @fahedouch) Fix a bug that required pressing the Enter key twice (#752, thanks to @fahedouch) Add [documents](https://github.com/containerd/nerdctl/blob/v0.16.1/docs/registry.md) for several managed services (#749, #768, thanks to @fahedouch)",
+   "`nerdctl run`: Fix duplicated mount of `/dev/shm` (#728, thanks to @Junnplus)"
   ]
  },
  "0.14.0": {
   "security updates": [
-   "Update the containerd client library to 1.6.0-beta.3 (#531) . Contains a mitigation for [OCI Distribution Spec CVE-2021-41190](https://github.com/opencontainers/distribution-spec/security/advisories/GHSA-mc8v-mgrf-8f4m) (a malicious registry implementation could trick the client to pull different images with the same OCI digest value)"
+   "Misc: Unfork `github.com/spf14/{cobra,pflag}` (#524) Update the containerd client library to 1.6.0-beta.3 (#531) . Contains a mitigation for [OCI Distribution Spec CVE-2021-41190](https://github.com/opencontainers/distribution-spec/security/advisories/GHSA-mc8v-mgrf-8f4m) (a malicious registry implementation could trick the client to pull different images with the same OCI digest value)"
   ]
  },
  "0.13.0": {
   "bug fixes": [
-   "Fix `nerdctl run IMAGEID` (#453, thanks to @Junnplus)",
-   "Fix `nerdctl compose up SVC1 SVC2...` (#456, thanks to @DamiaPoquet)"
+   "`nerdctl run`: support [Multi-platform mode (`nerdctl run --platform=arm64 ...`](https://github.com/containerd/nerdctl/blob/v0.13.0/docs/multi-platform.md) (#448) Fix `nerdctl run IMAGEID` (#453, thanks to @Junnplus) Add `--tmpfs` (#474)",
+   "`nerdctl compose`: Add `nerdctl compose ps` command (#425, thanks to @joubertredrat) Fix `nerdctl compose up SVC1 SVC2...` (#456, thanks to @DamiaPoquet)"
   ]
  },
  "0.12.0": {
   "bug fixes": [
-   "Avoid hard-coding 8.8.8.8, 1.1.1.1 (#374, thanks to @hypnoce)",
    "`nerdctl images`: fix output (#357, thanks to @fahedouch)",
    "`nerdctl network create`: fix help message of `--label` (#381, thanks to @TheDiveO)"
   ]
@@ -225,7 +218,7 @@
  "0.10.0": {
   "bug fixes": [
    "Fix copying up initial contents of the mount point directory (#263, thanks to @fahedouch)",
-   "compile runc as a static binary (#267, #264). Fixes `waiting for init preliminary setup caused: unexpected 123 != 0` error on ARM (https://github.com/AkihiroSuda/lima/issues/79)"
+   "nerdctl-full: compile runc as a static binary (#267, #264). Fixes `waiting for init preliminary setup caused: unexpected 123 != 0` error on ARM (https://github.com/AkihiroSuda/lima/issues/79) update fuse-overlayfs to 1.6 (#265)"
   ]
  },
  "0.9.0": {

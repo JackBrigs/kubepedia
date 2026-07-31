@@ -21,6 +21,11 @@
    "Cherry-pick ([#581](https://github.com/kubernetes-csi/external-snapshotter/pull/581), [@jsafrane](https://github.com/jsafrane)): Fixed deadlock in reporting metrics. ([#583](https://github.com/kubernetes-csi/external-snapshotter/pull/583), [@xing-yang](https://github.com/xing-yang))"
   ]
  },
+ "2.1.5": {
+  "bug fixes": [
+   "Cherry pick of [#413](https://github.com/kubernetes-csi/external-snapshotter/pull/413): Bug fix to allow creation of snapshot content if pvc finalizer exists, even if pvc is marked for deletion. ([#488](https://github.com/kubernetes-csi/external-snapshotter/pull/488), [@mattcary](https://github.com/mattcary))"
+  ]
+ },
  "4.0.0": {
   "bug fixes": [
    "Bug fix to allow creation of snapshot content if pvc finalizer exists, even if pvc is marked for deletion. ([#413](https://github.com/kubernetes-csi/external-snapshotter/pull/413), [@RaunakShah](https://github.com/RaunakShah))",

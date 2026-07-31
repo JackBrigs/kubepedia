@@ -109,15 +109,8 @@
  },
  "0.9.0": {
   "breaking changes": [
-   "When you use the environment variable `vip_cidr` please rename it to `vip_subnet`",
-   "ENV: `vip_cidr` got replaced by `vip_subnet`",
-   "CLI: `--cidr` got replaced by `--vipSubnet`",
-   "YAML: `vipCidr` got replaced by `vipSubnet`",
-   "**Drop** support of Equinix Metal Platform (Removed)",
-   "CLI: `--metal`, ENV: `vip_packet`, YAML: `enableMetal`",
-   "CLI: `--metalKey`, ENV: `PACKET_AUTH_TOKEN`",
-   "CLI: `--metalProject`, ENV: `vip_packetproject`",
-   "CLI: `--metalProjectId`, ENV: `vip_packetprojectid`"
+   "When you use the environment variable `vip_cidr` please rename it to `vip_subnet` ENV: `vip_cidr` got replaced by `vip_subnet` CLI: `--cidr` got replaced by `--vipSubnet` YAML: `vipCidr` got replaced by `vipSubnet`",
+   "**Drop** support of Equinix Metal Platform (Removed) CLI: `--metal`, ENV: `vip_packet`, YAML: `enableMetal` CLI: `--metalKey`, ENV: `PACKET_AUTH_TOKEN` CLI: `--metalProject`, ENV: `vip_packetproject` CLI: `--metalProjectId`, ENV: `vip_packetprojectid`"
   ],
   "bug fixes": [
    "Fixed service IP address deletion on service modification bug by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1122",

@@ -204,11 +204,6 @@
    "[release-1.14] Bump ocicrypt and go-jose CVE-2024-28180 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2290"
   ]
  },
- "1.15.1": {
-  "security updates": [
-   "[release-1.15] CVE-2024-3727, bump to v1.15.1 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2329"
-  ]
- },
  "1.15.0": {
   "bug fixes": [
    "fix(deps): update module github.com/opencontainers/image-spec to v1.1.0-rc6 by @renovate in https://github.com/containers/skopeo/pull/2201",
@@ -338,21 +333,6 @@
  "1.5.0": {
   "bug fixes": [
    "Add codespell fixes by @rhatdan in https://github.com/containers/skopeo/pull/1414"
-  ]
- },
- "1.4.0": {
-  "bug fixes": [
-   "Fix two instances of unused err found by go-staticcheck",
-   "CONTRIBUTING: small fixes to commands",
-   "Fix --tls-verify",
-   "Fix using images from rate-limited docker hub",
-   "Fix TestDockerRepositoryReferenceParser",
-   "Fix some comments in man-page-checker",
-   "Fix automation re: master->main rename",
-   "Fix documentation of the --format option of skopeo copy and skopeo sync",
-   "Fix multi-arch build version check",
-   "[CI:DOCS] Fix docs links due to branch rename",
-   "Fix wrong directory name"
   ]
  },
  "1.2.2": {

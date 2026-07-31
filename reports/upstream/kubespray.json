@@ -1,9 +1,7 @@
 {
  "2.31.0": {
   "breaking changes": [
-   "Action required",
-   "Action required",
-   "Action required"
+   "Action required Make kubernetes v1.35 default. cgroup V1 is no longer supported upstream by default, and must be enabled with `kubelet_fail_cgroup_v1: false`. (#12812, @mzaian) Action required Support for ingress-nginx ingress controller is removed, as the project has been retired by upstream (#12767, @jmeza-xyz) Action required The Kubernetes Dashboard addon has been removed from Kubespray because the upstream project is being archived and is no longer maintained. The configuration `dashboard_enabled: true` is no longer supported. (#12858, @neo502721) Adds automated validation role to detect removed variables at playbook start. Playbooks will abort on `removed vars`. Users must migrate away from the listed removed variables to avoid playbook failures. (#12942, @Srishti-j18) Replace ssh_bastion_confing__name with ssh_bastion_config_name (#13046, @scolley31)"
   ],
   "bug fixes": [
    "Fix OCI CCM deployment failure caused by incorrect template filename in lookup (#13151, @amoghazy)",
@@ -15,7 +13,8 @@
    "Fix drain tasks failing with UNREACHABLE when drain_timeout exceeds the Ansible SSH connection timeout by using async/poll. (#13081, @0xMH)",
    "Fix terraform openstack compute `image_id` and update `openstack_blockstorage_volume_v3` (#12910, @HauptJ)",
    "Fixed Gateway API v1.4.1 unexpected checksum change and add test (#13006, @labaq)",
-   "Fixed openeuler metalink 24.03LTS wrong url (#13144, @tico88612)"
+   "Fixed openeuler metalink 24.03LTS wrong url (#13144, @tico88612)",
+   "The internal kube-config used by control plane components on control plane nodes now points to the local apiserver (default kubeadm behavior) This fixes the incorrect version skew between control plane components and apiserver during upgrade (#12870, @VannTen)"
   ]
  },
  "2.26.1": {
@@ -29,7 +28,7 @@
  },
  "2.30.0": {
   "breaking changes": [
-   "Action required"
+   "Action required `containerd_discard_unpacked_layers` is now applied only for containerd < 2.1 to avoid warnings with the Transfer Service used in newer versions. (#12821, @guoard) Cilium `k8sServiceHost` and `k8sServicePort` are now derived from `kube_apiserver_global_endpoint` instead of being auto-detected, so users must ensure this endpoint is correctly set and reachable from all nodes. (#12624, @r3m8)"
   ],
   "bug fixes": [
    "Fixed `kube_vip_version` variable for managing kube-vip version instead of `kube_vip_image_tag` (#12835, @ThisIsQasim)",
@@ -38,7 +37,7 @@
    "Fix Cilium loadBalancer.mode rendering in Kubespray values template. (#12701, @intojhanurag)",
    "Fix RBAC for calico using the etcd datastore (#12828, @LawiK974)",
    "Fix automatic certs renew with systemd timer (#12876, @VannTen)",
-   "Fix broken upgrade path/control plane node rotation for cluster using calico in etcd datastore mode with separate etcd.",
+   "Fix broken upgrade path/control plane node rotation for cluster using calico in etcd datastore mode with separate etcd. `etcd_cert_dir_mode` is deleted (always use `0700`) (#12908, @VannTen)",
    "Fix kubeadm init retry after first failure on cluster creation (#12785, @VannTen)",
    "Fix(calico): Add missed rbac verb watch for hostendpoints (#12641, @jmeza-xyz)",
    "Fixed an issue in the config.json.j2 template where the CRI-O registry authentication configuration could render invalid JSON when multiple `crio_registry_auth` entries were defined, resulting in duplicate top-level `auths` keys in the generated config. (#12845, @accuROAMC)"
@@ -53,12 +52,7 @@
  },
  "2.29.0": {
   "breaking changes": [
-   "Action required",
-   "Action required",
-   "Action required",
-   "Action required",
-   "Action required",
-   "Action required"
+   "Action required /etc/hosts/ is no longer populated with all cluster nodes (#12382, @VannTen) Action required Add support for `coredns_affinity` to change affinity of coredns deployments, defaulting to the upstream coredns deployment's one. The `coredns` deployment's node affinity has been removed, so the `coredns` pods will no longer be scheduled into control-planes by default. (#11994, @HoKim98) Action required Remove support for weave network plugin (#12230, @anshuman-agarwala) Action required The tag 'master' is removed, replaced by the tag 'control-plane' (#12228, @VannTen) Action required `conntrack_modules` is removed; the list of conntrack modules to try to load is instead hardcoded, since there is no reason to have any other values. (#12475, @VannTen) Action required drop support for cri-o on ubuntu20. (#12233, @VannTen)"
   ],
   "bug fixes": [
    "Fix Cilium installation issues (caused by templating syntax errors) when certain non-default features (encryption, etc.) are enabled (#12280, @spantaleev)",
@@ -69,7 +63,7 @@
    "Fix ingress-nginx DaemonSet and Service templates rendering TCP/UDP ports as strings, which prevented correct export of TCP/UDP services via NGINX ingress controller. (#12442, @MahdadGhasemian)",
    "Fix invalid PodSecurity admission configuration when `kube_pod_security_use_default: false` (#12439, @AMacedoP)",
    "Fix scale.yml problems with cached IP facts (#12243, @fox0430)",
-   "Fix the Cilium cluster, which is upgraded from 2.27 to 2.28 will break",
+   "Fix the Cilium cluster, which is upgraded from 2.27 to 2.28 will break Fix helm release re-use message when installing repeatedly (#12254, @tico88612)",
    "Fix the issue of etcd node addition failure caused by incorrect ETCD_INITIAL_CLUSTER configuration. (#12342, @liuxu623)",
    "Fix(kubeadm): Conditionally add --skip-phases flag for v1.32.0+ (#12351, @ErikJiang)",
    "Fix: A timeout occurs when running the offline deployment script using Podman. (#11962, @DearJey)",
@@ -88,7 +82,7 @@
    "Fix Hubble-Relay peer discovery in clusters using non-default cluster name by properly configuring clusterDomain in Cilium Helm values (#12374, @k8s-infra-cherrypick-robot)",
    "Fix cilium installation role to render cilium_config_extra_vars into helm values (#12338, @k8s-infra-cherrypick-robot)",
    "Fix invalid PodSecurity admission configuration when `kube_pod_security_use_default: false` (#12478, @k8s-infra-cherrypick-robot)",
-   "Fix the Cilium cluster, which is upgraded from 2.27 to 2.28 will break",
+   "Fix the Cilium cluster, which is upgraded from 2.27 to 2.28 will break Fix helm release re-use message when installing repeatedly (#12324, @k8s-infra-cherrypick-robot)",
    "Fix the issue of etcd node addition failure caused by incorrect ETCD_INITIAL_CLUSTER configuration. (#12352, @k8s-infra-cherrypick-robot)",
    "Fix(kubeadm): Conditionally add --skip-phases flag for v1.32.0+ (#12354, @k8s-infra-cherrypick-robot)",
    "Fix: When running `./manage-offline-container-images.sh register` with using Podman, getting the image_id fails and the script is interrupted. (#12316, @k8s-infra-cherrypick-robot)",
@@ -102,7 +96,7 @@
   ],
   "bug fixes": [
    "Fix sample inventory for the reserved resource (#11922, @k8s-infra-cherrypick-robot)",
-   "Fix CI by exclude the `.ansible` in `.ansible-lint`",
+   "Fix CI by exclude the `.ansible` in `.ansible-lint` Remove `ctr image pull` workaround for nerdctl (#11956, @k8s-infra-cherrypick-robot)",
    "Fix coredns deployment with `coredns_pod_disruption_budget: true` or `enable_nodelocaldns_secondary` (#11957, @k8s-infra-cherrypick-robot)",
    "Fix: When running `./manage-offline-container-images.sh register` with using Podman, getting the image_id fails and the script is interrupted. (#12314, @k8s-infra-cherrypick-robot)",
    "[calico] Fix kubecontrollersconfigurations list permission (#12039, @k8s-infra-cherrypick-robot)"
@@ -110,9 +104,7 @@
  },
  "2.28.0": {
   "breaking changes": [
-   "Action required",
-   "Action required",
-   "Action required"
+   "Action required Krew installation support is removed (#11824, @VannTen) Action required You should remove the leading 'v' of all explicit version of components deployed by kubespray (most notably `kube_version`) (#11890, @VannTen) Action required `etcd_kubeadm_enabled` (was deprecated) is removed. You should remove it from your inventory (#11901, @VannTen) `gateway_api_experimental_channel` is deprecated, please use `gateway_api_channel` and set `experimental`. (#11763, @tico88612)"
   ],
   "bug fixes": [
    "Fix cilium network plugin config issue deploying cilium 1.17 (#11986, @pedro-peter)",
@@ -120,7 +112,7 @@
    "Fix documentation for offline usage by adding the 'v' prefix in download urls (#12166, @tmurakam)",
    "Fix path to facts.yml in node facts refresh section (#12177, @guoard)",
    "Fix sample inventory for the reserved resource (#11895, @anshuman-agarwala)",
-   "Fix CI by exclude the `.ansible` in `.ansible-lint`",
+   "Fix CI by exclude the `.ansible` in `.ansible-lint` Remove `ctr image pull` workaround for nerdctl (#11948, @yankay)",
    "Fix a bug where `kubeadm_certificate_key` was not defined if control plane nodes were not in correct order (#11875, @Xartos)",
    "Fix a bug where custom TCP/UDP ports were not exposed by the ingress-nginx-controller container and service. (#11850, @commx)",
    "Fix broken calico Typha template when using both `calico_ipam_host_local` and `typha_secure` (#11917, @c-romeo)",
@@ -143,14 +135,11 @@
  },
  "2.27.0": {
   "breaking changes": [
-   "Action required",
-   "Action required",
-   "Action required",
-   "Action required",
-   "Action required",
-   "Action required"
+   "Action required Change `kubeadm_patches` format to use an array of inline patch instead of patch files. See [the example](roles/kubernetes/kubeadm_common/defaults/main.yml) for new format. (#11521, @VannTen) Action required Removes the generation of static tokens for every node in the cluster when `kube_token_auth: true` (#11567, @VannTen) Action required The `kubelet_node_{config_extra_args,custom_flags}` are removed. Use `kubelet_{config_extra_args,custom_flags}` in `<your_inventory>/group_vars/kube_node.yml`. The `{kube,system}_master_{cpu,memory,ephemeral-storage,pid}` are removed. Use the `{kube,system}_{cpu,memory,ephemeral-storage,pid}` variables in `<your_inventory>/group_vars/kube_control_plane.yml. `kubelet_custom_flags` can no longer be a string, an array is required. (#10643, @VannTen) Action required `k8s_cluster` group is now automatically defined, it can be removed from your inventory if you're not using it for group_vars (#11559, @VannTen) Action required `kubeadm_ignore_preflight_errors` is introduced to ignore specific preflight checks from kubeadm. The previous was effectively `all`, so some errors might surface during upgrade, in which cases, users should add the ones they choose to ignore to that variable. (#11710, @VannTen)",
+   "Action required Running kubespray with --limit without cached facts is no longer supported. Improves the scaling for large clusters. (#11598, @VannTen)"
   ],
   "bug fixes": [
+   "[cri-o] Switch binaries to libexecdir Update youki version to 0.4.1 to fix ci. (#11584, @yankay)",
    "Fix CI: elastx cleanup security groups (#11411, @yankay)",
    "Always copy cert generation script to first etcd to pick up fixes on existing clusters (#11612, @VannTen)",
    "Fix Cilium agent permission can't read loadbalancerippools and secrets (#11466, @foobaar)",
@@ -175,6 +164,7 @@
  "2.25.1": {
   "bug fixes": [
    "User has a possibility to fix nodePort of ingress-nginx service with property in addons.yaml (#11339, @k8s-infra-cherrypick-robot)",
+   "[calico] Update default calico to v3.27.4 [calico] Fix high cpu load due to XDP program in iptables (#11476, @mzaian)",
    "Always copy cert generation script to first etcd to pick up fixes on existing clusters (#11616, @k8s-infra-cherrypick-robot)",
    "Fix: cannot stop & remove all cri containers via remove_node.yml (#11638, @k8s-infra-cherrypick-robot)"
   ]
@@ -188,7 +178,7 @@
   "bug fixes": [
    "User has a possibility to fix nodePort of ingress-nginx service with property in addons.yaml (#11310, @mochizuki875)",
    "[calico] add calico support v3.27.4 to fix high cpu load due to XDP program in iptables (#11476, @ehsan310)",
-   "[containerd] fixes wrong templating for tracing config (#11372, @ugur99)",
+   "[containerd] fixes wrong templating for tracing config (#11372, @ugur99) [runc] Upgrade to v1.1.13 (#11413, @mzaian)",
    "Fix Hetzner kubernetes group names (#11232, @jmaccabee13)",
    "Fix: skip multus when not defined (#10934, @darkobas2)",
    "Fix CI with fail docker pull in gitlab runner by change DOCKER_HOST (#11315, @yankay)",
@@ -375,8 +365,7 @@
    "Fix arithmetic outside of jinja (#10106, @MrFreezeex)",
    "Fix CI broken by flannel-cni-plugin docker hub rate limit (#10083, @yankay)",
    "[CI] Fix CentOS Extras repo url for Oracle Linux 7 aarch64 (#9791, @bin456789)",
-   "[CI] Fix tests for files lookup path for custom-cni (#10088, @j4m3s-s)",
-   "Fix playbook names to support import via galaxy (⚠️ ADD NOTE : recover-control-panel => recover_control_plane, remove-node => remove_node, upgrade-cluster => upgrade_cluster)"
+   "[CI] Fix tests for files lookup path for custom-cni (#10088, @j4m3s-s)"
   ]
  },
  "2.21.0": {
@@ -477,7 +466,7 @@
    "Fix typo and duplicated declaration of ingressclasses (#8591, @spaced)",
    "Fix vagrant default value for parameters `local_path_provisioner_enabled`/`multi_networking` (#8650, @liupeng0518)",
    "Fix wrong item in mitogen contrib (#8508, @kdszoom)",
-   "Fixed a bug where hosts with NetworkManager enabled were having their /etc/resolv.conf file edited directly instead of through NM.",
+   "Fixed a bug where hosts with NetworkManager enabled were having their /etc/resolv.conf file edited directly instead of through NM. Fixed a bug where DNS lookup failures would cause reset.yml or scale.yml to error out when resolvconf_mode=host_resolvconf (#8575, @mac-chaffee)",
    "Fixed a bug where updated versions of etcd weren't being applied. Check your etcd instances to make sure their versions are what you expect. If not, restarting all etcd members should apply the update. (#8556, @mac-chaffee)",
    "Fixed a bug where upgrade-cluster.yaml would not apply updates to etcd-events (#8550, @mac-chaffee)",
    "Fixes missing checksum for kata-containers 2.2.3 on arm architectures (#8383, @Payback159)",
@@ -486,7 +475,7 @@
    "[Terraform-AWS] Fix error when creating subnets more than AZ (#8516, @sophalHong)",
    "[cert-manager] Fix missing RBAC rules for ClusterRole cert-manager-cainjector (#8444, @onock)",
    "[reset] fix task inclusion logic for network plugin (#8727, @cristicalin)",
-   "[systemd-resolved] Fix DNS early and late stages (`dns_early`|`dns_late`) of cluster deployment"
+   "[systemd-resolved] Fix DNS early and late stages (`dns_early`|`dns_late`) of cluster deployment [systemd-resolved] Add `upstream_dns_servers` to `FallbackDNS` [cluster-reset] Revert DNS configuration to early stage (for instance: only defined upstream nameservers) (#8561, @onock)"
   ],
   "security updates": [
    "[containerd] upgrade versions to fix CVE-2022-23648 (#8597, @cristicalin)"

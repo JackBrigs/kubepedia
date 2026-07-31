@@ -68,7 +68,7 @@
   "bug fixes": [
    "Fixed an issue where kind or group in the issuerRef of a Certificate was omitted, upgrading to 1.19.x incorrectly caused the certificate to be renewed (#8160, @inteon)",
    "Fix an issue where ACME challenge TXT records are not cleaned up when there are many resource records in CloudDNS. (#8456, @tkna)",
-   "Fix unregulated retries with the DigitalOcean DNS-01 solver",
+   "Fix unregulated retries with the DigitalOcean DNS-01 solver Add full detailed DNS-01 errors to the events attached to the Challenge, for easier debugging (#8221, @wallrj-cyberark)",
    "Fixed an infinite re-issuance loop that could occur when an issuer returns a certificate with a public key that doesn't match the CSR. The issuing controller now validates the certificate before storing it and fails with backoff on mismatch. (#8403, @calm329)",
    "Fixed an issue where HTTP-01 challenges failed when the Host header contains an IPv6 address. This means that users can now issue IP address certificates for IPv6 address subjects. (#8424, @SlashNephy)",
    "Fixed the HTTP-01 Gateway solver creating invalid HTTPRoutes by not setting spec.hostnames when the challenge DNSName is an IP address. (#8443, @alviss7)",
@@ -254,7 +254,7 @@
  },
  "1.16.0": {
   "bug fixes": [
-   "Venafi TPP issuer can now be used with a username & password combination with OAuth. Fixes #4653.",
+   "Venafi TPP issuer can now be used with a username & password combination with OAuth. Fixes #4653. Breaking: cert-manager will no longer use the API Key authentication method which was deprecated in 20.2 and since removed in 24.1 of TPP. ([#7084](https://github.com/cert-manager/cert-manager/pull/7084), [`@hawksight`](https://github.com/hawksight))",
    "BUGFIX: fix issue that caused Vault issuer to not retry signing when an error was encountered. ([#7105](https://github.com/cert-manager/cert-manager/pull/7105), [`@inteon`](https://github.com/inteon))",
    "Bump `grpc-go` to fix `GHSA-xr7q-jx4m-x55m` ([#7164](https://github.com/cert-manager/cert-manager/pull/7164), [`@SgtCoDFish`](https://github.com/SgtCoDFish))",
    "Fix Azure DNS causing panics whenever authentication error happens ([#7177](https://github.com/cert-manager/cert-manager/pull/7177), [`@eplightning`](https://github.com/eplightning))",
@@ -347,6 +347,9 @@
   ]
  },
  "1.12.10": {
+  "bug fixes": [
+   "If you misconfigure two Certificate resources to have the same target Secret resource, cert-manager will generate a MANY CertificateRequests, possibly causing high CPU usage and/ or high costs due to the large number of certificates issued (see https://github.com/cert-manager/cert-manager/pull/6406). This problem was resolved in v1.13.2 and other later versions, but the fix cannot be easily backported to v1.12.x. We recommend using v1.12.x with caution (avoid misconfigured Certificate resources) or upgrading to a newer version."
+  ],
   "security updates": [
    "Bump golang.org/x/net to address [CVE-2023-45288](https://nvd.nist.gov/vuln/detail/CVE-2023-45288) (#6933, @SgtCoDFish)"
   ]
@@ -367,6 +370,7 @@
  },
  "1.12.9": {
   "bug fixes": [
+   "If you misconfigure two Certificate resources to have the same target Secret resource, cert-manager will generate a MANY CertificateRequests, possibly causing high CPU usage and/ or high costs due to the large number of certificates issued (see https://github.com/cert-manager/cert-manager/pull/6406). This problem was resolved in v1.13.2 and other later versions, but the fix cannot be easily backported to v1.12.x. We recommend using v1.12.x with caution (avoid misconfigured Certificate resources) or upgrading to a newer version.",
    "BUGFIX: fix race condition due to registering and using global runtime.Scheme variables (#6833, @inteon)"
   ],
   "security updates": [
@@ -386,6 +390,7 @@
  },
  "1.12.8": {
   "bug fixes": [
+   "If you misconfigure two Certificate resources to have the same target Secret resource, cert-manager will generate a MANY CertificateRequests, possibly causing high CPU usage and/ or high costs due to the large number of certificates issued (see https://github.com/cert-manager/cert-manager/pull/6406). This problem was resolved in v1.13.2 and other later versions, but the fix cannot be easily backported to v1.12.x. We recommend using v1.12.x with caution (avoid misconfigured Certificate resources) or upgrading to a newer version.",
    "Fix CVE 2023 48795 by upgrading to golang.org/x/crypto@v0.17.0 (#6678, @wallrj)",
    "Fix GHSA-7ww5-4wqc-m92c by upgrading to `github.com/containerd/containerd@v1.7.12` (#6689, @wallrj)"
   ]
@@ -405,6 +410,7 @@
  },
  "1.14.0": {
   "bug fixes": [
+   "During the release of `v1.14.0`, the Helm chart for this version was found to use the wrong OCI image for the `cainjector` Deployment, which caused the Helm installation to fail. In order to complete the release, the cert-manager team have manually updated the Helm chart for this version, which contains all the Helm chart fixes which are in `v1.14.1`.",
    "New option `.spec.keystores.pkcs12.algorithms` to specify encryption and MAC algorithms for PKCS[#12](https://github.com/cert-manager/cert-manager/pull/12) keystores. Fixes issues [#5957](https://github.com/cert-manager/cert-manager/pull/5957) and [#6523](https://github.com/cert-manager/cert-manager/pull/6523). ([#6548](https://github.com/cert-manager/cert-manager/pull/6548), [@snorwin](https://github.com/snorwin))",
    "BUGFIX[helm]: Fix issue where webhook feature gates were only set if controller feature gates are set. ([#6380](https://github.com/cert-manager/cert-manager/pull/6380), [@asapekia](https://github.com/asapekia))",
    "Fix runaway bug caused by multiple Certificate resources that point to the same Secret resource. ([#6406](https://github.com/cert-manager/cert-manager/pull/6406), [@inteon](https://github.com/inteon))",
@@ -469,7 +475,7 @@
    "Fix CloudDNS issuers stuck in propagation check, when multiple instances are issuing for the same FQDN (#6088, @cypres)",
    "Fix indentation of Webhook NetworkPolicy matchLabels in helm chart. (#6220, @ubergesundheit)",
    "Fixed Cloudflare DNS01 challenge provider race condition when validating multiple domains (#6191, @Richardds)",
-   "Fixes a bug where webhook was pulling in controller's feature gates.",
+   "Fixes a bug where webhook was pulling in controller's feature gates. *⚠️ ⚠️ BREAKING ⚠️ ⚠️** : If you deploy cert-manager using helm and have `.featureGates` value set, the features defined there will no longer be passed to cert-manager webhook, only to cert-manager controller. Use `webhook.featureGates` field instead to define features to be enabled on webhook. *⚠️Potentially breaking**: If you were, for some reason, passing cert-manager controller's features to webhook's `--feature-gates` flag, this will now break (unless the webhook actually has a feature by that name). (#6093, @irbekrm)",
    "Fixes an issue where cert-manager would incorrectly reject two IP addresses as being unequal when they should have compared equal. This would be most noticeable when using an IPv6 address which doesn't match how Go's `net.IP.String()` function would have printed that address. (#6293, @SgtCoDFish)"
   ]
  },
@@ -557,7 +563,7 @@
  },
  "1.9.2": {
   "bug fixes": [
-   "Fix issue where CertificateRequests marked as InvalidRequest did not properly trigger issuance failure handling leading to 'stuck' requests."
+   "Fix issue where CertificateRequests marked as InvalidRequest did not properly trigger issuance failure handling leading to 'stuck' requests. ([#5371](https://github.com/cert-manager/cert-manager/pull/5371), [@munnerz](https://github.com/munnerz) )"
   ]
  },
  "1.10.0": {
@@ -602,7 +608,7 @@
  },
  "1.7.1": {
   "bug fixes": [
-   "Fix: The alpha feature Certificate's `additionalOutputFormats` is now correctly validated at admission time, and no longer _only_ validated if the `privateKey` field of the Certificate is set. The Webhook component now contains a separate feature set."
+   "Fix: The alpha feature Certificate's `additionalOutputFormats` is now correctly validated at admission time, and no longer _only_ validated if the `privateKey` field of the Certificate is set. The Webhook component now contains a separate feature set. `AdditionalCertificateOutputFormats` feature gate (disabled by default) has been added to the webhook. This gate is required to be enabled on both the controller and webhook components in order to make use of the Certificate's `additionalOutputFormat` feature. (#4816, @JoshVanL)"
   ]
  },
  "1.7.0": {
@@ -675,22 +681,22 @@
    "Fix a bug where failed Certificate Requests were not retried ([#4130](https://github.com/jetstack/cert-manager/pull/4130), [@irbekrm](https://github.com/irbekrm))",
    "Fix check for self-signed certificates in EncodeX509Chain which broke certs whose subject DN matched their issuer's subject DN ([#4237](https://github.com/jetstack/cert-manager/pull/4237), [@SgtCoDFish](https://github.com/SgtCoDFish))",
    "Fix handling of chains which don't have a root in ParseSingleCertificateChain, and improve handling in situations where that function is passed a single certificate. ([#4261](https://github.com/jetstack/cert-manager/pull/4261), [@SgtCoDFish](https://github.com/SgtCoDFish))",
-   "Fixed a bug in the \"gateway shim\" controller that was causing the cert-manager controller to crash",
+   "Fixed a bug in the \"gateway shim\" controller that was causing the cert-manager controller to crash with a nil pointer exception when using the annotation \"cert-manager.io/issuer\" on a Gateway that had an empty `tls` block or with `certificateRef` left empty. ([#4293](https://github.com/jetstack/cert-manager/pull/4293), [@maelvls](https://github.com/maelvls))",
    "Fixed a goroutine leak that was causing the controller's memory usage to grow with time ([#4233](https://github.com/jetstack/cert-manager/pull/4233), [@maelvls](https://github.com/maelvls))",
-   "Fixed a race condition introduced in v0.15.0 that would crash cert-manager for clusters"
+   "Fixed a race condition introduced in v0.15.0 that would crash cert-manager for clusters with a large number of certificates. ([#4231](https://github.com/jetstack/cert-manager/pull/4231), [@maelvls](https://github.com/maelvls))"
   ]
  },
  "1.4.2": {
   "bug fixes": [
    "Fix handling of chains which don't have a root in ParseSingleCertificateChain, and improve handling in situations where that function is passed a single certificate. ([#4272](https://github.com/jetstack/cert-manager/pull/4272), [@jetstack-bot](https://github.com/jetstack-bot))",
    "Fixed a goroutine leak that was causing the controller's memory usage to grow with time ([#4278](https://github.com/jetstack/cert-manager/pull/4278), [@SgtCoDFish](https://github.com/SgtCoDFish))",
-   "Fixed a race condition introduced in v0.15.0 that would crash cert-manager for clusters"
+   "Fixed a race condition introduced in v0.15.0 that would crash cert-manager for clusters with a large number of certificates. ([#4275](https://github.com/jetstack/cert-manager/pull/4275), [@jetstack-bot](https://github.com/jetstack-bot))"
   ]
  },
  "1.3.2": {
   "bug fixes": [
    "Fixed a goroutine leak that was causing the controller's memory usage to grow with time ([#4279](https://github.com/jetstack/cert-manager/pull/4279), [@SgtCoDFish](https://github.com/SgtCoDFish))",
-   "Fixed a race condition introduced in v0.15.0 that would crash cert-manager for clusters"
+   "Fixed a race condition introduced in v0.15.0 that would crash cert-manager for clusters with a large number of certificates. ([#4280](https://github.com/jetstack/cert-manager/pull/4280), [@jetstack-bot](https://github.com/jetstack-bot))"
   ]
  },
  "1.4.1": {
@@ -703,7 +709,8 @@
    "Fix incorrect `PublicKeysEqual` comparison function for public keys and improve doc comments on related functions ([#3914](https://github.com/jetstack/cert-manager/pull/3914), [@SgtCoDFish](https://github.com/SgtCoDFish))",
    "Fixes a bug where the default cert renewal duration (30d) was clashing with the duration of certs issued by Vault PKI. All Certificates are now renewed 2/3 through the duration unless custom renew period specified by setting spec.renewBefore on the Certificate. ([#4092](https://github.com/jetstack/cert-manager/pull/4092), [@irbekrm](https://github.com/irbekrm))",
    "Fixes an issue where an ACME `Certificate` with a long name (52 characters or more) does not get renewed due to non-unique `Order` names being generated. ([#3866](https://github.com/jetstack/cert-manager/pull/3866), [@jandersen-plaid](https://github.com/jandersen-plaid))",
-   "Fixes stuck Orders in case of a misbehaving ACME server ([#3805](https://github.com/jetstack/cert-manager/pull/3805), [@irbekrm](https://github.com/irbekrm))"
+   "Fixes stuck Orders in case of a misbehaving ACME server ([#3805](https://github.com/jetstack/cert-manager/pull/3805), [@irbekrm](https://github.com/irbekrm))",
+   "Panic when failing to register schemes during initialization for pkg/webhook/server Various static analysis fixes across many files including removing unused or redundant code ([#4037](https://github.com/jetstack/cert-manager/pull/4037), [@SgtCoDFish](https://github.com/SgtCoDFish))"
   ]
  },
  "1.3.1": {
@@ -715,8 +722,8 @@
  "1.3.0": {
   "bug fixes": [
    "Correct permissions on edit aggregate role ([#3697](https://github.com/jetstack/cert-manager/pull/3697), [@yann-soubeyrand](https://github.com/yann-soubeyrand))",
-   "Fix a bug that prevented the immediate re-issuance of a failing certificate: even when the user",
-   "Fixed approle login when namespaces were used in HashiCorp Vault",
+   "Fix a bug that prevented the immediate re-issuance of a failing certificate: even when the user edited the certificate to fix an incorrect field, no certificate request would get created. Editing a failed certificate now properly re-issues immediately. ([#3444](https://github.com/jetstack/cert-manager/pull/3444), [@maelvls](https://github.com/maelvls))",
+   "Fixed approle login when namespaces were used in HashiCorp Vault Fixed incorrectly failing health check that was caused when the Vault token did not have sufficient permission to call /sys/- endpoints ([#3582](https://github.com/jetstack/cert-manager/pull/3582), [@lalitadithya](https://github.com/lalitadithya))",
    "Fixes Helm upgrade bug ([#3647](https://github.com/jetstack/cert-manager/pull/3647), [@irbekrm](https://github.com/irbekrm))",
    "Fixes multiple Certificate Requests issue - see #3603 ([#3665](https://github.com/jetstack/cert-manager/pull/3665), [@irbekrm](https://github.com/irbekrm))"
   ]
@@ -857,7 +864,7 @@
  },
  "0.12.0": {
   "breaking changes": [
-   "ACTION REQUIRED"
+   "ACTION REQUIRED Users who have previously set the Kubernetes Auth Mount Path will need to update their manifests to include the entire mount path. The `/login` endpoint is added for you."
   ],
   "bug fixes": [
    "Fixes issues with Pod Security Policies that prevented pods from running when Pod Security Policy is enabled in Kubernetes ([#2234](https://github.com/jetstack/cert-manager/pull/2234), [@sam-cogan](https://github.com/sam-cogan))",
@@ -881,7 +888,7 @@
    "Rename `certmanager.k8s.io` API group to `cert-manager.io` ([#2096](https://github.com/jetstack/cert-manager/pull/2096), [@munnerz](https://github.com/munnerz))",
    "Move Order and Challenge resources to the acme.cert-manager.io API group ([#2093](https://github.com/jetstack/cert-manager/pull/2093), [@munnerz](https://github.com/munnerz))",
    "Move v1alpha1 API to v1alpha2 ([#2087](https://github.com/jetstack/cert-manager/pull/2087), [@munnerz](https://github.com/munnerz))",
-   "Allow controlling whether temporary certificates are issued using a new annotation \"certmanager.k8s.io/issue-temporary-certificate\""
+   "Allow controlling whether temporary certificates are issued using a new annotation \"certmanager.k8s.io/issue-temporary-certificate\" on Certificate resources. Previously, when an ACME certificate was requested, a temporary certificate would be issued in order to improve compatibility with ingress-gce. ingress-shim has been updated to automatically set this annotation on managed Certificate resources when using the 'edit-in-place' annotation, but users that have manually created their Certificate resources will need to manually add the new annotation to their Certificate resources. ([#2089](https://github.com/jetstack/cert-manager/pull/2089), [@munnerz](https://github.com/munnerz))"
   ]
  },
  "0.10.0": {
@@ -1025,11 +1032,11 @@
  },
  "0.3.0": {
   "breaking changes": [
-   "Supporting resources for ClusterIssuer's (e.g. signing CA certificates, or ACME account private keys) will now be stored in the same namespace as cert-manager, instead of kube-system in previous versions (#329, @munnerz):",
-   "Use ConfigMaps for leader election (#327, @mikebryant):",
-   "Remove support for ACMEv1 in favour of ACMEv2 (#309, @munnerz):",
-   "Remove ingress-shim and link it into cert-manager itself (#502, @munnerz)",
-   "Add `certmanager.k8s.io/acme-http01-edit-in-place` annotation and change ingress-shim to set 'ingressClass' on ACME Certificate resources by default. (#493, @munnerz)"
+   "Supporting resources for ClusterIssuer's (e.g. signing CA certificates, or ACME account private keys) will now be stored in the same namespace as cert-manager, instead of kube-system in previous versions (#329, @munnerz): *Action required**: you will need to ensure to properly manually migrate these referenced resources across into the deployment namespace of cert-manager, else cert-manager may not be able to find account private keys or signing CA certificates.",
+   "Use ConfigMaps for leader election (#327, @mikebryant): *Action required**: Before upgrading, scale the cert-manager Deployment to 0, to avoid two controllers attempting to operate on the same resources",
+   "Remove support for ACMEv1 in favour of ACMEv2 (#309, @munnerz): *Action required**: As this release drops support for ACMEv1, all Issuer resources that use ACMEv1 endpoints (e.g. existing Let's Encrypt Issuers) will need updating to use equivalent ACMEv2 endpoints. (TODO: link to docs guide)",
+   "Remove ingress-shim and link it into cert-manager itself (#502, @munnerz) *Action required**: You must change your 'helm install' command to use the new --ingressShim.defaultIssuerName, --ingressShim.defaultIssuerKind options when upgrading as --ingressShim.extraArgs has been removed.",
+   "Add `certmanager.k8s.io/acme-http01-edit-in-place` annotation and change ingress-shim to set 'ingressClass' on ACME Certificate resources by default. (#493, @munnerz) *Action required**: This is a potentially breaking change for users of ingress controllers that map a single IP address to a single Ingress resource, such as the GCE ingress controller. These users will need to add the following annotation to their ingress: `certmanager.k8s.io/acme-http01-edit-in-place: \"true\"`."
   ],
   "bug fixes": [
    "Fix panic when ACME server returns an error other than HTTP Status Conflict during registration (#237, @munnerz)",

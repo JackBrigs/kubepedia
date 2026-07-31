@@ -332,9 +332,9 @@
 {"alias": "architecture-compatibility", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
 {"alias": "argo cd security", "ids": ["TROUBLE-ARGOCD_KNOWN_CVES"]}
 {"alias": "argo-cd 8.5.7", "ids": ["CONCEPT-ADDON_ARGOCD"]}
-{"alias": "argo-cd action required upgrade", "ids": ["TROUBLE-ARGOCD_BREAKING_CHANGES"]}
-{"alias": "argo-cd breaking changes", "ids": ["TROUBLE-ARGOCD_BREAKING_CHANGES"]}
-{"alias": "argo-cd upgrade broke", "ids": ["TROUBLE-ARGOCD_BREAKING_CHANGES"]}
+{"alias": "argo-cd action required upgrade", "ids": ["TROUBLE-ARGO_CD_BREAKING_CHANGES"]}
+{"alias": "argo-cd breaking changes", "ids": ["TROUBLE-ARGO_CD_BREAKING_CHANGES"]}
+{"alias": "argo-cd upgrade broke", "ids": ["TROUBLE-ARGO_CD_BREAKING_CHANGES"]}
 {"alias": "argocd", "ids": ["COMPONENT-ARGOCD", "TAG-ARGOCD"]}
 {"alias": "argocd 2.11 to 2.14", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd 3.0 rbac broke", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
@@ -678,11 +678,13 @@
 {"alias": "cilium 1.18 packet drops upgrade", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
 {"alias": "cilium 1.19 ipsec kernel bug", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "cilium 1.19 upgrade agent crashloop flag", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
+{"alias": "cilium action required upgrade", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
 {"alias": "cilium agent Init CrashLoopBackOff", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "cilium bgp", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium bgp not advertising after upgrade", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "cilium bgp v1 to v2 migration", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "cilium bpf masquerade", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
+{"alias": "cilium breaking changes", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
 {"alias": "cilium check failed", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
 {"alias": "cilium clustermesh policy broke", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "cilium clustermesh policy default local cluster", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
@@ -743,6 +745,7 @@
 {"alias": "cilium unknown flag enable-host-port", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "cilium upgrade 1.15.9 to 1.18.4 kubespray", "ids": ["PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18"]}
 {"alias": "cilium upgrade breaking changes", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
+{"alias": "cilium upgrade broke", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
 {"alias": "cilium version jump kubespray", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium wireguard", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "cilium-bgp-advertisement-labels-undefined", "ids": ["TROUBLE-CILIUM_BGP_ADVERTISEMENT_LABELS"]}
@@ -1523,11 +1526,13 @@
 {"alias": "etcd 3.5 to 3.6", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
 {"alias": "etcd 3.6", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
 {"alias": "etcd NOSPACE alarm", "ids": ["TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
+{"alias": "etcd action required upgrade", "ids": ["TROUBLE-ETCD_BREAKING_CHANGES"]}
 {"alias": "etcd ansible role", "ids": ["ROLE-ETCD"]}
 {"alias": "etcd apiserver metrics to watch", "ids": ["PRACTICE-MONITORING_BASELINE"]}
 {"alias": "etcd apply took too long", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
 {"alias": "etcd backup", "ids": ["PRACTICE-ETCD_BACKUP_RESTORE"]}
 {"alias": "etcd backup runbook", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
+{"alias": "etcd breaking changes", "ids": ["TROUBLE-ETCD_BREAKING_CHANGES"]}
 {"alias": "etcd cve", "ids": ["TROUBLE-ETCD_KNOWN_CVES"]}
 {"alias": "etcd defrag", "ids": ["CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER", "TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
 {"alias": "etcd defrag controller", "ids": ["TROUBLE-ETCD_DEFRAG_CONTROLLER"]}
@@ -1551,6 +1556,7 @@
 {"alias": "etcd snapshot save", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
 {"alias": "etcd snapshot verify", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
 {"alias": "etcd space not reclaimed", "ids": ["TROUBLE-ETCD_DEFRAG_CONTROLLER"]}
+{"alias": "etcd upgrade broke", "ids": ["TROUBLE-ETCD_BREAKING_CHANGES"]}
 {"alias": "etcd v2 store removed", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
 {"alias": "etcd wal fsync slow", "ids": ["TROUBLE-APISERVER_ETCD_LATENCY"]}
 {"alias": "etcd-defrag-controller", "ids": ["CONCEPT-ADDON_ETCD_DEFRAG_CONTROLLER"]}
@@ -2636,7 +2642,9 @@
 {"alias": "kubespray 2.27.1", "ids": ["RELEASE-V2_27_1"]}
 {"alias": "kubespray 2.28.0", "ids": ["RELEASE-V2_28_0"]}
 {"alias": "kubespray 2.28.1", "ids": ["RELEASE-V2_28_1"]}
+{"alias": "kubespray action required upgrade", "ids": ["TROUBLE-KUBESPRAY_BREAKING_CHANGES"]}
 {"alias": "kubespray admin.conf security", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
+{"alias": "kubespray breaking changes", "ids": ["TROUBLE-KUBESPRAY_BREAKING_CHANGES"]}
 {"alias": "kubespray deletes cert-manager namespace", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "kubespray deletes namespace", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "kubespray etcd not kubeadm", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
@@ -2649,6 +2657,7 @@
 {"alias": "kubespray removed my podman", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "kubespray submodule", "ids": ["PRACTICE-INTEGRATION"]}
 {"alias": "kubespray upgrade", "ids": ["UPGRADE-KUBESPRAY_SEQUENTIAL"]}
+{"alias": "kubespray upgrade broke", "ids": ["TROUBLE-KUBESPRAY_BREAKING_CHANGES"]}
 {"alias": "kubespray upgrade stuck check api healthz", "ids": ["TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK"]}
 {"alias": "kubespray-defaults", "ids": ["ROLE-KUBESPRAY_DEFAULTS"]}
 {"alias": "kubespray_defaults", "ids": ["ROLE-KUBESPRAY_DEFAULTS"]}
@@ -3880,6 +3889,17 @@
 {"alias": "webhook connection refused", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "webhook x509 after install", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
 {"alias": "what breaks at scale", "ids": ["CONCEPT-SCALE_LIMITS"]}
+{"alias": "what breaks upgrading argo-cd", "ids": ["TROUBLE-ARGO_CD_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading cert-manager", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading cilium", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading cinder-csi", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading consul-k8s", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading containerd", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading etcd", "ids": ["TROUBLE-ETCD_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading gcp-pd-csi", "ids": ["TROUBLE-GCP_PD_CSI_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading helm", "ids": ["TROUBLE-HELM_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading kubespray", "ids": ["TROUBLE-KUBESPRAY_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading youki", "ids": ["TROUBLE-YOUKI_BREAKING_CHANGES"]}
 {"alias": "what changed in 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "what changed in 1.30", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
 {"alias": "what changed in 1.31", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}

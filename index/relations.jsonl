@@ -800,7 +800,6 @@
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "CONCEPT-GITOPS", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
-{"source": "TROUBLE-ARGOCD_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_KNOWN_CVES", "target": "COMPONENT-ARGOCD", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_KNOWN_CVES", "target": "UPGRADE-ARGOCD_2_11_TO_2_14", "type": "see_also"}
@@ -811,6 +810,7 @@
 {"source": "TROUBLE-ARGOCD_UPGRADE_3_RBAC", "target": "CONCEPT-ADDON_ARGOCD", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_UPGRADE_3_RBAC", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_UPGRADE_3_RBAC", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
+{"source": "TROUBLE-ARGO_CD_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-ARP_NEIGH_TABLE_OVERFLOW", "target": "CONCEPT-CLUSTER_NETWORKING", "type": "see_also"}
 {"source": "TROUBLE-ARP_NEIGH_TABLE_OVERFLOW", "target": "CONCEPT-SCALE_LIMITS", "type": "see_also"}
 {"source": "TROUBLE-ARP_NEIGH_TABLE_OVERFLOW", "target": "PRACTICE-KERNEL_REQUIREMENTS", "type": "see_also"}
@@ -847,6 +847,7 @@
 {"source": "TROUBLE-CILIUM_BGP_V1_REMOVED", "target": "UPGRADE-CILIUM_1_15_TO_1_19", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_BPFFS_FSTAB_LEFTOVER", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_BPFFS_FSTAB_LEFTOVER", "target": "PRACTICE-NODE_NETWORK_CHANGE", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "TAG-CILIUM", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_CLI_BINARY_NOT_DOWNLOADED", "target": "TAG-DOWNLOAD", "type": "see_also"}
@@ -1011,6 +1012,7 @@
 {"source": "TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503", "target": "TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI", "type": "see_also"}
 {"source": "TROUBLE-ENVOY_XDS_CONTROLLER", "target": "CONCEPT-ADDON_ENVOY_XDS_CONTROLLER", "type": "see_also"}
 {"source": "TROUBLE-ENVOY_XDS_CONTROLLER", "target": "CONCEPT-CILIUM_ENVOY", "type": "see_also"}
+{"source": "TROUBLE-ETCD_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-ETCD_CERT_DIR_RECURSIVE_PERMS_CALICO", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "TROUBLE-ETCD_DB_SPACE_EXCEEDED", "target": "TROUBLE-ETCD_QUORUM_LOSS", "type": "see_also"}
@@ -1159,6 +1161,7 @@
 {"source": "TROUBLE-KUBERNETES_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-KUBERNETES_MCP", "target": "CONCEPT-ADDON_KUBERNETES_MCP", "type": "see_also"}
 {"source": "TROUBLE-KUBERNETES_MCP", "target": "CONCEPT-SECURITY_INDEX", "type": "see_also"}
+{"source": "TROUBLE-KUBESPRAY_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "CONCEPT-SAMPLE_INVENTORY_LAYOUT", "type": "see_also"}
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "TROUBLE-NFTABLES_KERNEL_TOO_LOW", "type": "see_also"}
 {"source": "TROUBLE-KUBESPRAY_PREFLIGHT_FAILS", "target": "TROUBLE-NODE_MEMORY_TOO_SMALL", "type": "see_also"}

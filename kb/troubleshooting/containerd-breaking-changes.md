@@ -12,15 +12,16 @@ aliases:
   - containerd breaking changes
   - containerd upgrade broke
   - containerd action required upgrade
+  - what breaks upgrading containerd
 tags:
   - upgrade
   - breaking-change
   - containerd
 sources:
   - type: docs
-    path: containerd/containerd release notes — "breaking changes" / "action required" entries
+    path: containerd/containerd release notes — entries marked breaking / action required
     url: https://github.com/containerd/containerd/releases
-    note: "machine-extracted by scripts/upstream_issues.py, short and duplicate lines filtered out"
+    note: "machine-extracted by scripts/upstream_issues.py; short and duplicate lines filtered"
 relations:
   - type: see_also
     target: CONCEPT-UPGRADE_HORIZON
@@ -31,14 +32,14 @@ relations:
 ## Summary
 
 **5 behaviour changes** the project itself marked as breaking or action-required, across
-3 releases from 2.0.0 to 2.3.0. Read this before planning
-an upgrade that crosses any of these versions: unlike defects, these are changes that work as
-designed and still break a working configuration.
+3 releases from 2.0.0 to 2.3.0. These are not defects: they work as designed and still break
+a configuration that worked yesterday. An upgrade crossing any of them needs a decision, not just a
+rollout.
 
 ## Problem
 
-An upgrade across a breaking change usually succeeds — the failure appears afterwards, in behaviour:
-a setting silently ignored, a default flipped, an API version withdrawn.
+The upgrade itself usually succeeds. The damage shows up afterwards — a setting silently ignored, a
+default flipped, an API version withdrawn, a variable that must now be set explicitly.
 
 ## Context
 
@@ -56,24 +57,26 @@ a setting silently ignored, a default flipped, an API version withdrawn.
 
 - Accumulate owners for OCI hook adjustments, disallowing commas in plugin names ([containerd/nri#264](https://github.com/containerd/nri/pull/264))
 
+
 ## Diagnostics
 
-Compare the version in use against the list above:
-
 ```bash
-kubectl get nodes -o wide          # runtime versions, for node components
-helm list -A                       # chart-deployed components
+# which version is actually deployed
+kubectl get nodes -o wide
+helm list -A
 ```
+
+Cross the list above against the range you are moving through, not only the target version.
 
 ## Known Issues
 
-Entries are verbatim from upstream release notes and filtered mechanically: lines shorter than 45
-characters and duplicates were dropped, because section headings and list fragments come through the
-extractor as if they were entries. If a release you care about looks empty here, read its notes
-upstream before concluding nothing changed.
+Entries are verbatim from upstream release notes and filtered mechanically: lines shorter than
+45 characters and duplicates are dropped, because section headings and list fragments reach the
+extractor looking like entries. If a release you care about appears empty here, read its notes
+upstream before concluding that nothing changed.
 
 ## References
 
-- Upstream releases of `containerd/containerd`, read 2026-07-31 via `scripts/upstream_issues.py`;
-  raw extraction in `reports/upstream/containerd.json`.
+- Upstream releases of `containerd/containerd`, extracted 2026-07-31 by `scripts/upstream_issues.py`;
+  raw data in `reports/upstream/containerd.json`.
 - Upgrade planning: [[CONCEPT-UPGRADE_HORIZON]].

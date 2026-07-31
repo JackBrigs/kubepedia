@@ -33,11 +33,6 @@
    "Fixed a data race in `ResourceID.String()`"
   ]
  },
- "1.18.0": {
-  "bug fixes": [
-   "**Announcement**: When using the SSOTokenProvider, a previous implementation incorrectly compensated for invalid SSOTokenProvider configurations in the shared profile. This has been fixed via PR #1903 and tracked in issue #1846"
-  ]
- },
  "1.16.0": {
   "bug fixes": [
    "`BearerTokenPolicy` now rewinds request bodies before retrying"
@@ -47,23 +42,6 @@
   "bug fixes": [
    "Omit the `ResponseError.RawResponse` field from JSON marshaling so instances can be marshaled.",
    "Fixed an integer overflow in the retry policy."
-  ]
- },
- "1.14.0": {
-  "breaking changes": [
-   "Removed `WorkloadIdentityCredentialOptions.EnableAzureProxy`."
-  ],
-  "bug fixes": [
-   "`AzureDeveloperCLICredential` improved reporting of error messages returned from `azd`",
-   "**Feature**: Adds support for the `ca_bundle` parameter in shared config and credentials files. The usage of the file is the same as environment variable, `AWS_CA_BUNDLE`, but sourced from shared config. Fixes [#1589](https://github.com/aws/aws-sdk-go-v2/issues/1589)"
-  ]
- },
- "1.13.0": {
-  "breaking changes": [
-   "Removed the `WorkloadIdentityCredential` support for identity binding mode added in v1.13.0-beta.1."
-  ],
-  "bug fixes": [
-   "**Announcement**: When using the SSOTokenProvider, a previous implementation incorrectly compensated for invalid SSOTokenProvider configurations in the shared profile. This has been fixed via PR #1903 and tracked in issue #1846"
   ]
  },
  "1.12.0": {
@@ -147,15 +125,6 @@
    "This version contains all bug fixes from `v1.7.0-beta.1`"
   ]
  },
- "1.6.0": {
-  "breaking changes": [
-   "Removed `AzurePipelinesCredential` and the persistent token caching API."
-  ],
-  "bug fixes": [
-   "Managed identity bug fixes",
-   "**Bug Fix**: Fix IMDS client's response handling and operation timeout race. Fixes #1253"
-  ]
- },
  "1.5.0": {
   "breaking changes": [
    "Removed `TokenRequestOptions.Claims` and `.TenantID`",
@@ -178,22 +147,6 @@
    "Fixed an issue in `runtime.NewPollerFromResumeToken()` when resuming a `Poller` with a custom `PollingHandler`.",
    "Fixed wrong policy copy in `arm/runtime.NewPipeline()`.",
    "`ManagedIdentityCredential` will now retry when IMDS responds 410 or 503"
-  ]
- },
- "1.3.1": {
-  "bug fixes": [
-   "Fixed #57: number comparisons in prerelease sometimes inaccurate"
-  ]
- },
- "1.3.0": {
-  "breaking changes": [
-   "Renamed `NewOnBehalfOfCredentialFromCertificate` to `NewOnBehalfOfCredentialWithCertificate`",
-   "Renamed `NewOnBehalfOfCredentialFromSecret` to `NewOnBehalfOfCredentialWithSecret`"
-  ],
-  "bug fixes": [
-   "#51: Fix handling of single digit tilde constraint (thanks @dgodd)",
-   "**Bug Fix**: Profile names were incorrectly normalized to lower-case, which could result in unexpected profile configurations.",
-   "**Bug Fix**: Fixed example usages of aws.CredentialsCache ([#1275](https://github.com/aws/aws-sdk-go-v2/pull/1275))"
   ]
  },
  "1.2.0": {
@@ -239,17 +192,15 @@
    "The `arm/runtime.ProviderRepsonse` and `arm/runtime.Provider` types are no longer exported.",
    "Renamed `NewRequestIdPolicy()` to `NewRequestIDPolicy()`",
    "`TokenCredential.GetToken` now returns `AccessToken` by value.",
-   "Removed `AuthorizationCodeCredential`. Use `InteractiveBrowserCredential` instead",
+   "Removed `AuthorizationCodeCredential`. Use `InteractiveBrowserCredential` instead to authenticate a user with the authorization code flow.",
    "Instances of `AuthenticationFailedError` are now returned by pointer.",
    "`GetToken()` returns `azcore.AccessToken` by value"
   ],
   "bug fixes": [
    "When per-try timeouts are enabled, only cancel the context after the body has been read and closed.",
    "The `Operation-Location` poller now properly handles `final-state-via` values.",
-   "Improvements in `runtime.Poller[T]`",
-   "`Poll()` shouldn't cache errors, allowing for additional retries when in a non-terminal state.",
-   "`Result()` will cache the terminal result or error but not transient errors, allowing for additional retries.",
-   "`AzureCLICredential` panics after receiving an unexpected error type"
+   "Improvements in `runtime.Poller[T]` `Poll()` shouldn't cache errors, allowing for additional retries when in a non-terminal state. `Result()` will cache the terminal result or error but not transient errors, allowing for additional retries.",
+   "`AzureCLICredential` panics after receiving an unexpected error type ([#17490](https://github.com/Azure/azure-sdk-for-go/issues/17490))"
   ]
  },
  "0.23.1": {
@@ -264,12 +215,8 @@
    "Removed the `Poller` type-alias to the internal poller implementation.",
    "Added `Ptr[T any]` and `SliceOfPtrs[T any]` in the `to` package and removed all non-generic implementations.",
    "`NullValue` and `IsNullValue` now take a generic type parameter instead of an interface func parameter.",
-   "Replaced `arm.Endpoint` with `cloud` API",
-   "Removed the `endpoint` parameter from `NewRPRegistrationPolicy()`",
-   "`arm/runtime.NewPipeline()` and `.NewRPRegistrationPolicy()` now return an `error`",
-   "Refactored `NewPoller` and `NewPollerFromResumeToken` funcs in `arm/runtime` and `runtime` packages.",
-   "Removed the `pollerID` parameter as it's no longer required.",
-   "Created optional parameter structs and moved optional parameters into them.",
+   "Replaced `arm.Endpoint` with `cloud` API Removed the `endpoint` parameter from `NewRPRegistrationPolicy()` `arm/runtime.NewPipeline()` and `.NewRPRegistrationPolicy()` now return an `error`",
+   "Refactored `NewPoller` and `NewPollerFromResumeToken` funcs in `arm/runtime` and `runtime` packages. Removed the `pollerID` parameter as it's no longer required. Created optional parameter structs and moved optional parameters into them.",
    "Changed `FinalStateVia` field to a `const` type."
   ]
  },
@@ -297,8 +244,7 @@
  "0.20.0": {
   "breaking changes": [
    "Removed `arm.Connection`",
-   "Removed `azcore.Credential` and `.NewAnonymousCredential()`",
-   "`NewRPRegistrationPolicy` now requires an `azcore.TokenCredential`",
+   "Removed `azcore.Credential` and `.NewAnonymousCredential()` `NewRPRegistrationPolicy` now requires an `azcore.TokenCredential`",
    "`runtime.NewPipeline` has a new signature that simplifies implementing custom authentication",
    "`arm/runtime.RegistrationOptions` embeds `policy.ClientOptions`",
    "Contents in the `log` package have been slightly renamed.",
@@ -314,14 +260,8 @@
  },
  "0.19.0": {
   "breaking changes": [
-   "Split content out of `azcore` into various packages. The intent is to separate content based on its usage (common, uncommon, SDK authors).",
-   "`azcore` has all core functionality.",
-   "`log` contains facilities for configuring in-box logging.",
-   "`policy` is used for configuring pipeline options and creating custom pipeline policies.",
-   "`runtime` contains various helpers used by SDK authors and generated content.",
-   "`streaming` has helpers for streaming IO operations.",
-   "`NewTelemetryPolicy()` now requires module and version parameters and the `Value` option has been removed.",
-   "As a result, the `Request.Telemetry()` method has been removed.",
+   "Split content out of `azcore` into various packages. The intent is to separate content based on its usage (common, uncommon, SDK authors). `azcore` has all core functionality. `log` contains facilities for configuring in-box logging. `policy` is used for configuring pipeline options and creating custom pipeline policies. `runtime` contains various helpers used by SDK authors and generated content. `streaming` has helpers for streaming IO operations.",
+   "`NewTelemetryPolicy()` now requires module and version parameters and the `Value` option has been removed. As a result, the `Request.Telemetry()` method has been removed.",
    "The telemetry policy now includes the SDK prefix `azsdk-go-` so callers no longer need to provide it.",
    "The `*http.Request` in `runtime.Request` is no longer anonymously embedded. Use the `Raw()` method to access it.",
    "The `UserAgent` and `Version` constants have been made internal, `Module` and `Version` respectively."
@@ -363,77 +303,18 @@
    "Fixed improper error wrapping"
   ]
  },
- "0.14.0": {
-  "breaking changes": [
-   "This module now requires Go 1.18",
-   "Removed `AuthorityHost`. Credentials are now configured for sovereign or private"
-  ]
- },
- "0.13.2": {
-  "bug fixes": [
-   "Prevented a data race in `DefaultAzureCredential` and `ChainedTokenCredential`"
-  ]
- },
- "0.13.1": {
-  "bug fixes": [
-   "`ManagedIdentityCredential.GetToken()` now returns an error when configured for"
-  ]
- },
- "0.13.0": {
-  "breaking changes": [
-   "Replaced `AuthenticationFailedError.RawResponse()` with a field having the same name",
-   "Unexported `CredentialUnavailableError`",
-   "Instances of `ChainedTokenCredential` will now skip looping through the list of source credentials and re-use the first successful credential on subsequent calls to `GetToken`.",
-   "If `ChainedTokenCredentialOptions.RetrySources` is true, `ChainedTokenCredential` will continue to try all of the originally provided credentials each time the `GetToken` method is called.",
-   "`ChainedTokenCredential.successfulCredential` will contain a reference to the last successful credential.",
-   "`DefaultAzureCredenial` will also re-use the first successful credential on subsequent calls to `GetToken`.",
-   "`DefaultAzureCredential.chain.successfulCredential` will also contain a reference to the last successful credential."
-  ]
- },
- "0.12.0": {
-  "breaking changes": [
-   "Raised minimum go version to 1.16",
-   "Removed `NewAuthenticationPolicy()` from credentials. Clients should instead use azcore's",
-   "The `AuthorityHost` field in credential options structs is now a custom type,",
-   "`NewChainedTokenCredential` has a new signature to accommodate a placeholder",
-   "Removed `ExcludeAzureCLICredential`, `ExcludeEnvironmentCredential`, and `ExcludeMSICredential`",
-   "`NewClientCertificateCredential` requires a `[]*x509.Certificate` and `crypto.PrivateKey` instead of",
-   "Removed `InteractiveBrowserCredentialOptions.ClientSecret` and `.Port`",
-   "Removed `AADAuthenticationFailedError`",
-   "Removed `id` parameter of `NewManagedIdentityCredential()`. User assigned identities are now",
-   "`DeviceCodeCredentialOptions.UserPrompt` has a new type: `func(context.Context, DeviceCodeMessage) error`",
-   "Credential options structs now embed `azcore.ClientOptions`. In addition to changing literal initialization",
-   "Renamed `LogCredential` to `EventCredential`",
-   "`AzureCLICredential` no longer reads the environment variable `AZURE_CLI_PATH`",
-   "`NewManagedIdentityCredential` no longer reads environment variables `AZURE_CLIENT_ID` and",
-   "Unexported `AuthenticationFailedError` and `CredentialUnavailableError` structs. In their place are two"
-  ],
-  "bug fixes": [
-   "`AzureCLICredential.GetToken` no longer mutates its `opts.Scopes`"
-  ]
- },
  "0.11.0": {
   "bug fixes": [
    "Fix `RequestLogOptions` comment",
-   "`ManagedIdentityCredential.GetToken` returns `CredentialUnavailableError`"
+   "`ManagedIdentityCredential.GetToken` returns `CredentialUnavailableError` when IMDS has no assigned identity, signaling `DefaultAzureCredential` to try other credentials"
   ],
   "breaking changes": [
-   "Unexported `AzureCLICredentialOptions.TokenProvider` and its type,"
-  ]
- },
- "0.10.0": {
-  "breaking changes": [
-   "Update based on `azcore` refactor [#15383](https://github.com/Azure/azure-sdk-for-go/pull/15383)"
+   "Unexported `AzureCLICredentialOptions.TokenProvider` and its type, `AzureCLITokenProvider`"
   ]
  },
  "0.9.4": {
   "bug fixes": [
    "Fix cancellation of per try timeout"
-  ]
- },
- "0.9.3": {
-  "bug fixes": [
-   "`ManagedIdentityCredential.GetToken` no longer mutates its `opts.Scopes`"
   ]
  },
  "0.9.1": {
@@ -456,9 +337,13 @@
    "Removed `Response.CheckStatusCode()`"
   ]
  },
- "0.2.0": {
+ "1.14.0": {
+  "breaking changes": [
+   "Removed `WorkloadIdentityCredentialOptions.EnableAzureProxy`. It will return in v1.15.0-beta.1"
+  ],
   "bug fixes": [
-   "Fixed calls to `Request.SetBody()` to include content type."
+   "`AzureDeveloperCLICredential` improved reporting of error messages returned from `azd`",
+   "**Feature**: Adds support for the `ca_bundle` parameter in shared config and credentials files. The usage of the file is the same as environment variable, `AWS_CA_BUNDLE`, but sourced from shared config. Fixes [#1589](https://github.com/aws/aws-sdk-go-v2/issues/1589)"
   ]
  },
  "1.13.1": {
@@ -467,6 +352,14 @@
    "**Bug Fix**: Fixes LoadDefaultConfig handling of errors returned by passed in functional options. Previously errors returned from the LoadOptions passed into LoadDefaultConfig were incorrectly ignored. [#1562](https://github.com/aws/aws-sdk-go-v2/pull/1562). Thanks to [Pinglei Guo](https://github.com/pingleig) for submitting this PR.",
    "**Bug Fix**: Fixes the SDK's handling of `duration_sections` in the shared credentials file or specified in multiple shared config and shared credentials files under the same profile. [#1568](https://github.com/aws/aws-sdk-go-v2/pull/1568). Thanks to [Amir Szekely](https://github.com/kichik) for help reproduce this bug.",
    "**Bug Fix**: Updates `config` module to use os.UserHomeDir instead of hard coded environment variable for OS. [#1563](https://github.com/aws/aws-sdk-go-v2/pull/1563)"
+  ]
+ },
+ "1.13.0": {
+  "breaking changes": [
+   "Removed the `WorkloadIdentityCredential` support for identity binding mode added in v1.13.0-beta.1. It will return in v1.14.0-beta.1"
+  ],
+  "bug fixes": [
+   "**Announcement**: When using the SSOTokenProvider, a previous implementation incorrectly compensated for invalid SSOTokenProvider configurations in the shared profile. This has been fixed via PR #1903 and tracked in issue #1846"
   ]
  },
  "1.10.1": {
@@ -478,7 +371,16 @@
   "bug fixes": [
    "User credential types inconsistently log access token scopes",
    "`DefaultAzureCredential` skips managed identity in Azure Container Instances",
-   "Credentials having optional tenant IDs such as `AzureCLICredential` and"
+   "Credentials having optional tenant IDs such as `AzureCLICredential` and `InteractiveBrowserCredential` require setting `AdditionallyAllowedTenants` when used with some clients"
+  ]
+ },
+ "1.6.0": {
+  "breaking changes": [
+   "Removed `AzurePipelinesCredential` and the persistent token caching API. They will return in v1.7.0-beta.1"
+  ],
+  "bug fixes": [
+   "Managed identity bug fixes",
+   "**Bug Fix**: Fix IMDS client's response handling and operation timeout race. Fixes #1253"
   ]
  },
  "1.5.2": {
@@ -491,14 +393,80 @@
    "`InteractiveBrowserCredential` handles `AdditionallyAllowedTenants` correctly"
   ]
  },
- "1.0.1": {
+ "1.3.0": {
+  "breaking changes": [
+   "Renamed `NewOnBehalfOfCredentialFromCertificate` to `NewOnBehalfOfCredentialWithCertificate`",
+   "Renamed `NewOnBehalfOfCredentialFromSecret` to `NewOnBehalfOfCredentialWithSecret`"
+  ],
   "bug fixes": [
-   "#21: Fix generation of alphanumeric strings (thanks @dbarranco)"
+   "#51: Fix handling of single digit tilde constraint (thanks @dgodd)",
+   "**Bug Fix**: Profile names were incorrectly normalized to lower-case, which could result in unexpected profile configurations.",
+   "**Bug Fix**: Fixed example usages of aws.CredentialsCache ([#1275](https://github.com/aws/aws-sdk-go-v2/pull/1275))"
+  ]
+ },
+ "0.14.0": {
+  "breaking changes": [
+   "This module now requires Go 1.18",
+   "Removed `AuthorityHost`. Credentials are now configured for sovereign or private clouds with the API in `azcore/cloud`, for example: ```go // before opts := azidentity.ClientSecretCredentialOptions{AuthorityHost: azidentity.AzureGovernment} cred, err := azidentity.NewClientSecretCredential(tenantID, clientID, secret, &opts)"
+  ]
+ },
+ "0.13.2": {
+  "bug fixes": [
+   "Prevented a data race in `DefaultAzureCredential` and `ChainedTokenCredential` ([#17144](https://github.com/Azure/azure-sdk-for-go/issues/17144))"
+  ]
+ },
+ "0.13.1": {
+  "bug fixes": [
+   "`ManagedIdentityCredential.GetToken()` now returns an error when configured for a user assigned identity in Azure Cloud Shell (which doesn't support such identities) ([#16946](https://github.com/Azure/azure-sdk-for-go/pull/16946))"
+  ]
+ },
+ "0.13.0": {
+  "breaking changes": [
+   "Replaced `AuthenticationFailedError.RawResponse()` with a field having the same name",
+   "Unexported `CredentialUnavailableError`",
+   "Instances of `ChainedTokenCredential` will now skip looping through the list of source credentials and re-use the first successful credential on subsequent calls to `GetToken`. If `ChainedTokenCredentialOptions.RetrySources` is true, `ChainedTokenCredential` will continue to try all of the originally provided credentials each time the `GetToken` method is called. `ChainedTokenCredential.successfulCredential` will contain a reference to the last successful credential. `DefaultAzureCredenial` will also re-use the first successful credential on subsequent calls to `GetToken`. `DefaultAzureCredential.chain.successfulCredential` will also contain a reference to the last successful credential."
+  ]
+ },
+ "0.12.0": {
+  "breaking changes": [
+   "Raised minimum go version to 1.16",
+   "Removed `NewAuthenticationPolicy()` from credentials. Clients should instead use azcore's `runtime.NewBearerTokenPolicy()` to construct a bearer token authorization policy.",
+   "The `AuthorityHost` field in credential options structs is now a custom type, `AuthorityHost`, with underlying type `string`",
+   "`NewChainedTokenCredential` has a new signature to accommodate a placeholder options struct: ```go // before cred, err := NewChainedTokenCredential(credA, credB)",
+   "Removed `ExcludeAzureCLICredential`, `ExcludeEnvironmentCredential`, and `ExcludeMSICredential` from `DefaultAzureCredentialOptions`",
+   "`NewClientCertificateCredential` requires a `[]*x509.Certificate` and `crypto.PrivateKey` instead of a path to a certificate file. Added `ParseCertificates` to simplify getting these in common cases: ```go // before cred, err := NewClientCertificateCredential(\"tenant\", \"client-id\", \"/cert.pem\", nil)",
+   "Removed `InteractiveBrowserCredentialOptions.ClientSecret` and `.Port`",
+   "Removed `AADAuthenticationFailedError`",
+   "Removed `id` parameter of `NewManagedIdentityCredential()`. User assigned identities are now specified by `ManagedIdentityCredentialOptions.ID`: ```go // before cred, err := NewManagedIdentityCredential(\"client-id\", nil) // or, for a resource ID opts := &ManagedIdentityCredentialOptions{ID: ResourceID} cred, err := NewManagedIdentityCredential(\"/subscriptions/...\", opts)",
+   "`DeviceCodeCredentialOptions.UserPrompt` has a new type: `func(context.Context, DeviceCodeMessage) error`",
+   "Credential options structs now embed `azcore.ClientOptions`. In addition to changing literal initialization syntax, this change renames `HTTPClient` fields to `Transport`.",
+   "Renamed `LogCredential` to `EventCredential`",
+   "`AzureCLICredential` no longer reads the environment variable `AZURE_CLI_PATH`",
+   "`NewManagedIdentityCredential` no longer reads environment variables `AZURE_CLIENT_ID` and `AZURE_RESOURCE_ID`. Use `ManagedIdentityCredentialOptions.ID` instead.",
+   "Unexported `AuthenticationFailedError` and `CredentialUnavailableError` structs. In their place are two interfaces having the same names."
+  ],
+  "bug fixes": [
+   "`AzureCLICredential.GetToken` no longer mutates its `opts.Scopes`"
+  ]
+ },
+ "0.10.0": {
+  "breaking changes": [
+   "Update based on `azcore` refactor [#15383](https://github.com/Azure/azure-sdk-for-go/pull/15383)"
+  ]
+ },
+ "0.9.3": {
+  "bug fixes": [
+   "`ManagedIdentityCredential.GetToken` no longer mutates its `opts.Scopes`"
   ]
  },
  "0.4.2": {
   "bug fixes": [
    "Typo fixes"
+  ]
+ },
+ "0.2.0": {
+  "bug fixes": [
+   "Fixed calls to `Request.SetBody()` to include content type."
   ]
  },
  "8.0.0": {
@@ -680,10 +648,15 @@
    "Fix serialization bug of empty value of `any` type."
   ]
  },
+ "1.0.1": {
+  "bug fixes": [
+   "#21: Fix generation of alphanumeric strings (thanks @dbarranco)"
+  ]
+ },
  "3.4.0": {
   "bug fixes": [
    "#257: Fixed the CodeQL link (thanks @dmitris)",
-   "#262: Restored detailed errors when failed to parse with NewVersion. Opt-out",
+   "#262: Restored detailed errors when failed to parse with NewVersion. Opt-out of this by setting DetailedNewVersionErrors to false for faster performance.",
    "#267: Handle pre-releases for an \"and\" group if one constraint includes them"
   ]
  },
@@ -731,12 +704,17 @@
    "**Documentation**: Fixes the AssumeRoleProvider's documentation for using custom TokenProviders."
   ]
  },
+ "1.3.1": {
+  "bug fixes": [
+   "Fixed #57: number comparisons in prerelease sometimes inaccurate"
+  ]
+ },
  "1.2.3": {
   "bug fixes": [
    "#46: Fixed 0.x.x and 0.0.x in constraints being treated as *",
    "#34: Fixed issue where hyphen range was not working with pre-release parsing.",
-   "#24: Fixed edge case issue where constraint \"> 0\" does not handle \"0.0.1-alpha\"",
-   "Issue #21: Per the SemVer spec (section 9) a pre-release is unstable and",
+   "#24: Fixed edge case issue where constraint \"> 0\" does not handle \"0.0.1-alpha\" properly.",
+   "Issue #21: Per the SemVer spec (section 9) a pre-release is unstable and might not satisfy the intended compatibility. The change here ignores pre-releases on constraint checks (e.g., ~ or ^) when a pre-release is not part of the constraint. For example, `^1.2.3` will ignore pre-releases while `^1.2.3-alpha` will include them.",
    "Fixed #1: * constraint failing on valid versions."
   ]
  },
@@ -816,21 +794,6 @@
    "**Bug Fix**: Move type assertion of config values out of the parsing stage, which resolves an issue where the contents of a profile would silently be dropped with certain numeric formats."
   ]
  },
- "1.18.28": {
-  "bug fixes": [
-   "**Dependency Update**: Update to smithy-go v1.27.1 to fix several union-related deserialization bugs in schema-serde-enabled services."
-  ]
- },
- "1.18.20": {
-  "bug fixes": [
-   "**Bug Fix**: Replace usages of the old ioutil/ package throughout the SDK."
-  ]
- },
- "1.18.19": {
-  "bug fixes": [
-   "**Bug Fix**: Modernize non codegen files with go fix"
-  ]
- },
  "1.18.18": {
   "bug fixes": [
    "**Bug Fix**: Allow RoleARN to be set as functional option on STS WebIdentityRoleOptions. Fixes aws/aws-sdk-go-v2#2015."
@@ -841,19 +804,14 @@
    "**Bug Fix**: Unify logic between shared config and in finding home directory"
   ]
  },
- "1.17.7": {
+ "1.18.0": {
   "bug fixes": [
-   "**Bug Fix**: Remove dependency on go-cmp."
+   "**Announcement**: When using the SSOTokenProvider, a previous implementation incorrectly compensated for invalid SSOTokenProvider configurations in the shared profile. This has been fixed via PR #1903 and tracked in issue #1846"
   ]
  },
  "1.15.5": {
   "bug fixes": [
    "**Bug Fix**: Fixes a bug in LoadDefaultConfig to correctly assign ConfigSources so all config resolvers have access to the config sources. This fixes the feature/ec2/imds client not having configuration applied via config.LoadOptions such as EC2IMDSClientEnableState. PR [#1682](https://github.com/aws/aws-sdk-go-v2/pull/1682)"
-  ]
- },
- "1.15.3": {
-  "bug fixes": [
-   "**Bug Fix**: Remove dependency on go-cmp."
   ]
  },
  "1.19.22": {
@@ -886,6 +844,11 @@
    "**Bug Fix**: Save SSO cached token expiry in UTC to ensure cross-SDK compatibility."
   ]
  },
+ "1.17.7": {
+  "bug fixes": [
+   "**Bug Fix**: Remove dependency on go-cmp."
+  ]
+ },
  "1.16.4": {
   "bug fixes": [
    "**Bug Fix**: Don't expect error responses to have a JSON payload in the endpointcreds provider."
@@ -896,14 +859,34 @@
    "**Bug Fix**: Unify logic between shared config and in finding home directory"
   ]
  },
- "1.12.19": {
+ "1.18.28": {
   "bug fixes": [
-   "**Bug Fix**: Fixes an issue that prevented logging of the API request or responses when the respective log modes were enabled."
+   "**Dependency Update**: Update to smithy-go v1.27.1 to fix several union-related deserialization bugs in schema-serde-enabled services."
+  ]
+ },
+ "1.18.20": {
+  "bug fixes": [
+   "**Bug Fix**: Replace usages of the old ioutil/ package throughout the SDK."
+  ]
+ },
+ "1.18.19": {
+  "bug fixes": [
+   "**Bug Fix**: Modernize non codegen files with go fix"
   ]
  },
  "1.16.29": {
   "bug fixes": [
    "**Bug Fix**: Bump go version to 1.22"
+  ]
+ },
+ "1.15.3": {
+  "bug fixes": [
+   "**Bug Fix**: Remove dependency on go-cmp."
+  ]
+ },
+ "1.12.19": {
+  "bug fixes": [
+   "**Bug Fix**: Fixes an issue that prevented logging of the API request or responses when the respective log modes were enabled."
   ]
  },
  "1.4.28": {

@@ -35,7 +35,7 @@
  },
  "2.7.0": {
   "bug fixes": [
-   "Retry certain netlink calls which fixes early start race conditions - Some users noticed a race condition on ip link",
+   "Retry certain netlink calls which fixes early start race conditions - Some users noticed a race condition on ip link setup when kube-router was starting as the node's OS was also starting. This should fix that edge case.",
    "Documentation fixes: @xieyubo",
    "Go Safecast bug fixes and unit test efficiencies: @ccoVeille",
    "Fix TCPMSS clamping for IPv6: @rkojedzinszky",
@@ -189,10 +189,7 @@
    "kube-router now implements `.spec.healthCheckNodePort` which has long been a part of the [Kubernetes service specification](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#servicespec-v1-core), but kube-router hasn't implemented it until now. This port is meant to give visibility about whether or not an endpoint for a service exists on a node to workloads outside the Kubernetes cluster. If a service endpoint is on the node, then this port returns a 200 HTTP response, otherwise it returns a 503 HTTP response if no endpoint exists on the node. By choosing a node that contains an endpoint, a client can ensure [source IP preservation](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip).",
    "Hairpinning in kube-router is now fixed. kube-router now has a dedicated controller to ensuring that the `veth` interface inside the container is in promiscuous mode. This used to be handled by `kubelet` and then it was handled by `docker-shim` and then it was removed entirely. As far as I can tell, it was never ported to `containerd` or `cri-o`. Without this functionality, return traffic ends up getting black-holed before it is routed outside of the container. For more details see: https://github.com/cloudnativelabs/kube-router/commit/0f3714b9b758f24de0b1911c148bdba8d87de9b6",
    "Users can now specify `--metrics-addr` to choose the IP address that kube-router listens on when providing Prometheus metrics",
-   "Users can now specify custom protocol timeouts for IPVS services exposed by kube-router",
-   "`--service-tcp-timeout` - (default: `0s` preserves system value, typically 900 seconds)",
-   "`--service-tcpfin-timeout` - (default: `0s` preserves system value, typically 120 seconds)",
-   "`--service-udp-timeout` - (default: `0s` preserves system value, typically 300 seconds)",
+   "Users can now specify custom protocol timeouts for IPVS services exposed by kube-router `--service-tcp-timeout` - (default: `0s` preserves system value, typically 900 seconds) `--service-tcpfin-timeout` - (default: `0s` preserves system value, typically 120 seconds) `--service-udp-timeout` - (default: `0s` preserves system value, typically 300 seconds)",
    "kube-router now abides by the service label `service.kubernetes.io/service-proxy-name`. Setting this label to something other than `kube-router` will result in kube-router ignoring the service",
    "kube-router now honors `spec.internalTrafficPolicy` and implements `spec.externalTrafficPolicy` correctly. For more information see: https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies for more information",
    "47fe189f - feat(lint): update golangci-lint and fix lint errors `<Aaron U'Ren>`",
@@ -246,12 +243,8 @@
  },
  "1.4.0": {
   "bug fixes": [
-   "Greatly Fixed and Improved Hairpinning:",
-   "Fixed an issue where hairpinning rules weren't being updated on service / endpoint updates (see: #1200)",
-   "Fixed issue where hairpinning rules weren't being regenerated correctly (see: #1200)",
-   "DSR Fixes",
-   "Fixed an issue where sometimes FWMarks generated for DSR would collide",
-   "Fixed issue where DSR mangle table definitions were not being cleaned up",
+   "Greatly Fixed and Improved Hairpinning: Reduced the number of iptables rules when Hairpinning is enabled by ensuring it is only enabled on local nodes (see: #1208) Fixed an issue where hairpinning rules weren't being updated on service / endpoint updates (see: #1200) Fixed issue where hairpinning rules weren't being regenerated correctly (see: #1200)",
+   "DSR Fixes Fixed an issue where sometimes FWMarks generated for DSR would collide Fixed issue where DSR mangle table definitions were not being cleaned up",
    "Fixed issue where peer might not be seen correctly as established due to a bad double-negative condition (see: #1184 thanks to @lx1036 )",
    "2ca39f14 fix(nsc): properly check hairpinning rule",
    "146786ad fix(nsc): sync hairpinning on service modification",

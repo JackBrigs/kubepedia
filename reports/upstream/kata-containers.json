@@ -505,7 +505,7 @@
  },
  "2.1.0": {
   "bug fixes": [
-   "A whole bunch of fixes and improvements to `kata-deploy`, which is the",
+   "A whole bunch of fixes and improvements to `kata-deploy`, which is the preferred way of deploying the project.",
    "Innumerous documentations fixes and cleanups."
   ]
  },
@@ -517,7 +517,7 @@
  "2.0.3": {
   "bug fixes": [
    "Fixes for building `agent-ctl`",
-   "Improvements and fixes for kata-deploy, such as:",
+   "Improvements and fixes for kata-deploy, such as: Always use the image with the tag corresponding to this release Include pod overhead for the used runtime classes",
    "Improvements and fixes for scripts used to prepare this release"
   ]
  }

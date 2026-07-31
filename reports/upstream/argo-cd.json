@@ -954,10 +954,10 @@
  },
  "0.11.0": {
   "breaking changes": [
-   "Argo CD's resource names were renamed for consistency. For example, the application-controller",
-   "As a consequence to moving to recommended kubernetes labels, when upgrading from v0.10 to v0.11,",
-   "There was significant reworking of the `app.status` fields to reduce the payload size, simplify",
-   "An older Argo CD CLI (v0.10 and below) will not be compatible with Argo CD v0.11. To keep"
+   "Argo CD's resource names were renamed for consistency. For example, the application-controller deployment was renamed to argocd-application-controller. When upgrading from v0.10 to v0.11, the older resources should be pruned to avoid inconsistent state and controller in-fighting.",
+   "As a consequence to moving to recommended kubernetes labels, when upgrading from v0.10 to v0.11, all applications will immediately be OutOfSync due to the change in tracking labels. This will correct itself with another sync of the application. However, since Pods will be recreated, please take this into consideration, especially if your applications are configured with auto-sync.",
+   "There was significant reworking of the `app.status` fields to reduce the payload size, simplify the datastructure and remove fields which were no longer used by the controller. No breaking changes were made in `app.spec`.",
+   "An older Argo CD CLI (v0.10 and below) will not be compatible with Argo CD v0.11. To keep CI pipelines in sync with the API server, it is recommended to have pipelines download the CLI directly from the API server https://${ARGOCD_SERVER}/download/argocd-linux-amd64 during the CI pipeline."
   ]
  },
  "0.10.6": {

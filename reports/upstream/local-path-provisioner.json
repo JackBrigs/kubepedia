@@ -39,7 +39,7 @@
  },
  "0.0.31": {
   "bug fixes": [
-   "Fix CVE issues"
+   "Update dependencies by @harsimranmaan in https://github.com/rancher/local-path-provisioner/pull/472 Fix CVE issues"
   ]
  },
  "0.0.28": {

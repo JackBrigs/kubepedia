@@ -72,9 +72,7 @@
  },
  "0.25.7": {
   "breaking changes": [
-   "The API Group of CRD `PodGroup` and `ElasticQuota` is migrated to `scheduling.x-k8s.io`. The brand new installations don't need to do anything. Users migrating to this release need to do the following steps:",
-   "use `kubectl replace -f <crds>` to ensure new CRDs function well",
-   "migrate the labels - new label is using a style of `*.scheduling.x-k8s.io/<label-name>`, e.g., `scheduling.x-k8s.io/pod-group`",
+   "The API Group of CRD `PodGroup` and `ElasticQuota` is migrated to `scheduling.x-k8s.io`. The brand new installations don't need to do anything. Users migrating to this release need to do the following steps: use `kubectl replace -f <crds>` to ensure new CRDs function well migrate the labels - new label is using a style of `*.scheduling.x-k8s.io/<label-name>`, e.g., `scheduling.x-k8s.io/pod-group`",
    "Helm chart now leverages `--namespace scheduler-plugins --create-namespace` to consolidate both Helm release meta info and chart artifacts in the same namespace. Moreover, it enables users to customize the installation namespace."
   ]
  },
@@ -85,8 +83,7 @@
  },
  "0.22.6": {
   "bug fixes": [
-   "Bug fixes:",
-   "Avoid instantiating core resource's informers duplicately #302"
+   "Bug fixes: Avoid instantiating core resource's informers duplicately #302 Handle best-effort pods NodeResourceTopology's score plugin properly #318 Incorrect resource calculation in node resource topology #312"
   ]
  }
 }

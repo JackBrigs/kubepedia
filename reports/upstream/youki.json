@@ -114,8 +114,8 @@
  },
  "0.5.7": {
   "security updates": [
-   "[CVE-2025-62161](https://github.com/youki-dev/youki/security/advisories/GHSA-4g74-7cff-xcv8)",
-   "[CVE-2025-62596](https://github.com/youki-dev/youki/security/advisories/GHSA-vf95-55w6-qmrf)"
+   "[CVE-2025-62161](https://github.com/youki-dev/youki/security/advisories/GHSA-4g74-7cff-xcv8) container escape via \"masked path\" abuse due to mount race conditions",
+   "[CVE-2025-62596](https://github.com/youki-dev/youki/security/advisories/GHSA-vf95-55w6-qmrf) The write-target validation for /proc AppArmor label writes (e.g., /proc/self/attr/apparmor/exec) was insufficient, and combined with path substitution during pathname resolution (via shared-mount races) could allow writes to unintended /proc files."
   ],
   "bug fixes": [
    "Waiting on systemd to add intermediate process to cgroup. by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3262",
@@ -477,9 +477,12 @@
   ]
  },
  "0.0.2": {
+  "security updates": [
+   "Add minimum rust version requirement to libcgroups and libcontainers by @YJDoc2 in https://github.com/containers/youki/pull/626 Due to [CVE-2022-21658](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21658) found in Rust standard library, `1.58.1` will be the minimum supported version."
+  ],
   "bug fixes": [
    "Resolved `needs_to_handle` TODO's by @SarthakSingh31 in https://github.com/containers/youki/pull/568",
-   "Pin nightly version in CI as temporary fix to coverage issue by @YJDoc2 in https://github.com/containers/youki/pull/619",
+   "Pin nightly version in CI as temporary fix to coverage issue by @YJDoc2 in https://github.com/containers/youki/pull/619 Nightly was sometimes broken",
    "Interpret a cpu quota of zero as default value by @Furisto in https://github.com/containers/youki/pull/569",
    "Use correct hugetlb interface file name by @Furisto in https://github.com/containers/youki/pull/579",
    "Improve cgroup path handling for rootless containers by @Furisto in https://github.com/containers/youki/pull/597",

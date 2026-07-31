@@ -401,9 +401,7 @@
  },
  "3.17.4": {
   "security updates": [
-   "Join the discussion in [Kubernetes Slack](https://kubernetes.slack.com):",
-   "for questions and just to hang out",
-   "for discussing PRs, code, and bugs",
+   "Join the discussion in [Kubernetes Slack](https://kubernetes.slack.com): for questions and just to hang out for discussing PRs, code, and bugs",
    "Hang out at the Public Developer Call: Thursday, 9:30 Pacific via [Zoom](https://zoom.us/j/696660622)",
    "Test, debug, and contribute charts: [ArtifactHub/packages](https://artifacthub.io/packages/search?kind=0)"
   ]

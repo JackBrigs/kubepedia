@@ -24,7 +24,7 @@
  },
  "1.23.0": {
   "bug fixes": [
-   "[fixes a long-standing bug](https://thekelleys.org.uk/gitweb/?p=dnsmasq.git;a=commit;h=8b606543a3fb687f0e49d4e832f98be9a08924d0) causing memory leaks for SRV records with TTL=0."
+   "Upgrade to dnsmasq v2.90 by @DamianSawicki in https://github.com/kubernetes/dns/pull/623. The new dnsmasq version [enables increasing](https://thekelleys.org.uk/gitweb/?p=dnsmasq.git;a=commit;h=416390f9962e455769aa8ab6df0e105cae07ae55) the number of concurrent TCP connections, previously hardcoded as 20, [fixes a long-standing bug](https://thekelleys.org.uk/gitweb/?p=dnsmasq.git;a=commit;h=8b606543a3fb687f0e49d4e832f98be9a08924d0) causing memory leaks for SRV records with TTL=0."
   ]
  },
  "1.22.27": {

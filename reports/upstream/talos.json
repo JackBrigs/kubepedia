@@ -2608,8 +2608,7 @@
  },
  "1.1.0": {
   "security updates": [
-   "configuration:",
-   "kube-system"
+   "configuration: apiVersion: pod-security.admission.config.k8s.io/v1alpha1 defaults: audit: restricted audit-version: latest enforce: baseline enforce-version: latest warn: restricted warn-version: latest exemptions: namespaces: kube-system runtimeClasses: [] usernames: [] kind: PodSecurityConfiguration name: PodSecurity path: \"\""
   ],
   "bug fixes": [
    "siderolabs/talos@6d6567512 docs: fix the vendor information for Kubernetes conformance tests",

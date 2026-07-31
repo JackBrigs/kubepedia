@@ -111,6 +111,47 @@ FIX_RX = re.compile(r"bug ?fix|fixes|fixed", re.I)
 SECURITY_RX = re.compile(r"security|vulnerab|advisor", re.I)
 
 
+def bullets(text):
+    """Разбор списка в человеческих заметках: пункт может продолжаться на следующих строках.
+
+    kubespray пишет «- Action required», а суть — строкой ниже с отступом; etcd вкладывает
+    подпункты в основной. Пункт начинается только с нулевой колонки, всё, что с отступом,
+    приклеивается к нему. Иначе в выдачу попадают обрывки: голое «Action required» или
+    одинокие имена метрик.
+
+    Возвращает пары (заголовок_раздела, текст_пункта).
+    """
+    out, sec, cur = [], None, None
+
+    def flush():
+        nonlocal cur
+        if cur and len(cur[1].strip()) > 1:
+            out.append((cur[0], re.sub(r"\s+", " ", cur[1]).strip()))
+        cur = None
+
+    for line in text.split("\n"):
+        h = re.match(r"^#{2,4}\s+(.+?)\s*$", line)
+        if h:
+            flush()
+            t = h.group(1)
+            sec = ("breaking changes" if BREAK_RX.search(t) else
+                   "security updates" if SECURITY_RX.search(t) else
+                   "bug fixes" if FIX_RX.search(t) else None)
+            continue
+        top = re.match(r"^[-*]\s+(.*)$", line)
+        if top:
+            flush()
+            cur = [sec, top.group(1)]
+            continue
+        if cur is not None and line.strip() and re.match(r"^\s+", line):
+            cur[1] += " " + re.sub(r"^\s*[-*]\s*", "", line.strip())
+            continue
+        if not line.strip():
+            flush()
+    flush()
+    return out
+
+
 def sh(*args, cwd=None):
     p = subprocess.run(args, cwd=cwd, capture_output=True, text=True)
     return p.stdout
@@ -157,29 +198,17 @@ def changelog_notes(path):
     out = {}
     for name in names[:12]:
         text = sh("git", "show", f"HEAD:{name}", cwd=path)
-        ver, sec = None, None
-        for line in text.split("\n"):
-            h = re.match(r"^#{1,3}\s+\[?v?(\d+\.\d+\.\d+[^\]\s]*)", line)
-            if h and re.search(r"-(rc|alpha|beta)", h.group(1), re.I):
-                ver, sec = None, None
+        for chunk in re.split(r"(?m)^(?=#{1,3}\s+\[?v?\d+\.\d+\.\d+)", text):
+            h = re.match(r"^#{1,3}\s+\[?v?(\d+\.\d+\.\d+[^\]\s]*)", chunk)
+            if not h:
                 continue
-            if h:
-                ver, sec = h.group(1), None
-                out.setdefault(ver, {})
+            ver = h.group(1)
+            if re.search(r"-(rc|alpha|beta)", ver, re.I):
                 continue
-            sub = re.match(r"^#{2,4}\s+(.+)$", line)
-            if sub and ver:
-                t = sub.group(1)
-                sec = ("breaking changes" if BREAK_RX.search(t) else
-                       "security updates" if SECURITY_RX.search(t) else
-                       "bug fixes" if FIX_RX.search(t) else None)
-                continue
-            item = re.match(r"^\s*[-*]\s+(.{10,})$", line)
-            if item and ver:
-                txt = re.sub(r"\s+", " ", item.group(1)).strip()
+            for sec, txt in bullets(chunk):
                 key = classify(txt, sec)
                 if key:
-                    out[ver].setdefault(key, []).append(txt)
+                    out.setdefault(ver, {}).setdefault(key, []).append(txt)
     return {v: s for v, s in out.items() if s}
 
 
@@ -218,22 +247,11 @@ def from_api(repo, tok, pages=3):
             ver = (rel.get("tag_name") or "").lstrip("v")
             if rel.get("prerelease") or re.search(r"-(rc|alpha|beta)", ver, re.I):
                 continue
-            body, sec = rel.get("body") or "", None
             secs = {}
-            for line in body.split("\n"):
-                sub = re.match(r"^#{2,4}\s+(.+)$", line)
-                if sub:
-                    t = sub.group(1)
-                    sec = ("breaking changes" if BREAK_RX.search(t) else
-                           "security updates" if SECURITY_RX.search(t) else
-                           "bug fixes" if FIX_RX.search(t) else None)
-                    continue
-                item = re.match(r"^\s*[-*]\s+(.{10,})$", line)
-                if item:
-                    txt = re.sub(r"\s+", " ", item.group(1)).strip()
-                    key = classify(txt, sec)
-                    if key:
-                        secs.setdefault(key, []).append(txt)
+            for sec, txt in bullets(rel.get("body") or ""):
+                key = classify(txt, sec)
+                if key:
+                    secs.setdefault(key, []).append(txt)
             if secs:
                 out[ver] = secs
     return (out or None), "GitHub Releases API"
