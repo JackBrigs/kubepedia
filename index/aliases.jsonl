@@ -2091,6 +2091,8 @@
 {"alias": "flannel 0.5 fixed in", "ids": ["TROUBLE-FLANNEL_0_5_DEFECTS"]}
 {"alias": "flannel 0.5 known issues", "ids": ["TROUBLE-FLANNEL_0_5_DEFECTS"]}
 {"alias": "flannel cni", "ids": ["COMPONENT-FLANNEL"]}
+{"alias": "flannel cve", "ids": ["TROUBLE-FLANNEL_KNOWN_CVES"]}
+{"alias": "flannel security", "ids": ["TROUBLE-FLANNEL_KNOWN_CVES"]}
 {"alias": "flannel to calico", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "flannel_backend_type", "ids": ["VARIABLE-FLANNEL_BACKEND_TYPE"]}
 {"alias": "flannel_cni_version", "ids": ["VARIABLE-FLANNEL_CNI_VERSION"]}
@@ -2418,7 +2420,9 @@
 {"alias": "ingress-nginx addon", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
 {"alias": "ingress-nginx annotation validation error", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
 {"alias": "ingress-nginx breaking changes", "ids": ["TROUBLE-INGRESS_NGINX_BREAKING_CHANGES"]}
+{"alias": "ingress-nginx cve", "ids": ["TROUBLE-INGRESS_NGINX_KNOWN_CVES"]}
 {"alias": "ingress-nginx removed in v2.31.0 what to do", "ids": ["PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH"]}
+{"alias": "ingress-nginx security", "ids": ["TROUBLE-INGRESS_NGINX_KNOWN_CVES"]}
 {"alias": "ingress-nginx upgrade broke", "ids": ["TROUBLE-INGRESS_NGINX_BREAKING_CHANGES"]}
 {"alias": "ingress-nginx upstream error", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
 {"alias": "ingress2gateway", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY"]}
@@ -2494,7 +2498,11 @@
 {"alias": "ipv6 kubernetes", "ids": ["CONFIG-DUAL_STACK"]}
 {"alias": "ipv6_stack", "ids": ["VARIABLE-IPV6_STACK"]}
 {"alias": "ipvs strictarp metallb", "ids": ["TROUBLE-METALLB_L2_STRICTARP_UNREACHABLE"]}
+{"alias": "is flannel vulnerable", "ids": ["TROUBLE-FLANNEL_KNOWN_CVES"]}
 {"alias": "is forbidden User", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "is ingress-nginx vulnerable", "ids": ["TROUBLE-INGRESS_NGINX_KNOWN_CVES"]}
+{"alias": "is kube-router vulnerable", "ids": ["TROUBLE-KUBE_ROUTER_KNOWN_CVES"]}
+{"alias": "is local-path-provisioner vulnerable", "ids": ["TROUBLE-LOCAL_PATH_PROVISIONER_KNOWN_CVES"]}
 {"alias": "is my cluster healthy", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
 {"alias": "is my cluster secure", "ids": ["CONCEPT-SECURITY_INDEX"]}
 {"alias": "is this argo-cd bug already fixed", "ids": ["TROUBLE-ARGO_CD_0_11_DEFECTS", "TROUBLE-ARGO_CD_0_12_DEFECTS", "TROUBLE-ARGO_CD_0_7_DEFECTS", "TROUBLE-ARGO_CD_0_8_DEFECTS", "TROUBLE-ARGO_CD_0_9_DEFECTS", "TROUBLE-ARGO_CD_1_0_DEFECTS", "TROUBLE-ARGO_CD_1_1_DEFECTS", "TROUBLE-ARGO_CD_1_2_DEFECTS", "TROUBLE-ARGO_CD_1_3_DEFECTS", "TROUBLE-ARGO_CD_1_4_DEFECTS", "TROUBLE-ARGO_CD_1_5_DEFECTS", "TROUBLE-ARGO_CD_1_6_DEFECTS", "TROUBLE-ARGO_CD_1_7_DEFECTS", "TROUBLE-ARGO_CD_1_8_DEFECTS", "TROUBLE-ARGO_CD_2_0_DEFECTS", "TROUBLE-ARGO_CD_2_1_DEFECTS", "TROUBLE-ARGO_CD_2_2_DEFECTS", "TROUBLE-ARGO_CD_2_3_DEFECTS", "TROUBLE-ARGO_CD_2_4_DEFECTS"]}
@@ -2695,6 +2703,8 @@
 {"alias": "kube-router 2.7 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_2_7_DEFECTS"]}
 {"alias": "kube-router 2.7 known issues", "ids": ["TROUBLE-KUBE_ROUTER_2_7_DEFECTS"]}
 {"alias": "kube-router bgp", "ids": ["COMPONENT-KUBE_ROUTER"]}
+{"alias": "kube-router cve", "ids": ["TROUBLE-KUBE_ROUTER_KNOWN_CVES"]}
+{"alias": "kube-router security", "ids": ["TROUBLE-KUBE_ROUTER_KNOWN_CVES"]}
 {"alias": "kube-scheduler crashloop lease", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
 {"alias": "kube-scheduler version", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
 {"alias": "kube-vip", "ids": ["COMPONENT-KUBE_VIP", "TAG-KUBE_VIP"]}
@@ -3359,6 +3369,8 @@
 {"alias": "local-path-provisioner", "ids": ["COMPONENT-LOCAL_PATH_PROVISIONER", "TAG-LOCAL_PATH_PROVISIONER"]}
 {"alias": "local-path-provisioner 0.0 fixed in", "ids": ["TROUBLE-LOCAL_PATH_PROVISIONER_0_0_DEFECTS"]}
 {"alias": "local-path-provisioner 0.0 known issues", "ids": ["TROUBLE-LOCAL_PATH_PROVISIONER_0_0_DEFECTS"]}
+{"alias": "local-path-provisioner cve", "ids": ["TROUBLE-LOCAL_PATH_PROVISIONER_KNOWN_CVES"]}
+{"alias": "local-path-provisioner security", "ids": ["TROUBLE-LOCAL_PATH_PROVISIONER_KNOWN_CVES"]}
 {"alias": "local-volume-provisioner", "ids": ["COMPONENT-LOCAL_VOLUME_PROVISIONER", "TAG-LOCAL_VOLUME_PROVISIONER"]}
 {"alias": "local_path_provisioner_claim_root", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_CLAIM_ROOT"]}
 {"alias": "local_path_provisioner_debug", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_DEBUG"]}

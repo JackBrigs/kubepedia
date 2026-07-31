@@ -1194,6 +1194,8 @@
 {"source": "TROUBLE-FLANNEL_0_25_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-FLANNEL_0_28_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-FLANNEL_0_5_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-FLANNEL_KNOWN_CVES", "target": "COMPONENT-FLANNEL", "type": "see_also"}
+{"source": "TROUBLE-FLANNEL_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-FLATCAR_APISERVER_WAIT_DNS", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-GATEWAY_API_1_4_1_CHECKSUM_MISMATCH", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-GCP_PD_CSI_0_6_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -1284,6 +1286,8 @@
 {"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-INGRESS_NGINX_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-INGRESS_NGINX_KNOWN_CVES", "target": "COMPONENT-INGRESS_NGINX", "type": "see_also"}
+{"source": "TROUBLE-INGRESS_NGINX_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "PRACTICE-LARGE_DEPLOYMENTS", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
@@ -1451,6 +1455,8 @@
 {"source": "TROUBLE-KUBE_ROUTER_2_5_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBE_ROUTER_2_6_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBE_ROUTER_2_7_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-KUBE_ROUTER_KNOWN_CVES", "target": "COMPONENT-KUBE_ROUTER", "type": "see_also"}
+{"source": "TROUBLE-KUBE_ROUTER_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_0_5_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_0_6_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBE_VIP_0_7_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -1487,6 +1493,8 @@
 {"source": "TROUBLE-LEFTOVER_SECONDARY_BOND", "target": "CONCEPT-UBUNTU_NETPLAN", "type": "see_also"}
 {"source": "TROUBLE-LEFTOVER_SECONDARY_BOND", "target": "PRACTICE-NODE_NETWORK_CHANGE", "type": "see_also"}
 {"source": "TROUBLE-LOCAL_PATH_PROVISIONER_0_0_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-LOCAL_PATH_PROVISIONER_KNOWN_CVES", "target": "COMPONENT-LOCAL_PATH_PROVISIONER", "type": "see_also"}
+{"source": "TROUBLE-LOCAL_PATH_PROVISIONER_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "COMPONENT-METALLB", "type": "see_also"}
 {"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "TROUBLE-FIREWALL_PORTS_BLOCKED", "type": "see_also"}
 {"source": "TROUBLE-METALLB_BGP_SESSION_DOWN", "target": "TROUBLE-METALLB_CONFIG_CRD_FRR", "type": "see_also"}
