@@ -32,6 +32,11 @@ CMDS = {
     "verify":   ("check_versions.py", "KB integrity: component versions vs the tagged Kubespray source"),
     "versions": ("versions_lookup.py", "which version of a component ships per tag, and how it is defined"),
     "feed":     ("freshness.py",      "монитор свежести: новые теги, влитые PR апстрима (--upstream/--journal), протухание verified_at"),
+    "issues":   ("upstream_issues.py", "проблемный слой апстрима: CVE, ломающие изменения и дефекты по релизам"),
+    "breaking": ("gen_breaking_docs.py", "документы «ломающие изменения» из добытого проблемного слоя"),
+    "defects":  ("gen_defect_docs.py", "документы «исправленные дефекты» по линиям поддержки"),
+    "cve-matrix": ("gen_cve_matrix.py", "матрица CVE по версиям из конверта тегов (osv.dev)"),
+    "cve":      ("cve_sweep.py",      "периодический пере-свип CVE: сверка матриц базы с osv.dev"),
     "validate": ("validate_kds.py",   "KDS validation of the knowledge base"),
     "index":    ("generate_index.py", "regenerate the derived index/ from kb/"),
 }

@@ -666,6 +666,8 @@
 {"source": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "target": "TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "target": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH", "target": "UPGRADE-V2_30_0__V2_31_0", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_KB_MAINTENANCE", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_KB_MAINTENANCE", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "target": "CONCEPT-RUNBOOKS_INDEX", "type": "part_of"}
 {"source": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "target": "PRACTICE-CLUSTER_HEALTH_CHECKS", "type": "see_also"}

@@ -2641,11 +2641,13 @@
 {"alias": "kata_containers_virtio_fs_cache", "ids": ["VARIABLE-KATA_CONTAINERS_VIRTIO_FS_CACHE"]}
 {"alias": "kata_runtimes", "ids": ["VARIABLE-KATA_RUNTIMES"]}
 {"alias": "kb navigation", "ids": ["CONCEPT-KB_NAVIGATION"]}
+{"alias": "kb periodic maintenance", "ids": ["PRACTICE-RUNBOOK_KB_MAINTENANCE"]}
 {"alias": "keda", "ids": ["CONCEPT-ADDON_KEDA"]}
 {"alias": "keda 2.17.2", "ids": ["CONCEPT-ADDON_KEDA"]}
 {"alias": "keda not scaling", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
 {"alias": "keda scaler error", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
 {"alias": "keda triggerauthentication failing", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
+{"alias": "keep the knowledge base fresh", "ids": ["PRACTICE-RUNBOOK_KB_MAINTENANCE"]}
 {"alias": "keep-terminated-pod-volumes removed", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES", "TROUBLE-K8S_KUBELET_REMOVED_FLAGS"]}
 {"alias": "kernel upgrade node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "kernel version requirements", "ids": ["PRACTICE-KERNEL_REQUIREMENTS"]}
@@ -3605,6 +3607,7 @@
 {"alias": "nginx_config_dir", "ids": ["VARIABLE-NGINX_CONFIG_DIR"]}
 {"alias": "nginx_image_repo", "ids": ["VARIABLE-NGINX_IMAGE_REPO"]}
 {"alias": "nginx_image_tag", "ids": ["VARIABLE-NGINX_IMAGE_TAG"]}
+{"alias": "nightly kb checks", "ids": ["PRACTICE-RUNBOOK_KB_MAINTENANCE"]}
 {"alias": "no blanket cluster-admin", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
 {"alias": "no default storageclass", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
 {"alias": "no internet kubespray deploy", "ids": ["CONCEPT-AIRGAPPED_INSTALL"]}
@@ -4653,6 +4656,7 @@
 {"alias": "what to monitor kubernetes", "ids": ["CONCEPT-OBSERVABILITY_STACK", "PRACTICE-MONITORING_BASELINE"]}
 {"alias": "what to patch", "ids": ["CONCEPT-CVE_REMEDIATION"]}
 {"alias": "what to patch first", "ids": ["CONCEPT-ADDON_PATCH_PRIORITY"]}
+{"alias": "what to run weekly on the knowledge base", "ids": ["PRACTICE-RUNBOOK_KB_MAINTENANCE"]}
 {"alias": "whenDeleted whenScaled", "ids": ["CONCEPT-K8S_STATEFULSET_PVC_AUTODELETE"]}
 {"alias": "where do I start", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "where to set variables", "ids": ["CONCEPT-SAMPLE_INVENTORY_LAYOUT"]}
