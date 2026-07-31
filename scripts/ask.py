@@ -39,6 +39,15 @@ KB = os.path.join(REPO, "kb")
 # содержательное совпадение он не должен — замер показал, что при большом весе
 # он начинает тасовать доки внутри отвечающего слоя и портит выдачу
 TYPE_BOOST = {"troubleshooting": 10, "runbook": 6, "best_practice": 3, "upgrade": 3}
+# Машинный слой (перечни исправленных дефектов по линиям поддержки) — это указатель,
+# а не разбор: тысячи строк из заметок апстрима без причины, диагностики и лечения.
+# По объёму текста он легко перебивает разобранные документы, поэтому в общем поиске
+# уходит вниз. Наверх поднимается только когда спрашивают именно его: назван компонент
+# и версия, либо прямо спрашивают «уже чинили?».
+INDEX_LAYER_RX = re.compile(r"_DEFECTS$")
+INDEX_LAYER_PENALTY = 0.25
+INDEX_LAYER_WANTED_RX = re.compile(
+    r"\b\d+\.\d+\b|already fixed|fixed in|known issues|changelog|release notes", re.I)
 # секции, где лежит «что делать»
 FIX_SECTIONS = ("Known Issues", "Resolution", "Fix", "Remediation", "Procedure", "Steps")
 CAUSE_SECTIONS = ("Summary", "Problem")
@@ -358,6 +367,8 @@ def score(doc, query, terms, stats):
         why.append(f"в заголовке: {hit_title}")
 
     s += TYPE_BOOST.get(doc["type"], 0)
+    if INDEX_LAYER_RX.search(doc.get("id", "")) and not INDEX_LAYER_WANTED_RX.search(query):
+        s *= INDEX_LAYER_PENALTY
     if doc["confidence"] in ("verified", "confirmed"):
         s += 4
     return int(s), why

@@ -19,6 +19,7 @@ Ground truth — документ, из которого взят запрос. 
 import argparse
 import os
 import random
+import collections
 import re
 import sys
 
@@ -36,13 +37,35 @@ class Args:
     top = 3
 
 
-def body_sentence(doc):
+def boilerplate(docs, threshold=3):
+    """Предложения, повторяющиеся в нескольких документах, — это шаблон, а не содержание.
+
+    Замер строит запрос из предложения тела и ждёт, что найдётся именно этот документ.
+    Если предложение общее для сотен документов (у машинного слоя это оговорка о том,
+    как он собран), запрос неразрешим по построению и засчитывается промахом всем,
+    кроме одного. Такие предложения из выборки исключаются — иначе тест меряет себя.
+    """
+    seen = collections.Counter()
+    for d in docs:
+        for s in sentences(d):
+            seen[s] += 1
+    return {s for s, n in seen.items() if n >= threshold}
+
+
+def sentences(doc):
+    body = re.sub(r"```.*?```", " ", doc["body"], flags=re.S)
+    body = re.sub(r"\[\[[^\]]+\]\]", " ", body)
+    body = re.sub(r"[|#*`>-]", " ", body)
+    return [s.strip() for s in re.split(r"(?<=[.!?])\s+", body)
+            if 60 < len(s.strip()) < 220]
+
+
+def body_sentence(doc, skip=frozenset()):
     """Предложение из середины тела — как оператор описал бы проблему словами."""
     body = re.sub(r"```.*?```", " ", doc["body"], flags=re.S)
     body = re.sub(r"\[\[[^\]]+\]\]", " ", body)
     body = re.sub(r"[|#*`>-]", " ", body)
-    sents = [s.strip() for s in re.split(r"(?<=[.!?])\s+", body)
-             if 60 < len(s.strip()) < 220]
+    sents = [s for s in sentences(doc) if s not in skip]
     return sents[len(sents) // 2] if sents else None
 
 
@@ -51,7 +74,7 @@ def drop_first_term(title):
     return " ".join(words[1:]) if len(words) > 2 else title
 
 
-def build_sets(pool, n, seed):
+def build_sets(pool, n, seed, skip=frozenset()):
     random.seed(seed)
     aliases = [(a, d["id"]) for d in pool for a in d["aliases"] if len(a) >= 12]
     sets = {
@@ -62,7 +85,7 @@ def build_sets(pool, n, seed):
     }
     prose = []
     for d in random.sample(pool, min(n, len(pool))):
-        q = body_sentence(d)
+        q = body_sentence(d, skip)
         if q:
             prose.append((q, d["id"]))
     sets["prose"] = prose
@@ -106,7 +129,11 @@ def main():
     pool = [d for d in docs if d["type"] in ANSWER_TYPES]
     print(f"документов: {len(docs)}, отвечающий слой: {len(pool)}\n")
 
-    sets = build_sets(pool, args.n, args.seed)
+    # машинные перечни дефектов — указатель в заметки апстрима, а не отвечающий документ:
+    # заголовки у них шаблонные («<компонент> <линия>: defects fixed in the <линия> line»),
+    # и замер по ним меряет не качество поиска, а однообразие шаблона
+    pool = [d for d in pool if not d["id"].endswith("_DEFECTS")]
+    sets = build_sets(pool, args.n, args.seed, boilerplate(docs))
     for name, pairs in sets.items():
         if args.only and name != args.only:
             continue
