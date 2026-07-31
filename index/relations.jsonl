@@ -245,6 +245,12 @@
 {"source": "CONCEPT-GITOPS", "target": "COMPONENT-ARGOCD", "type": "see_also"}
 {"source": "CONCEPT-GITOPS", "target": "PRACTICE-BACKUP_DR", "type": "see_also"}
 {"source": "CONCEPT-GITOPS", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
+{"source": "CONCEPT-GO_MODULE_MAJOR_PATH", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
+{"source": "CONCEPT-GO_MODULE_MAJOR_PATH", "target": "TROUBLE-CONTAINERD_KNOWN_CVES", "type": "see_also"}
+{"source": "CONCEPT-GO_RUNTIME_CPU", "target": "CONCEPT-SCALE_LIMITS", "type": "see_also"}
+{"source": "CONCEPT-GO_RUNTIME_CPU", "target": "CONFIG-CPU_ISOLATION", "type": "see_also"}
+{"source": "CONCEPT-GO_RUNTIME_MEMORY", "target": "COMPONENT-ETCD", "type": "see_also"}
+{"source": "CONCEPT-GO_RUNTIME_MEMORY", "target": "CONCEPT-SCALE_LIMITS", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "COMPONENT-HELM", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT", "type": "see_also"}
@@ -367,6 +373,8 @@
 {"source": "CONCEPT-OBSERVABILITY_STACK", "target": "COMPONENT-METRICS_SERVER", "type": "see_also"}
 {"source": "CONCEPT-OBSERVABILITY_STACK", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
 {"source": "CONCEPT-OBSERVABILITY_STACK", "target": "TROUBLE-KUBELET_SERVING_CERT_TLS", "type": "see_also"}
+{"source": "CONCEPT-OSV_RECORD_PITFALLS", "target": "CONCEPT-GO_MODULE_MAJOR_PATH", "type": "see_also"}
+{"source": "CONCEPT-OSV_RECORD_PITFALLS", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "CONCEPT-OVN4NFV", "target": "CONCEPT-CUSTOM_CNI", "type": "see_also"}
 {"source": "CONCEPT-OVN4NFV", "target": "ROLE-NETWORK_PLUGIN", "type": "see_also"}
 {"source": "CONCEPT-OVN4NFV", "target": "VARIABLE-KUBE_NETWORK_PLUGIN", "type": "see_also"}

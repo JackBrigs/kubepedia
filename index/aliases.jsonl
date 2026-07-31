@@ -1269,6 +1269,7 @@
 {"alias": "containerd still uses proxy after removing http_proxy", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "containerd task v3 downgrade", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
 {"alias": "containerd upgrade broke", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
+{"alias": "containerd v2 module path", "ids": ["CONCEPT-GO_MODULE_MAJOR_PATH"]}
 {"alias": "containerd vs cri-o vs docker", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "containerd-http-proxy-conf", "ids": ["TROUBLE-CONTAINERD_NO_PROXY_CHAR_ARRAY"]}
 {"alias": "containerd-shim-runc-v2 memory leak", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
@@ -1352,6 +1353,7 @@
 {"alias": "control-plane-override-hostname-delegation", "ids": ["TROUBLE-CONTROL_PLANE_OVERRIDE_HOSTNAME_DELEGATION"]}
 {"alias": "control_plane_health_retries", "ids": ["VARIABLE-CONTROL_PLANE_HEALTH_RETRIES"]}
 {"alias": "control_plane_node_become_ready_tries", "ids": ["VARIABLE-CONTROL_PLANE_NODE_BECOME_READY_TRIES"]}
+{"alias": "controller cpu throttling go", "ids": ["CONCEPT-GO_RUNTIME_CPU"]}
 {"alias": "controller_manager_extra_volumes", "ids": ["VARIABLE-CONTROLLER_MANAGER_EXTRA_VOLUMES"]}
 {"alias": "controlplane.yaml worker.yaml", "ids": ["CONCEPT-TALOS_MACHINE_CONFIG"]}
 {"alias": "copy CA to /etc/kubernetes/pki", "ids": ["TROUBLE-CERT_DIR_SSL_NOT_PKI"]}
@@ -1540,6 +1542,7 @@
 {"alias": "custom_cni_chart_values", "ids": ["VARIABLE-CUSTOM_CNI_CHART_VALUES"]}
 {"alias": "custom_cni_chart_version", "ids": ["VARIABLE-CUSTOM_CNI_CHART_VERSION"]}
 {"alias": "custom_cni_manifests", "ids": ["CONCEPT-CUSTOM_CNI", "VARIABLE-CUSTOM_CNI_MANIFESTS"]}
+{"alias": "cve matrix says fixed version is affected", "ids": ["CONCEPT-OSV_RECORD_PITFALLS"]}
 {"alias": "cve overview kubespray", "ids": ["CONCEPT-SECURITY_INDEX"]}
 {"alias": "cve remediation", "ids": ["CONCEPT-CVE_REMEDIATION"]}
 {"alias": "cve tracking", "ids": ["CONCEPT-SECURITY_ADVISORIES"]}
@@ -1934,6 +1937,7 @@
 {"alias": "event driven autoscaling", "ids": ["CONCEPT-ADDON_KEDA"]}
 {"alias": "event_ttl_duration", "ids": ["VARIABLE-EVENT_TTL_DURATION"]}
 {"alias": "evented pleg panic", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
+{"alias": "every version shows the same cves", "ids": ["CONCEPT-OSV_RECORD_PITFALLS"]}
 {"alias": "eviction_hard", "ids": ["VARIABLE-EVICTION_HARD"]}
 {"alias": "eviction_hard_control_plane", "ids": ["VARIABLE-EVICTION_HARD_CONTROL_PLANE"]}
 {"alias": "exc", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER"]}
@@ -2125,6 +2129,7 @@
 {"alias": "fuse-overlayfs native snapshotter", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
 {"alias": "gVisor runsc", "ids": ["PRACTICE-GVISOR"]}
 {"alias": "garbage collection stalls", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
+{"alias": "garbage collector container memory limit", "ids": ["CONCEPT-GO_RUNTIME_MEMORY"]}
 {"alias": "gateway api 1.4.1 checksum mismatch", "ids": ["TROUBLE-GATEWAY_API_1_4_1_CHECKSUM_MISMATCH"]}
 {"alias": "gateway api controller vulnerabilities", "ids": ["TROUBLE-ENVOY_GATEWAY_KNOWN_CVES"]}
 {"alias": "gateway api crd 1.4.0 upgrade", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
@@ -2197,6 +2202,11 @@
 {"alias": "gitlab-runner", "ids": ["CONCEPT-ADDON_GITLAB_RUNNER"]}
 {"alias": "gitops secrets", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
 {"alias": "global_as_num", "ids": ["VARIABLE-GLOBAL_AS_NUM"]}
+{"alias": "go component oomkilled", "ids": ["CONCEPT-GO_RUNTIME_MEMORY"]}
+{"alias": "go module vN path", "ids": ["CONCEPT-GO_MODULE_MAJOR_PATH"]}
+{"alias": "go process uses all host cpus", "ids": ["CONCEPT-GO_RUNTIME_CPU"]}
+{"alias": "gomaxprocs container", "ids": ["CONCEPT-GO_RUNTIME_CPU"]}
+{"alias": "gomemlimit", "ids": ["CONCEPT-GO_RUNTIME_MEMORY"]}
 {"alias": "gpu allocation kubernetes DRA", "ids": ["CONCEPT-K8S_DRA"]}
 {"alias": "gpu management pod no runtimeclass", "ids": ["TROUBLE-GPU_OPERATOR_CDI_RUNTIMECLASS"]}
 {"alias": "gpu nodes not labeled", "ids": ["TROUBLE-NFD_LABELS_MISSING"]}
@@ -3781,6 +3791,9 @@
 {"alias": "ordered webhooks", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "orphaned released pv", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "os patching kubernetes node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
+{"alias": "osv git range not version filterable", "ids": ["CONCEPT-OSV_RECORD_PITFALLS"]}
+{"alias": "osv introduced 0 no fixed", "ids": ["CONCEPT-OSV_RECORD_PITFALLS"]}
+{"alias": "osv query returns too few cves", "ids": ["CONCEPT-GO_MODULE_MAJOR_PATH"]}
 {"alias": "otel auto-instrumentation not working", "ids": ["TROUBLE-OTEL_OPERATOR"]}
 {"alias": "otel collector not created", "ids": ["TROUBLE-OTEL_OPERATOR"]}
 {"alias": "otel operator", "ids": ["CONCEPT-ADDON_OTEL_OPERATOR"]}
@@ -4652,6 +4665,9 @@
 {"alias": "who sets nf_conntrack_max", "ids": ["CONCEPT-TUNED_SYSCTL_OWNERSHIP"]}
 {"alias": "who upgrades etcd kubespray", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
 {"alias": "who upgrades kubernetes kubespray", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
+{"alias": "why does the cve matrix under-report", "ids": ["CONCEPT-GO_MODULE_MAJOR_PATH"]}
+{"alias": "why does the go component spawn so many threads", "ids": ["CONCEPT-GO_RUNTIME_CPU"]}
+{"alias": "why is my go controller oom killed", "ids": ["CONCEPT-GO_RUNTIME_MEMORY"]}
 {"alias": "win_nodes", "ids": ["TAG-WIN_NODES"]}
 {"alias": "wipe node kubernetes", "ids": ["PRACTICE-RUNBOOK_RESET"]}
 {"alias": "wrong INTERNAL-IP on node", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
