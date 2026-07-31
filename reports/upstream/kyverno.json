@@ -1,0 +1,7 @@
+{
+ "1.13.0": {
+  "bug fixes": [
+   "Fixed inconsistent ordering of `imagePullSecrets` in Helm charts which could cause GitOps tools like ArgoCD to show OutOfSync status ([#12995](https://github.com/kyverno/kyverno/issues/12995))"
+  ]
+ }
+}

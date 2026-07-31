@@ -119,6 +119,8 @@ def yaml_notes(path):
         if not f.endswith(".yaml"):
             continue
         ver = os.path.basename(f)[:-5]
+        if re.search(r"-(rc|alpha|beta)", ver, re.I):
+            continue            # кандидаты дублируют финальный релиз — двойной счёт
         text = sh("git", "show", f"origin/main:{f}", cwd=path) or sh("git", "show", f"HEAD:{f}", cwd=path)
         secs = {}
         for name in ("breaking changes", "security updates", "bug fixes"):
@@ -141,6 +143,9 @@ def changelog_notes(path):
         ver, sec = None, None
         for line in text.split("\n"):
             h = re.match(r"^#{1,3}\s+\[?v?(\d+\.\d+\.\d+[^\]\s]*)", line)
+            if h and re.search(r"-(rc|alpha|beta)", h.group(1), re.I):
+                ver, sec = None, None
+                continue
             if h:
                 ver, sec = h.group(1), None
                 out.setdefault(ver, {})
@@ -195,6 +200,8 @@ def from_api(repo, tok, pages=3):
             break
         for rel in batch:
             ver = (rel.get("tag_name") or "").lstrip("v")
+            if rel.get("prerelease") or re.search(r"-(rc|alpha|beta)", ver, re.I):
+                continue
             body, sec = rel.get("body") or "", None
             secs = {}
             for line in body.split("\n"):

@@ -1,0 +1,690 @@
+{
+ "1.21.1": {
+  "bug fixes": [
+   "Fixed an issue in `ResponseError.Error()` where the request URL path was being logged unescaped.",
+   "Redact query parameters when logging errors.",
+   "For `runtime.JoinPaths`, don't add a slash between root and paths when `paths` starts with `?` (query string)."
+  ]
+ },
+ "1.20.0": {
+  "bug fixes": [
+   "Fixed potential panic when decoding base64 strings.",
+   "Fixed an issue in resource identifier parsing which prevented it from returning an error for malformed resource IDs."
+  ]
+ },
+ "1.19.1": {
+  "bug fixes": [
+   "Fixed resource identifier parsing for provider-specific resource hierarchies containing \"resourceGroups\" segments."
+  ]
+ },
+ "1.18.2": {
+  "bug fixes": [
+   "Fixed a case in which `BearerTokenPolicy` didn't ensure an authentication error is non-retriable"
+  ]
+ },
+ "1.18.1": {
+  "bug fixes": [
+   "Fixed incorrect request/response logging try info when logging a request that's being retried.",
+   "Fixed a data race in `ResourceID.String()`"
+  ]
+ },
+ "1.16.0": {
+  "bug fixes": [
+   "`BearerTokenPolicy` now rewinds request bodies before retrying"
+  ]
+ },
+ "1.15.0": {
+  "bug fixes": [
+   "Omit the `ResponseError.RawResponse` field from JSON marshaling so instances can be marshaled.",
+   "Fixed an integer overflow in the retry policy."
+  ]
+ },
+ "1.14.0": {
+  "breaking changes": [
+   "Removed `WorkloadIdentityCredentialOptions.EnableAzureProxy`."
+  ],
+  "bug fixes": [
+   "`AzureDeveloperCLICredential` improved reporting of error messages returned from `azd`"
+  ]
+ },
+ "1.13.0": {
+  "breaking changes": [
+   "Removed the `WorkloadIdentityCredential` support for identity binding mode added in v1.13.0-beta.1."
+  ]
+ },
+ "1.12.0": {
+  "bug fixes": [
+   "Fixed an issue that prevented pollers using the `Operation-Location` strategy from unmarshaling the final result in some cases."
+  ]
+ },
+ "1.11.1": {
+  "bug fixes": [
+   "Pollers that use the `Location` header won't consider `http.StatusRequestTimeout` a terminal failure.",
+   "`runtime.Poller[T].Result` won't consider non-terminal error responses as terminal."
+  ]
+ },
+ "1.11.0": {
+  "bug fixes": [
+   "`runtime.SetMultipartFormData` won't try to stringify `[]byte` values.",
+   "Pollers that use the `Location` header won't consider `http.StatusTooManyRequests` a terminal failure."
+  ]
+ },
+ "1.10.0": {
+  "bug fixes": [
+   "Fixed a potential race condition between `NullValue` and `IsNullValue`.",
+   "`runtime.EncodeQueryParams` will escape semicolons before calling `url.ParseQuery`."
+  ]
+ },
+ "1.9.2": {
+  "bug fixes": [
+   "`runtime.MarshalAsByteArray` and `runtime.MarshalAsJSON` will preserve the preexisting value of the `Content-Type` header."
+  ]
+ },
+ "1.9.1": {
+  "bug fixes": [
+   "The `retry-after-ms` and `x-ms-retry-after-ms` headers weren't being checked during retries."
+  ]
+ },
+ "1.9.0": {
+  "breaking changes": [
+   "The function `NewTokenCredential` has been removed from the `fake` package. Use a literal `&fake.TokenCredential{}` instead.",
+   "The field `TracingNamespace` in `runtime.PipelineOptions` has been replaced by `TracingOptions`."
+  ],
+  "bug fixes": [
+   "Fixed an issue that could cause some allowed HTTP header values to not show up in logs.",
+   "Include error text instead of error type in traces when the transport returns an error.",
+   "Fixed an issue that could cause an HTTP/2 request to hang when the TCP connection becomes unresponsive.",
+   "Block key and SAS authentication for non TLS protected endpoints.",
+   "Passing a `nil` credential value will no longer cause a panic. Instead, the authentication is skipped.",
+   "Calling `Error` on a zero-value `azcore.ResponseError` will no longer panic.",
+   "Fixed an issue in `fake.PagerResponder[T]` that would cause a trailing error to be omitted when iterating over pages.",
+   "Context values created by `azcore` will no longer flow across disjoint HTTP requests."
+  ]
+ },
+ "1.8.0": {
+  "breaking changes": [
+   "The beta features for tracing and fakes have been omitted for this release."
+  ],
+  "bug fixes": [
+   "Fixed an issue that could cause some ARM RPs to not be automatically registered.",
+   "Block bearer token authentication for non TLS protected endpoints."
+  ]
+ },
+ "1.7.2": {
+  "bug fixes": [
+   "Fix default HTTP transport to work in WASM modules."
+  ]
+ },
+ "1.7.1": {
+  "bug fixes": [
+   "Enable TLS renegotiation in the default transport policy."
+  ]
+ },
+ "1.7.0": {
+  "breaking changes": [
+   "The beta features for CAE, tracing, and fakes have been omitted for this release.",
+   "Removed the persistent token caching API. It will return in v1.8.0-beta.1"
+  ]
+ },
+ "1.6.1": {
+  "bug fixes": [
+   "Fixed an issue in `azcore.NewClient()` and `arm.NewClient()` that could cause an incorrect module name to be used in telemetry."
+  ]
+ },
+ "1.6.0": {
+  "breaking changes": [
+   "Removed `AzurePipelinesCredential` and the persistent token caching API."
+  ],
+  "bug fixes": [
+   "Managed identity bug fixes"
+  ]
+ },
+ "1.5.0": {
+  "breaking changes": [
+   "Removed `TokenRequestOptions.Claims` and `.TenantID`",
+   "Removed ARM client support for CAE and cross-tenant auth.",
+   "Removed persistent token caching. It will return in v1.6.0-beta.1"
+  ],
+  "bug fixes": [
+   "Added non-conformant LRO terminal states `Cancelled` and `Completed`.",
+   "Credentials now preserve MSAL headers e.g. X-Client-Sku",
+   "#78: Fix unchecked error in example code (thanks @ravron)",
+   "#70: Fix the handling of pre-releases and the 0.0.0 release edge case",
+   "#97: Fixed copyright file for proper display on GitHub",
+   "#107: Fix handling prerelease when sorting alphanum and num",
+   "#109: Fixed where Validate sometimes returns wrong message on error"
+  ]
+ },
+ "1.4.0": {
+  "bug fixes": [
+   "ARM's RP registration policy will no longer swallow unrecognized errors.",
+   "Fixed an issue in `runtime.NewPollerFromResumeToken()` when resuming a `Poller` with a custom `PollingHandler`.",
+   "Fixed wrong policy copy in `arm/runtime.NewPipeline()`.",
+   "`ManagedIdentityCredential` will now retry when IMDS responds 410 or 503"
+  ]
+ },
+ "1.3.1": {
+  "bug fixes": [
+   "Fixed #57: number comparisons in prerelease sometimes inaccurate"
+  ]
+ },
+ "1.3.0": {
+  "breaking changes": [
+   "Renamed `NewOnBehalfOfCredentialFromCertificate` to `NewOnBehalfOfCredentialWithCertificate`",
+   "Renamed `NewOnBehalfOfCredentialFromSecret` to `NewOnBehalfOfCredentialWithSecret`"
+  ],
+  "bug fixes": [
+   "#51: Fix handling of single digit tilde constraint (thanks @dgodd)"
+  ]
+ },
+ "1.2.0": {
+  "bug fixes": [
+   "Fixed an issue in `runtime.SetMultipartFormData` to properly handle slices of `io.ReadSeekCloser`.",
+   "Fixed the MaxRetryDelay default to be 60s.",
+   "Failure to poll the state of an LRO will now return an `*azcore.ResponseError` for poller types that require this behavior.",
+   "Fixed a bug in `runtime.NewPipeline` that would cause pipeline-specified allowed headers and query parameters to be lost."
+  ]
+ },
+ "1.1.4": {
+  "bug fixes": [
+   "Don't retry a request if the `Retry-After` delay is greater than the configured `RetryOptions.MaxRetryDelay`.",
+   "`runtime.JoinPaths`: do not unconditionally add a forward slash before the query string"
+  ]
+ },
+ "1.1.3": {
+  "bug fixes": [
+   "Adjusted the initial retry delay to 800ms per the Azure SDK guidelines."
+  ]
+ },
+ "1.1.1": {
+  "bug fixes": [
+   "Avoid polling when a RELO LRO synchronously terminates."
+  ]
+ },
+ "1.0.0": {
+  "breaking changes": [
+   "Renamed `cloud.Configuration.LoginEndpoint` to `.ActiveDirectoryAuthorityHost`",
+   "Renamed `cloud.AzurePublicCloud` to `cloud.AzurePublic`",
+   "Removed `AuxiliaryTenants` field from `arm/ClientOptions` and `arm/policy/BearerTokenOptions`",
+   "Removed `TokenRequestOptions.TenantID`",
+   "`Poller[T].PollUntilDone()` now takes an `options *PollUntilDoneOptions` param instead of `freq time.Duration`",
+   "Removed `arm/runtime.Poller[T]`, `arm/runtime.NewPoller[T]()` and `arm/runtime.NewPollerFromResumeToken[T]()`",
+   "Removed `arm/runtime.FinalStateVia` and related `const` values",
+   "Renamed `runtime.PageProcessor` to `runtime.PagingHandler`",
+   "The `arm/runtime.ProviderRepsonse` and `arm/runtime.Provider` types are no longer exported.",
+   "Renamed `NewRequestIdPolicy()` to `NewRequestIDPolicy()`",
+   "`TokenCredential.GetToken` now returns `AccessToken` by value.",
+   "Removed `AuthorizationCodeCredential`. Use `InteractiveBrowserCredential` instead",
+   "Instances of `AuthenticationFailedError` are now returned by pointer.",
+   "`GetToken()` returns `azcore.AccessToken` by value"
+  ],
+  "bug fixes": [
+   "When per-try timeouts are enabled, only cancel the context after the body has been read and closed.",
+   "The `Operation-Location` poller now properly handles `final-state-via` values.",
+   "Improvements in `runtime.Poller[T]`",
+   "`Poll()` shouldn't cache errors, allowing for additional retries when in a non-terminal state.",
+   "`Result()` will cache the terminal result or error but not transient errors, allowing for additional retries.",
+   "`AzureCLICredential` panics after receiving an unexpected error type"
+  ]
+ },
+ "0.23.1": {
+  "bug fixes": [
+   "Include XML header when marshalling XML content.",
+   "Handle XML namespaces when searching for error code.",
+   "Handle `odata.error` when searching for error code."
+  ]
+ },
+ "0.23.0": {
+  "breaking changes": [
+   "Removed the `Poller` type-alias to the internal poller implementation.",
+   "Added `Ptr[T any]` and `SliceOfPtrs[T any]` in the `to` package and removed all non-generic implementations.",
+   "`NullValue` and `IsNullValue` now take a generic type parameter instead of an interface func parameter.",
+   "Replaced `arm.Endpoint` with `cloud` API",
+   "Removed the `endpoint` parameter from `NewRPRegistrationPolicy()`",
+   "`arm/runtime.NewPipeline()` and `.NewRPRegistrationPolicy()` now return an `error`",
+   "Refactored `NewPoller` and `NewPollerFromResumeToken` funcs in `arm/runtime` and `runtime` packages.",
+   "Removed the `pollerID` parameter as it's no longer required.",
+   "Created optional parameter structs and moved optional parameters into them.",
+   "Changed `FinalStateVia` field to a `const` type."
+  ]
+ },
+ "0.22.0": {
+  "breaking changes": [
+   "Moved `WithHTTPHeader` and `WithRetryOptions` from the `policy` package to the `runtime` package."
+  ]
+ },
+ "0.21.1": {
+  "bug fixes": [
+   "Restore response body after reading in `Poller.FinalResponse()`. (#16911)",
+   "Fixed bug in `NullValue` that could lead to incorrect comparisons for empty maps/slices (#16969)"
+  ]
+ },
+ "0.21.0": {
+  "breaking changes": [
+   "Moved `[]policy.Policy` parameters of `arm/runtime.NewPipeline` and `runtime.NewPipeline` into a new struct, `runtime.PipelineOptions`",
+   "Renamed `arm/ClientOptions.Host` to `.Endpoint`",
+   "Moved `Request.SkipBodyDownload` method to function `runtime.SkipBodyDownload`",
+   "Removed `azcore.HTTPResponse` interface type",
+   "`arm.NewPoller()` and `runtime.NewPoller()` no longer require an `eu` parameter",
+   "`runtime.NewResponseError()` no longer requires an `error` parameter"
+  ]
+ },
+ "0.20.0": {
+  "breaking changes": [
+   "Removed `arm.Connection`",
+   "Removed `azcore.Credential` and `.NewAnonymousCredential()`",
+   "`NewRPRegistrationPolicy` now requires an `azcore.TokenCredential`",
+   "`runtime.NewPipeline` has a new signature that simplifies implementing custom authentication",
+   "`arm/runtime.RegistrationOptions` embeds `policy.ClientOptions`",
+   "Contents in the `log` package have been slightly renamed.",
+   "Removed `AuthenticationOptions` in favor of `policy.BearerTokenOptions`",
+   "Changed parameters for `NewBearerTokenPolicy()`",
+   "Moved policy config options out of `arm/runtime` and into `arm/policy`"
+  ],
+  "bug fixes": [
+   "Fixed a potential panic when creating the default Transporter.",
+   "Close LRO initial response body when creating a poller.",
+   "Fixed a panic when recursively cloning structs that contain time.Time."
+  ]
+ },
+ "0.19.0": {
+  "breaking changes": [
+   "Split content out of `azcore` into various packages. The intent is to separate content based on its usage (common, uncommon, SDK authors).",
+   "`azcore` has all core functionality.",
+   "`log` contains facilities for configuring in-box logging.",
+   "`policy` is used for configuring pipeline options and creating custom pipeline policies.",
+   "`runtime` contains various helpers used by SDK authors and generated content.",
+   "`streaming` has helpers for streaming IO operations.",
+   "`NewTelemetryPolicy()` now requires module and version parameters and the `Value` option has been removed.",
+   "As a result, the `Request.Telemetry()` method has been removed.",
+   "The telemetry policy now includes the SDK prefix `azsdk-go-` so callers no longer need to provide it.",
+   "The `*http.Request` in `runtime.Request` is no longer anonymously embedded. Use the `Raw()` method to access it.",
+   "The `UserAgent` and `Version` constants have been made internal, `Module` and `Version` respectively."
+  ],
+  "bug fixes": [
+   "Fixed an issue in the retry policy where the request body could be overwritten after a rewind."
+  ]
+ },
+ "0.18.1": {
+  "bug fixes": [
+   "`JoinPaths` will preserve query parameters encoded in the `root` url."
+  ]
+ },
+ "0.18.0": {
+  "breaking changes": [
+   "Removes `Logger` type from `azcore`"
+  ]
+ },
+ "0.17.0": {
+  "breaking changes": [
+   "Rename `AnonymousCredential` to `NewAnonymousCredential` (https://github.com/Azure/azure-sdk-for-go/pull/15104)",
+   "rename `AuthenticationPolicyOptions` to `AuthenticationOptions` (https://github.com/Azure/azure-sdk-for-go/pull/15103)",
+   "Make Header constants private (https://github.com/Azure/azure-sdk-for-go/pull/15038)"
+  ]
+ },
+ "0.15.0": {
+  "breaking changes": [
+   "remove `Response.UnmarshalError` as it's no longer required"
+  ]
+ },
+ "0.14.4": {
+  "bug fixes": [
+   "Fixed content type detection bug in logging."
+  ]
+ },
+ "0.14.2": {
+  "bug fixes": [
+   "Fixed improper error wrapping"
+  ]
+ },
+ "0.14.0": {
+  "breaking changes": [
+   "This module now requires Go 1.18",
+   "Removed `AuthorityHost`. Credentials are now configured for sovereign or private"
+  ]
+ },
+ "0.13.2": {
+  "bug fixes": [
+   "Prevented a data race in `DefaultAzureCredential` and `ChainedTokenCredential`"
+  ]
+ },
+ "0.13.1": {
+  "bug fixes": [
+   "`ManagedIdentityCredential.GetToken()` now returns an error when configured for"
+  ]
+ },
+ "0.13.0": {
+  "breaking changes": [
+   "Replaced `AuthenticationFailedError.RawResponse()` with a field having the same name",
+   "Unexported `CredentialUnavailableError`",
+   "Instances of `ChainedTokenCredential` will now skip looping through the list of source credentials and re-use the first successful credential on subsequent calls to `GetToken`.",
+   "If `ChainedTokenCredentialOptions.RetrySources` is true, `ChainedTokenCredential` will continue to try all of the originally provided credentials each time the `GetToken` method is called.",
+   "`ChainedTokenCredential.successfulCredential` will contain a reference to the last successful credential.",
+   "`DefaultAzureCredenial` will also re-use the first successful credential on subsequent calls to `GetToken`.",
+   "`DefaultAzureCredential.chain.successfulCredential` will also contain a reference to the last successful credential."
+  ]
+ },
+ "0.12.0": {
+  "breaking changes": [
+   "Raised minimum go version to 1.16",
+   "Removed `NewAuthenticationPolicy()` from credentials. Clients should instead use azcore's",
+   "The `AuthorityHost` field in credential options structs is now a custom type,",
+   "`NewChainedTokenCredential` has a new signature to accommodate a placeholder",
+   "Removed `ExcludeAzureCLICredential`, `ExcludeEnvironmentCredential`, and `ExcludeMSICredential`",
+   "`NewClientCertificateCredential` requires a `[]*x509.Certificate` and `crypto.PrivateKey` instead of",
+   "Removed `InteractiveBrowserCredentialOptions.ClientSecret` and `.Port`",
+   "Removed `AADAuthenticationFailedError`",
+   "Removed `id` parameter of `NewManagedIdentityCredential()`. User assigned identities are now",
+   "`DeviceCodeCredentialOptions.UserPrompt` has a new type: `func(context.Context, DeviceCodeMessage) error`",
+   "Credential options structs now embed `azcore.ClientOptions`. In addition to changing literal initialization",
+   "Renamed `LogCredential` to `EventCredential`",
+   "`AzureCLICredential` no longer reads the environment variable `AZURE_CLI_PATH`",
+   "`NewManagedIdentityCredential` no longer reads environment variables `AZURE_CLIENT_ID` and",
+   "Unexported `AuthenticationFailedError` and `CredentialUnavailableError` structs. In their place are two"
+  ],
+  "bug fixes": [
+   "`AzureCLICredential.GetToken` no longer mutates its `opts.Scopes`"
+  ]
+ },
+ "0.11.0": {
+  "breaking changes": [
+   "Unexported `AzureCLICredentialOptions.TokenProvider` and its type,"
+  ],
+  "bug fixes": [
+   "`ManagedIdentityCredential.GetToken` returns `CredentialUnavailableError`"
+  ]
+ },
+ "0.10.0": {
+  "breaking changes": [
+   "Update based on `azcore` refactor [#15383](https://github.com/Azure/azure-sdk-for-go/pull/15383)"
+  ]
+ },
+ "0.9.3": {
+  "bug fixes": [
+   "`ManagedIdentityCredential.GetToken` no longer mutates its `opts.Scopes`"
+  ]
+ },
+ "0.8.2": {
+  "bug fixes": [
+   "Fixed a bug in body download policy."
+  ]
+ },
+ "0.5.0": {
+  "breaking changes": [
+   "Removed `IterationDone`"
+  ]
+ },
+ "0.3.0": {
+  "breaking changes": [
+   "Removed `Response.CheckStatusCode()`"
+  ]
+ },
+ "1.13.1": {
+  "bug fixes": [
+   "`AzureCLICredential` quoted arguments incorrectly on Windows"
+  ]
+ },
+ "1.10.1": {
+  "bug fixes": [
+   "`AzureCLICredential` and `AzureDeveloperCLICredential` could wait indefinitely for subprocess output"
+  ]
+ },
+ "1.8.1": {
+  "bug fixes": [
+   "User credential types inconsistently log access token scopes",
+   "`DefaultAzureCredential` skips managed identity in Azure Container Instances",
+   "Credentials having optional tenant IDs such as `AzureCLICredential` and"
+  ]
+ },
+ "1.5.2": {
+  "bug fixes": [
+   "`ManagedIdentityCredential` now specifies resource IDs correctly for Azure Container Instances"
+  ]
+ },
+ "1.5.1": {
+  "bug fixes": [
+   "`InteractiveBrowserCredential` handles `AdditionallyAllowedTenants` correctly"
+  ]
+ },
+ "1.0.1": {
+  "bug fixes": [
+   "#21: Fix generation of alphanumeric strings (thanks @dbarranco)"
+  ]
+ },
+ "8.0.0": {
+  "breaking changes": [
+   "All Cloud Services (classic) related types, clients, and functions have been removed due to the [Azure Cloud Services (classic) retirement](https://azure.microsoft.com/updates?id=486344).",
+   "`ApplicationGatewayWafRuleSensitivityTypesNone` from enum `ApplicationGatewayWafRuleSensitivityTypes` has been removed",
+   "`SensitivityTypeNone` from enum `SensitivityType` has been removed"
+  ]
+ },
+ "7.0.0": {
+  "breaking changes": [
+   "Type of `OperationValue.Display` has been changed from `*OperationValueDisplay` to `*OperationDisplay`",
+   "Type of `OperationValue.Origin` has been changed from `*string` to `*Origin`",
+   "Enum `AvailabilitySetSKUTypes` has been removed",
+   "Enum `Expand` has been removed",
+   "Operation `*VirtualMachineImagesClient.NewListWithPropertiesPager` does not support pagination anymore, use `*VirtualMachineImagesClient.ListWithProperties` instead.",
+   "Struct `DiskImageEncryption` has been removed",
+   "Struct `GalleryArtifactPublishingProfileBase` has been removed",
+   "Struct `GalleryArtifactSafetyProfileBase` has been removed",
+   "Struct `GalleryArtifactSource` has been removed",
+   "Struct `GalleryArtifactVersionSource` has been removed",
+   "Struct `GalleryDiskImage` has been removed",
+   "Struct `GalleryResourceProfilePropertiesBase` has been removed",
+   "Struct `GalleryResourceProfileVersionPropertiesBase` has been removed",
+   "Struct `ImageDisk` has been removed",
+   "Struct `LatestGalleryImageVersion` has been removed",
+   "Struct `LogAnalyticsInputBase` has been removed",
+   "Struct `ManagedArtifact` has been removed",
+   "Struct `OperationValueDisplay` has been removed",
+   "Struct `PirCommunityGalleryResource` has been removed",
+   "Struct `PirResource` has been removed",
+   "Struct `PirSharedGalleryResource` has been removed",
+   "Struct `ProxyOnlyResource` has been removed",
+   "Struct `ProxyResource` has been removed",
+   "Struct `Resource` has been removed",
+   "Struct `ResourceWithOptionalLocation` has been removed",
+   "Struct `SharedGalleryDiskImage` has been removed",
+   "Struct `UpdateResource` has been removed",
+   "Struct `UpdateResourceDefinition` has been removed",
+   "Struct `VirtualMachineImagesWithPropertiesListResult` has been removed",
+   "Type of `LoadBalancerHealthPerRulePerBackendAddress.NetworkInterfaceIPConfigurationID` has been changed from `*InterfaceIPConfiguration` to `*string`",
+   "Function `*ConnectionMonitorsClient.BeginQuery` has been removed",
+   "Function `*ConnectionMonitorsClient.BeginStart` has been removed"
+  ]
+ },
+ "6.0.0": {
+  "breaking changes": [
+   "Type of `SecurityPostureReference.ExcludeExtensions` has been changed from `[]*VirtualMachineExtension` to `[]*string`",
+   "Struct `FirewallPacketCaptureParametersFormat` has been removed",
+   "Field `ID`, `Properties` of struct `FirewallPacketCaptureParameters` has been removed"
+  ]
+ },
+ "5.0.0": {
+  "breaking changes": [
+   "Type of `CommunityGalleryImageProperties.Identifier` has been changed from `*GalleryImageIdentifier` to `*CommunityGalleryImageIdentifier`",
+   "Type of `GalleryTargetExtendedLocation.StorageAccountType` has been changed from `*StorageAccountType` to `*EdgeZoneStorageAccountType`",
+   "Type of `RestorePointSourceVMDataDisk.DiskRestorePoint` has been changed from `*APIEntityReference` to `*DiskRestorePointAttributes`",
+   "Type of `RestorePointSourceVMOSDisk.DiskRestorePoint` has been changed from `*APIEntityReference` to `*DiskRestorePointAttributes`",
+   "`StorageAccountTypeStandardSSDLRS` from enum `StorageAccountType` has been removed",
+   "Field `ID` of struct `VirtualMachineScaleSetIPConfiguration` has been removed",
+   "Field `ID` of struct `VirtualMachineScaleSetNetworkConfiguration` has been removed",
+   "Field `ID` of struct `VirtualMachineScaleSetUpdateIPConfiguration` has been removed",
+   "Field `ID` of struct `VirtualMachineScaleSetUpdateNetworkConfiguration` has been removed",
+   "Type of `VirtualApplianceConnectionProperties.RoutingConfiguration` has been changed from `*RoutingConfigurationNfv` to `*RoutingConfiguration`",
+   "Struct `PropagatedRouteTableNfv` has been removed",
+   "Struct `RoutingConfigurationNfv` has been removed",
+   "Struct `RoutingConfigurationNfvSubResource` has been removed"
+  ]
+ },
+ "4.2.1": {
+  "bug fixes": [
+   "Fix serialization bug of empty value of `any` type."
+  ]
+ },
+ "4.0.0": {
+  "breaking changes": [
+   "Type of `GalleryImageVersionStorageProfile.Source` has been changed from `*GalleryArtifactVersionSource` to `*GalleryArtifactVersionFullSource`",
+   "Type of `SharingProfile.CommunityGalleryInfo` has been changed from `interface{}` to `*CommunityGalleryInfo`",
+   "Type of `VirtualMachineExtensionUpdateProperties.ProtectedSettingsFromKeyVault` has been changed from `interface{}` to `*KeyVaultSecretReference`",
+   "Type of `GalleryOSDiskImage.Source` has been changed from `*GalleryArtifactVersionSource` to `*GalleryDiskImageSource`",
+   "Type of `GalleryDiskImage.Source` has been changed from `*GalleryArtifactVersionSource` to `*GalleryDiskImageSource`",
+   "Type of `GalleryDataDiskImage.Source` has been changed from `*GalleryArtifactVersionSource` to `*GalleryDiskImageSource`",
+   "Type of `VirtualMachineScaleSetExtensionProperties.ProtectedSettingsFromKeyVault` has been changed from `interface{}` to `*KeyVaultSecretReference`",
+   "Type of `VirtualMachineExtensionProperties.ProtectedSettingsFromKeyVault` has been changed from `interface{}` to `*KeyVaultSecretReference`",
+   "Field `URI` of struct `GalleryArtifactVersionSource` has been removed",
+   "`ApplicationGatewayCustomErrorStatusCodeHTTPStatus499` from enum `ApplicationGatewayCustomErrorStatusCode` has been removed"
+  ]
+ },
+ "3.0.1": {
+  "bug fixes": [
+   "#125: Fixes issue with module path for v3"
+  ]
+ },
+ "3.0.0": {
+  "breaking changes": [
+   "Function `*CloudServicesClient.BeginCreateOrUpdate` parameter(s) have been changed from `(context.Context, string, string, *CloudServicesClientBeginCreateOrUpdateOptions)` to `(context.Context, string, string, CloudService, *CloudServicesClientBeginCreateOrUpdateOptions)`",
+   "Function `*CloudServicesClient.BeginUpdate` parameter(s) have been changed from `(context.Context, string, string, *CloudServicesClientBeginUpdateOptions)` to `(context.Context, string, string, CloudServiceUpdate, *CloudServicesClientBeginUpdateOptions)`",
+   "Function `*CloudServicesUpdateDomainClient.BeginWalkUpdateDomain` parameter(s) have been changed from `(context.Context, string, string, int32, *CloudServicesUpdateDomainClientBeginWalkUpdateDomainOptions)` to `(context.Context, string, string, int32, UpdateDomain, *CloudServicesUpdateDomainClientBeginWalkUpdateDomainOptions)`",
+   "Type of `CloudServiceExtensionProperties.Settings` has been changed from `*string` to `interface{}`",
+   "Type of `CloudServiceExtensionProperties.ProtectedSettings` has been changed from `*string` to `interface{}`",
+   "Field `Parameters` of struct `CloudServicesClientBeginUpdateOptions` has been removed",
+   "Field `Parameters` of struct `CloudServicesClientBeginCreateOrUpdateOptions` has been removed",
+   "Field `Parameters` of struct `CloudServicesUpdateDomainClientBeginWalkUpdateDomainOptions` has been removed",
+   "Type of `EffectiveRouteMapRoute.Prefix` has been changed from `[]*string` to `*string`",
+   "`LoadBalancerBackendAddressAdminStateDrain` from enum `LoadBalancerBackendAddressAdminState` has been removed",
+   "Struct `PeerRouteList` has been removed",
+   "Field `PeerRouteList` of struct `VirtualHubBgpConnectionsClientListAdvertisedRoutesResponse` has been removed",
+   "Field `PeerRouteList` of struct `VirtualHubBgpConnectionsClientListLearnedRoutesResponse` has been removed"
+  ]
+ },
+ "2.0.0": {
+  "breaking changes": [
+   "Type of `GalleryProperties.ProvisioningState` has been changed from `*GalleryPropertiesProvisioningState` to `*GalleryProvisioningState`",
+   "Type of `GalleryImageVersionProperties.ProvisioningState` has been changed from `*GalleryImageVersionPropertiesProvisioningState` to `*GalleryProvisioningState`",
+   "Type of `GalleryImageProperties.ProvisioningState` has been changed from `*GalleryImagePropertiesProvisioningState` to `*GalleryProvisioningState`",
+   "Type of `GalleryApplicationVersionProperties.ProvisioningState` has been changed from `*GalleryApplicationVersionPropertiesProvisioningState` to `*GalleryProvisioningState`",
+   "Type of `VirtualMachineScaleSetIdentity.UserAssignedIdentities` has been changed from `map[string]*VirtualMachineScaleSetIdentityUserAssignedIdentitiesValue` to `map[string]*UserAssignedIdentitiesValue`",
+   "Const `GalleryImagePropertiesProvisioningStateFailed` has been removed",
+   "Const `GalleryImagePropertiesProvisioningStateMigrating` has been removed",
+   "Const `GalleryImageVersionPropertiesProvisioningStateCreating` has been removed",
+   "Const `GalleryImageVersionPropertiesProvisioningStateMigrating` has been removed",
+   "Const `GalleryApplicationVersionPropertiesProvisioningStateFailed` has been removed",
+   "Const `GalleryPropertiesProvisioningStateMigrating` has been removed",
+   "Const `GalleryApplicationVersionPropertiesProvisioningStateDeleting` has been removed",
+   "Const `GalleryPropertiesProvisioningStateDeleting` has been removed",
+   "Const `GalleryApplicationVersionPropertiesProvisioningStateCreating` has been removed",
+   "Const `GalleryImageVersionPropertiesProvisioningStateSucceeded` has been removed",
+   "Const `GalleryImagePropertiesProvisioningStateCreating` has been removed",
+   "Const `GalleryImagePropertiesProvisioningStateUpdating` has been removed",
+   "Const `GalleryImageVersionPropertiesProvisioningStateDeleting` has been removed",
+   "Const `GalleryPropertiesProvisioningStateFailed` has been removed",
+   "Const `SharingProfileGroupTypesCommunity` has been removed",
+   "Const `GalleryApplicationVersionPropertiesProvisioningStateSucceeded` has been removed",
+   "Const `GalleryApplicationVersionPropertiesProvisioningStateMigrating` has been removed",
+   "Const `GalleryPropertiesProvisioningStateUpdating` has been removed",
+   "Const `GalleryImageVersionPropertiesProvisioningStateFailed` has been removed",
+   "Const `GalleryImagePropertiesProvisioningStateDeleting` has been removed",
+   "Const `GalleryImageVersionPropertiesProvisioningStateUpdating` has been removed",
+   "Const `GalleryPropertiesProvisioningStateCreating` has been removed",
+   "Const `GalleryApplicationVersionPropertiesProvisioningStateUpdating` has been removed",
+   "Const `GalleryImagePropertiesProvisioningStateSucceeded` has been removed",
+   "Const `GalleryPropertiesProvisioningStateSucceeded` has been removed",
+   "Function `PossibleGalleryPropertiesProvisioningStateValues` has been removed",
+   "Function `PossibleGalleryImageVersionPropertiesProvisioningStateValues` has been removed",
+   "Function `PossibleGalleryImagePropertiesProvisioningStateValues` has been removed",
+   "Function `PossibleGalleryApplicationVersionPropertiesProvisioningStateValues` has been removed",
+   "Struct `VirtualMachineScaleSetIdentityUserAssignedIdentitiesValue` has been removed",
+   "Const `DdosCustomPolicyProtocolSyn` has been removed",
+   "Const `DdosCustomPolicyTriggerSensitivityOverrideHigh` has been removed",
+   "Const `DdosSettingsProtectionCoverageBasic` has been removed",
+   "Const `DdosCustomPolicyProtocolUDP` has been removed",
+   "Const `DdosCustomPolicyProtocolTCP` has been removed",
+   "Const `DdosCustomPolicyTriggerSensitivityOverrideLow` has been removed",
+   "Const `DdosCustomPolicyTriggerSensitivityOverrideDefault` has been removed",
+   "Const `DdosSettingsProtectionCoverageStandard` has been removed",
+   "Const `DdosCustomPolicyTriggerSensitivityOverrideRelaxed` has been removed",
+   "Type alias `DdosSettingsProtectionCoverage` has been removed",
+   "Type alias `DdosCustomPolicyTriggerSensitivityOverride` has been removed",
+   "Type alias `DdosCustomPolicyProtocol` has been removed",
+   "Function `PossibleDdosCustomPolicyProtocolValues` has been removed",
+   "Function `PossibleDdosSettingsProtectionCoverageValues` has been removed",
+   "Function `PossibleDdosCustomPolicyTriggerSensitivityOverrideValues` has been removed",
+   "Struct `ProtocolCustomSettingsFormat` has been removed",
+   "Field `PublicIPAddresses` of struct `DdosCustomPolicyPropertiesFormat` has been removed",
+   "Field `ProtocolCustomSettings` of struct `DdosCustomPolicyPropertiesFormat` has been removed",
+   "Field `DdosCustomPolicy` of struct `DdosSettings` has been removed",
+   "Field `ProtectedIP` of struct `DdosSettings` has been removed",
+   "Field `ProtectionCoverage` of struct `DdosSettings` has been removed"
+  ]
+ },
+ "9.0.0": {
+  "breaking changes": [
+   "`FirewallPolicyIntrusionDetectionProfileTypeAdvanced`, `FirewallPolicyIntrusionDetectionProfileTypeBasic`, `FirewallPolicyIntrusionDetectionProfileTypeStandard` from enum `FirewallPolicyIntrusionDetectionProfileType` has been removed"
+  ]
+ },
+ "2.2.1": {
+  "bug fixes": [
+   "Fix serialization bug of empty value of `any` type."
+  ]
+ },
+ "3.4.0": {
+  "bug fixes": [
+   "#257: Fixed the CodeQL link (thanks @dmitris)",
+   "#262: Restored detailed errors when failed to parse with NewVersion. Opt-out",
+   "#267: Handle pre-releases for an \"and\" group if one constraint includes them"
+  ]
+ },
+ "3.3.1": {
+  "bug fixes": [
+   "#253: Fix for allowing some version that were invalid"
+  ]
+ },
+ "3.2.1": {
+  "bug fixes": [
+   "#199: Fixed issue with range transformations"
+  ]
+ },
+ "3.2.0": {
+  "bug fixes": [
+   "#186: Fixing issue where validation of constraint section gave false positives",
+   "#176: Fix constraints check with *-0 (thanks @mtt0)",
+   "#181: Fixed Caret operator (^) gives unexpected results when the minor version in constraint is 0 (thanks @arshchimni)",
+   "#161: Fixed godoc (thanks @afirth)"
+  ]
+ },
+ "3.1.1": {
+  "bug fixes": [
+   "#158: Fixed issue with generated regex operation order that could cause problem"
+  ]
+ },
+ "3.0.3": {
+  "bug fixes": [
+   "#141: Fixed issue with <= comparison"
+  ]
+ },
+ "3.0.2": {
+  "bug fixes": [
+   "#134: Fixed broken constraint checking with ^0.0 (thanks @krmichelos)"
+  ]
+ },
+ "1.4.2": {
+  "bug fixes": [
+   "#70: Fix the handling of pre-releases and the 0.0.0 release edge case"
+  ]
+ },
+ "1.4.1": {
+  "bug fixes": [
+   "Fixed #64: Fix pre-release precedence issue (thanks @uudashr)"
+  ]
+ },
+ "1.2.3": {
+  "bug fixes": [
+   "#46: Fixed 0.x.x and 0.0.x in constraints being treated as *",
+   "#34: Fixed issue where hyphen range was not working with pre-release parsing.",
+   "#24: Fixed edge case issue where constraint \"> 0\" does not handle \"0.0.1-alpha\"",
+   "Issue #21: Per the SemVer spec (section 9) a pre-release is unstable and"
+  ]
+ }
+}

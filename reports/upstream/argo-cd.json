@@ -1,0 +1,604 @@
+{
+ "2.4.8": {
+  "bug fixes": [
+   "feat: support application level extensions (#9923)",
+   "feat: support multiple extensions per resource group/kind (#9834)",
+   "fix: extensions is not loading for ConfigMap/Pods (#10010)",
+   "fix: upgrade moment from 2.29.2 to 2.29.3 (#9330)",
+   "fix: skip redirect url validation when it's the base href (#10058) (#10116)",
+   "fix: avoid CVE-2022-28948 (#10093)",
+   "fix: Set HOST_ARCH for yarn build from platform (#10018)"
+  ],
+  "security updates": [
+   "chore: update redis to 7.0.4 avoid CVE-2022-30065 (#10059)",
+   "chore: update redis to avoid CVE-2022-2097 (#10031)"
+  ]
+ },
+ "2.4.6": {
+  "bug fixes": [
+   "fix: 'unexpected reserved bits' breaking web terminal (#9605) (#9895)",
+   "fix: argocd login just hangs on 2.4.0 #9679 (#9935)",
+   "fix: CMP manifest generation fails with ENHANCE_YOUR_CALM if over 40s (#9922)",
+   "fix: NotAfter is not set when ValidFor is set (#9911)",
+   "fix: add missing download CLI tool link for ppc64le, s390x (#9649)",
+   "fix: Check tracking annotation for being self-referencing (#9791)",
+   "fix: Make change of tracking method work at runtime (#9820)",
+   "fix: argo-cd git submodule is using SSH auth instead of HTTPs (#3118) (#9821)"
+  ]
+ },
+ "2.4.5": {
+  "security updates": [
+   "HIGH: Certificate verification is skipped for connections to OIDC providers ([GHSA-7943-82jg-wmw5](https://github.com/argoproj/argo-cd/security/advisories/GHSA-7943-82jg-wmw5))",
+   "LOW: A leaked API server encryption key can allow XSS for SSO users ([GHSA-pmjg-52h9-72qv](https://github.com/argoproj/argo-cd/security/advisories/GHSA-pmjg-52h9-72qv))"
+  ],
+  "bug fixes": [
+   "fix: webhook typo in case of error in GetManifests (#9671)"
+  ]
+ },
+ "2.4.4": {
+  "bug fixes": [
+   "fix: missing path segments for git file generator (#9839)",
+   "fix: make sure api server informer does not stop after setting change (#9842)",
+   "fix: support resource logs and exec (#9833)",
+   "fix: configurable CMP tar exclusions (#9675) (#9789)",
+   "fix: prune any deleted refs before fetching (#9504)"
+  ]
+ },
+ "2.4.3": {
+  "bug fixes": [
+   "fix: respect OIDC providers' supported token signing algorithms (#9433) (#9761)",
+   "fix websockets for terminal not working on subPath (#9795)",
+   "fix: avoid closing and re-opening port of api server settings change (#9778)",
+   "fix: [ArgoCD] Fixing webhook typo in case of error in GetManifests (#9671)",
+   "fix: overrides should not appear in the manifest cache key (#9601)"
+  ]
+ },
+ "2.4.2": {
+  "bug fixes": [
+   "fix: project filter (#9651) (#9709)",
+   "fix: broken symlink in Dockerfile (#9674)",
+   "fix: updated baseHRefRegex to perform lazy match (#9724)",
+   "fix: updated config file permission requirements for windows (#9666)"
+  ]
+ },
+ "2.4.1": {
+  "security updates": [
+   "CRITICAL: External URLs for Deployments can include javascript ([GHSA-h4w9-6x78-8vrj](https://github.com/argoproj/argo-cd/security/advisories/GHSA-h4w9-6x78-8vrj))",
+   "HIGH: Insecure entropy in PKCE/Oauth2/OIDC params ([GHSA-2m7h-86qq-fp4v](https://github.com/argoproj/argo-cd/security/advisories/GHSA-2m7h-86qq-fp4v))",
+   "MODERATE: DoS through large directory app manifest files ([GHSA-jhqp-vf4w-rpwq](https://github.com/argoproj/argo-cd/security/advisories/GHSA-jhqp-vf4w-rpwq))",
+   "MODERATE: Symlink following allows leaking out-of-bounds YAML files from Argo CD repo-server ([GHSA-q4w5-4gq2-98vm](https://github.com/argoproj/argo-cd/security/advisories/GHSA-q4w5-4gq2-98vm))"
+  ]
+ },
+ "2.3.7": {
+  "bug fixes": [
+   "fix: skip redirect url validation when it's the base href (#10058) (#10116)",
+   "fix: upgrade moment from 2.29.2 to 2.29.3 (#9330)",
+   "fix: avoid CVE-2022-28948 (#10093)",
+   "fix: use serviceaccount name instead of struct (#9614)",
+   "fix: create serviceaccount token for v1.24 clusters (#9546)"
+  ],
+  "security updates": [
+   "chore: update redis to 6.2.7 avoid CVE-2022-30065/CVE-2022-2097 (#10062)"
+  ]
+ },
+ "2.3.6": {
+  "security updates": [
+   "HIGH: Certificate verification is skipped for connections to OIDC providers ([GHSA-7943-82jg-wmw5](https://github.com/argoproj/argo-cd/security/advisories/GHSA-7943-82jg-wmw5))",
+   "LOW: A leaked API server encryption key can allow XSS for SSO users ([GHSA-pmjg-52h9-72qv](https://github.com/argoproj/argo-cd/security/advisories/GHSA-pmjg-52h9-72qv))"
+  ],
+  "bug fixes": [
+   "fix: webhook typo in case of error in GetManifests (#9671)"
+  ]
+ },
+ "2.3.5": {
+  "security updates": [
+   "CRITICAL: External URLs for Deployments can include javascript ([GHSA-h4w9-6x78-8vrj](https://github.com/argoproj/argo-cd/security/advisories/GHSA-h4w9-6x78-8vrj))",
+   "HIGH: Insecure entropy in PKCE/Oauth2/OIDC params ([GHSA-2m7h-86qq-fp4v](https://github.com/argoproj/argo-cd/security/advisories/GHSA-2m7h-86qq-fp4v))",
+   "MODERATE: DoS through large directory app manifest files ([GHSA-jhqp-vf4w-rpwq](https://github.com/argoproj/argo-cd/security/advisories/GHSA-jhqp-vf4w-rpwq))",
+   "MODERATE: Symlink following allows leaking out-of-bounds YAML files from Argo CD repo-server ([GHSA-q4w5-4gq2-98vm](https://github.com/argoproj/argo-cd/security/advisories/GHSA-q4w5-4gq2-98vm))"
+  ],
+  "bug fixes": [
+   "fix: missing Helm params (#9565) (#9566)"
+  ]
+ },
+ "2.3.4": {
+  "security updates": [
+   "CRITICAL: Argo CD will trust invalid JWT claims if anonymous access is enabled (https://github.com/argoproj/argo-cd/security/advisories/GHSA-r642-gv9p-2wjj)",
+   "LOW: Login screen allows message spoofing if SSO is enabled (https://github.com/argoproj/argo-cd/security/advisories/GHSA-xmg8-99r8-jc2j)",
+   "MODERATE: Symlink following allows leaking out-of-bound manifests and JSON files from Argo CD repo-server (https://github.com/argoproj/argo-cd/security/advisories/GHSA-6gcg-hp2x-q54h)"
+  ],
+  "bug fixes": [
+   "fix: Fix docs build error (#8895)",
+   "fix: fix broken monaco editor collapse icons (#8709)",
+   "chore: upgrade to go 1.17.8 (#8866) (#9004)",
+   "fix: allow cli/ui to follow logs (#8987) (#9065)"
+  ]
+ },
+ "2.3.0": {
+  "bug fixes": [
+   "Config management tools enhancements:",
+   "The skipCrds flag and ability to ignore missing values files for Helm (#8012, #8003)",
+   "Additional environment variables for Kustomize (#8096)",
+   "Argo CD CLI follows the XDG Base directory standard (#7638)",
+   "Redis is no longer used during SSO login (#8241)",
+   "fix: Add \"Restarting MinIO\" status to MiniO Tenant health check (#8191)",
+   "fix: Add all resources in list view (#7295)",
+   "fix: Adding pagination to grouped nodes sliding panel#7837 (#7915)",
+   "fix: Allow all resources to add external links (#7923)",
+   "fix: Always call ValidateDestination (#7976)",
+   "fix: Application exist panic when execute api call (#8188)",
+   "fix: Application-icons-alignment (#8054)",
+   "fix: Controller panics if resource manifest has incorrect annotation (#8022)",
+   "fix: Correctly handle project field during partial cluster update (#7994)",
+   "fix: Default value for retry validation #8055 (#8064)",
+   "fix: Fix a possible crash when parsing RBAC (#8165)",
+   "fix: Grouped node list missing resources on Compact resources view #8014 (#8018)",
+   "fix: Issue with headless installation (#7958)",
+   "fix: Issue with project scoped resources (#8048)",
+   "fix: Kubernetes labels normalization for Prometheus (#7925)",
+   "fix: Nested Refresh dropdown does not work on Application Details page #1524 (#7950)",
+   "fix: Network line colors and menu icon alignment (#8059)",
+   "fix: Opening app details shows UI error on some apps (#8016) (#8019)",
+   "fix: Parse to correct uint32 type (#8177)",
+   "fix: Prevent possible nil-pointer deref in normalizer (#8185)",
+   "fix: Prevent possible out-of-bounds access when loading policies (#8186)",
+   "fix: Provide a semantic version parsed version for KUBE_VERSION (#8250)",
+   "fix: Refreshing label toast (#7979)",
+   "fix: Resource details page crashes when resource is not deployed and hide managed fields is selected (#7971)",
+   "fix: Retry disabled text (#8004)",
+   "fix: Route health check stuck in 'Progressing' (#8170)",
+   "fix: Sync window panel is crashed if resource name not contain letters (#8053)",
+   "fix: Targetervision compatible without prefix refs/heads or refs/tags (#7939)",
+   "fix: Trailing line in Filter Dropdown Menus #7821 (#8001)",
+   "fix: Webhook URL matching edge cases (#7981)",
+   "fix(ui): Use consistent case for diff modes (#7945)",
+   "fix: Use gRPC timeout for sidecar CMPs (#8131) (#8236)"
+  ]
+ },
+ "2.2.12": {
+  "bug fixes": [
+   "fix: create serviceaccount token for v1.24 clusters (#9546)",
+   "fix: upgrade moment from 2.29.2 to 2.29.3 (#9330)",
+   "fix: avoid CVE-2022-28948 (#10093)"
+  ],
+  "security updates": [
+   "chore: bump redoc vesion to avoid CVE-2021-23820 (#8604)",
+   "chore: update redis to 6.2.7 avoid CVE-2022-30065/CVE-2022-2097 (#10068)"
+  ]
+ },
+ "2.2.11": {
+  "security updates": [
+   "HIGH: Certificate verification is skipped for connections to OIDC providers ([GHSA-7943-82jg-wmw5](https://github.com/argoproj/argo-cd/security/advisories/GHSA-7943-82jg-wmw5))",
+   "LOW: A leaked API server encryption key can allow XSS for SSO users ([GHSA-pmjg-52h9-72qv](https://github.com/argoproj/argo-cd/security/advisories/GHSA-pmjg-52h9-72qv))"
+  ],
+  "bug fixes": [
+   "fix: webhook typo in case of error in GetManifests (#9671)"
+  ]
+ },
+ "2.2.10": {
+  "security updates": [
+   "CRITICAL: External URLs for Deployments can include javascript ([GHSA-h4w9-6x78-8vrj](https://github.com/argoproj/argo-cd/security/advisories/GHSA-h4w9-6x78-8vrj))",
+   "HIGH: Insecure entropy in PKCE/Oauth2/OIDC params ([GHSA-2m7h-86qq-fp4v](https://github.com/argoproj/argo-cd/security/advisories/GHSA-2m7h-86qq-fp4v))",
+   "MODERATE: DoS through large directory app manifest files ([GHSA-jhqp-vf4w-rpwq](https://github.com/argoproj/argo-cd/security/advisories/GHSA-jhqp-vf4w-rpwq))",
+   "MODERATE: Symlink following allows leaking out-of-bounds YAML files from Argo CD repo-server ([GHSA-q4w5-4gq2-98vm](https://github.com/argoproj/argo-cd/security/advisories/GHSA-q4w5-4gq2-98vm))"
+  ],
+  "bug fixes": [
+   "fix: missing Helm params (#9565) (#9566)"
+  ]
+ },
+ "2.2.9": {
+  "security updates": [
+   "CRITICAL: Argo CD will trust invalid JWT claims if anonymous access is enabled (https://github.com/argoproj/argo-cd/security/advisories/GHSA-r642-gv9p-2wjj)",
+   "LOW: Login screen allows message spoofing if SSO is enabled (https://github.com/argoproj/argo-cd/security/advisories/GHSA-xmg8-99r8-jc2j)",
+   "MODERATE: Symlink following allows leaking out-of-bound manifests and JSON files from Argo CD repo-server (https://github.com/argoproj/argo-cd/security/advisories/GHSA-6gcg-hp2x-q54h)"
+  ]
+ },
+ "2.2.8": {
+  "bug fixes": [
+   "fix: application resource APIs must enforce project restrictions"
+  ]
+ },
+ "2.2.7": {
+  "bug fixes": [
+   "fix: correct jsonnet paths resolution (#8721)"
+  ]
+ },
+ "2.2.6": {
+  "bug fixes": [
+   "fix: prevent file traversal using helm file values param and application details api (#8606)",
+   "fix!: enforce app create/update privileges when getting repo details (#8558)",
+   "feat: support custom helm values file schemes (#8535)"
+  ]
+ },
+ "2.2.4": {
+  "bug fixes": [
+   "fix: Prevent value files outside repository root"
+  ]
+ },
+ "2.2.0": {
+  "bug fixes": [
+   "Argo CD API server caches RBAC checks that significantly improves the GET /api/v1/applications API performance (#7587)",
+   "Argo CD RBAC supports regex matches (#7165)",
+   "Health check support for KubeVirt (#7176), Cassandra (#7017), Openshift Route (#7112), DeploymentConfig (#7114), Confluent (#6957) and SparkApplication (#7434) CRDs.",
+   "Persistent banner (#7312) with custom positioning (#7462)",
+   "Cluster name support in project destinations (#7198)",
+   "around 30 more features and a total of 84 bug fixes"
+  ]
+ },
+ "2.1.16": {
+  "security updates": [
+   "CRITICAL: External URLs for Deployments can include javascript ([GHSA-h4w9-6x78-8vrj](https://github.com/argoproj/argo-cd/security/advisories/GHSA-h4w9-6x78-8vrj))",
+   "HIGH: Insecure entropy in PKCE/Oauth2/OIDC params ([GHSA-2m7h-86qq-fp4v](https://github.com/argoproj/argo-cd/security/advisories/GHSA-2m7h-86qq-fp4v))",
+   "MODERATE: DoS through large directory app manifest files ([GHSA-jhqp-vf4w-rpwq](https://github.com/argoproj/argo-cd/security/advisories/GHSA-jhqp-vf4w-rpwq))",
+   "MODERATE: Symlink following allows leaking out-of-bounds YAML files from Argo CD repo-server ([GHSA-q4w5-4gq2-98vm](https://github.com/argoproj/argo-cd/security/advisories/GHSA-q4w5-4gq2-98vm))"
+  ],
+  "bug fixes": [
+   "fix: missing Helm params (#9565) (#9566)"
+  ]
+ },
+ "2.1.15": {
+  "security updates": [
+   "CRITICAL: Argo CD will trust invalid JWT claims if anonymous access is enabled (https://github.com/argoproj/argo-cd/security/advisories/GHSA-r642-gv9p-2wjj)",
+   "LOW: Login screen allows message spoofing if SSO is enabled (https://github.com/argoproj/argo-cd/security/advisories/GHSA-xmg8-99r8-jc2j)",
+   "MODERATE: Symlink following allows leaking out-of-bound manifests and JSON files from Argo CD repo-server (https://github.com/argoproj/argo-cd/security/advisories/GHSA-6gcg-hp2x-q54h)"
+  ]
+ },
+ "2.1.14": {
+  "bug fixes": [
+   "fix: application resource APIs must enforce project restrictions"
+  ]
+ },
+ "2.1.12": {
+  "bug fixes": [
+   "fix: correct jsonnet paths resolution (#8721)"
+  ]
+ },
+ "2.1.11": {
+  "bug fixes": [
+   "fix: prevent file traversal using helm file values param and application details api (#8606)",
+   "fix!: enforce app create/update privileges when getting repo details (#8558)",
+   "feat: support custom helm values file schemes (#8535)"
+  ]
+ },
+ "2.1.10": {
+  "bug fixes": [
+   "fix: Resolve symlinked value files correctly (#8387)"
+  ]
+ },
+ "2.1.9": {
+  "bug fixes": [
+   "fix: Prevent value files outside repository root"
+  ]
+ },
+ "2.1.8": {
+  "bug fixes": [
+   "fix: issue with keepalive (#7861)",
+   "fix nil pointer dereference error (#7905)",
+   "fix: env vars to tune cluster cache were broken (#7779)",
+   "fix: upgraded gitops engine to v0.4.2 (fixes #7561)"
+  ]
+ },
+ "2.1.1": {
+  "bug fixes": [
+   "fix: password reset requirements (#7071)",
+   "fix: Custom Styles feature is broken (#7067)",
+   "fix(ui): Add State to props passed to Extensions (#7045)",
+   "fix: keep uid_entrypoint.sh for backward compatibility (#7047)"
+  ]
+ },
+ "2.0.3": {
+  "bug fixes": [
+   "fix: add missing --container flag to 'argocd app logs' command (#6320)",
+   "fix: grpc web proxy must ensure to read full header (#6319)",
+   "fix: controller should refresh app before running sync operation (#6294)"
+  ]
+ },
+ "2.0.2": {
+  "bug fixes": [
+   "fix: enable access to metrics port in embedded network policies (#6277)",
+   "fix: display log streaming error in logs viewer (#6100) (#6273)",
+   "fix: Don't count errored or completed neighbor pods toward resource consumption (#6259)",
+   "fix: Enable kex algo diffie-hellman-group-exchange-sha256 for go-git ssh (#6256)",
+   "fix: copy github app key from repocreds (#6140, #6197)",
+   "fix(ui): UI crashes after reinstalling ArgoCD (#6218)",
+   "fix: add network policies to restrict traffic flow between argocd components (#6156)",
+   "fix: Revert \"feat: Add health checks for kubernetes-external-secrets (#5435)\"",
+   "chore: Allow ingress traffic to argocd-server by default (#6179)"
+  ]
+ },
+ "2.0.1": {
+  "bug fixes": [
+   "fix: spark application check fails on missing section (#6036)",
+   "fix: Adding explicit bind to redis and sentinel for IPv4 clusters #5957 (#6005)",
+   "fix: fix: use correct field for evaluating whether or not GitHub Enterprise is selected (#5987)"
+  ]
+ },
+ "1.8.2": {
+  "bug fixes": [
+   "fix: updating cluster drops secret (#5220)",
+   "fix: remove invalid assumption about OCI helm chart path (#5179)",
+   "fix: Possible nil pointer dereference in repository API (#5128)",
+   "fix: Possible nil pointer dereference in repocreds API (#5130)",
+   "fix: use json serialization to store cache instead of github.com/vmihailenco/msgpack (#4965)",
+   "fix: add liveness probe to restart repo server if it fails to server tls requests (#5110) (#5119)",
+   "fix: Allow correct SSO redirect URL for CLI static client (#5098)",
+   "fix: add grpc health check (#5060)",
+   "fix: setting 'revision history limit' errors in UI (#5035)",
+   "fix: add api-server liveness probe that catches bad data in informer (#5026)"
+  ]
+ },
+ "1.6.0": {
+  "bug fixes": [
+   "fix: settings manager should invalidate cache after updating repositories/repository credentials (#3672)",
+   "fix: Allow unsetting the last remaining values file (#3644) (#3645)",
+   "fix: Read cert data from kubeconfig during cluster addition and use if present (#3655) (#3667)",
+   "fix: oidc should set samesite cookie (#3632)",
+   "fix: Allow underscores in hostnames in certificate module (#3596)",
+   "fix: apply scopes from argocd-rbac-cm to project jwt group searches (#3508)",
+   "fix: fix nil pointer dereference error after cluster deletion (#3634)",
+   "fix: Prevent possible nil pointer dereference when getting Helm client (#3613)",
+   "fix: Allow CLI version command to succeed without server connection (#3049) (#3550)",
+   "fix: Fix login with port forwarding (#3574)",
+   "fix: use 'git show-ref' to both retrieve and store generated manifests (#3578)",
+   "fix: enable redis retries; add redis request duration metric (#3575)",
+   "fix: Disable keep-alive for HTTPS connection to Git (#3531)",
+   "fix: use uid instead of named user in Dockerfile (#3108)"
+  ]
+ },
+ "1.5.3": {
+  "bug fixes": [
+   "fix: added path to cookie (#3501)",
+   "fix: 'argocd sync' does not take into account IgnoreExtraneous annotation (#3486)",
+   "fix: CLI renders flipped diff results (#3480)",
+   "fix: GetApplicationSyncWindows API should not validate project permissions (#3456)",
+   "fix: argocd-util kubeconfig should use RawRestConfig to export config (#3447)",
+   "fix: javascript error on accounts list page (#3453)",
+   "fix: support both <group>/<kind> as well as <kind> as a resource override key (#3433)",
+   "fix: Updating to jsonnet v1.15.0 fix issue #3277 (#3431)",
+   "fix for helm repo add with flag --insecure-skip-server-verification (#3420)",
+   "fix: app diff --local support for helm repo. #3151 (#3407)",
+   "fix: Syncing apps incorrectly states \"app synced\", but this is not true (#3286)",
+   "fix: for jsonnet when it is located in nested subdirectory and uses import (#3372)",
+   "fix: Update 4.5.3 redis-ha helm manifest (#3370)",
+   "fix: return 401 error code if username does not exist (#3369)",
+   "fix: Do not panic while running hooks with short revision (#3368)"
+  ]
+ },
+ "1.5.1": {
+  "bug fixes": [
+   "fix: return 401 error code if username does not exist (#3369)",
+   "fix: Do not panic while running hooks with short revision (#3368)",
+   "fix: Increase HAProxy check interval to prevent intermittent failures (#3356)",
+   "fix: Helm v3 CRD are not deployed (#3345)"
+  ]
+ },
+ "1.5.0": {
+  "bug fixes": [
+   "fix: app reconciliation fails with panic: index out of (#3233)",
+   "fix: upgrade argoproj/pkg version to fix leaked sensitive information in logs (#3230)",
+   "fix: set MaxCallSendMsgSize to MaxGRPCMessageSize for the GRPC caller (#3117)",
+   "fix: stop caching helm index (#3193)",
+   "fix: dex proxy should forward request to dex preserving the basehref (#3165)",
+   "fix: set default login redirect to baseHRef (#3164)",
+   "fix: don't double-prepend basehref to redirect URLs (fixes #3137)",
+   "fix: ui referring to /api/version using absolute path (#3092)",
+   "fix: Unhang UI on long app info items by using more sane URL match pattern (#3159)",
+   "fix: Allow multiple hostnames per SSH known hosts entry and also allow IPv6 (#2814) (#3074)",
+   "fix: argocd-util backup produced truncated backups. import app status (#3096)",
+   "fix: upgrade redis-ha chart and enable haproxy (#3147)",
+   "fix: make dex server deployment init container resilient to restarts (#3136)",
+   "fix: redact secret values of manifests stored in git (#3088)",
+   "fix: labels not being deleted via UI (#3081)",
+   "fix: HTTP|HTTPS|NO_PROXY env variable reading #3055 (#3063)",
+   "fix: Correct usage text for repo add command regarding insecure repos (#3068)",
+   "fix: Ensure SSH private key is written out with a final newline character (#2890) (#3064)",
+   "fix: Handle SSH URLs in 'git@server:org/repo' notation correctly (#3062)",
+   "fix sso condition when several sso connectors has been configured (#3057)",
+   "fix: Fix bug where the same pointer is used. (#3059)",
+   "fix: Opening in new tab bad key binding on Linux (#3020)",
+   "fix: K8s secrets for repository credential templates are not deleted when credential template is deleted (#3028)",
+   "fix: SSH credential template not working #3016",
+   "fix: Unable to parse kubectl pre-release version strings (#3034)",
+   "fix: Jsonnet TLA parameters of same type are overwritten (#3022)",
+   "fix: Replace aws-iam-authenticator to support IRSA (#3010)",
+   "fix: Hide bindPW in dex config (#3025)",
+   "fix: SSH repo URL with a user different from `git` is not matched correctly when resolving a webhook (#2988)",
+   "fix: JWT invalid => Password for superuser has changed since token issued (#2108)"
+  ]
+ },
+ "1.4.0": {
+  "security updates": [
+   "**Repository Credential Templates Management UI/CLI**. Now you can use Argo CD CLI or UI to configure",
+   "**X-Frame-Options header on serving static assets**. The X-Frame-Options prevents third party sites to trick users into interacting with the application.",
+   "**Tighten AppProject RBAC enforcement**. We've improved the enforcement of access rules specified in the"
+  ],
+  "bug fixes": [
+   "fix: Adds support for /api/v1/account* via HTTP. Fixes #2664 (#2701)",
+   "fix: Allow '@'-character in SSH usernames when connecting a repository (#2612)",
+   "fix: Allow dot in project policy. Closes #2724 (#2755)",
+   "fix: Allow you to sync local Helm apps. Fixes #2741 (#2747)",
+   "fix: Allows Helm parameters that contains arrays or maps. (#2525)",
+   "fix: application-controller doesn't deal with rm/add same cluster gracefully (x509 unknown) (#2389)",
+   "fix: diff local ignore kustomize build options (#2942)",
+   "fix: Ensures that Helm charts are correctly resolved before sync. Fixes #2758 (#2760)",
+   "fix: Fix 'Open application' link when using basehref (#2729)",
+   "fix: fix a bug with cluster add when token secret is not first in list. (#2744)",
+   "fix: fix bug where manifests are not cached. Fixes #2770 (#2771)",
+   "fix: Fixes bug whereby retry does not work for CLI. Fixes #2767 (#2768)",
+   "fix: git contention leads applications into Unknown state (#2877)",
+   "fix: Issue #1944 - Gracefully handle missing cached app state (#2464)",
+   "fix: Issue #2668 - Delete a specified context (#2669)",
+   "fix: Issue #2683 - Make sure app update don't fail due to concurrent modification (#2852)",
+   "fix: Issue #2721 Optimize helm repo querying (#2816)",
+   "fix: Issue #2853 - Improve application env variables/labels editing (#2856)",
+   "fix: Issue 2848 - Application Deployment history panel shows incorrect info for recent releases (#2849)",
+   "fix: Make BeforeHookCreation the default. Fixes #2754 (#2759)",
+   "fix: No error on `argocd app create` in CLI if `--revision` is omitted #2665",
+   "fix: Only delete resources during app delete cascade if permitted to (fixes #2693) (#2695)",
+   "fix: prevent user from seeing/deleting resources not permitted in project (#2908) (#2910)",
+   "fix: self-heal should retry syncing an application after specified delay",
+   "fix: stop logging dex config secrets #(2904) (#2937)",
+   "fix: stop using jsondiffpatch on clientside to render resource difference (#2869)",
+   "fix: Target Revision truncated #2736",
+   "fix: UI should re-trigger SSO login if SSO JWT token expires (#2891)",
+   "fix: update argocd-util import was not working properly (#2939)"
+  ]
+ },
+ "1.3.0": {
+  "bug fixes": [
+   "failed parsing on parameters with comma (#1660)",
+   "StatefulSet with OnDelete Update Strategy stuck progressing (#1881)",
+   "Warning during secret diffing (#1923)",
+   "Error message \"Unable to load data: key is missing\" is confusing (#1944)",
+   "OIDC group bindings are truncated (#2006)",
+   "Multiple parallel app syncs causes OOM (#2022)",
+   "Unknown error when setting params with argocd app set on helm app (#2046)",
+   "Endpoint is no longer shown as a child of services (#2060)",
+   "SSH known hosts entry cannot be deleted if contains shell pattern in name (#2099)",
+   "Application 404s on names with periods (#2114)",
+   "Adding certs for hostnames ending with a dot (.) is not possible (#2116)",
+   "Fix `TestHookDeleteBeforeCreation` (#2141)",
+   "v1.2.0-rc1 nil pointer dereference when syncing (#2146)",
+   "Replacing services failure (#2150)",
+   "1.2.0-rc1 - Authentication Required error in Repo Server (#2152)",
+   "v1.2.0-rc1 Applications List View doesn't work (#2174)",
+   "Manual sync does not trigger Presync hooks (#2185)",
+   "SyncError app condition disappears during app reconciliation (#2192)",
+   "argocd app wait\\sync prints 'Unknown' for resources without health (#2198)",
+   "1.2.0-rc2 Warning during secret diffing (#2206)",
+   "SSO redirect url is incorrect if configured Argo CD URL has trailing slash (#2212)",
+   "Application summary diff page shows hooks (#2215)",
+   "An app with a single resource and Sync hook remains progressing (#2216)",
+   "CONTRIBUTING documentation outdated (#2231)",
+   "v1.2.0-rc2 does not retrieve http(s) based git repository behind the proxy (#2243)",
+   "Intermittent \"git ls-remote\" request failures should not fail app reconciliation (#2245)",
+   "Result of ListApps operation for Git repo is cached incorrectly (#2263)",
+   "ListApps does not utilize cache (#2287)",
+   "Controller panics due to nil pointer error (#2290)",
+   "The Helm --kube-version support does not work on GKE: (#2303)",
+   "Fixes bug that prevents you creating repos via UI/CLI. (#2308)",
+   "The 'helm.repositories' settings is dropped without migration path (#2316)",
+   "Badge response does not contain cache control header (#2317)",
+   "Inconsistent sync result from UI and CLI (#2321)",
+   "Failed edit application with plugin type requiring environment (#2330)",
+   "AutoSync doesn't work anymore (#2339)",
+   "End-to-End tests not working with Kubernetes v1.16 (#2371)",
+   "Creating an application from Helm repository should select \"Helm\" as source type (#2378)",
+   "The parameters of ValidateAccess GRPC method should not be logged (#2386)",
+   "Maintenance window meaning is confusing (#2398)",
+   "UI bug when targetRevision is omitted (#2407)",
+   "Too many vulnerabilities in Docker image (#2425)",
+   "proj windows commands not consistent with other commands (#2443)",
+   "Custom resource actions cannot be executed from the UI (#2448)",
+   "Application controller sometimes accidentally removes duplicated/excluded resource warning condition (#2453)",
+   "Logic that checks sync windows state in the cli is incorrect (#2455)",
+   "UI don't allow to create window with `* * * * *` schedule (#2475)",
+   "Helm Hook is executed twice if annotated with both pre-install and pre-upgrade annotations (#2480)",
+   "Impossible to edit chart name using App details page (#2484)",
+   "ArgoCD does not provide CSRF protection (#2496)",
+   "ArgoCD failing to install CRDs in master from Helm Charts (#2497)",
+   "Timestamp in Helm package file name causes error in Application with Helm source (#2549)",
+   "Attempting to create a repo with password but not username panics (#2567)",
+   "UI incorrectly mark resources as `Required Pruning` (#2577)",
+   "argocd app diff prints only first difference (#2616)",
+   "Bump min client cache version (#2619)",
+   "Cluster list page fails if any cluster is not reachable (#2620)",
+   "Repository type should be mandatory for repo add command in CLI (#2622)",
+   "Repo server executes unnecessary ls-remotes (#2626)",
+   "Application list page incorrectly filter apps by label selector (#2633)",
+   "Custom actions are disabled in Argo CD UI (#2635)",
+   "Failure of `argocd version` in the self-building container image (#2645)",
+   "Application list page is not updated automatically anymore (#2655)",
+   "Login regression issues (#2659)",
+   "Regression: Cannot return Kustomize version for 3.1.0 (#2662)",
+   "API server does not allow creating role with action `action/*` (#2670)",
+   "Application controller `kubectl-parallelism-limit` flag is broken (#2673)",
+   "Annoying toolbar flickering (#2691)"
+  ]
+ },
+ "1.2.0": {
+  "breaking changes": [
+   "Kustomize v1 support is removed. All kustomize charts are built using the same Kustomize version",
+   "Kustomize v2.0.3 upgraded to v3.1.0 . We've noticed one backward incompatible change: https://github.com/kubernetes-sigs/kustomize/issues/42 . Starting v2.1.0 namespace prefix feature works with CRD ( which might cause renaming of generated resource definitions)",
+   "Argo CD config maps must be annotated with `app.kubernetes.io/part-of: argocd` label. Make sure to apply updated `install.yaml` manifest in addition to changing image version."
+  ],
+  "bug fixes": [
+   "Do not panic if the type is not api.Status (an error scenario) (#2105)",
+   "Make sure endpoint is shown as a child of service (#2060)",
+   "Word-wraps app info in the table and list views. (#2004)",
+   "Project source/destination removal should consider wildcards (#1780)",
+   "Repo whitelisting in UI does not support wildcards (#2000)",
+   "Wait for CRD creation during sync process (#1940)",
+   "Added a button to select out of sync items in the sync panel (#1902)",
+   "Proper handling of an excluded resource in an application (#1621)",
+   "Stop repeating logs on stopped container (#1614)",
+   "Fix git repo url parsing on application list view (#2174)",
+   "Fix nil pointer dereference error during app reconciliation (#2146)",
+   "Fix history api fallback implementation to support app names with dots (#2114)",
+   "Fixes some code issues related to Kustomize build options. (#2146)",
+   "Adds checks around valid paths for apps (#2133)",
+   "Endpoint incorrectly considered top level managed resource (#2060)",
+   "Allow adding certs for hostnames ending on a dot (#2116)"
+  ]
+ },
+ "1.1.0": {
+  "bug fixes": [
+   "Project Editor: Whitelisted Cluster Resources doesn't strip whitespace [#1693](https://github.com/argoproj/argo-cd/issues/1693)",
+   "\\[ui small bug\\] menu position outside block [#1711](https://github.com/argoproj/argo-cd/issues/1711)",
+   "UI will crash when create application without destination namespace [#1701](https://github.com/argoproj/argo-cd/issues/1701)",
+   "ArgoCD synchronization failed due to internal error [#1697](https://github.com/argoproj/argo-cd/issues/1697)",
+   "Replicasets ordering is not stable on app tree view [#1668](https://github.com/argoproj/argo-cd/issues/1668)",
+   "Stuck processor on App Controller after deleting application with incomplete operation [#1665](https://github.com/argoproj/argo-cd/issues/1665)",
+   "Role edit page fails with JS error [#1662](https://github.com/argoproj/argo-cd/issues/1662)",
+   "failed parsing on parameters with comma [#1660](https://github.com/argoproj/argo-cd/issues/1660)",
+   "Handle nil obj when processing custom actions [#1700](https://github.com/argoproj/argo-cd/pull/1700)",
+   "Account for missing fields in Rollout HealthStatus [#1699](https://github.com/argoproj/argo-cd/pull/1699)",
+   "Sync operation unnecessary waits for a healthy state of all resources [#1715](https://github.com/argoproj/argo-cd/issues/1715)",
+   "failed parsing on parameters with comma [#1660](https://github.com/argoproj/argo-cd/issues/1660)",
+   "argocd app sync hangs when cluster is not configured (#1935)",
+   "Do not allow app-of-app child app's Missing status to affect parent (#1954)",
+   "Argo CD don't handle well k8s objects which size exceeds 1mb (#1685)",
+   "Secret data not redacted in last-applied-configuration (#897)",
+   "Running app actions requires only read privileges (#1827)",
+   "UI should allow editing repo URL (#1763)",
+   "Make status fields as optional fields (#1779)",
+   "Use correct healthcheck for Rollout with empty steps list (#1776)"
+  ]
+ },
+ "1.0.0": {
+  "breaking changes": [
+   "Remove deprecated componentParameterOverrides field #1372"
+  ],
+  "bug fixes": [
+   "Don't compare secrets in the CLI, since argo-cd doesn't have access to their data (#1459)",
+   "Dropdown menu should not have sync item for unmanaged resources #1357",
+   "Fixes goroutine leak. Closes #1381 (#1457)",
+   "Improve input style #1217",
+   "Issue #908 - Surface Service/Ingress external IPs, hostname to application (#1347)",
+   "kustomization fields are all mandatory #1504",
+   "Resource node details is crashing if live resource is missing $1505",
+   "Rollback UI is not showing correct ksonnet parameters in preview #1326",
+   "See details of applications fails with \"r.nodes is undefined\" #1371",
+   "UI fails to load custom actions is resource is not deployed #1502",
+   "Unable to create app from private repo: x509: certificate signed by unknown authority (#1171)",
+   "Fix hardcoded 'git' user in `util/git.NewClient` (#1555)",
+   "Application controller becomes unresponsive (#1476)",
+   "Load target resource using K8S if conversion fails (#1414)",
+   "Can't ignore a non-existent pointer anymore (#1586)",
+   "Impossible to sync to HEAD from UI if auto-sync is enabled (#1579)",
+   "Application controller is unable to delete self-referenced app (#1570)",
+   "Prevent reconciliation loop for self-managed apps (#1533)",
+   "Controller incorrectly report health state of self managed application (#1557)",
+   "Fix kustomize manifest generation crash is manifest has image without version (#1540)",
+   "Supply resourceVersion to watch request to prevent reading of stale cache (#1605)"
+  ]
+ },
+ "0.11.0": {
+  "breaking changes": [
+   "Argo CD's resource names were renamed for consistency. For example, the application-controller",
+   "As a consequence to moving to recommended kubernetes labels, when upgrading from v0.10 to v0.11,",
+   "There was significant reworking of the `app.status` fields to reduce the payload size, simplify",
+   "An older Argo CD CLI (v0.10 and below) will not be compatible with Argo CD v0.11. To keep"
+  ]
+ }
+}
