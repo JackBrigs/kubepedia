@@ -1,0 +1,39 @@
+{
+ "controller-v1.12.1": {
+  "security updates": [
+   "CVE-2025-1097",
+   "CVE-2025-1098",
+   "CVE-2025-1974",
+   "CVE-2025-24513",
+   "CVE-2025-24514"
+  ]
+ },
+ "controller-v1.11.5": {
+  "security updates": [
+   "CVE-2025-1097",
+   "CVE-2025-1098",
+   "CVE-2025-1974",
+   "CVE-2025-24513",
+   "CVE-2025-24514"
+  ]
+ },
+ "controller-v1.9.5": {
+  "security updates": [
+   "[release-1.9] add upstream patch for CVE-2023-44487 (#10499)"
+  ]
+ },
+ "controller-v1.9.3": {
+  "security updates": [
+   "add upstream patch for CVE-2023-44487 (#10494)"
+  ]
+ },
+ "controller-v1.5.1": {
+  "security updates": [
+   "CVE fixes CVE-2022-32149, CVE-2022-27664, CVE-2022-1996",
+   "Fix CVE-2022-32149 by @esigo in https://github.com/kubernetes/ingress-nginx/pull/9258",
+   "Fix CVE-2022-1996 by @esigo in https://github.com/kubernetes/ingress-nginx/pull/9244",
+   "fix CVE-2022-27664 by @esigo in https://github.com/kubernetes/ingress-nginx/pull/9273",
+   "Add CVE-2022-27664 #9273 in latest release by @strongjz in https://github.com/kubernetes/ingress-nginx/pull/9275"
+  ]
+ }
+}

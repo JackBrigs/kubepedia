@@ -1,0 +1,135 @@
+{
+ "1.9.1": {
+  "bug fixes": [
+   "bandwidth: handle nil bandwidth in CHECK by @squeed in https://github.com/containernetworking/plugins/pull/1222",
+   "vrf: fix route filtering to preserve IPAM-configured routes by @mlguerrero12 in https://github.com/containernetworking/plugins/pull/1227",
+   "CVE-2025-52881: Bump selinux to 1.13.0 by @sbiradar10 in https://github.com/containernetworking/plugins/pull/1231",
+   "bridge: include attempted IP address in AddrAdd error message by @Amulyam24 in https://github.com/containernetworking/plugins/pull/1225"
+  ]
+ },
+ "1.7.1": {
+  "bug fixes": [
+   "DHCP lease maintenance should terminate when interface no longer exists. by @dougbtv in https://github.com/containernetworking/plugins/pull/1143",
+   "Fix addresses and routes reinserted to the VRF by @mlguerrero12 in https://github.com/containernetworking/plugins/pull/1151",
+   "Check error returned by ipv6 SettleAddresses by @mlguerrero12 in https://github.com/containernetworking/plugins/pull/1168"
+  ]
+ },
+ "1.6.0": {
+  "bug fixes": [
+   "Fix unnecessary retrying when the link is down in dhcp by @lisongmin in https://github.com/containernetworking/plugins/pull/1076",
+   "Fix inadvertent txqueuelen being set to zero by @gudmundur in https://github.com/containernetworking/plugins/pull/1100",
+   "VRF: Wait for the local/host routes to be added by @LionelJouin in https://github.com/containernetworking/plugins/pull/1104",
+   "fix(dhcp): can not renew an ip address by @lisongmin in https://github.com/containernetworking/plugins/pull/1092"
+  ]
+ },
+ "1.4.0": {
+  "bug fixes": [
+   "([#954](https://github.com/containernetworking/plugins/pull/954)). macvlan cmdDel: handle deletion when master has been deleted",
+   "([#927](https://github.com/containernetworking/plugins/pull/927)). vrf: fix route filter to use output iface"
+  ]
+ },
+ "1.2.0": {
+  "bug fixes": [
+   "([#809](https://github.com/containernetworking/plugins/pull/809)). bridge: refresh host-veth mac after port add",
+   "([#802](https://github.com/containernetworking/plugins/pull/802)). Add IPv6 support for AddDefaultRoute",
+   "([#779](https://github.com/containernetworking/plugins/pull/779)). Fix path substitution to enable setting sysctls on vlan interfaces",
+   "([#782](https://github.com/containernetworking/plugins/pull/782)). host-local: fix bug on getting NextIP of addresses with first byte",
+   "([#709](https://github.com/containernetworking/plugins/pull/709)). dhcp: Fix client id in renew/release"
+  ]
+ },
+ "1.1.1": {
+  "bug fixes": [
+   "portmap: fix bug that new udp connection deletes all existing conntrack entries ([#705](https://github.com/containernetworking/plugins/pull/705))",
+   "portmap: fix checkPorts result when chain does not exist ([#707](https://github.com/containernetworking/plugins/pull/707))",
+   "dhcp: fixed DHCP problem that broke when fast retry was added ([#681](https://github.com/containernetworking/plugins/pull/681))",
+   "ipvlan: Send Gratuitous ARP after IPs are set ([#675](https://github.com/containernetworking/plugins/pull/675))"
+  ]
+ },
+ "1.1.0": {
+  "bug fixes": [
+   "portmap: fix bug that new udp connection deletes all existing conntrack entries ([#705](https://github.com/containernetworking/plugins/pull/705))",
+   "portmap: fix checkPorts result when chain does not exist ([#707](https://github.com/containernetworking/plugins/pull/707))",
+   "dhcp: fixed DHCP problem that broke when fast retry was added ([#681](https://github.com/containernetworking/plugins/pull/681))",
+   "ipvlan: Send Gratuitous ARP after IPs are set ([#675](https://github.com/containernetworking/plugins/pull/675))"
+  ]
+ },
+ "1.0.1": {
+  "breaking changes": [
+   "plugins: remove flannel ([#633](https://github.com/containernetworking/plugins/pull/633)). Flannel's CNI plugin now has [its own repository](https://github.com/flannel-io/cni-plugin)"
+  ],
+  "bug fixes": [
+   "host-local: remove redundant startRange in RangeIterator to avoid mismatching with startIP ([#583](https://github.com/containernetworking/plugins/pull/583)). Fixes possible infinite loop.",
+   "portmap: use slashes in sysctl template to support interface names which separated by dots ([#589](https://github.com/containernetworking/plugins/pull/589)).",
+   "pkg/ipam: convert dots to slashes in interface names for sysctl ([#585](https://github.com/containernetworking/plugins/pull/585)).",
+   "win-bridge: fix panic while calling HNS api ([#590](https://github.com/containernetworking/plugins/pull/590)). fix a nil pointer panic while calling HNS API (V1) on win-bridge.",
+   "[macvlan] Stop setting proxy-arp on macvlan interface ([#586](https://github.com/containernetworking/plugins/pull/586))."
+  ]
+ },
+ "1.0.0": {
+  "breaking changes": [
+   "plugins: remove flannel ([#633](https://github.com/containernetworking/plugins/pull/633)). Flannel's CNI plugin now has [its own repository](https://github.com/flannel-io/cni-plugin)"
+  ],
+  "bug fixes": [
+   "host-local: remove redundant startRange in RangeIterator to avoid mismatching with startIP ([#583](https://github.com/containernetworking/plugins/pull/583)). Fixes possible infinite loop.",
+   "portmap: use slashes in sysctl template to support interface names which separated by dots ([#589](https://github.com/containernetworking/plugins/pull/589)).",
+   "pkg/ipam: convert dots to slashes in interface names for sysctl ([#585](https://github.com/containernetworking/plugins/pull/585)).",
+   "win-bridge: fix panic while calling HNS api ([#590](https://github.com/containernetworking/plugins/pull/590)). fix a nil pointer panic while calling HNS API (V1) on win-bridge.",
+   "[macvlan] Stop setting proxy-arp on macvlan interface ([#586](https://github.com/containernetworking/plugins/pull/586))."
+  ]
+ },
+ "0.9.0": {
+  "bug fixes": [
+   "Delete stale UDP conntrack entries when adding new Portmaps to containers ([#553](https://github.com/containernetworking/plugins/pull/553))."
+  ]
+ },
+ "0.8.7": {
+  "bug fixes": [
+   "flannel: remove net conf file after DEL succeed ([#449](https://github.com/containernetworking/plugins/pull/449)).",
+   "portmap should not perform deletions if not portMapping config received ([#509](https://github.com/containernetworking/plugins/pull/509)).",
+   "portmap: don't use unspecified address as iptables rule destination ([#487](https://github.com/containernetworking/plugins/pull/487)).",
+   "Fix race condition in GetCurrentNS ([#523](https://github.com/containernetworking/plugins/pull/523)).",
+   "firewall: fix generate of admin chain comment ([#506](https://github.com/containernetworking/plugins/pull/506)).",
+   "Fix handling of delay in acquiring lease with stp turned on ([#501](https://github.com/containernetworking/plugins/pull/501)).",
+   "host-device: Bring interfaces down before moving ([#486](https://github.com/containernetworking/plugins/pull/486))."
+  ]
+ },
+ "0.8.6": {
+  "bug fixes": [
+   "plugins/meta/sbr: Adjusted ipv6 address mask to /128 ([#479](https://github.com/containernetworking/plugins/pull/479)). A /64 mask was used which routed an entire cidr based on source, not only the bound address.",
+   "check bridge's port state ([#468](https://github.com/containernetworking/plugins/pull/468)). fix #463",
+   "Reset the route flag before moving the rule ([#472](https://github.com/containernetworking/plugins/pull/472)).",
+   "replace juju/errors because of CNCF license scan ([#458](https://github.com/containernetworking/plugins/pull/458)). ref to #457",
+   "loopback: Fix ipv6 address checks ([#442](https://github.com/containernetworking/plugins/pull/442)). Fixes a minor bug in loopback plugin. The IPv6 address check loops over IPv4 addresses."
+  ]
+ },
+ "0.8.5": {
+  "bug fixes": [
+   "bridge: Fix for the case where kernel doesn't have CONFIG_BRIDGE_VLAN_FILTERING ([#434](https://github.com/containernetworking/plugins/pull/434)) fixes [#370](https://github.com/containernetworking/plugins/pull/370).",
+   "vlan: Fix vlan plugin returning error when device is already removed ([#438](https://github.com/containernetworking/plugins/pull/438))."
+  ]
+ },
+ "0.8.2": {
+  "bug fixes": [
+   "Fix: failed to set bridge addr: could not add IP address to \\\"cni0\\\": file exists ([#366](https://github.com/containernetworking/plugins/pull/366)).",
+   "host-device: revert name setting to make retries idempotent ([#357](https://github.com/containernetworking/plugins/pull/357)).",
+   "Vendor update go-iptables ([#358](https://github.com/containernetworking/plugins/pull/358)). Vendor update go-iptables to obtain commit f1d0510cabcb710d5c5dd284096f81444b9d8d10",
+   "Remove link Down/Up in MAC address change to prevent route flush ([#364](https://github.com/containernetworking/plugins/pull/364)).",
+   "pkg/ip unit test: be agnostic of Linux version ([#349](https://github.com/containernetworking/plugins/pull/349)). on Linux 4.4 the syscall error message is \"invalid argument\" not \"file exists\"",
+   "bump containernetworking/cni to v0.7.1 ([#341](https://github.com/containernetworking/plugins/pull/341))."
+  ]
+ },
+ "0.8.0": {
+  "bug fixes": [
+   "Correctly DEL on ipam failure for all plugins ([#314](https://github.com/containernetworking/plugins/pull/314)).",
+   "Fix bug on ip revert if cmdAdd fails on macvlan and host-device ([#301](https://github.com/containernetworking/plugins/pull/301))",
+   "host-device: Ensure device is down before rename ([#147](https://github.com/containernetworking/plugins/pull/147)).",
+   "Fix -hostprefix option ([#268](https://github.com/containernetworking/plugins/pull/268)).",
+   "some DHCP servers expect to request for explicit router options ([#255](https://github.com/containernetworking/plugins/pull/255)).",
+   "bridge: release IP in case of error ([#129](https://github.com/containernetworking/plugins/pull/129)).",
+   "change source of ipmasq rule from ipn to ip ([#279](https://github.com/containernetworking/plugins/pull/279))",
+   "test: add coveralls support ([#288](https://github.com/containernetworking/plugins/pull/288)).",
+   "plugins: correctly output build version, cosmetic cleanups ([#295](https://github.com/containernetworking/plugins/pull/295)).",
+   "Move Windows tests to Travis ([#246](https://github.com/containernetworking/plugins/pull/246))."
+  ]
+ }
+}

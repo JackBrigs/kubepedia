@@ -1,0 +1,687 @@
+{
+ "1.34.3": {
+  "security updates": [
+   "[release-1.34] test: fix CVE-2026-25679 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3538",
+   "[release-1.34] fix: CVE-2026-33186 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3548",
+   "[release-1.34] fix: CVE-2026-39883 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3578"
+  ]
+ },
+ "1.33.9": {
+  "security updates": [
+   "[release-1.33] test: fix CVE-2025-61726 trivy failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3487",
+   "[release-1.33] test: fix trivy CVE-2025-68121 failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3504",
+   "[release-1.33] fix: CVE-2026-24051 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3529",
+   "[release-1.33] fix: CVE-2026-33186 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3549",
+   "[release-1.33] fix: CVE-2026-39883 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3579"
+  ]
+ },
+ "1.34.2": {
+  "security updates": [
+   "[release-1.34] test: fix trivy CVE-2025-68121 failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3503",
+   "[release-1.34] test: fix trivy CVE-2025-68121 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3514"
+  ]
+ },
+ "1.34.1": {
+  "security updates": [
+   "[release-1.34] test: fix CVE-2025-61726 trivy failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3486"
+  ]
+ },
+ "1.33.8": {
+  "security updates": [
+   "[release-1.33] test: fix trivy CVE-2025-61727 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3436",
+   "[release-1.33] fix: CVE-2025-13281 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3456"
+  ]
+ },
+ "1.32.12": {
+  "security updates": [
+   "[release-1.32] test: fix CVE-2025-47912 error by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3398",
+   "[release-1.32] fix: CVE-2025-52881 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3408",
+   "[release-1.32] fix: CVE-2025-58181 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3425",
+   "[release-1.32] test: fix trivy CVE-2025-61727 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3437",
+   "[release-1.32] fix: CVE-2025-13281 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3455"
+  ]
+ },
+ "1.34.0": {
+  "security updates": [
+   "test: fix CVE-2025-4673 in trivy action by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3134",
+   "fix: CVE-2025-4563 by @landreasyan in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3155",
+   "test: fix CVE-2025-47907 trivy test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3240",
+   "fix: CVE-2025-5187 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3288",
+   "test: fix CVE-2025-47912 error by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3396",
+   "fix: CVE-2025-52881 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3406",
+   "fix: CVE-2025-58181 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3421",
+   "test: fix trivy CVE-2025-61727 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3435",
+   "fix: CVE-2025-13281 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3451"
+  ]
+ },
+ "1.33.7": {
+  "security updates": [
+   "[release-1.33] fix: CVE-2025-58181 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3424"
+  ]
+ },
+ "1.33.6": {
+  "security updates": [
+   "[release-1.33] test: fix CVE-2025-47912 error by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3397",
+   "[release-1.33] fix: CVE-2025-52881 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3407"
+  ]
+ },
+ "1.33.5": {
+  "security updates": [
+   "[release-1.33] fix: CVE-2025-5187 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3289"
+  ]
+ },
+ "1.31.12": {
+  "security updates": [
+   "[release-1.31] fix: CVE-2025-22868 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3220",
+   "[release-1.31] test: fix CVE-2025-47907 trivy test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3243",
+   "[release-1.31] fix: CVE-2025-5187 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3291"
+  ]
+ },
+ "1.32.11": {
+  "security updates": [
+   "[release-1.32] fix: CVE-2025-5187 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3290"
+  ]
+ },
+ "1.33.4": {
+  "security updates": [
+   "[release-1.33] test: fix CVE-2025-47907 trivy test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3242"
+  ]
+ },
+ "1.32.10": {
+  "security updates": [
+   "[release-1.32] test: fix CVE-2025-47907 trivy test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3241"
+  ]
+ },
+ "1.33.3": {
+  "security updates": [
+   "[release-1.33] fix: CVE-2025-22868 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3218"
+  ]
+ },
+ "1.32.9": {
+  "security updates": [
+   "[release-1.32] fix: CVE-2025-22868 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3219"
+  ]
+ },
+ "1.33.2": {
+  "security updates": [
+   "[release-1.33] test: fix CVE-2025-4673 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3135",
+   "[release-1.33] fix: CVE-2025-4563 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3157"
+  ]
+ },
+ "1.32.8": {
+  "security updates": [
+   "[release-1.32] test: fix CVE-2025-4673 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3136",
+   "[release-1.32] fix: CVE-2025-4563 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3158"
+  ]
+ },
+ "1.31.11": {
+  "security updates": [
+   "[release-1.31] test: fix CVE-2025-4673 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3137"
+  ]
+ },
+ "1.33.0": {
+  "security updates": [
+   "fix: CVE-2025-30204 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2963",
+   "test: fix CVE-2025-22871 in trivy action by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3005"
+  ]
+ },
+ "1.30.12": {
+  "security updates": [
+   "[release-1.30] test: fix CVE-2025-22871 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3009",
+   "[release-1.30] fix: CVE-2025-22872 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3031"
+  ]
+ },
+ "1.31.8": {
+  "security updates": [
+   "[release-1.31] test: fix CVE-2025-22871 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3007",
+   "[release-1.31] fix: CVE-2025-22872 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3030"
+  ]
+ },
+ "1.32.3": {
+  "security updates": [
+   "[release-1.32] test: fix CVE-2025-22871 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3006"
+  ]
+ },
+ "1.32.1": {
+  "security updates": [
+   "[release-1.32] fix: CVE-2025-30204 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2970"
+  ]
+ },
+ "1.31.6": {
+  "security updates": [
+   "[release-1.31] fix: CVE-2025-30204 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2960"
+  ]
+ },
+ "1.30.10": {
+  "security updates": [
+   "[release-1.30] fix: CVE-2025-22870 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2940",
+   "[release-1.30] fix: CVE-2025-30204 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2961"
+  ]
+ },
+ "1.29.14": {
+  "security updates": [
+   "[release-1.29] fix: CVE-2025-30204 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2962"
+  ]
+ },
+ "1.28.12": {
+  "security updates": [
+   "[release-1.28] fix: CVE-2024-51744 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2607",
+   "[release-1.28] fix: CVE-2025-22870 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2958"
+  ]
+ },
+ "1.29.13": {
+  "security updates": [
+   "[release-1.29] test: fix trivy action failure due to CVE-2024-45336 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2842",
+   "[release-1.29] test: fix CVE-2025-22866 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2855",
+   "[release-1.29] fix: CVE-2025-0426 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2877"
+  ]
+ },
+ "1.32.0": {
+  "security updates": [
+   "fix: CVE-2024-51744 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2591",
+   "fix: CVE-2024-45337 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2717",
+   "fix: CVE-2024-45338 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2746",
+   "test: fix trivy action failure due to CVE-2024-45336 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2833",
+   "test: fix CVE-2025-22866 in trivy action by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2852",
+   "fix: CVE-2025-0426 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2874"
+  ]
+ },
+ "1.31.4": {
+  "security updates": [
+   "[release-1.31] test: fix CVE-2025-22866 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2853",
+   "[release-1.31] fix: CVE-2025-0426 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2875"
+  ]
+ },
+ "1.30.8": {
+  "security updates": [
+   "[release-1.30] test: fix trivy action failure due to CVE-2024-45336 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2841",
+   "[release-1.30] test: fix CVE-2025-22866 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2854",
+   "[release-1.30] fix: CVE-2025-0426 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2876"
+  ]
+ },
+ "1.31.3": {
+  "security updates": [
+   "[release-1.31] test: fix trivy action failure due to CVE-2024-45336 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2840"
+  ]
+ },
+ "1.31.2": {
+  "security updates": [
+   "[release-1.31] fix: CVE-2024-45337 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2723",
+   "[release-1.31] fix: CVE-2024-45338 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2747"
+  ]
+ },
+ "1.30.7": {
+  "security updates": [
+   "[release-1.30] fix: CVE-2024-45337 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2724",
+   "[release-1.30] fix: CVE-2024-45338 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2748"
+  ]
+ },
+ "1.29.12": {
+  "security updates": [
+   "[release-1.29] fix: CVE-2024-45337 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2725",
+   "[release-1.29] fix: CVE-2024-45338 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2749"
+  ]
+ },
+ "1.29.11": {
+  "security updates": [
+   "[release-1.29] fix: CVE-2024-51744 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2606"
+  ]
+ },
+ "1.31.1": {
+  "security updates": [
+   "[release-1.31] fix: CVE-2024-51744 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2593"
+  ]
+ },
+ "1.30.6": {
+  "security updates": [
+   "[release-1.30] fix: CVE-2024-51744 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2592"
+  ]
+ },
+ "1.31.0": {
+  "security updates": [
+   "fix: CVE-2024-3177 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2305",
+   "fix: CVE-2024-35255 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2350",
+   "fix: CVE-2024-5321 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2417"
+  ]
+ },
+ "1.29.8": {
+  "security updates": [
+   "[release-1.29] fix: CVE-2024-5321 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2419"
+  ]
+ },
+ "1.28.10": {
+  "security updates": [
+   "[release-1.28] fix: CVE-2024-5321 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2420"
+  ]
+ },
+ "1.30.3": {
+  "security updates": [
+   "[release-1.30] fix: CVE-2024-5321 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2418"
+  ]
+ },
+ "1.30.2": {
+  "security updates": [
+   "[release-1.30] fix: CVE-2023-45288 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2294",
+   "[release-1.30] fix: CVE-2024-3177 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2306",
+   "[release-1.30] fix: CVE-2024-35255 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2351"
+  ]
+ },
+ "1.28.9": {
+  "security updates": [
+   "[release-1.28] fix: CVE-2024-35255 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2353"
+  ]
+ },
+ "1.29.7": {
+  "security updates": [
+   "[release-1.29] fix: CVE-2024-35255 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2352"
+  ]
+ },
+ "1.29.6": {
+  "security updates": [
+   "[release-1.29] fix: CVE-2023-45288 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2295",
+   "[release-1.29] fix: CVE-2024-3177 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2307"
+  ]
+ },
+ "1.28.8": {
+  "security updates": [
+   "[release-1.28] fix: CVE-2023-45288 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2296",
+   "[release-1.28] fix: CVE-2024-3177 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2308"
+  ]
+ },
+ "1.30.1": {
+  "security updates": [
+   "[release-1.30] fix: CVE-2024-24786 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2226"
+  ]
+ },
+ "1.28.7": {
+  "security updates": [
+   "[release-1.28] fix: CVE-2024-24786 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2228"
+  ]
+ },
+ "1.29.4": {
+  "security updates": [
+   "[release-1.29] fix: CVE-2024-24786 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2227"
+  ]
+ },
+ "1.30.0": {
+  "security updates": [
+   "fix: CVE-2023-39325 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2007",
+   "chore: fix OpenTelemetry-Go Contrib CVE-2023-45142 by @cvvz in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2033",
+   "chore: CVE-2023-45142: bump otelhttp to v0.45.0 by @jsafrane in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2044",
+   "fix: CVE-2023-5528 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2067",
+   "fix: CVE-2023-47108 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2068"
+  ]
+ },
+ "1.29.3": {
+  "security updates": [
+   "[release-1.29] fix: CVE-2023-48795 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2135"
+  ]
+ },
+ "1.28.6": {
+  "security updates": [
+   "[release-1.28] fix: CVE-2023-48795 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2136"
+  ]
+ },
+ "1.26.9": {
+  "security updates": [
+   "[release-1.26] fix: CVE-2023-48795 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2138"
+  ]
+ },
+ "1.29.2": {
+  "security updates": [
+   "fix: CVE-2023-5528, CVE-2023-47108 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2069"
+  ]
+ },
+ "1.28.5": {
+  "security updates": [
+   "[releaes-1.28] fix: CVE-2023-5528, CVE-2023-47108 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2070"
+  ]
+ },
+ "1.26.8": {
+  "security updates": [
+   "[release-1.26] fix: CVE-2023-3676, GHSA-m425-mq94-257g by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2047",
+   "[release-1.26] fix: CVE-2023-5528 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2072"
+  ]
+ },
+ "1.29.1": {
+  "security updates": [
+   "[release-1.29] fix: CVE-2023-39325 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2010"
+  ]
+ },
+ "1.28.4": {
+  "security updates": [
+   "[release-1.28] fix: CVE-2023-39325 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2011"
+  ]
+ },
+ "1.26.7": {
+  "security updates": [
+   "[release-1.26] fix: CVE-2023-39325 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2013"
+  ]
+ },
+ "1.29.0": {
+  "security updates": [
+   "fix: CVE-2023-2431 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1886"
+  ]
+ },
+ "1.28.2": {
+  "bug fixes": [
+   "fix: cloned volume could not be recognized on Windows node when source volume is mounted on the same node (#1914)"
+  ]
+ },
+ "1.26.6": {
+  "bug fixes": [
+   "fix: CVE-2023-2431 (#1889)"
+  ],
+  "security updates": [
+   "[release-1.26] fix: CVE-2023-2431 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1889"
+  ]
+ },
+ "1.28.1": {
+  "bug fixes": [
+   "fix: CVE-2023-2431 (#1887)",
+   "fix: missing log when IMDS is not available on windows node (#1888)",
+   "fix: PerformancePlus setting issue (#1895)"
+  ],
+  "security updates": [
+   "[release-1.28] fix: CVE-2023-2431 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1887"
+  ]
+ },
+ "1.26.5": {
+  "bug fixes": [
+   "chore: update max data disk table (#1876)"
+  ]
+ },
+ "1.28.0": {
+  "bug fixes": [
+   "fix: CVE-2022-41723 (#1732)",
+   "fix: detach disk failure when there is throttling (#1755)",
+   "fix: PremiumV2_LRS caching mode issue (#1790)",
+   "fix: fix attach failure panic (#1802)",
+   "fix: make sure the VolumeSnapshots v1 CRDs exist before starting (#1851)"
+  ],
+  "security updates": [
+   "fix: CVE-2022-41723 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1732"
+  ]
+ },
+ "1.26.4": {
+  "bug fixes": [
+   "fix: switch base image to fix CVEs (#1811)"
+  ]
+ },
+ "1.27.1": {
+  "bug fixes": [
+   "fix: CVE-2022-41723 (#1779)",
+   "fix: detach disk failure when there is throttling (#1782)",
+   "fix: PremiumV2_LRS caching mode issue (#1795)"
+  ],
+  "security updates": [
+   "[release-1.27] fix: CVE-2022-41723 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1779"
+  ]
+ },
+ "1.26.3": {
+  "bug fixes": [
+   "fix: add disk attach/detach delay time to allow more batch (#1742)",
+   "fix: second expand volume failure on Ubuntu 22.04 (#1743)",
+   "fix: CVE-2022-41723 (#1744)",
+   "fix: detach disk failure when there is throttling (#1758)",
+   "fix: PremiumV2_LRS caching mode issue (#1794)"
+  ],
+  "security updates": [
+   "[release-1.26] fix: CVE-2022-41723 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1744"
+  ]
+ },
+ "1.27.0": {
+  "bug fixes": [
+   "fix: switch base image to fix CVEs (#1704)",
+   "fix: increase csi-attacher worker-threads num (#1719)",
+   "fix: second expand volume failure on Ubuntu 22.04 (#1728)"
+  ]
+ },
+ "1.26.2": {
+  "bug fixes": [
+   "fix: panic when allow-empty-cloud-config is set (#1699)"
+  ]
+ },
+ "1.26.1": {
+  "bug fixes": [
+   "fix: update rather than replace existing cache entry (#1686)"
+  ]
+ },
+ "1.26.0": {
+  "bug fixes": [
+   "fix: panic caused by resource group issue in disk attach (#1616)",
+   "fix: volume metrics on Windows csi-proxy v1beta (#1622)",
+   "fix: add disk lun check in VMSSFlex AttachDisk to avoid race condition (#1632)",
+   "fix: set ForceAttemptHTTP2 as false to increase ARM throttling limit (#1676)",
+   "fix: CVE-2022-41717 (#1656)"
+  ],
+  "security updates": [
+   "fix: CVE-2022-41717 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1656"
+  ]
+ },
+ "1.25.0": {
+  "bug fixes": [
+   "fix: add disk lun check in AttachDisk to avoid race condition (#1610)",
+   "fix: reduce VMSS cache refresh (#1564, #1611)",
+   "fix: resource group issue in disk attach (#1616)",
+   "fix: support noProxy in chart config (#1613)"
+  ]
+ },
+ "1.24.0": {
+  "bug fixes": [
+   "fix: increase csi-attacher client QPS (#1539)",
+   "fix: increase api qps limit of csi-provisioner and csi-attacher (#1559)",
+   "fix: CVE-2022-32149 (#1547)",
+   "fix: avoid recreate vmss cache in race condition (#1558)"
+  ],
+  "security updates": [
+   "fix: fix CVE-2022-32149 by @edreed in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1547"
+  ]
+ },
+ "1.23.0": {
+  "bug fixes": [
+   "fix: Ultra Disk DefaultDiskMBPSReadWrite calc issue (#1494)",
+   "fix: reduce VMSS throttling when throttling happens (#1498)",
+   "fix: zone format check when cloud config is empty (#1521)"
+  ]
+ },
+ "1.22.0": {
+  "bug fixes": [
+   "fix: invalid ultra disk default iops issue (#1445)"
+  ]
+ },
+ "1.21.0": {
+  "bug fixes": [
+   "fix: reuse armclient connections to fix performance issues (#1426)",
+   "fix: VMSSList throttling when VM is in Deleting state (#1426)",
+   "fix: CSI function should return internal error (#1418)"
+  ]
+ },
+ "1.20.0": {
+  "bug fixes": [
+   "fix: CSI function should return internal error (#1418)"
+  ]
+ },
+ "1.19.0": {
+  "bug fixes": [
+   "fix: incorrect runOnMaster config (#1358)",
+   "fix: NodeGetVolumeStats failure on Windows node (#1368)"
+  ]
+ },
+ "1.18.0": {
+  "bug fixes": [
+   "fix: resize failure on Windows (#1314)",
+   "fix: filesystem is not resized when restoring from snapshot with a bigger size (#1309)"
+  ]
+ },
+ "1.17.0": {
+  "bug fixes": [
+   "fix: CVE issues in image build (#1289)"
+  ],
+  "security updates": [
+   "fix: CVE-2022-1271 in image build by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1289"
+  ]
+ },
+ "1.16.0": {
+  "bug fixes": [
+   "fix: CVE issues in image build (#1264, #1267, #1279)",
+   "fix: vmss cache regression issue (#1265)"
+  ],
+  "security updates": [
+   "fix: CVE-2018-25032 in image build by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1264",
+   "chore: Update golang.org/x/crypto for CVE-2022-27191 by @jsafrane in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1279"
+  ]
+ },
+ "1.15.0": {
+  "bug fixes": [
+   "fix: disk attach/detach failure when operation is preempted (#1248)",
+   "fix: CVE issues in image build (#1249)"
+  ]
+ },
+ "1.14.0": {
+  "bug fixes": [
+   "fix: CVE-2022-0778 in image build (#1222)",
+   "fix: leader-election namespace issue (#1238)"
+  ],
+  "security updates": [
+   "fix: CVE-2022-0778 in image build by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1222"
+  ]
+ },
+ "1.13.0": {
+  "bug fixes": [
+   "fix: GetNodeInfo should succeed when IMDS is unavailable on the node (#1200)",
+   "fix: disable disk capacity check in CreateVolume (#1213)"
+  ]
+ },
+ "1.12.0": {
+  "bug fixes": [
+   "fix: return emtpy topology when get zone failed in NodeGetInfo (#1176)",
+   "fix: adjust memory requests and limits on Windows node (#1180)",
+   "fix: GetDisk throttling issue (#1181)"
+  ]
+ },
+ "1.11.0": {
+  "bug fixes": [
+   "fix: tag parsing issue in CreateSnapshot (#1140)",
+   "fix: CVE-2021-3996 in image build (#1150)"
+  ],
+  "security updates": [
+   "fix: CVE-2021-3996 in image build by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1150"
+  ]
+ },
+ "1.2.2": {
+  "bug fixes": [
+   "fix: CVE-2021-3996 in image build (#1150)"
+  ],
+  "security updates": [
+   "fix: patch CVE-2021-3995 and CVE-2021-3996 by @mainred in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1149"
+  ]
+ },
+ "1.2.1": {
+  "bug fixes": [
+   "fix: CVE in docker image build (#1147)"
+  ]
+ },
+ "1.10.0": {
+  "bug fixes": [
+   "fix: detach disk should return error when throttled (#1105)",
+   "fix: CVE-2021-43618 in Ubuntu image (#1117)",
+   "fix: CVE-2021-38561 with golang lib (#1119)"
+  ],
+  "security updates": [
+   "fix: CVE-2021-43618 in Ubuntu image by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1117",
+   "fix: CVE-2021-38561 with golang lib by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1119"
+  ]
+ },
+ "1.9.0": {
+  "bug fixes": [
+   "fix: install updated packages to fix CVE issues (#1055)",
+   "fix: missing static PV data in VolumeAttachments (#1062)",
+   "fix: snapshot throttling issue (#1066)"
+  ]
+ },
+ "1.8.0": {
+  "bug fixes": [
+   "fix: reduce vmss cache refresh (#1018)",
+   "fix: upgrade to debian 11.0 base image to fix vulnerability (#1028)",
+   "fix: driver pod crash issue on Windows (#1033)",
+   "fix: add zoned field for backward compatibility (#1037)",
+   "fix: get MaxDataDiskCount error on Windows (#1039)",
+   "fix: GetZone error when instance metadata is disabled on Windows (#1042)"
+  ]
+ },
+ "1.7.0": {
+  "bug fixes": [
+   "fix: detach disk issue on deleting vmss node (#988)",
+   "fix: remove ClusterFirstWithHostNet dnsPolicy (#997)",
+   "fix: panic when vm size not in SkuMap table (#1000)"
+  ]
+ },
+ "1.5.1": {
+  "bug fixes": [
+   "fix: disable networkAccessPolicy on Azure Stack Cloud (#964)"
+  ]
+ },
+ "1.6.0": {
+  "bug fixes": [
+   "fix: disable uuid checks on XFS (#955)",
+   "fix: driver register issue on Windows node (#970)",
+   "fix: disable disk related rate limit (#979)",
+   "fix: ignore GetDisk throttling in DeleteDisk (#980)"
+  ]
+ },
+ "1.5.0": {
+  "bug fixes": [
+   "fix: create PV failure in zone and nonzone mixed cluster (#893)",
+   "fix: ZRS node affinity setting (#906)",
+   "fix: increase csi-attacher timeout to 10min (#907)",
+   "fix: detach disk crash on Azure Stack (#909)",
+   "fix: translation issue due to lower case managed kind (#915)",
+   "fix: unmount failure due to incorrect mount path check (#940)"
+  ]
+ },
+ "1.4.0": {
+  "bug fixes": [
+   "fix: read cloud config from secret regression in v1.3.0 (#886)"
+  ]
+ },
+ "1.3.0": {
+  "bug fixes": [
+   "fix RedHat/CentOS certificate issue in helm installation(`--set linux.distro=\"fedora\"`)(#852)",
+   "fix crp throttling in create/attach disk scenario(#837)"
+  ]
+ },
+ "1.2.0": {
+  "bug fixes": [
+   "fix: check disk state before attach disk",
+   "fix: disk attach issue when vm in failed status",
+   "fix: Bump K8s to v0.21.0 to address CVE-2021-3121"
+  ]
+ },
+ "1.0.0": {
+  "bug fixes": [
+   "fix: resize filesystem if cloned volume capacity is larger than source volume",
+   "fix: volume expansion failure on node",
+   "fix: helm chart installation issue"
+  ]
+ },
+ "0.10.0": {
+  "bug fixes": [
+   "fix: not schedule driver pod on virtual node",
+   "fix: cache data loss issue on Windows when unmount disk"
+  ]
+ },
+ "0.9.0": {
+  "bug fixes": [
+   "fix resize error in migration scenario",
+   "fix azure disk resize error if source does not exist"
+  ]
+ },
+ "0.8.0": {
+  "bug fixes": [
+   "fix disk API 10s latency issue",
+   "fix initial delay(1s) when mount azure disk",
+   "fix incorrect max azure disk max count"
+  ]
+ }
+}

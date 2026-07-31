@@ -1,0 +1,36 @@
+{
+ "2.6.0": {
+  "bug fixes": [
+   "[1895](https://github.com/cloudnativelabs/kube-router/issues/1895) - IPv6 NDP NA/NS dropped when using egress network policy",
+   "[1875](https://github.com/cloudnativelabs/kube-router/issues/1875) - Collect service statistics real-time",
+   "[1888](https://github.com/cloudnativelabs/kube-router/issues/1860) - Resilience to TCP SYN Node Loss",
+   "[1816](https://github.com/cloudnativelabs/kube-router/issues/1816) - support change the default port of GoBGP",
+   "[1614](https://github.com/cloudnativelabs/kube-router/issues/1614) - Fix CLI Options - --master doesn't work without --kubeconfig"
+  ]
+ },
+ "2.1.0": {
+  "bug fixes": [
+   "kube-router's init container now installs CNI plugins when they are missing. The location for these plugins can be controlled by setting the environment variable `HOST_BIN_PATH` within the init container, but will default to `/opt/cni/bin`. This is something that all major Kubernetes networking providers do, but kube-router has not done in the past. For more information on CNI plugins, please see: https://github.com/containernetworking/plugins",
+   "kube-router now implements `.spec.healthCheckNodePort` which has long been a part of the [Kubernetes service specification](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/#servicespec-v1-core), but kube-router hasn't implemented it until now. This port is meant to give visibility about whether or not an endpoint for a service exists on a node to workloads outside the Kubernetes cluster. If a service endpoint is on the node, then this port returns a 200 HTTP response, otherwise it returns a 503 HTTP response if no endpoint exists on the node. By choosing a node that contains an endpoint, a client can ensure [source IP preservation](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip).",
+   "Hairpinning in kube-router is now fixed. kube-router now has a dedicated controller to ensuring that the `veth` interface inside the container is in promiscuous mode. This used to be handled by `kubelet` and then it was handled by `docker-shim` and then it was removed entirely. As far as I can tell, it was never ported to `containerd` or `cri-o`. Without this functionality, return traffic ends up getting black-holed before it is routed outside of the container. For more details see: https://github.com/cloudnativelabs/kube-router/commit/0f3714b9b758f24de0b1911c148bdba8d87de9b6",
+   "Users can now specify `--metrics-addr` to choose the IP address that kube-router listens on when providing Prometheus metrics",
+   "Users can now specify custom protocol timeouts for IPVS services exposed by kube-router",
+   "`--service-tcp-timeout` - (default: `0s` preserves system value, typically 900 seconds)",
+   "`--service-tcpfin-timeout` - (default: `0s` preserves system value, typically 120 seconds)",
+   "`--service-udp-timeout` - (default: `0s` preserves system value, typically 300 seconds)",
+   "kube-router now abides by the service label `service.kubernetes.io/service-proxy-name`. Setting this label to something other than `kube-router` will result in kube-router ignoring the service",
+   "kube-router now honors `spec.internalTrafficPolicy` and implements `spec.externalTrafficPolicy` correctly. For more information see: https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies for more information"
+  ]
+ },
+ "1.3.1": {
+  "security updates": [
+   "2e08d479 - fix(go.mod): containerd CVE-2021-32760 (11 days ago) <Aaron U'Ren>"
+  ]
+ },
+ "1.0.0": {
+  "breaking changes": [
+   "The way network policies are configured using iptables on the nodes has been modified to keep built in chains cleaner. You need to flush the iptables filter table or reboot the node before running this version of kube-router",
+   "if you have egress network policies applied to workload, you need to ensure proper value for `service-cluster-ip-range` and `service-node-port-range` configured to ensure pod's can access service cluster IP's and NodePort services"
+  ]
+ }
+}

@@ -1,0 +1,56 @@
+{
+ "4.1.4": {
+  "security updates": [
+   "[GHSA-hr2v-4r36-88hr ](https://github.com/helm/helm/security/advisories/GHSA-hr2v-4r36-88hr) Helm Chart extraction output directory collapse via `Chart.yaml` name dot-segment",
+   "[GHSA-q5jf-9vfq-h4h7](https://github.com/helm/helm/security/advisories/GHSA-q5jf-9vfq-h4h7) Plugin verification fails open when `.prov` is missing, allowing unsigned plugin install",
+   "[GHSA-vmx8-mqv2-9gmg](https://github.com/helm/helm/security/advisories/GHSA-vmx8-mqv2-9gmg) Path traversal in plugin metadata version enables arbitrary file write outside Helm plugin directory"
+  ]
+ },
+ "3.20.2": {
+  "security updates": [
+   "[GHSA-hr2v-4r36-88hr](https://github.com/helm/helm/security/advisories/GHSA-hr2v-4r36-88hr) Helm Chart extraction output directory collapse via `Chart.yaml` name dot-segment"
+  ]
+ },
+ "3.18.5": {
+  "security updates": [
+   "[Helm Charts with Specific JSON Schema Values Can Cause Memory Exhaustion](https://github.com/helm/helm/security/advisories/GHSA-9h84-qmv7-982p)",
+   "[Incorrect YAML Content Leads To Panic](https://github.com/helm/helm/security/advisories/GHSA-f9f8-9pmf-xv68)"
+  ]
+ },
+ "3.17.4": {
+  "security updates": [
+   "Join the discussion in [Kubernetes Slack](https://kubernetes.slack.com):",
+   "for questions and just to hang out",
+   "for discussing PRs, code, and bugs",
+   "Hang out at the Public Developer Call: Thursday, 9:30 Pacific via [Zoom](https://zoom.us/j/696660622)",
+   "Test, debug, and contribute charts: [ArtifactHub/packages](https://artifacthub.io/packages/search?kind=0)"
+  ]
+ },
+ "3.18.4": {
+  "security updates": [
+   "[GHSA-557j-xg8c-q2mm](https://github.com/helm/helm/security/advisories/GHSA-557j-xg8c-q2mm): Chart Dependency Updating With Malicious Chart.yaml Content And Symlink"
+  ]
+ },
+ "3.17.0": {
+  "security updates": [
+   "Upgrade golang.org/x/net to v0.33.0 to address CVE-2024-45338 79993d2e5bb05a1eba5978353db084f1ca9cb7ac (cx)"
+  ]
+ },
+ "3.10.0": {
+  "security updates": [
+   "Bump k8s.io/kube-openapi to fix CVE-2022-1996 in github.com/emicklei/go-restful 1e0f8a4ee9991d1244b8576021011ef45982e955 (Guilherme Macedo)"
+  ]
+ },
+ "3.9.3": {
+  "security updates": [
+   "Bump k8s.io/kube-openapi to fix CVE-2022-1996 in github.com/emicklei/go-restful 414ff28d4029ae8c8b05d62aa06c7fe3dee2bc58 (Guilherme Macedo)"
+  ]
+ },
+ "2.5.0": {
+  "breaking changes": [
+   "`helm install` and `helm update` no longer download remote charts to the current working directroy. `helm fetch` continues to work as it always has.",
+   "Since `--set` now accepts array indices, `values.yaml` keys of the (literal) form `\"foo[0]\"` will no longer work.",
+   "A new field, `Force`, was added to the `UpdateReleaseRequest` and `RollbackReleaseRequset` gRPC calls. This will not break existing gRPC clients, but could break forks of Tiller that override existing gRPC calls."
+  ]
+ }
+}

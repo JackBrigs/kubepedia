@@ -1,0 +1,37 @@
+{
+ "1.28": {
+  "security updates": [
+   "CVE-2026-47766: do not follow rootfs /dev symlinks. Open rootfs /dev with safe_openat before creating default or handler-specific devices, preventing rootfs-controlled /dev symlinks from redirecting device setup outside the container rootfs."
+  ]
+ },
+ "1.27": {
+  "security updates": [
+   "CVE-2026-30892: fix parsing in `crun exec -u` that could lead to the process running with the wrong user."
+  ]
+ },
+ "1.20": {
+  "security updates": [
+   "krun: fix CVE-2025-24965. The .krun_config.json file could be created outside of the container rootfs."
+  ]
+ },
+ "1.14.1": {
+  "security updates": [
+   "there was recently a security vulnerability (CVE-2024-21626) in runc"
+  ]
+ },
+ "1.4.4": {
+  "security updates": [
+   "Fix CVE-2022-27650: exec does not set inheritable capabilities."
+  ]
+ },
+ "0.10.5": {
+  "security updates": [
+   "fix CVE-2019-18837"
+  ]
+ },
+ "0.10": {
+  "security updates": [
+   "fix for CVE-2019-16884, make sure writes to /proc for the SELinux and AppArmor labels are on procfs"
+  ]
+ }
+}

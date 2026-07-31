@@ -1,0 +1,43 @@
+{
+ "1.36.0": {
+  "security updates": [
+   "CVE-2026-33186: Bump google.golang.org/grpc to 1.79.3 by @sbiradar10 in https://github.com/kubernetes/cloud-provider-openstack/pull/3089"
+  ]
+ },
+ "1.28.1": {
+  "security updates": [
+   "Bump golang.org/x/net to v0.17.0 to fix CVE-2023-39325 and CVE-2023-44487"
+  ]
+ },
+ "1.27.3": {
+  "security updates": [
+   "Bump golang.org/x/net to v0.17.0 to fix CVE-2023-39325 and CVE-2023-44487"
+  ]
+ },
+ "1.26.4": {
+  "security updates": [
+   "Bump golang.org/x/net to v0.17.0 to fix CVE-2023-39325 and CVE-2023-44487"
+  ]
+ },
+ "1.25.4": {
+  "security updates": [
+   "[release-1.25] Address CVE-2022-41717 by @pierreprinetti in https://github.com/kubernetes/cloud-provider-openstack/pull/2078"
+  ]
+ },
+ "1.24.6": {
+  "security updates": [
+   "[release-1.24] Address CVE-2022-41717 by @pierreprinetti in https://github.com/kubernetes/cloud-provider-openstack/pull/2080"
+  ]
+ },
+ "1.24.0": {
+  "breaking changes": [
+   "[magnum-auto-healer] Remove Cinder V2 support. Action required. (#1769, @mnasiadka)"
+  ]
+ },
+ "1.18.0": {
+  "breaking changes": [
+   "openstack-cloud-controller-manager: Support OpenStack Octavia by default as load balancer implementation. Action required. (#977, @lingxiankong)",
+   "cinder-provisioner, manila-provisioner and cinder-flexvolume-plugin were removed from cloud-provider-openstack repository since release-1.18, use cinder-csi and manila-csi instead. Action required. (#991, @lingxiankong)"
+  ]
+ }
+}

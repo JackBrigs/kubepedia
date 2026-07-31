@@ -1,0 +1,12 @@
+{
+ "1.26.0": {
+  "security updates": [
+   "Bump Go versions to fix CVE-2025-22870 by @Michcioperz in https://github.com/kubernetes/dns/pull/680"
+  ]
+ },
+ "1.23.1": {
+  "security updates": [
+   "Vuln fixes for CVE-2023-5363 and CVE-2023-5528 by @irLinja in https://github.com/kubernetes/dns/pull/622"
+  ]
+ }
+}

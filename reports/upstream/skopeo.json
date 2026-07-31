@@ -1,0 +1,67 @@
+{
+ "1.23.0": {
+  "security updates": [
+   "Bump google.golang.org/grpc to v1.79.3 - CVE-2026-33186 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2843"
+  ]
+ },
+ "1.11.5": {
+  "security updates": [
+   "[release-1.11] CVE-2025-65637 Logrus by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2789",
+   "[release-1.11] Bump Go Jose to v3.0.5, CVE-2026-34986, Skopeo to v1.11.5 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2863"
+  ]
+ },
+ "1.14.6": {
+  "security updates": [
+   "[release-1.14] Bump Go Jose to v3.0.5, CVE-2026-34986 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2862"
+  ]
+ },
+ "1.20.1": {
+  "security updates": [
+   "[release-1.20] Bump Go Jose v4.1.4, CVE-2026-34986 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2852"
+  ]
+ },
+ "1.18.2": {
+  "security updates": [
+   "[release-1.18] Bump Go Jose v4.1.4, CVE-2026-34986 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2853",
+   "[release-1.18] Fix CVE-2025-27144, bump Skopeo to v1.18.1 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2543"
+  ]
+ },
+ "1.22.1": {
+  "security updates": [
+   "Bump Skopeo to v1.22.1, CVE-2026-34986, c/common v067.1, c/image v5.39.2 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2842"
+  ]
+ },
+ "1.9.5": {
+  "security updates": [
+   "[release-1.9] Bump ocicrypt and go-jose CVE-2024-28180 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2293",
+   "[release-1.9] CVE-2025-65637 logrus to 1.9.3 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2805"
+  ]
+ },
+ "1.11.4": {
+  "security updates": [
+   "[release-1.11] CVE-2025-65637 Logrus by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2789"
+  ]
+ },
+ "1.11.3": {
+  "security updates": [
+   "[release-1.11] Bump ocicrypt and go-jose CVE-2024-28180 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2292",
+   "[release-1.11] CVE-2024-3727 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2424"
+  ]
+ },
+ "1.14.4": {
+  "security updates": [
+   "[release-1.14] CVE-2024-3727 by @TomSweeneyRedHat in https://github.com/containers/skopeo/2337",
+   "[release-1.14] Bump ocicrypt and go-jose CVE-2024-28180 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2290"
+  ]
+ },
+ "1.15.1": {
+  "security updates": [
+   "[release-1.15] CVE-2024-3727, bump to v1.15.1 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2329"
+  ]
+ },
+ "1.6.3": {
+  "security updates": [
+   "[release-1.6] bump golang.org/x/net to v0.7.0 [CVE-2022-41723] by @lsm5 in https://github.com/containers/skopeo/pull/1949"
+  ]
+ }
+}

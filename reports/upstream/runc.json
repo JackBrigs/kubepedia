@@ -1,0 +1,170 @@
+{
+ "1.5.1": {
+  "bug fixes": [
+   "There was a regression reported in with the `maskPaths` optimisation added in",
+   "Properly handle `EINVAL` for seccomp `SECCOMP_FILTER_FLAG_WAIT_KILLABLE_RECV`"
+  ]
+ },
+ "1.5.0": {
+  "bug fixes": [
+   "Since runc 1.3.0, the `org.opencontainers.runc.version` annotation included"
+  ]
+ },
+ "1.4.3": {
+  "security updates": [
+   "[CVE-2026-41579][] allowed a malicious image with a `/dev` symlink to have"
+  ],
+  "bug fixes": [
+   "Various integration test improvements. (#5222, #5237, #5226, #5229, #5239,"
+  ]
+ },
+ "1.3.6": {
+  "security updates": [
+   "[CVE-2026-41579][] allowed a malicious image with a `/dev` symlink to have"
+  ],
+  "bug fixes": [
+   "A regression in runc v1.3.0 which can result in a stuck `runc exec` or",
+   "Various integration test improvements. (#5159, #5188, #5226, #5228, #5239,"
+  ]
+ },
+ "1.4.2": {
+  "bug fixes": [
+   "A regression in runc v1.3.0 which can result in a stuck `runc exec` or",
+   "Mount sources that need to be open on the host are now closed earlier during"
+  ]
+ },
+ "1.3.5": {
+  "bug fixes": [
+   "Recursive atime-related mount flags (rrelatime et al.) are now applied",
+   "PR #4757 caused a regression that resulted in spurious"
+  ]
+ },
+ "1.4.1": {
+  "bug fixes": [
+   "libct: fix panic in `initSystemdProps` when processing certain systemd",
+   "libct: fix several file descriptor leaks on error paths. (#5168, #5009)",
+   "Remove unnecessary `crypto/tls` dependency by open-coding the systemd socket",
+   "Remove legacy `os.Is*` error usage, improving error type detection to make",
+   "Go 1.26 has started enforcing a restriction of `os/exec.Cmd` which caused",
+   "Recursive `atime`-related mount flags (`rrelatime` et al.) are now applied",
+   "Fix a regression in `runc exec` due to `CLONE_INTO_CGROUP` in the",
+   "On machines with more than 1024 CPU cores, our logic for resetting the CPU",
+   "PR #4757 caused a regression that resulted in spurious"
+  ]
+ },
+ "1.4.0": {
+  "breaking changes": [
+   "The handling of `pids.limit` has been updated to match the newer guidance"
+  ],
+  "bug fixes": [
+   "cgroups: provide iocost statistics for cgroupv2. (opencontainers/cgroups#43)",
+   "cgroups: retry DBus connection when it fails with EAGAIN.",
+   "cgroups: improve `cpuacct.usage_all` resilience when parsing data from",
+   "libct: close child fds on `prepareCgroupFD` error. (#4936)",
+   "libct: fix mips compilation. (#4962, #4967)",
+   "When configuring a `tmpfs` mount, only set the `mode=` argument if the target",
+   "Fix various file descriptor leaks and add additional tests to detect them as",
+   "The \"hallucination\" helpers added as part of the [CVE-2025-52881][]"
+  ]
+ },
+ "1.3.4": {
+  "bug fixes": [
+   "libct: fix mips compilation. (#4962, #4966)",
+   "When configuring a `tmpfs` mount, only set the `mode=` argument if the",
+   "Fix various file descriptor leaks and add additional tests to detect them as"
+  ]
+ },
+ "1.2.9": {
+  "bug fixes": [
+   "libct: fix mips compilation. (#4962, #4965)",
+   "When configuring a `tmpfs` mount, only set the `mode=` argument if the",
+   "Fix various file descriptor leaks and add additional tests to detect them as"
+  ]
+ },
+ "1.3.3": {
+  "security updates": [
+   "[CVE-2025-31133][] exploits an issue with how masked paths are implemented in",
+   "[CVE-2025-52565][] is very similar in concept and application to",
+   "[CVE-2025-52881][] is a more sophisticated variant of [CVE-2019-19921][],"
+  ]
+ },
+ "1.2.8": {
+  "security updates": [
+   "[CVE-2025-31133][] exploits an issue with how masked paths are implemented in",
+   "[CVE-2025-52565][] is very similar in concept and application to",
+   "[CVE-2025-52881][] is a more sophisticated variant of [CVE-2019-19921][],"
+  ]
+ },
+ "1.3.1": {
+  "bug fixes": [
+   "Container processes will no longer inherit the CPU affinity of runc by",
+   "Setting `linux.rootfsPropagation` to `shared` or `unbindable` now functions",
+   "Close seccomp agent connection to prevent resource leaks. (#4796, #4799)",
+   "`runc delete` and `runc stop` can now correctly handle cases where",
+   "`runc update` will no longer clear intelRdt state information. (#4828,",
+   "CI: Fix exclusion rules and allow us to run jobs manually. (#4760, #4763)"
+  ]
+ },
+ "1.2.7": {
+  "bug fixes": [
+   "Removed preemptive \"full access to cgroups\" warning when calling",
+   "Add time namespace to container config after checkpoint/restore. CRIU since",
+   "Container processes will no longer inherit the CPU affinity of runc by",
+   "Close seccomp agent connection to prevent resource leaks. (#4796, #4800)",
+   "Several fixes to our CI, mainly related to AlmaLinux and CRIU. (#4670,",
+   "Setting `linux.rootfsPropagation` to `shared` or `unbindable` now functions",
+   "`runc update` will no longer clear intelRdt state information. (#4828,"
+  ]
+ },
+ "1.3.0": {
+  "bug fixes": [
+   "Removed pre-emptive \"full access to cgroups\" warning when calling",
+   "Several fixes to our CI, mainly related to AlmaLinux and CRIU. (#4670,"
+  ]
+ },
+ "1.2.6": {
+  "bug fixes": [
+   "Fix a stall issue that would happen if setting `O_CLOEXEC` with",
+   "`runc` now properly handles joining time namespaces (such as with",
+   "Handle `EINTR` retries correctly for socket-related direct",
+   "We no longer use `F_SEAL_FUTURE_WRITE` when sealing the runc binary, as it"
+  ]
+ },
+ "1.2.0": {
+  "security updates": [
+   "The original fix for [CVE-2024-45310][cve-2024-45310] was intentionally very"
+  ]
+ },
+ "1.1.14": {
+  "security updates": [
+   "Fix [CVE-2024-45310][cve-2024-45310], a low-severity attack that allowed"
+  ]
+ },
+ "1.1.13": {
+  "security updates": [
+   "The `runc` binaries provided here were built with go1.21.11, which includes [a"
+  ]
+ },
+ "1.1.12": {
+  "security updates": [
+   "Fix [CVE-2024-21626][cve-2024-21626], a container breakout attack that took advantage of"
+  ]
+ },
+ "1.1.5": {
+  "security updates": [
+   "CVE-2023-25809 is a vulnerability involving rootless containers where",
+   "CVE-2023-27561 was a regression which effectively re-introduced",
+   "CVE-2023-28642 is a variant of CVE-2023-27561 and was fixed by the same"
+  ]
+ },
+ "0.1.0": {
+  "bug fixes": [
+   "log flushing",
+   "atomic pid file creation",
+   "init error recovery",
+   "seccomp logging removed",
+   "delete container on aborted start",
+   "/dev bind mount handling"
+  ]
+ }
+}

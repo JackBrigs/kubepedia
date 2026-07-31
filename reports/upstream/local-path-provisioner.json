@@ -1,0 +1,7 @@
+{
+ "0.0.36": {
+  "security updates": [
+   "Fixed [HelperPod Template Injection](https://github.com/rancher/local-path-provisioner/security/advisories/GHSA-7fxv-8wr2-mfc4), a high-severity HelperPod template injection vulnerability. A user with permission to edit the `local-path-config` ConfigMap could manipulate `helperPod.yaml` and cause the provisioner to create unsafe HelperPods during PVC provisioning or cleanup operations. This release adds HelperPod template validation to reject unsafe security-sensitive fields such as privileged containers, `hostPath` volumes, and dangerous pod security settings."
+  ]
+ }
+}

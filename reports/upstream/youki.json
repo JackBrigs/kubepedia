@@ -1,0 +1,439 @@
+{
+ "0.7.0": {
+  "bug fixes": [
+   "fix duplicate mount entries on exec by @saku3 in https://github.com/youki-dev/youki/pull/3432",
+   "fix: inherit config.json env vars in exec processes by @KevinKickass in https://github.com/youki-dev/youki/pull/3439",
+   "Checking source file type with `is_dir()` in bind mount implementation by @logica0419 in https://github.com/youki-dev/youki/pull/3484",
+   "fix(libcgroups): Set MemorySwapMax to 0 when memory::limit == memory::swap by @souk4711 in https://github.com/youki-dev/youki/pull/3488",
+   "seccomp: fix multi-condition rule handling and follow runc for duplicate arg comparators by @saku3 in https://github.com/youki-dev/youki/pull/3489",
+   "fix: validate process.terminal field against --console-socket option by @nayuta723 in https://github.com/youki-dev/youki/pull/3528",
+   "fix: preserve mount flags for readonly remount of rootfs in init by @YawKar in https://github.com/youki-dev/youki/pull/3536",
+   "fix: ratime and rnostrictatime mount options failing with EINVAL by @kechigon in https://github.com/youki-dev/youki/pull/3467",
+   "fix(channel): split intermediate and init readiness channels by @uran0sH in https://github.com/youki-dev/youki/pull/3504",
+   "fix: respect bundle option in youki spec command by @YawKar in https://github.com/youki-dev/youki/pull/3543",
+   "fix(libcgroups): return typed error when systemd is not available by @SAY-5 in https://github.com/youki-dev/youki/pull/3546",
+   "fix youki spec command overwrites the existing config.json by @tommady in https://github.com/youki-dev/youki/pull/3555",
+   "fix: drop bounding caps by default if unset by @YawKar in https://github.com/youki-dev/youki/pull/3554",
+   "Use process env for StartContainer hooks when without explicit hook env by @bells17 in https://github.com/youki-dev/youki/pull/3470",
+   "fix: validation differences between youki and runc by @tommady in https://github.com/youki-dev/youki/pull/3556",
+   "fix(libcontainer): consider gid_mappings when looking up id-map binaries by @tkshsbcue in https://github.com/youki-dev/youki/pull/3624",
+   "fix(libcontainer): Bind mount detection should be based on bind/rbind options, not type == \"bind\" by @tommady in https://github.com/youki-dev/youki/pull/3611",
+   "fix(libcontainer): scope pivot_root rslave to the old root only by @saku3 in https://github.com/youki-dev/youki/pull/3621",
+   "fix: youki spec state vs runc spec state generated config differences by @tommady in https://github.com/youki-dev/youki/pull/3645",
+   "Disable colors in logs by @stepancheg in https://github.com/youki-dev/youki/pull/3433",
+   "[Bug]: Duplicate error and chain printing by @CarloQuick in https://github.com/youki-dev/youki/pull/3419",
+   "test: remove runc skip for seccomp_notify and memory_policy by @nayuta723 in https://github.com/youki-dev/youki/pull/3445",
+   "chore(deps): upgrade rust-criu to 0.5.0 and protobuf to 3.7.2 by @donkomura in https://github.com/youki-dev/youki/pull/3446",
+   "docs(liboci-cli): add missing help descriptions to arguments and options by @xvchris in https://github.com/youki-dev/youki/pull/3456",
+   "Fix logging for dropping capabilities by @stepancheg in https://github.com/youki-dev/youki/pull/3436",
+   "contest: add checkpoint/restore integration tests by @nayuta723 in https://github.com/youki-dev/youki/pull/3448",
+   "ci: install CRIU in containerd integration tests and skip checkpoint tests by @nayuta723 in https://github.com/youki-dev/youki/pull/3475",
+   "Deduplicate e2e test hook helpers by @fspv in https://github.com/youki-dev/youki/pull/3412",
+   "fix(cross): replace external apk-anywhere image with inlined Alpine apk in Dockerfile.musl by @saku3 in https://github.com/youki-dev/youki/pull/3491",
+   "Add poststop_fail hook test by @fspv in https://github.com/youki-dev/youki/pull/3407",
+   "fix: use correct fedora version number and deprecate riskv64 from lima-setup.sh by @gat786 in https://github.com/youki-dev/youki/pull/3497",
+   "refactor: Use cargo autoinherit to factorize the dependencies by @lu-zero in https://github.com/youki-dev/youki/pull/3477",
+   "chore: bump containerd to v2.2.3 and go to 1.24.3 by @tommady in https://github.com/youki-dev/youki/pull/3509",
+   "ci: group wasmtime-related Dependabot updates by @saku3 in https://github.com/youki-dev/youki/pull/3511",
+   "ci: remove unused cgroups v1 dind workflow steps by @saku3 in https://github.com/youki-dev/youki/pull/3512",
+   "refactor: replace deprecated clap derive attributes with command and arg by @yan-ace62 in https://github.com/youki-dev/youki/pull/3466",
+   "ci: build CRIU from source by @saku3 in https://github.com/youki-dev/youki/pull/3520",
+   "docs: fix several typos in code, error messages, and docs by @Shion1305 in https://github.com/youki-dev/youki/pull/3535",
+   "[Refactor] Use `&&` operator in if-let conditions by @logica0419 in https://github.com/youki-dev/youki/pull/3531",
+   "Add checkpoint/restore integration tests to contest by @tommady in https://github.com/youki-dev/youki/pull/3493",
+   "test(dind): pin docker:dind to 29.4 until youki supports time namespace by @saku3 in https://github.com/youki-dev/youki/pull/3539",
+   "fix: parse info parameters exactly by @immanuwell in https://github.com/youki-dev/youki/pull/3541",
+   "add aarch64 bundle for integration test by @saku3 in https://github.com/youki-dev/youki/pull/3530",
+   "bump oci-spec 0.10.0 by @saku3 in https://github.com/youki-dev/youki/pull/3569",
+   "Skip namespaces that are not specified for the init process by @saku3 in https://github.com/youki-dev/youki/pull/3551",
+   "fix(wasmedge): replace unwrap with proper error propagation in exec by @immanuwell in https://github.com/youki-dev/youki/pull/3570",
+   "chore: update rust to v1.96.0 by @YJDoc2 in https://github.com/youki-dev/youki/pull/3587",
+   "feat(contest): add reason for TestResult::Skipped by @donkomura in https://github.com/youki-dev/youki/pull/3588",
+   "test(contest): add update cgroup v2 common limits integration test by @hayama17 in https://github.com/youki-dev/youki/pull/3580",
+   "test(config): Implement libcontainer config methods failure test cases by @Scanf-s in https://github.com/youki-dev/youki/pull/3602",
+   "fix(utils): reject network device names exceeding the kernel limit according to the kernel reference by @Scanf-s in https://github.com/youki-dev/youki/pull/3608",
+   "test: convert mount_into_container and cgroup_v2 tests to fd-based mock by @saku3 in https://github.com/youki-dev/youki/pull/3606",
+   "test(contest): add cpu update integration tests for cgroup v2 by @hayama17 in https://github.com/youki-dev/youki/pull/3592",
+   "test(contest): add update pids limit integration test by @moz-sec in https://github.com/youki-dev/youki/pull/3595",
+   "test(contest): add cgroup v2 CPU update tests by @hayama17 in https://github.com/youki-dev/youki/pull/3614",
+   "fix(contest): avoid flaky MAC race in checkpoint netdevice test by @donkomura in https://github.com/youki-dev/youki/pull/3640",
+   "test(libcontainer): Implemented mount_console, verify_inode unit tests by @Scanf-s in https://github.com/youki-dev/youki/pull/3631",
+   "add killsig test by @YamasouA in https://github.com/youki-dev/youki/pull/3612",
+   "prepare v0.7.0 by @nayuta723 in https://github.com/youki-dev/youki/pull/3655",
+   "bump version to 0.7.0 and fix version-up regex in justfile by @nayuta723 in https://github.com/youki-dev/youki/pull/3665"
+  ]
+ },
+ "0.6.0": {
+  "breaking changes": [
+   "fix hooks order by @saku3 in https://github.com/youki-dev/youki/pull/3256",
+   "mount info provider by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3280",
+   "Use oci spec container process state for seccomp by @nayuta723 in https://github.com/youki-dev/youki/pull/3330",
+   "refactor(hooks): pass OCI-compliant state to lifecycle hooks by @nayuta723 in https://github.com/youki-dev/youki/pull/3346"
+  ],
+  "bug fixes": [
+   "Implement mount destination validation to ensure absolute paths in OCI Runtime Spec by @nayuta723 in https://github.com/youki-dev/youki/pull/3315",
+   "Fix default filemode for device creation by @you-matsuura in https://github.com/youki-dev/youki/pull/3276",
+   "fix(3293) Ambient capabilities are not applied as expected by @tommady in https://github.com/youki-dev/youki/pull/3294",
+   "fix(libcgroups): set `sz` field in `bpf_prog_load_opts` by @sou1118 in https://github.com/youki-dev/youki/pull/3340",
+   "Fix recursive mount_setattr handling for rec_attr and improve mounts_recursive tests by @saku3 in https://github.com/youki-dev/youki/pull/3345",
+   "fix(libcgroups): pass `full_path` to Devices controller instead of `cgroup_path` by @sou1118 in https://github.com/youki-dev/youki/pull/3355",
+   "refactor(tty): call setup_console after pivot_root, use syscall for mount_console by @nayuta723 in https://github.com/youki-dev/youki/pull/3333",
+   "Align with runc: use user's HOME when HOME is empty string by @bells17 in https://github.com/youki-dev/youki/pull/3269",
+   "Refactor checkpoint by @nayuta723 in https://github.com/youki-dev/youki/pull/3365",
+   "Update netlink-packet dependencies to versions 0.8.1 and 0.25.1 in Cargo.toml and Cargo.lock by @nayuta723 in https://github.com/youki-dev/youki/pull/3297",
+   "Fixed minor spelling errors in libcontainer documentation. by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3305",
+   "Add poststart hook test by @fspv in https://github.com/youki-dev/youki/pull/3292",
+   "Update/runc 1.4.0 by @nayuta723 in https://github.com/youki-dev/youki/pull/3304",
+   "chore: runc compatibility test improvements by @saku3 in https://github.com/youki-dev/youki/pull/3319",
+   "Replace once_cell with stdlib OnceLock/LazyLock by @yan-ace62 in https://github.com/youki-dev/youki/pull/3323",
+   "Update Kind and Kubernetes versions for k8s e2e tests by @IrvingMg in https://github.com/youki-dev/youki/pull/3328",
+   "ci(basic): pin Rust toolchain to 1.92.0 for cross-rs compatibility by @nayuta723 in https://github.com/youki-dev/youki/pull/3348",
+   "test: output contest logs to stdout by @saku3 in https://github.com/youki-dev/youki/pull/3349",
+   "Add poststart_fail hook test by @fspv in https://github.com/youki-dev/youki/pull/3313",
+   "Added new test \"kill no effect\" by @oneplus1000 in https://github.com/youki-dev/youki/pull/3332",
+   "Pass State directly to `run_hooks` instead of Container reference by @IrvingMg in https://github.com/youki-dev/youki/pull/3360",
+   "Batch running the test groups in test_framework by @donkomura in https://github.com/youki-dev/youki/pull/3372",
+   "refact mount_recursive test by @saku3 in https://github.com/youki-dev/youki/pull/3383",
+   "Add test poststop hook by @donkomura in https://github.com/youki-dev/youki/pull/3395",
+   "Add prestart hook test by @fspv in https://github.com/youki-dev/youki/pull/3382",
+   "Add create_runtime hook test by @fspv in https://github.com/youki-dev/youki/pull/3396",
+   "Sync the state to confirm hooks execution by @donkomura in https://github.com/youki-dev/youki/pull/3385",
+   "Include container status to IncorrectStatus error messaging by @CarloQuick in https://github.com/youki-dev/youki/pull/3411",
+   "Add prestart_fail hook test by @fspv in https://github.com/youki-dev/youki/pull/3406",
+   "chore(deps): bump wasmer, wasmtime by @YJDoc2 in https://github.com/youki-dev/youki/pull/3423",
+   "prepare v0.6.0 by @saku3 in https://github.com/youki-dev/youki/pull/3424"
+  ]
+ },
+ "0.5.7": {
+  "security updates": [
+   "[CVE-2025-62161](https://github.com/youki-dev/youki/security/advisories/GHSA-4g74-7cff-xcv8)",
+   "[CVE-2025-62596](https://github.com/youki-dev/youki/security/advisories/GHSA-vf95-55w6-qmrf)"
+  ],
+  "bug fixes": [
+   "Waiting on systemd to add intermediate process to cgroup. by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3262",
+   "Update/runc 1.3.2 by @n4mlz in https://github.com/youki-dev/youki/pull/3274"
+  ]
+ },
+ "0.5.6": {
+  "breaking changes": [
+   "Upgrade to Rust 1.89 and Edition 2024 by @utam0k in https://github.com/youki-dev/youki/pull/3244"
+  ],
+  "bug fixes": [
+   "Update Vagrantfile to support the ARM architecture by @bells17 in https://github.com/youki-dev/youki/pull/3222",
+   "setup runc integration test by @saku3 in https://github.com/youki-dev/youki/pull/3182",
+   "update runc ci to 1.3.1 by @saku3 in https://github.com/youki-dev/youki/pull/3237",
+   "Add mdbook binary to devcontainer by @bells17 in https://github.com/youki-dev/youki/pull/3240",
+   "Unskip runc tests after CI runc update 1.3.1 by @saku3 in https://github.com/youki-dev/youki/pull/3249",
+   "Fix podman ci by @saku3 in https://github.com/youki-dev/youki/pull/3260",
+   "add misc_props test by @YamasouA in https://github.com/youki-dev/youki/pull/3250",
+   "chore(deps): bump libseccomp from 0.3.0 to 0.4.0 by @MattPatchava in https://github.com/youki-dev/youki/pull/3275"
+  ]
+ },
+ "0.5.5": {
+  "bug fixes": [
+   "Revert \"[DNM] ci: temp disable workflows\" by @YJDoc2 in https://github.com/youki-dev/youki/pull/3194",
+   "Fixed Minor Spelling Errors by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3205",
+   "chore(justfile):add install recipe by @saku3 in https://github.com/youki-dev/youki/pull/3213"
+  ]
+ },
+ "0.5.4": {
+  "bug fixes": [
+   "use additional gids,user,group in exec, inject path iif not given by @YJDoc2 in https://github.com/youki-dev/youki/pull/3131",
+   "fix: mount retry and logging by @z63d in https://github.com/youki-dev/youki/pull/3157",
+   "fix: Gracefully terminate processes after successful execution of Wasm executors by @z63d in https://github.com/youki-dev/youki/pull/3099",
+   "fix: Running create_runtime hook after container is set to created. by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3181",
+   "fix: Ignoring CPU realtime on cgroupsv2 if set to zero by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3180",
+   "bump nix to 0.29.0 by @kemingy in https://github.com/youki-dev/youki/pull/3123",
+   "update rust version to 1.85.0 by @YJDoc2 in https://github.com/youki-dev/youki/pull/3085",
+   "add-test-linux_rootfs_propagation by @saku3 in https://github.com/youki-dev/youki/pull/3024",
+   "Add a relative_network_cgroups test as one of the integration tests by @moz-sec in https://github.com/youki-dev/youki/pull/2986",
+   "Refactor init process by @utam0k in https://github.com/youki-dev/youki/pull/3158",
+   "add kill test by @YamasouA in https://github.com/youki-dev/youki/pull/2996",
+   "allow running selected tests in contest.sh and justfile by @saku3 in https://github.com/youki-dev/youki/pull/3165",
+   "fix: capet Ambient log level by @z63d in https://github.com/youki-dev/youki/pull/3150",
+   "add test process_capabilities_fail by @kazmsk in https://github.com/youki-dev/youki/pull/3010",
+   "fix typos and outdated typos ci action by @howjmay in https://github.com/youki-dev/youki/pull/3168",
+   "add a system call mock for uid/gid. by @nayuta-ai in https://github.com/youki-dev/youki/pull/3173",
+   "fix: remove println statements from contest tests by @YJDoc2 in https://github.com/youki-dev/youki/pull/3167",
+   "Installing kubectl in dev container. by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3177",
+   "Add uid_mappings test by @moz-sec in https://github.com/youki-dev/youki/pull/3161",
+   "fix: update devcontainer.json by @AobaIwaki123 in https://github.com/youki-dev/youki/pull/3172",
+   "Remove oci tests that are duplicates of contest by @utam0k in https://github.com/youki-dev/youki/pull/3042",
+   "Remove oci tests that are duplicates of contest by @saku3 in https://github.com/youki-dev/youki/pull/3184",
+   "Fix debug logging for CPU affinity bitmask by @saku3 in https://github.com/youki-dev/youki/pull/3191",
+   "[DNM] ci: temp disable workflows by @YJDoc2 in https://github.com/youki-dev/youki/pull/3192"
+  ]
+ },
+ "0.5.3": {
+  "bug fixes": [
+   "Security: Fix compromised `tj-actions/changed-files` action by @sou1118 in https://github.com/youki-dev/youki/pull/3112",
+   "Fix the release flow by @utam0k in https://github.com/youki-dev/youki/pull/3098",
+   "chore(ci): add cgroup v1 compatibility for tests on ubuntu-24.04 by @sou1118 in https://github.com/youki-dev/youki/pull/3102",
+   "fix: CPU controller tests for Kernel 6.10 cgroup v2 changes by @sou1118 in https://github.com/youki-dev/youki/pull/3106",
+   "chore(ci): Upgrade GitHub Actions workflows for `ubuntu-24.04` by @sou1118 in https://github.com/youki-dev/youki/pull/3097",
+   "fix: release ci tests also need apparmor disable by @YJDoc2 in https://github.com/youki-dev/youki/pull/3118",
+   "chore(ci): add criu ppa for podman-tests ci by @sou1118 in https://github.com/youki-dev/youki/pull/3120"
+  ]
+ },
+ "0.5.2": {
+  "bug fixes": [
+   "fix(libcgroup): fix disable_oom_killer in cgroup v1 by @xujihui1985 in https://github.com/youki-dev/youki/pull/3090",
+   "Add a PR template file by @Gekko0114 in https://github.com/youki-dev/youki/pull/3049",
+   "add process rlimits fail test by @ntkm61027 in https://github.com/youki-dev/youki/pull/3051",
+   "Use MountOption enum to parse mount options defined in the spec by @musaprg in https://github.com/youki-dev/youki/pull/2937",
+   "ci: Publish packages after the release flow by @utam0k in https://github.com/youki-dev/youki/pull/3064",
+   "Make `sepc` into `&spec` in test_{outside,inside}_containe by @utam0k in https://github.com/youki-dev/youki/pull/3068",
+   "linux_masked_paths integration test by @nayuta-ai in https://github.com/youki-dev/youki/pull/2950",
+   "fix: compilation errors in contest by @YJDoc2 in https://github.com/youki-dev/youki/pull/3086",
+   "Remove problematic comments between package name in apt install by @musaprg in https://github.com/youki-dev/youki/pull/3060",
+   "Add `delete` test by @sou1118 in https://github.com/youki-dev/youki/pull/3082"
+  ]
+ },
+ "0.5.1": {
+  "bug fixes": [
+   "Fix building the wasmedge feature by @utam0k in https://github.com/youki-dev/youki/pull/3041",
+   "Do `cargo check` before releasing a new version by @utam0k in https://github.com/youki-dev/youki/pull/3039"
+  ]
+ },
+ "0.5.0": {
+  "breaking changes": [
+   "libcontainer: use OwnedFd as console_socket in ContainerBuilder by @abel-von in https://github.com/youki-dev/youki/pull/2966"
+  ],
+  "bug fixes": [
+   "Fixed ENAMETOOLONG error in setup_console_socket by @morganllewellynjones in https://github.com/youki-dev/youki/pull/2915",
+   "fix(libcontainer) no_pivot args is not used by @xujihui1985 in https://github.com/youki-dev/youki/pull/2923",
+   "Fix/return multi errors on create failed by @xujihui1985 in https://github.com/youki-dev/youki/pull/2998",
+   "fix duplicate gids in container creation by @YJDoc2 in https://github.com/youki-dev/youki/pull/3019",
+   "Fix --preserve-fds, eliminate stray FD being passed into container by @aidanhs in https://github.com/youki-dev/youki/pull/2893",
+   "ci: update action versions to fix deprecation warnings by @YJDoc2 in https://github.com/youki-dev/youki/pull/2918",
+   "deps: update wasmedge to 0.14.0 by @YJDoc2 in https://github.com/youki-dev/youki/pull/2928",
+   "Bump oci-spec to 0.7.0 by @kiokuless in https://github.com/youki-dev/youki/pull/2934",
+   "remove incorrect dependency in readme by @YJDoc2 in https://github.com/youki-dev/youki/pull/2940",
+   "Add seccomp into feature flags of youki to be compiled in by @musaprg in https://github.com/youki-dev/youki/pull/2924",
+   "Add unittest to expertiment seccomp programs by @sat0ken in https://github.com/youki-dev/youki/pull/2956",
+   "print \"unknown\" instead of defaults if we cannot get kernel config by @YJDoc2 in https://github.com/youki-dev/youki/pull/2964",
+   "Add test process rlimits by @sat0ken in https://github.com/youki-dev/youki/pull/2977",
+   "Add test process user by @sat0ken in https://github.com/youki-dev/youki/pull/2978",
+   "add test process_oom_score_adj by @saku3 in https://github.com/youki-dev/youki/pull/2987",
+   "Add process test by @sat0ken in https://github.com/youki-dev/youki/pull/2968",
+   "refactor(test): refine function create_container by @xujihui1985 in https://github.com/youki-dev/youki/pull/2973",
+   "Add test root readonly by @sat0ken in https://github.com/youki-dev/youki/pull/2976",
+   "Adding Discord link to docs by @crmejia in https://github.com/youki-dev/youki/pull/3005",
+   "Prepare for v0.5.0 by @utam0k in https://github.com/youki-dev/youki/pull/3016",
+   "Use later stable rust version 1.81.0 to fix the CI by @musaprg in https://github.com/youki-dev/youki/pull/3033",
+   "Don't specify the versionFile for tagpr by @utam0k in https://github.com/youki-dev/youki/pull/3036"
+  ]
+ },
+ "0.4.1": {
+  "bug fixes": [
+   "update nc version to 0.9.3 by dependabot in https://github.com/containers/youki/pull/2895",
+   "prepare for version 0.4.1 by @YJDoc2 in https://github.com/containers/youki/pull/2897",
+   "Update Cargo.toml for v0.4.1 by @utam0k in https://github.com/containers/youki/pull/2904"
+  ]
+ },
+ "0.4.0": {
+  "breaking changes": [
+   "Rename to improve readability by @utam0k in https://github.com/containers/youki/pull/2818"
+  ],
+  "bug fixes": [
+   "Fix/dbus call issue by @YJDoc2 in https://github.com/containers/youki/pull/2838",
+   "Update nix to 0.28.0 by @omprakaash in https://github.com/containers/youki/pull/2728",
+   "Fix word order in README sentence justifying Rust usage by @andrewimeson in https://github.com/containers/youki/pull/2805",
+   "move macro define youki_version to use before by @lengrongfu in https://github.com/containers/youki/pull/2813",
+   "Use HashMap for envs in container_init_process by @musaprg in https://github.com/containers/youki/pull/2817",
+   "Ignore linter for MOUNT_ATTR__ATIME by @yihuaf in https://github.com/containers/youki/pull/2819",
+   "Update go version in podman CI and vagrantfile by @YJDoc2 in https://github.com/containers/youki/pull/2828",
+   "Fix typos and bump version for typos ci by @Jerrypoi in https://github.com/containers/youki/pull/2839",
+   "Install nightly for running linter inside devcontainer by @musaprg in https://github.com/containers/youki/pull/2845",
+   "Add issue templates by @YJDoc2 in https://github.com/containers/youki/pull/2829",
+   "chore(deps): update oci-spec to v0.6.7 by @Mossaka in https://github.com/containers/youki/pull/2847",
+   "Bump oci-spec by @keisku in https://github.com/containers/youki/pull/2854",
+   "Update devcontainer.json by @keisku in https://github.com/containers/youki/pull/2857",
+   "Apply building best practices to `.devcontainer/Dockerfile` by @keisku in https://github.com/containers/youki/pull/2856",
+   "Fix markdown format in experiment/selinux/README.md by @keisku in https://github.com/containers/youki/pull/2855",
+   "initial progress on supporting OwnedFd by @zahash in https://github.com/containers/youki/pull/2809",
+   "Rust 1.80.0 by @utam0k in https://github.com/containers/youki/pull/2869",
+   "Update nc dependency to 0.9.2 by @posutsai in https://github.com/containers/youki/pull/2884",
+   "Prepare for v0.4.0 by @utam0k in https://github.com/containers/youki/pull/2880",
+   "Release for v0.4.0 by @github-actions in https://github.com/containers/youki/pull/2791"
+  ]
+ },
+ "0.3.3": {
+  "breaking changes": [
+   "Improve error reporting and logging by @YJDoc2 in https://github.com/containers/youki/pull/2705"
+  ],
+  "bug fixes": [
+   "Fix cgroups determination in exec implementation by @YJDoc2 in https://github.com/containers/youki/pull/2720",
+   "Remove unnecessary chdir by @utam0k in https://github.com/containers/youki/pull/2780",
+   "Rollup dep updates by @YJDoc2 in https://github.com/containers/youki/pull/2667",
+   "Fill in TODO by @utam0k in https://github.com/containers/youki/pull/2677",
+   "Fix the links of contest by @utam0k in https://github.com/containers/youki/pull/2680",
+   "Set '--test-threads' option to 1 in unit tests by @YJDoc2 in https://github.com/containers/youki/pull/2685",
+   "add io priority e2e test by @lengrongfu in https://github.com/containers/youki/pull/2646",
+   "(fix) podman e2e : Update workflow for new required deps, add vagrantfile by @YJDoc2 in https://github.com/containers/youki/pull/2687",
+   "Add missed test-threads=1 to coverage CI by @YJDoc2 in https://github.com/containers/youki/pull/2699",
+   "Fix integration test validation CI, make io_priority test conditional by @YJDoc2 in https://github.com/containers/youki/pull/2707",
+   ":memo: Remove GitPod and add link to GitHub codespaces by @homersimpsons in https://github.com/containers/youki/pull/2717",
+   "Limt dependabot updates to only direct dependencies by @utam0k in https://github.com/containers/youki/pull/2725",
+   "fix observability default log level comment by @zahash in https://github.com/containers/youki/pull/2737",
+   "Update deps via cargo update by @YJDoc2 in https://github.com/containers/youki/pull/2747",
+   "Rust 1.77.1 by @utam0k in https://github.com/containers/youki/pull/2746",
+   "Make our codespaces more useful by @utam0k in https://github.com/containers/youki/pull/2753",
+   "Fix README.md by @utam0k in https://github.com/containers/youki/pull/2759",
+   "update wasmtime dep to 19.0.1, replace wasmtime-wasi with wasi-common by @YJDoc2 in https://github.com/containers/youki/pull/2752",
+   "Reset console sockets to original in setup_console test by @YJDoc2 in https://github.com/containers/youki/pull/2764",
+   "Update rust version to 1.77.2 by @YJDoc2 in https://github.com/containers/youki/pull/2779",
+   "Add linux_devices test by @omprakaash in https://github.com/containers/youki/pull/2708",
+   "deps: Disable unused/unnecessary regex features in libcontainer by @jirutka in https://github.com/containers/youki/pull/2781",
+   "Add `rustfmt.toml` to standardize formatting by @jprendes in https://github.com/containers/youki/pull/2787",
+   "Update the release workflow by @utam0k in https://github.com/containers/youki/pull/2789",
+   "Release v0.3.3 by @utam0k in https://github.com/containers/youki/pull/2794"
+  ]
+ },
+ "0.3.2": {
+  "bug fixes": [
+   "New Releases needs approval from the maintainer by @utam0k in https://github.com/containers/youki/pull/2583",
+   "Updaet to Containerd 1.7.11 by @utam0k in https://github.com/containers/youki/pull/2558",
+   "chore(deps) bump tabwriter, windows-core, tempfile, memchr, clang-sys by @YJDoc2 in https://github.com/containers/youki/pull/2608",
+   "Name the test tools `contest` by @utam0k in https://github.com/containers/youki/pull/2486",
+   "Fix the missed naming changes in integration test validation CI by @YJDoc2 in https://github.com/containers/youki/pull/2629",
+   "Roll up various minor and major version dep upgrade by @YJDoc2 in https://github.com/containers/youki/pull/2638",
+   "Add docker-in-docker e2e test by @jprendes in https://github.com/containers/youki/pull/2645",
+   "Add domainname test by @higuruchi in https://github.com/containers/youki/pull/1544",
+   "Re enable skipped e2e tests by @YJDoc2 in https://github.com/containers/youki/pull/2647"
+  ]
+ },
+ "0.3.1": {
+  "bug fixes": [
+   "Specify the protobuf crate because of the rust-criu crate by @utam0k in https://github.com/containers/youki/pull/2497",
+   "docs(main): auto release node using just by @cuisongliu in https://github.com/containers/youki/pull/2573",
+   "Fix emulated cgroups v1 subsystem when running docker-in-docker by @jprendes in https://github.com/containers/youki/pull/2532",
+   "Grouping patch updates in dependabot. by @utam0k in https://github.com/containers/youki/pull/2496",
+   "Fix the config of the dependenda bot by @utam0k in https://github.com/containers/youki/pull/2502",
+   "feature(main): add release strip by @cuisongliu in https://github.com/containers/youki/pull/2503",
+   "test(integration_test): port 'runtime-tools/validation/linux_sysctl' by @xiaoyang-sde in https://github.com/containers/youki/pull/2527",
+   "docs(libcgroup): add docs for several items in 'libcgroup::v2' by @xiaoyang-sde in https://github.com/containers/youki/pull/2525",
+   "test(integration_test): port 'runtime-tools/validation/linux_seccomp' by @xiaoyang-sde in https://github.com/containers/youki/pull/2531",
+   "fix(libcgroups): clean up 'libcgroups::v1::manager' by @xiaoyang-sde in https://github.com/containers/youki/pull/2530",
+   "small typo in trace message by @Pvlerick in https://github.com/containers/youki/pull/2535",
+   "Set up userns in a straightforward way by @utam0k in https://github.com/containers/youki/pull/2548",
+   "Rust 1.74.1 by @utam0k in https://github.com/containers/youki/pull/2557",
+   "Simplify release workflow by @jprendes in https://github.com/containers/youki/pull/2541",
+   "config: Automated Tagpr Update for 0.3.1 by @github-actions in https://github.com/containers/youki/pull/2571",
+   "Release for v0.3.1 by @github-actions in https://github.com/containers/youki/pull/2570",
+   "Ignore CHANGELOG.md in typos by @utam0k in https://github.com/containers/youki/pull/2572"
+  ]
+ },
+ "0.3.0": {
+  "bug fixes": [
+   "Use raw syscalls to avoid sporadic hangs by @jprendes in https://github.com/containers/youki/pull/2425",
+   "Fix device duplication in rootfs preparation by @YJDoc2 in https://github.com/containers/youki/pull/2438",
+   "Change rootless required function and privilege decision by @YJDoc2 in https://github.com/containers/youki/pull/2279",
+   "Skip the tests related to criu when criu is not found by @utam0k in https://github.com/containers/youki/pull/2365",
+   "Refactor doc test and justfile by @yihuaf in https://github.com/containers/youki/pull/2330",
+   "Add initial tests for rootless podman by @YJDoc2 in https://github.com/containers/youki/pull/2406",
+   "update nix to 0.27.1 by @anti-entropy123 in https://github.com/containers/youki/pull/2369",
+   "Refactor test dir structure by @YJDoc2 in https://github.com/containers/youki/pull/2421",
+   "Use static build of wasmedge by @jprendes in https://github.com/containers/youki/pull/2420",
+   "v0.3.0 by @utam0k in https://github.com/containers/youki/pull/2437"
+  ]
+ },
+ "0.2.0": {
+  "breaking changes": [
+   "Use syscall type to delay the creation of syscall struct. by @yihuaf in https://github.com/containers/youki/pull/2155",
+   "Refactor the libcgroups interface by @yihuaf in https://github.com/containers/youki/pull/2168",
+   "refactored executor and executor manager by @yihuaf in https://github.com/containers/youki/pull/2186",
+   "Refactored the Executor interface yet again by @yihuaf in https://github.com/containers/youki/pull/2230",
+   "Rename the rootless struct to UserNamespaceConfig by @YJDoc2 in https://github.com/containers/youki/pull/2257",
+   "move the validation logic into executor by @yihuaf in https://github.com/containers/youki/pull/2258"
+  ],
+  "bug fixes": [
+   "[Trivial] exclude the oci-runtime-test from the typos by @yihuaf in https://github.com/containers/youki/pull/2133",
+   "disable musl test for now by @yihuaf in https://github.com/containers/youki/pull/2150",
+   "Fix musl test function not parametered correctly by @yihuaf in https://github.com/containers/youki/pull/2158",
+   "Rust 1.71.0 by @utam0k in https://github.com/containers/youki/pull/2167",
+   "Make container_args clone-able by @yihuaf in https://github.com/containers/youki/pull/2193",
+   "Update CI go version to 1.20 by @YJDoc2 in https://github.com/containers/youki/pull/2227",
+   "Fix podman tests to properly run by @YJDoc2 in https://github.com/containers/youki/pull/2233",
+   "Named all GitHub Actions workflows by @utam0k in https://github.com/containers/youki/pull/2256",
+   "Include Breaking Changes section in the release note by @utam0k in https://github.com/containers/youki/pull/2265",
+   "Extend wait time for auto-merge by @utam0k in https://github.com/containers/youki/pull/2278",
+   "Switch codespace from gitpod by @utam0k in https://github.com/containers/youki/pull/2306",
+   "Rust 1.72 by @utam0k in https://github.com/containers/youki/pull/2323",
+   "Update Migration Guide for 0.2.0 release by @YJDoc2 in https://github.com/containers/youki/pull/2334"
+  ]
+ },
+ "0.0.4": {
+  "bug fixes": [
+   "Remove duplicated assignment by @cyyzero in https://github.com/containers/youki/pull/993",
+   "Fix some typos by @z1cheng in https://github.com/containers/youki/pull/1057",
+   "Fix bug that attempts is always 0 in delete_with_retry by @cyyzero in https://github.com/containers/youki/pull/1128",
+   "Fix how cgroup manager is created based on cgroups path by @YJDoc2 in https://github.com/containers/youki/pull/1288",
+   "Thaw a paused container in cgroup v1 when it is forcely deleted. by @cyyzero in https://github.com/containers/youki/pull/1204",
+   "Ignore error when killing, if error is 'process does not exist' by @YJDoc2 in https://github.com/containers/youki/pull/1339",
+   "Fixed set capability fail. by @higuruchi in https://github.com/containers/youki/pull/1349",
+   "chore(rustdoc): Fix `rustdoc` warnings by @adoerr in https://github.com/containers/youki/pull/833",
+   "Add flat logos to docs folder by @scary4cat in https://github.com/containers/youki/pull/873",
+   "Remove the build dependency from some tests. by @utam0k in https://github.com/containers/youki/pull/909",
+   "Update cargo-llvm-cov and use rust 1.60.0 for coverage by @taiki-e in https://github.com/containers/youki/pull/898",
+   "chore: a separate target directory for runtimetest by @tony84727 in https://github.com/containers/youki/pull/981",
+   "test: hooks integration test by @tony84727 in https://github.com/containers/youki/pull/959",
+   "Added podman local system tests by @stefins in https://github.com/containers/youki/pull/1009",
+   "Automatically publish packages by @MostlyAmiable in https://github.com/containers/youki/pull/1000",
+   "Changed bats installation script to apt package manager by @stefins in https://github.com/containers/youki/pull/1125",
+   "Fix whitespaces: replace TABs to SPACEs by @orimanabu in https://github.com/containers/youki/pull/1167",
+   "Add git commit sha placeholder if .git not found by @YJDoc2 in https://github.com/containers/youki/pull/1251",
+   "Log result of the command before returning from main by @YJDoc2 in https://github.com/containers/youki/pull/1302",
+   "Add TestContainerKill required error message in kill command by @YJDoc2 in https://github.com/containers/youki/pull/1319",
+   "Upgrade to 1.65 and fix lint errors by @YJDoc2 in https://github.com/containers/youki/pull/1321",
+   "Improve the flow of the containerd test with youki by @utam0k in https://github.com/containers/youki/pull/1297",
+   "Fix TestContainerNoBinaryExists test, by making create behaviour similar to runc by @YJDoc2 in https://github.com/containers/youki/pull/1347",
+   "[actions] add workflow file for containerd integration testing by @guni1192 in https://github.com/containers/youki/pull/968",
+   "Change targets in the makefile by @YJDoc2 in https://github.com/containers/youki/pull/1383",
+   "Update makefile changes in containerd ci by @YJDoc2 in https://github.com/containers/youki/pull/1386",
+   "Add hostname test by @chermehdi in https://github.com/containers/youki/pull/1376",
+   "Fix release script and prepare for release by @YJDoc2 in https://github.com/containers/youki/pull/1397"
+  ]
+ },
+ "0.0.3": {
+  "bug fixes": [
+   "Use /dev/null inside of the container by @adrianreber in https://github.com/containers/youki/pull/630",
+   "Fix some typos and align formatting by @Szymongib in https://github.com/containers/youki/pull/631",
+   "Always call setsid by @Furisto in https://github.com/containers/youki/pull/632",
+   "ready for integration test for the exec command. by @utam0k in https://github.com/containers/youki/pull/622",
+   "Ensure namespaces are entered in correct order by @Furisto in https://github.com/containers/youki/pull/674",
+   "Remove duplication from commands execution in Integration tests by @Szymongib in https://github.com/containers/youki/pull/673",
+   "make sure test_make_parent_mount_private() passes even when root is not a slave. by @utam0k in https://github.com/containers/youki/pull/682",
+   "make the rootless code testable by @utam0k in https://github.com/containers/youki/pull/634",
+   "Add tests to libcgroups/src/v2/devices/emulator.rs by @cr0ax in https://github.com/containers/youki/pull/704",
+   "remove cargo config by @Junnplus in https://github.com/containers/youki/pull/712",
+   "Always use the same permissions for youki dir by @Szymongib in https://github.com/containers/youki/pull/705",
+   "Remove caching of OCI tests in CI by @YJDoc2 in https://github.com/containers/youki/pull/727",
+   "Fix Cargo.lock file that gets generated after build by @harche in https://github.com/containers/youki/pull/734",
+   "Bring back architecture diagrams to README. by @utam0k in https://github.com/containers/youki/pull/739",
+   "Handle relative paths by @Szymongib in https://github.com/containers/youki/pull/740",
+   "Create the pid file with integration test by @utam0k in https://github.com/containers/youki/pull/762",
+   "Fix a comment explaining that `seccom_rule_add` requires multiple args to be broken into multiple rules. by @yihuaf in https://github.com/containers/youki/pull/775",
+   "introduce the timeout for github actions by @utam0k in https://github.com/containers/youki/pull/777",
+   "fix log control env val not passing properly. by @utam0k in https://github.com/containers/youki/pull/778",
+   "update README.md for makefile. by @utam1k in https://github.com/containers/youki/pull/779",
+   "fix the release workflow. by @utam0k in https://github.com/containers/youki/pull/781",
+   "make dependabot work again. by @utam0k in https://github.com/containers/youki/pull/782"
+  ]
+ },
+ "0.0.2": {
+  "bug fixes": [
+   "Interpret a cpu quota of zero as default value by @Furisto in https://github.com/containers/youki/pull/569",
+   "Use correct hugetlb interface file name by @Furisto in https://github.com/containers/youki/pull/579",
+   "Improve cgroup path handling for rootless containers by @Furisto in https://github.com/containers/youki/pull/597",
+   "Ensure youki runs under podman by @Furisto in https://github.com/containers/youki/pull/613",
+   "Ensure exec command can find config.json by @Furisto in https://github.com/containers/youki/pull/616",
+   "Create device as 0666 and not 066 by @adrianreber in https://github.com/containers/youki/pull/627"
+  ]
+ },
+ "0.0.1": {
+  "security updates": [
+   "Seal /proc/self/exe to protect against CVE-2019-5736 by @oblique in https://github.com/containers/youki/pull/343"
+  ]
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "3.31.0": {
+  "security updates": [
+   "CVE-2026-44210 via https://github.com/kata-containers/kata-containers/commit/ffa59ce3aa7877d067c9a372df0c329a23a01744",
+   "CVE-2026-47243 via 555b7738fe2f699af6d57712cf75330f012b4e3b"
+  ]
+ },
+ "3.30.0": {
+  "security updates": [
+   "Linux Kernel Copy Fail [CVE-2026-31431](https://github.com/advisories/GHSA-2274-3hgr-wxv6) fixed by bumping our guest image kernel in https://github.com/kata-containers/kata-containers/commit/803531dd9cd6679dfb54ef50102038325e0f0a07"
+  ]
+ },
+ "3.29.0": {
+  "security updates": [
+   "[CVE-2026-41326](https://github.com/kata-containers/kata-containers/security/advisories/GHSA-q49m-57vm-c8cc) in https://github.com/kata-containers/kata-containers/commit/1b9e49eb2763aa6ea6a99b276d3ff5e2c7f658f2"
+  ]
+ },
+ "3.27.0": {
+  "security updates": [
+   "CVE-2026-24834 in e17f96251dc35b0bb1a1e16b42ca6f20db877827, c727332b0ee001eb5467dc74459329602422587f, 48aa077e8cb41226598c3e9f3f46a72d2f57ee4d, 336b922d4f7fe5dc94087de2af3992a1a786d0d9"
+  ]
+ },
+ "3.26.0": {
+  "security updates": [
+   "[CVE-2026-24054](https://github.com/kata-containers/kata-containers/security/advisories/GHSA-5fc8-gg7w-3g5c) in 20ca4d2d79aa5bf63aa1254f08915da84f19e92a"
+  ]
+ },
+ "3.19.0": {
+  "security updates": [
+   "chore: Update protobuf to fix CVE-2025-53605 by @Tim-Zhang in https://github.com/kata-containers/kata-containers/pull/11576"
+  ]
+ }
+}

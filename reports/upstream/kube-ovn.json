@@ -1,0 +1,828 @@
+{
+ "1.16.2": {
+  "security updates": [
+   "[280ef5e54](https://github.com/kubeovn/kube-ovn/commit/280ef5e548674fabd7fa76663c215a347e294efe) chore(deps): bump containerd/v2 to v2.2.4 to fix CVE-2026-46680"
+  ]
+ },
+ "1.12.4": {
+  "security updates": [
+   "[6ee914cc](https://github.com/kubeovn/kube-ovn/commit/6ee914ccbcf08f63de0d6be8482c41fbd26fb5e6) trivy: ignore CVE-2023-5528"
+  ]
+ },
+ "1.11.5": {
+  "security updates": [
+   "[d2f1a801](https://github.com/kubeovn/kube-ovn/commit/d2f1a8012bfbfc12511cca9642e8763ac9303f50) security: remove CVE-2022-29526 from .trivyignore",
+   "[7a69233f](https://github.com/kubeovn/kube-ovn/commit/7a69233f8cbd7c390b0962077b527816c9b1e55d) base: fix CVE-2022-3294 (#2594)"
+  ]
+ },
+ "1.10.10": {
+  "security updates": [
+   "[437f8dfa](https://github.com/kubeovn/kube-ovn/commit/437f8dfa05faab49e11dce96553ecbe5da176b7c) fix CVE-2022-41723"
+  ]
+ },
+ "1.11.0": {
+  "security updates": [
+   "[3796a582](https://github.com/kubeovn/kube-ovn/commit/3796a5828f4f95205cdd745748fae2bf2c464b88) skip CVE-2022-3358 (#1972)",
+   "[ac01a603](https://github.com/kubeovn/kube-ovn/commit/ac01a603e65eb2655ef8bb61b1c9ac0b91cfcd23) fix CVE-2022-30065 (#1710)"
+  ]
+ },
+ "1.10.7": {
+  "security updates": [
+   "[a62e0740](https://github.com/kubeovn/kube-ovn/commit/a62e0740a777bb3512f96aa512b3c6c30945eff7) fix CVE-2022-32149",
+   "[21b4b3f8](https://github.com/kubeovn/kube-ovn/commit/21b4b3f8468a0af3d3c2280bab1543729e78f0bd) skip CVE-2022-3358 (#1972)",
+   "[3e00aa54](https://github.com/kubeovn/kube-ovn/commit/3e00aa54235049151033179dec1a00151963a091) fix CVE-2022-27664"
+  ]
+ },
+ "1.8.11": {
+  "security updates": [
+   "[3e77c51c](https://github.com/kubeovn/kube-ovn/commit/3e77c51cc2787aa67823947cf17c22641ae1fbd6) fix CVE-2022-21698"
+  ]
+ },
+ "1.10.0": {
+  "security updates": [
+   "update alpine to fix CVE-2022-1271"
+  ],
+  "bug fixes": [
+   "fix defunct ovn-nbctl daemon",
+   "keep vm's and statefulset's ips when user specified subnet",
+   "add netem qos when create pod",
+   "handle the case of error node cidr",
+   "ovs trace flow always ends with controller action",
+   "add empty chassis check in ovn db",
+   "delete ipam record when gc lsp",
+   "fix wrong vpc-nat-gateway arm image",
+   "fix pod annotation may override by patch",
+   "fix: workqueue_depth should show count not rate",
+   "add delete ovs pods after restore nb db",
+   "delete monitor noexecute toleration",
+   "fix routes for packets from Pods to other nodes",
+   "masquerade packets from Pods to service IP",
+   "modify init ipam by ip crd only for sts pod",
+   "fix adding key to delete Pod queue",
+   "fix IPAM initialization",
+   "ignore all link local unicast addresses/routes",
+   "fix error handling for netlink.AddrDel",
+   "fix provider-networks status",
+   "recover ips CR on IPAM initialization",
+   "fix: do not recreate port for terminating pods",
+   "avoid frequent ipset update",
+   "add reset for kube-ovn-monitor metrics",
+   "fix: The underlay physical gateway config by external-gw-addr when use snat&eip",
+   "fix external egress gateway",
+   "add missing link scope routes in vpc-nat-gateway",
+   "modify ipam v6 release ip problem",
+   "skip ping gateway for pods during live migration",
+   "don't check conflict for migration pod with only static mac",
+   "fix usage of ovn commands",
+   "fix OVS bridge with bond port in mode 6",
+   "fix underlay subnet in custom VPC",
+   "configurable kube-ovn cni config filename",
+   "replace ecmp dp_hash with hash by src_ip",
+   "set up tunnel correctly in hybrid mode",
+   "check static route conflict",
+   "transfer IP/route earlier in OVS startup",
+   "fix: validate statefulset pod by name"
+  ]
+ },
+ "1.9.3": {
+  "bug fixes": [
+   "delete ipam record and static route when gc lsp",
+   "fix: ovs trace flow always ends with controller action",
+   "fix defunct ovn-nbctl daemon"
+  ]
+ },
+ "1.8.6": {
+  "bug fixes": [
+   "recover ips CR on IPAM initialization",
+   "fix provider-networks status",
+   "support alloc static ip from any subnet after ns supports multi subnets",
+   "replace pod name when create ip crd",
+   "fix error handling for netlink.AddrDel",
+   "ignore all link local unicast addresses/routes",
+   "fix IPAM initialization",
+   "fix adding key to delete Pod queue",
+   "modify init ipam by ip crd only for sts pod",
+   "add routed check in circulation",
+   "delete monitor noexecute toleration",
+   "delete ipam record and static route when gc lsp",
+   "fix: ovs trace flow always ends with controller action"
+  ],
+  "security updates": [
+   "update alpine to fix CVE-2022-1271",
+   "ignore cni cve",
+   "CVE-2022-27191"
+  ]
+ },
+ "1.9.2": {
+  "bug fixes": [
+   "fix: wrong vpc-nat-gateway arm image",
+   "add delete ovs pods after restore nb db",
+   "delete monitor noexecute toleration",
+   "masquerade packets from Pods to service IP",
+   "modify init ipam by ip crd only for sts pod",
+   "modify webhook img to independent image",
+   "fix adding key to delete Pod queue",
+   "fix IPAM initialization",
+   "ignore all link local unicast addresses/routes",
+   "fix error handling for netlink.AddrDel",
+   "replace pod name when create ip crd",
+   "fix provider-networks status",
+   "recover ips CR on IPAM initialization",
+   "fix: do not recreate port for terminating pods",
+   "avoid frequent ipset update",
+   "fix: The underlay physical gateway config by external-gw-addr when use snat&eip",
+   "add reset for kube-ovn-monitor metrics",
+   "check the cidr format whether is correct",
+   "fix external egress gateway",
+   "add missing link scope routes in vpc-nat-gateway"
+  ]
+ },
+ "1.8.4": {
+  "bug fixes": [
+   "fix provider network range loop",
+   "increase memory limit of ovn-central",
+   "add missing link scope routes in vpc-nat-gateway",
+   "update ip assigned check",
+   "fix external egress gateway",
+   "update nodeips for restore cmd in ko plugin",
+   "append vm deletion check",
+   "check the cidr format whether is correct",
+   "add reset for kube-ovn-monitor metrics",
+   "The underlay physical gateway config by external-gw-addr when use snat&eip",
+   "avoid frequent ipset update",
+   "do not recreate port for terminating pods",
+   "create ip crd in kube-ovn-controller"
+  ]
+ },
+ "1.9.1": {
+  "bug fixes": [
+   "ignore hostnetwork pod when initipam",
+   "update check for delete statefulset pod",
+   "liveMigration with IPv6",
+   "validate statefulset pod by name",
+   "add gateway check after update subnet",
+   "fix clusterrole in ovn-ha.yaml",
+   "set up tunnel correctly in hybrid mode",
+   "check static route conflict",
+   "transfer IP/route earlier in OVS startup",
+   "only log matched svc with np (#1287)",
+   "fix underlay subnet in custom VPC",
+   "resync provider network status periodically",
+   "fix statefulset Pod deletion",
+   "Fix usage of ovn commands",
+   "continue of deletion for del pod failed when can't found vpc or subnet",
+   "fix OVS bridge with bond port in mode 6",
+   "replace ecmp dp_hash with hash by src_ip (#1289)",
+   "fix ips update",
+   "add check for pod update process",
+   "skip ping gateway for pods during live migration",
+   "modify ipam v6 release ip problem",
+   "fix SNAT/PR on Pod startup",
+   "update networkpolicy port process",
+   "append htbqos para in crd yaml",
+   "update flag parse in webhook"
+  ]
+ },
+ "1.8.3": {
+  "bug fixes": [
+   "update check for delete statefulset pod",
+   "update networkpolicy port process",
+   "add back centralized subnet active-standby mode",
+   "add gateway check after update subnet",
+   "fix clusterrole in ovn-ha.yaml",
+   "set up tunnel correctly in hybrid mode",
+   "check static route conflict",
+   "transfer IP/route earlier in OVS startup",
+   "fix only log matched svc with np (#1287)",
+   "fix statefulset Pod deletion",
+   "ignore cilint",
+   "Fix usage of ovn commands",
+   "fix continue of deletion for del pod failed when can't found vpc or subnet",
+   "fix OVS bridge with bond port in mode 6",
+   "fix replace ecmp dp_hash with hash by src_ip (#1289)",
+   "fix cni deepcopy",
+   "fix ips update",
+   "add check for pod update process",
+   "fix SNAT/PR on Pod startup",
+   "optimize log for node port-group"
+  ]
+ },
+ "1.9.0": {
+  "security updates": [
+   "security: update base ubuntu image"
+  ],
+  "bug fixes": [
+   "fix nat-outgoing/policy-routing on pod startup",
+   "fix variable reference",
+   "fix e2e testing",
+   "fix gc lsp statistic for multiple subnet",
+   "re-check ns annotation to avoid annotations lost",
+   "append externalIds for pod and node when upgrade",
+   "fix IPAM for StatefulSet",
+   "wrong link for iptables",
+   "fix StatefulSet down scale",
+   "fix getting LSP UUID by name",
+   "fix installation scripts",
+   "init node with wrong ipamkey and lead conflict",
+   "modify kube-ovn as multus-cni problem",
+   "In netpol egress rules, except rule should be set to \"!=\" and should not be \"==\"",
+   "replace api for get lsp id by name",
+   "fix trace command in dual stack underlay networking",
+   "fix pinger and monitor in underlay networking",
+   "fix pinger in dual stack cluster",
+   "fix kubectl-ko diagnose",
+   "fix cleanup.sh and uninstall.sh",
+   "fix: check and load ip_tables module",
+   "add inspection",
+   "change inspection logic from manually adding lsp to just reading pod queue",
+   "fix: serialize pod add/delete order",
+   "fix: delete vpc-nat-gw deployment",
+   "remove node chassis annotation on cleanup",
+   "fix: ensure all kube-ovn components deleted before annotate pods",
+   "fix bug: logical switch ts not ready",
+   "fix: check allocated annotation in update handler",
+   "fix LB in dual stack cluster",
+   "fix: multus-cni subnet allocation",
+   "fix: trace in custom vpc",
+   "fix read-only pointer in vlan and provider-network",
+   "fix ko trace",
+   "fix: no need to set address for ls to lr port",
+   "add sg acl check when init",
+   "add pod in default vpc to node port-group",
+   "fix LB: skip service without cluster IP",
+   "fix pinger's compatibility for k8s v1.16",
+   "deleting all chassises which are not nodes",
+   "add vendor param for fix list LR",
+   "fix: add kube-ovn-cni prob timeout",
+   "update delete operation for statefulset pod",
+   "fix: add back the leader check",
+   "when update subnet's except ip,we should filter repeat ip",
+   "when netpol is added to a workload, the workload's POD can be accessed using service",
+   "fix: check np switch",
+   "filter used qos when delete qos",
+   "add protocol check when subnet is dual-stack",
+   "pinger: fix getting empty PodIPs",
+   "delete frequently log",
+   "fix: do not reuse released ip after subnet updated",
+   "use multus-cni as default cni to assign ip",
+   "use different ip crd with provider suffix for pod multus nic",
+   "move chassis judge to the end of node processing",
+   "append check for centralized subnet nat process",
+   "fix installation script",
+   "fix pod tolerations",
+   "modify pod's process of update for use multus cni as default cni",
+   "fix iptables rules and service e2e",
+   "update check for delete statefulset pod",
+   "ignore hostnetwork pod when initipam"
+  ]
+ },
+ "1.8.2": {
+  "bug fixes": [
+   "modify kube-ovn as multus-cni problem",
+   "In netpol egress rules, except rule should be set to \"!=\" and should not be \"==\"",
+   "replace api for get lsp id by name",
+   "fix trace command in dual stack underlay networking",
+   "fix pinger and monitor in underlay networking",
+   "fix pinger in dual stack cluster",
+   "fix kubectl-ko diagnose",
+   "fix cleanup.sh and uninstall.sh",
+   "fix: check and load ip_tables module",
+   "add inspection",
+   "change inspection logic from manually adding lsp to just reading pod queue",
+   "fix: serialize pod add/delete order",
+   "fix: delete vpc-nat-gw deployment",
+   "remove node chassis annotation on cleanup",
+   "fix: ensure all kube-ovn components deleted before annotate pods",
+   "fix bug: logical switch ts not ready",
+   "fix: check allocated annotation in update handler",
+   "fix LB in dual stack cluster",
+   "fix: multus-cni subnet allocation",
+   "fix: trace in custom vpc",
+   "fix read-only pointer in vlan and provider-network",
+   "fix ko trace",
+   "fix: no need to set address for ls to lr port",
+   "add sg acl check when init",
+   "add pod in default vpc to node port-group",
+   "fix LB: skip service without cluster IP",
+   "fix pinger's compatibility for k8s v1.16",
+   "deleting all chassises which are not nodes",
+   "add vendor param for fix list LR",
+   "fix: add kube-ovn-cni prob timeout",
+   "update delete operation for statefulset pod",
+   "fix: add back the leader check",
+   "when update subnet's except ip,we should filter repeat ip",
+   "when netpol is added to a workload, the workload's POD can be accessed using service",
+   "fix: check np switch",
+   "filter used qos when delete qos",
+   "add protocol check when subnet is dual-stack",
+   "pinger: fix getting empty PodIPs",
+   "delete frequently log",
+   "fix: do not reuse released ip after subnet updated",
+   "use multus-cni as default cni to assign ip",
+   "use different ip crd with provider suffix for pod multus nic",
+   "move chassis judge to the end of node processing",
+   "append check for centralized subnet nat process",
+   "fix installation script",
+   "fix pod tolerations"
+  ],
+  "security updates": [
+   "security: update base ubuntu image"
+  ]
+ },
+ "1.8.1": {
+  "bug fixes": [
+   "fix nat-outgoing/policy-routing on pod startup",
+   "fix variable reference",
+   "fix e2e testing",
+   "fix gc lsp statistic for multiple subnet",
+   "re-check ns annotation to avoid annotations lost",
+   "append externalIds for pod and node when upgrade",
+   "fix IPAM for StatefulSet",
+   "wrong link for iptables",
+   "fix StatefulSet down scale",
+   "fix getting LSP UUID by name",
+   "fix installation scripts",
+   "init node with wrong ipamkey and lead conflict"
+  ]
+ },
+ "1.7.3": {
+  "bug fixes": [
+   "fix nat-outgoing/policy-routing on pod startup",
+   "fix variable reference",
+   "fix e2e testing",
+   "fix gc lsp statistic for multiple subnet",
+   "re-check ns annotation to avoid annotations lost",
+   "append externalIds for pod and node when upgrade",
+   "fix IPAM for StatefulSet",
+   "wrong link for iptables",
+   "fix StatefulSet down scale",
+   "fix getting LSP UUID by name",
+   "fix installation scripts",
+   "init node with wrong ipamkey and lead conflict",
+   "serialize pod add/delete order",
+   "kubeclient timeout",
+   "update base image"
+  ]
+ },
+ "1.8.0": {
+  "security updates": [
+   "fix CVE-2021-33910",
+   "Add go build security options",
+   "Fix CVE-2021-3121",
+   "fix CVE-2021-3538",
+   "Update base image to ubuntu:21.04"
+  ],
+  "bug fixes": [
+   "fix CRD provider-networks.kubeovn.io",
+   "fix ipsets, subnets using underlay networking should not be included in ipsets",
+   "update qos ingress_policing_burst",
+   "match chassis until timeout",
+   "delete overlapped var subnet",
+   "fix: if nftables not exists do no exit",
+   "delete ecmp route when node is deleted",
+   "fix cleanup.sh",
+   "fix image version",
+   "fix iptables",
+   "ignore empty strings when counting lbs",
+   "fix external_ids:pod_netns",
+   "delete attachment ips",
+   "update qos process",
+   "fix: panic when node has nil annotations",
+   "append pod/exec resource for vpc nat gw",
+   "fix underlay networking on node reboot",
+   "fix default bind socket of cni server",
+   "if the string of ip is empty,program will die",
+   "fix uninstall.sh",
+   "ensure provider nic is up",
+   "fix: bad udp checksum when access nodeport",
+   "fix IPv6-related issues",
+   "fix issues in underlay networking",
+   "avoid Pod IP to be the same with node internal IP",
+   "fix subnet conflict check for node address",
+   "fix ipset on pod creation/deletion",
+   "delete subnet AvailableIPs and UsingIPs para",
+   "fix: ovn-northd svc flip flop",
+   "delete residual ovs internal ports",
+   "initialize ipsets on cni server startup",
+   "Fix acl overlay issues",
+   "Fix available ips count of subnet",
+   "Fix lsp may lost when server pressure is high",
+   "Cleanup kube-ovn-monitor resource",
+   "Remove wait ovn sb",
+   "Remove kube-ovn-controller rollout check",
+   "Delete process of ip crd delete in cni delete request",
+   "Delete ecmp route when node is not ready",
+   "Ignore update pod nic annotation when not nil",
+   "Clean up gateway chassis list for external gw",
+   "Node route should filter out 'vpc'",
+   "Do not delete statefulset pod when update pod",
+   "Add master check when a node adding to a cluster and config sb/nb address",
+   "Fix IP/route transfer on node reboot",
+   "Fix uninstall.sh execution in OVS pods",
+   "Add node internal ip into ovn-ic advertise blacklist",
+   "Fix bug for deleting ovn-ic lrp failed",
+   "Keep subnet's vlan empty if not specified",
+   "Add field defaultNetworkType in configmap ovn-config"
+  ]
+ },
+ "1.7.2": {
+  "bug fixes": [
+   "fix CRD provider-networks.kubeovn.io",
+   "fix ipsets, subnets using underlay networking should not be included in ipsets",
+   "update qos ingress_policing_burst",
+   "match chassis until timeout",
+   "delete overlapped var subnet",
+   "fix: if nftables not exists do no exit",
+   "delete ecmp route when node is deleted",
+   "fix cleanup.sh",
+   "fix image version",
+   "fix iptables",
+   "ignore empty strings when counting lbs",
+   "fix external_ids:pod_netns",
+   "delete attachment ips",
+   "update qos process",
+   "fix: panic when node has nil annotations",
+   "append pod/exec resource for vpc nat gw",
+   "fix underlay networking on node reboot",
+   "fix default bind socket of cni server",
+   "if the string of ip is empty,program will die",
+   "fix uninstall.sh",
+   "ensure provider nic is up",
+   "fix: bad udp checksum when access nodeport",
+   "fix IPv6-related issues",
+   "fix issues in underlay networking",
+   "avoid Pod IP to be the same with node internal IP",
+   "fix subnet conflict check for node address",
+   "fix ipset on pod creation/deletion",
+   "delete subnet AvailableIPs and UsingIPs para",
+   "fix: ovn-northd svc flip flop",
+   "delete residual ovs internal ports",
+   "initialize ipsets on cni server startup"
+  ],
+  "security updates": [
+   "fix CVE-2021-33910"
+  ]
+ },
+ "1.7.1": {
+  "bug fixes": [
+   "Fix acl overlay issues",
+   "Fix available ips count of subnet",
+   "Fix lsp may lost when server pressure is high",
+   "Cleanup kube-ovn-monitor resource",
+   "Remove wait ovn sb",
+   "Remove kube-ovn-controller rollout check",
+   "Delete process of ip crd delete in cni delete request",
+   "Delete ecmp route when node is not ready",
+   "Ignore update pod nic annotation when not nil",
+   "Clean up gateway chassis list for external gw",
+   "Node route should filter out 'vpc'",
+   "Do not delete statefulset pod when update pod",
+   "Add master check when a node adding to a cluster and config sb/nb address",
+   "Fix IP/route transfer on node reboot",
+   "Fix uninstall.sh execution in OVS pods",
+   "Add node internal ip into ovn-ic advertise blacklist",
+   "Fix bug for deleting ovn-ic lrp failed",
+   "Keep subnet's vlan empty if not specified",
+   "Add field defaultNetworkType in configmap ovn-config"
+  ],
+  "security updates": [
+   "Add go build security options",
+   "Fix CVE-2021-3121"
+  ]
+ },
+ "1.7.0": {
+  "bug fixes": [
+   "Restart when init ping failed",
+   "Make sure northd leader change",
+   "Wrong split in FindLoadbalancer function",
+   "Ip6tables check error",
+   "Reset ovn0 addr",
+   "Masq traffic to ovn0 from other nodes",
+   "Add missing ovn-ic-db schema",
+   "Update ipam cidr when subnet changes",
+   "Disable offload for genev_sys_6081",
+   "Configure nic failed when ifname empty",
+   "Udp checksum offload error",
+   "Restart ovn-controller to force ovn-ic flows update",
+   "Update usingips check when update finalizer for subnet",
+   "Livenessprobe fail if ovn nb/ovn sb not running",
+   "Release norhtd lock when power off",
+   "Fix chassis check for node",
+   "Pod terminating not recycle ip when controller not ready"
+  ]
+ },
+ "1.6.3": {
+  "bug fixes": [
+   "fix: do not nat route traffic",
+   "fix: release ip addresses even if pods not found",
+   "security: fix crypto CVE",
+   "fix: add address_set to avoid error message",
+   "fix: add node to pod allow acl",
+   "Handler the parse config error before used",
+   "fix: del might panic if duplicate delete",
+   "fix: do not re-generate ts port",
+   "fix: get_leader_ip always return fist node ip",
+   "fix: do not gc learned routes",
+   "fix: remove tty error notification",
+   "fix ovn nb reconnect",
+   "perf: reclaim heap memory after compaction",
+   "fix: leader may change during startup, use cluster connection to set options",
+   "fix SNAT on pod startup"
+  ]
+ },
+ "1.6.2": {
+  "bug fixes": [
+   "udp checksum offload error",
+   "restart ovn-controller to force ovn-ic flows update",
+   "update usingips check when update finalizer for subnet",
+   "add node address allocate check when init",
+   "livenessprobe fail if ovn nb/ovn sb not running",
+   "ignore ip6tabels check for v4 hostIP",
+   "release norhtd lock when power off",
+   "fix chassis check for node",
+   "configure nic failed when ifname empty"
+  ]
+ },
+ "1.6.1": {
+  "bug fixes": [
+   "DualStack error logs",
+   "IP count error in DualStack mode",
+   "ip6tables check error",
+   "Update ipam cidr when subnet changes",
+   "When address is empty, skip route/nat deletion",
+   "Waiting pod network ready takes too long",
+   "Add new iptables clean up commands",
+   "Pod terminating not recycle ip when controller not ready",
+   "Restart when init ping failed",
+   "Make sure northd leader change",
+   "Check required module before start",
+   "Underlay gateway flood logs",
+   "Wrong split in FindLoadbalancer function",
+   "Reset ovn0 addr",
+   "Set default db addr same with leader node to fix nb and sb error 'bind: Address already in use'",
+   "Masq traffic to ovn0 from other nodes"
+  ]
+ },
+ "1.6.0": {
+  "bug fixes": [
+   "Remove not alive pod in networkpolicy portGroup",
+   "Delete Pod when marked with deletionTimestamp",
+   "Use the internal IP when node try to connect to pod",
+   "Do not advertise node switch cidr when enable ovn-ic",
+   "Wrong proto str for udp diagnose",
+   "IPv6 len mismatch",
+   "Add default SSL var for compatibility",
+   "Wrong ipv6 network format when update subnet",
+   "Broken RPM link",
+   "Default SSL var for compatibility",
+   "Wrong iptable order",
+   "Check multicast and loopback subnet",
+   "CodeQL scan warnings",
+   "Fix cleanup scripts",
+   "Check ipv6 requirement before start",
+   "Check if ovn-central ip exists in `NODE_IPS` before start",
+   "Fix the problem of confusion between old and new versions of crd",
+   "Fix external-address config description",
+   "Add resources limits to avoid eviction",
+   "NAT rules can be modified",
+   "Masquerade other nodes to local pod to avoid NodePort triangle traffic",
+   "OVN-IC support SSL",
+   "Pod static ip validation",
+   "Multiple rule networkpolicy issues",
+   "Modify service vip parse error",
+   "CNIServer default encap ip use node ip"
+  ]
+ },
+ "1.5.2": {
+  "bug fixes": [
+   "Fix cleanup scripts",
+   "Update Go to 1.15",
+   "Check ipv6 requirement before start",
+   "Check if ovn-central ip exists in `NODE_IPS` before start",
+   "Fix external-address config description",
+   "Fix the problem of confusion between old and new versions of crd",
+   "Add resources limits to avoid eviction",
+   "NAT rules can be modified"
+  ]
+ },
+ "1.5.1": {
+  "bug fixes": [
+   "Remove not alive pod in networkpolicy portGroup",
+   "Delete Pod when marked with deletionTimestamp",
+   "Use internal IP when node try to connect to pod",
+   "Do not advertise node switch cidr when enable ovn-ic",
+   "Wrong proto str for udp diagnose",
+   "Wrong ipv6 network format when update subnet",
+   "Broken RPM link",
+   "Default SSL var for compatibility",
+   "Wrong iptable order",
+   "Check multicast and loopback subnet",
+   "CodeQL scan warnings"
+  ]
+ },
+ "1.5.0": {
+  "security updates": [
+   "Support TLS connection between components",
+   "Change DB file access mode"
+  ],
+  "bug fixes": [
+   "Use NodeName as OVN chassis name",
+   "Stop OVN-IC if disabled",
+   "Uninstall scripts will clean up ipv6 iptables and ipset",
+   "Bridging-mapping may conflict, if enable vlan and external gateway",
+   "Pinger ipv6 mode fetch portmaping failed",
+   "Pinger diagnose should reuse cmd args"
+  ]
+ },
+ "1.4.0": {
+  "bug fixes": [
+   "Add forward accept rules",
+   "kubectl-ko cannot find nic",
+   "Prevent vlan/subnet init error logs",
+   "Subnet ACL might conflict if allSubnets and subnet cidr overlap",
+   "Missing session lb"
+  ]
+ },
+ "1.3.0": {
+  "security updates": [
+   "Use gosec to audit code security",
+   "Use trivy to scan and fix image CVEs",
+   "Update loopback plugin to fix CVEs"
+  ],
+  "bug fixes": [
+   "Missing package for arm images",
+   "Node annotation overwrite incorrectly",
+   "Create/Delete order might lead ip conflict",
+   "Add MSS rules to resolve MTU issues"
+  ]
+ },
+ "1.2.1": {
+  "bug fixes": [
+   "Add back privilege for IPv6",
+   "Update loopback cni to fix CVE issues",
+   "Node annotations overwrite incorrectly",
+   "Create/Delete order might lead to ip conflict"
+  ]
+ },
+ "1.2.0": {
+  "bug fixes": [
+   "OVS local interface table mac_in_use row is lower case, but pod annotation store mac in Upper case",
+   "fork go-ping to fix ping lost issues",
+   "Networkpolicy controller will panic if label is nil",
+   "Some concurrent panic when handle pod and subnet update",
+   "Some IPv6 break issues",
+   "Use kubectl version to avoid handshake errors in apiserver"
+  ]
+ },
+ "1.1.1": {
+  "bug fixes": [
+   "Use legacy iptables to replace default iptables in centos:8 image",
+   "Mount etc/origin/ovn to ovs-ovn",
+   "Fix bugs in go-ping",
+   "Fix yaml indent error",
+   "Fix panic when handles networkpolicy"
+  ]
+ },
+ "1.1.0": {
+  "bug fixes": [
+   "Use uuid to fetch lb vips",
+   "Add inactivity_probe back",
+   "Update svc might remove other svc that with same prefix",
+   "IP prefix might be empty",
+   "Enqueue subnet update to add route",
+   "Add iptables to accept container traffic"
+  ]
+ },
+ "1.0.1": {
+  "bug fixes": [
+   "Use uuid to fetch lb vips",
+   "Add inactivity_probe back",
+   "Update svc might remove other svc that with same prefix",
+   "IP prefix might be empty",
+   "Enqueue subnet update to add route"
+  ]
+ },
+ "1.0.0": {
+  "bug fixes": [
+   "If cidr block not ends with zero, reformat the cidr block",
+   "CniServer will resync iptables to avoid manually or other software change the iptable",
+   "Do not return not found error when first add node",
+   "Restart ovn-nbctl daemon when it hangs",
+   "RunGateway will restart in case init failed.",
+   "When subnet cidr conflict requeue the subnet",
+   "Recompute ovn-controller periodically to avoid inconsistency",
+   "Wait for flow installed before cni return",
+   "Add back missing lsp gc",
+   "Delete lb if it has no backends"
+  ]
+ },
+ "0.10.2": {
+  "bug fixes": [
+   "restart nbctl-daemon if not response",
+   "runGateway may fail when init",
+   "requeue subnet add event when conflict with exist subnet",
+   "periodically recompute ovn-controller to avoid inconsistency"
+  ]
+ },
+ "0.10.1": {
+  "bug fixes": [
+   "If cidr block not ends with zero, reformat it to avoid add route failure",
+   "Resync iptables to prevent rules deleted by other software",
+   "Set ovn-openflow-probe-interval to prevent ovn-controller consumes all cpu",
+   "Do not return not found error when first add node"
+  ]
+ },
+ "0.10.0": {
+  "bug fixes": [
+   "When all ip in subnet is used create lsp will panic with index out of range err",
+   "Mount /var/run/netns into kube-ovn-cniserver for kind",
+   "Use ep.subset.port.name to infer target port number",
+   "Typo in start-ovs.sh",
+   "When delete node recycle related ip/route resource",
+   "Nbctl need timeout to avoid hang infinitely",
+   "Block subnet deletion when there is any ip in use",
+   "IP conflict when use ippool",
+   "GC logical_switch_port form listing pods and nodes",
+   "Do not add unallocated pod to port-group",
+   "PodSelector in networkpolicy should only consider pods in the same ns"
+  ]
+ },
+ "0.9.1": {
+  "bug fixes": [
+   "When all ip in subnet is used create lsp will panic with index out of range err",
+   "Mount /var/run/netns into kube-ovn-cniserver for kind",
+   "Use ep.subset.port.name to infer target port number",
+   "Typo in start-ovs.sh",
+   "When delete node recycle related ip/route resource",
+   "Nbctl need timeout to avoid hang infinitely",
+   "Block subnet deletion when there any ip in use"
+  ]
+ },
+ "0.9.0": {
+  "bug fixes": [
+   "LB init conflict when use multiple kube-ovn-controller",
+   "Static Route might lost during leader election",
+   "If pod have not a status.PodIP skip add/del static route",
+   "Add keepalive to ovn-controller",
+   "Add qlen when set egress QoS",
+   "Add ingress_policing_burst to accurate limit ingress bandwidth",
+   "GC resources when kube-ovn-controller starts",
+   "Re-annotate related namespaces when subnet deleted.",
+   "Check the short name of kubernetes services which is independent of the cluster domain name",
+   "Daemonset updateStrategy changes to OnDelete for grace update",
+   "Use new upstream ovn with some kube-ovn related modification"
+  ]
+ },
+ "0.8.0": {
+  "security updates": [
+   "Enable port security to prevent Mac and IP spoofing",
+   "Allow nodes to pods traffic for private subnet"
+  ]
+ },
+ "0.7.0": {
+  "security updates": [
+   "Enable traffic mirror by default",
+   "Support select all type NetworkPolicy rules",
+   "Private subnet now applies acl to all ports not only gateway ports"
+  ]
+ },
+ "0.6.0": {
+  "bug fixes": [
+   "Remove RBAC dependency on cluster-admin",
+   "Use kubernetes nodename to replace hostname"
+  ]
+ },
+ "0.4.1": {
+  "bug fixes": [
+   "manual static ip allocation and automatic allocation should use different ip validation",
+   "json: cannot unmarshal string into Go value of type request.PodResponse",
+   "use ovsdb-client to get leader info to avoid log rotation",
+   "use default-gw as default-exclude-ips and expose args to docs",
+   "to cleanup all created resources, not only kube-ovn namespace."
+  ]
+ },
+ "0.4.0": {
+  "bug fixes": [
+   "Check subnet cidr conflict",
+   "Validate namespace and pod annotations",
+   "Daemon wait for node annotations ready",
+   "Reuse node annotations when kube-ovn-controller restart"
+  ]
+ },
+ "0.3.0": {
+  "bug fixes": [
+   "Daemon init node gw before running controller",
+   "Activate node switch by ping",
+   "Fix ovn-nbctl daemon output format bugs",
+   "ACL allow error"
+  ]
+ },
+ "0.2.0": {
+  "bug fixes": [
+   "Delete empty lb to improve performance",
+   "Delete lb at node switch",
+   "Delete ovn embedded dns",
+   "Fix ovn restart failed issue"
+  ]
+ }
+}

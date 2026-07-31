@@ -1,0 +1,136 @@
+{
+ "2.27.1": {
+  "security updates": [
+   "Upgrade ingress-nginx to version `v1.12.1` to resolve critical vulnerabilities (CVE-2025-1974 and others) and webhook certgen to `v1.5.2`. (#12080, @tico88612)"
+  ]
+ },
+ "2.28.0": {
+  "security updates": [
+   "Upgrade ingress-nginx to version `v1.12.1` to resolve critical vulnerabilities (CVE-2025-1974 and others) and webhook certgen to `v1.5.2`. (#12075, @farshadasadpour)"
+  ]
+ },
+ "2.27.0": {
+  "breaking changes": [
+   "Action required",
+   "Action required",
+   "Action required",
+   "Action required",
+   "Action required"
+  ]
+ },
+ "2.21.0": {
+  "security updates": [
+   "[Docker] Update docker package to 20.10.20 (partial fix for CVE-2022-39253) (#9410, @floryut)"
+  ]
+ },
+ "2.19.0": {
+  "security updates": [
+   "[containerd] upgrade versions to fix CVE-2022-23648 (#8597, @cristicalin)"
+  ]
+ },
+ "2.11.0": {
+  "bug fixes": [
+   "Fix for calico with kdd datastore (#4922)",
+   "Fixup deploy of kubeadm etcd for Kubernetes v1.15.0 (#4952)",
+   "Add ansible_hostname and ansible_fqdn to apiserver_sans (#4990)",
+   "Apply etcd_extra_vars to etcd-events.env as well. (#4219)",
+   "Fixed runc path in runtime for RedHat os family (#4731)",
+   "kubernetes v1.15.3",
+   "etcd v3.3.10",
+   "docker v18.06 (see note)",
+   "cri-o v1.11.5 (experimental: see CRI-O Note. Only on centos based OS)",
+   "cni-plugins v0.8.1",
+   "calico v3.7.3",
+   "canal (given calico/flannel versions)",
+   "cilium v1.5.5",
+   "contiv v1.2.1",
+   "flanneld v0.11.0",
+   "kube-router v0.2.5",
+   "multus v3.2.1",
+   "weave v2.5.2",
+   "cephfs-provisioner v2.1.0-k8s1.11",
+   "rbd-provisioner v2.1.1-k8s1.11",
+   "cert-manager v0.5.2",
+   "coredns v1.6.0",
+   "ingress-nginx v0.25.1"
+  ]
+ },
+ "2.10.0": {
+  "bug fixes": [
+   "Unmask Docker service in ClearLinux",
+   "Avoid creating k8s cert dir on non-k8s nodes",
+   "Fix runc absolute path",
+   "Disable cloud-routes for non-cloud plugin",
+   "Kubernetes v1.14.1",
+   "Etcd 3.2.26",
+   "Docker 18.06",
+   "Cri-O 1.11.5",
+   "Calico v3.4.0",
+   "Cilium 1.3.0",
+   "Contiv 1.2.1",
+   "Flannel 0.11.0",
+   "Kube-Router 0.2.5",
+   "Multus 3.1-autoconf",
+   "Weave 2.5.1",
+   "CoreDNS 1.5.0",
+   "Helm 2.13.1",
+   "Kubernetes Dashboard v1.10.1",
+   "Oracle OCI: v0.7.0",
+   "Non-master nodes can no longer set reserved labels (see kubernetes/kubernetes/#68267)",
+   "Kube-router inter-node communication does not work",
+   "Calico KDD does currently not work (see #4727)"
+  ]
+ },
+ "2.8.1": {
+  "bug fixes": [
+   "`Stop if RBAC and anonymous-auth are not enabled when insecure port is disabled` failed when running on non-masters.",
+   "`Remove kube-ipvs0` now works on cluster reset.",
+   "`Clear IPVS virtual server table` now only runs on kubernetes nodes and masters.",
+   "Move node-cidr-mask-size to ControllerManagerextraArgs",
+   "Fixup line breaks for kubeadm SANs",
+   "Fix apiServerCertSANs in kubeadm config file"
+  ]
+ },
+ "2.3.0": {
+  "security updates": [
+   "RBAC is enabled and may affect upgrades."
+  ]
+ },
+ "2.2.0": {
+  "security updates": [
+   "It is now possible to enable RBAC upon upgrade."
+  ]
+ },
+ "2.1.2": {
+  "security updates": [
+   "Kubespray now generates ClusterRoles and ClusterRoleBindings for most services. Full RBAC support is not available yet. Upgrades to RBAC are not working."
+  ],
+  "breaking changes": [
+   "Vault is nonfunctional for this release",
+   "Versions of Docker above 1.13.x do not work. As a result, newer CoreOS releases will not work."
+  ]
+ },
+ "2.1.1": {
+  "security updates": [
+   "Kargo now generates separate certificates in ETCD and Kubernetes for each host."
+  ],
+  "breaking changes": [
+   "Support for etcd3 backend for kube-apiserver. (Note that existing installs will not auto-upgrade.)",
+   "docker_dns mode is now the default. Hosts cannot resolve pod network domains with this configuration, but it is less vulnerable to outside changes to host /etc/resolv.conf.",
+   "kube-apiserver now listens on port 6443 by default.",
+   "This release works only with Ansible version 2.2.1.0. All other versions are unsupported.",
+   "This release only works with Jinja2 version >=2.8. Earlier versions will have issues rendering templates."
+  ]
+ },
+ "2.1.0": {
+  "security updates": [
+   "TLS support for etcd cluster with individual nodes' certificates",
+   "Support for bastion hosts, security improvements via explicit cgroups limits for workloads and support of unschedulable standalone master nodes"
+  ],
+  "breaking changes": [
+   "Only systemd based Linux OS distributions supported from now on",
+   "Requires users to sync `groups_vars/all.yaml`",
+   "Removed the etcd-proxy"
+  ]
+ }
+}

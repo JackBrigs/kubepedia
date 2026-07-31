@@ -1,0 +1,61 @@
+{
+ "0.9.0": {
+  "bug fixes": [
+   "Require both node and pod metrics for storage readiness. (@slashpai, PR #1818)"
+  ],
+  "security updates": [
+   "Bump Go version to v1.26.4, addressing CVE-2025-47907 and CVE-2025-47906. (@dependabot, @RainbowMango, @dgrisonnet, @yangjunmyfm192085, PR #1681, #1738, #1758, #1784, #1803, #1830)",
+   "Bump `golang.org/x/crypto` from 0.39.0 to 0.45.0. (@dependabot, PR #1737)"
+  ]
+ },
+ "metrics-server-helm-chart-3.13.1": {
+  "bug fixes": [
+   "Conditionally render `insecureSkipTLSVerify` field in APIService template to prevent GitOps sync drift when value is `false`. ([#1727](https://github.com/kubernetes-sigs/metrics-server/pull/1727)) _@pawl_",
+   "Do not render annotations as null in APIService template to prevent permanent OutOfSync in ArgoCD. ([#1752](https://github.com/kubernetes-sigs/metrics-server/pull/1752)) _@Serializator_"
+  ]
+ },
+ "0.7.1": {
+  "bug fixes": [
+   "Fixed a bug causing kubectl get PodMetrics/NodeMetrics to fail"
+  ]
+ },
+ "0.7.0": {
+  "bug fixes": [
+   "Handle malformed metrics from Kubelet (@XiaoXiaoSN)",
+   "Handle Kernel bug leading to incorrect CPU usage data (@sleepyzhang)"
+  ]
+ },
+ "0.6.2": {
+  "bug fixes": [
+   "Fix deadline exceeded errors caused by failure during metric parsing (https://github.com/kubernetes-sigs/metrics-server/issues/983, @yangjunmyfm192085)"
+  ]
+ },
+ "0.6.1": {
+  "bug fixes": [
+   "Restore support for klog specific flags removed by mistake in v0.6.0 (@yangjunmyfm192085)"
+  ]
+ },
+ "0.6.0": {
+  "breaking changes": [
+   "Metrics Server now requires access to `nodes/metrics` RBAC resource instead of `nodes/stats`. No changes needed if you use official manifests, however please update RBAC resources if you just use Metrics Server image with custom manifests."
+  ],
+  "bug fixes": [
+   "Rename master to main (@ikarldasan)",
+   "fix typo in error message (@crd477)",
+   "wait to be able to compute the resource usage of all the containers of a pod before exposing its PodMetrics(@yangjunmyfm192085)",
+   "Don‘t use Kubelet start time for metrics-server (@yangjunmyfm192085)"
+  ]
+ },
+ "0.5.1": {
+  "bug fixes": [
+   "Fix reporting inconsistent number of nodes, caused by using invalid Kubelet node start time metric (@yangjunmyfm192085, https://github.com/kubernetes-sigs/metrics-server/issues/803)",
+   "Fix reporting partial container metrics for pod (@yangjunmyfm192085, https://github.com/kubernetes-sigs/metrics-server/pull/807)"
+  ]
+ },
+ "0.5.0": {
+  "bug fixes": [
+   "Prevent reporting negative CPU value caused by unreliable cAdvisor timestamp (@sanwishe)",
+   "Skip metric points incorrectly reported as 0 by cAdvisor (@serathius)"
+  ]
+ }
+}

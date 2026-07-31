@@ -1,0 +1,42 @@
+{
+ "3.0.3": {
+  "bug fixes": [
+   "Improved error messages when failing to initialize a connection to etcd [libcalico-go #794](https://github.com/projectcalico/libcalico-go/pull/794) (@ozdanborne)",
+   "Ignore hidden files when checking for etcd certificates to copy over when installing CNI. [cni-plugin #473](https://github.com/projectcalico/cni-plugin/pull/473) (@tmjd)"
+  ]
+ },
+ "2.6.8": {
+  "bug fixes": [
+   "Ignore hidden files when checking for etcd certificates to copy over when installing CNI. [cni-plugin #474](https://github.com/projectcalico/cni-plugin/pull/474) (@tmjd)",
+   "Sanitize Mesos labels by stripping preceding and succeeding special characters and converting the rest to periods. [cni-plugin #467](https://github.com/projectcalico/cni-plugin/pull/467) (@ozdanborne)"
+  ]
+ },
+ "3.0.2": {
+  "bug fixes": [
+   "Fixed a bug where Calico would silently lose its connection to etcd and never recover when the etcd server was terminated. [libcalico-go #780](https://github.com/projectcalico/libcalico-go/pull/780) (@caseydavenport)",
+   "Fixed a bug when multiple nodes are restarted simultaneously and swap IP addresses [calico #1681](https://github.com/projectcalico/calico/pull/1681) (@caseydavenport)",
+   "Fixed a route scan issue where upon startup bird did not notice that tunneled routes needed to be updated to be non-tunneled. [calico #1679](https://github.com/projectcalico/calico/pull/1679) (@caseydavenport)",
+   "Enable Kubernetes node references for automatic cleanup of Node resources in etcd. [calico #1678](https://github.com/projectcalico/calico/pull/1678) (@caseydavenport)",
+   "Fixed a panic when BGP is disabled. [calico #1674](https://github.com/projectcalico/calico/pull/1674) (@tmjd)",
+   "Kubernetes self-hosted manifests now enable BGP IP address auto-detection by default. [calico #1588](https://github.com/projectcalico/calico/pull/1588) (@caseydavenport)"
+  ]
+ },
+ "2.6.7": {
+  "bug fixes": [
+   "[libcalico-go #774](https://github.com/projectcalico/libcalico-go/pull/774): Fixed bug where Felix would crash when parsing a NetworkPolicy with a named port (@caseydavenport)",
+   "[Calico #1625](https://github.com/projectcalico/calico/pull/1625): Fix a route scan issue where upon startup bird did not spot that a tunneled route needed to be updated to be non-tunneled. (@robbrockbank)"
+  ]
+ },
+ "2.6.6": {
+  "bug fixes": [
+   "Updates the calico/node startup logging format to be consistent with other Calico logs.",
+   "Updates Typha and Felix to send logs to stdout instead of stderr.",
+   "Resolves an issue when upgrading from old versions of Calico where the `k8s-policy-no-match` network policy was not removed as expected."
+  ]
+ },
+ "2.6.5": {
+  "bug fixes": [
+   "Resolves an issue which may lead to a brief loss of connectivity while upgrading"
+  ]
+ }
+}

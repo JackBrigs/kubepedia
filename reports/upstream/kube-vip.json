@@ -1,0 +1,37 @@
+{
+ "1.1.0": {
+  "bug fixes": [
+   "Reverted missing change from #623 by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1416",
+   "Added context inheritance for services by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1432",
+   "Added waitgroups by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1434",
+   "Cleanup of channels by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1444",
+   "fix: don't add VIP to interface in routing table and BGP service modes by @chdxD1 in https://github.com/kube-vip/kube-vip/pull/1442",
+   "fix: align CLI lease flag defaults with Kubernetes client-go defaults (15/10/2) by @k-jun in https://github.com/kube-vip/kube-vip/pull/1429",
+   "fix: skip UPNP refresh logging when no service instances by @ohauer in https://github.com/kube-vip/kube-vip/pull/1446",
+   "Now will ensure egress rules are cleaned for nft-internal by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/1447",
+   "fix(metrics): register correct gauge for BGP session info by @sebastiangaiser in https://github.com/kube-vip/kube-vip/pull/1460"
+  ]
+ },
+ "0.9.0": {
+  "breaking changes": [
+   "When you use the environment variable `vip_cidr` please rename it to `vip_subnet`",
+   "ENV: `vip_cidr` got replaced by `vip_subnet`",
+   "CLI: `--cidr` got replaced by `--vipSubnet`",
+   "YAML: `vipCidr` got replaced by `vipSubnet`",
+   "**Drop** support of Equinix Metal Platform (Removed)",
+   "CLI: `--metal`, ENV: `vip_packet`, YAML: `enableMetal`",
+   "CLI: `--metalKey`, ENV: `PACKET_AUTH_TOKEN`",
+   "CLI: `--metalProject`, ENV: `vip_packetproject`",
+   "CLI: `--metalProjectId`, ENV: `vip_packetprojectid`"
+  ]
+ },
+ "0.6.4": {
+  "bug fixes": [
+   "Use a separate etcd cluster for the HA control plane / leaderElection",
+   "Fixes to routing/table mode for VIP lifecycle",
+   "Fixes to the `rbac`",
+   "Ability to push a hostname when using DHCP",
+   "Various other e2e fixes (much faster CI)"
+  ]
+ }
+}

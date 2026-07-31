@@ -1,0 +1,332 @@
+{
+ "2.3.2": {
+  "security updates": [
+   "**containerd**",
+   "[**CVE-2026-50195**](https://github.com/containerd/containerd/security/advisories/GHSA-cvxm-645q-p574)",
+   "[**CVE-2026-53488**](https://github.com/containerd/containerd/security/advisories/GHSA-xhf5-7wjv-pqxp)",
+   "[**CVE-2026-53492**](https://github.com/containerd/containerd/security/advisories/GHSA-33vj-92qq-66hc)",
+   "[**CVE-2026-53489**](https://github.com/containerd/containerd/security/advisories/GHSA-rgh6-rfwx-v388)",
+   "[**CVE-2026-47262**](https://github.com/containerd/containerd/security/advisories/GHSA-jpcc-p29g-p8mq)"
+  ]
+ },
+ "2.2.5": {
+  "security updates": [
+   "**containerd**",
+   "[**CVE-2026-50195**](https://github.com/containerd/containerd/security/advisories/GHSA-cvxm-645q-p574)",
+   "[**CVE-2026-53488**](https://github.com/containerd/containerd/security/advisories/GHSA-xhf5-7wjv-pqxp)",
+   "[**CVE-2026-53492**](https://github.com/containerd/containerd/security/advisories/GHSA-33vj-92qq-66hc)",
+   "[**CVE-2026-53489**](https://github.com/containerd/containerd/security/advisories/GHSA-rgh6-rfwx-v388)",
+   "[**CVE-2026-47262**](https://github.com/containerd/containerd/security/advisories/GHSA-jpcc-p29g-p8mq)"
+  ]
+ },
+ "2.1.9": {
+  "security updates": [
+   "**containerd**",
+   "[**CVE-2026-50195**](https://github.com/containerd/containerd/security/advisories/GHSA-cvxm-645q-p574)",
+   "[**CVE-2026-53488**](https://github.com/containerd/containerd/security/advisories/GHSA-xhf5-7wjv-pqxp)",
+   "[**CVE-2026-53492**](https://github.com/containerd/containerd/security/advisories/GHSA-33vj-92qq-66hc)",
+   "[**CVE-2026-53489**](https://github.com/containerd/containerd/security/advisories/GHSA-rgh6-rfwx-v388)",
+   "[**CVE-2026-47262**](https://github.com/containerd/containerd/security/advisories/GHSA-jpcc-p29g-p8mq)"
+  ]
+ },
+ "2.0.10": {
+  "security updates": [
+   "**containerd**",
+   "[**CVE-2026-53488**](https://github.com/containerd/containerd/security/advisories/GHSA-xhf5-7wjv-pqxp)",
+   "[**CVE-2026-47262**](https://github.com/containerd/containerd/security/advisories/GHSA-jpcc-p29g-p8mq)"
+  ]
+ },
+ "1.7.33": {
+  "security updates": [
+   "**containerd**",
+   "[**CVE-2026-53488**](https://github.com/containerd/containerd/security/advisories/GHSA-xhf5-7wjv-pqxp)",
+   "[**CVE-2026-47262**](https://github.com/containerd/containerd/security/advisories/GHSA-jpcc-p29g-p8mq)",
+   "**go-jose**",
+   "[**CVE-2026-34986**](https://github.com/go-jose/go-jose/security/advisories/GHSA-78h2-9frx-2jm8)",
+   "[`4dfc1844e`](https://github.com/containerd/containerd/commit/4dfc1844e8cb46a6c04a8c57211ab50e1412ccc1) Bump go-jose to v3.0.5 to address CVE-2026-34986"
+  ]
+ },
+ "2.1.8": {
+  "security updates": [
+   "[**CVE-2026-46680**](https://github.com/containerd/containerd/security/advisories/GHSA-fqw6-gf59-qr4w)"
+  ]
+ },
+ "2.3.1": {
+  "security updates": [
+   "[**CVE-2026-46680**](https://github.com/containerd/containerd/security/advisories/GHSA-fqw6-gf59-qr4w)"
+  ]
+ },
+ "2.2.4": {
+  "security updates": [
+   "[**CVE-2026-46680**](https://github.com/containerd/containerd/security/advisories/GHSA-fqw6-gf59-qr4w)",
+   "[**CVE-2026-34986**](https://github.com/go-jose/go-jose/security/advisories/GHSA-78h2-9frx-2jm8)",
+   "[`80311db63`](https://github.com/containerd/containerd/commit/80311db633ba2bf339badb18c0ce152994911d27) chore: update go-jose for CVE-2026-34986"
+  ]
+ },
+ "2.0.9": {
+  "security updates": [
+   "[**CVE-2026-46680**](https://github.com/containerd/containerd/security/advisories/GHSA-fqw6-gf59-qr4w)"
+  ]
+ },
+ "1.7.32": {
+  "security updates": [
+   "[**CVE-2026-46680**](https://github.com/containerd/containerd/security/advisories/GHSA-fqw6-gf59-qr4w)"
+  ]
+ },
+ "2.3.0": {
+  "breaking changes": [
+   "Accumulate owners for OCI hook adjustments, disallowing commas in plugin names ([containerd/nri#264](https://github.com/containerd/nri/pull/264))"
+  ]
+ },
+ "2.2.3": {
+  "security updates": [
+   "**spdystream**",
+   "[**CVE-2026-35469**](https://github.com/moby/spdystream/security/advisories/GHSA-pc3f-x583-g7j2)"
+  ]
+ },
+ "2.1.7": {
+  "security updates": [
+   "**spdystream**",
+   "[**CVE-2026-35469**](https://github.com/moby/spdystream/security/advisories/GHSA-pc3f-x583-g7j2)"
+  ]
+ },
+ "2.0.8": {
+  "security updates": [
+   "**spdystream**",
+   "[**CVE-2026-35469**](https://github.com/moby/spdystream/security/advisories/GHSA-pc3f-x583-g7j2)"
+  ]
+ },
+ "1.7.31": {
+  "security updates": [
+   "**spdystream**",
+   "[**CVE-2026-35469**](https://github.com/moby/spdystream/security/advisories/GHSA-pc3f-x583-g7j2)"
+  ]
+ },
+ "2.1.5": {
+  "security updates": [
+   "**containerd**",
+   "[**GHSA-pwhc-rpq9-4c8w**](https://github.com/containerd/containerd/security/advisories/GHSA-pwhc-rpq9-4c8w)",
+   "[**GHSA-m6hq-p25p-ffr2**](https://github.com/containerd/containerd/security/advisories/GHSA-m6hq-p25p-ffr2)",
+   "[**GHSA-qw9x-cqr3-wc7r**](https://github.com/opencontainers/runc/security/advisories/GHSA-qw9x-cqr3-wc7r)",
+   "[**GHSA-cgrx-mc8f-2prm**](https://github.com/opencontainers/runc/security/advisories/GHSA-cgrx-mc8f-2prm)",
+   "[**GHSA-9493-h29p-rfm2**](https://github.com/opencontainers/runc/security/advisories/GHSA-9493-h29p-rfm2)"
+  ]
+ },
+ "2.0.7": {
+  "security updates": [
+   "**containerd**",
+   "[**GHSA-pwhc-rpq9-4c8w**](https://github.com/containerd/containerd/security/advisories/GHSA-pwhc-rpq9-4c8w)",
+   "[**GHSA-m6hq-p25p-ffr2**](https://github.com/containerd/containerd/security/advisories/GHSA-m6hq-p25p-ffr2)",
+   "[**GHSA-qw9x-cqr3-wc7r**](https://github.com/opencontainers/runc/security/advisories/GHSA-qw9x-cqr3-wc7r)",
+   "[**GHSA-cgrx-mc8f-2prm**](https://github.com/opencontainers/runc/security/advisories/GHSA-cgrx-mc8f-2prm)",
+   "[**GHSA-9493-h29p-rfm2**](https://github.com/opencontainers/runc/security/advisories/GHSA-9493-h29p-rfm2)"
+  ]
+ },
+ "1.7.29": {
+  "security updates": [
+   "**containerd**",
+   "[**GHSA-pwhc-rpq9-4c8w**](https://github.com/containerd/containerd/security/advisories/GHSA-pwhc-rpq9-4c8w)",
+   "[**GHSA-m6hq-p25p-ffr2**](https://github.com/containerd/containerd/security/advisories/GHSA-m6hq-p25p-ffr2)",
+   "[**GHSA-qw9x-cqr3-wc7r**](https://github.com/opencontainers/runc/security/advisories/GHSA-qw9x-cqr3-wc7r)",
+   "[**GHSA-cgrx-mc8f-2prm**](https://github.com/opencontainers/runc/security/advisories/GHSA-cgrx-mc8f-2prm)",
+   "[**GHSA-9493-h29p-rfm2**](https://github.com/opencontainers/runc/security/advisories/GHSA-9493-h29p-rfm2)"
+  ]
+ },
+ "2.1.0": {
+  "breaking changes": [
+   "Update FreeBSD defaults and re-organize platform defaults ([#11017](https://github.com/containerd/containerd/pull/11017))"
+  ]
+ },
+ "2.0.0": {
+  "security updates": [
+   "[medium] RAPL accessible to a container [GHSA-7ww5-4wqc-m92c](https://github.com/containerd/containerd/security/advisories/GHSA-7ww5-4wqc-m92c)"
+  ],
+  "breaking changes": [
+   "Remove `disable_cgroup` from CRI config ([#10594](https://github.com/containerd/containerd/pull/10594))",
+   "Disable the support for Schema 1 images ([#9765](https://github.com/containerd/containerd/pull/9765))",
+   "Update RuntimeDefault seccomp profile to disallow io_uring related syscalls ([#9320](https://github.com/containerd/containerd/pull/9320))",
+   "Move client to subpackage ([#9316](https://github.com/containerd/containerd/pull/9316))",
+   "Remove `LimitNOFILE` from `containerd.service` ([#8924](https://github.com/containerd/containerd/pull/8924))",
+   "Remove CRI v1alpha2 ([#8276](https://github.com/containerd/containerd/pull/8276))",
+   "Remove `io.containerd.runtime.v1.linux` and `io.containerd.runc.v1` ([#8262](https://github.com/containerd/containerd/pull/8262))",
+   "Remove \"containerd.io/restart.logpath\" label ([#8264](https://github.com/containerd/containerd/pull/8264))",
+   "Remove `aufs` snapshotter ([#8263](https://github.com/containerd/containerd/pull/8263))"
+  ]
+ },
+ "1.6.28": {
+  "security updates": [
+   "[release/1.6] upgrade OpenTelemetry to v1.21.0 / v0.46.0 (CVE-2023-47108) etc. ([#9707](https://github.com/containerd/containerd/pull/9707))"
+  ]
+ },
+ "1.6.25": {
+  "security updates": [
+   "[Release/1.6] CVE-2022-1996 fix for go-restful ([#9385](https://github.com/containerd/containerd/pull/9385))",
+   "[`62d402275`](https://github.com/containerd/containerd/commit/62d402275cdee9748c08690156f9ccb724d7c061) Remove CVE-2022-1996 from containerd binary upgrading go-restful to 2.16.0"
+  ]
+ },
+ "1.7.0": {
+  "security updates": [
+   "Update to go 1.19.2 to address CVE-2022-2879, CVE-2022-2880, CVE-2022-41715 ([#7474](https://github.com/containerd/containerd/pull/7474))",
+   "Update to go 1.19.1, 1.18.6 to address CVE-2022-27664, CVE-2022-32190 ([#7372](https://github.com/containerd/containerd/pull/7372))",
+   "update to go 1.16.15, 1.17.8 to address CVE-2022-24921 ([#6619](https://github.com/containerd/containerd/pull/6619))"
+  ]
+ },
+ "1.5.15": {
+  "security updates": [
+   "[release/1.5] update to Go 1.18.8 to address CVE-2022-41716 ([#7633](https://github.com/containerd/containerd/pull/7633))",
+   "[release/1.5] update to Go 1.18.8 to address CVE-2022-41716"
+  ]
+ },
+ "1.6.10": {
+  "security updates": [
+   "**Bump Go version to 1.18.8 to address CVE-2022-41716** ([#7634](https://github.com/containerd/containerd/pull/7634))",
+   "[release/1.6] update to Go 1.18.8 to address CVE-2022-41716 ([#7634](https://github.com/containerd/containerd/pull/7634))",
+   "[release/1.6] update to Go 1.18.8 to address CVE-2022-41716"
+  ]
+ },
+ "1.6.9": {
+  "security updates": [
+   "[release/1.6] Update go 1.18.7, addresses CVE-2022-2879, CVE-2022-2880, CVE-2022-41715 ([#7475](https://github.com/containerd/containerd/pull/7475))",
+   "[`28324c529`](https://github.com/containerd/containerd/commit/28324c529fad2285d44ae5348377496cdf9c4926) [release/1.6] Update go 1.18.7, addresses CVE-2022-2879, CVE-2022-2880, CVE-2022-41715"
+  ]
+ },
+ "1.5.14": {
+  "security updates": [
+   "[release/1.5] Update go 1.18.7, addresses CVE-2022-2879, CVE-2022-2880, CVE-2022-41715 ([#7476](https://github.com/containerd/containerd/pull/7476))",
+   "[`a6672294a`](https://github.com/containerd/containerd/commit/a6672294a5fb12bbab45beaab6d5f963c88cf5ed) [release/1.5] Update go 1.18.7, addresses CVE-2022-2879, CVE-2022-2880, CVE-2022-41715"
+  ]
+ },
+ "1.6.2": {
+  "security updates": [
+   "[release/1.6] update to go 1.16.15, 1.17.8 to address CVE-2022-24921 ([#6620](https://github.com/containerd/containerd/pull/6620))",
+   "update to go 1.16.15, 1.17.8 to address CVE-2022-24921"
+  ]
+ },
+ "1.5.11": {
+  "security updates": [
+   "[release/1.5] update to go 1.16.15 to address CVE-2022-24921 ([#6621](https://github.com/containerd/containerd/pull/6621))",
+   "[release/1.5] update to go 1.16.15 to address CVE-2022-24921"
+  ]
+ },
+ "1.5.0": {
+  "security updates": [
+   "[`ef54a7839`](https://github.com/containerd/containerd/commit/ef54a7839a59670dc13ba4602cc98496b5600e6a) vendor: bump golang.org/x/crypto bac4c82f6975 (CVE-2020-9283)",
+   "[`5f0bf0523`](https://github.com/containerd/containerd/commit/5f0bf0523952f3c0044d4a0faf3cf7d65440a1de) pick up fix for CVE-2019-19921 in opencontainers/selinux"
+  ]
+ },
+ "1.2.14": {
+  "security updates": [
+   "Fix bug which allowed manifests to coerce containerd clients into leaking registry credentials [GHSA-742w-89gc-8m9c](https://github.com/containerd/containerd/security/advisories/GHSA-742w-89gc-8m9c)",
+   "[`305703670`](https://github.com/containerd/containerd/commit/30570367033c0d7b6c3faa273fbdd0eda32bb65a) Update Golang 1.13.7 (CVE-2020-0601, CVE-2020-7919)",
+   "[`c5843f944`](https://github.com/containerd/containerd/commit/c5843f944c5ab73dfe223fd3f265e4166da6dd92) Revert \"Update Golang 1.12.16 (CVE-2020-0601, CVE-2020-7919)\""
+  ]
+ },
+ "1.4.0": {
+  "security updates": [
+   "[`32ba75f0`](https://github.com/containerd/containerd/commit/32ba75f0fbfe47ad94e7c7daccc9f31efd0b2db2) Update Golang 1.13.7 (CVE-2020-0601, CVE-2020-7919)",
+   "[`faf03c3d`](https://github.com/containerd/containerd/commit/faf03c3d239d54e9fce44deaae274dc1fe8b672e) Pick up fix for CVE-2019-16884 in opencontainers/selinux",
+   "[`6356e55b`](https://github.com/containerd/containerd/commit/6356e55be002df80b98ba59ec98dfd0ece7ec80c) Update Golang 1.12.12 (CVE-2019-17596)",
+   "[`ef54a783`](https://github.com/containerd/cri/commit/ef54a7839a59670dc13ba4602cc98496b5600e6a) vendor: bump golang.org/x/crypto bac4c82f6975 (CVE-2020-9283)",
+   "[`5f0bf052`](https://github.com/containerd/cri/commit/5f0bf0523952f3c0044d4a0faf3cf7d65440a1de) pick up fix for CVE-2019-19921 in opencontainers/selinux"
+  ]
+ },
+ "1.3.4": {
+  "security updates": [
+   "[`b512c23a47`](https://github.com/containerd/containerd/commit/b512c23a47733efd8ae8abcdbf701fd9563d4c83) Update Golang 1.13.7 (CVE-2020-0601, CVE-2020-7919)",
+   "[`dde0ab66c5`](https://github.com/containerd/containerd/commit/dde0ab66c5ab59751e4a7005a8f214bbd4acd79d) Revert \"Update Golang 1.12.16 (CVE-2020-0601, CVE-2020-7919)\""
+  ]
+ },
+ "1.3.3": {
+  "security updates": [
+   "Update the runc vendor to v1.0.0-rc10 which includes a mitigation for [CVE-2019-19921](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19921).",
+   "Update the opencontainers/selinux which includes a mitigation for [CVE-2019-16884](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16884).",
+   "Update Golang runtime to 1.12.16, mitigating the [CVE-2020-0601](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-0601) certificate verification bypass on Windows, and [CVE-2020-7919](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7919), which only affects 32-bit architectures.",
+   "Update the `gopkg.in/yaml.v2` vendor to v2.2.8 with a mitigation for [CVE-2019-11253](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-11253)",
+   "[`d1e31f9f2d`](https://github.com/containerd/containerd/commit/d1e31f9f2deadc1816da1bfcdf0dbff85818a28d) Update Golang 1.12.16 (CVE-2020-0601, CVE-2020-7919)",
+   "[`9cf15235d0`](https://github.com/containerd/containerd/commit/9cf15235d04a1a3fe9903402fbc4460ab1c7fffe) Merge pull request [#3980](https://github.com/containerd/containerd/pull/3980) from dims/bump-opencontainers/selinux-for-CVE-2019-16884-release-1.3",
+   "[`3074db3a4b`](https://github.com/containerd/containerd/commit/3074db3a4b5d57b891d3d86105df1be357a758e1) Pick up fix for CVE-2019-16884 in opencontainers/selinux"
+  ]
+ },
+ "1.2.12": {
+  "security updates": [
+   "Update the runc vendor to v1.0.0-rc10 which includes a mitigation for [CVE-2019-19921](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-19921).",
+   "Update the opencontainers/selinux which includes a mitigation for [CVE-2019-16884](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16884).",
+   "Update Golang runtime to 1.12.16, mitigating the [CVE-2020-0601](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-0601) certificate verification bypass on Windows, and [CVE-2020-7919](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7919), which only affects 32-bit architectures.",
+   "Update the `gopkg.in/yaml.v2` vendor to v2.2.8 with a mitigation for [CVE-2019-11253](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-11253)",
+   "[`44b5bac0c0`](https://github.com/containerd/containerd/commit/44b5bac0c08a0b296cd4e16f0055187b0dfb00d7) Update Golang 1.12.16 (CVE-2020-0601, CVE-2020-7919)",
+   "[`7276974071`](https://github.com/containerd/containerd/commit/7276974071698a8f45a9fa64f27cd18bfea280ea) Merge pull request [#3982](https://github.com/containerd/containerd/pull/3982) from dims/bump-opencontainers/selinux-for-CVE-2019-16884-release-1.2",
+   "[`4c03d5dfb8`](https://github.com/containerd/containerd/commit/4c03d5dfb85fc10243fc10442959096ba077396c) Pick up fix for CVE-2019-16884 in opencontainers/selinux",
+   "[`ae6b4816`](https://github.com/containerd/cri/commit/ae6b4816d9bd2a886d8c244e65c1b076ff4926e2) pick up fix for CVE-2019-19921 in opencontainers/selinux"
+  ]
+ },
+ "1.2.11": {
+  "security updates": [
+   "Update the runc vendor to v1.0.0-rc9 which includes an additional mitigation for [CVE-2019-16884](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16884).",
+   "Update Golang runtime to 1.12.13, which includes security fixes to the `crypto/dsa` package made in Go 1.12.11 ([CVE-2019-17596](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17596)), and fixes to the go command, `runtime`, `syscall` and `net` packages (Go 1.12.12).",
+   "[`e319caedc4`](https://github.com/containerd/containerd/commit/e319caedc4f32d6eb91352c52e008f6c934fb2cc) Update Golang 1.12.12 (CVE-2019-17596)"
+  ]
+ },
+ "1.3.1": {
+  "security updates": [
+   "Update the runc vendor to v1.0.0-rc9 which includes an additional mitigation for [CVE-2019-16884](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16884).",
+   "Update Golang runtime to 1.12.13, which includes security fixes to the `crypto/dsa` package made in Go 1.12.11 ([CVE-2019-17596](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-17596)), and fixes to the go command, `runtime`, `syscall` and `net` packages (Go 1.12.12).",
+   "[`23b0ca70fe`](https://github.com/containerd/containerd/commit/23b0ca70feadeda6b9f1f7072e71687c660590ca) Update Golang 1.12.12 (CVE-2019-17596)"
+  ]
+ },
+ "1.3.0": {
+  "security updates": [
+   "**Update runc dependency** Updated runc for CVE-2019-16884",
+   "[`35d3bae1e1`](https://github.com/containerd/containerd/commit/35d3bae1e16de3d4b24ec3770c7b982006923440) AppVeyor: bump golang 1.12.10 (CVE-2019-16276)",
+   "[`95dbbdc8c1`](https://github.com/containerd/containerd/commit/95dbbdc8c1cb984adb5ff33fc219af3345eeed63) Bump runc for CVE-2019-16884",
+   "[`1b389b3628`](https://github.com/containerd/containerd/commit/1b389b362833e158405985a67d3ea6476c08ff18) AppVeyor: update to go 1.12.8 (CVE-2019-9512, CVE-2019-9514)",
+   "[`14eaad0cd9`](https://github.com/containerd/containerd/commit/14eaad0cd987ff452b8e05e54b5a168738e5b232) Update runc to 6635b4f0c6af3810594d2770f662f34ddc15b40d (CVE-2019-5736)"
+  ]
+ },
+ "1.2.10": {
+  "security updates": [
+   "Update the runc vendor to capture the fix for [CVE-2019-16884](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-16884). Fixed by [PR #3685](https://github.com/containerd/containerd/pull/3685)",
+   "Update Golang runtime to 1.12.10 to handle CVE-2019-16276. More detail on the Golang CVE available in [golang/go#34540](https://github.com/golang/go/issues/34540)",
+   "[`8d33d03519`](https://github.com/containerd/containerd/commit/8d33d03519a7b87b5ef8a5d973228826cde7d759) AppVeyor: bump golang 1.12.10 (CVE-2019-16276)",
+   "[`0c961b1867`](https://github.com/containerd/containerd/commit/0c961b1867e851cd14ac8d63dd9a4a8ee5708b04) Bump runc for CVE-2019-16884"
+  ]
+ },
+ "1.1.8": {
+  "security updates": [
+   "[`735cdbf454`](https://github.com/containerd/containerd/commit/735cdbf45457b08698754c658c3aa3d2d47694b5) Update runc for CVE-2019-16884"
+  ]
+ },
+ "1.2.9": {
+  "security updates": [
+   "Addresses CVE-2019-9512 (Ping Flood), CVE-2019-9514 (Reset Flood), and CVE-2019-9515 (Settings Flood)."
+  ]
+ },
+ "1.2.8": {
+  "security updates": [
+   "Resolves CVE-2019-9512 and CVE-2019-9514 from the 1.12.8 security release. Originally fixed via [PR #3531](https://github.com/containerd/containerd/pull/3531) which lists the details of the Golang CVEs, backported via [PR #3532](https://github.com/containerd/containerd/pull/3532) to `release/1.2`.",
+   "[`4097217bbd`](https://github.com/containerd/containerd/commit/4097217bbd90ea4aa7f957d1d8a8b72734bfcec6) AppVeyor: update to go 1.12.8 (CVE-2019-9512, CVE-2019-9514)"
+  ]
+ },
+ "1.2.6": {
+  "security updates": [
+   "cri: Update CNI plugins to v0.7.5 for [CVE-2019-9946](https://nvd.nist.gov/vuln/detail/CVE-2019-9946)."
+  ]
+ },
+ "1.1.7": {
+  "security updates": [
+   "cri: Update CNI plugins to v0.7.5 for [CVE-2019-9946](https://nvd.nist.gov/vuln/detail/CVE-2019-9946)",
+   "Update runc to v1.0.0-rc7-6-g029124da [#3184](https://github.com/containerd/containerd/pull/3184) to include the improved fix for CVE-2019-5736, and fix a potential container start failure on non-SELinux system [runc#2030](https://github.com/opencontainers/runc/issues/2030)."
+  ]
+ },
+ "1.2.4": {
+  "security updates": [
+   "runc updated to 6635b4f0c6af3810594d2770f662f34ddc15b40d to solve CVE-2019-5736",
+   "[`b4bf3e340c`](https://github.com/containerd/containerd/commit/b4bf3e340c17d06160687752a0947fc06a208522) Update runc to 6635b4f0c6af3810594d2770f662f34ddc15b40d (CVE-2019-5736)"
+  ]
+ },
+ "1.1.6": {
+  "security updates": [
+   "Update runc to 6635b4f0c6af3810594d2770f662f34ddc15b40d to fix CVE-2019-5736",
+   "[`3177b4b96e`](https://github.com/containerd/containerd/commit/3177b4b96eedebc6d2e9a1eb6dda5624e4aee733) Update runc to 6635b4f0c6af3810594d2770f662f34ddc15b40d (CVE-2019-5736)"
+  ]
+ }
+}

@@ -1,0 +1,7 @@
+{
+ "1.2.0": {
+  "breaking changes": [
+   "Changes the API group name for the fake VolumeSnapshot object to \"snapshot.storage.k8s.io\" to be in-sync with the group name of the real VolumeSnapshot object. As a result, the generated interfaces for clientset and informers of VolumeSnapshot are also changed from \"VolumeSnapshot\" to \"Snapshot\". ([#123](https://github.com/kubernetes-csi/external-snapshotter/pull/123), [@xing-yang](https://github.com/xing-yang))"
+  ]
+ }
+}

@@ -1,0 +1,192 @@
+{
+ "1.35.3": {
+  "security updates": [
+   "Fix CVE-2026-35469 by updating spdystream dependency (#9883, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.34.8": {
+  "security updates": [
+   "Fix CVE-2026-35469 by updating spdystream dependency (#9884, @haircommander)"
+  ]
+ },
+ "1.33.12": {
+  "security updates": [
+   "Fix CVE-2026-35469 by updating spdystream dependency (#9888, @haircommander)"
+  ]
+ },
+ "1.36.0": {
+  "security updates": [
+   "Fix CVE-2026-35469 by updating spdystream dependency (#9880, @haircommander)"
+  ]
+ },
+ "1.35.0": {
+  "breaking changes": [
+   "Add container_spec* and container_last_seen metrics"
+  ],
+  "security updates": [
+   "Fixed CVE-2025-58183: Updated tar-split to v0.12.2 to fix unbounded memory allocation vulnerability when parsing malicious container images with GNU sparse tar files. (#9589, @saschagrunert)"
+  ]
+ },
+ "1.34.3": {
+  "security updates": [
+   "Fixed CVE-2025-58183: Updated tar-split to v0.12.2 to fix unbounded memory allocation vulnerability when parsing malicious container images with GNU sparse tar files. (#9590, @saschagrunert)"
+  ]
+ },
+ "1.33.7": {
+  "security updates": [
+   "Fixed CVE-2025-58183: Updated tar-split to v0.12.2 to fix unbounded memory allocation vulnerability when parsing malicious container images with GNU sparse tar files. (#9591, @saschagrunert)"
+  ]
+ },
+ "1.32.11": {
+  "security updates": [
+   "Fixed CVE-2025-58183: Updated tar-split to v0.12.2 to fix unbounded memory allocation vulnerability when parsing malicious container images with GNU sparse tar files. (#9592, @saschagrunert)"
+  ]
+ },
+ "1.31.0": {
+  "security updates": [
+   "Fix CVE-2024-5154 where a malicious container image could make a symlink of `/proc/mounts` on the host, out of the container's rootfs (#8225, @haircommander)"
+  ]
+ },
+ "1.30.2": {
+  "security updates": [
+   "Fix CVE-2024-5154 where a malicious container image could make a symlink of `/proc/mounts` on the host, out of the container's rootfs (#8231, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.29.5": {
+  "security updates": [
+   "Fix CVE-2024-5154 where a malicious container image could make a symlink of `/proc/mounts` on the host, out of the container's rootfs(#8232, @ kwilczynski)"
+  ]
+ },
+ "1.28.7": {
+  "security updates": [
+   "Fix CVE-2024-3154 , a security flaw where CRI-O allowed users to specify annotations that changed specific fields in the runtime. One consequence is a user can change the systemd properties of the container, allowing unsafe properties to be set by the runtime (#8086, @haircommander)"
+  ]
+ },
+ "1.30.0": {
+  "security updates": [
+   "Fix CVE-2024-3154, a security flaw where CRI-O allowed users to specify annotations that changed specific fields in the runtime. One consequence is a user can change the systemd properties of the container, allowing unsafe properties to be set by the runtime (#8088, @haircommander)"
+  ]
+ },
+ "1.29.4": {
+  "security updates": [
+   "Fix CVE-2024-3154 , a security flaw where CRI-O allowed users to specify annotations that changed specific fields in the runtime. One consequence is a user can change the systemd properties of the container, allowing unsafe properties to be set by the runtime (#8085, @haircommander)"
+  ]
+ },
+ "1.28.6": {
+  "security updates": [
+   "Fix CVE-2024-3154 , a security flaw where CRI-O allowed users to specify annotations that changed specific fields in the runtime. One consequence is a user can change the systemd properties of the container, allowing unsafe properties to be set by the runtime (#8086, @haircommander)"
+  ]
+ },
+ "1.27.6": {
+  "security updates": [
+   "Fix CVE-2024-3154 , a security flaw where CRI-O allowed users to specify annotations that changed specific fields in the runtime. One consequence is a user can change the systemd properties of the container, allowing unsafe properties to be set by the runtime (#8087, @haircommander)"
+  ]
+ },
+ "1.29.1": {
+  "security updates": [
+   "Fix CVE-2023-6476, where poorly filtered access to an experimental annotation can allow pods to circumvent resource limits on cgroupsv2. See GHSA-p4rx-7wvg-fwrc for more information. (@haircommander)"
+  ]
+ },
+ "1.28.3": {
+  "security updates": [
+   "Fix CVE-2023-6476, where poorly filtered access to an experimental annotation can allow pods to circumvent resource limits on cgroupsv2. See GHSA-p4rx-7wvg-fwrc for more information. (@haircommander)"
+  ]
+ },
+ "1.27.3": {
+  "security updates": [
+   "Fix CVE-2023-6476, where poorly filtered access to an experimental annotation can allow pods to circumvent resource limits on cgroupsv2. See https://github.com/cri-o/cri-o/security/advisories/GHSA-p4rx-7wvg-fwrc for more information. (@haircommander)"
+  ]
+ },
+ "1.27.2": {
+  "security updates": [
+   "Update the golang.org/x/net package from 0.12.0 to 0.17.0 to fix vulnerabilities CVE-2023-39325 and CVE-2023-4448. (#7416, @kwilczynski)",
+   "Update the google.golang.org/grpc package from 1.54.0 to 1.58.3 to fix vulnerabilities CVE-2023-39325 and CVE-2023-4448. (#7415, @kwilczynski)"
+  ]
+ },
+ "1.28.2": {
+  "security updates": [
+   "Update the golang.org/x/net package from 0.13.0 to 0.17.0 to fix vulnerabilities CVE-2023-39325 and CVE-2023-4448. (#7386, @kwilczynski)",
+   "Update the google.golang.org/grpc package from 1.57.0 to 1.58.3 to fix vulnerabilities CVE-2023-39325 and CVE-2023-4448. (#7381, @kwilczynski)"
+  ]
+ },
+ "1.25.3": {
+  "security updates": [
+   "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline (#6524, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.24.5": {
+  "security updates": [
+   "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline ([#6672](https://github.com/cri-o/cri-o/pull/6672), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where the GID of the container is not specified in the AdditionalGids, leading to a low risk security vulnerability. For more information please see CVE-2022-2995. ([#6775](https://github.com/cri-o/cri-o/pull/6775), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.25.2": {
+  "security updates": [
+   "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline (#6450, @haircommander)"
+  ]
+ },
+ "1.24.4": {
+  "security updates": [
+   "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline ([#6450](https://github.com/cri-o/cri-o/pull/6450), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.26.0": {
+  "security updates": [
+   "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline (#6450, @haircommander)",
+   "Add an option \"add_inheritable_capabilities\" which adds added capabilities to the inheritable list as well. As of CRI-O 1.24.0, CRI-O drops the inheritable capabilities to fix CVE-2022-27652 . However, this can cause regressions in workloads that attempt to pass capabilities to non-root users through inheritable capabilities. (#6236, @haircommander)"
+  ]
+ },
+ "1.23.4": {
+  "security updates": [
+   "Fix CVE-2022-27652 by dropping and refusing to add any inheritable capabilities ([#5770](https://github.com/cri-o/cri-o/pull/5770), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5937](https://github.com/cri-o/cri-o/pull/5937), [@haircommander](https://github.com/haircommander))",
+   "Revert fix for CVE-2022-27652 by re-adding inheritable capabilities. While there is a workaround, we believe this causes regression mid cycle with is contrary to CRI-O's backporting policy. The risk of the CVE is low, and so there is little risk in reverting here. ([#6168](https://github.com/cri-o/cri-o/pull/6168), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.25.1": {
+  "security updates": [
+   "Add an option \"add_inheritable_capabilities\" which adds added capabilities to the inheritable list as well. As of CRI-O 1.24.0, CRI-O drops the inheritable capabilities to fix CVE-2022-27652 . However, this can cause regressions in workloads that attempt to pass capabilities to non-root users through inheritable capabilities. (#6236, @haircommander)"
+  ]
+ },
+ "1.24.3": {
+  "security updates": [
+   "Add an option \"add_inheritable_capabilities\" which adds added capabilities to the inheritable list as well. As of CRI-O 1.24.0, CRI-O drops the inheritable capabilities to fix CVE-2022-27652 . However, this can cause regressions in workloads that attempt to pass capabilities to non-root users through inheritable capabilities. ([#6236](https://github.com/cri-o/cri-o/pull/6236), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where the GID of the container is not specified in the AdditionalGids, leading to a low risk security vulnerability. For more information please see CVE-2022-2995. ([#6159](https://github.com/cri-o/cri-o/pull/6159), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.25.0": {
+  "security updates": [
+   "Fix a bug where the GID of the container is not specified in the AdditionalGids, leading to a low risk security vulnerability. For more information please see CVE-2022-2995. (#6159, @haircommander)"
+  ]
+ },
+ "1.24.2": {
+  "security updates": [
+   "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5935](https://github.com/cri-o/cri-o/pull/5935), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.20.9": {
+  "security updates": [
+   "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5951](https://github.com/cri-o/cri-o/pull/5951), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.24.1": {
+  "security updates": [
+   "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5935](https://github.com/cri-o/cri-o/pull/5935), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.23.3": {
+  "security updates": [
+   "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5937](https://github.com/cri-o/cri-o/pull/5937), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.22.5": {
+  "security updates": [
+   "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5936](https://github.com/cri-o/cri-o/pull/5936), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.24.0": {
+  "security updates": [
+   "Fix CVE-2022-27652 by dropping and refusing to add any inheritable capabilities ([#5769](https://github.com/cri-o/cri-o/pull/5769), [@haircommander](https://github.com/haircommander))"
+  ]
+ }
+}

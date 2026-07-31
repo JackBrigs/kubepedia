@@ -1,0 +1,96 @@
+{
+ "1.18.0": {
+  "security updates": [
+   "Bump golang.org version to 0.39 to fix CVE-2025-22872 by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2073"
+  ]
+ },
+ "1.10.19": {
+  "security updates": [
+   "Address CVE fixes for CVE-2024-24790 , CVE-2024-24789 by @saikat-royc in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1783"
+  ]
+ },
+ "1.17.4": {
+  "security updates": [
+   "Fix CVE-2025-22870 by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1991"
+  ]
+ },
+ "1.17.3": {
+  "security updates": [
+   "Fix CVE-2022-1996 by @mattcary in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1967"
+  ]
+ },
+ "1.16.1": {
+  "security updates": [
+   "Fix CVE-2024-45337, CVE-2024-45338 by @pwschuurman in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1934"
+  ]
+ },
+ "1.12.13": {
+  "security updates": [
+   "Update Go version and dependencies to fix CVE-2024-24790,CVE-2024-24789 by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1851"
+  ]
+ },
+ "1.14.0": {
+  "security updates": [
+   "CVE-2024-24786: bump google.golang.org/protobuf to v1.33.0 by @dobsonj in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1642",
+   "Fix CVE-2023-45288 by @dannawang0221 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1680"
+  ]
+ },
+ "1.13.6": {
+  "security updates": [
+   "Fix CVE-2023-45288 by @dannawang0221 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1683"
+  ]
+ },
+ "1.12.10": {
+  "security updates": [
+   "Fix CVE-2023-45288 by @dannawang0221 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1682"
+  ]
+ },
+ "1.11.11": {
+  "security updates": [
+   "Fix CVE-2023-45288 by @dannawang0221 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1684"
+  ]
+ },
+ "1.10.16": {
+  "security updates": [
+   "Fix CVE-2023-45288 by @dannawang0221 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1685"
+  ]
+ },
+ "1.9.19": {
+  "security updates": [
+   "Fix CVE-2023-45288 by @dannawang0221 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1686"
+  ]
+ },
+ "1.8.22": {
+  "security updates": [
+   "Fix CVE-2023-45288 by @dannawang0221 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1687"
+  ]
+ },
+ "0.7.0": {
+  "breaking changes": [
+   "Adding `PodSecurityPoliciy` to allow `csi-gce-pd-node` in clusters with policies enabled.",
+   "BREAKING CHANGE: All deployment objects in setup-cluster.yaml have been renamed. When deleting the deployment using ./delete-driver.sh, make sure to use specs from your previous deployment version to ensure the correct objects are cleaned up. ([#405](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/405), [@verult](https://github.com/verult))"
+  ],
+  "bug fixes": [
+   "Fixed bug where ControllerExpandVolume was returning incorrect size when disk was already the requested size or larger ([#462](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/462), [@davidz627](https://github.com/davidz627))",
+   "Set volume limits to 15 only for machine-types: \"f1-micro\", \"g1-small\", \"e2-micro\", \"e2-small\", \"e2-medium\". Limit is 127 for all others ([#455](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/455), [@davidz627](https://github.com/davidz627))",
+   "Changed deployment of Controller and Node components to use hostNetwork for compatibility with GKE Workload Identity ([#436](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/436), [@davidz627](https://github.com/davidz627))",
+   "During NodeStageVolume run udevadm --trigger to fix device symlinks if device path is not found or device path points to the wrong device ([#459](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/459), [@davidz627](https://github.com/davidz627))",
+   "Bump external-snapshotter version to v1.2.2 for fix of CVE-2019-11255 ([#434](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/434), [@davidz627](https://github.com/davidz627))"
+  ]
+ },
+ "0.6.0": {
+  "breaking changes": [
+   "Some of the API objects in the deployment specs have changed names/labels/namespaces, please tear down old driver before deploying this version to avoid orphaning old objects. You will also no longer see the driver in the `default` namespace.",
+   "Some error codes have been changed, please see below for details if you rely on specific error codes of the driver"
+  ],
+  "bug fixes": [
+   "Reduces node attach limits by 1 since the node boot disk is considered an attachable disk ([#361](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/361), [@davidz627](https://github.com/davidz627))",
+   "Fixed a bug that causes disks in the same zone/region to be provisioned serially ([#344](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/344), [@hantaowang](https://github.com/hantaowang))",
+   "Remove cross validation of access modes, multiple access modes can be specified that represent all the capabilities of the volume ([#289](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/289), [@davidz627](https://github.com/davidz627))",
+   "Driver should check socket parent directory before trying to bind it ([#339](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/339), [@zhucan](https://github.com/zhucan))",
+   "Updated CSI Attacher to stop ignoring errors from ControllerUnpublish ([#378](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/378), [@davidz627](https://github.com/davidz627))",
+   "CreateVolume will now fail with NOT_FOUND error when VolumeContentSource SnapshotId does not refer to a snapshot that can be found ([#312](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/312), [@davidz627](https://github.com/davidz627))",
+   "ControllerUnpublishVolume now returns success when the Node is GCE API NotFound."
+  ]
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "1.12.0": {
+  "security updates": [
+   "siderolabs/talos@f65f39b78 fix: provide mitigation CVE-1999-0524"
+  ]
+ },
+ "1.11.0": {
+  "security updates": [
+   "siderolabs/talos@62f6c97fe fix: provide mitigation CVE-1999-0524"
+  ]
+ },
+ "1.9.5": {
+  "security updates": [
+   "siderolabs/pkgs@3349185 fix: patch musl to mitigate CVE-2025-26519"
+  ]
+ },
+ "1.1.0": {
+  "security updates": [
+   "configuration:",
+   "kube-system"
+  ]
+ },
+ "0.12.3": {
+  "security updates": [
+   "etcd PKI moved to `/system/secrets`",
+   "kubelet bootstrap CSR auto-signing scoped to kubelet bootstrap tokens only",
+   "enforce default seccomp profile on all system containers",
+   "run system services apid, trustd, and etcd as non-root users"
+  ]
+ },
+ "0.12.2": {
+  "security updates": [
+   "etcd PKI moved to `/system/secrets`",
+   "kubelet bootstrap CSR auto-signing scoped to kubelet bootstrap tokens only",
+   "enforce default seccomp profile on all system containers",
+   "run system services apid, trustd, and etcd as non-root users"
+  ]
+ },
+ "0.12.1": {
+  "security updates": [
+   "etcd PKI moved to `/system/secrets`",
+   "kubelet bootstrap CSR auto-signing scoped to kubelet bootstrap tokens only",
+   "enforce default seccomp profile on all system containers",
+   "run system services apid, trustd, and etcd as non-root users"
+  ]
+ },
+ "0.12.0": {
+  "security updates": [
+   "etcd PKI moved to `/system/secrets`",
+   "kubelet bootstrap CSR auto-signing scoped to kubelet bootstrap tokens only",
+   "enforce default seccomp profile on all system containers",
+   "run system services apid, trustd, and etcd as non-root users"
+  ]
+ },
+ "0.9.3": {
+  "security updates": [
+   "[`24a6dac`](https://github.com/talos-systems/tools/commit/24a6dac5988e8f0c2b33626cfcf576529a975442) feat: bump toolchain for libmusl CVE-2020-28928 fix"
+  ]
+ },
+ "0.9.2": {
+  "security updates": [
+   "[`24a6dac`](https://github.com/talos-systems/tools/commit/24a6dac5988e8f0c2b33626cfcf576529a975442) feat: bump toolchain for libmusl CVE-2020-28928 fix"
+  ]
+ },
+ "0.9.1": {
+  "security updates": [
+   "[`24a6dac`](https://github.com/talos-systems/tools/commit/24a6dac5988e8f0c2b33626cfcf576529a975442) feat: bump toolchain for libmusl CVE-2020-28928 fix"
+  ]
+ },
+ "0.9.0": {
+  "security updates": [
+   "[`24a6dac`](https://github.com/talos-systems/tools/commit/24a6dac5988e8f0c2b33626cfcf576529a975442) feat: bump toolchain for libmusl CVE-2020-28928 fix"
+  ]
+ }
+}

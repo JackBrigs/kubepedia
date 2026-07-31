@@ -1,0 +1,40 @@
+{
+ "2.3.3": {
+  "security updates": [
+   "Fixes CVE-2026-53488 \"image-config LABEL flows to host-root command execution from an image pull\" (affected nerdctl as well as CRI)",
+   "Fixes CVE-2026-50195, CVE-2026-53488, CVE-2026-53492, CVE-2026-53489, CVE-2026-47262"
+  ]
+ },
+ "2.2.0": {
+  "security updates": [
+   "containerd v2.2.0 fixes CVE-2024-25621 and CVE-2025-64329",
+   "runc v1.3.3 fixes CVE-2025-31133, CVE-2025-52565, CVE-2025-52881"
+  ]
+ },
+ "1.7.3": {
+  "security updates": [
+   "Update runc to v1.1.12 (fixes CVE-2024-21626) (#2779)",
+   "Update BuildKit to v0.12.5 (fixes CVE-2024-23651, CVE-2024-23652, CVE-2024-23653, CVE-2024-23650) (#2779)"
+  ]
+ },
+ "1.2.1": {
+  "security updates": [
+   "Update containerd library to v1.7.0-rc.0 to fix CVE-2023-25173 (https://github.com/advisories/GHSA-hmfx-3pcx-653p) (#2019, #2055)"
+  ]
+ },
+ "0.18.0": {
+  "security updates": [
+   "Update containerd library to 1.6.2 (#927). Contains fix for [`CVE-2022-24769: \"Default inheritable capabilities for linux container should be empty\"`](https://github.com/containerd/containerd/security/advisories/GHSA-c9cp-9c75-9v8c) (low severity)"
+  ]
+ },
+ "0.17.1": {
+  "security updates": [
+   "This containerd release fixes a vulnerability of CRI plugin ([CVE-2022-23648](https://github.com/containerd/containerd/security/advisories/GHSA-crp2-qrr5-8pq7)). nerdctl does NOT use CRI and is NOT affected by this vulnerability."
+  ]
+ },
+ "0.14.0": {
+  "security updates": [
+   "Update the containerd client library to 1.6.0-beta.3 (#531) . Contains a mitigation for [OCI Distribution Spec CVE-2021-41190](https://github.com/opencontainers/distribution-spec/security/advisories/GHSA-mc8v-mgrf-8f4m) (a malicious registry implementation could trick the client to pull different images with the same OCI digest value)"
+  ]
+ }
+}

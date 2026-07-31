@@ -1,0 +1,31 @@
+{
+ "0.19.0": {
+  "bug fixes": [
+   "nfd-master: don't remove node labels when the NodeFeature cache is incomplete; add periodic reconciliation to clean up genuinely absent NodeFeatures (#2415).",
+   "nfd-master: prevent stop() panic and informer leak on init failure (#2534).",
+   "nfd-worker: trim whitespace in comma-separated command-line list values (#2535).",
+   "Helm: render post-delete prune job resources at container level so they actually apply (#2515)."
+  ]
+ },
+ "0.3.0": {
+  "bug fixes": [
+   "Skip pstate detection on Arm (#118)",
+   "Documentation fixes and improvements (#104, #156)",
+   "Small improvement in node counting in `label.sh` (#152)"
+  ]
+ },
+ "0.2.0": {
+  "bug fixes": [
+   "Fix to report the correct version inside container.",
+   "Upated RDT Discovery() to use exit status",
+   "Clean-up RDT helper programs.",
+   "Improved unit test coverage",
+   "Add GoReport Card Widget",
+   "Update Community Code of Conduct",
+   "Improve GoReportCard metrics, both gofmt and golint (#90)",
+   "Get node name from spec.nodeName instead of indirectly from pod. (#93)",
+   "Remove hardcoding of nfd source path (#94)",
+   "Use a specific released version of intel-cmt-cat"
+  ]
+ }
+}
