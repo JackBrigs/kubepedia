@@ -331,6 +331,44 @@
 {"alias": "apps", "ids": ["TAG-APPS"]}
 {"alias": "architecture-compatibility", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
 {"alias": "argo cd security", "ids": ["TROUBLE-ARGOCD_KNOWN_CVES"]}
+{"alias": "argo-cd 0.11 fixed in", "ids": ["TROUBLE-ARGO_CD_0_11_DEFECTS"]}
+{"alias": "argo-cd 0.11 known issues", "ids": ["TROUBLE-ARGO_CD_0_11_DEFECTS"]}
+{"alias": "argo-cd 0.12 fixed in", "ids": ["TROUBLE-ARGO_CD_0_12_DEFECTS"]}
+{"alias": "argo-cd 0.12 known issues", "ids": ["TROUBLE-ARGO_CD_0_12_DEFECTS"]}
+{"alias": "argo-cd 0.7 fixed in", "ids": ["TROUBLE-ARGO_CD_0_7_DEFECTS"]}
+{"alias": "argo-cd 0.7 known issues", "ids": ["TROUBLE-ARGO_CD_0_7_DEFECTS"]}
+{"alias": "argo-cd 0.8 fixed in", "ids": ["TROUBLE-ARGO_CD_0_8_DEFECTS"]}
+{"alias": "argo-cd 0.8 known issues", "ids": ["TROUBLE-ARGO_CD_0_8_DEFECTS"]}
+{"alias": "argo-cd 0.9 fixed in", "ids": ["TROUBLE-ARGO_CD_0_9_DEFECTS"]}
+{"alias": "argo-cd 0.9 known issues", "ids": ["TROUBLE-ARGO_CD_0_9_DEFECTS"]}
+{"alias": "argo-cd 1.0 fixed in", "ids": ["TROUBLE-ARGO_CD_1_0_DEFECTS"]}
+{"alias": "argo-cd 1.0 known issues", "ids": ["TROUBLE-ARGO_CD_1_0_DEFECTS"]}
+{"alias": "argo-cd 1.1 fixed in", "ids": ["TROUBLE-ARGO_CD_1_1_DEFECTS"]}
+{"alias": "argo-cd 1.1 known issues", "ids": ["TROUBLE-ARGO_CD_1_1_DEFECTS"]}
+{"alias": "argo-cd 1.2 fixed in", "ids": ["TROUBLE-ARGO_CD_1_2_DEFECTS"]}
+{"alias": "argo-cd 1.2 known issues", "ids": ["TROUBLE-ARGO_CD_1_2_DEFECTS"]}
+{"alias": "argo-cd 1.3 fixed in", "ids": ["TROUBLE-ARGO_CD_1_3_DEFECTS"]}
+{"alias": "argo-cd 1.3 known issues", "ids": ["TROUBLE-ARGO_CD_1_3_DEFECTS"]}
+{"alias": "argo-cd 1.4 fixed in", "ids": ["TROUBLE-ARGO_CD_1_4_DEFECTS"]}
+{"alias": "argo-cd 1.4 known issues", "ids": ["TROUBLE-ARGO_CD_1_4_DEFECTS"]}
+{"alias": "argo-cd 1.5 fixed in", "ids": ["TROUBLE-ARGO_CD_1_5_DEFECTS"]}
+{"alias": "argo-cd 1.5 known issues", "ids": ["TROUBLE-ARGO_CD_1_5_DEFECTS"]}
+{"alias": "argo-cd 1.6 fixed in", "ids": ["TROUBLE-ARGO_CD_1_6_DEFECTS"]}
+{"alias": "argo-cd 1.6 known issues", "ids": ["TROUBLE-ARGO_CD_1_6_DEFECTS"]}
+{"alias": "argo-cd 1.7 fixed in", "ids": ["TROUBLE-ARGO_CD_1_7_DEFECTS"]}
+{"alias": "argo-cd 1.7 known issues", "ids": ["TROUBLE-ARGO_CD_1_7_DEFECTS"]}
+{"alias": "argo-cd 1.8 fixed in", "ids": ["TROUBLE-ARGO_CD_1_8_DEFECTS"]}
+{"alias": "argo-cd 1.8 known issues", "ids": ["TROUBLE-ARGO_CD_1_8_DEFECTS"]}
+{"alias": "argo-cd 2.0 fixed in", "ids": ["TROUBLE-ARGO_CD_2_0_DEFECTS"]}
+{"alias": "argo-cd 2.0 known issues", "ids": ["TROUBLE-ARGO_CD_2_0_DEFECTS"]}
+{"alias": "argo-cd 2.1 fixed in", "ids": ["TROUBLE-ARGO_CD_2_1_DEFECTS"]}
+{"alias": "argo-cd 2.1 known issues", "ids": ["TROUBLE-ARGO_CD_2_1_DEFECTS"]}
+{"alias": "argo-cd 2.2 fixed in", "ids": ["TROUBLE-ARGO_CD_2_2_DEFECTS"]}
+{"alias": "argo-cd 2.2 known issues", "ids": ["TROUBLE-ARGO_CD_2_2_DEFECTS"]}
+{"alias": "argo-cd 2.3 fixed in", "ids": ["TROUBLE-ARGO_CD_2_3_DEFECTS"]}
+{"alias": "argo-cd 2.3 known issues", "ids": ["TROUBLE-ARGO_CD_2_3_DEFECTS"]}
+{"alias": "argo-cd 2.4 fixed in", "ids": ["TROUBLE-ARGO_CD_2_4_DEFECTS"]}
+{"alias": "argo-cd 2.4 known issues", "ids": ["TROUBLE-ARGO_CD_2_4_DEFECTS"]}
 {"alias": "argo-cd 8.5.7", "ids": ["CONCEPT-ADDON_ARGOCD"]}
 {"alias": "argo-cd action required upgrade", "ids": ["TROUBLE-ARGO_CD_BREAKING_CHANGES"]}
 {"alias": "argo-cd breaking changes", "ids": ["TROUBLE-ARGO_CD_BREAKING_CHANGES"]}
@@ -423,6 +461,44 @@
 {"alias": "awx postgres pending", "ids": ["TROUBLE-AWX_OPERATOR"]}
 {"alias": "awx-operator", "ids": ["CONCEPT-ADDON_AWX"]}
 {"alias": "azure-csi", "ids": ["COMPONENT-AZURE_CSI"]}
+{"alias": "azure-csi 1.10 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_10_DEFECTS"]}
+{"alias": "azure-csi 1.10 known issues", "ids": ["TROUBLE-AZURE_CSI_1_10_DEFECTS"]}
+{"alias": "azure-csi 1.12 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_12_DEFECTS"]}
+{"alias": "azure-csi 1.12 known issues", "ids": ["TROUBLE-AZURE_CSI_1_12_DEFECTS"]}
+{"alias": "azure-csi 1.19 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_19_DEFECTS"]}
+{"alias": "azure-csi 1.19 known issues", "ids": ["TROUBLE-AZURE_CSI_1_19_DEFECTS"]}
+{"alias": "azure-csi 1.25 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_25_DEFECTS"]}
+{"alias": "azure-csi 1.25 known issues", "ids": ["TROUBLE-AZURE_CSI_1_25_DEFECTS"]}
+{"alias": "azure-csi 1.26 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_26_DEFECTS"]}
+{"alias": "azure-csi 1.26 known issues", "ids": ["TROUBLE-AZURE_CSI_1_26_DEFECTS"]}
+{"alias": "azure-csi 1.27 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_27_DEFECTS"]}
+{"alias": "azure-csi 1.27 known issues", "ids": ["TROUBLE-AZURE_CSI_1_27_DEFECTS"]}
+{"alias": "azure-csi 1.28 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_28_DEFECTS"]}
+{"alias": "azure-csi 1.28 known issues", "ids": ["TROUBLE-AZURE_CSI_1_28_DEFECTS"]}
+{"alias": "azure-csi 1.29 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_29_DEFECTS"]}
+{"alias": "azure-csi 1.29 known issues", "ids": ["TROUBLE-AZURE_CSI_1_29_DEFECTS"]}
+{"alias": "azure-csi 1.3 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_3_DEFECTS"]}
+{"alias": "azure-csi 1.3 known issues", "ids": ["TROUBLE-AZURE_CSI_1_3_DEFECTS"]}
+{"alias": "azure-csi 1.30 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_30_DEFECTS"]}
+{"alias": "azure-csi 1.30 known issues", "ids": ["TROUBLE-AZURE_CSI_1_30_DEFECTS"]}
+{"alias": "azure-csi 1.31 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_31_DEFECTS"]}
+{"alias": "azure-csi 1.31 known issues", "ids": ["TROUBLE-AZURE_CSI_1_31_DEFECTS"]}
+{"alias": "azure-csi 1.32 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_32_DEFECTS"]}
+{"alias": "azure-csi 1.32 known issues", "ids": ["TROUBLE-AZURE_CSI_1_32_DEFECTS"]}
+{"alias": "azure-csi 1.33 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_33_DEFECTS"]}
+{"alias": "azure-csi 1.33 known issues", "ids": ["TROUBLE-AZURE_CSI_1_33_DEFECTS"]}
+{"alias": "azure-csi 1.34 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_34_DEFECTS"]}
+{"alias": "azure-csi 1.34 known issues", "ids": ["TROUBLE-AZURE_CSI_1_34_DEFECTS"]}
+{"alias": "azure-csi 1.5 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_5_DEFECTS"]}
+{"alias": "azure-csi 1.5 known issues", "ids": ["TROUBLE-AZURE_CSI_1_5_DEFECTS"]}
+{"alias": "azure-csi 1.6 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_6_DEFECTS"]}
+{"alias": "azure-csi 1.6 known issues", "ids": ["TROUBLE-AZURE_CSI_1_6_DEFECTS"]}
+{"alias": "azure-csi 1.7 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_7_DEFECTS"]}
+{"alias": "azure-csi 1.7 known issues", "ids": ["TROUBLE-AZURE_CSI_1_7_DEFECTS"]}
+{"alias": "azure-csi 1.8 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_8_DEFECTS"]}
+{"alias": "azure-csi 1.8 known issues", "ids": ["TROUBLE-AZURE_CSI_1_8_DEFECTS"]}
+{"alias": "azure-csi 1.9 fixed in", "ids": ["TROUBLE-AZURE_CSI_1_9_DEFECTS"]}
+{"alias": "azure-csi 1.9 known issues", "ids": ["TROUBLE-AZURE_CSI_1_9_DEFECTS"]}
 {"alias": "azure-csi-driver", "ids": ["TAG-AZURE_CSI_DRIVER"]}
 {"alias": "azure_csi_attacher_image_tag", "ids": ["VARIABLE-AZURE_CSI_ATTACHER_IMAGE_TAG"]}
 {"alias": "azure_csi_controller_affinity", "ids": ["VARIABLE-AZURE_CSI_CONTROLLER_AFFINITY"]}
@@ -463,6 +539,20 @@
 {"alias": "bump containerd version", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
 {"alias": "ca-key-pair secret kubespray", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "calico", "ids": ["COMPONENT-CALICO"]}
+{"alias": "calico 3.0 fixed in", "ids": ["TROUBLE-CALICO_3_0_DEFECTS"]}
+{"alias": "calico 3.0 known issues", "ids": ["TROUBLE-CALICO_3_0_DEFECTS"]}
+{"alias": "calico 3.1 fixed in", "ids": ["TROUBLE-CALICO_3_1_DEFECTS"]}
+{"alias": "calico 3.1 known issues", "ids": ["TROUBLE-CALICO_3_1_DEFECTS"]}
+{"alias": "calico 3.27 fixed in", "ids": ["TROUBLE-CALICO_3_27_DEFECTS"]}
+{"alias": "calico 3.27 known issues", "ids": ["TROUBLE-CALICO_3_27_DEFECTS"]}
+{"alias": "calico 3.29 fixed in", "ids": ["TROUBLE-CALICO_3_29_DEFECTS"]}
+{"alias": "calico 3.29 known issues", "ids": ["TROUBLE-CALICO_3_29_DEFECTS"]}
+{"alias": "calico 3.30 fixed in", "ids": ["TROUBLE-CALICO_3_30_DEFECTS"]}
+{"alias": "calico 3.30 known issues", "ids": ["TROUBLE-CALICO_3_30_DEFECTS"]}
+{"alias": "calico 3.31 fixed in", "ids": ["TROUBLE-CALICO_3_31_DEFECTS"]}
+{"alias": "calico 3.31 known issues", "ids": ["TROUBLE-CALICO_3_31_DEFECTS"]}
+{"alias": "calico 3.32 fixed in", "ids": ["TROUBLE-CALICO_3_32_DEFECTS"]}
+{"alias": "calico 3.32 known issues", "ids": ["TROUBLE-CALICO_3_32_DEFECTS"]}
 {"alias": "calico action required upgrade", "ids": ["TROUBLE-CALICO_BREAKING_CHANGES"]}
 {"alias": "calico bgp not peering", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
 {"alias": "calico breaking changes", "ids": ["TROUBLE-CALICO_BREAKING_CHANGES"]}
@@ -613,7 +703,67 @@
 {"alias": "cephfs_provisioner_version", "ids": ["VARIABLE-CEPHFS_PROVISIONER_VERSION"]}
 {"alias": "cert rotation", "ids": ["PRACTICE-CERTIFICATE_EXPIRY"]}
 {"alias": "cert-manager", "ids": ["COMPONENT-CERT_MANAGER", "TAG-CERT_MANAGER"]}
+{"alias": "cert-manager 0.12 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_12_DEFECTS"]}
+{"alias": "cert-manager 0.12 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_12_DEFECTS"]}
+{"alias": "cert-manager 0.13 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_13_DEFECTS"]}
+{"alias": "cert-manager 0.13 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_13_DEFECTS"]}
+{"alias": "cert-manager 0.14 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_14_DEFECTS"]}
+{"alias": "cert-manager 0.14 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_14_DEFECTS"]}
+{"alias": "cert-manager 0.15 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_15_DEFECTS"]}
+{"alias": "cert-manager 0.15 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_15_DEFECTS"]}
+{"alias": "cert-manager 0.2 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_2_DEFECTS"]}
+{"alias": "cert-manager 0.2 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_2_DEFECTS"]}
+{"alias": "cert-manager 0.3 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_3_DEFECTS"]}
+{"alias": "cert-manager 0.3 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_3_DEFECTS"]}
+{"alias": "cert-manager 0.4 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_4_DEFECTS"]}
+{"alias": "cert-manager 0.4 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_4_DEFECTS"]}
+{"alias": "cert-manager 0.5 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_5_DEFECTS"]}
+{"alias": "cert-manager 0.5 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_5_DEFECTS"]}
+{"alias": "cert-manager 0.6 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_6_DEFECTS"]}
+{"alias": "cert-manager 0.6 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_6_DEFECTS"]}
+{"alias": "cert-manager 0.7 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_7_DEFECTS"]}
+{"alias": "cert-manager 0.7 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_7_DEFECTS"]}
+{"alias": "cert-manager 0.8 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_8_DEFECTS"]}
+{"alias": "cert-manager 0.8 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_8_DEFECTS"]}
+{"alias": "cert-manager 0.9 fixed in", "ids": ["TROUBLE-CERT_MANAGER_0_9_DEFECTS"]}
+{"alias": "cert-manager 0.9 known issues", "ids": ["TROUBLE-CERT_MANAGER_0_9_DEFECTS"]}
+{"alias": "cert-manager 1.0 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_0_DEFECTS"]}
+{"alias": "cert-manager 1.0 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_0_DEFECTS"]}
+{"alias": "cert-manager 1.1 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_1_DEFECTS"]}
+{"alias": "cert-manager 1.1 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_1_DEFECTS"]}
+{"alias": "cert-manager 1.11 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_11_DEFECTS"]}
+{"alias": "cert-manager 1.11 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_11_DEFECTS"]}
+{"alias": "cert-manager 1.12 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_12_DEFECTS"]}
+{"alias": "cert-manager 1.12 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_12_DEFECTS"]}
+{"alias": "cert-manager 1.13 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_13_DEFECTS"]}
+{"alias": "cert-manager 1.13 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_13_DEFECTS"]}
+{"alias": "cert-manager 1.14 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_14_DEFECTS"]}
+{"alias": "cert-manager 1.14 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_14_DEFECTS"]}
+{"alias": "cert-manager 1.15 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_15_DEFECTS"]}
+{"alias": "cert-manager 1.15 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_15_DEFECTS"]}
+{"alias": "cert-manager 1.16 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_16_DEFECTS"]}
+{"alias": "cert-manager 1.16 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_16_DEFECTS"]}
+{"alias": "cert-manager 1.17 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_17_DEFECTS"]}
+{"alias": "cert-manager 1.17 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_17_DEFECTS"]}
+{"alias": "cert-manager 1.18 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_18_DEFECTS"]}
+{"alias": "cert-manager 1.18 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_18_DEFECTS"]}
 {"alias": "cert-manager 1.18.2", "ids": ["CONCEPT-ADDON_CERT_MANAGER"]}
+{"alias": "cert-manager 1.19 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_19_DEFECTS"]}
+{"alias": "cert-manager 1.19 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_19_DEFECTS"]}
+{"alias": "cert-manager 1.20 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_20_DEFECTS"]}
+{"alias": "cert-manager 1.20 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_20_DEFECTS"]}
+{"alias": "cert-manager 1.21 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_21_DEFECTS"]}
+{"alias": "cert-manager 1.21 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_21_DEFECTS"]}
+{"alias": "cert-manager 1.3 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_3_DEFECTS"]}
+{"alias": "cert-manager 1.3 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_3_DEFECTS"]}
+{"alias": "cert-manager 1.4 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_4_DEFECTS"]}
+{"alias": "cert-manager 1.4 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_4_DEFECTS"]}
+{"alias": "cert-manager 1.5 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_5_DEFECTS"]}
+{"alias": "cert-manager 1.5 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_5_DEFECTS"]}
+{"alias": "cert-manager 1.6 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_6_DEFECTS"]}
+{"alias": "cert-manager 1.6 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_6_DEFECTS"]}
+{"alias": "cert-manager 1.7 fixed in", "ids": ["TROUBLE-CERT_MANAGER_1_7_DEFECTS"]}
+{"alias": "cert-manager 1.7 known issues", "ids": ["TROUBLE-CERT_MANAGER_1_7_DEFECTS"]}
 {"alias": "cert-manager action required upgrade", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
 {"alias": "cert-manager addon", "ids": ["CONCEPT-ADDON_CERT_MANAGER"]}
 {"alias": "cert-manager breaking changes", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
@@ -675,12 +825,28 @@
 {"alias": "checksum mismatch download", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
 {"alias": "chrony", "ids": ["CONFIG-NTP"]}
 {"alias": "cilium", "ids": ["COMPONENT-CILIUM", "TAG-CILIUM"]}
+{"alias": "cilium 1.0 fixed in", "ids": ["TROUBLE-CILIUM_1_0_DEFECTS"]}
+{"alias": "cilium 1.0 known issues", "ids": ["TROUBLE-CILIUM_1_0_DEFECTS"]}
+{"alias": "cilium 1.13 fixed in", "ids": ["TROUBLE-CILIUM_1_13_DEFECTS"]}
+{"alias": "cilium 1.13 known issues", "ids": ["TROUBLE-CILIUM_1_13_DEFECTS"]}
 {"alias": "cilium 1.15 to 1.19", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium 1.17 ipsec key", "ids": ["TROUBLE-CILIUM_IPSEC_PER_TUNNEL_KEYS"]}
 {"alias": "cilium 1.18 aws egress broken", "ids": ["TROUBLE-CILIUM_ENI_MASQUERADE_FLIP"]}
+{"alias": "cilium 1.18 fixed in", "ids": ["TROUBLE-CILIUM_1_18_DEFECTS"]}
+{"alias": "cilium 1.18 known issues", "ids": ["TROUBLE-CILIUM_1_18_DEFECTS"]}
 {"alias": "cilium 1.18 packet drops upgrade", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
 {"alias": "cilium 1.19 ipsec kernel bug", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "cilium 1.19 upgrade agent crashloop flag", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
+{"alias": "cilium 1.2 fixed in", "ids": ["TROUBLE-CILIUM_1_2_DEFECTS"]}
+{"alias": "cilium 1.2 known issues", "ids": ["TROUBLE-CILIUM_1_2_DEFECTS"]}
+{"alias": "cilium 1.4 fixed in", "ids": ["TROUBLE-CILIUM_1_4_DEFECTS"]}
+{"alias": "cilium 1.4 known issues", "ids": ["TROUBLE-CILIUM_1_4_DEFECTS"]}
+{"alias": "cilium 1.5 fixed in", "ids": ["TROUBLE-CILIUM_1_5_DEFECTS"]}
+{"alias": "cilium 1.5 known issues", "ids": ["TROUBLE-CILIUM_1_5_DEFECTS"]}
+{"alias": "cilium 1.8 fixed in", "ids": ["TROUBLE-CILIUM_1_8_DEFECTS"]}
+{"alias": "cilium 1.8 known issues", "ids": ["TROUBLE-CILIUM_1_8_DEFECTS"]}
+{"alias": "cilium 1.9 fixed in", "ids": ["TROUBLE-CILIUM_1_9_DEFECTS"]}
+{"alias": "cilium 1.9 known issues", "ids": ["TROUBLE-CILIUM_1_9_DEFECTS"]}
 {"alias": "cilium action required upgrade", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
 {"alias": "cilium agent Init CrashLoopBackOff", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "cilium bgp", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
@@ -886,6 +1052,24 @@
 {"alias": "ciliumcli_binary_checksums", "ids": ["VARIABLE-CILIUMCLI_BINARY_CHECKSUMS"]}
 {"alias": "ciliumcli_download_url", "ids": ["VARIABLE-CILIUMCLI_DOWNLOAD_URL"]}
 {"alias": "cinder-csi", "ids": ["COMPONENT-CINDER_CSI"]}
+{"alias": "cinder-csi 1.21 fixed in", "ids": ["TROUBLE-CINDER_CSI_1_21_DEFECTS"]}
+{"alias": "cinder-csi 1.21 known issues", "ids": ["TROUBLE-CINDER_CSI_1_21_DEFECTS"]}
+{"alias": "cinder-csi 1.25 fixed in", "ids": ["TROUBLE-CINDER_CSI_1_25_DEFECTS"]}
+{"alias": "cinder-csi 1.25 known issues", "ids": ["TROUBLE-CINDER_CSI_1_25_DEFECTS"]}
+{"alias": "cinder-csi 1.26 fixed in", "ids": ["TROUBLE-CINDER_CSI_1_26_DEFECTS"]}
+{"alias": "cinder-csi 1.26 known issues", "ids": ["TROUBLE-CINDER_CSI_1_26_DEFECTS"]}
+{"alias": "cinder-csi 1.27 fixed in", "ids": ["TROUBLE-CINDER_CSI_1_27_DEFECTS"]}
+{"alias": "cinder-csi 1.27 known issues", "ids": ["TROUBLE-CINDER_CSI_1_27_DEFECTS"]}
+{"alias": "cinder-csi 1.28 fixed in", "ids": ["TROUBLE-CINDER_CSI_1_28_DEFECTS"]}
+{"alias": "cinder-csi 1.28 known issues", "ids": ["TROUBLE-CINDER_CSI_1_28_DEFECTS"]}
+{"alias": "cinder-csi 1.29 fixed in", "ids": ["TROUBLE-CINDER_CSI_1_29_DEFECTS"]}
+{"alias": "cinder-csi 1.29 known issues", "ids": ["TROUBLE-CINDER_CSI_1_29_DEFECTS"]}
+{"alias": "cinder-csi 1.31 fixed in", "ids": ["TROUBLE-CINDER_CSI_1_31_DEFECTS"]}
+{"alias": "cinder-csi 1.31 known issues", "ids": ["TROUBLE-CINDER_CSI_1_31_DEFECTS"]}
+{"alias": "cinder-csi 1.32 fixed in", "ids": ["TROUBLE-CINDER_CSI_1_32_DEFECTS"]}
+{"alias": "cinder-csi 1.32 known issues", "ids": ["TROUBLE-CINDER_CSI_1_32_DEFECTS"]}
+{"alias": "cinder-csi 1.34 fixed in", "ids": ["TROUBLE-CINDER_CSI_1_34_DEFECTS"]}
+{"alias": "cinder-csi 1.34 known issues", "ids": ["TROUBLE-CINDER_CSI_1_34_DEFECTS"]}
 {"alias": "cinder-csi action required upgrade", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
 {"alias": "cinder-csi breaking changes", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
 {"alias": "cinder-csi upgrade broke", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
@@ -955,6 +1139,16 @@
 {"alias": "cni plugin not initialized", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI", "TROUBLE-POD_CONTAINERCREATING"]}
 {"alias": "cni-generic-plugin", "ids": ["PRACTICE-CNI_GENERIC_PLUGIN"]}
 {"alias": "cni-plugins", "ids": ["COMPONENT-CNI_PLUGINS"]}
+{"alias": "cni-plugins 0.8 fixed in", "ids": ["TROUBLE-CNI_PLUGINS_0_8_DEFECTS"]}
+{"alias": "cni-plugins 0.8 known issues", "ids": ["TROUBLE-CNI_PLUGINS_0_8_DEFECTS"]}
+{"alias": "cni-plugins 1.0 fixed in", "ids": ["TROUBLE-CNI_PLUGINS_1_0_DEFECTS"]}
+{"alias": "cni-plugins 1.0 known issues", "ids": ["TROUBLE-CNI_PLUGINS_1_0_DEFECTS"]}
+{"alias": "cni-plugins 1.1 fixed in", "ids": ["TROUBLE-CNI_PLUGINS_1_1_DEFECTS"]}
+{"alias": "cni-plugins 1.1 known issues", "ids": ["TROUBLE-CNI_PLUGINS_1_1_DEFECTS"]}
+{"alias": "cni-plugins 1.2 fixed in", "ids": ["TROUBLE-CNI_PLUGINS_1_2_DEFECTS"]}
+{"alias": "cni-plugins 1.2 known issues", "ids": ["TROUBLE-CNI_PLUGINS_1_2_DEFECTS"]}
+{"alias": "cni-plugins 1.6 fixed in", "ids": ["TROUBLE-CNI_PLUGINS_1_6_DEFECTS"]}
+{"alias": "cni-plugins 1.6 known issues", "ids": ["TROUBLE-CNI_PLUGINS_1_6_DEFECTS"]}
 {"alias": "cni-plugins cve", "ids": ["TROUBLE-CNI_PLUGINS_KNOWN_CVES"]}
 {"alias": "cni_bin_owner", "ids": ["VARIABLE-CNI_BIN_OWNER"]}
 {"alias": "cni_binary_checksum", "ids": ["VARIABLE-CNI_BINARY_CHECKSUM"]}
@@ -996,6 +1190,34 @@
 {"alias": "consul service mesh k8s", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
 {"alias": "consul values boolean string field", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
 {"alias": "consul-k8s", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
+{"alias": "consul-k8s 0.4 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_4_DEFECTS"]}
+{"alias": "consul-k8s 0.4 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_4_DEFECTS"]}
+{"alias": "consul-k8s 0.5 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_5_DEFECTS"]}
+{"alias": "consul-k8s 0.5 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_5_DEFECTS"]}
+{"alias": "consul-k8s 0.6 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_6_DEFECTS"]}
+{"alias": "consul-k8s 0.6 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_6_DEFECTS"]}
+{"alias": "consul-k8s 0.7 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_7_DEFECTS"]}
+{"alias": "consul-k8s 0.7 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_7_DEFECTS"]}
+{"alias": "consul-k8s 0.9 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_9_DEFECTS"]}
+{"alias": "consul-k8s 0.9 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_9_DEFECTS"]}
+{"alias": "consul-k8s 1.0 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_0_DEFECTS"]}
+{"alias": "consul-k8s 1.0 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_0_DEFECTS"]}
+{"alias": "consul-k8s 1.1 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_1_DEFECTS"]}
+{"alias": "consul-k8s 1.1 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_1_DEFECTS"]}
+{"alias": "consul-k8s 1.2 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_2_DEFECTS"]}
+{"alias": "consul-k8s 1.2 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_2_DEFECTS"]}
+{"alias": "consul-k8s 1.3 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_3_DEFECTS"]}
+{"alias": "consul-k8s 1.3 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_3_DEFECTS"]}
+{"alias": "consul-k8s 1.4 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_4_DEFECTS"]}
+{"alias": "consul-k8s 1.4 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_4_DEFECTS"]}
+{"alias": "consul-k8s 1.5 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_5_DEFECTS"]}
+{"alias": "consul-k8s 1.5 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_5_DEFECTS"]}
+{"alias": "consul-k8s 1.6 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_6_DEFECTS"]}
+{"alias": "consul-k8s 1.6 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_6_DEFECTS"]}
+{"alias": "consul-k8s 1.7 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_7_DEFECTS"]}
+{"alias": "consul-k8s 1.7 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_7_DEFECTS"]}
+{"alias": "consul-k8s 1.8 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_8_DEFECTS"]}
+{"alias": "consul-k8s 1.8 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_8_DEFECTS"]}
 {"alias": "consul-k8s 2.0 upgrade", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
 {"alias": "consul-k8s action required upgrade", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
 {"alias": "consul-k8s breaking changes", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
@@ -1012,7 +1234,31 @@
 {"alias": "container_manager", "ids": ["CONCEPT-CONTAINER_MANAGER", "VARIABLE-CONTAINER_MANAGER"]}
 {"alias": "container_manager_on_localhost", "ids": ["VARIABLE-CONTAINER_MANAGER_ON_LOCALHOST"]}
 {"alias": "containerd", "ids": ["COMPONENT-CONTAINERD", "TAG-CONTAINERD"]}
+{"alias": "containerd 1.0 fixed in", "ids": ["TROUBLE-CONTAINERD_1_0_DEFECTS"]}
+{"alias": "containerd 1.0 known issues", "ids": ["TROUBLE-CONTAINERD_1_0_DEFECTS"]}
+{"alias": "containerd 1.1 fixed in", "ids": ["TROUBLE-CONTAINERD_1_1_DEFECTS"]}
+{"alias": "containerd 1.1 known issues", "ids": ["TROUBLE-CONTAINERD_1_1_DEFECTS"]}
+{"alias": "containerd 1.2 fixed in", "ids": ["TROUBLE-CONTAINERD_1_2_DEFECTS"]}
+{"alias": "containerd 1.2 known issues", "ids": ["TROUBLE-CONTAINERD_1_2_DEFECTS"]}
+{"alias": "containerd 1.3 fixed in", "ids": ["TROUBLE-CONTAINERD_1_3_DEFECTS"]}
+{"alias": "containerd 1.3 known issues", "ids": ["TROUBLE-CONTAINERD_1_3_DEFECTS"]}
+{"alias": "containerd 1.4 fixed in", "ids": ["TROUBLE-CONTAINERD_1_4_DEFECTS"]}
+{"alias": "containerd 1.4 known issues", "ids": ["TROUBLE-CONTAINERD_1_4_DEFECTS"]}
+{"alias": "containerd 1.5 fixed in", "ids": ["TROUBLE-CONTAINERD_1_5_DEFECTS"]}
+{"alias": "containerd 1.5 known issues", "ids": ["TROUBLE-CONTAINERD_1_5_DEFECTS"]}
+{"alias": "containerd 1.6 fixed in", "ids": ["TROUBLE-CONTAINERD_1_6_DEFECTS"]}
+{"alias": "containerd 1.6 known issues", "ids": ["TROUBLE-CONTAINERD_1_6_DEFECTS"]}
+{"alias": "containerd 1.7 fixed in", "ids": ["TROUBLE-CONTAINERD_1_7_DEFECTS"]}
+{"alias": "containerd 1.7 known issues", "ids": ["TROUBLE-CONTAINERD_1_7_DEFECTS"]}
 {"alias": "containerd 2 migration", "ids": ["CONCEPT-CONTAINERD_2X"]}
+{"alias": "containerd 2.0 fixed in", "ids": ["TROUBLE-CONTAINERD_2_0_DEFECTS"]}
+{"alias": "containerd 2.0 known issues", "ids": ["TROUBLE-CONTAINERD_2_0_DEFECTS"]}
+{"alias": "containerd 2.1 fixed in", "ids": ["TROUBLE-CONTAINERD_2_1_DEFECTS"]}
+{"alias": "containerd 2.1 known issues", "ids": ["TROUBLE-CONTAINERD_2_1_DEFECTS"]}
+{"alias": "containerd 2.2 fixed in", "ids": ["TROUBLE-CONTAINERD_2_2_DEFECTS"]}
+{"alias": "containerd 2.2 known issues", "ids": ["TROUBLE-CONTAINERD_2_2_DEFECTS"]}
+{"alias": "containerd 2.3 fixed in", "ids": ["TROUBLE-CONTAINERD_2_3_DEFECTS"]}
+{"alias": "containerd 2.3 known issues", "ids": ["TROUBLE-CONTAINERD_2_3_DEFECTS"]}
 {"alias": "containerd 2.x", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd ImagePullBackOff after disabling proxy", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "containerd action required upgrade", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
@@ -1119,6 +1365,16 @@
 {"alias": "copy CA to /etc/kubernetes/pki", "ids": ["TROUBLE-CERT_DIR_SSL_NOT_PKI"]}
 {"alias": "cordon drain uncordon", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
 {"alias": "coredns", "ids": ["COMPONENT-COREDNS", "TAG-COREDNS"]}
+{"alias": "coredns 1.11 fixed in", "ids": ["TROUBLE-COREDNS_1_11_DEFECTS"]}
+{"alias": "coredns 1.11 known issues", "ids": ["TROUBLE-COREDNS_1_11_DEFECTS"]}
+{"alias": "coredns 1.12 fixed in", "ids": ["TROUBLE-COREDNS_1_12_DEFECTS"]}
+{"alias": "coredns 1.12 known issues", "ids": ["TROUBLE-COREDNS_1_12_DEFECTS"]}
+{"alias": "coredns 1.13 fixed in", "ids": ["TROUBLE-COREDNS_1_13_DEFECTS"]}
+{"alias": "coredns 1.13 known issues", "ids": ["TROUBLE-COREDNS_1_13_DEFECTS"]}
+{"alias": "coredns 1.14 fixed in", "ids": ["TROUBLE-COREDNS_1_14_DEFECTS"]}
+{"alias": "coredns 1.14 known issues", "ids": ["TROUBLE-COREDNS_1_14_DEFECTS"]}
+{"alias": "coredns 1.9 fixed in", "ids": ["TROUBLE-COREDNS_1_9_DEFECTS"]}
+{"alias": "coredns 1.9 known issues", "ids": ["TROUBLE-COREDNS_1_9_DEFECTS"]}
 {"alias": "coredns SERVFAIL loop", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
 {"alias": "coredns cache", "ids": ["CONFIG-COREDNS_COREFILE"]}
 {"alias": "coredns config", "ids": ["CONFIG-COREDNS_COREFILE"]}
@@ -1159,6 +1415,30 @@
 {"alias": "credentials_dir", "ids": ["VARIABLE-CREDENTIALS_DIR"]}
 {"alias": "cri-dockerd", "ids": ["COMPONENT-CRI_DOCKERD"]}
 {"alias": "cri-o", "ids": ["COMPONENT-CRI_O"]}
+{"alias": "cri-o 1.0 fixed in", "ids": ["TROUBLE-CRI_O_1_0_DEFECTS"]}
+{"alias": "cri-o 1.0 known issues", "ids": ["TROUBLE-CRI_O_1_0_DEFECTS"]}
+{"alias": "cri-o 1.10 fixed in", "ids": ["TROUBLE-CRI_O_1_10_DEFECTS"]}
+{"alias": "cri-o 1.10 known issues", "ids": ["TROUBLE-CRI_O_1_10_DEFECTS"]}
+{"alias": "cri-o 1.11 fixed in", "ids": ["TROUBLE-CRI_O_1_11_DEFECTS"]}
+{"alias": "cri-o 1.11 known issues", "ids": ["TROUBLE-CRI_O_1_11_DEFECTS"]}
+{"alias": "cri-o 1.12 fixed in", "ids": ["TROUBLE-CRI_O_1_12_DEFECTS"]}
+{"alias": "cri-o 1.12 known issues", "ids": ["TROUBLE-CRI_O_1_12_DEFECTS"]}
+{"alias": "cri-o 1.13 fixed in", "ids": ["TROUBLE-CRI_O_1_13_DEFECTS"]}
+{"alias": "cri-o 1.13 known issues", "ids": ["TROUBLE-CRI_O_1_13_DEFECTS"]}
+{"alias": "cri-o 1.14 fixed in", "ids": ["TROUBLE-CRI_O_1_14_DEFECTS"]}
+{"alias": "cri-o 1.14 known issues", "ids": ["TROUBLE-CRI_O_1_14_DEFECTS"]}
+{"alias": "cri-o 1.15 fixed in", "ids": ["TROUBLE-CRI_O_1_15_DEFECTS"]}
+{"alias": "cri-o 1.15 known issues", "ids": ["TROUBLE-CRI_O_1_15_DEFECTS"]}
+{"alias": "cri-o 1.16 fixed in", "ids": ["TROUBLE-CRI_O_1_16_DEFECTS"]}
+{"alias": "cri-o 1.16 known issues", "ids": ["TROUBLE-CRI_O_1_16_DEFECTS"]}
+{"alias": "cri-o 1.17 fixed in", "ids": ["TROUBLE-CRI_O_1_17_DEFECTS"]}
+{"alias": "cri-o 1.17 known issues", "ids": ["TROUBLE-CRI_O_1_17_DEFECTS"]}
+{"alias": "cri-o 1.18 fixed in", "ids": ["TROUBLE-CRI_O_1_18_DEFECTS"]}
+{"alias": "cri-o 1.18 known issues", "ids": ["TROUBLE-CRI_O_1_18_DEFECTS"]}
+{"alias": "cri-o 1.8 fixed in", "ids": ["TROUBLE-CRI_O_1_8_DEFECTS"]}
+{"alias": "cri-o 1.8 known issues", "ids": ["TROUBLE-CRI_O_1_8_DEFECTS"]}
+{"alias": "cri-o 1.9 fixed in", "ids": ["TROUBLE-CRI_O_1_9_DEFECTS"]}
+{"alias": "cri-o 1.9 known issues", "ids": ["TROUBLE-CRI_O_1_9_DEFECTS"]}
 {"alias": "cri-o cve", "ids": ["TROUBLE-CRI_O_KNOWN_CVES"]}
 {"alias": "cri_dockerd_archive_checksum", "ids": ["VARIABLE-CRI_DOCKERD_ARCHIVE_CHECKSUM"]}
 {"alias": "cri_dockerd_archive_checksums", "ids": ["VARIABLE-CRI_DOCKERD_ARCHIVE_CHECKSUMS"]}
@@ -1219,6 +1499,18 @@
 {"alias": "cross-cluster connectivity denied cilium 1.19", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "cross-component seams", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
 {"alias": "crun", "ids": ["COMPONENT-CRUN", "TAG-CRUN"]}
+{"alias": "crun 0.14 fixed in", "ids": ["TROUBLE-CRUN_0_14_DEFECTS"]}
+{"alias": "crun 0.14 known issues", "ids": ["TROUBLE-CRUN_0_14_DEFECTS"]}
+{"alias": "crun 1.18 fixed in", "ids": ["TROUBLE-CRUN_1_18_DEFECTS"]}
+{"alias": "crun 1.18 known issues", "ids": ["TROUBLE-CRUN_1_18_DEFECTS"]}
+{"alias": "crun 1.22 fixed in", "ids": ["TROUBLE-CRUN_1_22_DEFECTS"]}
+{"alias": "crun 1.22 known issues", "ids": ["TROUBLE-CRUN_1_22_DEFECTS"]}
+{"alias": "crun 1.27 fixed in", "ids": ["TROUBLE-CRUN_1_27_DEFECTS"]}
+{"alias": "crun 1.27 known issues", "ids": ["TROUBLE-CRUN_1_27_DEFECTS"]}
+{"alias": "crun 1.4 fixed in", "ids": ["TROUBLE-CRUN_1_4_DEFECTS"]}
+{"alias": "crun 1.4 known issues", "ids": ["TROUBLE-CRUN_1_4_DEFECTS"]}
+{"alias": "crun 1.8 fixed in", "ids": ["TROUBLE-CRUN_1_8_DEFECTS"]}
+{"alias": "crun 1.8 known issues", "ids": ["TROUBLE-CRUN_1_8_DEFECTS"]}
 {"alias": "crun_binary_checksum", "ids": ["VARIABLE-CRUN_BINARY_CHECKSUM"]}
 {"alias": "crun_checksums", "ids": ["VARIABLE-CRUN_CHECKSUMS"]}
 {"alias": "crun_download_url", "ids": ["VARIABLE-CRUN_DOWNLOAD_URL"]}
@@ -1526,8 +1818,20 @@
 {"alias": "etc_hosts_localhost_entries", "ids": ["VARIABLE-ETC_HOSTS_LOCALHOST_ENTRIES"]}
 {"alias": "etcd", "ids": ["COMPONENT-ETCD", "TAG-ETCD"]}
 {"alias": "etcd 2379 2380 blocked", "ids": ["TROUBLE-FIREWALL_PORTS_BLOCKED"]}
+{"alias": "etcd 3.1 fixed in", "ids": ["TROUBLE-ETCD_3_1_DEFECTS"]}
+{"alias": "etcd 3.1 known issues", "ids": ["TROUBLE-ETCD_3_1_DEFECTS"]}
+{"alias": "etcd 3.2 fixed in", "ids": ["TROUBLE-ETCD_3_2_DEFECTS"]}
+{"alias": "etcd 3.2 known issues", "ids": ["TROUBLE-ETCD_3_2_DEFECTS"]}
+{"alias": "etcd 3.3 fixed in", "ids": ["TROUBLE-ETCD_3_3_DEFECTS"]}
+{"alias": "etcd 3.3 known issues", "ids": ["TROUBLE-ETCD_3_3_DEFECTS"]}
+{"alias": "etcd 3.4 fixed in", "ids": ["TROUBLE-ETCD_3_4_DEFECTS"]}
+{"alias": "etcd 3.4 known issues", "ids": ["TROUBLE-ETCD_3_4_DEFECTS"]}
+{"alias": "etcd 3.5 fixed in", "ids": ["TROUBLE-ETCD_3_5_DEFECTS"]}
+{"alias": "etcd 3.5 known issues", "ids": ["TROUBLE-ETCD_3_5_DEFECTS"]}
 {"alias": "etcd 3.5 to 3.6", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
 {"alias": "etcd 3.6", "ids": ["CONCEPT-ETCD_3_6_CHANGES"]}
+{"alias": "etcd 3.6 fixed in", "ids": ["TROUBLE-ETCD_3_6_DEFECTS"]}
+{"alias": "etcd 3.6 known issues", "ids": ["TROUBLE-ETCD_3_6_DEFECTS"]}
 {"alias": "etcd NOSPACE alarm", "ids": ["TROUBLE-ETCD_DB_SPACE_EXCEEDED"]}
 {"alias": "etcd action required upgrade", "ids": ["TROUBLE-ETCD_BREAKING_CHANGES"]}
 {"alias": "etcd ansible role", "ids": ["ROLE-ETCD"]}
@@ -1782,6 +2086,22 @@
 {"alias": "flagger no traffic canary", "ids": ["TROUBLE-FLAGGER_CANARY"]}
 {"alias": "flagger rollback halt advancing", "ids": ["TROUBLE-FLAGGER_CANARY"]}
 {"alias": "flannel", "ids": ["COMPONENT-FLANNEL"]}
+{"alias": "flannel 0.18 fixed in", "ids": ["TROUBLE-FLANNEL_0_18_DEFECTS"]}
+{"alias": "flannel 0.18 known issues", "ids": ["TROUBLE-FLANNEL_0_18_DEFECTS"]}
+{"alias": "flannel 0.19 fixed in", "ids": ["TROUBLE-FLANNEL_0_19_DEFECTS"]}
+{"alias": "flannel 0.19 known issues", "ids": ["TROUBLE-FLANNEL_0_19_DEFECTS"]}
+{"alias": "flannel 0.20 fixed in", "ids": ["TROUBLE-FLANNEL_0_20_DEFECTS"]}
+{"alias": "flannel 0.20 known issues", "ids": ["TROUBLE-FLANNEL_0_20_DEFECTS"]}
+{"alias": "flannel 0.21 fixed in", "ids": ["TROUBLE-FLANNEL_0_21_DEFECTS"]}
+{"alias": "flannel 0.21 known issues", "ids": ["TROUBLE-FLANNEL_0_21_DEFECTS"]}
+{"alias": "flannel 0.25 fixed in", "ids": ["TROUBLE-FLANNEL_0_25_DEFECTS"]}
+{"alias": "flannel 0.25 known issues", "ids": ["TROUBLE-FLANNEL_0_25_DEFECTS"]}
+{"alias": "flannel 0.27 fixed in", "ids": ["TROUBLE-FLANNEL_0_27_DEFECTS"]}
+{"alias": "flannel 0.27 known issues", "ids": ["TROUBLE-FLANNEL_0_27_DEFECTS"]}
+{"alias": "flannel 0.28 fixed in", "ids": ["TROUBLE-FLANNEL_0_28_DEFECTS"]}
+{"alias": "flannel 0.28 known issues", "ids": ["TROUBLE-FLANNEL_0_28_DEFECTS"]}
+{"alias": "flannel 0.5 fixed in", "ids": ["TROUBLE-FLANNEL_0_5_DEFECTS"]}
+{"alias": "flannel 0.5 known issues", "ids": ["TROUBLE-FLANNEL_0_5_DEFECTS"]}
 {"alias": "flannel cni", "ids": ["COMPONENT-FLANNEL"]}
 {"alias": "flannel to calico", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "flannel_backend_type", "ids": ["VARIABLE-FLANNEL_BACKEND_TYPE"]}
@@ -1832,6 +2152,20 @@
 {"alias": "gateway_api_version", "ids": ["VARIABLE-GATEWAY_API_VERSION"]}
 {"alias": "gc_thresh3 kubernetes", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "gcp-pd-csi", "ids": ["COMPONENT-GCP_PD_CSI"]}
+{"alias": "gcp-pd-csi 0.6 fixed in", "ids": ["TROUBLE-GCP_PD_CSI_0_6_DEFECTS"]}
+{"alias": "gcp-pd-csi 0.6 known issues", "ids": ["TROUBLE-GCP_PD_CSI_0_6_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.14 fixed in", "ids": ["TROUBLE-GCP_PD_CSI_1_14_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.14 known issues", "ids": ["TROUBLE-GCP_PD_CSI_1_14_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.17 fixed in", "ids": ["TROUBLE-GCP_PD_CSI_1_17_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.17 known issues", "ids": ["TROUBLE-GCP_PD_CSI_1_17_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.18 fixed in", "ids": ["TROUBLE-GCP_PD_CSI_1_18_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.18 known issues", "ids": ["TROUBLE-GCP_PD_CSI_1_18_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.19 fixed in", "ids": ["TROUBLE-GCP_PD_CSI_1_19_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.19 known issues", "ids": ["TROUBLE-GCP_PD_CSI_1_19_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.21 fixed in", "ids": ["TROUBLE-GCP_PD_CSI_1_21_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.21 known issues", "ids": ["TROUBLE-GCP_PD_CSI_1_21_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.22 fixed in", "ids": ["TROUBLE-GCP_PD_CSI_1_22_DEFECTS"]}
+{"alias": "gcp-pd-csi 1.22 known issues", "ids": ["TROUBLE-GCP_PD_CSI_1_22_DEFECTS"]}
 {"alias": "gcp-pd-csi action required upgrade", "ids": ["TROUBLE-GCP_PD_CSI_BREAKING_CHANGES"]}
 {"alias": "gcp-pd-csi breaking changes", "ids": ["TROUBLE-GCP_PD_CSI_BREAKING_CHANGES"]}
 {"alias": "gcp-pd-csi upgrade broke", "ids": ["TROUBLE-GCP_PD_CSI_BREAKING_CHANGES"]}
@@ -1914,10 +2248,92 @@
 {"alias": "headlamp token", "ids": ["TROUBLE-HEADLAMP"]}
 {"alias": "health check", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
 {"alias": "helm", "ids": ["COMPONENT-HELM", "TAG-HELM"]}
+{"alias": "helm 2.0 fixed in", "ids": ["TROUBLE-HELM_2_0_DEFECTS"]}
+{"alias": "helm 2.0 known issues", "ids": ["TROUBLE-HELM_2_0_DEFECTS"]}
+{"alias": "helm 2.10 fixed in", "ids": ["TROUBLE-HELM_2_10_DEFECTS"]}
+{"alias": "helm 2.10 known issues", "ids": ["TROUBLE-HELM_2_10_DEFECTS"]}
+{"alias": "helm 2.11 fixed in", "ids": ["TROUBLE-HELM_2_11_DEFECTS"]}
+{"alias": "helm 2.11 known issues", "ids": ["TROUBLE-HELM_2_11_DEFECTS"]}
+{"alias": "helm 2.12 fixed in", "ids": ["TROUBLE-HELM_2_12_DEFECTS"]}
+{"alias": "helm 2.12 known issues", "ids": ["TROUBLE-HELM_2_12_DEFECTS"]}
+{"alias": "helm 2.13 fixed in", "ids": ["TROUBLE-HELM_2_13_DEFECTS"]}
+{"alias": "helm 2.13 known issues", "ids": ["TROUBLE-HELM_2_13_DEFECTS"]}
+{"alias": "helm 2.14 fixed in", "ids": ["TROUBLE-HELM_2_14_DEFECTS"]}
+{"alias": "helm 2.14 known issues", "ids": ["TROUBLE-HELM_2_14_DEFECTS"]}
+{"alias": "helm 2.15 fixed in", "ids": ["TROUBLE-HELM_2_15_DEFECTS"]}
+{"alias": "helm 2.15 known issues", "ids": ["TROUBLE-HELM_2_15_DEFECTS"]}
+{"alias": "helm 2.16 fixed in", "ids": ["TROUBLE-HELM_2_16_DEFECTS"]}
+{"alias": "helm 2.16 known issues", "ids": ["TROUBLE-HELM_2_16_DEFECTS"]}
+{"alias": "helm 2.17 fixed in", "ids": ["TROUBLE-HELM_2_17_DEFECTS"]}
+{"alias": "helm 2.17 known issues", "ids": ["TROUBLE-HELM_2_17_DEFECTS"]}
+{"alias": "helm 2.3 fixed in", "ids": ["TROUBLE-HELM_2_3_DEFECTS"]}
+{"alias": "helm 2.3 known issues", "ids": ["TROUBLE-HELM_2_3_DEFECTS"]}
+{"alias": "helm 2.4 fixed in", "ids": ["TROUBLE-HELM_2_4_DEFECTS"]}
+{"alias": "helm 2.4 known issues", "ids": ["TROUBLE-HELM_2_4_DEFECTS"]}
+{"alias": "helm 2.5 fixed in", "ids": ["TROUBLE-HELM_2_5_DEFECTS"]}
+{"alias": "helm 2.5 known issues", "ids": ["TROUBLE-HELM_2_5_DEFECTS"]}
+{"alias": "helm 2.6 fixed in", "ids": ["TROUBLE-HELM_2_6_DEFECTS"]}
+{"alias": "helm 2.6 known issues", "ids": ["TROUBLE-HELM_2_6_DEFECTS"]}
+{"alias": "helm 2.7 fixed in", "ids": ["TROUBLE-HELM_2_7_DEFECTS"]}
+{"alias": "helm 2.7 known issues", "ids": ["TROUBLE-HELM_2_7_DEFECTS"]}
+{"alias": "helm 2.8 fixed in", "ids": ["TROUBLE-HELM_2_8_DEFECTS"]}
+{"alias": "helm 2.8 known issues", "ids": ["TROUBLE-HELM_2_8_DEFECTS"]}
+{"alias": "helm 2.9 fixed in", "ids": ["TROUBLE-HELM_2_9_DEFECTS"]}
+{"alias": "helm 2.9 known issues", "ids": ["TROUBLE-HELM_2_9_DEFECTS"]}
 {"alias": "helm 3 to 4 migration", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
+{"alias": "helm 3.0 fixed in", "ids": ["TROUBLE-HELM_3_0_DEFECTS"]}
+{"alias": "helm 3.0 known issues", "ids": ["TROUBLE-HELM_3_0_DEFECTS"]}
+{"alias": "helm 3.1 fixed in", "ids": ["TROUBLE-HELM_3_1_DEFECTS"]}
+{"alias": "helm 3.1 known issues", "ids": ["TROUBLE-HELM_3_1_DEFECTS"]}
+{"alias": "helm 3.10 fixed in", "ids": ["TROUBLE-HELM_3_10_DEFECTS"]}
+{"alias": "helm 3.10 known issues", "ids": ["TROUBLE-HELM_3_10_DEFECTS"]}
+{"alias": "helm 3.11 fixed in", "ids": ["TROUBLE-HELM_3_11_DEFECTS"]}
+{"alias": "helm 3.11 known issues", "ids": ["TROUBLE-HELM_3_11_DEFECTS"]}
+{"alias": "helm 3.12 fixed in", "ids": ["TROUBLE-HELM_3_12_DEFECTS"]}
+{"alias": "helm 3.12 known issues", "ids": ["TROUBLE-HELM_3_12_DEFECTS"]}
+{"alias": "helm 3.13 fixed in", "ids": ["TROUBLE-HELM_3_13_DEFECTS"]}
+{"alias": "helm 3.13 known issues", "ids": ["TROUBLE-HELM_3_13_DEFECTS"]}
+{"alias": "helm 3.14 fixed in", "ids": ["TROUBLE-HELM_3_14_DEFECTS"]}
+{"alias": "helm 3.14 known issues", "ids": ["TROUBLE-HELM_3_14_DEFECTS"]}
+{"alias": "helm 3.15 fixed in", "ids": ["TROUBLE-HELM_3_15_DEFECTS"]}
+{"alias": "helm 3.15 known issues", "ids": ["TROUBLE-HELM_3_15_DEFECTS"]}
+{"alias": "helm 3.16 fixed in", "ids": ["TROUBLE-HELM_3_16_DEFECTS"]}
+{"alias": "helm 3.16 known issues", "ids": ["TROUBLE-HELM_3_16_DEFECTS"]}
+{"alias": "helm 3.17 fixed in", "ids": ["TROUBLE-HELM_3_17_DEFECTS"]}
+{"alias": "helm 3.17 known issues", "ids": ["TROUBLE-HELM_3_17_DEFECTS"]}
+{"alias": "helm 3.18 fixed in", "ids": ["TROUBLE-HELM_3_18_DEFECTS"]}
+{"alias": "helm 3.18 known issues", "ids": ["TROUBLE-HELM_3_18_DEFECTS"]}
+{"alias": "helm 3.19 fixed in", "ids": ["TROUBLE-HELM_3_19_DEFECTS"]}
+{"alias": "helm 3.19 known issues", "ids": ["TROUBLE-HELM_3_19_DEFECTS"]}
+{"alias": "helm 3.2 fixed in", "ids": ["TROUBLE-HELM_3_2_DEFECTS"]}
+{"alias": "helm 3.2 known issues", "ids": ["TROUBLE-HELM_3_2_DEFECTS"]}
+{"alias": "helm 3.20 fixed in", "ids": ["TROUBLE-HELM_3_20_DEFECTS"]}
+{"alias": "helm 3.20 known issues", "ids": ["TROUBLE-HELM_3_20_DEFECTS"]}
+{"alias": "helm 3.21 fixed in", "ids": ["TROUBLE-HELM_3_21_DEFECTS"]}
+{"alias": "helm 3.21 known issues", "ids": ["TROUBLE-HELM_3_21_DEFECTS"]}
+{"alias": "helm 3.3 fixed in", "ids": ["TROUBLE-HELM_3_3_DEFECTS"]}
+{"alias": "helm 3.3 known issues", "ids": ["TROUBLE-HELM_3_3_DEFECTS"]}
+{"alias": "helm 3.4 fixed in", "ids": ["TROUBLE-HELM_3_4_DEFECTS"]}
+{"alias": "helm 3.4 known issues", "ids": ["TROUBLE-HELM_3_4_DEFECTS"]}
+{"alias": "helm 3.5 fixed in", "ids": ["TROUBLE-HELM_3_5_DEFECTS"]}
+{"alias": "helm 3.5 known issues", "ids": ["TROUBLE-HELM_3_5_DEFECTS"]}
+{"alias": "helm 3.6 fixed in", "ids": ["TROUBLE-HELM_3_6_DEFECTS"]}
+{"alias": "helm 3.6 known issues", "ids": ["TROUBLE-HELM_3_6_DEFECTS"]}
+{"alias": "helm 3.7 fixed in", "ids": ["TROUBLE-HELM_3_7_DEFECTS"]}
+{"alias": "helm 3.7 known issues", "ids": ["TROUBLE-HELM_3_7_DEFECTS"]}
+{"alias": "helm 3.8 fixed in", "ids": ["TROUBLE-HELM_3_8_DEFECTS"]}
+{"alias": "helm 3.8 known issues", "ids": ["TROUBLE-HELM_3_8_DEFECTS"]}
+{"alias": "helm 3.9 fixed in", "ids": ["TROUBLE-HELM_3_9_DEFECTS"]}
+{"alias": "helm 3.9 known issues", "ids": ["TROUBLE-HELM_3_9_DEFECTS"]}
 {"alias": "helm 4 breaking changes", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
 {"alias": "helm 4 plugin broke", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
 {"alias": "helm 4 server side apply", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
+{"alias": "helm 4.0 fixed in", "ids": ["TROUBLE-HELM_4_0_DEFECTS"]}
+{"alias": "helm 4.0 known issues", "ids": ["TROUBLE-HELM_4_0_DEFECTS"]}
+{"alias": "helm 4.1 fixed in", "ids": ["TROUBLE-HELM_4_1_DEFECTS"]}
+{"alias": "helm 4.1 known issues", "ids": ["TROUBLE-HELM_4_1_DEFECTS"]}
+{"alias": "helm 4.2 fixed in", "ids": ["TROUBLE-HELM_4_2_DEFECTS"]}
+{"alias": "helm 4.2 known issues", "ids": ["TROUBLE-HELM_4_2_DEFECTS"]}
 {"alias": "helm action required upgrade", "ids": ["TROUBLE-HELM_BREAKING_CHANGES"]}
 {"alias": "helm breaking changes", "ids": ["TROUBLE-HELM_BREAKING_CHANGES"]}
 {"alias": "helm chart inventory", "ids": ["CONCEPT-ADDON_CATALOG"]}
@@ -1991,6 +2407,24 @@
 {"alias": "ingress to gateway api", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY", "TROUBLE-INGRESS2GATEWAY"]}
 {"alias": "ingress-controller", "ids": ["TAG-INGRESS_CONTROLLER"]}
 {"alias": "ingress-nginx", "ids": ["COMPONENT-INGRESS_NGINX"]}
+{"alias": "ingress-nginx 1.10 fixed in", "ids": ["TROUBLE-INGRESS_NGINX_1_10_DEFECTS"]}
+{"alias": "ingress-nginx 1.10 known issues", "ids": ["TROUBLE-INGRESS_NGINX_1_10_DEFECTS"]}
+{"alias": "ingress-nginx 1.11 fixed in", "ids": ["TROUBLE-INGRESS_NGINX_1_11_DEFECTS"]}
+{"alias": "ingress-nginx 1.11 known issues", "ids": ["TROUBLE-INGRESS_NGINX_1_11_DEFECTS"]}
+{"alias": "ingress-nginx 1.12 fixed in", "ids": ["TROUBLE-INGRESS_NGINX_1_12_DEFECTS"]}
+{"alias": "ingress-nginx 1.12 known issues", "ids": ["TROUBLE-INGRESS_NGINX_1_12_DEFECTS"]}
+{"alias": "ingress-nginx 1.13 fixed in", "ids": ["TROUBLE-INGRESS_NGINX_1_13_DEFECTS"]}
+{"alias": "ingress-nginx 1.13 known issues", "ids": ["TROUBLE-INGRESS_NGINX_1_13_DEFECTS"]}
+{"alias": "ingress-nginx 1.14 fixed in", "ids": ["TROUBLE-INGRESS_NGINX_1_14_DEFECTS"]}
+{"alias": "ingress-nginx 1.14 known issues", "ids": ["TROUBLE-INGRESS_NGINX_1_14_DEFECTS"]}
+{"alias": "ingress-nginx 1.6 fixed in", "ids": ["TROUBLE-INGRESS_NGINX_1_6_DEFECTS"]}
+{"alias": "ingress-nginx 1.6 known issues", "ids": ["TROUBLE-INGRESS_NGINX_1_6_DEFECTS"]}
+{"alias": "ingress-nginx 1.7 fixed in", "ids": ["TROUBLE-INGRESS_NGINX_1_7_DEFECTS"]}
+{"alias": "ingress-nginx 1.7 known issues", "ids": ["TROUBLE-INGRESS_NGINX_1_7_DEFECTS"]}
+{"alias": "ingress-nginx 1.8 fixed in", "ids": ["TROUBLE-INGRESS_NGINX_1_8_DEFECTS"]}
+{"alias": "ingress-nginx 1.8 known issues", "ids": ["TROUBLE-INGRESS_NGINX_1_8_DEFECTS"]}
+{"alias": "ingress-nginx 1.9 fixed in", "ids": ["TROUBLE-INGRESS_NGINX_1_9_DEFECTS"]}
+{"alias": "ingress-nginx 1.9 known issues", "ids": ["TROUBLE-INGRESS_NGINX_1_9_DEFECTS"]}
 {"alias": "ingress-nginx 4.12.0", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
 {"alias": "ingress-nginx action required upgrade", "ids": ["TROUBLE-INGRESS_NGINX_BREAKING_CHANGES"]}
 {"alias": "ingress-nginx addon", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
@@ -2075,7 +2509,42 @@
 {"alias": "is forbidden User", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "is my cluster healthy", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
 {"alias": "is my cluster secure", "ids": ["CONCEPT-SECURITY_INDEX"]}
+{"alias": "is this argo-cd bug already fixed", "ids": ["TROUBLE-ARGO_CD_0_11_DEFECTS", "TROUBLE-ARGO_CD_0_12_DEFECTS", "TROUBLE-ARGO_CD_0_7_DEFECTS", "TROUBLE-ARGO_CD_0_8_DEFECTS", "TROUBLE-ARGO_CD_0_9_DEFECTS", "TROUBLE-ARGO_CD_1_0_DEFECTS", "TROUBLE-ARGO_CD_1_1_DEFECTS", "TROUBLE-ARGO_CD_1_2_DEFECTS", "TROUBLE-ARGO_CD_1_3_DEFECTS", "TROUBLE-ARGO_CD_1_4_DEFECTS", "TROUBLE-ARGO_CD_1_5_DEFECTS", "TROUBLE-ARGO_CD_1_6_DEFECTS", "TROUBLE-ARGO_CD_1_7_DEFECTS", "TROUBLE-ARGO_CD_1_8_DEFECTS", "TROUBLE-ARGO_CD_2_0_DEFECTS", "TROUBLE-ARGO_CD_2_1_DEFECTS", "TROUBLE-ARGO_CD_2_2_DEFECTS", "TROUBLE-ARGO_CD_2_3_DEFECTS", "TROUBLE-ARGO_CD_2_4_DEFECTS"]}
+{"alias": "is this azure-csi bug already fixed", "ids": ["TROUBLE-AZURE_CSI_1_10_DEFECTS", "TROUBLE-AZURE_CSI_1_12_DEFECTS", "TROUBLE-AZURE_CSI_1_19_DEFECTS", "TROUBLE-AZURE_CSI_1_25_DEFECTS", "TROUBLE-AZURE_CSI_1_26_DEFECTS", "TROUBLE-AZURE_CSI_1_27_DEFECTS", "TROUBLE-AZURE_CSI_1_28_DEFECTS", "TROUBLE-AZURE_CSI_1_29_DEFECTS", "TROUBLE-AZURE_CSI_1_30_DEFECTS", "TROUBLE-AZURE_CSI_1_31_DEFECTS", "TROUBLE-AZURE_CSI_1_32_DEFECTS", "TROUBLE-AZURE_CSI_1_33_DEFECTS", "TROUBLE-AZURE_CSI_1_34_DEFECTS", "TROUBLE-AZURE_CSI_1_3_DEFECTS", "TROUBLE-AZURE_CSI_1_5_DEFECTS", "TROUBLE-AZURE_CSI_1_6_DEFECTS", "TROUBLE-AZURE_CSI_1_7_DEFECTS", "TROUBLE-AZURE_CSI_1_8_DEFECTS", "TROUBLE-AZURE_CSI_1_9_DEFECTS"]}
+{"alias": "is this calico bug already fixed", "ids": ["TROUBLE-CALICO_3_0_DEFECTS", "TROUBLE-CALICO_3_1_DEFECTS", "TROUBLE-CALICO_3_27_DEFECTS", "TROUBLE-CALICO_3_29_DEFECTS", "TROUBLE-CALICO_3_30_DEFECTS", "TROUBLE-CALICO_3_31_DEFECTS", "TROUBLE-CALICO_3_32_DEFECTS"]}
+{"alias": "is this cert-manager bug already fixed", "ids": ["TROUBLE-CERT_MANAGER_0_12_DEFECTS", "TROUBLE-CERT_MANAGER_0_13_DEFECTS", "TROUBLE-CERT_MANAGER_0_14_DEFECTS", "TROUBLE-CERT_MANAGER_0_15_DEFECTS", "TROUBLE-CERT_MANAGER_0_2_DEFECTS", "TROUBLE-CERT_MANAGER_0_3_DEFECTS", "TROUBLE-CERT_MANAGER_0_4_DEFECTS", "TROUBLE-CERT_MANAGER_0_5_DEFECTS", "TROUBLE-CERT_MANAGER_0_6_DEFECTS", "TROUBLE-CERT_MANAGER_0_7_DEFECTS", "TROUBLE-CERT_MANAGER_0_8_DEFECTS", "TROUBLE-CERT_MANAGER_0_9_DEFECTS", "TROUBLE-CERT_MANAGER_1_0_DEFECTS", "TROUBLE-CERT_MANAGER_1_11_DEFECTS", "TROUBLE-CERT_MANAGER_1_12_DEFECTS", "TROUBLE-CERT_MANAGER_1_13_DEFECTS", "TROUBLE-CERT_MANAGER_1_14_DEFECTS", "TROUBLE-CERT_MANAGER_1_15_DEFECTS", "TROUBLE-CERT_MANAGER_1_16_DEFECTS", "TROUBLE-CERT_MANAGER_1_17_DEFECTS", "TROUBLE-CERT_MANAGER_1_18_DEFECTS", "TROUBLE-CERT_MANAGER_1_19_DEFECTS", "TROUBLE-CERT_MANAGER_1_1_DEFECTS", "TROUBLE-CERT_MANAGER_1_20_DEFECTS", "TROUBLE-CERT_MANAGER_1_21_DEFECTS", "TROUBLE-CERT_MANAGER_1_3_DEFECTS", "TROUBLE-CERT_MANAGER_1_4_DEFECTS", "TROUBLE-CERT_MANAGER_1_5_DEFECTS", "TROUBLE-CERT_MANAGER_1_6_DEFECTS", "TROUBLE-CERT_MANAGER_1_7_DEFECTS"]}
+{"alias": "is this cilium bug already fixed", "ids": ["TROUBLE-CILIUM_1_0_DEFECTS", "TROUBLE-CILIUM_1_13_DEFECTS", "TROUBLE-CILIUM_1_18_DEFECTS", "TROUBLE-CILIUM_1_2_DEFECTS", "TROUBLE-CILIUM_1_4_DEFECTS", "TROUBLE-CILIUM_1_5_DEFECTS", "TROUBLE-CILIUM_1_8_DEFECTS", "TROUBLE-CILIUM_1_9_DEFECTS"]}
+{"alias": "is this cinder-csi bug already fixed", "ids": ["TROUBLE-CINDER_CSI_1_21_DEFECTS", "TROUBLE-CINDER_CSI_1_25_DEFECTS", "TROUBLE-CINDER_CSI_1_26_DEFECTS", "TROUBLE-CINDER_CSI_1_27_DEFECTS", "TROUBLE-CINDER_CSI_1_28_DEFECTS", "TROUBLE-CINDER_CSI_1_29_DEFECTS", "TROUBLE-CINDER_CSI_1_31_DEFECTS", "TROUBLE-CINDER_CSI_1_32_DEFECTS", "TROUBLE-CINDER_CSI_1_34_DEFECTS"]}
+{"alias": "is this cni-plugins bug already fixed", "ids": ["TROUBLE-CNI_PLUGINS_0_8_DEFECTS", "TROUBLE-CNI_PLUGINS_1_0_DEFECTS", "TROUBLE-CNI_PLUGINS_1_1_DEFECTS", "TROUBLE-CNI_PLUGINS_1_2_DEFECTS", "TROUBLE-CNI_PLUGINS_1_6_DEFECTS"]}
+{"alias": "is this consul-k8s bug already fixed", "ids": ["TROUBLE-CONSUL_K8S_0_4_DEFECTS", "TROUBLE-CONSUL_K8S_0_5_DEFECTS", "TROUBLE-CONSUL_K8S_0_6_DEFECTS", "TROUBLE-CONSUL_K8S_0_7_DEFECTS", "TROUBLE-CONSUL_K8S_0_9_DEFECTS", "TROUBLE-CONSUL_K8S_1_0_DEFECTS", "TROUBLE-CONSUL_K8S_1_1_DEFECTS", "TROUBLE-CONSUL_K8S_1_2_DEFECTS", "TROUBLE-CONSUL_K8S_1_3_DEFECTS", "TROUBLE-CONSUL_K8S_1_4_DEFECTS", "TROUBLE-CONSUL_K8S_1_5_DEFECTS", "TROUBLE-CONSUL_K8S_1_6_DEFECTS", "TROUBLE-CONSUL_K8S_1_7_DEFECTS", "TROUBLE-CONSUL_K8S_1_8_DEFECTS"]}
+{"alias": "is this containerd bug already fixed", "ids": ["TROUBLE-CONTAINERD_1_0_DEFECTS", "TROUBLE-CONTAINERD_1_1_DEFECTS", "TROUBLE-CONTAINERD_1_2_DEFECTS", "TROUBLE-CONTAINERD_1_3_DEFECTS", "TROUBLE-CONTAINERD_1_4_DEFECTS", "TROUBLE-CONTAINERD_1_5_DEFECTS", "TROUBLE-CONTAINERD_1_6_DEFECTS", "TROUBLE-CONTAINERD_1_7_DEFECTS", "TROUBLE-CONTAINERD_2_0_DEFECTS", "TROUBLE-CONTAINERD_2_1_DEFECTS", "TROUBLE-CONTAINERD_2_2_DEFECTS", "TROUBLE-CONTAINERD_2_3_DEFECTS"]}
+{"alias": "is this coredns bug already fixed", "ids": ["TROUBLE-COREDNS_1_11_DEFECTS", "TROUBLE-COREDNS_1_12_DEFECTS", "TROUBLE-COREDNS_1_13_DEFECTS", "TROUBLE-COREDNS_1_14_DEFECTS", "TROUBLE-COREDNS_1_9_DEFECTS"]}
+{"alias": "is this cri-o bug already fixed", "ids": ["TROUBLE-CRI_O_1_0_DEFECTS", "TROUBLE-CRI_O_1_10_DEFECTS", "TROUBLE-CRI_O_1_11_DEFECTS", "TROUBLE-CRI_O_1_12_DEFECTS", "TROUBLE-CRI_O_1_13_DEFECTS", "TROUBLE-CRI_O_1_14_DEFECTS", "TROUBLE-CRI_O_1_15_DEFECTS", "TROUBLE-CRI_O_1_16_DEFECTS", "TROUBLE-CRI_O_1_17_DEFECTS", "TROUBLE-CRI_O_1_18_DEFECTS", "TROUBLE-CRI_O_1_8_DEFECTS", "TROUBLE-CRI_O_1_9_DEFECTS"]}
+{"alias": "is this crun bug already fixed", "ids": ["TROUBLE-CRUN_0_14_DEFECTS", "TROUBLE-CRUN_1_18_DEFECTS", "TROUBLE-CRUN_1_22_DEFECTS", "TROUBLE-CRUN_1_27_DEFECTS", "TROUBLE-CRUN_1_4_DEFECTS", "TROUBLE-CRUN_1_8_DEFECTS"]}
+{"alias": "is this etcd bug already fixed", "ids": ["TROUBLE-ETCD_3_1_DEFECTS", "TROUBLE-ETCD_3_2_DEFECTS", "TROUBLE-ETCD_3_3_DEFECTS", "TROUBLE-ETCD_3_4_DEFECTS", "TROUBLE-ETCD_3_5_DEFECTS", "TROUBLE-ETCD_3_6_DEFECTS"]}
+{"alias": "is this flannel bug already fixed", "ids": ["TROUBLE-FLANNEL_0_18_DEFECTS", "TROUBLE-FLANNEL_0_19_DEFECTS", "TROUBLE-FLANNEL_0_20_DEFECTS", "TROUBLE-FLANNEL_0_21_DEFECTS", "TROUBLE-FLANNEL_0_25_DEFECTS", "TROUBLE-FLANNEL_0_27_DEFECTS", "TROUBLE-FLANNEL_0_28_DEFECTS", "TROUBLE-FLANNEL_0_5_DEFECTS"]}
+{"alias": "is this gcp-pd-csi bug already fixed", "ids": ["TROUBLE-GCP_PD_CSI_0_6_DEFECTS", "TROUBLE-GCP_PD_CSI_1_14_DEFECTS", "TROUBLE-GCP_PD_CSI_1_17_DEFECTS", "TROUBLE-GCP_PD_CSI_1_18_DEFECTS", "TROUBLE-GCP_PD_CSI_1_19_DEFECTS", "TROUBLE-GCP_PD_CSI_1_21_DEFECTS", "TROUBLE-GCP_PD_CSI_1_22_DEFECTS"]}
+{"alias": "is this helm bug already fixed", "ids": ["TROUBLE-HELM_2_0_DEFECTS", "TROUBLE-HELM_2_10_DEFECTS", "TROUBLE-HELM_2_11_DEFECTS", "TROUBLE-HELM_2_12_DEFECTS", "TROUBLE-HELM_2_13_DEFECTS", "TROUBLE-HELM_2_14_DEFECTS", "TROUBLE-HELM_2_15_DEFECTS", "TROUBLE-HELM_2_16_DEFECTS", "TROUBLE-HELM_2_17_DEFECTS", "TROUBLE-HELM_2_3_DEFECTS", "TROUBLE-HELM_2_4_DEFECTS", "TROUBLE-HELM_2_5_DEFECTS", "TROUBLE-HELM_2_6_DEFECTS", "TROUBLE-HELM_2_7_DEFECTS", "TROUBLE-HELM_2_8_DEFECTS", "TROUBLE-HELM_2_9_DEFECTS", "TROUBLE-HELM_3_0_DEFECTS", "TROUBLE-HELM_3_10_DEFECTS", "TROUBLE-HELM_3_11_DEFECTS", "TROUBLE-HELM_3_12_DEFECTS", "TROUBLE-HELM_3_13_DEFECTS", "TROUBLE-HELM_3_14_DEFECTS", "TROUBLE-HELM_3_15_DEFECTS", "TROUBLE-HELM_3_16_DEFECTS", "TROUBLE-HELM_3_17_DEFECTS", "TROUBLE-HELM_3_18_DEFECTS", "TROUBLE-HELM_3_19_DEFECTS", "TROUBLE-HELM_3_1_DEFECTS", "TROUBLE-HELM_3_20_DEFECTS", "TROUBLE-HELM_3_21_DEFECTS", "TROUBLE-HELM_3_2_DEFECTS", "TROUBLE-HELM_3_3_DEFECTS", "TROUBLE-HELM_3_4_DEFECTS", "TROUBLE-HELM_3_5_DEFECTS", "TROUBLE-HELM_3_6_DEFECTS", "TROUBLE-HELM_3_7_DEFECTS", "TROUBLE-HELM_3_8_DEFECTS", "TROUBLE-HELM_3_9_DEFECTS", "TROUBLE-HELM_4_0_DEFECTS", "TROUBLE-HELM_4_1_DEFECTS", "TROUBLE-HELM_4_2_DEFECTS"]}
+{"alias": "is this ingress-nginx bug already fixed", "ids": ["TROUBLE-INGRESS_NGINX_1_10_DEFECTS", "TROUBLE-INGRESS_NGINX_1_11_DEFECTS", "TROUBLE-INGRESS_NGINX_1_12_DEFECTS", "TROUBLE-INGRESS_NGINX_1_13_DEFECTS", "TROUBLE-INGRESS_NGINX_1_14_DEFECTS", "TROUBLE-INGRESS_NGINX_1_6_DEFECTS", "TROUBLE-INGRESS_NGINX_1_7_DEFECTS", "TROUBLE-INGRESS_NGINX_1_8_DEFECTS", "TROUBLE-INGRESS_NGINX_1_9_DEFECTS"]}
 {"alias": "is this interface used", "ids": ["PRACTICE-NODE_NETWORK_CHANGE"]}
+{"alias": "is this kata-containers bug already fixed", "ids": ["TROUBLE-KATA_CONTAINERS_3_10_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_12_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_14_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_15_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_16_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_17_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_18_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_19_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_21_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_22_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_23_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_24_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_25_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_26_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_27_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_29_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_31_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_32_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_3_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_4_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_5_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_6_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_7_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_8_DEFECTS", "TROUBLE-KATA_CONTAINERS_3_9_DEFECTS"]}
+{"alias": "is this kube-ovn bug already fixed", "ids": ["TROUBLE-KUBE_OVN_0_10_DEFECTS", "TROUBLE-KUBE_OVN_0_4_DEFECTS", "TROUBLE-KUBE_OVN_0_9_DEFECTS", "TROUBLE-KUBE_OVN_1_0_DEFECTS", "TROUBLE-KUBE_OVN_1_10_DEFECTS", "TROUBLE-KUBE_OVN_1_2_DEFECTS", "TROUBLE-KUBE_OVN_1_5_DEFECTS", "TROUBLE-KUBE_OVN_1_6_DEFECTS", "TROUBLE-KUBE_OVN_1_7_DEFECTS", "TROUBLE-KUBE_OVN_1_8_DEFECTS", "TROUBLE-KUBE_OVN_1_9_DEFECTS"]}
+{"alias": "is this kube-router bug already fixed", "ids": ["TROUBLE-KUBE_ROUTER_1_3_DEFECTS", "TROUBLE-KUBE_ROUTER_1_4_DEFECTS", "TROUBLE-KUBE_ROUTER_1_5_DEFECTS", "TROUBLE-KUBE_ROUTER_1_6_DEFECTS", "TROUBLE-KUBE_ROUTER_2_10_DEFECTS", "TROUBLE-KUBE_ROUTER_2_1_DEFECTS", "TROUBLE-KUBE_ROUTER_2_2_DEFECTS", "TROUBLE-KUBE_ROUTER_2_5_DEFECTS", "TROUBLE-KUBE_ROUTER_2_6_DEFECTS", "TROUBLE-KUBE_ROUTER_2_7_DEFECTS"]}
+{"alias": "is this kube-vip bug already fixed", "ids": ["TROUBLE-KUBE_VIP_0_5_DEFECTS", "TROUBLE-KUBE_VIP_0_6_DEFECTS", "TROUBLE-KUBE_VIP_0_7_DEFECTS", "TROUBLE-KUBE_VIP_0_8_DEFECTS", "TROUBLE-KUBE_VIP_0_9_DEFECTS", "TROUBLE-KUBE_VIP_1_0_DEFECTS", "TROUBLE-KUBE_VIP_1_1_DEFECTS", "TROUBLE-KUBE_VIP_1_2_DEFECTS"]}
+{"alias": "is this kubernetes bug already fixed", "ids": ["TROUBLE-KUBERNETES_1_28_DEFECTS", "TROUBLE-KUBERNETES_1_29_DEFECTS", "TROUBLE-KUBERNETES_1_30_DEFECTS", "TROUBLE-KUBERNETES_1_31_DEFECTS", "TROUBLE-KUBERNETES_1_32_DEFECTS", "TROUBLE-KUBERNETES_1_33_DEFECTS", "TROUBLE-KUBERNETES_1_34_DEFECTS", "TROUBLE-KUBERNETES_1_35_DEFECTS", "TROUBLE-KUBERNETES_1_36_DEFECTS"]}
+{"alias": "is this kubespray bug already fixed", "ids": ["TROUBLE-KUBESPRAY_2_10_DEFECTS", "TROUBLE-KUBESPRAY_2_11_DEFECTS", "TROUBLE-KUBESPRAY_2_14_DEFECTS", "TROUBLE-KUBESPRAY_2_15_DEFECTS", "TROUBLE-KUBESPRAY_2_17_DEFECTS", "TROUBLE-KUBESPRAY_2_18_DEFECTS", "TROUBLE-KUBESPRAY_2_19_DEFECTS", "TROUBLE-KUBESPRAY_2_20_DEFECTS", "TROUBLE-KUBESPRAY_2_21_DEFECTS", "TROUBLE-KUBESPRAY_2_22_DEFECTS", "TROUBLE-KUBESPRAY_2_23_DEFECTS", "TROUBLE-KUBESPRAY_2_24_DEFECTS", "TROUBLE-KUBESPRAY_2_25_DEFECTS", "TROUBLE-KUBESPRAY_2_26_DEFECTS", "TROUBLE-KUBESPRAY_2_27_DEFECTS", "TROUBLE-KUBESPRAY_2_28_DEFECTS", "TROUBLE-KUBESPRAY_2_29_DEFECTS", "TROUBLE-KUBESPRAY_2_30_DEFECTS", "TROUBLE-KUBESPRAY_2_31_DEFECTS", "TROUBLE-KUBESPRAY_2_8_DEFECTS"]}
+{"alias": "is this local-path-provisioner bug already fixed", "ids": ["TROUBLE-LOCAL_PATH_PROVISIONER_0_0_DEFECTS"]}
+{"alias": "is this metrics-server bug already fixed", "ids": ["TROUBLE-METRICS_SERVER_0_5_DEFECTS"]}
+{"alias": "is this multus bug already fixed", "ids": ["TROUBLE-MULTUS_4_2_DEFECTS"]}
+{"alias": "is this nerdctl bug already fixed", "ids": ["TROUBLE-NERDCTL_1_3_DEFECTS", "TROUBLE-NERDCTL_2_0_DEFECTS", "TROUBLE-NERDCTL_2_3_DEFECTS"]}
+{"alias": "is this node-feature-discovery bug already fixed", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_10_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_11_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_12_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_13_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_14_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_15_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_16_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_17_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_19_DEFECTS"]}
+{"alias": "is this nodelocaldns bug already fixed", "ids": ["TROUBLE-NODELOCALDNS_1_15_DEFECTS"]}
+{"alias": "is this runc bug already fixed", "ids": ["TROUBLE-RUNC_1_1_DEFECTS", "TROUBLE-RUNC_1_4_DEFECTS"]}
+{"alias": "is this scheduler-plugins bug already fixed", "ids": ["TROUBLE-SCHEDULER_PLUGINS_0_30_DEFECTS", "TROUBLE-SCHEDULER_PLUGINS_0_31_DEFECTS", "TROUBLE-SCHEDULER_PLUGINS_0_34_DEFECTS"]}
+{"alias": "is this skopeo bug already fixed", "ids": ["TROUBLE-SKOPEO_1_11_DEFECTS", "TROUBLE-SKOPEO_1_14_DEFECTS", "TROUBLE-SKOPEO_1_15_DEFECTS", "TROUBLE-SKOPEO_1_16_DEFECTS", "TROUBLE-SKOPEO_1_17_DEFECTS", "TROUBLE-SKOPEO_1_18_DEFECTS", "TROUBLE-SKOPEO_1_19_DEFECTS", "TROUBLE-SKOPEO_1_23_DEFECTS"]}
+{"alias": "is this snapshot-controller bug already fixed", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_2_1_DEFECTS"]}
+{"alias": "is this talos bug already fixed", "ids": ["TROUBLE-TALOS_0_10_DEFECTS", "TROUBLE-TALOS_0_11_DEFECTS", "TROUBLE-TALOS_0_12_DEFECTS", "TROUBLE-TALOS_0_13_DEFECTS", "TROUBLE-TALOS_0_14_DEFECTS", "TROUBLE-TALOS_0_8_DEFECTS", "TROUBLE-TALOS_0_9_DEFECTS", "TROUBLE-TALOS_1_0_DEFECTS", "TROUBLE-TALOS_1_10_DEFECTS", "TROUBLE-TALOS_1_11_DEFECTS", "TROUBLE-TALOS_1_12_DEFECTS", "TROUBLE-TALOS_1_13_DEFECTS", "TROUBLE-TALOS_1_1_DEFECTS", "TROUBLE-TALOS_1_2_DEFECTS", "TROUBLE-TALOS_1_3_DEFECTS", "TROUBLE-TALOS_1_4_DEFECTS", "TROUBLE-TALOS_1_5_DEFECTS", "TROUBLE-TALOS_1_6_DEFECTS", "TROUBLE-TALOS_1_7_DEFECTS", "TROUBLE-TALOS_1_8_DEFECTS", "TROUBLE-TALOS_1_9_DEFECTS"]}
+{"alias": "is this youki bug already fixed", "ids": ["TROUBLE-YOUKI_0_0_DEFECTS", "TROUBLE-YOUKI_0_1_DEFECTS", "TROUBLE-YOUKI_0_2_DEFECTS", "TROUBLE-YOUKI_0_3_DEFECTS", "TROUBLE-YOUKI_0_4_DEFECTS", "TROUBLE-YOUKI_0_5_DEFECTS", "TROUBLE-YOUKI_0_6_DEFECTS", "TROUBLE-YOUKI_0_7_DEFECTS"]}
 {"alias": "is_fedora_coreos", "ids": ["VARIABLE-IS_FEDORA_COREOS"]}
 {"alias": "isolate system cpus from workloads", "ids": ["CONFIG-CPU_ISOLATION"]}
 {"alias": "job tags", "ids": ["PRACTICE-AWX"]}
@@ -2103,6 +2572,56 @@
 {"alias": "karma ui", "ids": ["CONCEPT-ADDON_KARMA"]}
 {"alias": "kata gvisor runsc", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
 {"alias": "kata-containers", "ids": ["COMPONENT-KATA_CONTAINERS", "TAG-KATA_CONTAINERS"]}
+{"alias": "kata-containers 3.10 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_10_DEFECTS"]}
+{"alias": "kata-containers 3.10 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_10_DEFECTS"]}
+{"alias": "kata-containers 3.12 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_12_DEFECTS"]}
+{"alias": "kata-containers 3.12 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_12_DEFECTS"]}
+{"alias": "kata-containers 3.14 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_14_DEFECTS"]}
+{"alias": "kata-containers 3.14 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_14_DEFECTS"]}
+{"alias": "kata-containers 3.15 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_15_DEFECTS"]}
+{"alias": "kata-containers 3.15 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_15_DEFECTS"]}
+{"alias": "kata-containers 3.16 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_16_DEFECTS"]}
+{"alias": "kata-containers 3.16 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_16_DEFECTS"]}
+{"alias": "kata-containers 3.17 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_17_DEFECTS"]}
+{"alias": "kata-containers 3.17 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_17_DEFECTS"]}
+{"alias": "kata-containers 3.18 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_18_DEFECTS"]}
+{"alias": "kata-containers 3.18 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_18_DEFECTS"]}
+{"alias": "kata-containers 3.19 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_19_DEFECTS"]}
+{"alias": "kata-containers 3.19 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_19_DEFECTS"]}
+{"alias": "kata-containers 3.21 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_21_DEFECTS"]}
+{"alias": "kata-containers 3.21 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_21_DEFECTS"]}
+{"alias": "kata-containers 3.22 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_22_DEFECTS"]}
+{"alias": "kata-containers 3.22 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_22_DEFECTS"]}
+{"alias": "kata-containers 3.23 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_23_DEFECTS"]}
+{"alias": "kata-containers 3.23 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_23_DEFECTS"]}
+{"alias": "kata-containers 3.24 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_24_DEFECTS"]}
+{"alias": "kata-containers 3.24 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_24_DEFECTS"]}
+{"alias": "kata-containers 3.25 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_25_DEFECTS"]}
+{"alias": "kata-containers 3.25 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_25_DEFECTS"]}
+{"alias": "kata-containers 3.26 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_26_DEFECTS"]}
+{"alias": "kata-containers 3.26 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_26_DEFECTS"]}
+{"alias": "kata-containers 3.27 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_27_DEFECTS"]}
+{"alias": "kata-containers 3.27 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_27_DEFECTS"]}
+{"alias": "kata-containers 3.29 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_29_DEFECTS"]}
+{"alias": "kata-containers 3.29 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_29_DEFECTS"]}
+{"alias": "kata-containers 3.3 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_3_DEFECTS"]}
+{"alias": "kata-containers 3.3 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_3_DEFECTS"]}
+{"alias": "kata-containers 3.31 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_31_DEFECTS"]}
+{"alias": "kata-containers 3.31 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_31_DEFECTS"]}
+{"alias": "kata-containers 3.32 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_32_DEFECTS"]}
+{"alias": "kata-containers 3.32 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_32_DEFECTS"]}
+{"alias": "kata-containers 3.4 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_4_DEFECTS"]}
+{"alias": "kata-containers 3.4 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_4_DEFECTS"]}
+{"alias": "kata-containers 3.5 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_5_DEFECTS"]}
+{"alias": "kata-containers 3.5 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_5_DEFECTS"]}
+{"alias": "kata-containers 3.6 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_6_DEFECTS"]}
+{"alias": "kata-containers 3.6 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_6_DEFECTS"]}
+{"alias": "kata-containers 3.7 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_7_DEFECTS"]}
+{"alias": "kata-containers 3.7 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_7_DEFECTS"]}
+{"alias": "kata-containers 3.8 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_8_DEFECTS"]}
+{"alias": "kata-containers 3.8 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_8_DEFECTS"]}
+{"alias": "kata-containers 3.9 fixed in", "ids": ["TROUBLE-KATA_CONTAINERS_3_9_DEFECTS"]}
+{"alias": "kata-containers 3.9 known issues", "ids": ["TROUBLE-KATA_CONTAINERS_3_9_DEFECTS"]}
 {"alias": "kata_containers_binary_checksum", "ids": ["VARIABLE-KATA_CONTAINERS_BINARY_CHECKSUM"]}
 {"alias": "kata_containers_binary_checksums", "ids": ["VARIABLE-KATA_CONTAINERS_BINARY_CHECKSUMS"]}
 {"alias": "kata_containers_config_dir", "ids": ["VARIABLE-KATA_CONTAINERS_CONFIG_DIR"]}
@@ -2144,6 +2663,28 @@
 {"alias": "kube-controller-manager crashloop lease", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
 {"alias": "kube-controller-manager version", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
 {"alias": "kube-ovn", "ids": ["COMPONENT-KUBE_OVN"]}
+{"alias": "kube-ovn 0.10 fixed in", "ids": ["TROUBLE-KUBE_OVN_0_10_DEFECTS"]}
+{"alias": "kube-ovn 0.10 known issues", "ids": ["TROUBLE-KUBE_OVN_0_10_DEFECTS"]}
+{"alias": "kube-ovn 0.4 fixed in", "ids": ["TROUBLE-KUBE_OVN_0_4_DEFECTS"]}
+{"alias": "kube-ovn 0.4 known issues", "ids": ["TROUBLE-KUBE_OVN_0_4_DEFECTS"]}
+{"alias": "kube-ovn 0.9 fixed in", "ids": ["TROUBLE-KUBE_OVN_0_9_DEFECTS"]}
+{"alias": "kube-ovn 0.9 known issues", "ids": ["TROUBLE-KUBE_OVN_0_9_DEFECTS"]}
+{"alias": "kube-ovn 1.0 fixed in", "ids": ["TROUBLE-KUBE_OVN_1_0_DEFECTS"]}
+{"alias": "kube-ovn 1.0 known issues", "ids": ["TROUBLE-KUBE_OVN_1_0_DEFECTS"]}
+{"alias": "kube-ovn 1.10 fixed in", "ids": ["TROUBLE-KUBE_OVN_1_10_DEFECTS"]}
+{"alias": "kube-ovn 1.10 known issues", "ids": ["TROUBLE-KUBE_OVN_1_10_DEFECTS"]}
+{"alias": "kube-ovn 1.2 fixed in", "ids": ["TROUBLE-KUBE_OVN_1_2_DEFECTS"]}
+{"alias": "kube-ovn 1.2 known issues", "ids": ["TROUBLE-KUBE_OVN_1_2_DEFECTS"]}
+{"alias": "kube-ovn 1.5 fixed in", "ids": ["TROUBLE-KUBE_OVN_1_5_DEFECTS"]}
+{"alias": "kube-ovn 1.5 known issues", "ids": ["TROUBLE-KUBE_OVN_1_5_DEFECTS"]}
+{"alias": "kube-ovn 1.6 fixed in", "ids": ["TROUBLE-KUBE_OVN_1_6_DEFECTS"]}
+{"alias": "kube-ovn 1.6 known issues", "ids": ["TROUBLE-KUBE_OVN_1_6_DEFECTS"]}
+{"alias": "kube-ovn 1.7 fixed in", "ids": ["TROUBLE-KUBE_OVN_1_7_DEFECTS"]}
+{"alias": "kube-ovn 1.7 known issues", "ids": ["TROUBLE-KUBE_OVN_1_7_DEFECTS"]}
+{"alias": "kube-ovn 1.8 fixed in", "ids": ["TROUBLE-KUBE_OVN_1_8_DEFECTS"]}
+{"alias": "kube-ovn 1.8 known issues", "ids": ["TROUBLE-KUBE_OVN_1_8_DEFECTS"]}
+{"alias": "kube-ovn 1.9 fixed in", "ids": ["TROUBLE-KUBE_OVN_1_9_DEFECTS"]}
+{"alias": "kube-ovn 1.9 known issues", "ids": ["TROUBLE-KUBE_OVN_1_9_DEFECTS"]}
 {"alias": "kube-prometheus-stack", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
 {"alias": "kube-proxy", "ids": ["CONCEPT-KUBE_PROXY", "TAG-KUBE_PROXY"]}
 {"alias": "kube-proxy debug", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
@@ -2152,10 +2693,46 @@
 {"alias": "kube-proxy terminating node traffic", "ids": ["CONCEPT-K8S_KUBE_PROXY_DRAINING_NODES"]}
 {"alias": "kube-proxy-free", "ids": ["CONCEPT-KUBE_PROXY"]}
 {"alias": "kube-router", "ids": ["COMPONENT-KUBE_ROUTER"]}
+{"alias": "kube-router 1.3 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_1_3_DEFECTS"]}
+{"alias": "kube-router 1.3 known issues", "ids": ["TROUBLE-KUBE_ROUTER_1_3_DEFECTS"]}
+{"alias": "kube-router 1.4 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_1_4_DEFECTS"]}
+{"alias": "kube-router 1.4 known issues", "ids": ["TROUBLE-KUBE_ROUTER_1_4_DEFECTS"]}
+{"alias": "kube-router 1.5 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_1_5_DEFECTS"]}
+{"alias": "kube-router 1.5 known issues", "ids": ["TROUBLE-KUBE_ROUTER_1_5_DEFECTS"]}
+{"alias": "kube-router 1.6 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_1_6_DEFECTS"]}
+{"alias": "kube-router 1.6 known issues", "ids": ["TROUBLE-KUBE_ROUTER_1_6_DEFECTS"]}
+{"alias": "kube-router 2.1 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_2_1_DEFECTS"]}
+{"alias": "kube-router 2.1 known issues", "ids": ["TROUBLE-KUBE_ROUTER_2_1_DEFECTS"]}
+{"alias": "kube-router 2.10 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_2_10_DEFECTS"]}
+{"alias": "kube-router 2.10 known issues", "ids": ["TROUBLE-KUBE_ROUTER_2_10_DEFECTS"]}
+{"alias": "kube-router 2.2 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_2_2_DEFECTS"]}
+{"alias": "kube-router 2.2 known issues", "ids": ["TROUBLE-KUBE_ROUTER_2_2_DEFECTS"]}
+{"alias": "kube-router 2.5 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_2_5_DEFECTS"]}
+{"alias": "kube-router 2.5 known issues", "ids": ["TROUBLE-KUBE_ROUTER_2_5_DEFECTS"]}
+{"alias": "kube-router 2.6 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_2_6_DEFECTS"]}
+{"alias": "kube-router 2.6 known issues", "ids": ["TROUBLE-KUBE_ROUTER_2_6_DEFECTS"]}
+{"alias": "kube-router 2.7 fixed in", "ids": ["TROUBLE-KUBE_ROUTER_2_7_DEFECTS"]}
+{"alias": "kube-router 2.7 known issues", "ids": ["TROUBLE-KUBE_ROUTER_2_7_DEFECTS"]}
 {"alias": "kube-router bgp", "ids": ["COMPONENT-KUBE_ROUTER"]}
 {"alias": "kube-scheduler crashloop lease", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
 {"alias": "kube-scheduler version", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
 {"alias": "kube-vip", "ids": ["COMPONENT-KUBE_VIP", "TAG-KUBE_VIP"]}
+{"alias": "kube-vip 0.5 fixed in", "ids": ["TROUBLE-KUBE_VIP_0_5_DEFECTS"]}
+{"alias": "kube-vip 0.5 known issues", "ids": ["TROUBLE-KUBE_VIP_0_5_DEFECTS"]}
+{"alias": "kube-vip 0.6 fixed in", "ids": ["TROUBLE-KUBE_VIP_0_6_DEFECTS"]}
+{"alias": "kube-vip 0.6 known issues", "ids": ["TROUBLE-KUBE_VIP_0_6_DEFECTS"]}
+{"alias": "kube-vip 0.7 fixed in", "ids": ["TROUBLE-KUBE_VIP_0_7_DEFECTS"]}
+{"alias": "kube-vip 0.7 known issues", "ids": ["TROUBLE-KUBE_VIP_0_7_DEFECTS"]}
+{"alias": "kube-vip 0.8 fixed in", "ids": ["TROUBLE-KUBE_VIP_0_8_DEFECTS"]}
+{"alias": "kube-vip 0.8 known issues", "ids": ["TROUBLE-KUBE_VIP_0_8_DEFECTS"]}
+{"alias": "kube-vip 0.9 fixed in", "ids": ["TROUBLE-KUBE_VIP_0_9_DEFECTS"]}
+{"alias": "kube-vip 0.9 known issues", "ids": ["TROUBLE-KUBE_VIP_0_9_DEFECTS"]}
+{"alias": "kube-vip 1.0 fixed in", "ids": ["TROUBLE-KUBE_VIP_1_0_DEFECTS"]}
+{"alias": "kube-vip 1.0 known issues", "ids": ["TROUBLE-KUBE_VIP_1_0_DEFECTS"]}
+{"alias": "kube-vip 1.1 fixed in", "ids": ["TROUBLE-KUBE_VIP_1_1_DEFECTS"]}
+{"alias": "kube-vip 1.1 known issues", "ids": ["TROUBLE-KUBE_VIP_1_1_DEFECTS"]}
+{"alias": "kube-vip 1.2 fixed in", "ids": ["TROUBLE-KUBE_VIP_1_2_DEFECTS"]}
+{"alias": "kube-vip 1.2 known issues", "ids": ["TROUBLE-KUBE_VIP_1_2_DEFECTS"]}
 {"alias": "kube-vip VIP not working", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP"]}
 {"alias": "kube-vip action required upgrade", "ids": ["TROUBLE-KUBE_VIP_BREAKING_CHANGES"]}
 {"alias": "kube-vip arp bgp", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
@@ -2618,13 +3195,31 @@
 {"alias": "kubelet_tracing_sampling_rate_per_million", "ids": ["VARIABLE-KUBELET_TRACING_SAMPLING_RATE_PER_MILLION"]}
 {"alias": "kubepods.slice memory limit reset", "ids": ["TROUBLE-KUBELET_MEMORY_OOM"]}
 {"alias": "kubeproxyversion field removed", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
+{"alias": "kubernetes 1.28 fixed in", "ids": ["TROUBLE-KUBERNETES_1_28_DEFECTS"]}
+{"alias": "kubernetes 1.28 known issues", "ids": ["TROUBLE-KUBERNETES_1_28_DEFECTS"]}
 {"alias": "kubernetes 1.29 changes", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
+{"alias": "kubernetes 1.29 fixed in", "ids": ["TROUBLE-KUBERNETES_1_29_DEFECTS"]}
+{"alias": "kubernetes 1.29 known issues", "ids": ["TROUBLE-KUBERNETES_1_29_DEFECTS"]}
 {"alias": "kubernetes 1.30 changes", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
+{"alias": "kubernetes 1.30 fixed in", "ids": ["TROUBLE-KUBERNETES_1_30_DEFECTS"]}
+{"alias": "kubernetes 1.30 known issues", "ids": ["TROUBLE-KUBERNETES_1_30_DEFECTS"]}
 {"alias": "kubernetes 1.31 changes", "ids": ["CONCEPT-K8S_1_31_CHANGES"]}
+{"alias": "kubernetes 1.31 fixed in", "ids": ["TROUBLE-KUBERNETES_1_31_DEFECTS"]}
+{"alias": "kubernetes 1.31 known issues", "ids": ["TROUBLE-KUBERNETES_1_31_DEFECTS"]}
 {"alias": "kubernetes 1.32 changes", "ids": ["CONCEPT-K8S_1_32_CHANGES"]}
+{"alias": "kubernetes 1.32 fixed in", "ids": ["TROUBLE-KUBERNETES_1_32_DEFECTS"]}
+{"alias": "kubernetes 1.32 known issues", "ids": ["TROUBLE-KUBERNETES_1_32_DEFECTS"]}
 {"alias": "kubernetes 1.33 changes", "ids": ["CONCEPT-K8S_1_33_CHANGES"]}
+{"alias": "kubernetes 1.33 fixed in", "ids": ["TROUBLE-KUBERNETES_1_33_DEFECTS"]}
+{"alias": "kubernetes 1.33 known issues", "ids": ["TROUBLE-KUBERNETES_1_33_DEFECTS"]}
 {"alias": "kubernetes 1.34 changes", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
+{"alias": "kubernetes 1.34 fixed in", "ids": ["TROUBLE-KUBERNETES_1_34_DEFECTS"]}
+{"alias": "kubernetes 1.34 known issues", "ids": ["TROUBLE-KUBERNETES_1_34_DEFECTS"]}
 {"alias": "kubernetes 1.35 changes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
+{"alias": "kubernetes 1.35 fixed in", "ids": ["TROUBLE-KUBERNETES_1_35_DEFECTS"]}
+{"alias": "kubernetes 1.35 known issues", "ids": ["TROUBLE-KUBERNETES_1_35_DEFECTS"]}
+{"alias": "kubernetes 1.36 fixed in", "ids": ["TROUBLE-KUBERNETES_1_36_DEFECTS"]}
+{"alias": "kubernetes 1.36 known issues", "ids": ["TROUBLE-KUBERNETES_1_36_DEFECTS"]}
 {"alias": "kubernetes action required upgrade", "ids": ["TROUBLE-KUBERNETES_BREAKING_CHANGES"]}
 {"alias": "kubernetes audit", "ids": ["CONFIG-APISERVER_AUDIT"]}
 {"alias": "kubernetes breaking changes", "ids": ["TROUBLE-KUBERNETES_BREAKING_CHANGES"]}
@@ -2647,10 +3242,50 @@
 {"alias": "kubernetes_audit", "ids": ["CONFIG-APISERVER_AUDIT", "VARIABLE-KUBERNETES_AUDIT"]}
 {"alias": "kubernetes_audit_webhook", "ids": ["VARIABLE-KUBERNETES_AUDIT_WEBHOOK"]}
 {"alias": "kubernetes_user_manifests_path", "ids": ["VARIABLE-KUBERNETES_USER_MANIFESTS_PATH"]}
+{"alias": "kubespray 2.10 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_10_DEFECTS"]}
+{"alias": "kubespray 2.10 known issues", "ids": ["TROUBLE-KUBESPRAY_2_10_DEFECTS"]}
+{"alias": "kubespray 2.11 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_11_DEFECTS"]}
+{"alias": "kubespray 2.11 known issues", "ids": ["TROUBLE-KUBESPRAY_2_11_DEFECTS"]}
+{"alias": "kubespray 2.14 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_14_DEFECTS"]}
+{"alias": "kubespray 2.14 known issues", "ids": ["TROUBLE-KUBESPRAY_2_14_DEFECTS"]}
+{"alias": "kubespray 2.15 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_15_DEFECTS"]}
+{"alias": "kubespray 2.15 known issues", "ids": ["TROUBLE-KUBESPRAY_2_15_DEFECTS"]}
+{"alias": "kubespray 2.17 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_17_DEFECTS"]}
+{"alias": "kubespray 2.17 known issues", "ids": ["TROUBLE-KUBESPRAY_2_17_DEFECTS"]}
+{"alias": "kubespray 2.18 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_18_DEFECTS"]}
+{"alias": "kubespray 2.18 known issues", "ids": ["TROUBLE-KUBESPRAY_2_18_DEFECTS"]}
+{"alias": "kubespray 2.19 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_19_DEFECTS"]}
+{"alias": "kubespray 2.19 known issues", "ids": ["TROUBLE-KUBESPRAY_2_19_DEFECTS"]}
+{"alias": "kubespray 2.20 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_20_DEFECTS"]}
+{"alias": "kubespray 2.20 known issues", "ids": ["TROUBLE-KUBESPRAY_2_20_DEFECTS"]}
+{"alias": "kubespray 2.21 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_21_DEFECTS"]}
+{"alias": "kubespray 2.21 known issues", "ids": ["TROUBLE-KUBESPRAY_2_21_DEFECTS"]}
+{"alias": "kubespray 2.22 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_22_DEFECTS"]}
+{"alias": "kubespray 2.22 known issues", "ids": ["TROUBLE-KUBESPRAY_2_22_DEFECTS"]}
+{"alias": "kubespray 2.23 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_23_DEFECTS"]}
+{"alias": "kubespray 2.23 known issues", "ids": ["TROUBLE-KUBESPRAY_2_23_DEFECTS"]}
+{"alias": "kubespray 2.24 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_24_DEFECTS"]}
+{"alias": "kubespray 2.24 known issues", "ids": ["TROUBLE-KUBESPRAY_2_24_DEFECTS"]}
+{"alias": "kubespray 2.25 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_25_DEFECTS"]}
+{"alias": "kubespray 2.25 known issues", "ids": ["TROUBLE-KUBESPRAY_2_25_DEFECTS"]}
+{"alias": "kubespray 2.26 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_26_DEFECTS"]}
+{"alias": "kubespray 2.26 known issues", "ids": ["TROUBLE-KUBESPRAY_2_26_DEFECTS"]}
+{"alias": "kubespray 2.27 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_27_DEFECTS"]}
+{"alias": "kubespray 2.27 known issues", "ids": ["TROUBLE-KUBESPRAY_2_27_DEFECTS"]}
 {"alias": "kubespray 2.27.0", "ids": ["RELEASE-V2_27_0"]}
 {"alias": "kubespray 2.27.1", "ids": ["RELEASE-V2_27_1"]}
+{"alias": "kubespray 2.28 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_28_DEFECTS"]}
+{"alias": "kubespray 2.28 known issues", "ids": ["TROUBLE-KUBESPRAY_2_28_DEFECTS"]}
 {"alias": "kubespray 2.28.0", "ids": ["RELEASE-V2_28_0"]}
 {"alias": "kubespray 2.28.1", "ids": ["RELEASE-V2_28_1"]}
+{"alias": "kubespray 2.29 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_29_DEFECTS"]}
+{"alias": "kubespray 2.29 known issues", "ids": ["TROUBLE-KUBESPRAY_2_29_DEFECTS"]}
+{"alias": "kubespray 2.30 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_30_DEFECTS"]}
+{"alias": "kubespray 2.30 known issues", "ids": ["TROUBLE-KUBESPRAY_2_30_DEFECTS"]}
+{"alias": "kubespray 2.31 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_31_DEFECTS"]}
+{"alias": "kubespray 2.31 known issues", "ids": ["TROUBLE-KUBESPRAY_2_31_DEFECTS"]}
+{"alias": "kubespray 2.8 fixed in", "ids": ["TROUBLE-KUBESPRAY_2_8_DEFECTS"]}
+{"alias": "kubespray 2.8 known issues", "ids": ["TROUBLE-KUBESPRAY_2_8_DEFECTS"]}
 {"alias": "kubespray action required upgrade", "ids": ["TROUBLE-KUBESPRAY_BREAKING_CHANGES"]}
 {"alias": "kubespray admin.conf security", "ids": ["PRACTICE-RBAC_LEAST_PRIVILEGE"]}
 {"alias": "kubespray breaking changes", "ids": ["TROUBLE-KUBESPRAY_BREAKING_CHANGES"]}
@@ -2741,6 +3376,8 @@
 {"alias": "local-path data loss remove node", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "local-path pvc node drain", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "local-path-provisioner", "ids": ["COMPONENT-LOCAL_PATH_PROVISIONER", "TAG-LOCAL_PATH_PROVISIONER"]}
+{"alias": "local-path-provisioner 0.0 fixed in", "ids": ["TROUBLE-LOCAL_PATH_PROVISIONER_0_0_DEFECTS"]}
+{"alias": "local-path-provisioner 0.0 known issues", "ids": ["TROUBLE-LOCAL_PATH_PROVISIONER_0_0_DEFECTS"]}
 {"alias": "local-volume-provisioner", "ids": ["COMPONENT-LOCAL_VOLUME_PROVISIONER", "TAG-LOCAL_VOLUME_PROVISIONER"]}
 {"alias": "local_path_provisioner_claim_root", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_CLAIM_ROOT"]}
 {"alias": "local_path_provisioner_debug", "ids": ["VARIABLE-LOCAL_PATH_PROVISIONER_DEBUG"]}
@@ -2823,6 +3460,8 @@
 {"alias": "metrics api not available", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
 {"alias": "metrics not available yet", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
 {"alias": "metrics-server", "ids": ["COMPONENT-METRICS_SERVER"]}
+{"alias": "metrics-server 0.5 fixed in", "ids": ["TROUBLE-METRICS_SERVER_0_5_DEFECTS"]}
+{"alias": "metrics-server 0.5 known issues", "ids": ["TROUBLE-METRICS_SERVER_0_5_DEFECTS"]}
 {"alias": "metrics-server x509 kubelet", "ids": ["TROUBLE-KUBELET_SERVING_CERT_TLS"]}
 {"alias": "metrics_server", "ids": ["TAG-METRICS_SERVER"]}
 {"alias": "metrics_server_container_port", "ids": ["VARIABLE-METRICS_SERVER_CONTAINER_PORT"]}
@@ -2861,6 +3500,8 @@
 {"alias": "multiple pod interfaces", "ids": ["COMPONENT-MULTUS"]}
 {"alias": "multiple upgrades", "ids": ["UPGRADE-KUBESPRAY_SEQUENTIAL"]}
 {"alias": "multus", "ids": ["COMPONENT-MULTUS"]}
+{"alias": "multus 4.2 fixed in", "ids": ["TROUBLE-MULTUS_4_2_DEFECTS"]}
+{"alias": "multus 4.2 known issues", "ids": ["TROUBLE-MULTUS_4_2_DEFECTS"]}
 {"alias": "multus cni", "ids": ["COMPONENT-MULTUS"]}
 {"alias": "multus_cni_bin_dir", "ids": ["VARIABLE-MULTUS_CNI_BIN_DIR"]}
 {"alias": "multus_cni_bin_dir_host", "ids": ["VARIABLE-MULTUS_CNI_BIN_DIR_HOST"]}
@@ -2893,6 +3534,12 @@
 {"alias": "ndp table full ipv6", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "neighbour table overflow", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "nerdctl", "ids": ["COMPONENT-NERDCTL"]}
+{"alias": "nerdctl 1.3 fixed in", "ids": ["TROUBLE-NERDCTL_1_3_DEFECTS"]}
+{"alias": "nerdctl 1.3 known issues", "ids": ["TROUBLE-NERDCTL_1_3_DEFECTS"]}
+{"alias": "nerdctl 2.0 fixed in", "ids": ["TROUBLE-NERDCTL_2_0_DEFECTS"]}
+{"alias": "nerdctl 2.0 known issues", "ids": ["TROUBLE-NERDCTL_2_0_DEFECTS"]}
+{"alias": "nerdctl 2.3 fixed in", "ids": ["TROUBLE-NERDCTL_2_3_DEFECTS"]}
+{"alias": "nerdctl 2.3 known issues", "ids": ["TROUBLE-NERDCTL_2_3_DEFECTS"]}
 {"alias": "nerdctl_archive_checksum", "ids": ["VARIABLE-NERDCTL_ARCHIVE_CHECKSUM"]}
 {"alias": "nerdctl_archive_checksums", "ids": ["VARIABLE-NERDCTL_ARCHIVE_CHECKSUMS"]}
 {"alias": "nerdctl_download_url", "ids": ["VARIABLE-NERDCTL_DOWNLOAD_URL"]}
@@ -3005,6 +3652,24 @@
 {"alias": "node swap beta", "ids": ["CONCEPT-K8S_1_30_CHANGES"]}
 {"alias": "node-exporter kube-state-metrics", "ids": ["CONCEPT-OBSERVABILITY_STACK"]}
 {"alias": "node-feature-discovery", "ids": ["COMPONENT-NODE_FEATURE_DISCOVERY"]}
+{"alias": "node-feature-discovery 0.10 fixed in", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_10_DEFECTS"]}
+{"alias": "node-feature-discovery 0.10 known issues", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_10_DEFECTS"]}
+{"alias": "node-feature-discovery 0.11 fixed in", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_11_DEFECTS"]}
+{"alias": "node-feature-discovery 0.11 known issues", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_11_DEFECTS"]}
+{"alias": "node-feature-discovery 0.12 fixed in", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_12_DEFECTS"]}
+{"alias": "node-feature-discovery 0.12 known issues", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_12_DEFECTS"]}
+{"alias": "node-feature-discovery 0.13 fixed in", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_13_DEFECTS"]}
+{"alias": "node-feature-discovery 0.13 known issues", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_13_DEFECTS"]}
+{"alias": "node-feature-discovery 0.14 fixed in", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_14_DEFECTS"]}
+{"alias": "node-feature-discovery 0.14 known issues", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_14_DEFECTS"]}
+{"alias": "node-feature-discovery 0.15 fixed in", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_15_DEFECTS"]}
+{"alias": "node-feature-discovery 0.15 known issues", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_15_DEFECTS"]}
+{"alias": "node-feature-discovery 0.16 fixed in", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_16_DEFECTS"]}
+{"alias": "node-feature-discovery 0.16 known issues", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_16_DEFECTS"]}
+{"alias": "node-feature-discovery 0.17 fixed in", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_17_DEFECTS"]}
+{"alias": "node-feature-discovery 0.17 known issues", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_17_DEFECTS"]}
+{"alias": "node-feature-discovery 0.19 fixed in", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_19_DEFECTS"]}
+{"alias": "node-feature-discovery 0.19 known issues", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_19_DEFECTS"]}
 {"alias": "node-label", "ids": ["TAG-NODE_LABEL"]}
 {"alias": "node-local dns", "ids": ["COMPONENT-NODELOCALDNS"]}
 {"alias": "node-local pvc can't reschedule", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
@@ -3033,6 +3698,8 @@
 {"alias": "node_labels", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
 {"alias": "node_taints", "ids": ["CONFIG-NODE_LABELS_TAINTS", "VARIABLE-NODE_TAINTS"]}
 {"alias": "nodelocaldns", "ids": ["COMPONENT-NODELOCALDNS", "TAG-NODELOCALDNS"]}
+{"alias": "nodelocaldns 1.15 fixed in", "ids": ["TROUBLE-NODELOCALDNS_1_15_DEFECTS"]}
+{"alias": "nodelocaldns 1.15 known issues", "ids": ["TROUBLE-NODELOCALDNS_1_15_DEFECTS"]}
 {"alias": "nodelocaldns debug", "ids": ["PRACTICE-DNS_DEBUG"]}
 {"alias": "nodelocaldns forwarding", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
 {"alias": "nodelocaldns-ipv6-ip-render", "ids": ["TROUBLE-NODELOCALDNS_IPV6_IP"]}
@@ -3390,6 +4057,10 @@
 {"alias": "runbook index", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
 {"alias": "runbooks", "ids": ["CONCEPT-RUNBOOKS_INDEX"]}
 {"alias": "runc", "ids": ["COMPONENT-RUNC"]}
+{"alias": "runc 1.1 fixed in", "ids": ["TROUBLE-RUNC_1_1_DEFECTS"]}
+{"alias": "runc 1.1 known issues", "ids": ["TROUBLE-RUNC_1_1_DEFECTS"]}
+{"alias": "runc 1.4 fixed in", "ids": ["TROUBLE-RUNC_1_4_DEFECTS"]}
+{"alias": "runc 1.4 known issues", "ids": ["TROUBLE-RUNC_1_4_DEFECTS"]}
 {"alias": "runc container escape", "ids": ["TROUBLE-RUNC_CONTAINER_ESCAPE_NOV2025"]}
 {"alias": "runc crun youki", "ids": ["CONCEPT-CONTAINER_RUNTIMES"]}
 {"alias": "runc cve", "ids": ["TROUBLE-RUNC_KNOWN_CVES"]}
@@ -3427,6 +4098,12 @@
 {"alias": "scheduled etcd backup", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
 {"alias": "scheduler slow at scale", "ids": ["TROUBLE-SCHEDULER_PERF"]}
 {"alias": "scheduler-plugins", "ids": ["COMPONENT-SCHEDULER_PLUGINS"]}
+{"alias": "scheduler-plugins 0.30 fixed in", "ids": ["TROUBLE-SCHEDULER_PLUGINS_0_30_DEFECTS"]}
+{"alias": "scheduler-plugins 0.30 known issues", "ids": ["TROUBLE-SCHEDULER_PLUGINS_0_30_DEFECTS"]}
+{"alias": "scheduler-plugins 0.31 fixed in", "ids": ["TROUBLE-SCHEDULER_PLUGINS_0_31_DEFECTS"]}
+{"alias": "scheduler-plugins 0.31 known issues", "ids": ["TROUBLE-SCHEDULER_PLUGINS_0_31_DEFECTS"]}
+{"alias": "scheduler-plugins 0.34 fixed in", "ids": ["TROUBLE-SCHEDULER_PLUGINS_0_34_DEFECTS"]}
+{"alias": "scheduler-plugins 0.34 known issues", "ids": ["TROUBLE-SCHEDULER_PLUGINS_0_34_DEFECTS"]}
 {"alias": "scheduler-plugins action required upgrade", "ids": ["TROUBLE-SCHEDULER_PLUGINS_BREAKING_CHANGES"]}
 {"alias": "scheduler-plugins breaking changes", "ids": ["TROUBLE-SCHEDULER_PLUGINS_BREAKING_CHANGES"]}
 {"alias": "scheduler-plugins upgrade broke", "ids": ["TROUBLE-SCHEDULER_PLUGINS_BREAKING_CHANGES"]}
@@ -3498,6 +4175,22 @@
 {"alias": "skip_http_proxy_on_os_packages", "ids": ["VARIABLE-SKIP_HTTP_PROXY_ON_OS_PACKAGES"]}
 {"alias": "skip_kubeadm_images", "ids": ["VARIABLE-SKIP_KUBEADM_IMAGES"]}
 {"alias": "skopeo", "ids": ["COMPONENT-SKOPEO"]}
+{"alias": "skopeo 1.11 fixed in", "ids": ["TROUBLE-SKOPEO_1_11_DEFECTS"]}
+{"alias": "skopeo 1.11 known issues", "ids": ["TROUBLE-SKOPEO_1_11_DEFECTS"]}
+{"alias": "skopeo 1.14 fixed in", "ids": ["TROUBLE-SKOPEO_1_14_DEFECTS"]}
+{"alias": "skopeo 1.14 known issues", "ids": ["TROUBLE-SKOPEO_1_14_DEFECTS"]}
+{"alias": "skopeo 1.15 fixed in", "ids": ["TROUBLE-SKOPEO_1_15_DEFECTS"]}
+{"alias": "skopeo 1.15 known issues", "ids": ["TROUBLE-SKOPEO_1_15_DEFECTS"]}
+{"alias": "skopeo 1.16 fixed in", "ids": ["TROUBLE-SKOPEO_1_16_DEFECTS"]}
+{"alias": "skopeo 1.16 known issues", "ids": ["TROUBLE-SKOPEO_1_16_DEFECTS"]}
+{"alias": "skopeo 1.17 fixed in", "ids": ["TROUBLE-SKOPEO_1_17_DEFECTS"]}
+{"alias": "skopeo 1.17 known issues", "ids": ["TROUBLE-SKOPEO_1_17_DEFECTS"]}
+{"alias": "skopeo 1.18 fixed in", "ids": ["TROUBLE-SKOPEO_1_18_DEFECTS"]}
+{"alias": "skopeo 1.18 known issues", "ids": ["TROUBLE-SKOPEO_1_18_DEFECTS"]}
+{"alias": "skopeo 1.19 fixed in", "ids": ["TROUBLE-SKOPEO_1_19_DEFECTS"]}
+{"alias": "skopeo 1.19 known issues", "ids": ["TROUBLE-SKOPEO_1_19_DEFECTS"]}
+{"alias": "skopeo 1.23 fixed in", "ids": ["TROUBLE-SKOPEO_1_23_DEFECTS"]}
+{"alias": "skopeo 1.23 known issues", "ids": ["TROUBLE-SKOPEO_1_23_DEFECTS"]}
 {"alias": "skopeo_binary_checksum", "ids": ["VARIABLE-SKOPEO_BINARY_CHECKSUM"]}
 {"alias": "skopeo_binary_checksums", "ids": ["VARIABLE-SKOPEO_BINARY_CHECKSUMS"]}
 {"alias": "skopeo_download_url", "ids": ["VARIABLE-SKOPEO_DOWNLOAD_URL"]}
@@ -3510,6 +4203,8 @@
 {"alias": "snapshot controller 8 breaking", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}
 {"alias": "snapshot validation webhook removed", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8"]}
 {"alias": "snapshot-controller", "ids": ["COMPONENT-SNAPSHOT_CONTROLLER", "TAG-SNAPSHOT_CONTROLLER"]}
+{"alias": "snapshot-controller 2.1 fixed in", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_2_1_DEFECTS"]}
+{"alias": "snapshot-controller 2.1 known issues", "ids": ["TROUBLE-SNAPSHOT_CONTROLLER_2_1_DEFECTS"]}
 {"alias": "snapshot-controller addon", "ids": ["CONCEPT-ADDON_SNAPSHOTTER"]}
 {"alias": "snapshot_classes", "ids": ["VARIABLE-SNAPSHOT_CLASSES"]}
 {"alias": "snapshot_controller_image_repo", "ids": ["VARIABLE-SNAPSHOT_CONTROLLER_IMAGE_REPO"]}
@@ -3577,7 +4272,49 @@
 {"alias": "systemd_resolved_disable_stub_listener", "ids": ["VARIABLE-SYSTEMD_RESOLVED_DISABLE_STUB_LISTENER"]}
 {"alias": "tag facet", "ids": ["CONCEPT-KB_NAVIGATION"]}
 {"alias": "taint nodes", "ids": ["CONFIG-NODE_LABELS_TAINTS"]}
+{"alias": "talos 0.10 fixed in", "ids": ["TROUBLE-TALOS_0_10_DEFECTS"]}
+{"alias": "talos 0.10 known issues", "ids": ["TROUBLE-TALOS_0_10_DEFECTS"]}
+{"alias": "talos 0.11 fixed in", "ids": ["TROUBLE-TALOS_0_11_DEFECTS"]}
+{"alias": "talos 0.11 known issues", "ids": ["TROUBLE-TALOS_0_11_DEFECTS"]}
+{"alias": "talos 0.12 fixed in", "ids": ["TROUBLE-TALOS_0_12_DEFECTS"]}
+{"alias": "talos 0.12 known issues", "ids": ["TROUBLE-TALOS_0_12_DEFECTS"]}
+{"alias": "talos 0.13 fixed in", "ids": ["TROUBLE-TALOS_0_13_DEFECTS"]}
+{"alias": "talos 0.13 known issues", "ids": ["TROUBLE-TALOS_0_13_DEFECTS"]}
+{"alias": "talos 0.14 fixed in", "ids": ["TROUBLE-TALOS_0_14_DEFECTS"]}
+{"alias": "talos 0.14 known issues", "ids": ["TROUBLE-TALOS_0_14_DEFECTS"]}
+{"alias": "talos 0.8 fixed in", "ids": ["TROUBLE-TALOS_0_8_DEFECTS"]}
+{"alias": "talos 0.8 known issues", "ids": ["TROUBLE-TALOS_0_8_DEFECTS"]}
+{"alias": "talos 0.9 fixed in", "ids": ["TROUBLE-TALOS_0_9_DEFECTS"]}
+{"alias": "talos 0.9 known issues", "ids": ["TROUBLE-TALOS_0_9_DEFECTS"]}
+{"alias": "talos 1.0 fixed in", "ids": ["TROUBLE-TALOS_1_0_DEFECTS"]}
+{"alias": "talos 1.0 known issues", "ids": ["TROUBLE-TALOS_1_0_DEFECTS"]}
+{"alias": "talos 1.1 fixed in", "ids": ["TROUBLE-TALOS_1_1_DEFECTS"]}
+{"alias": "talos 1.1 known issues", "ids": ["TROUBLE-TALOS_1_1_DEFECTS"]}
+{"alias": "talos 1.10 fixed in", "ids": ["TROUBLE-TALOS_1_10_DEFECTS"]}
+{"alias": "talos 1.10 known issues", "ids": ["TROUBLE-TALOS_1_10_DEFECTS"]}
+{"alias": "talos 1.11 fixed in", "ids": ["TROUBLE-TALOS_1_11_DEFECTS"]}
+{"alias": "talos 1.11 known issues", "ids": ["TROUBLE-TALOS_1_11_DEFECTS"]}
+{"alias": "talos 1.12 fixed in", "ids": ["TROUBLE-TALOS_1_12_DEFECTS"]}
+{"alias": "talos 1.12 known issues", "ids": ["TROUBLE-TALOS_1_12_DEFECTS"]}
+{"alias": "talos 1.13 fixed in", "ids": ["TROUBLE-TALOS_1_13_DEFECTS"]}
+{"alias": "talos 1.13 known issues", "ids": ["TROUBLE-TALOS_1_13_DEFECTS"]}
 {"alias": "talos 1.13 kubernetes versions", "ids": ["CONCEPT-TALOS_K8S_MATRIX"]}
+{"alias": "talos 1.2 fixed in", "ids": ["TROUBLE-TALOS_1_2_DEFECTS"]}
+{"alias": "talos 1.2 known issues", "ids": ["TROUBLE-TALOS_1_2_DEFECTS"]}
+{"alias": "talos 1.3 fixed in", "ids": ["TROUBLE-TALOS_1_3_DEFECTS"]}
+{"alias": "talos 1.3 known issues", "ids": ["TROUBLE-TALOS_1_3_DEFECTS"]}
+{"alias": "talos 1.4 fixed in", "ids": ["TROUBLE-TALOS_1_4_DEFECTS"]}
+{"alias": "talos 1.4 known issues", "ids": ["TROUBLE-TALOS_1_4_DEFECTS"]}
+{"alias": "talos 1.5 fixed in", "ids": ["TROUBLE-TALOS_1_5_DEFECTS"]}
+{"alias": "talos 1.5 known issues", "ids": ["TROUBLE-TALOS_1_5_DEFECTS"]}
+{"alias": "talos 1.6 fixed in", "ids": ["TROUBLE-TALOS_1_6_DEFECTS"]}
+{"alias": "talos 1.6 known issues", "ids": ["TROUBLE-TALOS_1_6_DEFECTS"]}
+{"alias": "talos 1.7 fixed in", "ids": ["TROUBLE-TALOS_1_7_DEFECTS"]}
+{"alias": "talos 1.7 known issues", "ids": ["TROUBLE-TALOS_1_7_DEFECTS"]}
+{"alias": "talos 1.8 fixed in", "ids": ["TROUBLE-TALOS_1_8_DEFECTS"]}
+{"alias": "talos 1.8 known issues", "ids": ["TROUBLE-TALOS_1_8_DEFECTS"]}
+{"alias": "talos 1.9 fixed in", "ids": ["TROUBLE-TALOS_1_9_DEFECTS"]}
+{"alias": "talos 1.9 known issues", "ids": ["TROUBLE-TALOS_1_9_DEFECTS"]}
 {"alias": "talos backup secrets", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
 {"alias": "talos bare metal provisioning", "ids": ["CONCEPT-TALOS_PROVISIONING"]}
 {"alias": "talos best practices", "ids": ["PRACTICE-TALOS_PRODUCTION"]}
@@ -3946,6 +4683,22 @@
 {"alias": "x509 kubelet exec", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "x509 unknown authority pull", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
 {"alias": "youki", "ids": ["COMPONENT-YOUKI", "TAG-YOUKI"]}
+{"alias": "youki 0.0 fixed in", "ids": ["TROUBLE-YOUKI_0_0_DEFECTS"]}
+{"alias": "youki 0.0 known issues", "ids": ["TROUBLE-YOUKI_0_0_DEFECTS"]}
+{"alias": "youki 0.1 fixed in", "ids": ["TROUBLE-YOUKI_0_1_DEFECTS"]}
+{"alias": "youki 0.1 known issues", "ids": ["TROUBLE-YOUKI_0_1_DEFECTS"]}
+{"alias": "youki 0.2 fixed in", "ids": ["TROUBLE-YOUKI_0_2_DEFECTS"]}
+{"alias": "youki 0.2 known issues", "ids": ["TROUBLE-YOUKI_0_2_DEFECTS"]}
+{"alias": "youki 0.3 fixed in", "ids": ["TROUBLE-YOUKI_0_3_DEFECTS"]}
+{"alias": "youki 0.3 known issues", "ids": ["TROUBLE-YOUKI_0_3_DEFECTS"]}
+{"alias": "youki 0.4 fixed in", "ids": ["TROUBLE-YOUKI_0_4_DEFECTS"]}
+{"alias": "youki 0.4 known issues", "ids": ["TROUBLE-YOUKI_0_4_DEFECTS"]}
+{"alias": "youki 0.5 fixed in", "ids": ["TROUBLE-YOUKI_0_5_DEFECTS"]}
+{"alias": "youki 0.5 known issues", "ids": ["TROUBLE-YOUKI_0_5_DEFECTS"]}
+{"alias": "youki 0.6 fixed in", "ids": ["TROUBLE-YOUKI_0_6_DEFECTS"]}
+{"alias": "youki 0.6 known issues", "ids": ["TROUBLE-YOUKI_0_6_DEFECTS"]}
+{"alias": "youki 0.7 fixed in", "ids": ["TROUBLE-YOUKI_0_7_DEFECTS"]}
+{"alias": "youki 0.7 known issues", "ids": ["TROUBLE-YOUKI_0_7_DEFECTS"]}
 {"alias": "youki action required upgrade", "ids": ["TROUBLE-YOUKI_BREAKING_CHANGES"]}
 {"alias": "youki breaking changes", "ids": ["TROUBLE-YOUKI_BREAKING_CHANGES"]}
 {"alias": "youki upgrade broke", "ids": ["TROUBLE-YOUKI_BREAKING_CHANGES"]}
