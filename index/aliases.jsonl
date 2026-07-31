@@ -870,11 +870,13 @@
 {"alias": "cilium 1.18 fixed in", "ids": ["TROUBLE-CILIUM_1_18_DEFECTS"]}
 {"alias": "cilium 1.18 known issues", "ids": ["TROUBLE-CILIUM_1_18_DEFECTS"]}
 {"alias": "cilium 1.18 packet drops upgrade", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
+{"alias": "cilium 1.18 to 1.19 upgrade", "ids": ["UPGRADE-CILIUM_1_18_TO_1_19"]}
 {"alias": "cilium 1.18.4 known issues", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
 {"alias": "cilium 1.19 fixed in", "ids": ["TROUBLE-CILIUM_1_19_DEFECTS"]}
 {"alias": "cilium 1.19 ipsec kernel bug", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "cilium 1.19 known issues", "ids": ["TROUBLE-CILIUM_1_19_DEFECTS"]}
 {"alias": "cilium 1.19 upgrade agent crashloop flag", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
+{"alias": "cilium 1.19 what gets fixed", "ids": ["UPGRADE-CILIUM_1_18_TO_1_19"]}
 {"alias": "cilium 1.6 fixed in", "ids": ["TROUBLE-CILIUM_1_6_DEFECTS"]}
 {"alias": "cilium 1.6 known issues", "ids": ["TROUBLE-CILIUM_1_6_DEFECTS"]}
 {"alias": "cilium 1.7 fixed in", "ids": ["TROUBLE-CILIUM_1_7_DEFECTS"]}
@@ -4214,6 +4216,7 @@
 {"alias": "set arbitrary kubeletconfiguration field", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
 {"alias": "shim reaper mutex deadlock", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
 {"alias": "short-name did not resolve to an alias", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
+{"alias": "should we move cilium to 1.19", "ids": ["UPGRADE-CILIUM_1_18_TO_1_19"]}
 {"alias": "should we upgrade cilium 1.18", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
 {"alias": "should we upgrade containerd 2.1", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
 {"alias": "sidecar containers 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
@@ -4682,6 +4685,7 @@
 {"alias": "what breaks upgrading aws-ebs-csi", "ids": ["TROUBLE-AWS_EBS_CSI_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading calico", "ids": ["TROUBLE-CALICO_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading cert-manager", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading cilium 1.19", "ids": ["UPGRADE-CILIUM_1_18_TO_1_19"]}
 {"alias": "what breaks upgrading cinder-csi", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading containerd", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading etcd", "ids": ["TROUBLE-ETCD_BREAKING_CHANGES"]}
