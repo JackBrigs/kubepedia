@@ -144,8 +144,7 @@
 {"source": "CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK", "target": "CONCEPT-ADDON_VAULT", "type": "see_also"}
 {"source": "CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK", "target": "TROUBLE-VAULT_SECRETS_WEBHOOK", "type": "see_also"}
-{"source": "CONCEPT-ADDON_VECTOR_OPERATOR", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
-{"source": "CONCEPT-ADDON_VECTOR_OPERATOR", "target": "TROUBLE-VECTOR_OPERATOR", "type": "see_also"}
+{"source": "CONCEPT-ADDON_VECTOR_OPERATOR", "target": "CONCEPT-COMPONENT_INTERACTION_FAILURES", "type": "see_also"}
 {"source": "CONCEPT-ADDON_VELERO", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}
 {"source": "CONCEPT-ADDON_VELERO", "target": "CONCEPT-VELERO", "type": "see_also"}
 {"source": "CONCEPT-ADDON_VM_K8S_STACK", "target": "CONCEPT-ADDON_CATALOG", "type": "see_also"}

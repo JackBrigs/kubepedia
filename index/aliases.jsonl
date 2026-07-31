@@ -189,6 +189,7 @@
 {"alias": "KubeletConfiguration", "ids": ["CONFIG-KUBELET_CONFIGURATION"]}
 {"alias": "Kubernetes Enhancement Proposals", "ids": ["CONCEPT-K8S_KEPS"]}
 {"alias": "LabelCleanupTtl", "ids": ["TROUBLE-KYVERNO_TTL_CLEANUP"]}
+{"alias": "LastAppliedPipelineHash", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
 {"alias": "LegacyServiceAccountTokenCleanUp", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
 {"alias": "MountVolume.SetUp failed", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "MultiCIDRServiceAllocator", "ids": ["CONCEPT-K8S_MULTI_CIDR_SERVICE_ALLOCATOR"]}
@@ -1168,6 +1169,7 @@
 {"alias": "cluster_name", "ids": ["VARIABLE-CLUSTER_NAME"]}
 {"alias": "clusterip unreachable", "ids": ["PRACTICE-SERVICE_NETWORKING_DEBUG"]}
 {"alias": "clustermesh default deny remote", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
+{"alias": "clustervectorpipeline", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
 {"alias": "cni", "ids": ["TAG-CNI"]}
 {"alias": "cni config load failed", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
 {"alias": "cni del never executed after restart", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
@@ -1583,6 +1585,7 @@
 {"alias": "cve overview kubespray", "ids": ["CONCEPT-SECURITY_INDEX"]}
 {"alias": "cve remediation", "ids": ["CONCEPT-CVE_REMEDIATION"]}
 {"alias": "cve tracking", "ids": ["CONCEPT-SECURITY_ADVISORIES"]}
+{"alias": "cvp resource kubernetes", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
 {"alias": "daemonset blocked pod security", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "dashboard addon", "ids": ["CONCEPT-ADDON_KUBERNETES_DASHBOARD"]}
 {"alias": "dashboard oauth2-proxy", "ids": ["TROUBLE-KUBERNETES_DASHBOARD"]}
@@ -2614,7 +2617,6 @@
 {"alias": "k8up empty snapshot permission denied", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
 {"alias": "k8up repository already locked", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
 {"alias": "k8up rwo volume node affinity conflict", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
-{"alias": "kaasops vector", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
 {"alias": "kaasops vector operator", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
 {"alias": "karma", "ids": ["CONCEPT-ADDON_KARMA"]}
 {"alias": "karma alertmanager unreachable", "ids": ["TROUBLE-KARMA"]}
@@ -4586,11 +4588,11 @@
 {"alias": "vault-env cannot authenticate", "ids": ["TROUBLE-VAULT_SECRETS_WEBHOOK"]}
 {"alias": "vault-secrets-webhook", "ids": ["CONCEPT-ADDON_VAULT_SECRETS_WEBHOOK"]}
 {"alias": "vault-secrets-webhook pods stuck", "ids": ["TROUBLE-VAULT_SECRETS_WEBHOOK"]}
-{"alias": "vector logs operator", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
+{"alias": "vector operator", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
 {"alias": "vector pipeline not working", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
 {"alias": "vector pod crashloop config", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
 {"alias": "vector sink auth failed", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
-{"alias": "vector-operator", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
+{"alias": "vectorpipeline configCheckResult false", "ids": ["CONCEPT-ADDON_VECTOR_OPERATOR"]}
 {"alias": "vectorpipeline crd invalid", "ids": ["TROUBLE-VECTOR_OPERATOR"]}
 {"alias": "velero", "ids": ["CONCEPT-VELERO"]}
 {"alias": "velero 1.17 upgrade", "ids": ["TROUBLE-VELERO_UPGRADE_117"]}

@@ -81,6 +81,7 @@ REPOS = {
     "scheduler-plugins": "kubernetes-sigs/scheduler-plugins",
     "helm": "helm/helm",
     "consul-k8s": "hashicorp/consul-k8s",
+    "vector-operator": "kaasops/vector-operator",
     "kata-containers": "kata-containers/kata-containers",
     # оркестратор и дистрибутив
     "kubernetes": "kubernetes/kubernetes",

@@ -1,89 +1,101 @@
 ---
 id: CONCEPT-ADDON_VECTOR_OPERATOR
 type: concept
-title: "vector-operator (kaasops) — addon"
+title: "Add-on: vector-operator (kaasops) — log pipelines as cluster resources"
 status: active
 kubespray_version: null
-kubernetes_version: ">=1.28 <=1.31"
-component_version: "0.3.3"
-verified_at: "2026-07-17"
+kubernetes_version: null
+component_version: ">=0.0.29 <=0.5.0"
+verified_at: "2026-07-31"
 confidence: verified
 aliases:
-  - vector-operator
-  - kaasops vector
-  - vector logs operator
+  - vector operator
+  - clustervectorpipeline
+  - cvp resource kubernetes
+  - vectorpipeline configCheckResult false
+  - LastAppliedPipelineHash
 tags:
-  - addons
+  - addon
   - observability
   - logging
-  - vector
 sources:
   - type: code
-    path: helm/charts/vector-operator/Chart.yaml
-    url: https://raw.githubusercontent.com/kaasops/vector-operator/v0.3.3/helm/charts/vector-operator/Chart.yaml
-    note: "chart 0.7.2 published from git tag v0.3.3; no kubeVersion"
+    path: kaasops/vector-operator api/v1alpha1/vectorpipeline_types.go
+    url: https://github.com/kaasops/vector-operator
+    note: "status fields and the int64 rationale quoted from the type definition at origin/main"
   - type: code
-    path: go.mod
-    url: https://raw.githubusercontent.com/kaasops/vector-operator/v0.3.3/go.mod
-    note: "k8s.io/api v0.31.0, controller-runtime v0.19.0, Go 1.22"
+    path: kaasops/vector-operator config/crd/bases/observability.kaasops.io_*.yaml
+    note: "five CRDs: Vector, VectorPipeline, ClusterVectorPipeline, VectorAggregator, ClusterVectorAggregator"
 relations:
   - type: see_also
-    target: TROUBLE-VECTOR_OPERATOR
-  - type: see_also
-    target: CONCEPT-ADDON_CATALOG
+    target: CONCEPT-COMPONENT_INTERACTION_FAILURES
 ---
 
-# vector-operator (kaasops) — addon
+# Add-on: vector-operator (kaasops) — log pipelines as cluster resources
 
 ## Summary
 
-The kaasops **vector-operator**, chart **0.7.2** → operator app **v0.3.3**, manages Vector
-log pipelines via CRDs. It does **not** ship a fixed Vector version — the managed Vector
-image is user-supplied through the CRD.
+Not part of Kubespray. The operator runs a **Vector agent DaemonSet on every node** to collect
+container and node logs, and turns pipeline configuration into Kubernetes objects instead of files:
+sources, transforms and sinks are declared as CRs and merged by the operator into the Vector config.
+
+Five CRDs, in two pairs plus one: `Vector` (the agent deployment itself), `VectorPipeline` /
+`ClusterVectorPipeline` (namespaced and cluster-scoped pipelines, short names `vp` and `cvp`), and
+`VectorAggregator` / `ClusterVectorAggregator` for the aggregator role.
 
 ## Context
 
-- Class: upstream addon; catalog row in [[CONCEPT-ADDON_CATALOG]].
-- **Version-mapping caveat:** chart 0.7.2 = operator **v0.3.3** (published from that git
-  tag), not a bundled Vector version.
+**The reconcile loop is hash-driven.** Each pipeline's status carries three fields that explain
+everything an operator needs day to day:
 
-## Implementation
+| Status field | Meaning |
+|---|---|
+| `role` | `agent` or `aggregator` — which side of the pipeline this object configures |
+| `configCheckResult` | did the rendered Vector config pass validation (`VALID` column in `kubectl get vp`) |
+| `LastAppliedPipelineHash` | CRC32 of the last **successfully applied** config |
 
-- Chart→app: `vector-operator` chart 0.7.2 → operator **v0.3.3**. Operator image tag is
-  pinned to `Chart.AppVersion` unless overridden.
-- Chart `kubeVersion`: **none** (field absent).
-- v0.3.3 is a single bugfix: propagate `volumes`/`volumeMounts` to the configcheck pod
-  (PR #203). Dual-stack, a configcheck memory-leak fix and buffered event channels arrived
-  only in operator **v0.4.0 / chart 0.8.0** — NOT in 0.7.2.
+On every reconcile the operator hashes the desired pipeline and compares it with
+`LastAppliedPipelineHash`. Equal means "already applied, nothing to do". This is why a pipeline can
+sit unchanged for months with no work being done — and why clearing that field is the accepted way
+to force a full re-render:
 
-## Configuration
+```bash
+kubectl patch cvp <name> --subresource=status --type=merge \
+  -p '{"status":{"LastAppliedPipelineHash":null}}'
+```
 
-- Supply the Vector image explicitly in the CRD (e.g. `timberio/vector:<ver>-distroless`);
-  the chart ships only a commented example.
-- Ensure any `volumes`/`volumeMounts` needed by config validation are set — the exact defect
-  fixed in v0.3.3 was configcheck pods missing them.
+`--type=merge` makes `null` **delete** the key rather than zero it, and `--subresource=status`
+edits observed state, not the spec. The operator then sees "nothing applied yet" and rebuilds.
 
-## Compatibility
+**The field is `int64` for a reason, and the reason is a real defect.** Quoting the type definition:
 
-- **Kubernetes range:** no upstream matrix (**unverified**). Indicator: operator builds
-  against `k8s.io/api v0.31.0` / controller-runtime v0.19.0, which validates against K8s
-  **1.28–1.31** — treat that as the practical tested band; higher minors (1.32–1.35) are
-  unverified.
-- **CVEs:** none found (OSV empty for `github.com/kaasops/vector-operator`).
+> It is stored as an int64 because a uint32 can exceed the int32 upper bound (2147483647); an int32
+> field would reject roughly half of all hash values and leave the pipeline stuck with
+> `configCheckResult=false`.
 
-## Upstream issues & upgrade notes (mined 2026-07-19)
+So a pipeline stuck at `VALID=false` on an older operator may be nothing to do with the pipeline: a
+hash above the int32 boundary was rejected by the API server. Upgrading the operator (or clearing
+the hash) is the remedy, not rewriting the pipeline.
 
-**Future upgrade context** beyond pinned **0.3.3** (from upstream releases): actively maintained (releases every 1–2 months); latest **0.4.1**. **0.4.0** adds **dual-stack** support and a testing framework; **no breaking changes** in the 0.3→0.4 line. Newer versions may widen the older 1.28–1.31 K8s window — verify before adopting on 1.32+.
+**Config validation runs in a separate pod.** The operator renders the merged config and validates
+it before applying, so a broken pipeline is normally caught with `configCheckResult=false` and a
+`reason`, rather than by a crash-looping agent.
 
-## Older-version CVEs & security history (mined 2026-07-19)
+## Known Issues
 
-The kaasops vector-operator is a small project with no notable CVE record; older-version exposure is the **user-supplied Vector image** (Vector's own CVEs) and base images. Since the Vector version is set via the CRD, patch **Vector** independently of the operator; the operator itself is low-CVE-surface.
+**A `VALID=false` pipeline does not stop the others**, but it does not participate either: its
+sources are absent from the merged config, so those logs are simply not collected. Nothing alerts on
+this by default — the object sits in the list with `false` and everything else keeps working.
 
-## Guides & how-to (official)
+**Forcing a re-render restarts log shipping on the agents.** Vector reloads with the new config;
+whatever it had not yet flushed depends on the sink's buffering and on whether checkpointing is
+enabled. For audit logs this is the difference between a gap and a delay.
 
-- **Docs/repo:** https://github.com/kaasops/vector-operator (see `docs/`, quick-start)
-- **How to upgrade:** `helm upgrade` the chart; CRDs backward-compatible 0.3→0.4 (no breaking). The **Vector image is user-supplied via the CRD** — upgrade Vector independently of the operator.
+**Clearing the hash is diagnosis, not repair.** It makes the reconcile loop run again; if the
+pipeline drifts repeatedly, the cause is elsewhere and the patch will be needed every time.
+
 ## References
 
-- `Chart.yaml`, `go.mod`, release v0.3.3 / PR #203 (above).
-- Catalog: [[CONCEPT-ADDON_CATALOG]].
+- `api/v1alpha1/vectorpipeline_types.go` and `config/crd/bases/observability.kaasops.io_*.yaml`
+  at `origin/main`, read 2026-07-31; upstream issue #232 is cited in the type definition itself.
+- Interaction failures between add-ons: [[CONCEPT-COMPONENT_INTERACTION_FAILURES]].
