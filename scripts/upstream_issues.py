@@ -212,6 +212,40 @@ def changelog_notes(path):
     return {v: s for v, s in out.items() if s}
 
 
+# Часть проектов в теле релиза лишь ссылается на текст в другом месте: aws-ebs-csi —
+# на CHANGELOG.md в корне, metallb — на свой сайт, который собирается из репозитория.
+# По API там пусто, поэтому файл забирается напрямую.
+RAW_NOTES = {
+    "aws-ebs-csi": ["https://raw.githubusercontent.com/kubernetes-sigs/aws-ebs-csi-driver/master/CHANGELOG.md"],
+    "metallb": ["https://raw.githubusercontent.com/metallb/metallb/main/website/content/release-notes/_index.md"],
+}
+
+
+def raw_notes(urls):
+    """Заметки одним файлом: версия берётся из заголовка, дальше разбор общий."""
+    out = {}
+    for url in urls:
+        try:
+            with urllib.request.urlopen(
+                    urllib.request.Request(url, headers={"User-Agent": "kubepedia-issues"}), timeout=60) as r:
+                text = r.read().decode("utf-8", "replace")
+        except Exception as exc:                       # noqa: BLE001
+            print(f"  ! не удалось забрать {url}: {exc}", file=sys.stderr)
+            continue
+        for chunk in re.split(r"(?m)^(?=#{1,3}\s+(?:v|Version\s+)?\d+\.\d+\.\d+)", text):
+            h = re.match(r"^#{1,3}\s+(?:v|Version\s+)?(\d+\.\d+\.\d+[^\s]*)", chunk)
+            if not h:
+                continue
+            ver = h.group(1)
+            if re.search(r"-(rc|alpha|beta)", ver, re.I):
+                continue
+            for sec, txt in bullets(chunk):
+                key = classify(txt, sec)
+                if key:
+                    out.setdefault(ver, {}).setdefault(key, []).append(txt)
+    return out
+
+
 def kubernetes_notes(minors=None):
     """У Kubernetes заметки — отдельный CHANGELOG на каждую минорную версию.
 
@@ -355,7 +389,9 @@ def main():
         if name not in REPOS:
             print(f"[skip] {name}: нет в карте репозиториев", file=sys.stderr)
             continue
-        if name == "kubernetes":
+        if name in RAW_NOTES:
+            data, source = raw_notes(RAW_NOTES[name]), "заметки одним файлом"
+        elif name == "kubernetes":
             data, source = kubernetes_notes(), "CHANGELOG по минорным версиям"
         else:
             data, source = from_clone(name)

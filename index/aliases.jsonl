@@ -443,6 +443,33 @@
 {"alias": "auto_renew_certificates_systemd_calendar", "ids": ["VARIABLE-AUTO_RENEW_CERTIFICATES_SYSTEMD_CALENDAR"]}
 {"alias": "automatic dns records kubernetes", "ids": ["CONCEPT-EXTERNAL_DNS"]}
 {"alias": "aws-ebs-csi", "ids": ["COMPONENT-AWS_EBS_CSI"]}
+{"alias": "aws-ebs-csi 0.10 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_0_10_DEFECTS"]}
+{"alias": "aws-ebs-csi 0.10 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_0_10_DEFECTS"]}
+{"alias": "aws-ebs-csi 0.6 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_0_6_DEFECTS"]}
+{"alias": "aws-ebs-csi 0.6 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_0_6_DEFECTS"]}
+{"alias": "aws-ebs-csi 0.9 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_0_9_DEFECTS"]}
+{"alias": "aws-ebs-csi 0.9 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_0_9_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.0 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_1_0_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.0 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_1_0_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.1 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_1_1_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.1 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_1_1_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.13 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_1_13_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.13 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_1_13_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.18 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_1_18_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.18 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_1_18_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.2 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_1_2_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.2 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_1_2_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.22 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_1_22_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.22 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_1_22_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.3 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_1_3_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.3 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_1_3_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.30 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_1_30_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.30 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_1_30_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.7 fixed in", "ids": ["TROUBLE-AWS_EBS_CSI_1_7_DEFECTS"]}
+{"alias": "aws-ebs-csi 1.7 known issues", "ids": ["TROUBLE-AWS_EBS_CSI_1_7_DEFECTS"]}
+{"alias": "aws-ebs-csi action required upgrade", "ids": ["TROUBLE-AWS_EBS_CSI_BREAKING_CHANGES"]}
+{"alias": "aws-ebs-csi breaking changes", "ids": ["TROUBLE-AWS_EBS_CSI_BREAKING_CHANGES"]}
+{"alias": "aws-ebs-csi upgrade broke", "ids": ["TROUBLE-AWS_EBS_CSI_BREAKING_CHANGES"]}
 {"alias": "aws-ebs-csi-driver", "ids": ["TAG-AWS_EBS_CSI_DRIVER"]}
 {"alias": "aws_ebs_availability_zones", "ids": ["VARIABLE-AWS_EBS_AVAILABILITY_ZONES"]}
 {"alias": "aws_ebs_csi_controller_replicas", "ids": ["VARIABLE-AWS_EBS_CSI_CONTROLLER_REPLICAS"]}
@@ -2516,6 +2543,7 @@
 {"alias": "is my cluster healthy", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
 {"alias": "is my cluster secure", "ids": ["CONCEPT-SECURITY_INDEX"]}
 {"alias": "is this argo-cd bug already fixed", "ids": ["TROUBLE-ARGO_CD_0_11_DEFECTS", "TROUBLE-ARGO_CD_0_12_DEFECTS", "TROUBLE-ARGO_CD_0_7_DEFECTS", "TROUBLE-ARGO_CD_0_8_DEFECTS", "TROUBLE-ARGO_CD_0_9_DEFECTS", "TROUBLE-ARGO_CD_1_0_DEFECTS", "TROUBLE-ARGO_CD_1_1_DEFECTS", "TROUBLE-ARGO_CD_1_2_DEFECTS", "TROUBLE-ARGO_CD_1_3_DEFECTS", "TROUBLE-ARGO_CD_1_4_DEFECTS", "TROUBLE-ARGO_CD_1_5_DEFECTS", "TROUBLE-ARGO_CD_1_6_DEFECTS", "TROUBLE-ARGO_CD_1_7_DEFECTS", "TROUBLE-ARGO_CD_1_8_DEFECTS", "TROUBLE-ARGO_CD_2_0_DEFECTS", "TROUBLE-ARGO_CD_2_1_DEFECTS", "TROUBLE-ARGO_CD_2_2_DEFECTS", "TROUBLE-ARGO_CD_2_3_DEFECTS", "TROUBLE-ARGO_CD_2_4_DEFECTS"]}
+{"alias": "is this aws-ebs-csi bug already fixed", "ids": ["TROUBLE-AWS_EBS_CSI_0_10_DEFECTS", "TROUBLE-AWS_EBS_CSI_0_6_DEFECTS", "TROUBLE-AWS_EBS_CSI_0_9_DEFECTS", "TROUBLE-AWS_EBS_CSI_1_0_DEFECTS", "TROUBLE-AWS_EBS_CSI_1_13_DEFECTS", "TROUBLE-AWS_EBS_CSI_1_18_DEFECTS", "TROUBLE-AWS_EBS_CSI_1_1_DEFECTS", "TROUBLE-AWS_EBS_CSI_1_22_DEFECTS", "TROUBLE-AWS_EBS_CSI_1_2_DEFECTS", "TROUBLE-AWS_EBS_CSI_1_30_DEFECTS", "TROUBLE-AWS_EBS_CSI_1_3_DEFECTS", "TROUBLE-AWS_EBS_CSI_1_7_DEFECTS"]}
 {"alias": "is this azure-csi bug already fixed", "ids": ["TROUBLE-AZURE_CSI_1_10_DEFECTS", "TROUBLE-AZURE_CSI_1_12_DEFECTS", "TROUBLE-AZURE_CSI_1_25_DEFECTS", "TROUBLE-AZURE_CSI_1_26_DEFECTS", "TROUBLE-AZURE_CSI_1_27_DEFECTS", "TROUBLE-AZURE_CSI_1_28_DEFECTS", "TROUBLE-AZURE_CSI_1_29_DEFECTS", "TROUBLE-AZURE_CSI_1_30_DEFECTS", "TROUBLE-AZURE_CSI_1_31_DEFECTS", "TROUBLE-AZURE_CSI_1_32_DEFECTS", "TROUBLE-AZURE_CSI_1_33_DEFECTS", "TROUBLE-AZURE_CSI_1_34_DEFECTS", "TROUBLE-AZURE_CSI_1_3_DEFECTS", "TROUBLE-AZURE_CSI_1_5_DEFECTS", "TROUBLE-AZURE_CSI_1_6_DEFECTS", "TROUBLE-AZURE_CSI_1_8_DEFECTS", "TROUBLE-AZURE_CSI_1_9_DEFECTS"]}
 {"alias": "is this calico bug already fixed", "ids": ["TROUBLE-CALICO_3_0_DEFECTS", "TROUBLE-CALICO_3_1_DEFECTS", "TROUBLE-CALICO_3_27_DEFECTS", "TROUBLE-CALICO_3_29_DEFECTS", "TROUBLE-CALICO_3_30_DEFECTS", "TROUBLE-CALICO_3_31_DEFECTS", "TROUBLE-CALICO_3_32_DEFECTS"]}
 {"alias": "is this cert-manager bug already fixed", "ids": ["TROUBLE-CERT_MANAGER_0_12_DEFECTS", "TROUBLE-CERT_MANAGER_0_13_DEFECTS", "TROUBLE-CERT_MANAGER_0_14_DEFECTS", "TROUBLE-CERT_MANAGER_0_15_DEFECTS", "TROUBLE-CERT_MANAGER_0_2_DEFECTS", "TROUBLE-CERT_MANAGER_0_3_DEFECTS", "TROUBLE-CERT_MANAGER_0_4_DEFECTS", "TROUBLE-CERT_MANAGER_0_5_DEFECTS", "TROUBLE-CERT_MANAGER_0_6_DEFECTS", "TROUBLE-CERT_MANAGER_0_7_DEFECTS", "TROUBLE-CERT_MANAGER_0_8_DEFECTS", "TROUBLE-CERT_MANAGER_0_9_DEFECTS", "TROUBLE-CERT_MANAGER_1_0_DEFECTS", "TROUBLE-CERT_MANAGER_1_11_DEFECTS", "TROUBLE-CERT_MANAGER_1_12_DEFECTS", "TROUBLE-CERT_MANAGER_1_13_DEFECTS", "TROUBLE-CERT_MANAGER_1_14_DEFECTS", "TROUBLE-CERT_MANAGER_1_15_DEFECTS", "TROUBLE-CERT_MANAGER_1_16_DEFECTS", "TROUBLE-CERT_MANAGER_1_17_DEFECTS", "TROUBLE-CERT_MANAGER_1_18_DEFECTS", "TROUBLE-CERT_MANAGER_1_19_DEFECTS", "TROUBLE-CERT_MANAGER_1_1_DEFECTS", "TROUBLE-CERT_MANAGER_1_20_DEFECTS", "TROUBLE-CERT_MANAGER_1_21_DEFECTS", "TROUBLE-CERT_MANAGER_1_3_DEFECTS", "TROUBLE-CERT_MANAGER_1_4_DEFECTS", "TROUBLE-CERT_MANAGER_1_5_DEFECTS", "TROUBLE-CERT_MANAGER_1_6_DEFECTS", "TROUBLE-CERT_MANAGER_1_7_DEFECTS"]}
@@ -2540,6 +2568,7 @@
 {"alias": "is this kubernetes bug already fixed", "ids": ["TROUBLE-KUBERNETES_1_28_DEFECTS", "TROUBLE-KUBERNETES_1_29_DEFECTS", "TROUBLE-KUBERNETES_1_30_DEFECTS", "TROUBLE-KUBERNETES_1_31_DEFECTS", "TROUBLE-KUBERNETES_1_32_DEFECTS", "TROUBLE-KUBERNETES_1_33_DEFECTS", "TROUBLE-KUBERNETES_1_34_DEFECTS", "TROUBLE-KUBERNETES_1_35_DEFECTS", "TROUBLE-KUBERNETES_1_36_DEFECTS"]}
 {"alias": "is this kubespray bug already fixed", "ids": ["TROUBLE-KUBESPRAY_2_10_DEFECTS", "TROUBLE-KUBESPRAY_2_11_DEFECTS", "TROUBLE-KUBESPRAY_2_14_DEFECTS", "TROUBLE-KUBESPRAY_2_15_DEFECTS", "TROUBLE-KUBESPRAY_2_17_DEFECTS", "TROUBLE-KUBESPRAY_2_18_DEFECTS", "TROUBLE-KUBESPRAY_2_19_DEFECTS", "TROUBLE-KUBESPRAY_2_20_DEFECTS", "TROUBLE-KUBESPRAY_2_21_DEFECTS", "TROUBLE-KUBESPRAY_2_22_DEFECTS", "TROUBLE-KUBESPRAY_2_23_DEFECTS", "TROUBLE-KUBESPRAY_2_24_DEFECTS", "TROUBLE-KUBESPRAY_2_25_DEFECTS", "TROUBLE-KUBESPRAY_2_26_DEFECTS", "TROUBLE-KUBESPRAY_2_27_DEFECTS", "TROUBLE-KUBESPRAY_2_28_DEFECTS", "TROUBLE-KUBESPRAY_2_29_DEFECTS", "TROUBLE-KUBESPRAY_2_30_DEFECTS", "TROUBLE-KUBESPRAY_2_31_DEFECTS", "TROUBLE-KUBESPRAY_2_8_DEFECTS"]}
 {"alias": "is this local-path-provisioner bug already fixed", "ids": ["TROUBLE-LOCAL_PATH_PROVISIONER_0_0_DEFECTS"]}
+{"alias": "is this metallb bug already fixed", "ids": ["TROUBLE-METALLB_0_10_DEFECTS", "TROUBLE-METALLB_0_13_DEFECTS", "TROUBLE-METALLB_0_14_DEFECTS", "TROUBLE-METALLB_0_16_DEFECTS", "TROUBLE-METALLB_0_8_DEFECTS", "TROUBLE-METALLB_0_9_DEFECTS"]}
 {"alias": "is this metrics-server bug already fixed", "ids": ["TROUBLE-METRICS_SERVER_0_5_DEFECTS"]}
 {"alias": "is this nerdctl bug already fixed", "ids": ["TROUBLE-NERDCTL_1_3_DEFECTS", "TROUBLE-NERDCTL_2_0_DEFECTS", "TROUBLE-NERDCTL_2_3_DEFECTS"]}
 {"alias": "is this node-feature-discovery bug already fixed", "ids": ["TROUBLE-NODE_FEATURE_DISCOVERY_0_10_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_12_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_13_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_14_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_15_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_16_DEFECTS", "TROUBLE-NODE_FEATURE_DISCOVERY_0_19_DEFECTS"]}
@@ -3435,6 +3464,18 @@
 {"alias": "memorySwap swapBehavior", "ids": ["CONCEPT-K8S_NODE_SWAP"]}
 {"alias": "meta.helm.sh/release-name", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
 {"alias": "metallb", "ids": ["COMPONENT-METALLB", "TAG-METALLB"]}
+{"alias": "metallb 0.10 fixed in", "ids": ["TROUBLE-METALLB_0_10_DEFECTS"]}
+{"alias": "metallb 0.10 known issues", "ids": ["TROUBLE-METALLB_0_10_DEFECTS"]}
+{"alias": "metallb 0.13 fixed in", "ids": ["TROUBLE-METALLB_0_13_DEFECTS"]}
+{"alias": "metallb 0.13 known issues", "ids": ["TROUBLE-METALLB_0_13_DEFECTS"]}
+{"alias": "metallb 0.14 fixed in", "ids": ["TROUBLE-METALLB_0_14_DEFECTS"]}
+{"alias": "metallb 0.14 known issues", "ids": ["TROUBLE-METALLB_0_14_DEFECTS"]}
+{"alias": "metallb 0.16 fixed in", "ids": ["TROUBLE-METALLB_0_16_DEFECTS"]}
+{"alias": "metallb 0.16 known issues", "ids": ["TROUBLE-METALLB_0_16_DEFECTS"]}
+{"alias": "metallb 0.8 fixed in", "ids": ["TROUBLE-METALLB_0_8_DEFECTS"]}
+{"alias": "metallb 0.8 known issues", "ids": ["TROUBLE-METALLB_0_8_DEFECTS"]}
+{"alias": "metallb 0.9 fixed in", "ids": ["TROUBLE-METALLB_0_9_DEFECTS"]}
+{"alias": "metallb 0.9 known issues", "ids": ["TROUBLE-METALLB_0_9_DEFECTS"]}
 {"alias": "metallb address pool", "ids": ["TROUBLE-METALLB_SERVICE_PENDING"]}
 {"alias": "metallb bgp session down", "ids": ["TROUBLE-METALLB_BGP_SESSION_DOWN"]}
 {"alias": "metallb configmap ignored", "ids": ["TROUBLE-METALLB_CONFIG_CRD_FRR"]}
@@ -4629,6 +4670,7 @@
 {"alias": "webhook x509 after install", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
 {"alias": "what breaks at scale", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "what breaks upgrading argo-cd", "ids": ["TROUBLE-ARGO_CD_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading aws-ebs-csi", "ids": ["TROUBLE-AWS_EBS_CSI_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading calico", "ids": ["TROUBLE-CALICO_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading cert-manager", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading cilium", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}

@@ -1,0 +1,177 @@
+{
+ "0.16.1": {
+  "bug fixes": [
+   "Fix helm chart rendering issue when default values are provided. (#3058, @fedepaol)",
+   "Fixed BGPPeer v1beta2 schema: `localASN` now correctly declares `format: int64` (was `int32`, which cannot represent the declared `Maximum=4294967295`). (#3054, @lexfrei)",
+   "Fixed controller health probes and the health bind address is now configurable and defaults to all interfaces (#3062, @Jakob3xD)"
+  ]
+ },
+ "0.16.0": {
+  "bug fixes": [
+   "Allocation: fix the AllocationFailed event to indicate when the pool doesn't have any IPs left. (#2891, @oribon)",
+   "Fix ConfigurationState to be updated when the resource is recreated. (#2953, @oribon)",
+   "Fix L2 speaker election ignoring service selectors, making sure only the relevant L2Advertisements for the service are considered. (#3014, @oribon)",
+   "Fix never changing session down metric with peer address in native mode. All the other events are generated with address:port, here we restore to the original format with the address only. (#2879, @fedepaol)",
+   "Fixes invalid maximum value in CRD validation of ASNs in Kubernetes v1.36.0 (#3035, @PseudoResonance)",
+   "L2Status controller: fix a scenario where two speakers try to modify the same status resource (#2938, @oribon)"
+  ]
+ },
+ "0.15.3": {
+  "security updates": [
+   "Fix of vulnerability in docker images (CVE-2025-22874) (#2801, @jgoodall)"
+  ]
+ },
+ "0.15.0": {
+  "bug fixes": [
+   "Bug Fix : When both namespace and service selectors are absent in ServiceAllocation spec of IPAddressPool, we now default to selecting everything using `labels.Everything()` for ServiceSelectors. (#2714, @ashikjm)",
+   "Fix the ServiceL2Status controller attempting to overwrite resources that do not belong to its node. (#2712, @oribon)"
+  ]
+ },
+ "0.14.9": {
+  "bug fixes": [
+   "Fix default BGPPeer hold/keepalive timers being incompatible with FRRConfigurations. We now delegate the defaults to FRR itself instead of hard-coding them, supporting 0 timers as well. (#2537, @oribon)",
+   "Fixed Community resources updates being denied without explanation. (#2608, @oribon)",
+   "DOC: Fixes example of L2Advertisement (#2564, @ppeereb1)",
+   "DOC: Fix the mermaid schemes for the Issues On Calico page (#2513, @thommelutten)"
+  ]
+ },
+ "0.14.8": {
+  "bug fixes": [
+   "Fix the broken all-in-one/kustomize manifests from v0.14.7."
+  ]
+ },
+ "0.14.7": {
+  "bug fixes": [
+   "Fix the double immutable field validation in the ServiceL2Status CRD, which may make the validation of the CRD to fail. (#2461, @fedepaol)"
+  ]
+ },
+ "0.14.6": {
+  "bug fixes": [
+   "Fix session flapping when adding / removing services and BFD is enabled. (#2454, @fedepaol)",
+   "Fix(chart,prometheusrules): alert not matching labels for e.g. speakers (#2453, @sebastiangaiser)"
+  ]
+ },
+ "0.14.5": {
+  "bug fixes": [
+   "Fix the handling of readyness conditions of endpointslices: instead of looking at the serving condition first, we look at the ready condition. This allows metallb to respect the publishNotReadyAddresses field of the services. (#2337, @farodin91)"
+  ]
+ },
+ "0.14.4": {
+  "bug fixes": [
+   "Fix the non existing conversion webhook in the Helm CRDs ([PR 2269](https://github.com/metallb/metallb/pull/2269))",
+   "Helm: fix the creation of the metrics-certs volume under the presence of the speakerMetricsTLSSecret value, regardless of FRR being enabled ([PR 2286](https://github.com/metallb/metallb/pull/2286))"
+  ]
+ },
+ "0.13.11": {
+  "bug fixes": [
+   "Fix kustomize v5 deprecations ([PR 1986](https://github.com/metallb/metallb/pull/1986), [Issue 1985](https://github.com/metallb/metallb/issues/1985))"
+  ]
+ },
+ "0.13.7": {
+  "bug fixes": [
+   "Fix service monitor relabelings in Helm charts ([PR 1650](https://github.com/metallb/metallb/pull/1650))"
+  ]
+ },
+ "0.13.3": {
+  "bug fixes": [
+   "Fix images on ARM broken in 0.13.2 ([PR 1478](https://github.com/metallb/metallb/pull/1478))"
+  ]
+ },
+ "0.13.2": {
+  "bug fixes": [
+   "Logging: Avoid printing microseconds, fix the calling site for each log ([PR #1351](https://github.com/metallb/metallb/pull/1351))",
+   "IPV6 / FRR: fix single hop ebgp next hop tracking ([PR #1367](https://github.com/metallb/metallb/pull/1367))",
+   "A race condition happening when the speaker container was slower than the frr one was fixed ([PR 1463](https://github.com/metallb/metallb/pull/1463))"
+  ]
+ },
+ "0.11.0": {
+  "bug fixes": [
+   "Multi-arch images have been fixed to ensure the included busybox is based on the target platform architecture instead of the build platform architecture. Previously this made debugging these running containers more difficult as the included tools were not usable. ([Issue #618](https://github.com/metallb/metallb/issues/618))"
+  ]
+ },
+ "0.10.3": {
+  "bug fixes": [
+   "helm: fix validation of imagePullSecrets ([Issue #897](https://github.com/metallb/metallb/issues/897))",
+   "Resolve issue in EndpointSlice support that caused excessive log spam. ([Issue #899](https://github.com/metallb/metallb/issues/899)) ([Issue #901](https://github.com/metallb/metallb/issues/901)) ([Issue #978](https://github.com/metallb/metallb/issues/978))",
+   "layer2: Fix a race condition when sending gratuitous ARP or NDP messages where an error on a removed interface would cause MetalLB to skip sending the same message out on the rest of the list of interfaces. ([Issue #681](https://github.com/metallb/metallb/issues/681))"
+  ]
+ },
+ "0.10.2": {
+  "bug fixes": [
+   "Fix a missing RBAC update in the manifests used by the helm chart. ([Issue #878](https://github.com/metallb/metallb/issues/878))"
+  ]
+ },
+ "0.10.1": {
+  "bug fixes": [
+   "Fix the images in `manifests/metallb.yaml` to refer to the images for the release tag instead of the `main` branch. ([Issue #874](https://github.com/metallb/metallb/issues/874))"
+  ]
+ },
+ "0.9.6": {
+  "bug fixes": [
+   "Fix nodeAssigned event on k8s >= 1.20 ([#812](https://github.com/metallb/metallb/pull/812))."
+  ]
+ },
+ "0.9.4": {
+  "bug fixes": [
+   "Fix wrong behavior of the addresses_in_use_total metric under certain conditions ([#627](https://github.com/metallb/metallb/pull/627)).",
+   "Layer 2: Fix Memberlist convergence following a network partition ([#662](https://github.com/metallb/metallb/pull/662))."
+  ]
+ },
+ "0.9.3": {
+  "bug fixes": [
+   "Fix manifests to use container image version `v0.9.3` instead of `main`. Users of `v0.9.2` are encouraged to upgrade, as [manifests included in that release](https://raw.githubusercontent.com/metallb/metallb/v0.9.2/manifests/metallb.yaml) use an incorrect container image version. Those two images happen to match now but, as development continues on `main` branch, they will differ."
+  ]
+ },
+ "0.9.2": {
+  "bug fixes": [
+   "Fix layer2 not sending ARP messages when IP changes ([#520](https://github.com/metallb/metallb/pull/520)). Fixes [#471](https://github.com/metallb/metallb/issues/471).",
+   "Fix to properly expose `address_total` Prometheus metric ([#518](https://github.com/metallb/metallb/pull/518))."
+  ]
+ },
+ "0.8.2": {
+  "bug fixes": [
+   "Fix layer2 node selection when healthy and unhealthy replicas are colocated on a single node. ([#474](https://github.com/metallb/metallb/issues/474))"
+  ]
+ },
+ "0.8.1": {
+  "bug fixes": [
+   "Fix the apiGroup for PodSecurityPolicy, for compatibility with Kubernetes 1.16. ([#458](https://github.com/metallb/metallb/issues/458)).",
+   "Fix speaker posting events with an empty string as the announcing node name. ([#456](https://github.com/metallb/metallb/issues/456)).",
+   "Fix RBAC permissions on speaker, to allow it to post events to all namespaces. ([#455](https://github.com/metallb/metallb/issues/455))."
+  ]
+ },
+ "0.8.0": {
+  "bug fixes": [
+   "Fix address allocation in cases where no addresses were available at service creation, but the deletion of another service subsequently makes one available. ([#413](https://github.com/metallb/metallb/issues/413))",
+   "Fix allocation not updating when the address pool annotation changes. ([#448](https://github.com/metallb/metallb/issues/448)).",
+   "Fix periodic crashes due to `glog` trying to write to disk despite explicit instructions to the contrary. ([#427](https://github.com/metallb/metallb/issues/427))",
+   "Fix `spec.loadBalancerIP` validation on IPv6 clusters. ([#301](https://github.com/metallb/metallb/issues/301))",
+   "Fix BGP Router ID selection on v6 BGP sessions.",
+   "Fix handling of IPv6 addresses in the BGP connection establishment logic.",
+   "Fix incorrect ARP/NDP responses on bonded interfaces. ([#349](https://github.com/metallb/metallb/issues/349))",
+   "Fix ARP/NDP responses sent on interfaces with the NOARP flag. ([#351](https://github.com/metallb/metallb/issues/351))"
+  ]
+ },
+ "0.7.3": {
+  "bug fixes": [
+   "Fix BGP announcement refcounting when using shared IPs. ([#295](https://github.com/metallb/metallb/issues/295))"
+  ]
+ },
+ "0.7.2": {
+  "bug fixes": [
+   "Fix gratuitous ARP and NDP announcements on IP failover. ([#291](https://github.com/metallb/metallb/issues/291))",
+   "Fix BGP dialing on Arm64, by using `x/sys/unix` instead of the `syscall` package. ([#289](https://github.com/metallb/metallb/issues/289))"
+  ]
+ },
+ "0.6.2": {
+  "bug fixes": [
+   "Fix nil pointer deref crash on BGP peers that reject MetalLB's OPEN message too promptly ([#250](https://github.com/metallb/metallb/issues/250))"
+  ]
+ },
+ "0.2.0": {
+  "bug fixes": [
+   "Fix a startup race condition where MetalLB might never allocate an IP for some services.",
+   "Fix yaml indentation in the MetalLB manifests."
+  ]
+ }
+}
