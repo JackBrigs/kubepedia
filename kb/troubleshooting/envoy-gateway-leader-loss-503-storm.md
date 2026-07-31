@@ -35,6 +35,8 @@ relations:
     target: CONCEPT-ADDON_ENVOY_GATEWAY
   - type: see_also
     target: TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI
+  - type: see_also
+    target: TROUBLE-ENVOY_GATEWAY_RESTART_LOOP
 ---
 
 # Envoy Gateway: controller loses leader lease → cluster-wide 503/500 burst
@@ -45,11 +47,11 @@ Hundreds of routes — HTTPRoute and GRPCRoute alike — are logged as answering
 within the same ~100 ms, and applications report it as "gRPC transport died inside the cluster".
 The proxies did not restart and the data plane is healthy.
 
-What happened: the **controller lost its leader-election lease**, exited (cleanly, code 0),
-restarted, and re-translated every route. The trigger for losing the lease is anything that breaks
-the controller's long-lived HTTP/2 connection to the API server — **most reliably, a
-`kube-apiserver` restart**, which any Kubespray `cluster.yml` run or a manual edit of the static-pod
-manifest produces.
+What happened: the **controller lost its leader-election lease**, the process ended, kubelet
+restarted the container, and the new instance re-translated every route. The lease is lost whenever
+a call to it does not return inside its 5-second budget — an API-server restart does that (any
+Kubespray `cluster.yml` run or hand-edit of the static-pod manifest), but so does plain API-server
+slowness. See [[TROUBLE-ENVOY_GATEWAY_RESTART_LOOP]] for the restart mechanics and the fix.
 
 **Read the burst carefully before blaming it.** A re-translation *reports* backend state; it does
 not by itself break working routes. Two very different situations produce the same log flood:
@@ -82,13 +84,17 @@ Two distinct classes, and they mean different things:
 | `no ready endpoints` → **503** | the Service exists, no ready pod behind it *as far as the controller currently knows* |
 | `... not found` → **500** | the Service object is absent from the controller's cache |
 
-The previous container's log names the cause:
+The previous container's log carries the shutdown, but **not** the cause on its last lines:
 
 ```
 Message:... stopped leading
 error: Post "https://<kubernetes-svc-ip>:443/api/v1/namespaces/envoy-gateway/events":
        http2: client connection lost
 ```
+
+`http2: client connection lost` is the dying process failing to write its own event — an artifact of
+shutdown, not the trigger. The trigger sits further up the log (a lease call exceeding its 5-second
+timeout); reading only the tail inverts cause and effect.
 
 ## Context
 

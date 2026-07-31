@@ -1454,6 +1454,8 @@
 {"alias": "envoy gateway 1.6 alpn", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
 {"alias": "envoy gateway 503 no ready endpoints", "ids": ["TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503"]}
 {"alias": "envoy gateway backend tls broke", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
+{"alias": "envoy gateway leader election lost", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
+{"alias": "envoy gateway restarts every 30 minutes", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
 {"alias": "envoy gateway sni san required", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
 {"alias": "envoy in cilium", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "envoy node id mismatch", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
@@ -1695,7 +1697,7 @@
 {"alias": "failed to mount overlay operation not permitted", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
 {"alias": "failed to mount volume", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "failed to pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
-{"alias": "failed to renew lease context deadline exceeded", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
+{"alias": "failed to renew lease context deadline exceeded", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION", "TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
 {"alias": "failed to reserve container name is reserved for", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
 {"alias": "feast feature store", "ids": ["CONCEPT-ADDON_FEAST_OPERATOR"]}
 {"alias": "feast kubectl apply fails", "ids": ["TROUBLE-FEAST_OPERATOR"]}
@@ -1761,6 +1763,7 @@
 {"alias": "gateway api crd 1.4.0 upgrade", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
 {"alias": "gateway api envoy", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
 {"alias": "gateway api routes return 503 suddenly", "ids": ["TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503"]}
+{"alias": "gateway controller crashloop but pod running", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
 {"alias": "gateway-helm", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
 {"alias": "gateway_api", "ids": ["TAG-GATEWAY_API"]}
 {"alias": "gateway_api_channel", "ids": ["VARIABLE-GATEWAY_API_CHANNEL"]}
@@ -2648,6 +2651,7 @@
 {"alias": "leftover vlan interface node", "ids": ["TROUBLE-LEFTOVER_SECONDARY_BOND"]}
 {"alias": "legacy service account token deleted", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
 {"alias": "legacy-token-invalid-since", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
+{"alias": "liveness probe failed 8081 connection refused", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
 {"alias": "liveness probe failing restart", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "loadbalancer ip times out", "ids": ["TROUBLE-METALLB_L2_STRICTARP_UNREACHABLE"]}
 {"alias": "loadbalancer options bare metal", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
@@ -3616,6 +3620,7 @@
 {"alias": "ubuntu_stop_unattended_upgrades", "ids": ["VARIABLE-UBUNTU_STOP_UNATTENDED_UPGRADES"]}
 {"alias": "unable to attach or mount volumes", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "unable to attach or mount volumes timed out", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
+{"alias": "unable to start provider leader election lost", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
 {"alias": "unable to upgrade connection", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "unauthorized image pull", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "unqualified-search-registries", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
