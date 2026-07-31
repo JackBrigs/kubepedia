@@ -1,0 +1,290 @@
+#!/usr/bin/env python3
+"""kubepedia issues — добыча «проблемного слоя» апстрима для компонентов и аддонов.
+
+Отвечает на вопрос «что известно сломанного в той версии, что у нас стоит, и где это
+починили» — по данным самого проекта, а не по памяти модели. Из заметок к релизам
+вытаскиваются три среза:
+
+  * **CVE** — что закрыто и в какой версии каждой линии поддержки;
+  * **несовместимые изменения** — то, что ломает конфигурацию при апгрейде;
+  * **исправления дефектов** — чтобы «а это уже чинили?» решалось чтением, а не воспроизведением.
+
+Два источника, потому что апстримы ведут заметки по-разному:
+
+  local  — клон в `src-cache/<имя>`: файлы `release-notes/*.yaml` (стиль Envoy Gateway)
+           либо `CHANGELOG*.md` / `CHANGELOG/*.md`. Лимитов нет, работает офлайн.
+  api    — GitHub Releases. Без токена это 60 запросов в час на всё про всё, поэтому
+           режим включается только при заданном GITHUB_TOKEN (или `gh auth token`).
+
+    kubepedia issues --list                 # что вообще умеем мыть и что уже клонировано
+    kubepedia issues --component cilium     # один компонент
+    kubepedia issues --all --local-only     # всё, что есть в src-cache
+    kubepedia issues --all                  # плюс API там, где клона нет (нужен токен)
+
+Результат — JSON на компонент в `reports/upstream/<имя>.json` и сводка в
+`reports/UPSTREAM-ISSUES.md`. Документы KDS из этого пишутся руками: инструмент
+собирает факты, но решает, что из них знание, человек.
+"""
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+import urllib.request
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CACHE = os.path.join(ROOT, "src-cache")
+OUT = os.path.join(ROOT, "reports", "upstream")
+
+# компонент -> апстрим-репозиторий. Ключ совпадает с именем каталога в src-cache,
+# если клон уже есть. Список ведётся руками: угадывать репозиторий по имени компонента
+# нельзя — ошибка тут тихо даёт чужие заметки к релизам.
+REPOS = {
+    # ядро кластера и рантаймы
+    "etcd": "etcd-io/etcd",
+    "containerd": "containerd/containerd",
+    "runc": "opencontainers/runc",
+    "cri-o": "cri-o/cri-o",
+    "crun": "containers/crun",
+    "youki": "youki-dev/youki",
+    "nerdctl": "containerd/nerdctl",
+    "skopeo": "containers/skopeo",
+    # сеть
+    "cilium": "cilium/cilium",
+    "calico": "projectcalico/calico",
+    "flannel": "flannel-io/flannel",
+    "kube-ovn": "kubeovn/kube-ovn",
+    "kube-router": "cloudnativelabs/kube-router",
+    "multus": "k8snetworkplumbingwg/multus-cni",
+    "cni-plugins": "containernetworking/plugins",
+    "coredns": "coredns/coredns",
+    "nodelocaldns": "kubernetes/dns",
+    # вход и балансировка
+    "ingress-nginx": "kubernetes/ingress-nginx",
+    "metallb": "metallb/metallb",
+    "kube-vip": "kube-vip/kube-vip",
+    "envoy-gateway": "envoyproxy/gateway",
+    # хранилище
+    "local-path-provisioner": "rancher/local-path-provisioner",
+    "snapshot-controller": "kubernetes-csi/external-snapshotter",
+    "aws-ebs-csi": "kubernetes-sigs/aws-ebs-csi-driver",
+    "azure-csi": "kubernetes-sigs/azuredisk-csi-driver",
+    "cinder-csi": "kubernetes/cloud-provider-openstack",
+    "gcp-pd-csi": "kubernetes-sigs/gcp-compute-persistent-disk-csi-driver",
+    # платформа
+    "argo-cd": "argoproj/argo-cd",
+    "kyverno": "kyverno/kyverno",
+    "cert-manager": "cert-manager/cert-manager",
+    "metrics-server": "kubernetes-sigs/metrics-server",
+    "node-feature-discovery": "kubernetes-sigs/node-feature-discovery",
+    "scheduler-plugins": "kubernetes-sigs/scheduler-plugins",
+    "helm": "helm/helm",
+    "consul-k8s": "hashicorp/consul-k8s",
+    "kata-containers": "kata-containers/kata-containers",
+    # оркестратор и дистрибутив
+    "kubernetes": "kubernetes/kubernetes",
+    "kubespray": "kubernetes-sigs/kubespray",
+    "talos": "siderolabs/talos",
+}
+
+SEC_RX = re.compile(r"CVE-\d{4}-\d{4,7}")
+BREAK_RX = re.compile(r"breaking|action required|upgrade note|incompatib", re.I)
+FIX_RX = re.compile(r"bug ?fix|fixes|fixed", re.I)
+SECURITY_RX = re.compile(r"security|vulnerab|advisor", re.I)
+
+
+def sh(*args, cwd=None):
+    p = subprocess.run(args, cwd=cwd, capture_output=True, text=True)
+    return p.stdout
+
+
+def token():
+    t = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if t:
+        return t
+    t = sh("gh", "auth", "token").strip()
+    return t or None
+
+
+# ---------------------------------------------------------------- источник: клон
+
+def yaml_notes(path):
+    """Заметки в стиле Envoy Gateway: release-notes/<version>.yaml с секциями."""
+    files = sh("git", "ls-tree", "--name-only", "origin/main", "release-notes/", cwd=path).split()
+    if not files:
+        files = sh("git", "ls-tree", "--name-only", "HEAD", "release-notes/", cwd=path).split()
+    out = {}
+    for f in files:
+        if not f.endswith(".yaml"):
+            continue
+        ver = os.path.basename(f)[:-5]
+        text = sh("git", "show", f"origin/main:{f}", cwd=path) or sh("git", "show", f"HEAD:{f}", cwd=path)
+        secs = {}
+        for name in ("breaking changes", "security updates", "bug fixes"):
+            m = re.search(rf"^{name}: \|\n((?:  .*\n|\n)*)", text, re.M | re.I)
+            items = [re.sub(r"\s+", " ", x).strip() for x in (m.group(1) if m else "").split("\n") if x.strip()]
+            if items:
+                secs[name] = items
+        if secs:
+            out[ver] = secs
+    return out
+
+
+def changelog_notes(path):
+    """CHANGELOG.md: версии по заголовкам, строки-пункты классифицируются по подзаголовку."""
+    names = [n for n in sh("git", "ls-tree", "--name-only", "-r", "HEAD", cwd=path).split("\n")
+             if re.search(r"(^|/)CHANGELOG[^/]*\.md$", n, re.I)]
+    out = {}
+    for name in names[:12]:
+        text = sh("git", "show", f"HEAD:{name}", cwd=path)
+        ver, sec = None, None
+        for line in text.split("\n"):
+            h = re.match(r"^#{1,3}\s+\[?v?(\d+\.\d+\.\d+[^\]\s]*)", line)
+            if h:
+                ver, sec = h.group(1), None
+                out.setdefault(ver, {})
+                continue
+            sub = re.match(r"^#{2,4}\s+(.+)$", line)
+            if sub and ver:
+                t = sub.group(1)
+                sec = ("breaking changes" if BREAK_RX.search(t) else
+                       "security updates" if SECURITY_RX.search(t) else
+                       "bug fixes" if FIX_RX.search(t) else None)
+                continue
+            item = re.match(r"^\s*[-*]\s+(.{10,})$", line)
+            if item and ver:
+                txt = re.sub(r"\s+", " ", item.group(1)).strip()
+                key = sec or ("security updates" if SEC_RX.search(txt) else
+                              "breaking changes" if txt.upper().startswith("BREAKING") else None)
+                if key:
+                    out[ver].setdefault(key, []).append(txt)
+    return {v: s for v, s in out.items() if s}
+
+
+def from_clone(name):
+    path = os.path.join(CACHE, name)
+    if not os.path.isdir(os.path.join(path, ".git")):
+        return None, "клона нет"
+    data = yaml_notes(path)
+    if data:
+        return data, "клон: release-notes/*.yaml"
+    data = changelog_notes(path)
+    if data:
+        return data, "клон: CHANGELOG"
+    return None, "клон есть, заметок к релизам не нашлось"
+
+
+# ------------------------------------------------------------------ источник: API
+
+def from_api(repo, tok, pages=3):
+    if not tok:
+        return None, "нет токена (GITHUB_TOKEN / gh auth login)"
+    out = {}
+    for page in range(1, pages + 1):
+        url = f"https://api.github.com/repos/{repo}/releases?per_page=100&page={page}"
+        req = urllib.request.Request(url, headers={
+            "Accept": "application/vnd.github+json", "User-Agent": "kubepedia-issues",
+            "Authorization": f"Bearer {tok}"})
+        try:
+            with urllib.request.urlopen(req, timeout=40) as r:
+                batch = json.load(r)
+        except Exception as exc:                       # noqa: BLE001 — сеть не должна ронять свип
+            return (out or None), f"API: {exc}"
+        if not batch:
+            break
+        for rel in batch:
+            ver = (rel.get("tag_name") or "").lstrip("v")
+            body, sec = rel.get("body") or "", None
+            secs = {}
+            for line in body.split("\n"):
+                sub = re.match(r"^#{2,4}\s+(.+)$", line)
+                if sub:
+                    t = sub.group(1)
+                    sec = ("breaking changes" if BREAK_RX.search(t) else
+                           "security updates" if SECURITY_RX.search(t) else
+                           "bug fixes" if FIX_RX.search(t) else None)
+                    continue
+                item = re.match(r"^\s*[-*]\s+(.{10,})$", line)
+                if item:
+                    txt = re.sub(r"\s+", " ", item.group(1)).strip()
+                    key = sec or ("security updates" if SEC_RX.search(txt) else None)
+                    if key:
+                        secs.setdefault(key, []).append(txt)
+            if secs:
+                out[ver] = secs
+    return (out or None), "GitHub Releases API"
+
+
+# ---------------------------------------------------------------------- сведение
+
+def summarize(name, data, source):
+    cves = sorted(set(SEC_RX.findall(json.dumps(data, ensure_ascii=False))))
+    counts = {k: sum(len(v.get(k, [])) for v in data.values())
+              for k in ("breaking changes", "security updates", "bug fixes")}
+    return {"component": name, "repo": REPOS.get(name), "source": source,
+            "releases": len(data), "cves": cves, "counts": counts}
+
+
+def main():
+    ap = argparse.ArgumentParser(description="Добыча проблемного слоя апстрима")
+    ap.add_argument("--component", action="append", help="имя из карты репозиториев")
+    ap.add_argument("--all", action="store_true")
+    ap.add_argument("--local-only", action="store_true", help="не ходить в API")
+    ap.add_argument("--list", action="store_true")
+    args = ap.parse_args()
+
+    if args.list:
+        for n, r in sorted(REPOS.items()):
+            has = os.path.isdir(os.path.join(CACHE, n, ".git"))
+            print(f"  {'клон' if has else '   —'}  {n:26} {r}")
+        print(f"\nвсего {len(REPOS)}, клонировано {sum(os.path.isdir(os.path.join(CACHE,n,'.git')) for n in REPOS)}")
+        return 0
+
+    names = args.component or (sorted(REPOS) if args.all else [])
+    if not names:
+        ap.error("нужен --component, --all или --list")
+
+    tok = None if args.local_only else token()
+    os.makedirs(OUT, exist_ok=True)
+    rows = []
+    for name in names:
+        if name not in REPOS:
+            print(f"[skip] {name}: нет в карте репозиториев", file=sys.stderr)
+            continue
+        data, source = from_clone(name)
+        if not data and not args.local_only:
+            data, source = from_api(REPOS[name], tok)
+        if not data:
+            rows.append({"component": name, "repo": REPOS[name], "source": source,
+                         "releases": 0, "cves": [], "counts": {}})
+            print(f"[--] {name:26} {source}")
+            continue
+        with open(os.path.join(OUT, f"{name}.json"), "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=1)
+        row = summarize(name, data, source)
+        rows.append(row)
+        c = row["counts"]
+        print(f"[ok] {name:26} релизов {row['releases']:4}  CVE {len(row['cves']):3}  "
+              f"ломающих {c.get('breaking changes',0):3}  дефектов {c.get('bug fixes',0):4}  ({source})")
+
+    lines = ["# Проблемный слой апстрима — сводка\n",
+             "_Сгенерировано `kubepedia issues`. Числа — то, что объявил сам апстрим в заметках "
+             "к релизам; это сырьё для документов базы, а не сами знания._\n",
+             "| Компонент | Репозиторий | Релизов | CVE | Ломающих | Дефектов | Источник |",
+             "|---|---|---:|---:|---:|---:|---|"]
+    for r in sorted(rows, key=lambda x: -(x["counts"].get("bug fixes", 0))):
+        c = r["counts"]
+        lines.append(f"| {r['component']} | `{r['repo']}` | {r['releases']} | {len(r['cves'])} | "
+                     f"{c.get('breaking changes',0)} | {c.get('bug fixes',0)} | {r['source']} |")
+    allc = sorted({c for r in rows for c in r["cves"]})
+    lines += ["", f"**Всего уникальных CVE по всем компонентам: {len(allc)}**", "",
+              " ".join(f"`{c}`" for c in allc) if allc else "_(пусто)_"]
+    with open(os.path.join(ROOT, "reports", "UPSTREAM-ISSUES.md"), "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+    print(f"\nсводка: reports/UPSTREAM-ISSUES.md, детали: reports/upstream/*.json")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -35,8 +35,6 @@ relations:
     target: CONCEPT-ADDON_ENVOY_GATEWAY
   - type: see_also
     target: TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI
-  - type: see_also
-    target: TROUBLE-ENVOY_GATEWAY_RESTART_LOOP
 ---
 
 # Envoy Gateway: controller loses leader lease → cluster-wide 503/500 burst
@@ -51,7 +49,7 @@ What happened: the **controller lost its leader-election lease**, the process en
 restarted the container, and the new instance re-translated every route. The lease is lost whenever
 a call to it does not return inside its 5-second budget — an API-server restart does that (any
 Kubespray `cluster.yml` run or hand-edit of the static-pod manifest), but so does plain API-server
-slowness. See [[TROUBLE-ENVOY_GATEWAY_RESTART_LOOP]] for the restart mechanics and the fix.
+slowness.
 
 **Read the burst carefully before blaming it.** A re-translation *reports* backend state; it does
 not by itself break working routes. Two very different situations produce the same log flood:

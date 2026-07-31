@@ -1451,14 +1451,46 @@
 {"alias": "enhancements 1.31 1.35", "ids": ["CONCEPT-K8S_KEPS"]}
 {"alias": "envoy ads not connecting", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
 {"alias": "envoy gateway", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
+{"alias": "envoy gateway 1.1 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_1_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.1 fixed in", "ids": ["TROUBLE-ENVOY_GATEWAY_1_1_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.1 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_1_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.2 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_2_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.2 fixed in", "ids": ["TROUBLE-ENVOY_GATEWAY_1_2_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.2 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_2_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.3 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_3_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.3 fixed in", "ids": ["TROUBLE-ENVOY_GATEWAY_1_3_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.3 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_3_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.4 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_4_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.4 fixed in", "ids": ["TROUBLE-ENVOY_GATEWAY_1_4_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.4 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_4_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.5 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_5_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.5 fixed in", "ids": ["TROUBLE-ENVOY_GATEWAY_1_5_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.5 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_5_KNOWN_ISSUES"]}
 {"alias": "envoy gateway 1.6 alpn", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
+{"alias": "envoy gateway 1.6 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.7 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_7_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.7 fixed in", "ids": ["TROUBLE-ENVOY_GATEWAY_1_7_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.7 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_7_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.8 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_8_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.8 fixed in", "ids": ["TROUBLE-ENVOY_GATEWAY_1_8_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.8 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_8_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 500 invalid backendrefs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
 {"alias": "envoy gateway 503 no ready endpoints", "ids": ["TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503"]}
+{"alias": "envoy gateway admin interface exposed", "ids": ["TROUBLE-ENVOY_GATEWAY_KNOWN_CVES"]}
 {"alias": "envoy gateway backend tls broke", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
-{"alias": "envoy gateway leader election lost", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
-{"alias": "envoy gateway restarts every 30 minutes", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
+{"alias": "envoy gateway behaviour changed after upgrade", "ids": ["TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES"]}
+{"alias": "envoy gateway breaking changes", "ids": ["TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES"]}
+{"alias": "envoy gateway cve", "ids": ["TROUBLE-ENVOY_GATEWAY_KNOWN_CVES"]}
+{"alias": "envoy gateway known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
+{"alias": "envoy gateway lua rce", "ids": ["TROUBLE-ENVOY_GATEWAY_KNOWN_CVES"]}
+{"alias": "envoy gateway ready before cache synced", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
+{"alias": "envoy gateway security", "ids": ["TROUBLE-ENVOY_GATEWAY_KNOWN_CVES"]}
 {"alias": "envoy gateway sni san required", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
+{"alias": "envoy gateway stale configuration after reconnection", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
+{"alias": "envoy gateway upgrade broke", "ids": ["TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES"]}
 {"alias": "envoy in cilium", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "envoy node id mismatch", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
+{"alias": "envoy patch policy broken by upgrade", "ids": ["TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES"]}
 {"alias": "envoy xds no config", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
 {"alias": "envoy-xds-controller", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER", "TROUBLE-ENVOY_XDS_CONTROLLER"]}
 {"alias": "envoy.enabled daemonset", "ids": ["CONCEPT-CILIUM_ENVOY"]}
@@ -1697,7 +1729,7 @@
 {"alias": "failed to mount overlay operation not permitted", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
 {"alias": "failed to mount volume", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "failed to pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
-{"alias": "failed to renew lease context deadline exceeded", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION", "TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
+{"alias": "failed to renew lease context deadline exceeded", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
 {"alias": "failed to reserve container name is reserved for", "ids": ["TROUBLE-CONTAINERD_STALE_SANDBOX_RECOVERY"]}
 {"alias": "feast feature store", "ids": ["CONCEPT-ADDON_FEAST_OPERATOR"]}
 {"alias": "feast kubectl apply fails", "ids": ["TROUBLE-FEAST_OPERATOR"]}
@@ -1760,10 +1792,11 @@
 {"alias": "gVisor runsc", "ids": ["PRACTICE-GVISOR"]}
 {"alias": "garbage collection stalls", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
 {"alias": "gateway api 1.4.1 checksum mismatch", "ids": ["TROUBLE-GATEWAY_API_1_4_1_CHECKSUM_MISMATCH"]}
+{"alias": "gateway api controller vulnerabilities", "ids": ["TROUBLE-ENVOY_GATEWAY_KNOWN_CVES"]}
 {"alias": "gateway api crd 1.4.0 upgrade", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
+{"alias": "gateway api crd bump envoy gateway", "ids": ["TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES"]}
 {"alias": "gateway api envoy", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
 {"alias": "gateway api routes return 503 suddenly", "ids": ["TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503"]}
-{"alias": "gateway controller crashloop but pod running", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
 {"alias": "gateway-helm", "ids": ["CONCEPT-ADDON_ENVOY_GATEWAY"]}
 {"alias": "gateway_api", "ids": ["TAG-GATEWAY_API"]}
 {"alias": "gateway_api_channel", "ids": ["VARIABLE-GATEWAY_API_CHANNEL"]}
@@ -1825,6 +1858,7 @@
 {"alias": "grow cluster kubespray", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
 {"alias": "grow pvc kubernetes", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
 {"alias": "grpc stopped working inside cluster", "ids": ["TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503"]}
+{"alias": "grpcroute mirror service not found", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
 {"alias": "gvisor", "ids": ["TAG-GVISOR"]}
 {"alias": "gvisor kata containerd runtime", "ids": ["TROUBLE-CONTAINERD_RUNTIME_HANDLER"]}
 {"alias": "gvisor_containerd_shim_binary_checksum", "ids": ["VARIABLE-GVISOR_CONTAINERD_SHIM_BINARY_CHECKSUM"]}
@@ -2651,7 +2685,6 @@
 {"alias": "leftover vlan interface node", "ids": ["TROUBLE-LEFTOVER_SECONDARY_BOND"]}
 {"alias": "legacy service account token deleted", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
 {"alias": "legacy-token-invalid-since", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
-{"alias": "liveness probe failed 8081 connection refused", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
 {"alias": "liveness probe failing restart", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "loadbalancer ip times out", "ids": ["TROUBLE-METALLB_L2_STRICTARP_UNREACHABLE"]}
 {"alias": "loadbalancer options bare metal", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
@@ -3620,7 +3653,6 @@
 {"alias": "ubuntu_stop_unattended_upgrades", "ids": ["VARIABLE-UBUNTU_STOP_UNATTENDED_UPGRADES"]}
 {"alias": "unable to attach or mount volumes", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "unable to attach or mount volumes timed out", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
-{"alias": "unable to start provider leader election lost", "ids": ["TROUBLE-ENVOY_GATEWAY_RESTART_LOOP"]}
 {"alias": "unable to upgrade connection", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "unauthorized image pull", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "unqualified-search-registries", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
