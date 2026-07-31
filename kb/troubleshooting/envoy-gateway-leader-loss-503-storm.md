@@ -41,17 +41,28 @@ relations:
 
 ## Summary
 
-Every route served by Envoy Gateway — **HTTPRoute and GRPCRoute alike, production included** —
-starts answering `503` (and `500` for some) at the same instant, then recovers on its own after
-minutes. Applications report it as "gRPC transport died inside the cluster"; the routes and the
-data plane are in fact healthy.
+Hundreds of routes — HTTPRoute and GRPCRoute alike — are logged as answering `503` (some `500`)
+within the same ~100 ms, and applications report it as "gRPC transport died inside the cluster".
+The proxies did not restart and the data plane is healthy.
 
-Root cause: the **controller lost its leader-election lease**, exited (cleanly, code 0), restarted,
-and on its first translation pass programmed *direct-response* 503/500 for every route whose
-backend it had not yet loaded into its informer cache. The next successful pass restores the real
-configuration. The trigger for losing the lease is anything that breaks the controller's long-lived
-HTTP/2 connection to the API server — **most reliably, a `kube-apiserver` restart**, which any
-Kubespray `cluster.yml` run or a manual edit of the static-pod manifest produces.
+What happened: the **controller lost its leader-election lease**, exited (cleanly, code 0),
+restarted, and re-translated every route. The trigger for losing the lease is anything that breaks
+the controller's long-lived HTTP/2 connection to the API server — **most reliably, a
+`kube-apiserver` restart**, which any Kubespray `cluster.yml` run or a manual edit of the static-pod
+manifest produces.
+
+**Read the burst carefully before blaming it.** A re-translation *reports* backend state; it does
+not by itself break working routes. Two very different situations produce the same log flood:
+
+- backends that were **already** dead (abandoned per-branch environments, CrashLoopBackOff pods,
+  Services with no pods) — the controller merely enumerates them on every restart;
+- backends that are **fine**, listed as absent only because the informer cache was not yet warm —
+  this one is real damage, and it is the case worth escalating.
+
+Telling them apart takes one check (below). In the incident this document is written from, only
+per-branch environments appeared in the burst; `prod` / `release` / `develop` routes did not — so
+the restart most likely surfaced pre-existing breakage rather than causing an outage. The restart
+loop was still a genuine defect: 62 restarts, one every 30 minutes.
 
 ## Problem
 
@@ -133,11 +144,33 @@ kubectl get endpoints -n <app-ns> --no-headers | awk '$2=="<none>"' | wc -l
 A `503` count that decays to 0 while endpoints stay non-empty confirms this failure mode.
 Endpoints that are permanently `<none>` are a separate, application-side problem.
 
+**The decisive check — did clients actually get a 503?** The controller log cannot answer this; the
+proxy access log can. Three outcomes, distinguishable per request:
+
+| Situation | `response_code_details` | `upstream` | response flags |
+|---|---|---|---|
+| normal | `via_upstream` | backend address | `-` |
+| **answered from configuration** (the controller programmed a direct response) | not `via_upstream` | empty | `-` |
+| backend genuinely unreachable | — | empty | `UH` / `UF` |
+
+Search the window for `status: 503` and look at those fields. 503s confined to routes whose
+backends were already dead mean the restart only reported existing breakage. 503s on routes that
+normally work — with no upstream and no failure flags — mean the cold cache really did serve
+errors to clients.
+
+Proxy access logs rotate fast under load (thousands of requests per minute per proxy), so pull this
+from central log storage, not from the node.
+
 ## Known Issues
 
-**The failure is self-healing but recurring.** In the observed cluster the controller had restarted
-**61 times in 8 days**; each restart is a cluster-wide 503 burst lasting minutes, production routes
-included. It is invisible in dashboards that only watch pod health — every pod stays `Running`.
+**The restart loop is invisible to ordinary monitoring.** In the observed cluster the controller
+had restarted **62 times in 9 days**, on an exact 30-minute cadence, while the pod stayed `Running`
+the whole time — dashboards that watch pod health show nothing. Restart-count alerting is the only
+thing that catches it.
+
+**Do not assume user impact — prove it.** Whether a burst reached clients is decided in the proxy
+access log, not in the controller log; see the discriminator above. Claiming an outage from the
+controller log alone is the easy mistake this document exists to prevent.
 
 **Kubespray runs trigger it.** `cluster.yml` and any hand-edit of
 `/etc/kubernetes/manifests/kube-apiserver.yaml` restart the API server and break the controller's
