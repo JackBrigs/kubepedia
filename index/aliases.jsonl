@@ -463,7 +463,9 @@
 {"alias": "bump containerd version", "ids": ["PRACTICE-RUNBOOK_COMPONENT_UPGRADE"]}
 {"alias": "ca-key-pair secret kubespray", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "calico", "ids": ["COMPONENT-CALICO"]}
+{"alias": "calico action required upgrade", "ids": ["TROUBLE-CALICO_BREAKING_CHANGES"]}
 {"alias": "calico bgp not peering", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
+{"alias": "calico breaking changes", "ids": ["TROUBLE-CALICO_BREAKING_CHANGES"]}
 {"alias": "calico cni", "ids": ["COMPONENT-CALICO"]}
 {"alias": "calico cve", "ids": ["TROUBLE-CALICO_KNOWN_CVES"]}
 {"alias": "calico ebpf dataplane", "ids": ["CONFIG-CALICO_DATAPLANE"]}
@@ -475,6 +477,7 @@
 {"alias": "calico route reflector ansible tag", "ids": ["TAG-CALICO_RR"]}
 {"alias": "calico security", "ids": ["TROUBLE-CALICO_KNOWN_CVES"]}
 {"alias": "calico to cilium migration", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
+{"alias": "calico upgrade broke", "ids": ["TROUBLE-CALICO_BREAKING_CHANGES"]}
 {"alias": "calico vxlan bgp ipip", "ids": ["CONFIG-CALICO_DATAPLANE"]}
 {"alias": "calico wireguard nftables", "ids": ["CONFIG-CALICO_DATAPLANE"]}
 {"alias": "calico-node crashloopbackoff", "ids": ["TROUBLE-CALICO_NODE_ISSUES"]}
@@ -1989,9 +1992,12 @@
 {"alias": "ingress-controller", "ids": ["TAG-INGRESS_CONTROLLER"]}
 {"alias": "ingress-nginx", "ids": ["COMPONENT-INGRESS_NGINX"]}
 {"alias": "ingress-nginx 4.12.0", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
+{"alias": "ingress-nginx action required upgrade", "ids": ["TROUBLE-INGRESS_NGINX_BREAKING_CHANGES"]}
 {"alias": "ingress-nginx addon", "ids": ["CONCEPT-ADDON_INGRESS_NGINX"]}
 {"alias": "ingress-nginx annotation validation error", "ids": ["TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED"]}
+{"alias": "ingress-nginx breaking changes", "ids": ["TROUBLE-INGRESS_NGINX_BREAKING_CHANGES"]}
 {"alias": "ingress-nginx removed in v2.31.0 what to do", "ids": ["PRACTICE-RUNBOOK_INGRESS_NGINX_DETACH"]}
+{"alias": "ingress-nginx upgrade broke", "ids": ["TROUBLE-INGRESS_NGINX_BREAKING_CHANGES"]}
 {"alias": "ingress-nginx upstream error", "ids": ["TROUBLE-INGRESS_NGINX_502_504"]}
 {"alias": "ingress2gateway", "ids": ["CONCEPT-ADDON_INGRESS2GATEWAY"]}
 {"alias": "ingress2gateway conversion", "ids": ["TROUBLE-INGRESS2GATEWAY"]}
@@ -2619,13 +2625,16 @@
 {"alias": "kubernetes 1.33 changes", "ids": ["CONCEPT-K8S_1_33_CHANGES"]}
 {"alias": "kubernetes 1.34 changes", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
 {"alias": "kubernetes 1.35 changes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
+{"alias": "kubernetes action required upgrade", "ids": ["TROUBLE-KUBERNETES_BREAKING_CHANGES"]}
 {"alias": "kubernetes audit", "ids": ["CONFIG-APISERVER_AUDIT"]}
+{"alias": "kubernetes breaking changes", "ids": ["TROUBLE-KUBERNETES_BREAKING_CHANGES"]}
 {"alias": "kubernetes cve", "ids": ["TROUBLE-KUBERNETES_KNOWN_CVES"]}
 {"alias": "kubernetes dashboard login", "ids": ["TROUBLE-KUBERNETES_DASHBOARD"]}
 {"alias": "kubernetes mcp server", "ids": ["TROUBLE-KUBERNETES_MCP"]}
 {"alias": "kubernetes scale ceilings", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "kubernetes swap support", "ids": ["CONCEPT-K8S_NODE_SWAP"]}
 {"alias": "kubernetes ui headlamp", "ids": ["CONCEPT-ADDON_HEADLAMP"]}
+{"alias": "kubernetes upgrade broke", "ids": ["TROUBLE-KUBERNETES_BREAKING_CHANGES"]}
 {"alias": "kubernetes version support", "ids": ["CONCEPT-KUBERNETES_VERSION_SUPPORT"]}
 {"alias": "kubernetes-dashboard", "ids": ["CONCEPT-ADDON_KUBERNETES_DASHBOARD"]}
 {"alias": "kubernetes-mcp", "ids": ["CONCEPT-ADDON_KUBERNETES_MCP"]}
@@ -3890,6 +3899,7 @@
 {"alias": "webhook x509 after install", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
 {"alias": "what breaks at scale", "ids": ["CONCEPT-SCALE_LIMITS"]}
 {"alias": "what breaks upgrading argo-cd", "ids": ["TROUBLE-ARGO_CD_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading calico", "ids": ["TROUBLE-CALICO_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading cert-manager", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading cilium", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading cinder-csi", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
@@ -3898,6 +3908,8 @@
 {"alias": "what breaks upgrading etcd", "ids": ["TROUBLE-ETCD_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading gcp-pd-csi", "ids": ["TROUBLE-GCP_PD_CSI_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading helm", "ids": ["TROUBLE-HELM_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading ingress-nginx", "ids": ["TROUBLE-INGRESS_NGINX_BREAKING_CHANGES"]}
+{"alias": "what breaks upgrading kubernetes", "ids": ["TROUBLE-KUBERNETES_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading kubespray", "ids": ["TROUBLE-KUBESPRAY_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading youki", "ids": ["TROUBLE-YOUKI_BREAKING_CHANGES"]}
 {"alias": "what changed in 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}

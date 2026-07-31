@@ -106,7 +106,7 @@ def classify(text, heading_sec):
     if LINE_FIX_RX.search(text):
         return "bug fixes"
     return None
-BREAK_RX = re.compile(r"breaking|action required|upgrade note|incompatib", re.I)
+BREAK_RX = re.compile(r"breaking|action required|urgent upgrade|upgrade note|incompatib", re.I)
 FIX_RX = re.compile(r"bug ?fix|fixes|fixed", re.I)
 SECURITY_RX = re.compile(r"security|vulnerab|advisor", re.I)
 
@@ -212,6 +212,65 @@ def changelog_notes(path):
     return {v: s for v, s in out.items() if s}
 
 
+def kubernetes_notes(minors=None):
+    """У Kubernetes заметки — отдельный CHANGELOG на каждую минорную версию.
+
+    Клонировать репозиторий ради текстовых файлов незачем: они забираются напрямую.
+    Раздел «Urgent Upgrade Notes» — это ровно то, что в других проектах называют
+    ломающими изменениями, и он размечен явно.
+    """
+    minors = minors or [f"1.{n}" for n in range(28, 37)]
+    out = {}
+    for mv in minors:
+        url = f"https://raw.githubusercontent.com/kubernetes/kubernetes/master/CHANGELOG/CHANGELOG-{mv}.md"
+        try:
+            with urllib.request.urlopen(
+                    urllib.request.Request(url, headers={"User-Agent": "kubepedia-issues"}), timeout=60) as r:
+                text = r.read().decode("utf-8", "replace")
+        except Exception:                              # noqa: BLE001 — минор мог ещё не выйти
+            continue
+        for chunk in re.split(r"(?m)^(?=#\s+v\d+\.\d+\.\d+)", text):
+            h = re.match(r"^#\s+v(\d+\.\d+\.\d+[^\s]*)", chunk)
+            if not h:
+                continue
+            ver = h.group(1)
+            if re.search(r"-(rc|alpha|beta)", ver, re.I):
+                continue
+            for sec, txt in bullets(chunk):
+                key = classify(txt, sec)
+                if key:
+                    out.setdefault(ver, {}).setdefault(key, []).append(txt)
+    return out
+
+
+def branch_notes(path):
+    """Заметки лежат в самом репозитории, по файлу на релиз, на ветках поддержки.
+
+    Так устроены Calico (`release-notes/vX.Y.Z-release-notes.md` на ветках release-vX.Y)
+    и ingress-nginx (`changelog/controller-X.Y.Z.md` на основной ветке). Тело релиза на
+    GitHub у них — только ссылка сюда, поэтому по API не добыть ничего.
+    """
+    refs = [l.strip() for l in sh("git", "branch", "-r", cwd=path).split("\n") if l.strip()]
+    refs = [r for r in refs if re.search(r"/(release-v?[\d.]+|main|master)$", r)][:60]
+    out = {}
+    for ref in refs:
+        listing = sh("git", "ls-tree", "--name-only", "-r", ref, cwd=path).split("\n")
+        files = [f for f in listing
+                 if re.search(r"(release-notes/v?[\d.]+[^/]*\.md|changelog/controller-[\d.]+\.md)$", f)]
+        for f in files:
+            m = re.search(r"(\d+\.\d+\.\d+)", os.path.basename(f))
+            if not m:
+                continue
+            ver = m.group(1)
+            if ver in out:
+                continue
+            for sec, txt in bullets(sh("git", "show", f"{ref}:{f}", cwd=path)):
+                key = classify(txt, sec)
+                if key:
+                    out.setdefault(ver, {}).setdefault(key, []).append(txt)
+    return {v: s for v, s in out.items() if s}
+
+
 def from_clone(name):
     path = os.path.join(CACHE, name)
     if not os.path.isdir(os.path.join(path, ".git")):
@@ -219,6 +278,9 @@ def from_clone(name):
     data = yaml_notes(path)
     if data:
         return data, "клон: release-notes/*.yaml"
+    data = branch_notes(path)
+    if data:
+        return data, "клон: заметки по файлу на релиз"
     data = changelog_notes(path)
     if data:
         return data, "клон: CHANGELOG"
@@ -293,7 +355,10 @@ def main():
         if name not in REPOS:
             print(f"[skip] {name}: нет в карте репозиториев", file=sys.stderr)
             continue
-        data, source = from_clone(name)
+        if name == "kubernetes":
+            data, source = kubernetes_notes(), "CHANGELOG по минорным версиям"
+        else:
+            data, source = from_clone(name)
         if not data and not args.local_only:
             data, source = from_api(REPOS[name], tok)
         if not data:

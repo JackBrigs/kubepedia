@@ -819,6 +819,7 @@
 {"source": "TROUBLE-AWX_OPERATOR", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}
 {"source": "TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR", "target": "CONCEPT-UBUNTU_NETPLAN", "type": "see_also"}
 {"source": "TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR", "target": "PRACTICE-NODE_NETWORK_CHANGE", "type": "see_also"}
+{"source": "TROUBLE-CALICO_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CALICO_KNOWN_CVES", "target": "COMPONENT-CALICO", "type": "see_also"}
 {"source": "TROUBLE-CALICO_KNOWN_CVES", "target": "CONCEPT-SECURITY_ADVISORIES", "type": "see_also"}
 {"source": "TROUBLE-CALICO_NODE_ISSUES", "target": "COMPONENT-CALICO", "type": "see_also"}
@@ -1071,6 +1072,7 @@
 {"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "CONCEPT-ADDON_INGRESS_NGINX", "type": "see_also"}
 {"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-INGRESS_NGINX_ANNOTATION_REJECTED", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
+{"source": "TROUBLE-INGRESS_NGINX_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "CONFIG-KUBELET_CONFIGURATION", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "PRACTICE-LARGE_DEPLOYMENTS", "type": "see_also"}
 {"source": "TROUBLE-INOTIFY_FILE_LIMITS", "target": "TROUBLE-CONNTRACK_TABLE_FULL", "type": "see_also"}
@@ -1154,6 +1156,7 @@
 {"source": "TROUBLE-KUBELET_SERVING_CERT_TLS", "target": "VARIABLE-KUBELET_ROTATE_SERVER_CERTIFICATES", "type": "see_also"}
 {"source": "TROUBLE-KUBELET_STATIC_POD_STUCK", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "TROUBLE-KUBELET_STATIC_POD_STUCK", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
+{"source": "TROUBLE-KUBERNETES_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBERNETES_DASHBOARD", "target": "CONCEPT-ADDON_HEADLAMP", "type": "see_also"}
 {"source": "TROUBLE-KUBERNETES_DASHBOARD", "target": "CONCEPT-ADDON_KUBERNETES_DASHBOARD", "type": "see_also"}
 {"source": "TROUBLE-KUBERNETES_DASHBOARD", "target": "CONCEPT-SECURITY_INDEX", "type": "see_also"}
