@@ -100,15 +100,41 @@ like a hot partition, a slow database shard or a leak. The distinguishing check 
 level, not the metric level:
 
 ```bash
-# on a client pod: how many established connections to the service, and to how many distinct peers
-kubectl exec <client-pod> -- ss -tn state established | awk '{print $4, $5}' | sort | uniq -c
-# on the server side: connections per replica
+# 1. the port inside the container is not the Service port — resolve it first
+kubectl get svc <svc> -o jsonpath='{range .spec.ports[*]}{.name}{" port="}{.port}{" target="}{.targetPort}{"\n"}{end}'
+
+# 2. count established connections to that target port, per replica.
+#    /proc/net/* is used rather than ss/netstat: application images usually have neither.
+#    Ports there are hex, and a socket bound on an IPv4-mapped address lands in tcp6, not tcp.
+PORT_HEX=$(printf '%04X' <target-port>)
 for p in $(kubectl get pods -l app=<server> -o name); do
-  echo -n "$p "; kubectl exec $p -- ss -tn state established | wc -l
+  n=$(kubectl exec $p -- cat /proc/net/tcp6 2>/dev/null \
+      | awk -v h=":$PORT_HEX" '$2 ~ h"$" && $4=="01"' | wc -l)
+  echo "$p  established=$n"
 done
+
+# 3. distinct clients per replica — the number that actually decides whether it is pinned
+kubectl exec <pod> -- cat /proc/net/tcp6 \
+  | awk -v h=":$PORT_HEX" '$2 ~ h"$" && $4=="01" {split($3,a,":"); print a[1]}' | sort -u | wc -l
 ```
 
-A count of one connection per client and a wildly uneven distribution across replicas confirms it.
+Three traps make this measurement read as "no traffic at all" when it is measured naively, and all
+three were hit while writing this page: the container port differs from the Service port; the
+connections live in `tcp6` because the listener binds an IPv4-mapped address; and ports in
+`/proc/net/*` are hexadecimal. A confident zero is the expected result of getting any of them wrong.
+
+One connection per client and a wildly uneven distribution across replicas confirms pinning. Many
+distinct clients per replica means the opposite — with enough clients the imbalance averages out on
+its own, which is why the pathology is a small-fleet problem rather than a large one.
+
+**Rule out the other causes first.** Uneven CPU across replicas has several explanations, and
+connection pinning is only one:
+
+| Observation | Likely cause |
+|---|---|
+| few connections, very uneven CPU | not inbound traffic at all — a queue consumer, partition assignment, a leader-elected background job |
+| even connections, uneven CPU | one replica doing extra work (scheduler, cron, cache warming) |
+| one connection per client, uneven CPU | connection pinning — this page |
 
 **A rollout hides the problem and then it returns.** Restarting the server pods forces every client
 to reconnect, which redistributes traffic — for a while. Load looks balanced right after a deploy
