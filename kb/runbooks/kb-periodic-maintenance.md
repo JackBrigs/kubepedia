@@ -39,13 +39,19 @@ changes, so the problem layer thins out.
 
 Nothing here needs a cluster. All of it is read-only against upstream sources.
 
-## Prerequisites
+## Context
+
+The loop below is the tooling in `scripts/kubepedia.py`; this document records the cadence, the
+order and what each answer means. Nothing here touches a cluster — every step is read-only against
+upstream sources.
+
+### Prerequisites
 
 - a GitHub token for the release sweep — unauthenticated API allows 60 requests an hour, which is
   not enough for the component map (`gh auth login`, or `GITHUB_TOKEN` in the environment);
 - network access to `api.osv.dev` and `raw.githubusercontent.com`.
 
-## Procedure
+## Implementation
 
 **Weekly — freshness and drift.**
 
@@ -77,7 +83,7 @@ kubepedia index && kubepedia validate    # rebuild the derived index, then check
 kubepedia cve-matrix --all               # rebuild version-filtered CVE matrices
 ```
 
-## Verification
+### Verification
 
 ```bash
 kubepedia validate                       # must end in [PASS], zero warnings
@@ -88,7 +94,7 @@ python3 scripts/bench_search.py          # retrieval quality did not regress
 The benchmark matters after any bulk generation: adding a large machine-generated layer can crowd
 out analysed documents, and the number is the only way to notice.
 
-## Rollback
+### Rollback
 
 Everything is generated into git. A bad sweep is reverted with `git revert`; no cluster state is
 touched at any point.
