@@ -1813,12 +1813,14 @@
 {"alias": "envoy gateway 1.5 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_5_KNOWN_ISSUES"]}
 {"alias": "envoy gateway 1.6 alpn", "ids": ["TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI"]}
 {"alias": "envoy gateway 1.6 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.6 to 1.7 upgrade", "ids": ["UPGRADE-ENVOY_GATEWAY_1_6_TO_1_8"]}
 {"alias": "envoy gateway 1.7 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_7_KNOWN_ISSUES"]}
 {"alias": "envoy gateway 1.7 fixed in", "ids": ["TROUBLE-ENVOY_GATEWAY_1_7_KNOWN_ISSUES"]}
 {"alias": "envoy gateway 1.7 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_7_KNOWN_ISSUES"]}
 {"alias": "envoy gateway 1.8 bugs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_8_KNOWN_ISSUES"]}
 {"alias": "envoy gateway 1.8 fixed in", "ids": ["TROUBLE-ENVOY_GATEWAY_1_8_KNOWN_ISSUES"]}
 {"alias": "envoy gateway 1.8 known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_8_KNOWN_ISSUES"]}
+{"alias": "envoy gateway 1.8 what breaks", "ids": ["UPGRADE-ENVOY_GATEWAY_1_6_TO_1_8"]}
 {"alias": "envoy gateway 500 invalid backendrefs", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
 {"alias": "envoy gateway 503 no ready endpoints", "ids": ["TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503"]}
 {"alias": "envoy gateway admin interface exposed", "ids": ["TROUBLE-ENVOY_GATEWAY_KNOWN_CVES"]}
@@ -1826,6 +1828,7 @@
 {"alias": "envoy gateway behaviour changed after upgrade", "ids": ["TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES"]}
 {"alias": "envoy gateway breaking changes", "ids": ["TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES"]}
 {"alias": "envoy gateway cve", "ids": ["TROUBLE-ENVOY_GATEWAY_KNOWN_CVES"]}
+{"alias": "envoy gateway grpc authorization bypass", "ids": ["UPGRADE-ENVOY_GATEWAY_1_6_TO_1_8"]}
 {"alias": "envoy gateway known issues", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
 {"alias": "envoy gateway lua rce", "ids": ["TROUBLE-ENVOY_GATEWAY_KNOWN_CVES"]}
 {"alias": "envoy gateway ready before cache synced", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
@@ -1835,6 +1838,7 @@
 {"alias": "envoy gateway upgrade broke", "ids": ["TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES"]}
 {"alias": "envoy in cilium", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "envoy node id mismatch", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
+{"alias": "envoy patch policy broken after upgrade", "ids": ["UPGRADE-ENVOY_GATEWAY_1_6_TO_1_8"]}
 {"alias": "envoy patch policy broken by upgrade", "ids": ["TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES"]}
 {"alias": "envoy xds no config", "ids": ["TROUBLE-ENVOY_XDS_CONTROLLER"]}
 {"alias": "envoy-xds-controller", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER", "TROUBLE-ENVOY_XDS_CONTROLLER"]}
@@ -4227,6 +4231,7 @@
 {"alias": "should we upgrade cilium 1.18", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
 {"alias": "should we upgrade containerd", "ids": ["UPGRADE-CONTAINERD_2_1_TO_2_3"]}
 {"alias": "should we upgrade containerd 2.1", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
+{"alias": "should we upgrade envoy gateway", "ids": ["UPGRADE-ENVOY_GATEWAY_1_6_TO_1_8"]}
 {"alias": "sidecar containers 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "sidecar lifecycle kubernetes", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
 {"alias": "sidecar startup ordering", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}

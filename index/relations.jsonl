@@ -1763,6 +1763,9 @@
 {"source": "UPGRADE-CONTAINERD_2_1_TO_2_3", "target": "TROUBLE-CONTAINERD_2_1_EXPOSURE", "type": "see_also"}
 {"source": "UPGRADE-CONTAINERD_2_1_TO_2_3", "target": "TROUBLE-CONTAINERD_KNOWN_CVES", "type": "see_also"}
 {"source": "UPGRADE-CONTAINERD_2_1_TO_2_3", "target": "VARIABLE-CONTAINERD_VERSION", "type": "see_also"}
+{"source": "UPGRADE-ENVOY_GATEWAY_1_6_TO_1_8", "target": "CONCEPT-ADDON_ENVOY_GATEWAY", "type": "see_also"}
+{"source": "UPGRADE-ENVOY_GATEWAY_1_6_TO_1_8", "target": "TROUBLE-ENVOY_GATEWAY_BREAKING_CHANGES", "type": "see_also"}
+{"source": "UPGRADE-ENVOY_GATEWAY_1_6_TO_1_8", "target": "TROUBLE-ENVOY_GATEWAY_KNOWN_CVES", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
