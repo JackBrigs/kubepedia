@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**20 defects** the project fixed across **4 releases** of the 1.7 line, from 1.7.0 to
+**19 defects** the project fixed across **4 releases** of the 1.7 line, from 1.7.0 to
 1.7.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,7 +45,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 1.7.0
 
 - Restart ovn-controller to force ovn-ic flows update
-- Update usingips check when update finalizer for subnet
 - Livenessprobe fail if ovn nb/ovn sb not running
 - Pod terminating not recycle ip when controller not ready
 

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**41 defects** the project fixed across **4 releases** of the 2.23 line, from 2.23.0 to
+**39 defects** the project fixed across **4 releases** of the 2.23 line, from 2.23.0 to
 2.23.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -49,7 +49,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - [youki] Fix youki binary download url (not requiring 'v' in version) (#10337, @ErikJiang)
 - [multus] Fix loop_control template error when item is None (#10347, @nicolas-goudry)
 - Update Calico to lowercase and fix broken calico link in README (#10232, @Xieql)
-- Fix Dockerfile for newest directory layout (#10128, @dabeck)
 - Fix Flatcar bootstrap issues (yaml module missing and ntp issue) (#10363, @tenni-paws)
 - Fix argocd install not working using the kubespray docker image (#10371, @cortex3)
 - Fix correctly mount ssl ca directories (#9794, @maxime1907)
@@ -73,7 +72,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix parsing of RHSM proxy configuration (#10228, @tmurakam)
 - Fix var-spacing ansible rule (#10266, @MrFreezeex)
 - Fix specify owner to kube_owner in task of copy cni plugins (#10407, @NierYYDS)
-- Fix typo kubelet_topoloy_manager_policy => kubelet_topology_manager_policy (#10384, @hangscer8)
 - Fix recover_control_plane playbook (also add debian 12 with cilium as a new nightly test) (#10411, @floryut)
 - Fix nameserver inline comments in /etc/resolv.conf (#10415, @yankay)
 - [CI] fix tf-elastx_cleanup fail (#10133, @yankay)

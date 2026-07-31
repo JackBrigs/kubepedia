@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**19 defects** the project fixed across **4 releases** of the 3.10 line, from 3.10.0 to
+**18 defects** the project fixed across **4 releases** of the 3.10 line, from 3.10.0 to
 3.10.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -51,7 +51,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: improve logging & safety of statefulSetReady 7c74f1dd027709156c3345e1965693f04b8dd9ac (Dominic Evans)
 - Fixed helm uninstall not deleting the resource. fe00c9296d50acc490dd08cd95eb014d37409716 (Mayank Thakur)
 - Fix UT d8c0e01132705b427d27835f9d3e2e8bb3e4da22 (stan-sz)
-- Fix linter 6c55d9e3e9f45afd576a9480fcad88d7d9d12ef5 (stan-sz)
 - fix --registry-config issue 9f199b6517c21394bca555983c70fc232d65014c (yxxhero)
 - fix(helm): ignore file-not-found error for `helm repo list -o json` 94779dc99f266adde81882412ee944072da3b136 (Teo Klestrup Röijezon)
 

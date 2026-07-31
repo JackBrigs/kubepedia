@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**6 defects** the project fixed across **5 releases** of the 1.7 line, from 1.7.0 to
+**5 defects** the project fixed across **5 releases** of the 1.7 line, from 1.7.0 to
 1.7.13. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -56,7 +56,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 1.7.8
 
-- crypto: upgrade golang.org/x/crypto to v0.45.0 to fix GO-2025-4134, GO-2025-4135, GO-2025-4116, GHSA-f6x5-jh6r-wrfv
 - cni: fixed race conditions with older versions where no cleanup was done for binary
 
 ### 1.7.13

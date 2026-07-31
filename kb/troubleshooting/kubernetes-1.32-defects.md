@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**86 defects** the project fixed across **11 releases** of the 1.32 line, from 1.32.0 to
+**85 defects** the project fixed across **11 releases** of the 1.32 line, from 1.32.0 to
 1.32.11. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -94,7 +94,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Terminated Pods on a node will not be re-admitted on kubelet restart. This fixes the problem of Completed Pods awaiting for the finalizer marked as Failed after the kubelet restart. ([#126343](https://github.com/kubernetes/kubernetes/pull/126343), [@SergeyKanzhelev](https://github.com/SergeyKanzhelev)) [SIG Node and Testing]
 - Fixed problem with named ports not being available when specified in sidecar containers. ([#127976](https://github.com/kubernetes/kubernetes/pull/127976), [@chengjoey](https://github.com/chengjoey))
 - Fixed a warning message about the gce in-tree cloud provider state. ([#126773](https://github.com/kubernetes/kubernetes/pull/126773), [@carlory](https://github.com/carlory))
-- Fixed spacing in `--validate flag` description in kubectl. ([#128081](https://github.com/kubernetes/kubernetes/pull/128081), [@soltysh](https://github.com/soltysh))
 - Fixes a bug in the `k8s.io/cloud-provider/service` controller, it may panic when a service is updated because the event recorder was used before it was initialized. All cloud providers should using the `v1.31.0` cloud provider service controller must ensure that the controllers is initialized before the informer start to process events or update it to the version 1.32.0. ([#128179](https://github.com/kubernetes/kubernetes/pull/128179), [@carlory](https://github.com/carlory)) [SIG API Machinery, Cloud Provider, Network and Testing]
 - kubelet: fixed an issue mounting CSI volumes on Windows nodes in 1.32.0 release candidates. ([#129083](https://github.com/kubernetes/kubernetes/pull/129083) [liggitt](https://github.com/liggitt)) [SIG API Machinery, architecture, auth, cli, cloud-provider, cluster-lifecycle, instrumentation,network,node, release, storage, windows ]
 

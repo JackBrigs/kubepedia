@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**27 defects** the project fixed across **4 releases** of the 3.6 line, from 3.6.0 to
+**24 defects** the project fixed across **4 releases** of the 3.6 line, from 3.6.0 to
 3.6.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -50,15 +50,12 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix the example for --time-format flag 30f643ce6791b35afeff6b220afeb399cfee54cc (mert)
 - fix(cmd): Show that flags can be used for zsh/fish 7b6dcfae98527c3ff7233fc16cbeac782dd82977 (Marc Khouzam)
 - fix windows tests 4f1ab5a331d99370ff7bbd1f2004fe80878fbdaf (Christian)
-- fix(test): Increase golangci-lint timeout 8d33624520375f5c7d60b15e9ff24a59232f336f (Marc Khouzam)
 - fix(helm): get/get-helm-3 whitespace support in runAsRoot 784782013a11c5f1640fb454ec7b9ea0fbf2c389 (Michael Musenbrock)
 - fix release sha256 24925c4ca384145706c59da8c5605177c4f0f31a (houfangdong)
 - fix(*): Validate metadata semver and printable characters 657ce552cb6e582976c08cccc9605e42c242084e (Adam Reese)
 - Fix-9253: Change the deprecated charts repo URL in release notes 64e2d596cf17688d4db1446c62255b07c755db64 (Jack Whitter-Jones)
 - Fix `helm list --offset` cli help string f9200231813d1804038a602deb0f979ec60a56b8 (Krish)
 - Fix dep build with OCI based charts 1135392b482f26f244c3c69f51511a1d82590eb7 (Matt Farina)
-- Fix typo in comment fee2257e3493e9d06ca6caa4be7ef7660842cbdb (Guangwen Feng)
-- fix(Makefile): rebuild the binary if go.mod has changed a58209dfa41d291c49dcb42b123b336c782356f3 (Adam Reese)
 - fix(pkg/storage): If storage.Create fails to clean up recent release versions, return an error 00cf10d360de3fbe440789ee51662c2894e041ce (Daniel Lipovetsky)
 
 ### 3.6.1

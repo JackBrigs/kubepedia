@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**34 defects** the project fixed across **1 releases** of the 0.6 line, from 0.6.0 to
+**25 defects** the project fixed across **1 releases** of the 0.6 line, from 0.6.0 to
 0.6.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -50,21 +50,13 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(libcgroups): set `sz` field in `bpf_prog_load_opts` by @sou1118 in https://github.com/youki-dev/youki/pull/3340
 - Fix recursive mount_setattr handling for rec_attr and improve mounts_recursive tests by @saku3 in https://github.com/youki-dev/youki/pull/3345
 - fix(libcgroups): pass `full_path` to Devices controller instead of `cgroup_path` by @sou1118 in https://github.com/youki-dev/youki/pull/3355
-- refactor(tty): call setup_console after pivot_root, use syscall for mount_console by @nayuta723 in https://github.com/youki-dev/youki/pull/3333
 - Align with runc: use user's HOME when HOME is empty string by @bells17 in https://github.com/youki-dev/youki/pull/3269
 - Refactor checkpoint by @nayuta723 in https://github.com/youki-dev/youki/pull/3365
-- chore: fix docs mdbook toml by @YJDoc2 in https://github.com/youki-dev/youki/pull/3307
 - Fix typos in documentation by @oglok in https://github.com/youki-dev/youki/pull/3343
 - (chore) Fix broken links in user document by @donkomura in https://github.com/youki-dev/youki/pull/3361
-- Update netlink-packet dependencies to versions 0.8.1 and 0.25.1 in Cargo.toml and Cargo.lock by @nayuta723 in https://github.com/youki-dev/youki/pull/3297
 - Fixed minor spelling errors in libcontainer documentation. by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3305
 - Add poststart hook test by @fspv in https://github.com/youki-dev/youki/pull/3292
-- Update/runc 1.4.0 by @nayuta723 in https://github.com/youki-dev/youki/pull/3304
-- chore: runc compatibility test improvements by @saku3 in https://github.com/youki-dev/youki/pull/3319
 - Replace once_cell with stdlib OnceLock/LazyLock by @yan-ace62 in https://github.com/youki-dev/youki/pull/3323
-- Update Kind and Kubernetes versions for k8s e2e tests by @IrvingMg in https://github.com/youki-dev/youki/pull/3328
-- ci(basic): pin Rust toolchain to 1.92.0 for cross-rs compatibility by @nayuta723 in https://github.com/youki-dev/youki/pull/3348
-- test: output contest logs to stdout by @saku3 in https://github.com/youki-dev/youki/pull/3349
 - Add poststart_fail hook test by @fspv in https://github.com/youki-dev/youki/pull/3313
 - Added new test "kill no effect" by @oneplus1000 in https://github.com/youki-dev/youki/pull/3332
 - Pass State directly to `run_hooks` instead of Container reference by @IrvingMg in https://github.com/youki-dev/youki/pull/3360
@@ -76,7 +68,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Sync the state to confirm hooks execution by @donkomura in https://github.com/youki-dev/youki/pull/3385
 - Include container status to IncorrectStatus error messaging by @CarloQuick in https://github.com/youki-dev/youki/pull/3411
 - Add prestart_fail hook test by @fspv in https://github.com/youki-dev/youki/pull/3406
-- chore(deps): bump wasmer, wasmtime by @YJDoc2 in https://github.com/youki-dev/youki/pull/3423
 - prepare v0.6.0 by @saku3 in https://github.com/youki-dev/youki/pull/3424
 
 

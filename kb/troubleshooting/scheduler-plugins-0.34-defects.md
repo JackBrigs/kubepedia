@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**6 defects** the project fixed across **1 releases** of the 0.34 line, from 0.34.7 to
+**5 defects** the project fixed across **1 releases** of the 0.34 line, from 0.34.7 to
 0.34.7. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,7 +47,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: pogGroupController panic when no selected pod by @Colvin-Y in https://github.com/kubernetes-sigs/scheduler-plugins/pull/941
 - Fix head-of-line blocking in coscheduling QueueSort by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/949
 - coscheduling: fix data race in Permit() by upgrading RLock to Lock by @binacs in https://github.com/kubernetes-sigs/scheduler-plugins/pull/957
-- build: fix deprecated cloudbuild base image by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/962
 - fix: allow scheduler SA to access resource.k8s.io API group by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/963
 - fix: create GitHub release before uploading helm chart asset by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/966
 

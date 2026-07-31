@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**16 defects** the project fixed across **1 releases** of the 3.18 line, from 3.18.0 to
+**13 defects** the project fixed across **1 releases** of the 3.18 line, from 3.18.0 to
 3.18.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -51,9 +51,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - genpolicy: fix svc_name regex by @katexochen in https://github.com/kata-containers/kata-containers/pull/11314
 - runtime: fix cgroupv2 deletion when sandbox_cgroup_only=false by @Champ-Goblem in https://github.com/kata-containers/kata-containers/pull/11324
 - Fix | Support initdata for SNP by @Xynnn007 in https://github.com/kata-containers/kata-containers/pull/11329
-- ci: fix artifact name of RISC-V tarball by @burgerdev in https://github.com/kata-containers/kata-containers/pull/11387
-- ci: Fix Mariner rootfs build failure by @sprt in https://github.com/kata-containers/kata-containers/pull/11396
-- Revert "ci: Fix Mariner rootfs build failure" by @sprt in https://github.com/kata-containers/kata-containers/pull/11398
 - protocols: Fix the noise caused by non-formatted codes in protocols by @Apokleos in https://github.com/kata-containers/kata-containers/pull/11345
 - genpolicy: fix rules syntax issues, rego v1 compatibility; ci: checks for rego parsing by @katexochen in https://github.com/kata-containers/kata-containers/pull/11412
 - Fix logging on virtiofs shutdown by @pawelbeza in https://github.com/kata-containers/kata-containers/pull/11359

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**19 defects** the project fixed across **4 releases** of the 1.17 line, from 1.17.0 to
+**12 defects** the project fixed across **3 releases** of the 1.17 line, from 1.17.0 to
 1.17.5. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,34 +44,24 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 1.17.0
 
-- 6fcac310d Fix reload behavior for unqualified search registries
-- 46167cbec Fix possible segmentation fault in namespace removal
-- eab842efc Fix pinns path mismatch for install and uninstall
-- c3ac2e539 Fix possible segmentation fault in error handling
-- fc2595923 fix the git commit variable in Makefile in case git doesn't exist
-- fc5f63499 Fix possible branch condition evaluates to a garbage value
-- 2911d495c Fix fish shell completion for new default conmon system.slice
-- 29e2328bc Fix default storage driver for completions validation
-- 6025578f1 Update golangci lint and apply fixes
-- bcc4e1729 fix selinux label on volume mount directory creation
-- 829123115 Fix invalid log_dir position in crio.conf
-- 05f04b9ac Fix possible segmentation fault on restore when runtime_type changes
+- Fix reload behavior for unqualified search registries
+- Fix possible segmentation fault in namespace removal
+- Fix pinns path mismatch for install and uninstall
+- Fix possible segmentation fault in error handling
+- Fix possible branch condition evaluates to a garbage value
+- Fix fish shell completion for new default conmon system.slice
+- Fix default storage driver for completions validation
+- fix selinux label on volume mount directory creation
+- Fix possible segmentation fault on restore when runtime_type changes
 
 ### 1.17.2
 
-- f2d3397f4 stats: fix stats when systemd cgroups are used
-
-### 1.17.3
-
-- [`a967feba5`](https://github.com/cri-o/cri-o/commit/a967feba5d3dc3331e511136527df7b593688331) Merge pull request [#3533](https://github.com/cri-o/cri-o/pull/3533) from rhafer/fix-3511-1.17
-- [`2a90d7520`](https://github.com/cri-o/cri-o/commit/2a90d752006cb3bf0cd5f623ca9a9348b085a7f4) Merge pull request [#3530](https://github.com/cri-o/cri-o/pull/3530) from haircommander/fix-netns-dir-1.17
+- stats: fix stats when systemd cgroups are used
 
 ### 1.17.5
 
-- 1e5cec409 Revert "Fix potentially unclosed file in runtimeVM#CreateContainer"
-- 04dd575a1 internal/oci/runtime_vm: fix resizePty signature
-- 78009728b Fix potentially unclosed file in runtimeVM#CreateContainer
-- 694daca8f test: update image digest to fix test
+- internal/oci/runtime_vm: fix resizePty signature
+- Fix potentially unclosed file in runtimeVM#CreateContainer
 
 
 ## Diagnostics

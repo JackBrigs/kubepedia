@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**12 defects** the project fixed across **1 releases** of the 3.7 line, from 3.7.0 to
+**8 defects** the project fixed across **1 releases** of the 3.7 line, from 3.7.0 to
 3.7.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,17 +45,13 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.7.0
 
 - sandbox: fix the issue of failed to get the vmm master tid by @lifupan in https://github.com/kata-containers/kata-containers/pull/9834
-- tests: nerdctl: Fix variables names and remove network by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9874
 - runtime-rs: fix the bug of func count_files by @gaohuatao-1 in https://github.com/kata-containers/kata-containers/pull/9830
 - runtime: fix missing of VhostUserDeviceReconnect parameter assignment by @markyangcc in https://github.com/kata-containers/kata-containers/pull/9849
 - rootfs: Fix spurious error by @zvonkok in https://github.com/kata-containers/kata-containers/pull/9918
 - kata-deploy: fix qemu static build on ppc64le by @Amulyam24 in https://github.com/kata-containers/kata-containers/pull/9914
-- tests: Fixes TEE timeout issue by @AdithyaKrishnan in https://github.com/kata-containers/kata-containers/pull/9943
 - Fix issues on CI about guest-pull by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/9695
 - gha: Fix pip installation for nerdctl GHA by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9971
-- ci: fix run-nydus tests by @sprt in https://github.com/kata-containers/kata-containers/pull/9992
 - Fix ctr exec stuck problem by @Tim-Zhang in https://github.com/kata-containers/kata-containers/pull/9534
-- tests: fix ps command in k8s-security-context by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/10020
 
 
 ## Diagnostics

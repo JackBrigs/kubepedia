@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**92 defects** the project fixed across **13 releases** of the 1.31 line, from 1.31.0 to
+**91 defects** the project fixed across **13 releases** of the 1.31 line, from 1.31.0 to
 1.31.14. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -109,7 +109,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fixed a bug where init containers may fail to start due to a temporary container runtime failure. ([#127212](https://github.com/kubernetes/kubernetes/pull/127212), [@SergeyKanzhelev](https://github.com/SergeyKanzhelev)) [SIG Node]
 - Fixed a regression in 1.29+ default configurations, where regular init containers may fail to start due to a temporary container runtime failure. ([#127202](https://github.com/kubernetes/kubernetes/pull/127202), [@SergeyKanzhelev](https://github.com/SergeyKanzhelev)) [SIG Node]
 - Kube-apiserver: Fixes a 1.31 regression that stopped honoring build ID overrides with the --version flag ([#126670](https://github.com/kubernetes/kubernetes/pull/126670), [@liggitt](https://github.com/liggitt)) [SIG API Machinery]
-- Revert "fix: handle socket file detection on Windows" ([#127100](https://github.com/kubernetes/kubernetes/pull/127100), [@jsturtevant](https://github.com/jsturtevant)) [SIG Node]
 - Terminated Pods on a node will not be re-admitted on kubelet restart. This fixes the problem of Completed Pods awaiting for the finalizer marked as Failed after the kubelet restart. ([#127207](https://github.com/kubernetes/kubernetes/pull/127207), [@SergeyKanzhelev](https://github.com/SergeyKanzhelev)) [SIG Node and Testing]
 
 ### 1.31.2

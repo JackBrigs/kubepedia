@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**8 defects** the project fixed across **3 releases** of the 1.13 line, from 1.13.0 to
+**7 defects** the project fixed across **2 releases** of the 1.13 line, from 1.13.0 to
 1.13.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,10 +47,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - core: Fix Corefile infinite loop on unclosed braces (https://github.com/coredns/coredns/pull/7571)
 - core: Fix Corefile related import cycle issue (https://github.com/coredns/coredns/pull/7567)
 - plugin/file: Fix data race in tree Elem.Name (https://github.com/coredns/coredns/pull/7574)
-
-### 1.13.1
-
-- core: Update golang to 1.25.2 and golang.org/x/net to v0.45.0 on CVE fixes (https://github.com/coredns/coredns/pull/7598)
 
 ### 1.13.2
 

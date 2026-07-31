@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**12 defects** the project fixed across **2 releases** of the 0.8 line, from 0.8.0 to
+**11 defects** the project fixed across **2 releases** of the 0.8 line, from 0.8.0 to
 0.8.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -50,7 +50,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix update loop in certificates controller and add additional debug logging (#1602, @munnerz)
 - Fix issues running the cainjector controller on Kubernetes 1.9 (#1579, @munnerz)
 - Fix upgrade bug where lastTransitionTime may be set to nil, rendering cert-manager inoperable without manual intervention (#1576, @munnerz)
-- - fix typo in the deployment template (#1546, @cpanato)
 
 ### 0.8.1
 

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**10 defects** the project fixed across **1 releases** of the 3.9 line, from 3.9.0 to
+**7 defects** the project fixed across **1 releases** of the 3.9 line, from 3.9.0 to
 3.9.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,14 +44,11 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 3.9.0
 
-- tests: Fix k8s test issues on s390x by @BbolroC in https://github.com/kata-containers/kata-containers/pull/10202
 - helm: Several fixes, including some reasonable re-work on kata-deploy.sh script by @fidencio in https://github.com/kata-containers/kata-containers/pull/10192
 - runtime: fix bad default machine_type for remote hypervisor by @squarti in https://github.com/kata-containers/kata-containers/pull/10250
 - runtime: Fix runtime/cdi panic with assignment to entry in nil map by @Apokleos in https://github.com/kata-containers/kata-containers/pull/10276
 - genpolicy: fix and re-enable create container UID verification by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/10291
-- tests: Fix indentation in the cri containerd tests by @GabyCT in https://github.com/kata-containers/kata-containers/pull/10304
 - local-build: Fix unbound variable issue for lib_se.sh by @BbolroC in https://github.com/kata-containers/kata-containers/pull/10321
-- ci: Fix indentation of install libseccomp script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/10324
 - agent: Fix CPU usage reporting for cgroup v2 in kata-agent by @alexman-stripe in https://github.com/kata-containers/kata-containers/pull/10279
 - shim: Fix memory usage reporting for cgroup v2 by @alexman-stripe in https://github.com/kata-containers/kata-containers/pull/10283
 

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**16 defects** the project fixed across **6 releases** of the 1.13 line, from 1.13.0 to
+**11 defects** the project fixed across **6 releases** of the 1.13 line, from 1.13.0 to
 1.13.7. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,19 +44,14 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 1.13.0
 
-- Docs: Fix function names in comments. (#13517)
 - Lua: Fix `ExternalName` services without endpoints. (#13154)
 - Fix 🐛: Markdown requires nested content inside a list item to be indented (#13388)
-- Docs: Fix link in installation instructions. (#13190)
 - fix DNS issues with unresolvable backends with ExternalName (#10989)
 
 ### 1.13.1
 
-- Docs: Bump mkdocs to v9.6.16, fix links. (#13743)
-- Docs: Fix default config values and links. (#13738)
 - Controller: Fix nil pointer in path validation. (#13681)
 - Controller: Fix SSL session ticket path. (#13667)
-- Docs: Fix links and formatting in user guide. (#13661)
 - Config/Annotations: Fix `proxy-busy-buffers-size`. (#13638)
 
 ### 1.13.2

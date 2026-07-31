@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**17 defects** the project fixed across **3 releases** of the 3.16 line, from 3.16.0 to
+**15 defects** the project fixed across **3 releases** of the 3.16 line, from 3.16.0 to
 3.16.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -54,7 +54,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(dependencyBuild): prevent race condition in concurrent helm dependency adeb4ca3d974936349f1980db3ac5599bac8611e (Suleiman Dibirov)
 - fix: respect proxy envvars on helm install/upgrade b0603fb042c3299d16e9fdd861d3da5616e44d4a (Sidharth Menon)
 - fix docs of DeployedAll 90df4fa4d1b4a98b1fb208b8f5fcec87dd54ccca (Daniel Strobusch)
-- fix typo in load_plugins.go 7fbde331092329d1103c62cfd60398019b8e65a0 (yxxhero)
 - fix: wrong cli description bf4d6f290bce58388e38d4ec1b8be5621ed5623c (yyzxw)
 
 ### 3.16.2
@@ -65,7 +64,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.16.3
 
 - fix: fix label name cfd07493f46efc9debd9cc1b02a0961186df7fdf (wangjingcun)
-- Fix typo in pkg/lint/rules/chartfile_test.go a303060fc60bc713cd0757503b3fcb4636b14f34 (Zach Burgess)
 - fix(hooks): correct hooks delete order 19fe320ae87e8d1d4bc1952d9da8ea2fe435aa6e (Suleiman Dibirov)
 
 

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**33 defects** the project fixed across **4 releases** of the 2.1 line, from 2.1.0 to
+**31 defects** the project fixed across **4 releases** of the 2.1 line, from 2.1.0 to
 2.1.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -51,41 +51,39 @@ Entries are grouped by the release that fixed them, oldest first.
 - Users can now specify custom protocol timeouts for IPVS services exposed by kube-router `--service-tcp-timeout` - (default: `0s` preserves system value, typically 900 seconds) `--service-tcpfin-timeout` - (default: `0s` preserves system value, typically 120 seconds) `--service-udp-timeout` - (default: `0s` preserves system value, typically 300 seconds)
 - kube-router now abides by the service label `service.kubernetes.io/service-proxy-name`. Setting this label to something other than `kube-router` will result in kube-router ignoring the service
 - kube-router now honors `spec.internalTrafficPolicy` and implements `spec.externalTrafficPolicy` correctly. For more information see: https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies for more information
-- 47fe189f - feat(lint): update golangci-lint and fix lint errors `<Aaron U'Ren>`
-- eb262887 - fix(manifests): add hostPID for hairpin `<Aaron U'Ren>`
-- aebaa48e - fix(NSC): handle endpoint slice ready nil `<Aaron U'Ren>`
-- 0f3714b9 - fix(hairpin): set hairpin_mode for veth iface `<Aaron U'Ren>`
+- - fix(manifests): add hostPID for hairpin `<Aaron U'Ren>`
+- - fix(NSC): handle endpoint slice ready nil `<Aaron U'Ren>`
+- - fix(hairpin): set hairpin_mode for veth iface `<Aaron U'Ren>`
 
 ### 2.1.1
 
 - Fixes IPv6 network policy which has been substantially broken since v2.0.0. When IPv6 network policy was introduced, it was missed that iptables statements need to reference these sets via the `inet6` prefix in order to use them correctly. As such, most network policies were not correctly applying
 - Fixes `--cleanup-config` mode which has been broken since v2.0.0 (please see docs for updated examples of how to run this from within a container)
-- 317c754a - fix(hairpin): rely on CNI hairpin mode `<Aaron U'Ren>`
-- 9d9b796d - fix(service_endpoints_sync): bail out of DSR when HostNetwork detected `<Aaron U'Ren>`
-- 567c8913 - fix(linux_networking): add more information to errors `<Aaron U'Ren>`
-- e40f46ed - fix(user-guide.md): update cleanup example `<Aaron U'Ren>`
-- ecaad2c6 - fix(cleanup): add missing handlers for cleanup `<Aaron U'Ren>`
-- 7755b4a6 - fix(node.go): improve logic for GetNodeObject `<Aaron U'Ren>`
-- d12f422f - fix(policy): generate ipv6 names correctly `<Aaron U'Ren>`
-- 2c7151b5 - fix(policy.go): use new utility method ipSetName `<Aaron U'Ren>`
-- ada3179c - fix: wrong ipset name used by ip6tables. `<xujunjie-cover>`
-- af1b07ae - fix(service_endpoints_sync.go): error to be indicative of failure type `<Aaron U'Ren>`
-- 421a1130 - fix(DSR): setup DSR inside pod on local eps only `<Aaron U'Ren>`
-- b1cc1584 - fix(Dockerfile): install iptables-legacy package `<elchenberg>`
-- 1db3438b - fix: rt_tables -> rt-tables in daemonset examples `<Aaron U'Ren>`
-- 70920609 - fix(rt_tables): add path fallback logic `<Aaron U'Ren>`
-- 5bbbd13f - doc(CONTRIBUTING.md): fix relative link `<Aaron U'Ren>`
+- - fix(hairpin): rely on CNI hairpin mode `<Aaron U'Ren>`
+- - fix(service_endpoints_sync): bail out of DSR when HostNetwork detected `<Aaron U'Ren>`
+- - fix(linux_networking): add more information to errors `<Aaron U'Ren>`
+- - fix(user-guide.md): update cleanup example `<Aaron U'Ren>`
+- - fix(cleanup): add missing handlers for cleanup `<Aaron U'Ren>`
+- - fix(node.go): improve logic for GetNodeObject `<Aaron U'Ren>`
+- - fix(policy): generate ipv6 names correctly `<Aaron U'Ren>`
+- - fix(policy.go): use new utility method ipSetName `<Aaron U'Ren>`
+- - fix: wrong ipset name used by ip6tables. `<xujunjie-cover>`
+- - fix(service_endpoints_sync.go): error to be indicative of failure type `<Aaron U'Ren>`
+- - fix(DSR): setup DSR inside pod on local eps only `<Aaron U'Ren>`
+- - fix: rt_tables -> rt-tables in daemonset examples `<Aaron U'Ren>`
+- - fix(rt_tables): add path fallback logic `<Aaron U'Ren>`
+- - doc(CONTRIBUTING.md): fix relative link `<Aaron U'Ren>`
 
 ### 2.1.2
 
-- 82f7917e - fix(ipset): reset ipset handler before use `<Aaron U'Ren>`
-- 28585f65 - fix(ipset.go): make IP families distinct in ipset handler `<Aaron U'Ren>`
+- - fix(ipset): reset ipset handler before use `<Aaron U'Ren>`
+- - fix(ipset.go): make IP families distinct in ipset handler `<Aaron U'Ren>`
 
 ### 2.1.3
 
-- e980a17b - fix(nsc): remove previous TCPMSS rules during setting up DSR `<Richard Kojedzinszky>`
-- defdf64a - fix(nsc): remove previous TCPMSS rules `<Aaron U'Ren>`
-- 5fdde068 - fix(nsc): TCPMSS rules are created per-service and for reply packets only `<Richard Kojedzinszky>`
+- - fix(nsc): remove previous TCPMSS rules during setting up DSR `<Richard Kojedzinszky>`
+- - fix(nsc): remove previous TCPMSS rules `<Aaron U'Ren>`
+- - fix(nsc): TCPMSS rules are created per-service and for reply packets only `<Richard Kojedzinszky>`
 
 
 ## Diagnostics

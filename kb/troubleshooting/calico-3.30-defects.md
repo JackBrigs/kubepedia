@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**80 defects** the project fixed across **8 releases** of the 3.30 line, from 3.30.0 to
+**79 defects** the project fixed across **8 releases** of the 3.30 line, from 3.30.0 to
 3.30.7. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -128,7 +128,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - ebpf: Do not adjust gso_size after nodeport tunnel vxlan decap. There is no guarantee that there would be enough data after removing tunnel headers. The packet is shrunk by 50 bytes while the gso_size would grow. Kernel would drop the packet if the original gso packet is too small. [calico 11259](https://github.com/projectcalico/calico/pull/11259) (@tomastigera)
 - Fix BGP advertisement of externalIP addresses on Services with type=ClusterIP. [calico 11235](https://github.com/projectcalico/calico/pull/11235) (@caseydavenport)
 - ebpf: start only a single kube-proxy health-server in dual stack mode [calico 11222](https://github.com/projectcalico/calico/pull/11222) (@tomastigera)
-- Fix typo in FelixConfiguration BPFKubeProxyHealthzPort field. [calico 11209](https://github.com/projectcalico/calico/pull/11209) (@tomastigera)
 - Fix IPAM block leak of older blocks when deleting IP pools. [calico 11196](https://github.com/projectcalico/calico/pull/11196) (@gojoy)
 
 ### 3.30.6

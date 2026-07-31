@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**11 defects** the project fixed across **1 releases** of the 1.3 line, from 1.3.0 to
+**9 defects** the project fixed across **1 releases** of the 1.3 line, from 1.3.0 to
 1.3.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,10 +46,8 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - fix: remove VolumeSnapshotDataSource feature gate by @chewong in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/823
 - fix: set correct DisableAvailabilitySetNodes in disk driver by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/831
-- test: fix containerd Windows e2e test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/830
 - fix: increase csi-attacher work-threads as 100 by default by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/833
 - fix: reduce crp throttling in attach disk scenario by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/835
-- chore: upgrade base image to fix CVE issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/838
 - fix: GetDisk operation throttling issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/842
 - fix: no sleep when GetDisk is throttled by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/844
 - fix: CentOS/RedHat cert issue in chart installation by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/848

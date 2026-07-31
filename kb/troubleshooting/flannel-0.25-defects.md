@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**9 defects** the project fixed across **8 releases** of the 0.25 line, from 0.25.0 to
+**7 defects** the project fixed across **6 releases** of the 0.25 line, from 0.25.2 to
 0.25.7. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -41,14 +41,6 @@ the remedy is a patch bump rather than an investigation.
 Entries are grouped by the release that fixed them, oldest first.
 
 ## Context
-
-### 0.25.0
-
-- chore: fix typo by @pavedroad in https://github.com/flannel-io/flannel/pull/1903
-
-### 0.25.1
-
-- chore: fix typo in comment by @looklose in https://github.com/flannel-io/flannel/pull/1934
 
 ### 0.25.2
 

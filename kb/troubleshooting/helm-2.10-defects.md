@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**73 defects** the project fixed across **1 releases** of the 2.10 line, from 2.10.0 to
+**69 defects** the project fixed across **1 releases** of the 2.10 line, from 2.10.0 to
 2.10.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -60,7 +60,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(release_server): fix how we merge values 39d41d09c6ab4937eca03d622891c536d47fe2f4 (Michelle Noorali)
 - fix `helm template -x` pathing issues on Windows 1a1ea6383004e13c400070ec50e5003da69963e5 (Matthew Fisher)
 - fix path output for Windows d8b46d840be34f2232cd72ee980b646ccdf8aa6c (Matthew Fisher)
-- Revert "fix(helm): add `--tls-hostname` flag to tls flags." aedd306e83fa8319ddaaa9df0a9e5111c3538e37 (Brian)
 - fix(helm): add --tls-hostname flag to tls-flags 7faf62a209e91bfae17522e4a63c750a3482f6f3 (fibonacci1729)
 - fix(helm): return when listing with no releases or nil 6767f3cf08b30fda5f031cda7e2d0cb9d66a7bd8 (fibonacci1729)
 - Fix(helm): fix the bug of the charts not deployed after downloaded in helm install --dep-up 4d579bbbdff7d9b7c6b380d256f29a5732147d22 (rocky)
@@ -76,12 +75,9 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix inaccurate comment in `tiller` 2b04523bafa1cc96eb92b64980f7672a399e3715 (mattjmcnaughton)
 - fix charts doc: extra space in requirement condition 091dd84c71814fdeb8b67aaaf90179629f1f7f84 (Eric Zhang)
 - Typo fix: mach->match 51f92b47877bcc36401dacc6b624eecff8a8931d (AdamDang)
-- fix lint warning f2abb2ae1409ef0c897bd5f7a943561b17af0b3a (Rajat Jindal)
 - fix(kube): run schema validation on BuildUnstructured b831efdf5853dceb0249eaf441024d115b5cb633 (Adam Reese)
 - Typo fix: usa helm->use helm ddb536aa7a9287a6bf45994f4430891d00c1f529 (AdamDang)
 - Typo fix: evalutes->evaluates 07bebe6bff7885cafc800c063e52bf4669ed1c93 (AdamDang)
-- Revert "Fix tiller deployment on RBAC clusters" 4d1a401a9fb52cfbad97c31a9d038935434b413c (Matthew Fisher)
-- Revert "toYaml - Fix #3470 and #3410's trailing \n issues" f7f686f7d065218ef6df3fbb75ce6348e699a0f3 (Matthew Fisher)
 - Fix for - Downloader plugins not used when downloading new repo's index.yaml #3938 c2fa72ebcdc9a12381eec29b642374af75f5b45c (eyalbe4)
 - fix(kube): output internal object table cefee4b749122bc38d019c2791faf79a4ab1376f (Adam Reese)
 - Fix --tiller-namespace flag for plugins ed39f16ee57c094476ea61ef4983efcb501e7643 (Fabian Ruff)

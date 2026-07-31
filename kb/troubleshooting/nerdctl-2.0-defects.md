@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**9 defects** the project fixed across **4 releases** of the 2.0 line, from 2.0.1 to
+**8 defects** the project fixed across **3 releases** of the 2.0 line, from 2.0.1 to
 2.0.5. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -51,10 +51,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - `nerdctl pull`: Fixed `hosts.toml` resolution for `index.docker.io` (#3720, thanks to @apostasie)
 - Rootless: Fix an issue about bypass4netns on restarting the host (#3724, thanks to @apostasie)
-
-### 2.0.4
-
-- CI: Lots of fixes, refactoring, and the introduction of the [Tigron testing framework](https://github.com/containerd/nerdctl/tree/v2.0.4/mod/tigron) (several PRs, thanks to @apostasie)
 
 ### 2.0.5
 

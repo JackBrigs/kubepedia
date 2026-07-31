@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**43 defects** the project fixed across **2 releases** of the 2.13 line, from 2.13.0 to
+**41 defects** the project fixed across **2 releases** of the 2.13 line, from 2.13.0 to
 2.13.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -76,7 +76,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: perform extra validation on paths in tar archives (#5165) 5603fe8d3e6ca9347ea0c2a94b2b33a55f5134cd (Matt Butcher)
 - Fix some spelling errors (#5114) e70bea6adb6825e4f0cce1917121e6e000bf9049 (JoeWrightss)
 - fix minor build issue cbf9ad11be1153d72cade3212d708112af97eefe (Elad Iwanir)
-- Revert "Fix for existing CRDs are deleted when crd-install hook is introduced (#4709)" (#5067) 29ab7a0a775ec7182be88a1b6daa9e65a472b46b (Matthew Fisher)
 - Fix(helm): Use spaces in ingress template 89467a8bf154aa19ad41c6775dc4a4f7ce6dfc04 (Alex Humphreys)
 - Fix some spelling error (#5032) e9a5465c661a7543d5a968f0020fc4729f95874f (JoeWrightss)
 - fix(helm): Correct and improve resilence of template check in unit test (#5010) 146c61af3765417c4b0d95bbb1a4ad73d3c228c9 (Henry Nash)
@@ -84,7 +83,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(helm): Print details for pod resource ede43a313dde2611ea63e89546af46854b4121d4 (Morten Torkildsen)
 - fix(helm): Fix linebreaks when printing custom resources 5ac37fba9952e2df8a29c42500ee5746c3325c74 (Morten Torkildsen)
 - fix(helm): add --render-subchart-notes flag to 'helm install' and 'helm upgrade' 1518f961af426bfb4ce8f4ef515c4d90b1a475fb (jgleonard)
-- fix lint warning 61156e66565aaf5903efabcc5710846989a20f84 (Rajat Jindal)
 
 ### 2.13.1
 

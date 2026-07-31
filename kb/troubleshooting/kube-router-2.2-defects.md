@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**12 defects** the project fixed across **3 releases** of the 2.2 line, from 2.2.0 to
+**10 defects** the project fixed across **3 releases** of the 2.2 line, from 2.2.0 to
 2.2.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,16 +44,14 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 2.2.0
 
-- a0442e5a - fix: allow basic ICMPv6 neighbor discovery `<Aaron U'Ren>`
-- 2522b4d1 - fix(getAllLocalIPs): get IPv6 & IPv4 addresses `<Aaron U'Ren>`
-- b217e7b4 - fix(NSC): ensure kube-router owns kube-router-svip `<Aaron U'Ren>`
-- e8962dd8 - fix(linux_networking.go): remove dangling IPv6 routes `<Aaron U'Ren>`
-- 26b539e8 - fix(feature_request.md): update markdown templating `<Aaron U'Ren>`
-- 84c35498 - fix(bug_report.md): update markdown templating `<Aaron U'Ren>`
-- 94b17b8f - fix(utils.go): static /32 subnet mask reference `<Aaron U'Ren>`
-- 4013d21d - fact(Dockerfile): fix linter warning for AS `<Aaron U'Ren>`
-- a2d2e011 - fix(Dockerfile): re-add ip6tables binary `<Aaron U'Ren>`
-- a1125f6e - fix: ensure that ipv6 is not disabled in kernel `<Natanael Copa>`
+- - fix: allow basic ICMPv6 neighbor discovery `<Aaron U'Ren>`
+- - fix(getAllLocalIPs): get IPv6 & IPv4 addresses `<Aaron U'Ren>`
+- - fix(NSC): ensure kube-router owns kube-router-svip `<Aaron U'Ren>`
+- - fix(linux_networking.go): remove dangling IPv6 routes `<Aaron U'Ren>`
+- - fix(feature_request.md): update markdown templating `<Aaron U'Ren>`
+- - fix(bug_report.md): update markdown templating `<Aaron U'Ren>`
+- - fix(utils.go): static /32 subnet mask reference `<Aaron U'Ren>`
+- - fix: ensure that ipv6 is not disabled in kernel `<Natanael Copa>`
 
 ### 2.2.1
 
@@ -61,7 +59,7 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 2.2.2
 
-- 5179953b - fix(dsr): change grpc resolver to passthrough `<Aaron U'Ren>`
+- - fix(dsr): change grpc resolver to passthrough `<Aaron U'Ren>`
 
 
 ## Diagnostics

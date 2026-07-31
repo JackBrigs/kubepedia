@@ -50,18 +50,18 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 1.5.1
 
-- `8a17e3e1` - fix(NSC): don't check protocol on DSR svcs (21 minutes ago) <Aaron U'Ren>
-- `422edd29` - fix(ipset): remove initval during ipset parse (21 minutes ago) <Aaron U'Ren>
-- `86aa942a` - fix(bgp): set graceful restart on enabled family (21 minutes ago) <Aaron U'Ren>
-- `b0da24c4` - fix: remove multiple MTU reductions (22 minutes ago) <Aaron U'Ren>
+- - fix(NSC): don't check protocol on DSR svcs (21 minutes ago) <Aaron U'Ren>
+- - fix(ipset): remove initval during ipset parse (21 minutes ago) <Aaron U'Ren>
+- - fix(bgp): set graceful restart on enabled family (21 minutes ago) <Aaron U'Ren>
+- - fix: remove multiple MTU reductions (22 minutes ago) <Aaron U'Ren>
 
 ### 1.5.2
 
-- 8574163c - iptables mode selection fixed. iptables-wrapper script updated to the latest upstream version <@makhov>
+- - iptables mode selection fixed. iptables-wrapper script updated to the latest upstream version <@makhov>
 
 ### 1.5.4
 
-- f350859 - fix(dsr): CRI runtime/v1alpha2 -> runtime/v1 `<Aaron U'Ren>`
+- - fix(dsr): CRI runtime/v1alpha2 -> runtime/v1 `<Aaron U'Ren>`
 
 
 ## Diagnostics

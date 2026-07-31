@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**31 defects** the project fixed across **9 releases** of the 0.8 line, from 0.8.0 to
+**30 defects** the project fixed across **9 releases** of the 0.8 line, from 0.8.0 to
 0.8.10. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -58,7 +58,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: set service's uid in activeService map for inactive services by @starbops in https://github.com/kube-vip/kube-vip/pull/837
 - Fixed route deletion when route is used by more than one service by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/838
 - fix: close file by @testwill in https://github.com/kube-vip/kube-vip/pull/846
-- bump golang for security fix by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/884
 
 ### 0.8.2
 

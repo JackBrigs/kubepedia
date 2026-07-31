@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**26 defects** the project fixed across **3 releases** of the 2.4 line, from 2.4.0 to
+**23 defects** the project fixed across **3 releases** of the 2.4 line, from 2.4.0 to
 2.4.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -61,7 +61,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(init): use ImagePullPolicy Always for canary installs 264ad3271ed01697c359bdfd1506c8cacf35721c (Adam Reese)
 - Fixes hard-coded linux based file-separator 84fc5b776f6aadc5bcaecfdbf5e521dee4d45d72 (Sushil Kumar)
 - fix(helm): remove duplicate commands 1a79c28f45f64967be118d0d684008dd7e493835 (Matt Butcher)
-- Fix spacing 22cec7cdc13ccf26f24f80d0b911c7a9045bdd16 (Scott Rigby)
 
 ### 2.4.1
 
@@ -70,11 +69,9 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 2.4.2
 
 - fix(helm): add --devel flag to allow dev releases again 0b4c60b7d4ddf5ed75997efdbe974446554e2f0b (Matt Butcher)
-- fix(Dockerfile): add ca-certificates f9696b9f42f2215a02b01cccc1f149d2780493ba (Matt Butcher)
 - fix(lint): add KubeVersion and TillerVersion to linter 504f0f4d0a8786a9125ebd034a33469b428bc2c9 (Matt Butcher)
 - fix(*): return non-zero exit code on test failure ddfd9a05aa91d38291fb18388f2a965404e46fcf (Michelle Noorali)
 - Fixes messages for plugin remove option 61d01766985b7bc58649eb9b0f4f955524fa282c (Sushil Kumar)
-- fix(Dockerfile): only copy tiller binary in Dockerfile c27b24fb2e162cbbd69be493e101b37e37bdc070 (Adam Reese)
 - fix(tiller): Fixes bug with `--wait` and updated deployments 79c492b6aba9f018608d635530f00a17bf3539b8 (Taylor Thomas)
 
 

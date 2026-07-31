@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**27 defects** the project fixed across **3 releases** of the 4.0 line, from 4.0.1 to
+**26 defects** the project fixed across **3 releases** of the 4.0 line, from 4.0.1 to
 4.0.5. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -69,7 +69,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(upgrade): pass --server-side flag to install when using upgrade --install 1b6053d48b51673c5581973f5ae7e104f627fcf5 (Evans Mungai)
 - fix(cli): handle nil config in EnvSettings.Namespace() 1e3ee1d2ba5a421165fe053a41aa4071cf69ed62 (Zadkiel AHARONIAN)
 - fix(getter): pass settings environment variables 31bd995ce201e295ff2f87e11fdf13bf55fdffd2 (Zadkiel AHARONIAN)
-- test(statuswait): fix Copilot code review suggestion for goroutine in tests 41a6b364a1433dabcefca945619b55a43046f6ce (Mohsen Mottaghi)
 - fix: use namespace-scoped watching to avoid cluster-wide LIST permissions 66cab24bb95f68448a83304c6d3297ec45c8fdb7 (Mohsen Mottaghi)
 - Fix linting issue 417aae9c01a79c01f3de8c2a08079fddada6078e (Benoit Tigeot)
 - Fix TestCliPluginExitCode e845b68fe3ea0c91f429b384e3b78f3f853ae208 (tison)

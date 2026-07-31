@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**35 defects** the project fixed across **1 releases** of the 1.23 line, from 1.23.0 to
+**16 defects** the project fixed across **1 releases** of the 1.23 line, from 1.23.0 to
 1.23.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,36 +44,17 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 1.23.0
 
-- fix(deps): update module github.com/containers/storage to v1.59.1 by @renovate[bot] in https://github.com/containers/skopeo/pull/2670
-- fix(deps): update module github.com/containers/image/v5 to v5.36.1 by @renovate[bot] in https://github.com/containers/skopeo/pull/2671
-- fix(deps): update module github.com/containers/common to v0.64.1 by @renovate[bot] in https://github.com/containers/skopeo/pull/2672
-- fix(deps): update module golang.org/x/term to v0.34.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2673
-- fix(deps): update module github.com/stretchr/testify to v1.11.1 by @renovate[bot] in https://github.com/containers/skopeo/pull/2685
-- fixes to have test-*-local Makefile targets work by @lsm5 in https://github.com/containers/skopeo/pull/2654
-- fix(deps): update module golang.org/x/term to v0.36.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2722
-- fix(deps): update module go.podman.io/storage to v1.61.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2728
-- fix(deps): update module go.podman.io/image/v5 to v5.38.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2727
-- fix(deps): update module go.podman.io/common to v0.66.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2726
 - fix(deps): update github.com/opencontainers/image-spec digest to 26647a4 by @renovate[bot] in https://github.com/containers/skopeo/pull/2736
-- Fix test-system and remove stale Makefile target by @lsm5 in https://github.com/containers/skopeo/pull/2731
-- fix(deps): update module golang.org/x/term to v0.37.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2742
-- fix(deps): update module github.com/spf13/cobra to v1.10.2 by @renovate[bot] in https://github.com/containers/skopeo/pull/2762
-- fix(deps): update module golang.org/x/term to v0.38.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2768
 - fix(deps): update common, image, and storage deps to afd10d8 by @renovate[bot] in https://github.com/containers/skopeo/pull/2765
 - fix(deps): update common, image, and storage deps to b0f86df by @renovate[bot] in https://github.com/containers/skopeo/pull/2774
-- chore: fix function name in comment by @promalert in https://github.com/containers/skopeo/pull/2780
-- fix(deps): update module golang.org/x/term to v0.39.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2785
 - fix(deps): update common, image, and storage deps to e7626b7 by @renovate[bot] in https://github.com/containers/skopeo/pull/2786
-- fix(deps): update module github.com/sirupsen/logrus to v1.9.4 by @renovate[bot] in https://github.com/containers/skopeo/pull/2787
 - fix(deps): update common, image, and storage deps to b2572af by @renovate[bot] in https://github.com/containers/skopeo/pull/2790
 - fix(deps): update common, image, and storage deps to b5801a6 by @renovate[bot] in https://github.com/containers/skopeo/pull/2792
 - fix(deps): update common, image, and storage deps to 0e2aefd by @renovate[bot] in https://github.com/containers/skopeo/pull/2794
-- fix(deps): update module golang.org/x/term to v0.40.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2798
 - Packit: fix downstream post-modifications action by @lsm5 in https://github.com/containers/skopeo/pull/2810
 - fix(deps): update common, image, and storage deps to 854aaaf by @renovate[bot] in https://github.com/containers/skopeo/pull/2812
 - fix(deps): update github.com/opencontainers/image-spec digest to a4c6ade by @renovate[bot] in https://github.com/containers/skopeo/pull/2813
 - fix(deps): update common, image, and storage deps to d48bc74 by @renovate[bot] in https://github.com/containers/skopeo/pull/2819
-- fix(deps): update module golang.org/x/term to v0.41.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2821
 - Fix misc. warnings by @mtrmac in https://github.com/containers/skopeo/pull/2823
 - fix(deps): update common, image, and storage deps to ddaabae by @renovate[bot] in https://github.com/containers/skopeo/pull/2825
 - fix(deps): update common, image, and storage deps to 94ad023 by @renovate[bot] in https://github.com/containers/skopeo/pull/2831

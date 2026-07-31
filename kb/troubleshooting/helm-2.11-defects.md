@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**23 defects** the project fixed across **1 releases** of the 2.11 line, from 2.11.0 to
+**21 defects** the project fixed across **1 releases** of the 2.11 line, from 2.11.0 to
 2.11.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -59,9 +59,7 @@ Entries are grouped by the release that fixed them, oldest first.
 - Avoid importing k8s.io/kubernetes from pkg/helm (#4499) 37a731db798de00bf94837e207a8a418c76b6557 (Fabian Ruff)
 - Set proxy for all connections, fixes #4326 (#4579) 2e9855b98ba0a04a4aa1576f3ed769b0dbd15c42 (Christian Köberl)
 - fix(helm): Add --tiller-tls-hostname flag to 'helm init' 1b34a511d4ae38e43518e99a8250330515e3a93c (aswinkarthik)
-- Fix typo in message.go 0b4e086e0572ae405a65af0a61c2dbe5a4ced2e5 (Jon Huhn)
 - Fix helm create note for k8 label convention changes 7306b4c28eadcd06a9f090546d6edec8a0067ac0 (Martin Hickey)
-- Fix typo in parser.go d92939119993174ae264dfec06db7cb1b07e37c9 (Jon Huhn)
 - fix: link to custom resource definitions section f15d65845019f549679d06e18db9ec7ce7686922 (Alexey Volkov)
 - fix(client): fix bug in list releases to append all releases 38eb73760b44f25b517f6f2f3c48cbb7dc047bb8 (Matt Tucker)
 - fix(helm): fix(helm): add `--tls-hostname` flag to tls flags bd0686731c4d0bcf2bf1282f915bb20da3770c21 (fibonacci1729)

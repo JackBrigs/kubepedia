@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**90 defects** the project fixed across **3 releases** of the 4.2 line, from 4.2.0 to
+**71 defects** the project fixed across **3 releases** of the 4.2 line, from 4.2.0 to
 4.2.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -55,33 +55,23 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix artifact directory a9659b07e3eec20ab5b964fddae05f51f478f704 (Terry Howe)
 - fix: adds topLevel permissions to improve openSSF scores 277d9702555532d13426119d31c70fffb389d589 (Gagan H R)
 - fix(templating): hooks conflicting with templates in post-renderers (#32049) 8f56f24d638612a46f3e23265d06338c1f93bccb (Matheus Pimenta)
-- docs: fix grammar and spacing in CONTRIBUTING.md db40adb1d13573280b65bc2002df7d75c009235a (Mohit)
 - fix(templating): SplitManifests must preserve line endings for downstream YAML parsers (#31952) 265c5eb530a36ec651e79ecf4d37ba2f098b7e59 (Matheus Pimenta)
 - fix(values): do not copy chart-default nils into coalesced values 00638773d1366dc962c785de3d297cf0279b9a0d (Johannes Lohmer)
 - fix(templating): fix wrong YAML separator parsing for post-renderers (#31941) a27f1add79c6c02459413dbb60f8438d8051cf06 (Matheus Pimenta)
 - fix: add debug logging to HTTP getter for helm pull c26be60d81e5cb6a147d6088477cf86fd5aaf1f0 (Cairon)
 - fix: unnecessary-format lint issues from merge 087736b66e97393ccaa0bdf1e5df13dcc9d88340 (George Jenkins)
 - fix: Plugin missing provenance bypass 586eb57338d848e65686a3a9616e2776e87cfd1e (George Jenkins)
-- test(kube): fix flaky WaitForDelete test by avoiding informer sync race a7f84439aacd3864b40055b60a3c3e54292d1646 (Terry Howe)
-- test(kube): fix flaky WaitForDelete timing in status wait tests 4c0d21f53f2ca78b525e31dbbf9cc9cfb818a2e3 (Terry Howe)
 - Minor nit: fix import instructions to comply with canonical import paths de58531ca7ff557342acaa2c906082e58521ef47 (Anmol Virdi)
 - fix(action): return correct error variable in prepareUpgrade 8ef2d45934ba1b9ca341818f1157112fcf7cdf1d (Rhys McNeill)
 - fix(kube): clarify server-side apply patch errors f257c95c783f5595e36cb5a7dcc862cc1f6266b5 (abhay1999)
 - fix: pin codeql-action/upload-sarif to commit SHA in scorecards workflow 7025480397d8b6b7fd8cdb5e083dc37b62dbd3d8 (Terry Howe)
-- docs(registry): fix incorrect and improve clarity of comments in client.go 85bf56ea82fd21452e53cae91b380b0afb3e8b83 (Debasish Mohanty)
-- docs(engine): fix misleading toTOML doc comment c1a5a6e260bd070bce9a8299795400340e10c468 (Ilya Kiselev)
-- chore: fix unnecessary-format issues from revive 7edfff33ebcb0f5d961afec34393c222de92de12 (Matthieu MOREL)
-- chore: fix bool-compare issues from testifylint 071558d69ffbb408dcb56403d387a1aa90a7d3a8 (Matthieu MOREL)
 - fix(kube): remove legacy import comments from test files e64d628a139fab8c876a1d2f4c2928096b286bed (Terry Howe)
 - fix: Plugin version path traversal 36dcc27ca3c0cd6d0d08713b03dca82f43d7c5f9 (George Jenkins)
-- chore: fix some minor issues in the comments 259f181808f267493d56eccd7f6191f78225a6fa (tsinglua)
 - fix: Chart dot-name path bug 60184996e5332d26e0b6390cefbf86776829dc46 (George Jenkins)
 - fix: insert newline after doc separators glued to content by template trimming af94abf976ce69dd635aaf086a0bb4b17bd95bc1 (Matheus Pimenta)
 - fix: bump go.opentelemetry.io/otel/sdk to v1.40.0 for GO-2026-4394 b550ce90946b3b47cecd290fc5d0eee637ddb531 (Terry Howe)
 - fix: bump fluxcd/cli-utils to v0.37.2-flux.1 1dfa77ed8ba6f9e26542064248bc9eab40c1a662 (Terry Howe)
-- chore(pkg): fix perfsprint linter issues part 6 dc0e3f10c3ba8f25aa71c523d2e273690d338a17 (Matthieu MOREL)
 - fix: enable nolinlint linter 5b6c6bbfc7ca9850c69d3823ca1e21b445e75c0d (Matthieu MOREL)
-- chore: fixes 92b64e87ad6245d64d5b49bbbbf8dead83faac22 (George Jenkins)
 - fix: correct import comment in statuswait.go from v3 to v4 c59c140ce07ce973f16fe50c0c5e991e1d6308a6 (rohansood10)
 - fix: handle OCI digest algorithm prefix in chart downloader (#31601) ee018608f6fbf381fac1bae9759164a65c6a0b1f (Evans Mungai)
 - fix(pkg): errorlint linter 259f76a849391e6ff60a9a2e95ce7310d958c602 (Matthieu MOREL)
@@ -94,12 +84,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(cmd): errorlint linter edbd705bd034246700cc0998016caa303cff42dc (Matthieu MOREL)
 - fix(downloader): safely handle concurrent file writes on Windows 76eb37c01aaece271343039f44d7803017dd5c81 (Orgad Shaneh)
 - fix(install): check nil for restClientGetter and fix tests 9817a68618245370e98e09d7f06c7cc1cefe8a62 (Manuel Alonso)
-- chore(pkg): fix modernize linter 0d75d8611d3daa6b820d94fc95347a069b062f72 (Matthieu MOREL)
-- chore(internal): fix modernize linter 859292e31bd4ceb170050eaa49e727bcd69572e2 (Matthieu MOREL)
-- chore(pkg): fix modernize linter 5cc2e55714d20e6d1bd2663878a00571c084d6c2 (Matthieu MOREL)
-- chore(pkg): fix modernize linter ba38159313d4f09280591ba7f860ef0523716220 (Matthieu MOREL)
-- chore(internal): fix modernize linter e2d184c79e9049c19bcc466bfe1289ccc6b73717 (Matthieu MOREL)
-- chore(pkg): fix modernize linter 111d4e6e0e86af6ba25a355be1a7599f5258ee58 (Matthieu MOREL)
 - fix pulling charts from OCI indices d983696e354a9e0605cbb3034937dc84af42995c (Pedro Tôrres)
 - fix(template): deprecate unused --hide-notes and --render-subchart-notes flags 6d5f56fa6e7c8e4462d80895fcce87b926e4b8ce (Scott Rigby)
 - fix(copystructure): handle nil elements in slice copying e3829ebbbb833e159926c6193e474eb9d067ef75 (Philipp Born)
@@ -115,7 +99,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: casing issue fixed 170911459bc4f2b5efea7e549e09bd45c7578cc4 (Mujib Ahasan)
 - fix: error handled correctly 94860626ce9c83a9227b5bce02a5c03a050816ac (Mujib Ahasan)
 - fix: doc string added 12e8b715aa0732b613c3a9896fa6af29b3201536 (Mujib Ahasan)
-- Fix lint warning 3416dd5f215a6421a70c6ab22340a96312ce8c0b (Evans Mungai)
 - fix(values): preserve nil values when chart default is empty map 292fe702193e8ba9ce4c8ffffdd90cdfa761501c (Evans Mungai)
 - fixed: --dry-run=server now respect generateName 2820ebe8c97b7d7b8a447375b74c9cb3741a4ffa (Mujib Ahasan)
 
@@ -133,13 +116,11 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: prevent warning when using version range constraints a33e23939a85ac60eb9a6bee818f2c5459fda576 (Benoit Tigeot)
 - fix(kube): always propagate context.Canceled in WaitForDelete fa06d4455724afe22bbe00af7925549a82d95e6c (Terry Howe)
 - fix(kube): prevent spurious early exit in WaitForDelete during informer sync 360d4835df0fb8bd7cbde4cad0cbc79de01a6e93 (Terry Howe)
-- fix(deps): bump golang.org/x/net to v0.55.0 to address GO-2026-5026 eee491a7461a524b87e5bb73ea5a0c4f82c72469 (Terry Howe)
 - fix(upstream): upgrade to cli-utils 1.2.1, controller-runtime 0.24.1 and k8s 1.36.1 57a4803bd4953d8ef9d51d927f492ecaaf5df9db (Matheus Pimenta)
 
 ### 4.2.2
 
 - Revert: Fixed a race condition in WaitForDelete where the status observer canceled the watch too early, causing intermittent failures when running a full test suite #32214
-- Revert "fix(kube): prevent spurious early exit in WaitForDelete during informer sync" b05881cf967a5a09e19866799d0edfd40675803a (George Jenkins)
 
 
 ## Diagnostics

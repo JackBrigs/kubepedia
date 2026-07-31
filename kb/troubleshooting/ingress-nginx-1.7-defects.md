@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**6 defects** the project fixed across **2 releases** of the 1.7 line, from 1.7.0 to
+**5 defects** the project fixed across **2 releases** of the 1.7 line, from 1.7.0 to
 1.7.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,7 +46,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - Fix canary-weight-total annotation ignored in rule backends (#9729)
 - Fix several Helm YAML issues with extraModules and extraInitContainers (#9709)
-- docs(helm): fix value key in readme for enabling certManager (#9640)
 - Fix incorrect annotation name in upstream hashing configuration (#9617)
 
 ### 1.7.1

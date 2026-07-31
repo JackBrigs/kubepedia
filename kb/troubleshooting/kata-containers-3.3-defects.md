@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**64 defects** the project fixed across **1 releases** of the 3.3 line, from 3.3.0 to
+**54 defects** the project fixed across **1 releases** of the 3.3 line, from 3.3.0 to
 3.3.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,11 +47,7 @@ Entries are grouped by the release that fixed them, oldest first.
 - runtime-rs: fix a typo in device manager by @ZizhengBian in https://github.com/kata-containers/kata-containers/pull/8294
 - utils: kata manager: Fix version checks by @jodh-intel in https://github.com/kata-containers/kata-containers/pull/8323
 - network: Fix network attach for ipvlan and macvlan by @amshinde in https://github.com/kata-containers/kata-containers/pull/8334
-- docs: Fix broken links by @cmaf in https://github.com/kata-containers/kata-containers/pull/8255
 - kata-manager: Fix deployment of containerd on architectures other than amd64. by @brianwang12 in https://github.com/kata-containers/kata-containers/pull/7057
-- Docs: Fix Dragonball link by @sazzy4o in https://github.com/kata-containers/kata-containers/pull/8285
-- gha: stale: Fix typo and allow manually triggering it by @fidencio in https://github.com/kata-containers/kata-containers/pull/8368
-- tests: fixes permission denied when running test by @beraldoleal in https://github.com/kata-containers/kata-containers/pull/8217
 - network: Fix network hotplug for ipvlan and macvlan endpoints for qemu and add tests by @amshinde in https://github.com/kata-containers/kata-containers/pull/8367
 - runtime: Fix TestCheckHostIsVMContainerCapable unstablity issue by @justxuewei in https://github.com/kata-containers/kata-containers/pull/8389
 - gha: Fix regex used to get kubectl version from the k3s version by @fidencio in https://github.com/kata-containers/kata-containers/pull/8411
@@ -68,10 +64,7 @@ Entries are grouped by the release that fixed them, oldest first.
 - libs:logging: Fix logger by @jodh-intel in https://github.com/kata-containers/kata-containers/pull/8547
 - runtime-rs: fix panic when hypervisor mismatches with configuration by @liubogithub in https://github.com/kata-containers/kata-containers/pull/8566
 - GHA: Fix kata-deploy-runtime-classes-check for kata-qemu-se by @BbolroC in https://github.com/kata-containers/kata-containers/pull/8624
-- tests: k8s: Fix indentation in setup script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/8676
-- tests: k8s: Fix indentation in confidential common script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/8699
 - kata-deploy: snapshotter typo fixes by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/8721
-- kata-monitor: fix Dockerfile to build image by @liubin in https://github.com/kata-containers/kata-containers/pull/8729
 - kata-deploy: Fix shim check for snapshotter configuration by @fidencio in https://github.com/kata-containers/kata-containers/pull/8733
 - dragonball: Fix compilation issue without all net features by @justxuewei in https://github.com/kata-containers/kata-containers/pull/8744
 - agent: Fix an issue reporting OOM events by mistake by @justxuewei in https://github.com/kata-containers/kata-containers/pull/8773
@@ -92,7 +85,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - runtime: fix creation of SEV confidential container on SNP enabled host. by @niteeshkd in https://github.com/kata-containers/kata-containers/pull/9037
 - tools.kata-webhook: Fix lib path by @ldoktor in https://github.com/kata-containers/kata-containers/pull/9023
 - runtime: fix checksum mismatch error in `make vendor` by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/9112
-- ci: k8s: Fix checks used to skip confidential tests by @fidencio in https://github.com/kata-containers/kata-containers/pull/9108
 - gha: nydus: Fix indentation in gha run script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9088
 - tests/runk: fix the "run ps command" flaky test by @wainersm in https://github.com/kata-containers/kata-containers/pull/9009
 - release: Add the needed fixes for the release process by @fidencio in https://github.com/kata-containers/kata-containers/pull/9170
@@ -101,11 +93,9 @@ Entries are grouped by the release that fixed them, oldest first.
 - ci.ocp: Backport service-up detection fixes by @ldoktor in https://github.com/kata-containers/kata-containers/pull/9169
 - katautils: fix panic on tracing. by @liubogithub in https://github.com/kata-containers/kata-containers/pull/9201
 - tests/kata-deploy: fix checker for kata-deploy running by @wainersm in https://github.com/kata-containers/kata-containers/pull/9184
-- CI: fix the issue of ci failure on crio by @lifupan in https://github.com/kata-containers/kata-containers/pull/9206
 - gpu: fix build guest kernel with gpu by @Jimmy-Xu in https://github.com/kata-containers/kata-containers/pull/9155
 - Dragonball: fix unit test problems when switching to new virt github machine by @studychao in https://github.com/kata-containers/kata-containers/pull/9208
 - fixed - Change the deprecated module from 'io/util' to util. 'io/util… by @chungeun-choi in https://github.com/kata-containers/kata-containers/pull/9154
-- tests: fix nounset error with $GITHUB_ENV by @wainersm in https://github.com/kata-containers/kata-containers/pull/9278
 - kata-manager: Fix Docker install by @jodh-intel in https://github.com/kata-containers/kata-containers/pull/9293
 - ocp.ci: Various fixes and improvements to the OCP pipeline by @ldoktor in https://github.com/kata-containers/kata-containers/pull/9229
 

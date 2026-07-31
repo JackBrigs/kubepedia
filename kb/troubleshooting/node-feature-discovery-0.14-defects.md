@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**16 defects** the project fixed across **4 releases** of the 0.14 line, from 0.14.0 to
+**12 defects** the project fixed across **4 releases** of the 0.14 line, from 0.14.0 to
 0.14.5. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,14 +45,10 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 0.14.0
 
 - nfd-master: fix a crash when processing NodeFeatureRules (#1173)
-- pkg/nfd-master/nfd-master.go: Fix typo (#1171)
 - nfd-topology-updater: fix wrong kubelet_internal_checkpoint path and compare basename to full path (#1167)
 - helm: fix mount for nfd-master config (#1204)
 - nfd-master: fix resync period config option (#1185)
 - deployment/helm: fix default for kubeletStateDir parameter (#1207)
-- Fixed typo in Header under deployment/kustomize.md (#1222)
-- Docs: Fix typo on customization-guide (#1247)
-- docs: fix toc of topology-updater and topology-gc reference (#1278)
 - Fix Topology Manager policy and scope not being updated after NRT creation (#1256)
 - fix empty hugepages in some numa nodes caused no such file or directory errors (#1287)
 - nfd_gc_test.go: fix multiple import of same pkg (#1333)

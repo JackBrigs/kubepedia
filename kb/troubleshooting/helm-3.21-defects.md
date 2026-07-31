@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**13 defects** the project fixed across **4 releases** of the 3.21 line, from 3.21.0 to
+**11 defects** the project fixed across **4 releases** of the 3.21 line, from 3.21.0 to
 3.21.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -49,7 +49,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: pin codeql-action/upload-sarif to commit SHA in scorecards workflow ec05dd5f0481c2de3a41a554adf3c52a6a2a9bb6 (Terry Howe)
 - fix pulling charts from OCI indices e629995c5d65ec2d5095ecd6d094bf85d02b3266 (Pedro Tôrres)
 - Fix import 97affe067aa1e39fe6552c0d46de749f02063183 (Evans Mungai)
-- Fix lint warning d409df87ff6c2cbe17cc465b93ce646003b71d28 (Evans Mungai)
 - fix(values): preserve nil values when chart default is empty map b13743c8d4ef5488f40148af1d6ccd35ee9b97e3 (Evans Mungai)
 
 ### 3.21.1
@@ -57,7 +56,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fixed nil pointer panic that could happen with helm template in ClientOnly flows. Now correctly returns a template error https://github.com/helm/helm/pull/31920
 - fix(action): avoid nil REST client getter panic when installing CRDs c56dd0095fd76da5d7b30ecdf506103e7f26745e (sergiochan)
 - fix(registry): keep credentials on plain-HTTP fallback with oras-go v2.6.1 702529f90a0021e4d9df4880d6589198ec0e05f7 (Terry Howe)
-- fix(deps): bump golang.org/x/net to v0.55.0 to address GO-2026-5026 bad6cd478f5b3f3c96b795f4d6a010f04a89624f (Terry Howe)
 
 ### 3.21.2
 

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**13 defects** the project fixed across **2 releases** of the 0.10 line, from 0.10.0 to
+**10 defects** the project fixed across **2 releases** of the 0.10 line, from 0.10.0 to
 0.10.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,15 +47,12 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix kustomize sample overlay enabling cert-manager (#710)
 - Fix the typo in deployment-and-usage.md (#575)
 - Fix broken link for worker-conf example (#590)
-- deployment: fix formatting of the worker conf sample (#599)
 - topology-updater:fix klog initialization (#625)
-- pkg/resourcemonitor: fix typo in comment (#641)
 - Topology-updater introduction typo fix (#645)
 - More topology updater documentation typo fixes (#648)
 - images: fix invalid k8s-staging-test-infra/gcb-docker-gcloud tag (#686)
 - source/usb: fix fallback to default label format (#694)
 - Fix kustomization template to work with cert-manager (#710)
-- docs: small fix in block and net features in customization guide (#715)
 
 ### 0.10.1
 

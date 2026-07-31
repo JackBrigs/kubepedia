@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**15 defects** the project fixed across **1 releases** of the 3.15 line, from 3.15.0 to
+**13 defects** the project fixed across **1 releases** of the 3.15 line, from 3.15.0 to
 3.15.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,7 +44,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 3.15.0
 
-- ci: Fix spell_check and improve header_check by @RuoqingHe in https://github.com/kata-containers/kata-containers/pull/10893
 - minor build fixes by @mythi in https://github.com/kata-containers/kata-containers/pull/10881
 - agent: Fix race condition with cgroup watchers by @sprt in https://github.com/kata-containers/kata-containers/pull/10911
 - gpu: IOMMUFD fix by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10931
@@ -58,7 +57,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - agent: fix permisssion according to runc by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10982
 - kata-types: Fix bugs related to annotations in kata-types by @Apokleos in https://github.com/kata-containers/kata-containers/pull/10937
 - runtime-rs: Fix log_level's comments in configuration-dragonball.toml.in by @teawater in https://github.com/kata-containers/kata-containers/pull/10975
-- tests: fix confidential ssh Dockerfile by @ryansavino in https://github.com/kata-containers/kata-containers/pull/11006
 
 
 ## Diagnostics

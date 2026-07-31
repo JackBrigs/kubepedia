@@ -30,8 +30,8 @@ relations:
 
 ## Summary
 
-**73 defects** the project fixed across **2 releases** of the 2.9 line, from 2.9.0 to
-2.9.1. A cluster running a version below the one an entry sits under still carries that defect.
+**64 defects** the project fixed across **1 releases** of the 2.9 line, from 2.9.0 to
+2.9.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
 the remedy is a patch bump rather than an investigation.
@@ -57,10 +57,8 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix 'eveything' -> 'everything' (#3754) 0ba75b6652aec058c51fc1152988e01403496318 (muhongwei)
 - fix 'mulitenant'->'multitenant' (#3755) 75387fe3183a724684b2bea29c2a0023e7a9a354 (muhongwei)
 - Fix several golint warnings (#3756) 1a55161a53345816d724e1df9664f789113e1328 (adshmh)
-- fixed typo + moved into Helm Included section 6abbee0d44f2890ad76cb5f2bd09a79a540a63d9 (James Strachan)
 - fix Syntax error bddb6591d46ce176e87668ed458da54fa0da5eaf (fqsghostcloud)
 - Fix HTML parsing when setting TAG with wget 908addd6fc778515fc0b2ed54a5050149554b961 (Ferenc-)
-- Fixed typo 08f450404b1a7711d12efcdbfc47abafdd42bcda (Andrii Soldatenko)
 - fix(helm): fix helm history unit tests 34b6d12ebe0824cae6fc9ebb1b14d3c8fd822a92 (Adam Reese)
 - fix(helm): refactor tests on helm dependency list command to remove duplication 74bf7584a0333e817bca52b80e56e189cb1ed98c (Arash Deshmeh)
 - fix(helm): remove duplication in tests of repo-add command b66c10df10a4039adc26ae21edb649b7a2a5f630 (Arash Deshmeh)
@@ -73,7 +71,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(helm): refactor helm version command tests to remove duplication 23b570fabdb2907a6cc2887a4885cc9086cc7ad3 (Arash Deshmeh)
 - fix(helm) refactor helm status command tests to use releaseCase struct and the corresponding function runReleaseCases. Fixes #3659 e25df2ae76e3c772ee6ae86e2eaf5be3be72cca9 (Arash Deshmeh)
 - fix(helm): remove duplicate code from cmd/helm/history_test.go. Closes #3649 cdd9a85676edc2f126486ff7ccb5b14093744857 (Arash Deshmeh)
-- fix typo in docs and fake 92972b0353430344c7dc1b9f7abc152f08bdc4f2 (Rajat Jindal)
 - fix protoc 250d25fdceaf5546f29228f3711cedd8d6776fcd (Matthew Fisher)
 - fix helm init --wait a66a39a171fa453f6515cbe23d7d2715cba9cc81 (Matthew Fisher)
 - fix(helm): remove duplicate test code from cmd/helm/list_test. Closes #3637 75ccc353eb12884ebf2f8c653cee7730cc397f67 (Arash Deshmeh)
@@ -91,13 +88,11 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(helm): fix the bug in tests under cmd/helm that leaves behind temporary directories named "repo-test-*" during build. 55cc23cb0168d527ba60de359e38c5717cf2577d (Arash Deshmeh)
 - fix(helm): fix the bug in test code under pkg/tiller that leaks output to stdout during build 5b25eef9e260f2658914c5b9de27d8f69efcc2a3 (Arash Deshmeh)
 - fix(helm): fix the output leak to stdout during build by tests under pkg/releasetesting, by redirecting output from mock clients. 4fcf69bc5287f6ca6090655ef8b8bb8087d6fa8a (Arash Deshmeh)
-- Fix typo fbe17d277e5e4260edea47c9ede97dadab78be7c (Frederik Carlier)
 - Fix linting bug with charts containing more than one hyphen abd33764e8738e9d46b6ec9dc5d7f73f1eeee675 (Liam White)
 - fix(helm): fix the implicit dependency of TestSetAppVersion test on previous tests, due to helm home, by explicitly creating a temporary helm directory for the test. c78af5483c895fc4ccc204c350ed47b5da48fc17 (Arash Deshmeh)
 - fix(helm): fix the bug in test code 'cmd/helm/create_test.go' that leaves behind temp directories during build a9ba3aa89777d651b4515b53f7cae98637447503 (Arash Deshmeh)
 - fix occurences typo in charts.md 50cba63c5c3054f10d09b493b010ac4ee82441ae (Yann Coleu)
 - fix a typo in client 76a40fc573120cca95042a0385dc97701b98c228 (yank1)
-- docs: Fix FromJson comment a59d2125123d9d829e99823e1f969309841fefd8 (Thibaut Rousseau)
 - Fix bash example ffc76861fe2e97ec63f36575bb2b3898a8b3a11d (Jonathan Hall)
 - Grammar fixes and clarifications 0d12288e46fb21f57cf8974c8b9df0c80a4c529a (Jonathan Hall)
 - fix(helm): update helm reset --force tip for clarity 084a2bb945ef2c6fcb3a97cb3ee00210a2f0fe5d (Justin Scott)
@@ -107,19 +102,12 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix subchart2 example tag 782b394e9799e875649219295e6ace6bd54ec39a (Jonas Fonseca)
 - fix doc spell check f953b2be2d4440228056af93912d91897f528faf (lihuangzym)
 - Fix 'getSelectorFromObject' ea520afd3e4d0eb3637a10b7443ca83bcaf340e8 (Reinhard Nägele)
-- Fix typo 3c66183cb51eea000ad7120ba68b9b7e4fef26f8 (Bin Liu)
 - Fix type 1e0906ed67c08f754cc28c7047eea228cb76e373 (Bin Liu)
 - fix helm init --upgrade logic 4947e5aaf8a5354cfada9816e837420ff7a75ca7 (Matthew Fisher)
 - fix RELEASE_BRANCH_NAME 4763cca8cb49e6166475d19442ad379067531bdf (Matthew Fisher)
 - change child-parent title & links to fix links d77a60a4621479b0d8c42cdafebfdcf69b1b10e0 (jonathan.striebel)
-- docs: fixed incorrect clone path in developer docs 03f35cdd32fbfc41ab49a0c1106ee0e9cbf6d520 (scriptonist)
 - fix link to image 9fcd6be4ffbc032396d7cb0d71c8f551a51aa277 (Matthew Fisher)
 - Fix pod recreation 3d05da010980fd93258d4f10ff4d0dbabe53dba2 (Reinhard Nägele)
-
-### 2.9.1
-
-- Revert "toYaml - Fix #3470 and #3410's trailing \n issues" a00bcc297914fe2f9e7eadab45ea34d1d99f8e87 (Matthew Fisher)
-- Revert "Fix tiller deployment on RBAC clusters" c6e7f0335bc083aa298127c5e4d72a28a6822f3f (Matthew Fisher)
 
 
 ## Diagnostics
@@ -129,7 +117,7 @@ kubectl get nodes -o wide      # node-level components
 helm list -A                   # chart-deployed components
 ```
 
-Compare the running version against **2.9.1**, the newest release recorded here for this line.
+Compare the running version against **2.9.0**, the newest release recorded here for this line.
 
 ## Known Issues
 

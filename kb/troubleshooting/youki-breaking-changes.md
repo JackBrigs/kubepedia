@@ -31,7 +31,7 @@ relations:
 
 ## Summary
 
-**14 behaviour changes** the project itself marked as breaking or action-required, across
+**13 behaviour changes** the project itself marked as breaking or action-required, across
 6 releases from 0.2.0 to 0.6.0. These are not defects: they work as designed and still break
 a configuration that worked yesterday. An upgrade crossing any of them needs a decision, not just a
 rollout.
@@ -73,7 +73,6 @@ default flipped, an API version withdrawn, a variable that must now be set expli
 - fix hooks order by @saku3 in https://github.com/youki-dev/youki/pull/3256
 - mount info provider by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3280
 - Use oci spec container process state for seccomp by @nayuta723 in https://github.com/youki-dev/youki/pull/3330
-- refactor(hooks): pass OCI-compliant state to lifecycle hooks by @nayuta723 in https://github.com/youki-dev/youki/pull/3346
 
 
 ## Diagnostics

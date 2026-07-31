@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**8 defects** the project fixed across **1 releases** of the 3.21 line, from 3.21.0 to
+**7 defects** the project fixed across **1 releases** of the 3.21 line, from 3.21.0 to
 3.21.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,7 +45,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.21.0
 
 - cgroups: Fix "." parent cgroup special case by @fidencio in https://github.com/kata-containers/kata-containers/pull/11717
-- ci: security: Fix "commit hash does not point to a Git tag" by @sprt in https://github.com/kata-containers/kata-containers/pull/11772
 - libs: Fix unit tests under non-root user by @RuoqingHe in https://github.com/kata-containers/kata-containers/pull/11775
 - runtime: fix the issue clh resize vcpu failed by @lifupan in https://github.com/kata-containers/kata-containers/pull/11761
 - tools: agent-ctl: Fix unresolved ch import by @fidencio in https://github.com/kata-containers/kata-containers/pull/11811

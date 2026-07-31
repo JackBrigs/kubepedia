@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**48 defects** the project fixed across **4 releases** of the 3.3 line, from 3.3.0 to
+**45 defects** the project fixed across **4 releases** of the 3.3 line, from 3.3.0 to
 3.3.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -59,12 +59,10 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix repo cache setting 2ae83f276b60085c550fc81fb6e21b38146e2d9f (Martin Hickey)
 - Add new line to fix code formatting in doc e6069769151b91c91a107bd4d79ca3a941658518 (Maksim Kochkin)
 - fix(comp): Prepare plugin completion for Cobra 1.0 0366f9970f0ff5c0b61b02521d139445bfaeba8f (Marc Khouzam)
-- chore(*): Fix formatting b18e7e201e55ba38fdecbcf81e4da512e55444b4 (Marc Khouzam)
 - fix: upgrade using --force shoud not run patch logic (#8000) decab8ea2e6ea4b31560aff50abb2676a67ec8ba (小明同学)
 - fix security mailing list address 2f39854d3f5da2f13cd749ccb08d61982cafef2f (Matthew Fisher)
 - Fixes repo parsing 8cb9ab7095c885e1f8d9bea3a28229f58ba59a5e (Juned Memon)
 - Fixes repo parsing b473f8adec7dab35614f0c20b0738a865830b443 (Juned Memon)
-- docs: fix capitalization in a few help messages bc515991f8fb7c3294e7f7809778fd360751d5cb (Liu Ming)
 - fix: removed strict template errors in linter (#8017) 08e546f169ff3d5694863f0766c3132da2f095b7 (Matt Butcher)
 - fix: use correct regular expression for Kubernetes names (#8013) 524150c662f9c030d2caa9ad8f79d2ff9521c431 (Matt Butcher)
 - Fix markdown table in helm command doc fb829c2c843df01ad1dd5ffd13c4e923be4ab9e9 (Lüchinger Dominic)
@@ -89,7 +87,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix Quick Start Guide Link in README.md 800c627556938a0d632ef9d998dc1599f7ccc74c (Tero)
 - fix test that modifies the wrong cache data fcb5e7789045cb7e3cad5a7319d56819c7105ceb (Matt Butcher)
 - bufix: fix validateNumColons docs 53f68d8b64df51f87f70e0a9f28258bef18752a1 (bellkeyang)
-- Fix typo ffc0aff3408e5c4b1973543e05f67e5aefe8ef59 (Martin Hickey)
 - fix: Allow building in a path containing spaces 58f61d740ac5e97c66124bd5e69b7874d84cb971 (Chris Wells)
 
 ### 3.3.2

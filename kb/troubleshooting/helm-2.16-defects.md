@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**47 defects** the project fixed across **9 releases** of the 2.16 line, from 2.16.0 to
+**45 defects** the project fixed across **9 releases** of the 2.16 line, from 2.16.0 to
 2.16.12. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -85,7 +85,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix recursion count in templates 9d7b269499f83e19a49e9e5e8121edeae4da26c7 (Matthew Fisher)
 - fix(engine): allow limited recursion in templates af3a02140697c7950aac12622ba2800b0277b64a (Matthew Fisher)
 - fix(requirements): refactor to use common codepath for table coalescing (#7047) b7d2947d1010a5abf8f986886b3189d6e55b1d36 (Fernando Antivero)
-- fix(Makefile): disable go modules 725cd915bc26bc8fba11af144f3cb54c2c6a5a59 (Matthew Fisher)
 - Fix secure installation link in v2 (#6912) dc2f5bcb33185dbe9691c19a36a7e085c65a83a7 (Yury Fedorov)
 - fix(tiller): improve handling of corrupted storage 840e0e271d28584200d7d6304bad6cb5b993beac (Cristian Klein)
 - fix: backport #6901 to Helm 2 (#7196) ab797325c6363afae3e238c17a7992a84c9802f4 (Matt Butcher)
@@ -108,7 +107,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 2.16.11
 
-- fix formatting error (#8758) 73b28bab84490d18ab1b71489a574ee18e229eea (Matt Butcher)
 - fix: use yaml annotations for yaml.v2 validation 077ffec4149aed43ba43942841473399afe4d3d1 (Matthew Fisher)
 - backported fixes from helm3 6aab63765f99050b115f0aec3d6350c85e8da946 (Matt Butcher)
 

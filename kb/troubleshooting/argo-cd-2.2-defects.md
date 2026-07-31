@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**27 defects** the project fixed across **11 releases** of the 2.2 line, from 2.2.0 to
+**26 defects** the project fixed across **11 releases** of the 2.2 line, from 2.2.0 to
 2.2.12. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -100,7 +100,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - fix: create serviceaccount token for v1.24 clusters (#9546)
 - fix: upgrade moment from 2.29.2 to 2.29.3 (#9330)
-- chore: upgrade moment to latest version to fix CVE (#9005)
 
 
 ## Diagnostics

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**13 defects** the project fixed across **1 releases** of the 3.12 line, from 3.12.0 to
+**8 defects** the project fixed across **1 releases** of the 3.12 line, from 3.12.0 to
 3.12.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,13 +45,8 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.12.0
 
 - osbuilder: Fix build dependency of ubuntu rootfs with Docker by @coolljt0725 in https://github.com/kata-containers/kata-containers/pull/10377
-- docs: Fix several build failures when I tried the procedures in "Kata Containers with AMD SEV-SNP VMs" by @kimullaa in https://github.com/kata-containers/kata-containers/pull/10386
-- ci: Fix error on self-hosted machines by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10516
 - runtime-rs: fix vfio device name combination issue by @Apokleos in https://github.com/kata-containers/kata-containers/pull/10577
 - agent: fix startup when guest_components_procs is set to none by @squarti in https://github.com/kata-containers/kata-containers/pull/10583
-- ci: Fix variant for confidential targets by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10590
-- ci: Fix Docker publishing for CSI driver by @sprt in https://github.com/kata-containers/kata-containers/pull/10609
-- ci: Fix Docker publishing for CSI driver, 2nd try by @sprt in https://github.com/kata-containers/kata-containers/pull/10612
 - workflows: Fix remove artifact name filter by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/10615
 - runtime-rs: Fix the issues with stderr fifo by @justxuewei in https://github.com/kata-containers/kata-containers/pull/10638
 - runtime-rs & agent: Fix the issues with bind volumes by @justxuewei in https://github.com/kata-containers/kata-containers/pull/10643

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**9 defects** the project fixed across **2 releases** of the 0.7 line, from 0.7.0 to
+**8 defects** the project fixed across **2 releases** of the 0.7 line, from 0.7.0 to
 0.7.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,7 +45,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 0.7.0
 
 - Removes GRPCRoute method match defaulting to allow for matching all requests, or matching only by header. (#1753, @skriss)
-- Update route validation to comply with RFC-3986 "p-char" characters. (#1644, @jackstine)
 - Illegal names like " " will be not allowed for query param name in HTTPQueryParamMatch. (#1796, @gyohuangxin)
 - Webhook: Port is now considered when validating that ParentRefs are unique (#1995, @howardjohn)
 - Fixes for mesh conformance tests (#2017, @keithmattix)

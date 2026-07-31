@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**65 defects** the project fixed across **1 releases** of the 0.7 line, from 0.7.0 to
+**43 defects** the project fixed across **1 releases** of the 0.7 line, from 0.7.0 to
 0.7.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -70,42 +70,20 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(checkpoint): remove unimplemented options from help output by @nayuta723 in https://github.com/youki-dev/youki/pull/3455
 - Disable colors in logs by @stepancheg in https://github.com/youki-dev/youki/pull/3433
 - [Bug]: Duplicate error and chain printing by @CarloQuick in https://github.com/youki-dev/youki/pull/3419
-- test: remove runc skip for seccomp_notify and memory_policy by @nayuta723 in https://github.com/youki-dev/youki/pull/3445
-- chore(deps): upgrade rust-criu to 0.5.0 and protobuf to 3.7.2 by @donkomura in https://github.com/youki-dev/youki/pull/3446
-- docs(liboci-cli): add missing help descriptions to arguments and options by @xvchris in https://github.com/youki-dev/youki/pull/3456
 - Fix logging for dropping capabilities by @stepancheg in https://github.com/youki-dev/youki/pull/3436
 - contest: add checkpoint/restore integration tests by @nayuta723 in https://github.com/youki-dev/youki/pull/3448
-- ci: install CRIU in containerd integration tests and skip checkpoint tests by @nayuta723 in https://github.com/youki-dev/youki/pull/3475
 - Deduplicate e2e test hook helpers by @fspv in https://github.com/youki-dev/youki/pull/3412
-- fix(cross): replace external apk-anywhere image with inlined Alpine apk in Dockerfile.musl by @saku3 in https://github.com/youki-dev/youki/pull/3491
 - Add poststop_fail hook test by @fspv in https://github.com/youki-dev/youki/pull/3407
 - fix: use correct fedora version number and deprecate riskv64 from lima-setup.sh by @gat786 in https://github.com/youki-dev/youki/pull/3497
-- refactor: Use cargo autoinherit to factorize the dependencies by @lu-zero in https://github.com/youki-dev/youki/pull/3477
-- chore: bump containerd to v2.2.3 and go to 1.24.3 by @tommady in https://github.com/youki-dev/youki/pull/3509
-- ci: group wasmtime-related Dependabot updates by @saku3 in https://github.com/youki-dev/youki/pull/3511
-- ci: remove unused cgroups v1 dind workflow steps by @saku3 in https://github.com/youki-dev/youki/pull/3512
-- refactor: replace deprecated clap derive attributes with command and arg by @yan-ace62 in https://github.com/youki-dev/youki/pull/3466
-- ci: build CRIU from source by @saku3 in https://github.com/youki-dev/youki/pull/3520
-- docs: fix several typos in code, error messages, and docs by @Shion1305 in https://github.com/youki-dev/youki/pull/3535
 - [Refactor] Use `&&` operator in if-let conditions by @logica0419 in https://github.com/youki-dev/youki/pull/3531
 - Add checkpoint/restore integration tests to contest by @tommady in https://github.com/youki-dev/youki/pull/3493
-- test(dind): pin docker:dind to 29.4 until youki supports time namespace by @saku3 in https://github.com/youki-dev/youki/pull/3539
 - fix: parse info parameters exactly by @immanuwell in https://github.com/youki-dev/youki/pull/3541
 - add aarch64 bundle for integration test by @saku3 in https://github.com/youki-dev/youki/pull/3530
-- bump oci-spec 0.10.0 by @saku3 in https://github.com/youki-dev/youki/pull/3569
 - Skip namespaces that are not specified for the init process by @saku3 in https://github.com/youki-dev/youki/pull/3551
 - fix(wasmedge): replace unwrap with proper error propagation in exec by @immanuwell in https://github.com/youki-dev/youki/pull/3570
-- chore: update rust to v1.96.0 by @YJDoc2 in https://github.com/youki-dev/youki/pull/3587
 - feat(contest): add reason for TestResult::Skipped by @donkomura in https://github.com/youki-dev/youki/pull/3588
-- test(contest): add update cgroup v2 common limits integration test by @hayama17 in https://github.com/youki-dev/youki/pull/3580
-- test(config): Implement libcontainer config methods failure test cases by @Scanf-s in https://github.com/youki-dev/youki/pull/3602
 - fix(utils): reject network device names exceeding the kernel limit according to the kernel reference by @Scanf-s in https://github.com/youki-dev/youki/pull/3608
-- test: convert mount_into_container and cgroup_v2 tests to fd-based mock by @saku3 in https://github.com/youki-dev/youki/pull/3606
-- test(contest): add cpu update integration tests for cgroup v2 by @hayama17 in https://github.com/youki-dev/youki/pull/3592
-- test(contest): add update pids limit integration test by @moz-sec in https://github.com/youki-dev/youki/pull/3595
-- test(contest): add cgroup v2 CPU update tests by @hayama17 in https://github.com/youki-dev/youki/pull/3614
 - fix(contest): avoid flaky MAC race in checkpoint netdevice test by @donkomura in https://github.com/youki-dev/youki/pull/3640
-- test(libcontainer): Implemented mount_console, verify_inode unit tests by @Scanf-s in https://github.com/youki-dev/youki/pull/3631
 - add killsig test by @YamasouA in https://github.com/youki-dev/youki/pull/3612
 - prepare v0.7.0 by @nayuta723 in https://github.com/youki-dev/youki/pull/3655
 - bump version to 0.7.0 and fix version-up regex in justfile by @nayuta723 in https://github.com/youki-dev/youki/pull/3665

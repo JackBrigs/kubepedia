@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**9 defects** the project fixed across **1 releases** of the 1.29 line, from 1.29.0 to
+**7 defects** the project fixed across **1 releases** of the 1.29 line, from 1.29.0 to
 1.29.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,8 +45,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 1.29.0
 
 - [occm] Make sure we don't mask LB tests failures and fix what was failing by @dulek in https://github.com/kubernetes/cloud-provider-openstack/pull/2360
-- CI: Fix "error: externally-managed-environment" by @dulek in https://github.com/kubernetes/cloud-provider-openstack/pull/2414
-- CI: Fix "error: externally-managed-environment" in CSI by @dulek in https://github.com/kubernetes/cloud-provider-openstack/pull/2415
 - [occm] fix: octavia tlsContainerRef validation for barbican secrets by @Nuckal777 in https://github.com/kubernetes/cloud-provider-openstack/pull/2456
 - [occm] update doc to fix typos and better description `router-id` by @jeffyjf in https://github.com/kubernetes/cloud-provider-openstack/pull/2479
 - [cinder-csi-plugin] Fix dmesg binary in the container image by @kayrus in https://github.com/kubernetes/cloud-provider-openstack/pull/2495

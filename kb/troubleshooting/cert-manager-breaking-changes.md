@@ -31,7 +31,7 @@ relations:
 
 ## Summary
 
-**29 behaviour changes** the project itself marked as breaking or action-required, across
+**28 behaviour changes** the project itself marked as breaking or action-required, across
 12 releases from 0.2.0 to 1.21.0. These are not defects: they work as designed and still break
 a configuration that worked yesterday. An upgrade crossing any of them needs a decision, not just a
 rollout.
@@ -93,7 +93,6 @@ default flipped, an API version withdrawn, a variable that must now be set expli
 
 - The field `spec.privateKey.rotationPolicy` on Certificate resources is now validated. Valid options are Never and Always. If you are using a GitOps flow and one of your YAML manifests contains a Certificate with an invalid value, you will need to update it with a valid value to prevent your GitOps tool from failing on the new validation. ([#4913](https://github.com/cert-manager/cert-manager/pull/4913), [@jahrlin](https://github.com/jahrlin))
 - Server-Side Apply: the feature gate `ServerSideApply=true` now configures the `ingress-shim` and `gateway-shim` controllers to use Kubernetes Server-Side Apply on Certificate resources. When upgrading to cert-manger 1.8 with `ServerSideApply=true`, do make sure there are no Challenge resources currently in the cluster. If there are some, you will need to manually delete them once they are in 'valid' state as cert-manager post-1.8 with the Server-Side Apply feature is not able to clean up Challenge resources created pre-1.8. ([#4811](https://github.com/cert-manager/cert-manager/pull/4811), [@JoshVanL](https://github.com/JoshVanL))
-- The import path for cert-manager has been updated to `github.com/cert-manager/cert-manager`. If you import cert-manager as a go module (which isn't currently recommended), you'll need to update the module import path in your code to import cert-manager 1.8 or later. ([#4587](https://github.com/cert-manager/cert-manager/pull/4587), [@SgtCoDFish](https://github.com/SgtCoDFish))
 - The field `additionalOutputFormats`, which is available as an alpha feature on Certificate resources, is now correctly validated. Previously, it would only get validated when the `privateKey` field was set on the Certificate. If you are using the `additionalOutputFormats` field, you will want to add the feature gate `AdditionalCertificateOutputFormats` to both the webhook and the controller. Previously, you only needed to set `AdditionalCertificateOutputFormats` on the controller. If the feature gate is missing on either the controller or the webhook, you won't be able to use the `additionalOutputFormat` field. ([#4814](https://github.com/cert-manager/cert-manager/pull/4814), [@JoshVanL](https://github.com/JoshVanL))
 
 ### 1.11.0

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**11 defects** the project fixed across **3 releases** of the 1.14 line, from 1.14.0 to
+**8 defects** the project fixed across **3 releases** of the 1.14 line, from 1.14.0 to
 1.14.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,11 +46,8 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - Controller: Fix `limit_req_zone` sorting. (#14005)
 - Metrics: Fix `nginx_ingress_controller_config_last_reload_successful`. (#13830)
-- Docs: Bump mkdocs to v9.6.16, fix links. (#13741)
-- Docs: Fix default config values and links. (#13737)
 - Controller: Fix nil pointer in path validation. (#13679)
 - Controller: Fix SSL session ticket path. (#13665)
-- Docs: Fix links and formatting in user guide. (#13654)
 - Config/Annotations: Fix `proxy-busy-buffers-size`. (#13610)
 
 ### 1.14.1

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**8 defects** the project fixed across **2 releases** of the 3.10 line, from 3.10.0 to
+**5 defects** the project fixed across **2 releases** of the 3.10 line, from 3.10.0 to
 3.10.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,14 +46,11 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - kata-deploy: clean up and fix docs for k0s by @sprt in https://github.com/kata-containers/kata-containers/pull/10335
 - runtime-rs: fix the issue of using block_on by @lifupan in https://github.com/kata-containers/kata-containers/pull/10339
-- tests: Fix loop device handling for exec_host() by @BbolroC in https://github.com/kata-containers/kata-containers/pull/10232
 - agent: fix the issue of setup sandbox pidns by @lifupan in https://github.com/kata-containers/kata-containers/pull/10351
-- build: Fix RPM build fail due to AGENT_POLICY by @emanuellima1 in https://github.com/kata-containers/kata-containers/pull/10389
 - agent:cdh: fix unit tests about sealed secret by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/10406
 
 ### 3.10.1
 
-- docs: Fix misspelling in CI documentation by @GabyCT in https://github.com/kata-containers/kata-containers/pull/10438
 - workflows: Possibly fix the release workflow by @fidencio in https://github.com/kata-containers/kata-containers/pull/10471
 
 

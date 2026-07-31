@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**68 defects** the project fixed across **11 releases** of the 1.32 line, from 1.32.0 to
+**61 defects** the project fixed across **11 releases** of the 1.32 line, from 1.32.0 to
 1.32.12. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,7 +47,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: add CriticalAddonsOnly toleration into controller pod by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2560
 - fix: support attach operations after premiumV2 disk migration by @landreasyan in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2569
 - fix: vm-type is not overriding as expected by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2578
-- test: fix trivy action by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2594
 - fix: support old api version for Azure Stack Hub by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2617
 - fix: add serial format limit to fix OOM issue when formatting a few disks in parallel in csi-azuredisk-node by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2616
 - fix: tagValueDelimiter parameter mismatch by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2624
@@ -57,8 +56,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: update max data disk count table with v6 VM sku by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2682
 - fix: support disk discovery on Windows Gen2 and v6 VM sku by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2671
 - fix: unmount volume issue on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2691
-- chore: update cloud provider lib with UserAgent fix by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2689
-- test: fix building latest-windows-hp tag by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2698
 - fix: revert to go1.22 windows filesystem stdlib behavior by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2692
 - fix: allow more powershell command running at same time on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2699
 - fix: increase azuredisk memory limit on node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2705
@@ -66,15 +63,11 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: ModifyVolume interface parameter check by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2739
 - fix: runOnControlPlane chart config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2742
 - feat: add noformat option to fix fsck stuck issue on Linux node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2751
-- test: fix external e2e test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2758
 - fix: increase provisioner, resizer, snapshotter retry-interval-max by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2763
 - feat: add directmount option to fix fsck stuck issue on Linux node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2766
 - fix: get disk stuck issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2783
-- test: fix pv deletion timeout by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2796
 - fix: wrong node matching when detaching dangling disk by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2812
-- Revert "fix: wrong node matching when detaching dangling disk" by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2815
 - fix: remove duplicated imagePullSecrets deployment config by @adriananeci in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2819
-- doc: fix chart README doc by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2829
 - fix: set get disk timeout as 15s and make it configurable by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2857
 - fix: issue #2858 incorrect controller.affinity property processing by @olegch in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2859
 - fix: obsolete vmss cache issue after disk is resized successfully by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2865

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**15 defects** the project fixed across **3 releases** of the 2.7 line, from 2.7.0 to
+**14 defects** the project fixed across **3 releases** of the 2.7 line, from 2.7.0 to
 2.7.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -52,7 +52,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(helm): invoking getterConstructor returns downstream error now a28e5dd2b30caad633834d132a61d754a0479676 (Nandor Kracser)
 - fix(sorter): Adds missing unit test 333f8dd35493bff310fe27faf90103f4557ccc64 (Taylor Thomas)
 - Avoid panics if test is failing a6872c124ac1c89b740f81200fb4bf9e2c71b34c (Maxim Ivanov)
-- Revert "fix(helm): resolve symlinks when loading chart" 211f5f6f33eee7ab6ee2c75fbfd45fcd4262aae7 (Matthew Fisher)
 - fix(deps): fix issues when running glide up b69d6ceca0bca9290efb9d1ca89c50cf337cbb08 (Matt Farina)
 
 ### 2.7.1

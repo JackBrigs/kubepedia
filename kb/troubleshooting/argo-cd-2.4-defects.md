@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**27 defects** the project fixed across **6 releases** of the 2.4 line, from 2.4.2 to
+**26 defects** the project fixed across **6 releases** of the 2.4 line, from 2.4.2 to
 2.4.8. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -76,7 +76,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: Check tracking annotation for being self-referencing (#9791)
 - fix: Make change of tracking method work at runtime (#9820)
 - fix: argo-cd git submodule is using SSH auth instead of HTTPs (#3118) (#9821)
-- docs: small fix for plugin stream filtering (#9871)
 
 ### 2.4.8
 

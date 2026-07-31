@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**8 defects** the project fixed across **1 releases** of the 1.9 line, from 1.9.0 to
+**7 defects** the project fixed across **1 releases** of the 1.9 line, from 1.9.0 to
 1.9.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -51,7 +51,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: snapshot throttling issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1066
 - fix: increase registrar probe timeout value on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1068
 - fix: upgrade azure lib to fix panic issue on node driver by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1081
-- test: fix Windows containerd test failures by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1091
 
 
 ## Diagnostics

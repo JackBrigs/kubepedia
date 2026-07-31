@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**9 defects** the project fixed across **2 releases** of the 0.6 line, from 0.6.0 to
+**8 defects** the project fixed across **2 releases** of the 0.6 line, from 0.6.0 to
 0.6.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -54,7 +54,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 0.6.1
 
 - Fix bug when specify certificate keyAlgorithm without an explicit keySize (#1309, @munnerz)
-- Fix typo in SelfSigned Issuer in webhook deployment manifests (#1294, @munnerz)
 - Fix bug where --dns01-recursive-nameservers flag was not respected when looking up the zone to update for a DNS01 challenge (#1266, @munnerz)
 
 

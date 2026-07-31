@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**27 defects** the project fixed across **2 releases** of the 1.21 line, from 1.21.0 to
+**25 defects** the project fixed across **2 releases** of the 1.21 line, from 1.21.0 to
 1.21.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -70,8 +70,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix Issuer/ClusterIssuer stuck at Ready=False/InvalidSolver after a missing ACME DNS-01 solver Secret is created (#9083, @SebTardif)
 - Fix log spam and dropped Secret informer events for non-cert-manager Secrets, caused by a generics regression introduced in 1.21.0. (#9037, @wallrj-cyberark)
 - Fixed the commented Gateway API config example in the Helm chart values to use `gatewayAPI.enabled` instead of the invalid `gatewayAPI.enable`. (#9012, @mateenali66)
-- Bump `golang.org/x/text` to v0.40.0 to fix a reported security vulnerability (#9039, @wallrj-cyberark)
-- Bump `google.golang.org/grpc` to v1.82.1 to fix a reported security vulnerability (#9063)
 - Bump `github.com/google/cel-go` to v0.29.0 to fix a reported security vulnerability (#9072)
 - Bump `go.opentelemetry.io/otel` to v1.44.0 to fix a reported security vulnerability (#9073)
 

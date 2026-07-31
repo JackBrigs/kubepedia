@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**21 defects** the project fixed across **8 releases** of the 1.12 line, from 1.12.0 to
+**13 defects** the project fixed across **6 releases** of the 1.12 line, from 1.12.0 to
 1.12.8. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,38 +46,24 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - GitHub: Fix `exec` in issue template. (#12387)
 - Config: Fix panic on invalid `lua-shared-dict`. (#12283)
-- Docs: fix limit-rate-after references (#12278)
 - [fix] fix nginx temp configs cleanup (#12225)
 - Metrics: Fix namespace in `nginx_ingress_controller_ssl_expire_time_seconds`. (#10274)
 - Controller: Fix panic in alternative backend merging. (#11789)
-- Docs: Fix typo in AWS LB Controller reference (#11723)
-- Docs: Fix `from-to-www` redirect description. (#11712)
 - unskip the ocsp tests and update images to fix cfssl bug (#11606)
 
 ### 1.12.1
 
 - fix DNS issues with unresolvable backends with ExternalName (#12951)
 
-### 1.12.2
-
-- Docs: Fix link in installation instructions. (#13192)
-
 ### 1.12.3
 
 - Lua: Fix `ExternalName` services without endpoints. (#13429)
 - Fix 🐛: Markdown requires nested content inside a list item to be indented (#13390)
 
-### 1.12.4
-
-- Docs: Fix function names in comments. (#13518)
-
 ### 1.12.5
 
-- Docs: Bump mkdocs to v9.6.16, fix links. (#13744)
-- Docs: Fix default config values and links. (#13739)
 - Controller: Fix nil pointer in path validation. (#13682)
 - Controller: Fix SSL session ticket path. (#13668)
-- Docs: Fix links and formatting in user guide. (#13662)
 
 ### 1.12.6
 

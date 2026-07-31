@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**81 defects** the project fixed across **6 releases** of the 1.35 line, from 1.35.0 to
+**80 defects** the project fixed across **6 releases** of the 1.35 line, from 1.35.0 to
 1.35.7. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -99,7 +99,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fixes a bug where `MutatingAdmissionPolicy` would fail to apply to objects with duplicate list items (like env vars). ([#135560](https://github.com/kubernetes/kubernetes/pull/135560), [@lalitc375](https://github.com/lalitc375) [SIG API Machinery]
 - K8s.io/client-go: Fixes a regression in 1.34+ which prevented informers from using configured Transformer functions. ([#135580](https://github.com/kubernetes/kubernetes/pull/135580), [@serathius](https://github.com/serathius) [SIG API Machinery]
 - Fixed `nfacct` test cases on s390x. ([#133603](https://github.com/kubernetes/kubernetes/pull/133603), [@saisindhuri91](https://github.com/saisindhuri91))
-- Fixed formatting of various Go API deprecations for `GoDoc` and `pkgsite`, and enabled a linter to detect misformatted deprecations. ([#133571](https://github.com/kubernetes/kubernetes/pull/133571), [@BenTheElder](https://github.com/BenTheElder)) [SIG API Machinery, Architecture, CLI, Instrumentation and Testing]
 - Kube-apiserver: Fixed an issue where passing invalid `DeleteOptions` incorrectly returned a 500 status instead of 400. ([#133358](https://github.com/kubernetes/kubernetes/pull/133358), [@ostrain](https://github.com/ostrain))
 - Fix a bug in the kube-apiserver where a malformed Service without name can cause high CPU usage. The bug is present on the new Cluster IP allocators enabled with the feature MultiCIDRServiceAllocator (enabled by default since 1.33)
 

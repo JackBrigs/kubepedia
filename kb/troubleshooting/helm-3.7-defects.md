@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**35 defects** the project fixed across **3 releases** of the 3.7 line, from 3.7.0 to
+**32 defects** the project fixed across **3 releases** of the 3.7 line, from 3.7.0 to
 3.7.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -54,9 +54,7 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(engine): parse fail messages with newlines 79df3926f623e040ae50dd6d84a0bbd985c591af (Cory Snider)
 - fix HELM PLUGINS behavior another_way 90fa4c962a16ea0d62f0f9b835760e98ecc33630 (yxxhero)
 - Resolve PR comments 4bc901c95f3589b6d6b4b3bc0843347334cd0f68 (Stephane Moser)
-- fix(typo): fix typo of storage doc 2deb641efd1af421d4afd28f2ae75a4b10b0870f (longkai)
 - fix(tests): Remove unnecessary test 6a3daaa7aa5b89a150042cadcbe869b477bb62a1 (Marc Khouzam)
-- fix(ci-lint): increase timeout for golangci-lint d1da9e757e140268068d32c051ccd88013138096 (Adam Reese)
 - fix(doc): fix kube client interface doc. (#9882) cf0c6fed519d48101cd69ce01a355125215ee46f (小龙同学)
 - Fix the url being set by WithURL on the getters 4e2e4084edc0fa1e21d6a9a83b3ffdc8c1ec5e01 (Matt Farina)
 - resolve golint errors 8f60ee76a5b78b406d3f9f304e671ce581c1b8d5 (Josh Dolitsky)
@@ -78,7 +76,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.7.1
 
 - 3.6.4 will contain only bug fixes and is planned for release on November 10, 2021
-- docs: fix typo Charts.yaml 2aacc5f07a67d207f14f28f84c63a7e85dfd4ec7 (Alexey Igrychev)
 - Fix default registry config path of oci protocol provider 57ecc256a0225ba396da4aed00b08853bd90b6c9 (Kai Takac)
 
 ### 3.7.2

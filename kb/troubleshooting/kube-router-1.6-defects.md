@@ -44,17 +44,17 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 1.6.0
 
-- 5d718973 - fix(NRC): withdraw advertised VIPs based on annotation `<Aaron U'Ren>`
-- 168a2b4b - fix(ci): checkout before go setup `<Aaron U'Ren>`
-- c22c6af6 - fix(ci.yml): remove deprecated goreleaser flag `<Aaron U'Ren>`
-- 1d1ff059 - fix(NSC): add check for podCidr before use `<Aaron U'Ren>`
-- f102bc58 - .github: Fix name of the RC step `<Manuel Rüger>`
-- efd10015 - fix invalid MTU in CNI config file `<Tamihiro Lee>`
-- 88266bc2 - fix(gobgp): update binary in container image to v3.2.0 `<Aaron U'Ren>`
+- - fix(NRC): withdraw advertised VIPs based on annotation `<Aaron U'Ren>`
+- - fix(ci): checkout before go setup `<Aaron U'Ren>`
+- - fix(ci.yml): remove deprecated goreleaser flag `<Aaron U'Ren>`
+- - fix(NSC): add check for podCidr before use `<Aaron U'Ren>`
+- - .github: Fix name of the RC step `<Manuel Rüger>`
+- - fix invalid MTU in CNI config file `<Tamihiro Lee>`
+- - fix(gobgp): update binary in container image to v3.2.0 `<Aaron U'Ren>`
 
 ### 1.6.1
 
-- a382475c - fix(rt_tables): add path fallback logic `<Aaron U'Ren>`
+- - fix(rt_tables): add path fallback logic `<Aaron U'Ren>`
 
 
 ## Diagnostics

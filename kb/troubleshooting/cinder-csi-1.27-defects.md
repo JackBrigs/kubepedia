@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**8 defects** the project fixed across **2 releases** of the 1.27 line, from 1.27.0 to
+**7 defects** the project fixed across **2 releases** of the 1.27 line, from 1.27.0 to
 1.27.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -48,7 +48,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - cinder csi: fix double snapshots package import by @kayrus in https://github.com/kubernetes/cloud-provider-openstack/pull/2135
 - [all] Fix cloudbuild by @mdbooth in https://github.com/kubernetes/cloud-provider-openstack/pull/2145
 - [all] Fix substitution of _SHORT_TAG in cloudbuild by @mdbooth in https://github.com/kubernetes/cloud-provider-openstack/pull/2146
-- fix lint of charts by @jichenjc in https://github.com/kubernetes/cloud-provider-openstack/pull/2184
 
 ### 1.27.2
 

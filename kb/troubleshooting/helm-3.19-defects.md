@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**40 defects** the project fixed across **5 releases** of the 3.19 line, from 3.19.0 to
+**39 defects** the project fixed across **5 releases** of the 3.19 line, from 3.19.0 to
 3.19.5. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -69,7 +69,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(client): layers now returns manifest - remove duplicate from descriptors b07ab77da3a2d20508b8e775981e233a81d4c753 (Brandt Keller)
 - fix(client): return nil on non-allowed media types c225c124ac76eedc3ca6e013df40da8d2c50650d (Brandt Keller)
 - Fix 3.18.0 regression: registry login with scheme c0f3ace52d974b7465f33079bbf54ed961f875f1 (Scott Rigby)
-- Revert "fix (helm) : toToml` renders int as float [ backport to v3 ]" c5249c1f8d83d44081afee41efeac3ee36d6e9bc (Matt Farina)
 - fix: move warning to top of block eb5b6d50474842db17330b11e0db70077e1c4510 (Feng Cao)
 - fix: govulncheck workflow 6b15f26bd45c2856b36bdf3e8c32b44595e4580f (Matthieu MOREL)
 - fix: replace fmt warning with slog 6b5c94475db950a981523344029f0a7c620a2e32 (Feng Cao)

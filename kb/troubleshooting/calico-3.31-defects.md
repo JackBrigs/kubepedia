@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**91 defects** the project fixed across **6 releases** of the 3.31 line, from 3.31.0 to
+**88 defects** the project fixed across **6 releases** of the 3.31 line, from 3.31.0 to
 3.31.6. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,8 +45,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.31.0
 
 - Fix slow IPAM release performance when releasing IPs from disabled or deleted pools (especially for bulk deletions like those done by IPAM GC). Consider disabled pools as potential IP owners and cache any loaded blocks for fast access. [calico 11094](https://github.com/projectcalico/calico/pull/11094) (@fasaxc)
-- Update LivenessProbe of calico-node to point to /bin/birdcl from the existing /usr/bin/birdcl, fixing probe failures on ppc64le and other architectures. [calico 10953](https://github.com/projectcalico/calico/pull/10953) (@kishen-v)
-- Fix typo `typa` to collect typha-certs when using calicoctl. [calico 10948](https://github.com/projectcalico/calico/pull/10948) (@tianfeng92)
 - Fix race condition that could result in a Wireguard IP not being assigned. [calico 10883](https://github.com/projectcalico/calico/pull/10883) (@caseydavenport)
 - Calico waits until networking is fully established before setting the NetworkUnavailable=false condition. [calico 10866](https://github.com/projectcalico/calico/pull/10866) (@caseydavenport)
 - Add missing staged policy permissions to apiserver.yaml [calico 11031](https://github.com/projectcalico/calico/pull/11031) (@caseydavenport)
@@ -56,7 +54,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix: In Calico for OpenStack the operation to rebuild a VM could sometimes fail to complete successfully, with the VM getting stuck in ERROR state. (Completion of #10608) [calico 10656](https://github.com/projectcalico/calico/pull/10656) (@nelljerram)
 - Fix that CalicoNodeStatus updates could get blocked by datastore errors [calico 10555](https://github.com/projectcalico/calico/pull/10555) (@theboringstuff)
 - Reduce log level for spammy IPv6 RA log when IPv6 is disabled. [calico 10553](https://github.com/projectcalico/calico/pull/10553) (@caseydavenport)
-- Fix typo in API json tag for BGP next hop mode [calico 10550](https://github.com/projectcalico/calico/pull/10550) (@song-jiang)
 - Helm: fix role binding to use correct serviceaccount name when deployed in an alternative namespace. [calico 10516](https://github.com/projectcalico/calico/pull/10516) (@caseydavenport)
 - Fix race condition in Goldmane startup [calico 10512](https://github.com/projectcalico/calico/pull/10512) (@caseydavenport)
 - Fix Goldmane race condition when terminating streams [calico 10508](https://github.com/projectcalico/calico/pull/10508) (@caseydavenport)

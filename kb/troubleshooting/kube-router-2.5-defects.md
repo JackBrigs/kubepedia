@@ -44,12 +44,12 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 2.5.0
 
-- d8430e21 - fix(lint): remove nolint for error messages `<Aaron U'Ren>`
-- 760fcd5c - fix(lint): remove non-constant format string (govet) `<Aaron U'Ren>`
-- 48b631c4 - fix(lint): remove unnecessary variable initializations (copyloopvar) `<Aaron U'Ren>`
-- 858fdf65 - fix(lint): prevent against integer overflow errors `<Aaron U'Ren>`
-- aa7cffb6 - fix(NSC): only set rp_filter to 2 if it is 1 `<Dmitry Sharshakov>`
-- 6ce2c6db - fix(NRC): find all node IPs for NAT exclusion `<Aaron U'Ren>`
+- - fix(lint): remove nolint for error messages `<Aaron U'Ren>`
+- - fix(lint): remove non-constant format string (govet) `<Aaron U'Ren>`
+- - fix(lint): remove unnecessary variable initializations (copyloopvar) `<Aaron U'Ren>`
+- - fix(lint): prevent against integer overflow errors `<Aaron U'Ren>`
+- - fix(NSC): only set rp_filter to 2 if it is 1 `<Dmitry Sharshakov>`
+- - fix(NRC): find all node IPs for NAT exclusion `<Aaron U'Ren>`
 
 
 ## Diagnostics

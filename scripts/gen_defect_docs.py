@@ -31,6 +31,31 @@ MIN_ENTRIES = 5           # ниже этого документ не окупа
 MIN_LEN = 45
 MARK = "machine-extracted by scripts/upstream_issues.py"
 
+# Часть проектов ведёт заметки как лог коммитов (talos, cri-o), и туда попадает
+# работа, которая эксплуатацию не касается вовсе: правки сборки, тестов, документации,
+# подтяжка зависимостей. В базе это чистый шум — оператор ищет не «поправили Makefile».
+NOISE_RX = re.compile(
+    r"^(ci|docs?|test|tests|build|chore|refactor|style|deps?)\s*[:(]"          # префикс типа коммита
+    r"|^Merge (pull request|branch|remote)"                                     # слияние: описания нет, только имя ветки
+    r"|^Revert \""
+    r"|\b(Vagrantfile|Makefile|Dockerfile|\.github|golangci|gofmt)\b"
+    r"|\b(fix|fixed)\s+(lint|linter|typo|spacing|formatting)\b"
+    r"|\b(bump|update|upgrade)\b.{0,40}\b(dependenc|go\.mod|golang|module)\b",
+    re.I)
+
+# «Update X to vY» — это не исправление дефекта, а подтяжка версии; в документе про
+# дефекты такой строке не место. Исключение — когда прямо сказано, что чинит: тогда
+# это настоящая запись, просто выраженная через обновление.
+VERSION_BUMP_RX = re.compile(r"^(update|updating|bump|bumping|upgrade|upgrading)\b", re.I)
+KEEPS_RX = re.compile(r"\b(fix|fixes|fixed|regression|CVE-|security|vulnerab|panic|crash|leak)\b", re.I)
+
+# Talos и cri-o перечисляют коммиты: «siderolabs/talos@27655c5 fix: ...». Сам хеш
+# ничего не сообщает, а текст после него — настоящая запись. Поэтому префикс срезается,
+# и только остаток проверяется на служебность.
+COMMIT_PREFIX_RX = re.compile(
+    r"^(?:\[?`?[0-9a-f]{7,40}`?\]?(?:\(https?://[^)]+\))?"
+    r"|[\w.-]+/[\w.-]+@`?[0-9a-f]{7,40}`?)\s+", re.I)
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from upstream_issues import REPOS  # noqa: E402
 
@@ -51,7 +76,10 @@ def clean(items):
         for part in parts:
             t = re.sub(r"\s*\(\[?#?\d+\]\(https?://[^\)]+\)\)?\s*$", "", part).strip()
             t = re.sub(r"\s+", " ", t).strip(" .;:")
-            if len(t) < MIN_LEN:
+            t = COMMIT_PREFIX_RX.sub("", t).strip()
+            if len(t) < MIN_LEN or NOISE_RX.search(t):
+                continue
+            if VERSION_BUMP_RX.match(t) and not KEEPS_RX.search(t):
                 continue
             k = t.lower()[:80]
             if k in seen:

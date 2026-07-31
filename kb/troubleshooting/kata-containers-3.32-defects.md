@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**11 defects** the project fixed across **1 releases** of the 3.32 line, from 3.32.0 to
+**9 defects** the project fixed across **1 releases** of the 3.32 line, from 3.32.0 to
 3.32.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,9 +47,7 @@ Entries are grouped by the release that fixed them, oldest first.
 - runtime-rs: Fix sandbox-api lifecycle and CRI status handling by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12957
 - packaging: fix parallel kernel build race and kata-deploy script bugs by @hdp617 in https://github.com/kata-containers/kata-containers/pull/13077
 - runtime / agent / kernel: fix cold-plug VFIO guest-kernel mode for SR-IOV RoCE/InfiniBand by @fidencio in https://github.com/kata-containers/kata-containers/pull/13103
-- tests: fix TDX runtime-rs and initdata tests by @mythi in https://github.com/kata-containers/kata-containers/pull/12931
 - cri-containerd: fix v1 sanity-check config generation by @fidencio in https://github.com/kata-containers/kata-containers/pull/13192
-- tests: fix k8s-number-cpus expectation by @manuelh-dev in https://github.com/kata-containers/kata-containers/pull/13190
 - generate_vendor: Fix heavily broken logic by @gkurz in https://github.com/kata-containers/kata-containers/pull/13202
 - fix: pin idna and pymdown-extensions to remediate CVEs by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/13215
 - runtime-rs: Fix queue_size of zero in block_rootfs by @glingy in https://github.com/kata-containers/kata-containers/pull/13211

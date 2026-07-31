@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**23 defects** the project fixed across **7 releases** of the 1.26 line, from 1.26.0 to
+**22 defects** the project fixed across **7 releases** of the 1.26 line, from 1.26.0 to
 1.26.9. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -50,7 +50,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: Add missing machine in SKU listings by @sboulkour in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1641
 - Add requirements.txt with fixed versions to use in pip install by @mauriciopoppe in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1652
 - fix e2e: disable podSecurity by @cvvz in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1668
-- Revert "fix e2e: disable podSecurity" by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1669
 - fix: set ForceAttemptHTTP2 as false to increase ARM throttling limit by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1676
 
 ### 1.26.1

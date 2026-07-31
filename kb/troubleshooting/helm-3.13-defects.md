@@ -30,8 +30,8 @@ relations:
 
 ## Summary
 
-**34 defects** the project fixed across **3 releases** of the 3.13 line, from 3.13.0 to
-3.13.2. A cluster running a version below the one an entry sits under still carries that defect.
+**30 defects** the project fixed across **2 releases** of the 3.13 line, from 3.13.0 to
+3.13.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
 the remedy is a patch bump rather than an investigation.
@@ -58,13 +58,11 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix helm may identify achieve of the application/x-gzip as application/vnd.ms-fontobject 5c7a63138b70f2493be7ea5245791ba40091b9b2 (MR ZHAO)
 - fix(main): fix basic auth for helm pull or push 4a27baaffc7ae112c2f45e3cd72dd249d9563a5a (cuisongliu)
 - Fix multiple bugs in values handling 0a5148faffb7110bab58a466a52be0686a69947c (Matt Farina)
-- chore: fix a typo in `manager.go` 15e6066a45cbd2b98023cf07bb1cfb45e18d2d95 (Yarden Shoham)
 - fix comment grammar error. 8e1c3d0d397922313e7c3201bd3d01ec1e8747eb (wujunwei)
 - pkg/engine: fix nil-dereference 2a9594c0feadf0ab637c4e4c6cf50a931ba1778c (AdamKorcz)
 - pkg/chartutil: fix nil-dereference 2f13355e40ca2790bebb19b7182500d312a536de (AdamKorcz)
 - pkg/action: fix nil-dereference 6fc815da5a2951cecf6805d61b25d53bfe0ab980 (AdamKorcz)
 - fix: add podLabels b441f5341dd796b1ecdfcec0706a38d51cd8efb7 (genofire)
-- fix typo: mountPath fc1a5a1123793691a0e6f7e339ab49448fc3be77 (Eugene Zuev)
 - Avoid confusing error when passing in '--version X.Y.Z' 0d9eb1341b70955c266936295e6415c12c671280 (Justin Wood)
 - Fix flaky TestSQLCreate test by making sqlmock ignore order of sql requests 28ab648d3c6d9e9ec2b611c5c2c65fba53c8cb97 (Dmitry Chepurovskiy)
 - Fix broken tests for SQL storage driver c7eedbd9c583933a483917416d5c86bd6704631d (Dmitry Chepurovskiy)
@@ -80,11 +78,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(registry): address anonymous pull issue 0ac78941abfed981a47f263fa59931e9123f73a1 (Hidde Beydals)
 - Fix missing run statement on release action 09012691de50da37254d1ef98d97333c4a3e35c5 (Ian Zink)
 
-### 3.13.2
-
-- Revert "fix(main): fix basic auth for helm pull or push" e785e6c50c622ed5019fd4020a13509c87a3022d (Matt Farina)
-- Revert "fix(registry): address anonymous pull issue" 268dcedba6a231b623c8252a3dafa0052d161c6e (Matt Farina)
-
 
 ## Diagnostics
 
@@ -93,7 +86,7 @@ kubectl get nodes -o wide      # node-level components
 helm list -A                   # chart-deployed components
 ```
 
-Compare the running version against **3.13.2**, the newest release recorded here for this line.
+Compare the running version against **3.13.1**, the newest release recorded here for this line.
 
 ## Known Issues
 

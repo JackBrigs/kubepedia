@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**7 defects** the project fixed across **1 releases** of the 3.27 line, from 3.27.0 to
+**6 defects** the project fixed across **1 releases** of the 3.27 line, from 3.27.0 to
 3.27.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,7 +47,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - runtime-rs: Fix stdout empty when exec process by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12376
 - Fix CVE 2026 25541 by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12475
 - Fix CVE 2026 25727 by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12474
-- tests: nvidia: Fix genpolicy error when pulling nvcr.io images by @fidencio in https://github.com/kata-containers/kata-containers/pull/12514
 - infra: fix multi-arch manifest publish by @fidencio in https://github.com/kata-containers/kata-containers/pull/12524
 - kata-deploy: runtime_platform -> runtime_platforms ... plus a few fixes by @fidencio in https://github.com/kata-containers/kata-containers/pull/12530
 - runtime-rs/ch: Fix inverted vcpu/tid mapping in get_ch_vcpu_tids by @chiranjeevi-max in https://github.com/kata-containers/kata-containers/pull/12526

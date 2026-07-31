@@ -46,18 +46,18 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - Retry certain netlink calls which fixes early start race conditions - Some users noticed a race condition on ip link setup when kube-router was starting as the node's OS was also starting. This should fix that edge case
 - Go Safecast bug fixes and unit test efficiencies: @ccoVeille
-- 3157e85e - test(NSC): fix two DSR service tests to create pods `<Aaron U'Ren>`
-- 04868070 - fix(NSC): cleanup historical bad IPv6 TCPMSS vals `<Aaron U'Ren>`
-- 59814eb6 - fix: convert ginkgo tests to standard go tests `<Aaron U'Ren>`
-- 827cb4ae - fix(BGP): always configure AFI SAFI `<Aaron U'Ren>`
-- ee0940b8 - fix(dsr): set TCPMSS based on address family `<Richard Kojedzinszky>`
-- 440ad4d0 - fix: Replace all netlink functions that throw ErrDumpInterrupted with a retry wrapper `<Cat C>`
-- a8326ca3 - fix(nrc): Update make test-pretty to test internal subdirectory. Update nlretry and LocalLinkQuerier interface to support passing in contexts `<Cat C>`
-- 8ea5e44d - fix(nrc): Add netlink.Handle wrapper to retry netlink calls that raise ErrDumpInterrupted errors `<Cat C>`
+- - test(NSC): fix two DSR service tests to create pods `<Aaron U'Ren>`
+- - fix(NSC): cleanup historical bad IPv6 TCPMSS vals `<Aaron U'Ren>`
+- - fix: convert ginkgo tests to standard go tests `<Aaron U'Ren>`
+- - fix(BGP): always configure AFI SAFI `<Aaron U'Ren>`
+- - fix(dsr): set TCPMSS based on address family `<Richard Kojedzinszky>`
+- - fix: Replace all netlink functions that throw ErrDumpInterrupted with a retry wrapper `<Cat C>`
+- - fix(nrc): Update make test-pretty to test internal subdirectory. Update nlretry and LocalLinkQuerier interface to support passing in contexts `<Cat C>`
+- - fix(nrc): Add netlink.Handle wrapper to retry netlink calls that raise ErrDumpInterrupted errors `<Cat C>`
 
 ### 2.7.1
 
-- fda5ebcf1b4fdb7a822957641b4261465acc4f4c fix(aws.go): load region before attempting to assume a role
+- fix(aws.go): load region before attempting to assume a role
 
 
 ## Diagnostics

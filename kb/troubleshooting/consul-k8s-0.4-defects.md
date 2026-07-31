@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**11 defects** the project fixed across **4 releases** of the 0.4 line, from 0.4.0 to
+**9 defects** the project fixed across **3 releases** of the 0.4 line, from 0.4.0 to
 0.4.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,7 +44,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 0.4.0
 
-- [#777](https://github.com/kubernetes-sigs/gateway-api/pull/777) : Fix typo
 - [#875](https://github.com/kubernetes-sigs/gateway-api/pull/875) : Fix HTTP path match documentation
 - [#845](https://github.com/kubernetes-sigs/gateway-api/pull/845) : Fix markdown list formatting
 - [#834](https://github.com/kubernetes-sigs/gateway-api/pull/834) : Fixes some broken links
@@ -56,10 +55,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - ControllerName now prints correctly in kubectl output for GatewayClass [#909](https://github.com/kubernetes-sigs/gateway-api/pull/909)
 - Namespace can no longer be left unspecified in ReferencePolicy [#964](https://github.com/kubernetes-sigs/gateway-api/pull/964)
 - Wildcard characters can no longer be used in redirect Hostname values [#956](https://github.com/kubernetes-sigs/gateway-api/pull/956)
-
-### 0.4.2
-
-- Update image generation process with more consistent naming [#1034](https://github.com/kubernetes-sigs/gateway-api/pull/1034)
 
 ### 0.4.3
 

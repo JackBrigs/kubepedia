@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**35 defects** the project fixed across **3 releases** of the 2.22 line, from 2.22.0 to
+**33 defects** the project fixed across **3 releases** of the 2.22 line, from 2.22.0 to
 2.22.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -62,7 +62,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix allow unsupported distribution (#9904, @ErikJiang)
 - Fix cilium's hubble ui configuration (#9735, @j4m3s-s)
 - Fix comma-separated-list splitting of `kubelet_enforce_node_allocatable` variable (#9694, @Tristan971)
-- Fix confusing instance sizing (etcd, kube_master) in Vagrantfile (#9966, @THUzxj)
 - Fix ingress url not found issue (#9789, @JaneLiuL)
 - Fix playbook names to support import via galaxy (#10021, @dkasanic)
 - Fix restart k8s components, checking yml files instead of manifest (#9962, @liupeng0518)
@@ -77,7 +76,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 2.22.1
 
-- Fix Dockerfile for newest directory layout (#10128, @dabeck)
 - Fix metrics-server deployment to run with kubernetes 1.26+ (#10183, @mzaian)
 - Fix Update MetalLB deployment, wait for resource. (#9995, @Jeroen0494)
 

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**14 defects** the project fixed across **4 releases** of the 2.3 line, from 2.3.0 to
+**13 defects** the project fixed across **4 releases** of the 2.3 line, from 2.3.0 to
 2.3.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -66,7 +66,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - Fix nil pointer dereference in NRI GetIPs during pod sandbox teardown or container exit
 - Fix nil pointer dereference in NRI GetIPs ([#13697](https://github.com/containerd/containerd/pull/13697)) [`36c713971`](https://github.com/containerd/containerd/commit/36c7139715fee7ff2f87f78a8b3d6fea4e2e7b35) Fix nil pointer dereference in NRI GetIPs
-- test: fix flaky image timestamp check on coarse clocks ([#13643](https://github.com/containerd/containerd/pull/13643)) [`168d56783`](https://github.com/containerd/containerd/commit/168d56783608354301e6f6dfb3ceb9af342c7dde) test: fix flaky image timestamp check on coarse clocks
 
 
 ## Diagnostics

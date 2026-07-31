@@ -27,6 +27,8 @@ MIN_ENTRIES = 3
 MIN_LEN = 45
 MARK = "machine-extracted by scripts/upstream_issues.py"
 
+from gen_defect_docs import NOISE_RX  # общий отсев служебных строк  # noqa: E402
+
 # компонент -> хвост стабильного идентификатора и репозиторий для ссылки
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from upstream_issues import REPOS  # noqa: E402
@@ -50,7 +52,7 @@ def clean(items):
         for part in (parts if len(parts) > 1 else [raw]):
             t = re.sub(r"\s*\(\[?#?\d+\]\(https?://[^\)]+\)\)?\s*$", "", part).strip()
             t = re.sub(r"\s+", " ", t).strip(" .;:")
-            if len(t) < MIN_LEN:
+            if len(t) < MIN_LEN or NOISE_RX.search(t):
                 continue
             k = t.lower()[:80]
             if k in seen:

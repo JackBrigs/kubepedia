@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**20 defects** the project fixed across **1 releases** of the 3.6 line, from 3.6.0 to
+**13 defects** the project fixed across **1 releases** of the 3.6 line, from 3.6.0 to
 3.6.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,21 +46,14 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - gha: Fix indentation in gha run k8s common by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9627
 - metrics: Fix random write value for FIO by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9610
-- ci: cache: Fix unbound variable by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/9647
 - Fix launch times timestamp generation. by @dborquez in https://github.com/kata-containers/kata-containers/pull/9662
 - fix: kata-deploy.sh VERSION_ID unbound-variable by @networkhermit in https://github.com/kata-containers/kata-containers/pull/9671
 - runtime: fix duplicated devices requested to the agent by @cncal in https://github.com/kata-containers/kata-containers/pull/9624
-- tests: Fix indentation in confidential common script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9685
 - metrics: Fix minvalue for boot time by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9686
 - kata-deploy / kata-cleanup / ci: Fixes and improvements to kata-deploy / kata-cleanup and its usage in the CI by @fidencio in https://github.com/kata-containers/kata-containers/pull/9721
 - vfio: Fix hot-unplug by @zvonkok in https://github.com/kata-containers/kata-containers/pull/9723
-- ci: Fix tools builder images by @zvonkok in https://github.com/kata-containers/kata-containers/pull/9743
-- tests: Fix indentation in static checks script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9741
-- tests: Fix indentation in common script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9779
 - kata-types: fix bug in kata-types several test cases by @Apokleos in https://github.com/kata-containers/kata-containers/pull/9784
 - runtime: fix the bug of func countFiles by @gaohuatao-1 in https://github.com/kata-containers/kata-containers/pull/9781
-- tests: fix yq command line in k8s-policy-pvc by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/9844
-- ci: fix the expected yq version string by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/9843
 - runtime: fix minor spelling issues by @EmmEff in https://github.com/kata-containers/kata-containers/pull/9818
 - sandbox: fix the issue of double initial_size_manager config by @lifupan in https://github.com/kata-containers/kata-containers/pull/9836
 - genpolicy: fix settings path flag name by @msanft in https://github.com/kata-containers/kata-containers/pull/9815

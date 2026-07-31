@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**11 defects** the project fixed across **4 releases** of the 1.20 line, from 1.20.0 to
+**10 defects** the project fixed across **4 releases** of the 1.20 line, from 1.20.0 to
 1.20.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -55,7 +55,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 1.20.1
 
 - Fixed duplicate `parentRef` bug when both issuer config and annotations are present. (#8658, @hjoshi123)
-- Bump google.golang.org/grpc to fix vulnerability reported by scanners. This isn't a vulnerability that affects cert-manager, but we are bumping it because it is reported by scanners. (#8657, @erikgb)
 
 ### 1.20.2
 

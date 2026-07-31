@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**39 defects** the project fixed across **4 releases** of the 2.12 line, from 2.12.0 to
+**36 defects** the project fixed across **3 releases** of the 2.12 line, from 2.12.0 to
 2.12.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -62,8 +62,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix snap install command (#4877) 833ee712b254c618fe7afc2af20fc9e8094524a1 (Mike Garuccio)
 - fix(engine): Fix template rendering thread safety issue (#4828) 6635bff38faab593ee2eb50a888e8d8d4c6c15d7 (Sean Eagan)
 - Small typo fix (#4887) 4a49abb81ef78a1e4c6c69fc2e29bd8b98d6ce40 (Daniel M Barlow)
-- docs(release_checklist): fix changelog generation command (#4694) 8442851a5c566a01d9b4c69b368d64daa04f6a7f (Matthew Fisher)
-- test(tiller): cover crash fixed by #4630 (#4853) 0522b34e056f6dda012a763b7ed2acd4ef552e1f (Matt Rasmus)
 - Fix cmd/helm use tillerTunnel values (#4777) 440e79ff958becbcbd6135fd4a7fddd553de06af (masahiro)
 - fix(helm): Use line breaks consistently in status output 586dc1db61d5e18921acc36933752f00904337f2 (Morten Torkildsen)
 - fix(helm): Update status output to include resource details (#4791) dd9ed71429999bd267db53c9533a6224ff48e719 (Morten Torkildsen)
@@ -79,10 +77,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix type in Values File (#4629) 5211bfa110ab4b99ad53800098f4928711521b96 (Pratyush Verma)
 - Fix race condition in `helm list` (#4620) 5b236324468ad8958c351dd3c734880c0fa5d561 (Matthew Fisher)
 - Fix for checking helm version slice bounds out of range (#4609) 2b33bf6ba719e602c026d07ae483327d84da6b7c (Robert James Hernandez)
-
-### 2.12.1
-
-- Revert "Fix for existing CRDs are deleted when crd-install hook is introduced (#4709)" (#5067) 02a47c7249b1fc6d8fd3b94e6b4babf9d818144e (Matthew Fisher)
 
 ### 2.12.2
 

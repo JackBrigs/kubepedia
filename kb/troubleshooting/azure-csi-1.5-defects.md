@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**11 defects** the project fixed across **2 releases** of the 1.5 line, from 1.5.0 to
+**10 defects** the project fixed across **2 releases** of the 1.5 line, from 1.5.0 to
 1.5.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,7 +46,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - fix: create PV failure in zone and nonzone mixed cluster by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/893
 - fix: reduce GetDisk in AttachDisk by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/904
-- test: fix broken code coverage by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/905
 - fix: ZRS node affinity setting by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/906
 - fix: detach disk crash on Azure Stack by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/909
 - fix: translation issue due to lower case managed kind by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/915

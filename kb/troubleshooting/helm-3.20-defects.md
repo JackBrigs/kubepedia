@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**18 defects** the project fixed across **3 releases** of the 3.20 line, from 3.20.0 to
+**17 defects** the project fixed across **3 releases** of the 3.20 line, from 3.20.0 to
 3.20.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -60,7 +60,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Backport of #31601: Fixed a bug where OCI references with tag+digest failed with "invalid byte" error
 - fix pulling charts from OCI indices 911f2e908ae40b01ca95b857e94b8894043f64fd (Pedro Tôrres)
 - Fix import 45c12f71407b6054a37d3e425d5293ee79a1ab37 (Evans Mungai)
-- Fix lint warning 09f5129d49a14c9336cea6f33adf5f52889915ef (Evans Mungai)
 - fix(values): preserve nil values when chart default is empty map 5417bfaa84871feae9c8171f192e2f9796475054 (Evans Mungai)
 
 ### 3.20.2

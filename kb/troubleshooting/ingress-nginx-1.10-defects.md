@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**17 defects** the project fixed across **7 releases** of the 1.10 line, from 1.10.0 to
+**13 defects** the project fixed across **7 releases** of the 1.10 line, from 1.10.0 to
 1.10.6. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -55,7 +55,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: Ensure changes in MatchCN annotation are detected (#11528)
 - Fix helm install on cloud provider admonition block (#11412)
 - fix path in file changed detected message (#11286)
-- chore: fix function names in comment (#11281)
 - fix: update kube version requirement to 1.21 (#11279)
 - Fix admission controller logging of `admissionTime` and `testedConfigurationSize` (#11114)
 
@@ -66,8 +65,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 1.10.4
 
 - Controller: Fix panic in alternative backend merging. (#11793)
-- Docs: Fix typo in AWS LB Controller reference (#11724)
-- Docs: Fix `from-to-www` redirect description. (#11715)
 
 ### 1.10.5
 
@@ -77,7 +74,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - GitHub: Fix `exec` in issue template. (#12389)
 - Config: Fix panic on invalid `lua-shared-dict`. (#12282)
-- Docs: fix limit-rate-after references (#12280)
 - [fix] fix nginx temp configs cleanup (#12224)
 
 

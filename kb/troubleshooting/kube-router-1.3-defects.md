@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**23 defects** the project fixed across **2 releases** of the 1.3 line, from 1.3.1 to
+**22 defects** the project fixed across **2 releases** of the 1.3 line, from 1.3.1 to
 1.3.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,30 +46,29 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - `--cleanup-config` flag should now be more comprehensive. There were a couple of bugs introduced in the 1.3 release that caused this flag to not function at all. These have been fixed. Additionally, it now cleans up most, if not all kube-router artifacts, where before it would leave some lingering parts of the Network Policy Controller
 - Additional ipset locking was missing causing some errors around multiple invocations. This has been fixed
-- bffdc729 - fix(npc): ordering of firewall / service rules (#1144) (4 days ago) <Aaron U'Ren>
-- 35d334ca - fix: add sleeps between iptables and ipset cleanup (8 days ago) <Aaron U'Ren>
-- cafd69df - fix(NRC): reduce logging for egress cleanup errors (8 days ago) <Aaron U'Ren>
-- fb070265 - fix(NSC): actually remove IPVS definitions (8 days ago) <Aaron U'Ren>
-- bbc0666a - fix(NSC): add exists checking to Cleanup() (8 days ago) <Aaron U'Ren>
-- 1a8c3548 - fix(NPC): Cleanup() function overhaul (8 days ago) <Aaron U'Ren>
-- 9bc55dc1 - fix(NPC): missed ipset locking (8 days ago) <Aaron U'Ren>
-- 06e246ff - fix(NRC): PR feedback fixes (2 weeks ago) <Aaron U'Ren>
-- 445ad9a1 - fix(injectRoute): process withdrawls first (2 weeks ago) <Aaron U'Ren>
-- 2e590a41 - fix(NRC): consolidate route delete logic (2 weeks ago) <Aaron U'Ren>
-- d0501c07 - fix(injectRoute): cleanup tunnels & routes when peer drops (2 weeks ago) <Aaron U'Ren>
-- e9be04ef - fix: add nil checking to ipsetMutex cleanup actions (#1129) (4 weeks ago) <Aaron U'Ren>
-- c26f98c9 - fix(ci): only run build actions on non-forks (6 weeks ago) <Aaron U'Ren>
-- f3e8fc00 - fix(README.md): update badge link to GitHub Actions (6 weeks ago) <Aaron U'Ren>
-- f8214ef8 - .github/workflows: Fix yaml error (6 weeks ago) <Manuel Rüger>
-- 8697d81d - .github: Fix tag workflow (6 weeks ago) <Manuel Rüger>
-- fc4ddef2 - .github: Fix tag workflow (6 weeks ago) <Manuel Rüger>
-- 9b7f98e0 - .github: Fix Tag/Push workflow (6 weeks ago) <Manuel Rüger>
+- - fix(npc): ordering of firewall / service rules (#1144) (4 days ago) <Aaron U'Ren>
+- - fix: add sleeps between iptables and ipset cleanup (8 days ago) <Aaron U'Ren>
+- - fix(NRC): reduce logging for egress cleanup errors (8 days ago) <Aaron U'Ren>
+- - fix(NSC): actually remove IPVS definitions (8 days ago) <Aaron U'Ren>
+- - fix(NSC): add exists checking to Cleanup() (8 days ago) <Aaron U'Ren>
+- - fix(NPC): Cleanup() function overhaul (8 days ago) <Aaron U'Ren>
+- - fix(NPC): missed ipset locking (8 days ago) <Aaron U'Ren>
+- - fix(NRC): PR feedback fixes (2 weeks ago) <Aaron U'Ren>
+- - fix(injectRoute): process withdrawls first (2 weeks ago) <Aaron U'Ren>
+- - fix(NRC): consolidate route delete logic (2 weeks ago) <Aaron U'Ren>
+- - fix(injectRoute): cleanup tunnels & routes when peer drops (2 weeks ago) <Aaron U'Ren>
+- - fix: add nil checking to ipsetMutex cleanup actions (#1129) (4 weeks ago) <Aaron U'Ren>
+- - fix(ci): only run build actions on non-forks (6 weeks ago) <Aaron U'Ren>
+- - fix(README.md): update badge link to GitHub Actions (6 weeks ago) <Aaron U'Ren>
+- - .github/workflows: Fix yaml error (6 weeks ago) <Manuel Rüger>
+- - .github: Fix tag workflow (6 weeks ago) <Manuel Rüger>
+- - .github: Fix Tag/Push workflow (6 weeks ago) <Manuel Rüger>
 
 ### 1.3.2
 
-- c7ed2d51 - fix(NPC): don't rely on exit code for chain check (#1157) `<Aaron U'Ren>`
-- a60c5a87 - fix(bgp_policies_test.go): Add missing import statement to all test cases `<Lucas Mundim>`
-- be96deab - fix(bgp_policies_test.go): fails if there are any unexpected statement `<Lucas Mundim>`
+- - fix(NPC): don't rely on exit code for chain check (#1157) `<Aaron U'Ren>`
+- - fix(bgp_policies_test.go): Add missing import statement to all test cases `<Lucas Mundim>`
+- - fix(bgp_policies_test.go): fails if there are any unexpected statement `<Lucas Mundim>`
 
 
 ## Diagnostics

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**36 defects** the project fixed across **7 releases** of the 0.8 line, from 0.8.0 to
+**34 defects** the project fixed across **7 releases** of the 0.8 line, from 0.8.0 to
 0.8.7. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -51,7 +51,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix -hostprefix option ([#268](https://github.com/containernetworking/plugins/pull/268))
 - some DHCP servers expect to request for explicit router options ([#255](https://github.com/containernetworking/plugins/pull/255))
 - bridge: release IP in case of error ([#129](https://github.com/containernetworking/plugins/pull/129))
-- test: add coveralls support ([#288](https://github.com/containernetworking/plugins/pull/288))
 - plugins: correctly output build version, cosmetic cleanups ([#295](https://github.com/containernetworking/plugins/pull/295))
 - Move Windows tests to Travis ([#246](https://github.com/containernetworking/plugins/pull/246))
 
@@ -69,7 +68,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Vendor update go-iptables ([#358](https://github.com/containernetworking/plugins/pull/358)). Vendor update go-iptables to obtain commit f1d0510cabcb710d5c5dd284096f81444b9d8d10
 - Remove link Down/Up in MAC address change to prevent route flush ([#364](https://github.com/containernetworking/plugins/pull/364))
 - pkg/ip unit test: be agnostic of Linux version ([#349](https://github.com/containernetworking/plugins/pull/349)). on Linux 4.4 the syscall error message is "invalid argument" not "file exists"
-- bump containernetworking/cni to v0.7.1 ([#341](https://github.com/containernetworking/plugins/pull/341))
 
 ### 0.8.3
 

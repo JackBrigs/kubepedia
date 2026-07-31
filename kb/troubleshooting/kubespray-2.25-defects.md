@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**27 defects** the project fixed across **2 releases** of the 2.25 line, from 2.25.0 to
+**26 defects** the project fixed across **2 releases** of the 2.25 line, from 2.25.0 to
 2.25.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,7 +46,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - Prevent nodelocaldns to be OOM-killed (#11056, @sathieu)
 - Fix secondary coredns missing var (#10821, @VannTen)
-- Fix typo mistake in roles/kubernetes/control-plane/tasks/define-first-kube-control.yml (#10835, @kimsehwan96)
 - Fixed typos in inventory/sample/group_vars/k8s_cluster (#10911, @arahmangulov)
 - Fix ClusterRole for Calico >=v1.26.x with Calico API Server installed (#11089, @RaSerge)
 - Fix ansible parameter ssh_args in ansible.cfg file not work (#10981, @joy717)

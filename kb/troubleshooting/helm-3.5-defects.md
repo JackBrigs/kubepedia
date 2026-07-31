@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**28 defects** the project fixed across **4 releases** of the 3.5 line, from 3.5.0 to
+**26 defects** the project fixed across **4 releases** of the 3.5 line, from 3.5.0 to
 3.5.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -51,7 +51,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix test f30badd5709ebc1afbc809716c8aae3c9ebcc7fc (rimas)
 - Fixes #9083 ce1a46899f5b1e7ba9d485d7800d0d23313d7d7b (rimas)
 - [COMMENT]fix comment 7c4932c485edb49874919c2cd6bb171506497c3d (Scaat Feng)
-- Fix typo 5d08a0d00e4f0d31d6db55e71bccbcd665366c9a (Jon Huhn)
 - fix: ingress path issue 50144aad0332692059534acd574fcf141307ef2d (Salim Salaues)
 - fix(helm): flag descriptions start with lowercase e16d26717b1b7588ab24fa0a87e48dc1940c80d2 (Marc Khouzam)
 - fix style conformance bd03e1b5c70cffd13e740f40ef1c0e8c3a49e092 (zhangye15)
@@ -78,7 +77,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - 3.5.4 will contain only bug fixes and be released on April 14, 2021
 - Fix the example for --time-format flag 041ce5a2c17a58be0fcd5f5e16fb3e7e95fea622 (mert)
 - fix(pkg/storage): If storage.Create fails to clean up recent release versions, return an error d552cb3b1d491f4a1aa170d9903a897c1e9ffc7f (Daniel Lipovetsky)
-- fix(test): Increase golangci-lint timeout bc3cd84eda51a2732d323f21aa67999eb4b9f4a7 (Marc Khouzam)
 - fix release sha256 dc3971631e1032b6d79c09513a9c3741b3ea6dba (houfangdong)
 - Fix-9253: Change the deprecated charts repo URL in release notes ec560e5f2b3405413a025d031a16c7f7f24ff547 (Jack Whitter-Jones)
 

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**46 defects** the project fixed across **3 releases** of the 3.4 line, from 3.4.0 to
+**43 defects** the project fixed across **3 releases** of the 3.4 line, from 3.4.0 to
 3.4.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -55,7 +55,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: check mode bits on kubeconfig file 82398667dfe208407be9fe499ac96240aa8ce54b (Matt Butcher)
 - fix incorrect wildcard expand d1c8561be6e6b08bbf425dc79631149100a1e0db (Li Zhijian)
 - fix(comp): Disable file comp for output formats 459dcd7f728b38ec44c72d79192ee93d6964d53d (Marc Khouzam)
-- Makefile: Fix LDFLAGS overriding f917c169d001a96fbdfd7943c441fb09509b9f7f (Morten Linderud)
 - fix: with .Values.podAnnotations indent template 6766017d388cbc21636f6b1deb9ab931a4617259 (Thulio Ferraz Assis)
 - Fixed a variable name collision caused by two PR merges (#8681) 04fb35814f64122c0aa08165f6fdb7b67c216558 (Matt Butcher)
 - Fix/8467 linter failing (#8496) 70d03e5cefa8f42727e29db310f78aeae4d65bb0 (Matt Butcher)
@@ -67,7 +66,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix linting issues 09172b468a7c8278c566880c26efd1078e43e5c8 (Dmitry Chepurovskiy)
 - fix test that modifies the wrong cache data 131510aa94faaa66ea4b3c3b7e4156206902ffc5 (Matt Butcher)
 - bufix: fix validateNumColons docs fbc32aea3d43853f94768e4bc7bc4045fe9fb749 (bellkeyang)
-- Fix typo 4cc19d1d82c4f4ee4bb9af5739e1184f5800f588 (Martin Hickey)
 - Fix issue with install and upgrade running all hooks 44212f83dc9c893d962fe48648320e7b7b66950c (Matt Farina)
 - fix watch error due to elb/proxy timeout 4faeedd98b03e5af7733317a84e77ebff28c55f7 (Rajat Jindal)
 - Avoid hardcoded container port in default notes d141593d834f99822c08b9f3ca768258483afbf1 (She Jiayu)
@@ -76,7 +74,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: Allow building in a path containing spaces 9a13385022b0976a704c24c8d11e7b0f3561b931 (Chris Wells)
 - fix(create): update the hook name of test-connection pod 9777925a2ae1e98a3e7ec3923d0b56b7199c7806 (Dong Gang)
 - fix(helm): Update test during pending install 0d70c63396083f868963797632715f06c9b90ca9 (Cristian Klein)
-- Correct make target in Makefile 08517a9ec0abbf238d56ec97de80e6ecc8946ab6 (Bridget Kromhout)
 - fix(helm): Added test for concurrent upgrades 20fb7bac4e9001751a0b04c71006b4bb506378cf (Cristian Klein)
 - fix(helm): Avoid corrupting storage via a lock 9a4f4ec64b8092d2ba3d7493001837df4737e36c (Cristian Klein)
 - fix the code style error 1dfe66aa85bf09cd1f09271c2810c5deb9f22454 (Dong Gang)

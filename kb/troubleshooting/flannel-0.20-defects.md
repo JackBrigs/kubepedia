@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**7 defects** the project fixed across **3 releases** of the 0.20 line, from 0.20.0 to
+**6 defects** the project fixed across **2 releases** of the 0.20 line, from 0.20.0 to
 0.20.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,10 +46,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - Correct workflow trivy.yml and upgrade vulnerable dependencies by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1643
 - Fixes backend configuration documentation by @masstamike in https://github.com/flannel-io/flannel/pull/1645
-
-### 0.20.1
-
-- docs: fix troubleshooting by @satoru-takeuchi in https://github.com/flannel-io/flannel/pull/1664
 
 ### 0.20.2
 

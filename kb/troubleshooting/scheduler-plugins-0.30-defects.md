@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**10 defects** the project fixed across **1 releases** of the 0.30 line, from 0.30.6 to
+**8 defects** the project fixed across **1 releases** of the 0.30 line, from 0.30.6 to
 0.30.6. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,10 +46,8 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - Avoid unnecessary requeue operations in coscheduling by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/700
 - fix log print and some nit issue by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/726
-- Fix typo: gochache => gocache by @yeahdongcn in https://github.com/kubernetes-sigs/scheduler-plugins/pull/750
 - fix: add validation for pggroup by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/758
 - fix buildx command in cloudbuild by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/767
-- chore: fix EventsToRegister method comment by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/764
 - Fix an issue that build params are not propagated by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/777
 - fix image URLs in Helm chart by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/784
 - Fix leader election config in the helm chart by @chotiwat in https://github.com/kubernetes-sigs/scheduler-plugins/pull/815

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**6 defects** the project fixed across **1 releases** of the 3.17 line, from 3.17.0 to
+**5 defects** the project fixed across **1 releases** of the 3.17 line, from 3.17.0 to
 3.17.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,7 +45,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.17.0
 
 - tests/k8s: fix kbs installation on Azure AKS by @wainersm in https://github.com/kata-containers/kata-containers/pull/11164
-- ci: revert temp: ci: Fix AKS cluster creation by @Camelron in https://github.com/kata-containers/kata-containers/pull/11223
 - shimv2: fix the issue logger write failed by @lifupan in https://github.com/kata-containers/kata-containers/pull/11209
 - runtime: Fix logging for remote hypervisor by @bpradipt in https://github.com/kata-containers/kata-containers/pull/11287
 - config: Fix typos by @Rtoax in https://github.com/kata-containers/kata-containers/pull/11283

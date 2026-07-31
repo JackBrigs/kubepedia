@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**20 defects** the project fixed across **1 releases** of the 3.19 line, from 3.19.0 to
+**18 defects** the project fixed across **1 releases** of the 3.19 line, from 3.19.0 to
 3.19.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,7 +47,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - runtime-rs: fix the issue return the wrong volume by @lifupan in https://github.com/kata-containers/kata-containers/pull/11467
 - runtime-rs: Fix calculation of odd memory sizes by @fidencio in https://github.com/kata-containers/kata-containers/pull/11470
 - runtime-rs: Fix noise with frequently appearing in unstaged changes by @Apokleos in https://github.com/kata-containers/kata-containers/pull/11490
-- test: fix broken testing code in libs by @zhaodiaoer in https://github.com/kata-containers/kata-containers/pull/11423
 - kata-agent: mount.rs: Fix warning of test by @teawater in https://github.com/kata-containers/kata-containers/pull/11509
 - security: ci: Fixes for Zizmor GHA security scanning by @sprt in https://github.com/kata-containers/kata-containers/pull/11475
 - runtime-rs: refactor and fix the implementation of guest-pull by @Apokleos in https://github.com/kata-containers/kata-containers/pull/11482
@@ -55,7 +54,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - gh: Fix released VERSION file by @fidencio in https://github.com/kata-containers/kata-containers/pull/11554
 - Rust advisory fixes pre 3.19.0 by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/11555
 - runtime-rs: Fix initdata length field missing when create block by @Apokleos in https://github.com/kata-containers/kata-containers/pull/11557
-- build: Fix cache for nvidia-gpu-initrd builds by @fidencio in https://github.com/kata-containers/kata-containers/pull/11571
 - gpu: Fix kata deploy.sh by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11335
 - runk: Fix build errors by @Tim-Zhang in https://github.com/kata-containers/kata-containers/pull/11575
 - agent: fix the issue of parent writer pipe fd leak by @lifupan in https://github.com/kata-containers/kata-containers/pull/11504

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**12 defects** the project fixed across **2 releases** of the 1.32 line, from 1.32.0 to
+**11 defects** the project fixed across **2 releases** of the 1.32 line, from 1.32.0 to
 1.32.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,7 +46,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - fix instructions by @zetaab in https://github.com/kubernetes/cloud-provider-openstack/pull/2642
 - fix helm chart builds by @zetaab in https://github.com/kubernetes/cloud-provider-openstack/pull/2643
-- fix typo in the multi-region documentation by @guillaumebernard84 in https://github.com/kubernetes/cloud-provider-openstack/pull/2644
 - [cinder-csi-plugin] fix global config requirement for node-service by @kayrus in https://github.com/kubernetes/cloud-provider-openstack/pull/2678
 - Fix CSI tests by @kayrus in https://github.com/kubernetes/cloud-provider-openstack/pull/2712
 - [occm] fix ovn security groups by @zetaab in https://github.com/kubernetes/cloud-provider-openstack/pull/2705

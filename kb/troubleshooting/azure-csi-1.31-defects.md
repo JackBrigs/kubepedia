@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**86 defects** the project fixed across **13 releases** of the 1.31 line, from 1.31.0 to
+**83 defects** the project fixed across **13 releases** of the 1.31 line, from 1.31.0 to
 1.31.12. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -60,14 +60,11 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: use alternative driver name in used lun check by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2298
 - fix: liveness probe failure when hostNetwork not enabled in controller by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2315
 - fix: broken chart index by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2316
-- test: fix stdlib CVE due to golang v1.22.2 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2326
-- test: fix codespell error by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2345
 - fix: shield guard issues on node by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2358
 - fix: shield guard issues by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2354
 - fix: panic on Windows node when getFreeSpace failed on volume path by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2366
 - fix: shield guard issue on windows node hostprocess initContainer by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2364
 - fix: add ReservedDataDiskSlotNum copy from DriverOptions to Driver struct by @ClementLachaussee in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2384
-- test: fix trivy action failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2389
 - fix: reservedDataDiskSlotNum chart setting in v1.29.7 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2399
 - fix: GHSA-xr7q-jx4m-x55m by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2400
 - fix: managed identity token refresh issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2404

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**8 defects** the project fixed across **1 releases** of the 3.31 line, from 3.31.0 to
+**7 defects** the project fixed across **1 releases** of the 3.31 line, from 3.31.0 to
 3.31.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -48,7 +48,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - runtime-rs: Fix warnings in rust runtime by @Apokleos in https://github.com/kata-containers/kata-containers/pull/13011
 - kata-deploy: Fix containerd debug level path for config schema v4 by @fidencio in https://github.com/kata-containers/kata-containers/pull/13021
 - fix: add click 8.3.3 to docs requirements by @pavithiran34 in https://github.com/kata-containers/kata-containers/pull/13037
-- dragonball: fix typo in VsockEpollListener doc comment by @SAY-5 in https://github.com/kata-containers/kata-containers/pull/13024
 - kata-ctl: Fix failures when kata-ctl exec with short id by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12437
 - Fix #13008: runtime/fc track real firecracker PID instead of jailer PID by @sebwolf-de in https://github.com/kata-containers/kata-containers/pull/13009
 - agent-ctl: CLH virtio fs queue size fix by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/13073

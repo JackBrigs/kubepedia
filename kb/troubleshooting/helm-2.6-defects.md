@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**28 defects** the project fixed across **3 releases** of the 2.6 line, from 2.6.0 to
+**26 defects** the project fixed across **3 releases** of the 2.6 line, from 2.6.0 to
 2.6.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,14 +44,12 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 2.6.0
 
-- Fix Typo in Contributing Guidelines 6de79b7ea8d5769c6aad4ffb34cc98a5603fc7b5 (Malepati Bala Siva Sai Akhil)
 - Fix the default NOTES.txt bbf2d6b7e8b9208e5246f134eb881de65b455116 (Maxime Guyot)
 - fix(helm): pass os.stdin when executing a plugin (#2740) e61ee5c54e1d24e791f516cb61059fc910befd1b (Maciej Strzelecki)
 - Fix link 1c3d9b892e3ec7496e9bac53274d3a01396136c8 (Miouge1)
 - fix spelling error 3ee74217d162a21ced3df5c6b901b520ed64a4d4 (jiaweizhou)
 - fix(pkg/strvals): use rune literal instead of ASCII a5dc546726e664db822104cb612fb74a4a134df0 (Sam Leavens)
 - fix(pkg/strvals): preserve leading zeros in vals 609e72b357c8be43c3ec5f2d148f2188233ef0b1 (Sam Leavens)
-- docs(fix): fixed misspelled word 97893afc620fb454c880df1cdef35f7430f5f7a5 (gardlt)
 - fix(pkg/chartutil): Fix test, improve message cf09e344d186b6292fed5ddc5c2aeea1350ed199 (Sam Leavens)
 - fix(tiller): remove locking system from storage and rely on backend controls fa68a6e1db81cbc113c3b289c81ab5d0600ec4a3 (Justin Scott)
 - fix(helm): fix flag parsing once and for all a29e610938b1a4f59ea2c038d0d23193d54bb2f9 (Adam Reese)

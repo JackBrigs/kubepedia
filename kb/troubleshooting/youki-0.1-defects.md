@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**9 defects** the project fixed across **1 releases** of the 0.1 line, from 0.1.0 to
+**7 defects** the project fixed across **1 releases** of the 0.1 line, from 0.1.0 to
 0.1.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -48,8 +48,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix Errno as unresolved type. by @yihuaf in https://github.com/containers/youki/pull/1836
 - Fix path to youki binary in dockerd command by @kemkemG0 in https://github.com/containers/youki/pull/1781
 - [Trivial] fix dependency for fedora by @yihuaf in https://github.com/containers/youki/pull/1908
-- [Trivial] Fix makefile targets to use PHONY by @yihuaf in https://github.com/containers/youki/pull/1743
-- Fixed typo by @CreepyPvP in https://github.com/containers/youki/pull/1928
 - Using `typos-cli` to catch typos + fixes for existing typos by @yihuaf in https://github.com/containers/youki/pull/2018
 - Fix the feature test and turn on in CI by @yihuaf in https://github.com/containers/youki/pull/2060
 - Fix the release workflow by @utam0k in https://github.com/containers/youki/pull/2070

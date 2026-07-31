@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**44 defects** the project fixed across **2 releases** of the 2.5 line, from 2.5.0 to
+**38 defects** the project fixed across **2 releases** of the 2.5 line, from 2.5.0 to
 2.5.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,14 +45,12 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 2.5.0
 
 - 2.5.1 will be the first patch release in the 2.5 tree. It will contain _only_ bug fixes
-- Fix typo in command line. 8dfec4db6152f34d2be54dd83c69c1e994b5ebf2 (Julien Balestra)
 - fix(helm): helm home print to stdout 985dbae2aceabc6415de1d49bec31d6b64c15f1a (Adam Reese)
 - fix(tests): Fixes broken unit test 5cfb4e8cf8c00d3fc8c2634dceae2bd8c0c565f9 (Taylor Thomas)
 - fix(helm): Ensures tiller pod lands on a linux node 8a0e051c1dd059f3fede4147154b40f857b7d304 (Taylor Thomas)
 - fix(helm): modify `helm repo update` help info c8b8c1e6d635c55fbf2c548c465cf6eafcf18692 (willise)
 - fix(tiller): track hooks in multi-def manifests 83c69a8e10dcf6e85ad7f81afdb7eb7de58fc654 (Michelle Noorali)
 - fix(tiller): make GetReleaseContent return any release c9139113378b0ba7301b2a4fcc5716bc21d40c3f (Matt Butcher)
-- docs(helm): fix typo af8730032a14da71870213f7ea0bfb0399ee7fd2 (willise)
 - fix(helm): remove unnecessary values merge in processImportValues 40052d3e8fbdc7ad7eda830e4325c0606e5ac916 (Justin Scott)
 - fix(docs): A couple spelling mistakes a2d559bd0b5b7ac4dca965f92065fa2945f36438 (Cory Smith)
 - fix(docs): Updated non-working example in 'Using Helm' documentation 2b0a61285818e06e9e5da0461b9fea12c538aa19 (Nikhil Manchanda)
@@ -67,7 +65,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fixed fromYaml | toJson bb4be3333162926c8652e868ba8c1dfa371e4e05 (lead4good)
 - fix(helm): fix itermittent release testing failures 19a33b3f955b30018bd052c316a13aed8c8c66a0 (Michelle Noorali)
 - fix(helm): add --devel flag to allow dev releases again 28ec92355bd676c5775ea82504cde5a3465000a0 (Matt Butcher)
-- fix(Dockerfile): add ca-certificates 70f6aa4c239b689100c4bc8f154f28f133197939 (Matt Butcher)
 - fix(windows): Updating docker/distribution 3f1c6a1e870b8c860267c2a22895140615282a29 (Matt Farina)
 - fix(lint): add KubeVersion and TillerVersion to linter d863d9a886c187cee2a5b606d146e8c0ea26a0e5 (Matt Butcher)
 - minor typo fix 5408b60ad64b5580de1f2be8f52986f99ca17c35 (Kent Rancourt)
@@ -76,9 +73,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix minor typo in test doc ce12341bfa5997c6cf3ccf1748a6963332ec1d7e (Kent Rancourt)
 - Fixes messages for plugin remove option 1c5aab8e7853e33de550cc75edb7a1e7aa88a8cc (Sushil Kumar)
 - Fixed issues reported by test-style 61c3a44dc3ec96f1c4e99510a229dc5376bd3280 (Sushil Kumar)
-- fix(Dockerfile): only copy tiller binary in Dockerfile fabb7208ab52516162388934bc13f02c586bd2cb (Adam Reese)
-- chore(helm): fix go style issues in completion.go 9fe76d3430b6288cb667ae0d769a6d96117bbbba (Michelle Noorali)
-- fix typo: ' instead of ` 267a09193be23a55ada0e76604b0afc03ed4b26c (Hoat Le)
 - fix(helm): reverted upgrade of imdario/mergo 0d62c3ab56aff538efb367e8efb5741144225b86 (Rod Cloutier)
 - Fix for vbom.ml bootstrap b18625092e2a225ebd75d30ca98683a6418b5cd1 (Maxim Ivanov)
 

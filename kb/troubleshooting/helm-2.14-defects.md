@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**43 defects** the project fixed across **4 releases** of the 2.14 line, from 2.14.0 to
+**39 defects** the project fixed across **4 releases** of the 2.14 line, from 2.14.0 to
 2.14.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -50,8 +50,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fixed an issue where `helm reset --force` hangs when Tiller pod is already removed
 - fixed an issue where Helm completion in zsh was not compatible on MacOS
 - fix(pkg/storage/driver): use shallowReleaseEqual() 05811b84a3f93603dd6c2fcfe57944dfa7ab7fd0 (Matthew Fisher)
-- Fix formatting issue ee63d06192c7f8f90c8520d541defd32864e3977 (Elliot Maincourt)
-- Fix typo e6d5fc933b81093050459397f011673ca83c508c (Jon Huhn)
 - Fix missing link 51c99b125224093802def010a48d763ffab5b6df (Joshua Bussdieker)
 - fix(helm): Regenerate go types from proto 072cd6af37bb9856aaabebe02b7489cd18a80293 (Morten Torkildsen)
 - Fix scaffold chart label in helper template 470d92e126968478d4e7a0d96207f102d174d545 (Martin Hickey)
@@ -68,7 +66,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix `no RESOURCE with the name NAME found` 5ffe4ce5881449d31b9e14cb94d56dcf2453b0d7 (Timofey Kirillov)
 - fix(script): remove check on release URL 65193adc10bc50edcf96499b5321c7aab46b796c (Arief Hidayat)
 - fix(script): follow redirected URL of github latest release 7cb03fb5628f3decb9ab547c1f71ca6a21a31ee8 (Arief Hidayat)
-- style: fix golint error in init.go for redundant err!=nil check 29795691edbc4ca28e8da28bb06700ae0d6d97d8 (tariqibrahim)
 - fix(scripts): use a more precise method of grepping ab9cc982a0616e28d6e308d69033534cb7e62025 (Matthew Fisher)
 - fix(tiller): fixed a typo in tiller and unit test 63ef73d4168980e650bc95c225f9be1b63b7b37c (Mikhail Kirpichev)
 - Fix "helm init" parameters b480badd05ad01006363763c92b5394cdc5fc9c4 (Jens Frank)
@@ -78,7 +75,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix some typos (#5352) 63c970c5ce29b0971cdc6409d9c0e156321ea32a (Nguyen Quang Huy)
 - Fix typos in various places (#5360) 268695813ba957821e53a784ac849aa3ca7f70a3 (tuanvcw)
 - Fix many misspelling words (#5357) d9d2b3ae4812d756297ac89b8930eee61273c871 (Nguyen Hai Truong)
-- trivial fix typo 2ca5d2ab9cf41a23a1d650ae2dc88a44344c898b (Nguyen Hai Truong)
 - Correct misspelling of Helm d24ba97faeb39f692f74c87d183a723b4138ee52 (Nguyen Hai Truong)
 - Fix wording in error message (#5322) 73a17eb59900348234ad7c4cba75a537dcef9708 (Miroslav Spousta)
 - fix: helm display confused error message if version is empty (without quotes) (#5310) 9f964c11da1c1ae865aed2be87c1929f04683b82 (Alex)

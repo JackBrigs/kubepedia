@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**17 defects** the project fixed across **4 releases** of the 1.0 line, from 1.0.1 to
+**16 defects** the project fixed across **4 releases** of the 1.0 line, from 1.0.1 to
 1.0.4. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -59,7 +59,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fixed service DNS resolve by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1356
 - Fixed service port security rules for iptables by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1357
 - Fixed service deletion when service leader election is enabled by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1360
-- Bump to golang to fix stdlib vuln by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/1355
 
 ### 1.0.4
 

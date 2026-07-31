@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**39 defects** the project fixed across **9 releases** of the 1.33 line, from 1.33.0 to
+**37 defects** the project fixed across **9 releases** of the 1.33 line, from 1.33.0 to
 1.33.10. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -56,8 +56,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: incorrect disk num discovery on Windows 2019 node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3038
 - fix: disk detach failure on AzureStack Hub by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3047
 - fix: vpa install and uninstall script by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3058
-- doc: fix snapshot crd illegal characters by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3061
-- doc: fix snapshot crd illegal characters in deploy by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3068
 - fix: adjust the batch size as per the number of disks allowed by @nearora-msft in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3039
 - fix: bump mount-utils to fix volume resizing failure when there are nfs unresponsive volumes by @gnufied in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3071
 - fix: vmss flex node naming parsing issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3091

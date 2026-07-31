@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**13 defects** the project fixed across **1 releases** of the 3.8 line, from 3.8.0 to
+**8 defects** the project fixed across **1 releases** of the 3.8 line, from 3.8.0 to
 3.8.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,18 +45,13 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.8.0
 
 - runtime-rs: container: fix the issue of missing cleanup container by @lifupan in https://github.com/kata-containers/kata-containers/pull/10045
-- tests: Fix missing log on TDX by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/10031
 - Fix issue while adding multiple networks with nerdctl by @amshinde in https://github.com/kata-containers/kata-containers/pull/9899
 - runtime-rs : fix the issue of stop sandbox by @lifupan in https://github.com/kata-containers/kata-containers/pull/10043
 - runtime-rs: Fix QEMU backend for runtime-rs by @ananos in https://github.com/kata-containers/kata-containers/pull/10052
-- ci: Fix rate limit error by migrating busybox_image by @AdithyaKrishnan in https://github.com/kata-containers/kata-containers/pull/10101
-- tests: Fix error with `kubectl debug` by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/10102
 - agent: fix the AllowRequestsFailingPolicy functionality by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/10098
 - Fix metrics json results file by @dborquez in https://github.com/kata-containers/kata-containers/pull/10120
 - tools: Fix container image build warning by @hex2dec in https://github.com/kata-containers/kata-containers/pull/10137
-- osbuilder: fix typo in ubuntu rootfs depends by @deagon in https://github.com/kata-containers/kata-containers/pull/10172
 - kata-deploy: fix kata-deploy reset by @beraldoleal in https://github.com/kata-containers/kata-containers/pull/10170
-- ci: stdio: Fix typo on getting the containerd version by @fidencio in https://github.com/kata-containers/kata-containers/pull/10181
 
 
 ## Diagnostics

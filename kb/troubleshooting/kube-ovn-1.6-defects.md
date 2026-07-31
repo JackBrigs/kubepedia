@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**16 defects** the project fixed across **4 releases** of the 1.6 line, from 1.6.0 to
+**15 defects** the project fixed across **4 releases** of the 1.6 line, from 1.6.0 to
 1.6.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -61,7 +61,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 1.6.2
 
 - restart ovn-controller to force ovn-ic flows update
-- update usingips check when update finalizer for subnet
 - livenessprobe fail if ovn nb/ovn sb not running
 
 ### 1.6.3

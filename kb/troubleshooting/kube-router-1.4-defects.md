@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**16 defects** the project fixed across **1 releases** of the 1.4 line, from 1.4.0 to
+**11 defects** the project fixed across **1 releases** of the 1.4 line, from 1.4.0 to
 1.4.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,19 +47,14 @@ Entries are grouped by the release that fixed them, oldest first.
 - Greatly Fixed and Improved Hairpinning: Reduced the number of iptables rules when Hairpinning is enabled by ensuring it is only enabled on local nodes (see: #1208) Fixed an issue where hairpinning rules weren't being updated on service / endpoint updates (see: #1200) Fixed issue where hairpinning rules weren't being regenerated correctly (see: #1200)
 - DSR Fixes Fixed an issue where sometimes FWMarks generated for DSR would collide Fixed issue where DSR mangle table definitions were not being cleaned up
 - Fixed issue where peer might not be seen correctly as established due to a bad double-negative condition (see: #1184 thanks to @lx1036 )
-- 2ca39f14 fix(nsc): properly check hairpinning rule
-- 146786ad fix(nsc): sync hairpinning on service modification
-- 8f13f069 fix(nsc): don't overwrite err & add comments
-- 5101a4fe fix(nsc): remove error for lookupFWMarkByService
-- bf325e16 fix(go.mod): update image-spec v1.0.2
-- 4c86d3dd fix(go.mod): update containerd to v1.5.8
-- b9a9246e fix(lint): don't error on deprecated protobuf funcs
-- 9fd17497 fix(go.mod): add google.golang.org/protobuf v1.26.0
-- 73b7c22a fix(bgp policy): sort the slice items before deep equal(#1188)
-- 8e7d5852 fix(bgp): use PeerState_ESTABLISHED logic like function name(#1184)
-- bee2c208 fix bug when adding ip rule for fwmark (#1178)
-- 5e1d033a fix(sysctl): revert is fatal check for some conditions
-- da5f8e00 fix: address minor PR feedback and misspells
+- fix(nsc): sync hairpinning on service modification
+- fix(nsc): remove error for lookupFWMarkByService
+- fix(lint): don't error on deprecated protobuf funcs
+- fix(go.mod): add google.golang.org/protobuf v1.26.0
+- fix(bgp policy): sort the slice items before deep equal(#1188)
+- fix(bgp): use PeerState_ESTABLISHED logic like function name(#1184)
+- fix bug when adding ip rule for fwmark (#1178)
+- fix(sysctl): revert is fatal check for some conditions
 
 
 ## Diagnostics

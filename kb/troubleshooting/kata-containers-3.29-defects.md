@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**14 defects** the project fixed across **1 releases** of the 3.29 line, from 3.29.0 to
+**12 defects** the project fixed across **1 releases** of the 3.29 line, from 3.29.0 to
 3.29.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -48,14 +48,12 @@ Entries are grouped by the release that fixed them, oldest first.
 - gatekeeper: Unrequire NVIDIA GPU SNP tests till auth is fixed by @fidencio in https://github.com/kata-containers/kata-containers/pull/12733
 - kata-deploy: Fix kata-deploy pods crashing if containerd restarts by @fidencio in https://github.com/kata-containers/kata-containers/pull/12766
 - runtime-rs: Fix FC API fields by @ananos in https://github.com/kata-containers/kata-containers/pull/12767
-- runtime-rs: Fix typo in share_fs error message by @YutingNie in https://github.com/kata-containers/kata-containers/pull/12762
 - runtime: fix Docker 26+ networking by rescanning after Start by @llink5 in https://github.com/kata-containers/kata-containers/pull/12754
 - runtime-rs: fix setting directio via config file by @PiotrProkop in https://github.com/kata-containers/kata-containers/pull/12682
 - fix: updated image-rs to v0.18.0 by @pavithiran34 in https://github.com/kata-containers/kata-containers/pull/12782
 - kata-deploy: Fix noisy caused by unformatted code by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12791
 - runtime: Fix concurrent map read/write panic in Wait() by @fidencio in https://github.com/kata-containers/kata-containers/pull/12826
 - runtime-rs: Fix unformatted code in runtime-rs by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12844
-- docs: fix nerdctl guest image command by @Xynnn007 in https://github.com/kata-containers/kata-containers/pull/11611
 - Confidential tests fixes by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12879
 - runtime-rs/ch: Fix pod deletion hang and make deletion idempotent by @sprt in https://github.com/kata-containers/kata-containers/pull/12887
 

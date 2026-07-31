@@ -30,8 +30,8 @@ relations:
 
 ## Summary
 
-**23 defects** the project fixed across **9 releases** of the 1.11 line, from 1.11.0 to
-1.11.8. A cluster running a version below the one an entry sits under still carries that defect.
+**17 defects** the project fixed across **7 releases** of the 1.11 line, from 1.11.0 to
+1.11.7. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
 the remedy is a patch bump rather than an investigation.
@@ -48,7 +48,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Chart: Fix `IngressClass` annotations. (#11416)
 - Fix helm install on cloud provider admonition block (#11394)
 - fix path in file changed detected message (#11271)
-- chore: fix function names in comment (#11280)
 - fix: update kube version requirement to 1.21 (#11275)
 - Fix admission controller logging of `admissionTime` and `testedConfigurationSize` (#11089)
 - [mTLS] Fix acme verification when mTLS and Client CN verification is enabled (#11062)
@@ -61,8 +60,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 1.11.2
 
 - Controller: Fix panic in alternative backend merging. (#11794)
-- Docs: Fix typo in AWS LB Controller reference (#11725)
-- Docs: Fix `from-to-www` redirect description. (#11716)
 
 ### 1.11.3
 
@@ -72,25 +69,16 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - GitHub: Fix `exec` in issue template. (#12388)
 - Config: Fix panic on invalid `lua-shared-dict`. (#12284)
-- Docs: fix limit-rate-after references (#12279)
 - [fix] fix nginx temp configs cleanup (#12223)
 
 ### 1.11.5
 
 - fix DNS issues with unresolvable backends with ExternalName (#12952)
 
-### 1.11.6
-
-- Docs: Fix link in installation instructions. (#13193)
-
 ### 1.11.7
 
 - Lua: Fix `ExternalName` services without endpoints. (#13430)
 - Fix 🐛: Markdown requires nested content inside a list item to be indented (#13391)
-
-### 1.11.8
-
-- Docs: Fix function names in comments. (#13519)
 
 
 ## Diagnostics
@@ -100,7 +88,7 @@ kubectl get nodes -o wide      # node-level components
 helm list -A                   # chart-deployed components
 ```
 
-Compare the running version against **1.11.8**, the newest release recorded here for this line.
+Compare the running version against **1.11.7**, the newest release recorded here for this line.
 
 ## Known Issues
 

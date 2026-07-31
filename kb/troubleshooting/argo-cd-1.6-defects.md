@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**17 defects** the project fixed across **3 releases** of the 1.6 line, from 1.6.0 to
+**16 defects** the project fixed across **3 releases** of the 1.6 line, from 1.6.0 to
 1.6.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -55,7 +55,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: use 'git show-ref' to both retrieve and store generated manifests (#3578)
 - fix: enable redis retries; add redis request duration metric (#3575)
 - fix: Disable keep-alive for HTTPS connection to Git (#3531)
-- fix: use uid instead of named user in Dockerfile (#3108)
 
 ### 1.6.1
 

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**16 defects** the project fixed across **3 releases** of the 3.15 line, from 3.15.0 to
+**15 defects** the project fixed across **3 releases** of the 3.15 line, from 3.15.0 to
 3.15.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -56,7 +56,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - 3.15.3 will contain only bug fixes and be released on July 10, 2024
 - fix: wrong cli description 1a500d5625419a524fdae4b33de351cc4f58ec35 (yyzxw)
-- fix typo in load_plugins.go 70b225c9abc014cfeb73f7c9f506b0e73e912b61 (yxxhero)
 - fix docs of DeployedAll b3640f196a2cf77136ab01295bffe76fa184991d (Daniel Strobusch)
 
 ### 3.15.3

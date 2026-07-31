@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**13 defects** the project fixed across **3 releases** of the 0.7 line, from 0.7.0 to
+**12 defects** the project fixed across **3 releases** of the 0.7 line, from 0.7.0 to
 0.7.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,7 +44,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 0.7.0
 
-- docs: fix directroute forwarding method by @zifeo in https://github.com/kube-vip/kube-vip/pull/696
 - fixes go modules by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/707
 - More fixes by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/709
 - fixes to the new ipvs import by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/710

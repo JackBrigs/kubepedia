@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**113 defects** the project fixed across **3 releases** of the 3.1 line, from 3.1.0 to
+**107 defects** the project fixed across **3 releases** of the 3.1 line, from 3.1.0 to
 3.1.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,7 +47,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix recursion count in templates 805a591b5057845be0e872a3f667e81d07203367 (Daniel Cheng)
 - Fix shasums to be usable by shasum and sha256sum applications 9887a3e4ca4ef473a4ddd419573edbd5c82bb231 (Matt Farina)
 - fix(comp): Fix broken completion for --output flag 374e9d8c7dc49cdd5623d15c794e46a80e3134b5 (Marc Khouzam)
-- fix(version): fix typo in doc comment 8b6233fc3ef50903bd527605ffe9a2f617b3e616 (Matthew Fisher)
 - fix(memory_test): rebase master 8e1fc4bc6fb871af3aa73fc79a2ca86901092610 (Matthew Fisher)
 - fix(cmd): Specify namespace for template command be7de1c376347b3f97d24aab85270ced0c039a58 (Marc Khouzam)
 - fix(tests): Add namespace support to memory driver e6d2d10bad8a872478783b0b1483cf467c05741b (Marc Khouzam)
@@ -60,7 +59,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(test) use newly created index instead of ignoring it 6cfcc96cea4344b9b1003eafbf4cbe670494d5b0 (Karuppiah Natarajan)
 - Fix tests on arm64 and ppc64le (#7500) df20164cd27f12d8f4cadda608ca1caea5c25759 (Yaakov Selkowitz)
 - fix(lookup_func): do not return error when object is not found 1b1d6bba9cec81a6bbc77dd948779a45bc8a63c8 (Matthew Fisher)
-- Fix typo d70b50b3a11b62efe942d0429d1d7c54f8656a52 (Jon Huhn)
 - fix(template): helm template "--show-only" flag producing duplicates when flag used more than once (#7204) e483dce2895dd23400816b7852405edbf726e396 (Lee Bontecou)
 - Fix some spelling errors in comment (#7492) 1d79ed2c189da65315a597d51a92f0213f224126 (LongKB)
 - fix(comp): Allow zsh completion to handle -n flag 4f4779ca3a456468851f446fd978c4c71563fa96 (Marc Khouzam)
@@ -74,14 +72,12 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(helm): improve handling of corrupted storage 1f0582cadc1ba222c5d7a7f9977a091edd55f6af (Cristian Klein)
 - Signed-off-by: Ahmad Kazemi <ahmad.kazemi@recordpoint.com> log.Printf replaced to fix the log issue. d4c37d33d1a186d8b271b4f4276da434da6a20e0 (Ahmad Kazemi)
 - Fix: helm3 - kind sorter incorrectly compares unknown and namespace e2946c7e343f0b0404b5f4e9ecabdccd970a87c8 (Bradley Skuse)
-- Fix typo in comment for func IsReachable 0cdbbf287f04e10f6b44faf1bf9185b48ca7f3fa (Guangwen Feng)
 - fix(test): Make resetEnv() properly reset settings 16f62050044d8eaca1ee794ab1903a719895662f (Marc Khouzam)
 - fix(helm): move ServiceAccount before Secret in InstallOrder. 08663e6bb3c5694726aac665d71be26494475781 (Daniel Strobusch)
 - fix error output ab905010fd3ce671f9e0cd74f4d8ca3bc944c130 (bakito)
 - fix(tests): use sigs.k8s.io/yaml ff0257de29e589f9550aa6c04bc3283d652dc976 (Matthew Fisher)
 - Fix a typo "update" -> "updates" (#7346) de9118b87961c3ec15370d6b77293d6fe36fa88a (Hu Shuai)
 - fix(cmd): Fixes logging on action conf init error (#6909) ad07bb690dbf34e7067171235861a3c0fb9897b6 (Jorge I. Gasca)
-- Fix typo in --values cmd flag a58430a944454ff8e5a560a9d3d70f5e05385310 (Anton Kvashenkin)
 - Fix a typo "the the" -> "the" 3eb8df0c5ee5b6e9753cf99440644423e392073e (Hu Shuai)
 - fix(comp): tail cannot open +2 for reading 2eab781b35019ce452738012092f9df4ce9fdf00 (Frank Lin PIAT)
 - fix(tests): Use relative path to acceptance tests b47a5b746d57e0ca93c9e31066a2c4ef6fa9cdc4 (Marc Khouzam)
@@ -109,7 +105,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix stack overflow error (#7114) 750b870aedd35b69b9ca1e1517635fa70367a309 (海的澜色)
 - fix: ignore pax header files in chart validation 48704034a9f37a23eee192b32e15249b299e0767 (chloel)
 - fix(plugin): Avoid crash on missing flag 32b4e2e5e998ee11559d132eae796f2b22fac0f7 (Marc Khouzam)
-- chart_downloader: fix lint issue. 4c4328398ecc4f6eef07524f4bcddaca153b4570 (Andreas Stenius)
 - fix(plugin): Avoid duplication of flag list 5179f8d698d30b243fd9aa646fac76224510b28b (Marc Khouzam)
 - fix(plugin): Add missing -n known flag 6473234f43cbec7603124d684cb630dfdc4b1419 (Marc Khouzam)
 - fix(lint): Remove requirement that directory name and chart name match 32ce016054648f20168a2d7f4ff4b954686e0689 (Scott Morgan)
@@ -124,7 +119,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(pkg/downloader): resolve repo alias before checking digests on build 0987c6f7b91bffc360a8c604b9dfb87b845cc919 (Hang Park)
 - fix(pkg/downloader): add failing test for build with repo alias 17553db485f6165c15aa17c6dfcc7589edb025ee (Hang Park)
 - fix(strvals): port #3912, #4142, #4682, and #5151 to Helm 3 b30467c2e52ffebd0b4708ca318d34251ab5a692 (Matthew Fisher)
-- fix(ci): pin golangci-lint to v1.21.0 4d1c11f05bf732bf914d5529493fc77d5134d1c9 (Matthew Fisher)
 - fix(cli): helm list was ignoring some errors 30e8ed2f3df9e776b5a5937d92e8ff45c54f984f (Marc Khouzam)
 - fix(tlsutil): accept only a CA certificate for validation aa6104e442ef8b574ae88efd8b5c41004437ac88 (Matthew Fisher)
 - fix: stop discovery errors from halting chart rendering. (#6908) 865c46c014cdb7622f97ae287ee92fb8a280f3a9 (Matt Butcher)

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**30 defects** the project fixed across **6 releases** of the 3.18 line, from 3.18.0 to
+**26 defects** the project fixed across **6 releases** of the 3.18 line, from 3.18.0 to
 3.18.6. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -49,12 +49,9 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix:add proxy support when mTLS configured 48377fe4515cc6a5bf5ac92ea6086090e7b82798 (Rongrong Liu)
 - Fix --take-ownership 4ee3a19e9a98e3b58eb4579f019666e834408ca3 (Patrick Seidensal)
 - Unarchiving fix 3ce10e4f81e064a3807098c3d466c33f2ece8a18 (Matt Farina)
-- Fix typo 422c58e4a2d7a00e2275916be1bfda0b28efba82 (Benoit Tigeot)
 - Fix cherry-pick helm.sh/helm/v4 -> helm.sh/helm/v3 bcb83e465f4487b481b8843f4d5dfe4f26472c55 (Scott Rigby)
 - clarify fix error message 97b0e11871252ad99054d911d92666f84fdac79a (Scott Rigby)
 - fix err check 2f79afb0a3c506fd41ea89f13efcfa4379f88b5f (Scott Rigby)
-- Fix lint 4cb639ed4edab7729859328d443b102d05a4b32d (Chris Berry)
-- Fix linter warning b39411a66829d711168de543fa823cbd5e749ca4 (Evans Mungai)
 - Additional review fixes from PR 483ebf915da5ab2c2bbdb46644bca2fe22ae51f9 (Evans Mungai)
 - fix: check group for resource info match 2ebce786ba295a3ca7a281c3ffd78086cf561f89 (Jiasheng Zhu)
 - This commit fixes the issue where the yaml.Unmarshaller converts all int values into float64, this passes in option to decoder, which enables conversion of int into . 0a6834fdf060b4fbc4e1ea4bcb85908891539d48 (Althaf M)
@@ -68,7 +65,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Prevent fetching newReference again as we have in calling method 015531ca4f386a6fee6c9f48eae63124d19c76a7 (Benoit Tigeot)
 - Prevent failure when resolving version tags in oras memory store 9db1a120f9f7404044cc4619ea7379b430004e36 (Benoit Tigeot)
 - Fix 3.18.0 regression: registry login with scheme ea04cea48bf2b312e506ae03c412c6fd95929c5c (Scott Rigby)
-- Revert "fix (helm) : toToml` renders int as float [ backport to v3 ]" bec66098fdb4ac37298f46701a2d5b28e5776b72 (Matt Farina)
 
 ### 3.18.2
 

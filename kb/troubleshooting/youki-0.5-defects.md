@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**85 defects** the project fixed across **8 releases** of the 0.5 line, from 0.5.0 to
+**68 defects** the project fixed across **8 releases** of the 0.5 line, from 0.5.0 to
 0.5.7. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -49,9 +49,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix/return multi errors on create failed by @xujihui1985 in https://github.com/youki-dev/youki/pull/2998
 - fix duplicate gids in container creation by @YJDoc2 in https://github.com/youki-dev/youki/pull/3019
 - Fix --preserve-fds, eliminate stray FD being passed into container by @aidanhs in https://github.com/youki-dev/youki/pull/2893
-- ci: update action versions to fix deprecation warnings by @YJDoc2 in https://github.com/youki-dev/youki/pull/2918
-- deps: update wasmedge to 0.14.0 by @YJDoc2 in https://github.com/youki-dev/youki/pull/2928
-- Bump oci-spec to 0.7.0 by @kiokuless in https://github.com/youki-dev/youki/pull/2934
 - remove incorrect dependency in readme by @YJDoc2 in https://github.com/youki-dev/youki/pull/2940
 - Add seccomp into feature flags of youki to be compiled in by @musaprg in https://github.com/youki-dev/youki/pull/2924
 - Add unittest to expertiment seccomp programs by @sat0ken in https://github.com/youki-dev/youki/pull/2956
@@ -60,7 +57,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Add test process user by @sat0ken in https://github.com/youki-dev/youki/pull/2978
 - add test process_oom_score_adj by @saku3 in https://github.com/youki-dev/youki/pull/2987
 - Add process test by @sat0ken in https://github.com/youki-dev/youki/pull/2968
-- refactor(test): refine function create_container by @xujihui1985 in https://github.com/youki-dev/youki/pull/2973
 - Add test root readonly by @sat0ken in https://github.com/youki-dev/youki/pull/2976
 - Adding Discord link to docs by @crmejia in https://github.com/youki-dev/youki/pull/3005
 - Prepare for v0.5.0 by @utam0k in https://github.com/youki-dev/youki/pull/3016
@@ -79,7 +75,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Add a PR template file by @Gekko0114 in https://github.com/youki-dev/youki/pull/3049
 - add process rlimits fail test by @ntkm61027 in https://github.com/youki-dev/youki/pull/3051
 - Use MountOption enum to parse mount options defined in the spec by @musaprg in https://github.com/youki-dev/youki/pull/2937
-- ci: Publish packages after the release flow by @utam0k in https://github.com/youki-dev/youki/pull/3064
 - Make `sepc` into `&spec` in test_{outside,inside}_containe by @utam0k in https://github.com/youki-dev/youki/pull/3068
 - linux_masked_paths integration test by @nayuta-ai in https://github.com/youki-dev/youki/pull/2950
 - fix: compilation errors in contest by @YJDoc2 in https://github.com/youki-dev/youki/pull/3086
@@ -90,11 +85,8 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - Security: Fix compromised `tj-actions/changed-files` action by @sou1118 in https://github.com/youki-dev/youki/pull/3112
 - Fix the release flow by @utam0k in https://github.com/youki-dev/youki/pull/3098
-- chore(ci): add cgroup v1 compatibility for tests on ubuntu-24.04 by @sou1118 in https://github.com/youki-dev/youki/pull/3102
 - fix: CPU controller tests for Kernel 6.10 cgroup v2 changes by @sou1118 in https://github.com/youki-dev/youki/pull/3106
-- chore(ci): Upgrade GitHub Actions workflows for `ubuntu-24.04` by @sou1118 in https://github.com/youki-dev/youki/pull/3097
 - fix: release ci tests also need apparmor disable by @YJDoc2 in https://github.com/youki-dev/youki/pull/3118
-- chore(ci): add criu ppa for podman-tests ci by @sou1118 in https://github.com/youki-dev/youki/pull/3120
 
 ### 0.5.4
 
@@ -104,11 +96,8 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: Gracefully terminate processes after successful execution of Wasm executors by @z63d in https://github.com/youki-dev/youki/pull/3099
 - fix: Running create_runtime hook after container is set to created. by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3181
 - fix: Ignoring CPU realtime on cgroupsv2 if set to zero by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3180
-- chore(docs): Fix codecov link in README by @khanhtc1202 in https://github.com/youki-dev/youki/pull/3129
 - Fixed grammatical error in README by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3160
 - fix: protobuf bug on docs rs by @mdaffad in https://github.com/youki-dev/youki/pull/3159
-- bump nix to 0.29.0 by @kemingy in https://github.com/youki-dev/youki/pull/3123
-- update rust version to 1.85.0 by @YJDoc2 in https://github.com/youki-dev/youki/pull/3085
 - add-test-linux_rootfs_propagation by @saku3 in https://github.com/youki-dev/youki/pull/3024
 - Add a relative_network_cgroups test as one of the integration tests by @moz-sec in https://github.com/youki-dev/youki/pull/2986
 - Refactor init process by @utam0k in https://github.com/youki-dev/youki/pull/3158
@@ -130,26 +119,20 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 0.5.5
 
 - fix(3198): fix difference in how commands are passed after exec and ps by @tommady in https://github.com/youki-dev/youki/pull/3201
-- Revert "[DNM] ci: temp disable workflows" by @YJDoc2 in https://github.com/youki-dev/youki/pull/3194
 - Fixed Minor Spelling Errors by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3205
-- chore(justfile):add install recipe by @saku3 in https://github.com/youki-dev/youki/pull/3213
 
 ### 0.5.6
 
 - fix(3197): fix youki version command Part of Enhancing Compatibility with runc by @tommady in https://github.com/youki-dev/youki/pull/3200
-- Update Vagrantfile to support the ARM architecture by @bells17 in https://github.com/youki-dev/youki/pull/3222
 - setup runc integration test by @saku3 in https://github.com/youki-dev/youki/pull/3182
-- update runc ci to 1.3.1 by @saku3 in https://github.com/youki-dev/youki/pull/3237
 - Add mdbook binary to devcontainer by @bells17 in https://github.com/youki-dev/youki/pull/3240
 - Unskip runc tests after CI runc update 1.3.1 by @saku3 in https://github.com/youki-dev/youki/pull/3249
 - Fix podman ci by @saku3 in https://github.com/youki-dev/youki/pull/3260
 - add misc_props test by @YamasouA in https://github.com/youki-dev/youki/pull/3250
-- chore(deps): bump libseccomp from 0.3.0 to 0.4.0 by @MattPatchava in https://github.com/youki-dev/youki/pull/3275
 
 ### 0.5.7
 
 - Waiting on systemd to add intermediate process to cgroup. by @CheatCodeSam in https://github.com/youki-dev/youki/pull/3262
-- Update/runc 1.3.2 by @n4mlz in https://github.com/youki-dev/youki/pull/3274
 
 
 ## Diagnostics

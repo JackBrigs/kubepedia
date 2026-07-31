@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**9 defects** the project fixed across **1 releases** of the 3.25 line, from 3.25.0 to
+**6 defects** the project fixed across **1 releases** of the 3.25 line, from 3.25.0 to
 3.25.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,12 +45,9 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.25.0
 
 - kata-deploy: sa: Fix permissions for patching nodefeaturerules by @fidencio in https://github.com/kata-containers/kata-containers/pull/12232
-- build: Fix GPG key for gperf & Pass PUSH_TO_REGISTRY and GH_TOKEN to Docker builds by @fidencio in https://github.com/kata-containers/kata-containers/pull/12247
 - virtiofsd: fix RUSTUP_HOME and CARGO_HOME permissions for non-root bu… by @BbolroC in https://github.com/kata-containers/kata-containers/pull/12313
-- docs: Fix trusted-image-storage reference by @manuelh-dev in https://github.com/kata-containers/kata-containers/pull/12297
 - kata-deploy: Fix extraction of the containerd major version by @facorazza in https://github.com/kata-containers/kata-containers/pull/12312
 - packaging: Fix tools permissions issue by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12315
-- docs: Navigation improvements and bug fixes to Pages by @LandonTClipp in https://github.com/kata-containers/kata-containers/pull/12330
 - kernel: Add DAX fix for arm64 by @fidencio in https://github.com/kata-containers/kata-containers/pull/12347
 - runtime: fix no network when VMM does not support network device hotplug by @Xander-C in https://github.com/kata-containers/kata-containers/pull/11501
 

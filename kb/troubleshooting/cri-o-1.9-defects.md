@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**23 defects** the project fixed across **9 releases** of the 1.9 line, from 1.9.0 to
+**6 defects** the project fixed across **4 releases** of the 1.9 line, from 1.9.0 to
 1.9.16. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,53 +44,21 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 1.9.0
 
-- e572043a6 Merge pull request #1213 from runcom/fix-deps-1.9
-- a85ea609d Merge pull request #1207 from runcom/fix-exec-termianl
-- afeab27a3 container_exec: fix terminal true process json
-- 989d275e7 Merge pull request #1170 from alexandrst88/fix-tutorial
-- 2cae11ba3 Merge pull request #1189 from runcom/fix-apparmor-master
-- c8aad704d container_create: fix apparmor from container config
-- b2a78eba2 Merge pull request #1185 from runcom/fix-runtime-deps
-- 4a32d0ff3 Merge pull request #1183 from runcom/fix-image-pull-master
-- 070b8bfdc Merge pull request #1176 from runcom/fix-e2e-1.0
-- 7508cdeac Merge pull request #1173 from runcom/fix-cve
-- 67e2d28c8 Merge pull request #1171 from WeiZhang555/fix-readme
-- 21252ed22 Merge pull request #1151 from mdshuai/fix-test-typo
+- container_exec: fix terminal true process json
+- container_create: fix apparmor from container config
 
 ### 1.9.2
 
-- 01631617a sandbox: fix sandbox logPath when crio restarts
-
-### 1.9.4
-
-- b79bd2d1 Merge pull request #1338 from nalind/fix-runasuser-1.9-cache
-
-### 1.9.5
-
-- b79bd2d1 Merge pull request #1338 from nalind/fix-runasuser-1.9-cache
-
-### 1.9.7
-
-- a68f7b55 Merge pull request #1357 from runcom/netns-fixes
-
-### 1.9.11
-
-- 475af0a1 test: Fix race condition in ctr.bats
-
-### 1.9.13
-
-- a4d6f38a4 Merge pull request #1540 from runcom/status-fix-1.9
+- sandbox: fix sandbox logPath when crio restarts
 
 ### 1.9.14
 
-- 88f17a22 Merge pull request #1618 from runcom/fix-race-cadvisor-create-19
-- 93351e93 server: fix race between container create and cadvisor asking for info
+- server: fix race between container create and cadvisor asking for info
 
 ### 1.9.16
 
-- 7155a7596 Merge pull request #2182 from openSUSE/release-1.9-oob-log-fix
-- 1b650eb8f Fix possible out of bounds access during log parsing
-- dbf5c04e1 container_create: fix race with sandbox being stopped
+- Fix possible out of bounds access during log parsing
+- container_create: fix race with sandbox being stopped
 
 
 ## Diagnostics

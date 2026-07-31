@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**28 defects** the project fixed across **4 releases** of the 3.9 line, from 3.9.0 to
+**26 defects** the project fixed across **4 releases** of the 3.9 line, from 3.9.0 to
 3.9.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -46,7 +46,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - 3.9.1 will contain only bug fixes and will be released on June 8, 2022
 - Fix --untardir reference in --destination description 41ccf7b5aba9677573952ba4b4a47be5f0170525 (Simon Alling)
-- fix(helm): update golang.org/x/crypto to latest 5105899a86c78630d8cd507c266f8d86c4ea1524 (Colleen Murphy)
 - Fix confusing test failure message 56e52d139c27b43397c567ecc31aea1ce0e73b5d (Simon Alling)
 - fix: "... has no deployed releases" error when release history contains only failed releases and history limit reached da8e7d25329f9539cf034588d5638099fd69fda9 (Timofey Kirillov)
 - repo: fix repo merge unit test 7a08426869abd4c0bcfe09081c337bdb2bab909a (Markus Lehtonen)
@@ -62,7 +61,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: change postRendererArgs to Slice Type and use args... d12170b3f20f287268283f2809da751a14f2d743 (guofutan)
 - fix: keep the API: postrender.NewExec and Add NewExecWithArgs 44423fb2ca59547968b1028427b5ea0c3176d5a8 (guofutan)
 - fix: keep the API: postrender.NewExec and Add NewExecWithArgs 1aab7eb3a1046731d55c14b302bd35fcc4da1140 (guofutan)
-- Fix typo Unset the env var before func return in Unit Test 141f2dd501a93ffdb29f2550239a1fc460db9987 (Kay Yan)
 - Fix install memory/goroutine leak 5059ae843ef6b504fe55f914953e249a14ff5838 (Neven Miculinic)
 - fix(rollback): fix helm rollback doesn't have meta.helm.sh annotations 94dc605968758a63067eceb4978d2347194d2c5b (cndoit18)
 - Make validation errors easier to fix 65ec3d6fd6e88f100216edbde789ed8417d1a87f (Damien Nozay)

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**11 defects** the project fixed across **3 releases** of the 1.9 line, from 1.9.0 to
+**8 defects** the project fixed across **3 releases** of the 1.9 line, from 1.9.0 to
 1.9.5. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,10 +47,7 @@ Entries are grouped by the release that fixed them, oldest first.
 - Deployment/DaemonSet: Fix templating & value. (#10240)
 - fix: remove curl on base container #9716 (#10306)
 - fix: path with special characters warning #10281 #10308 (#10330)
-- chore(build): Fix Run make dev-env syntax error (#10294)
-- Fix “dev-env” Makefile target to work with kubectl 1.28+ (#10350)
 - fix: update action file to auto release plugin #10197 (#10321)
-- ci(helm): fix Helm Chart release action 422 error (#10237)
 
 ### 1.9.4
 

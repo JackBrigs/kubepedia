@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**16 defects** the project fixed across **1 releases** of the 3.22 line, from 3.22.0 to
+**11 defects** the project fixed across **1 releases** of the 3.22 line, from 3.22.0 to
 3.22.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,20 +45,15 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.22.0
 
 - agent/rustjail: Fix double free in TTY handling by @sprt in https://github.com/kata-containers/kata-containers/pull/11833
-- tests: agent-ctl: Fix cleanup for testing with qemu by @Sumynwa in https://github.com/kata-containers/kata-containers/pull/11847
 - gha: zizmor: fix "workflow or action definition without a name" error by @sprt in https://github.com/kata-containers/kata-containers/pull/11855
 - libs: Fix the test_parse_mount_options failure on ppc64le by @shwetha-s-poojary in https://github.com/kata-containers/kata-containers/pull/11849
 - agent/rustjail: Fix potentially uninitialized memory read in unsafe code by @sprt in https://github.com/kata-containers/kata-containers/pull/11872
-- build: Fix initramfs build by @fidencio in https://github.com/kata-containers/kata-containers/pull/11879
 - gpu: Some fixes regarding the rootfs v580 by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11896
 - gha: Fix `docs-url-alive-check` workflow by @sprt in https://github.com/kata-containers/kata-containers/pull/11901
 - runtime: fix device typo by @M-Phansa in https://github.com/kata-containers/kata-containers/pull/11894
 - runtime: fix "num-queues expects uint64" error with virtio-blk by @spuzirev in https://github.com/kata-containers/kata-containers/pull/11888
-- build: Fix KBUILD_SIGN_PIN usage by @fidencio in https://github.com/kata-containers/kata-containers/pull/11914
 - gpu: Fix kernel module signing by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11916
-- build: Fix nvidia kernel breakage by @fidencio in https://github.com/kata-containers/kata-containers/pull/11929
 - virtcontainers: fix nydus cleanup on rootfs unmount by @katexochen in https://github.com/kata-containers/kata-containers/pull/11899
-- tests: Fix cca test failure on arm64 and other architectures by @kevinzs2048 in https://github.com/kata-containers/kata-containers/pull/11975
 - gpu: rootfs fixes by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11966
 
 

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**27 defects** the project fixed across **5 releases** of the 2.0 line, from 2.0.1 to
+**25 defects** the project fixed across **5 releases** of the 2.0 line, from 2.0.1 to
 2.0.5. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -58,7 +58,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(ui): UI crashes after reinstalling ArgoCD (#6218)
 - fix: add network policies to restrict traffic flow between argocd components (#6156)
 - fix: Revert "feat: Add health checks for kubernetes-external-secrets (#5435)"
-- chore: Allow ingress traffic to argocd-server by default (#6179)
 
 ### 2.0.3
 
@@ -73,7 +72,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: add client side retry to prevent 'transport is closing' errors (#6402)
 - fix: Update documentation Argocd app CRD health with app of apps (#6281)
 - fix(ui): Crash on application pod view (#6384)
-- chore: pin mkdocs version to fix docs build (#6421)
 
 ### 2.0.5
 

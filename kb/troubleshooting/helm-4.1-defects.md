@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**92 defects** the project fixed across **4 releases** of the 4.1 line, from 4.1.0 to
+**85 defects** the project fixed across **4 releases** of the 4.1 line, from 4.1.0 to
 4.1.4. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -50,16 +50,13 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fixed bug where Helm test --logs failed with hook-delete-policy "hook-failed" or "hook-succeed" #31579
 - Fixed regression where vendor-specific suffixes were stripped from .Capabilities.KubeVersion.GitVersion, breaking charts that detect managed Kubernetes platforms #31528
 - Fixed a bug where helm uninstall with --keep-history did not suspend previous deployed releases #12564
-- docs: fixed documentation about default wait strategy
 - fix(release): fix test compilation error e751a70e84175212d9338738122d045aecb2ad89 (Evans Mungai)
 - fix: typo in the function names 138f730aacf96d0d94535a1d5b29d6dd128a062e (Gergely Brautigam)
 - fix: add default casess to switch statements 1c119bcaa6f68a73f27a21f9d7dba22c4baf4d7d (Brenden Ehlers)
-- test(statuswait): fix Copilot code review suggestion for goroutine in tests d6b35cedeb0519b648941911298ebb08fa3b0edf (Mohsen Mottaghi)
 - fix: use namespace-scoped watching to avoid cluster-wide LIST permissions 3dd54ed0b693e5e5805cceb535ed5167fa5ada25 (Mohsen Mottaghi)
 - fix(doc): Update default wait strategy f92ae18977bfe4fad74c7cb0e8c7f7fc68d85306 (Deepak)
 - Fix TestCliPluginExitCode 3c6557dcf57ef4feee0d4840d4095f1479a63b40 (tison)
 - Fix `TestConcurrencyDownloadIndex` typo 592815ea2b020b354510685bfa61d252095baafb (George Jenkins)
-- chore: fix some comments to improve readability 858cf315830dd4818297e00d8098e6f79422d306 (wangjingcun)
 - fix(upgrade): pass --server-side flag to install when using upgrade --install 2dc581dc1c9c07e36dde9acc70bd86e23963662a (Evans Mungai)
 - Fix govulncheck in CI bc9462f20fc9a948fe557c87c895c06d4c0ddc6a (Matt Farina)
 - fix(cli): handle nil config in EnvSettings.Namespace() 8534663e730f7d32ac8777c3b41a7e6c6a94ab96 (Zadkiel AHARONIAN)
@@ -68,7 +65,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fixes tests after merge 2f598ffc850d9f83642da362a7be4121cf617275 (Stephanie Hohenberg)
 - fixes lint issue bb9356e182a8abb0f806cd4866a317f273631862 (Stephanie Hohenberg)
 - Fix linting issue 9f1c8a26f00ebbe2942064a06b49c275162d10ef (Benoit Tigeot)
-- chore: fix typo in pkg/downloader/chart_downloader.go e71a29ce4ff045c8194625c0d804f789d121023e (megha1906)
 - Fix kube client logging 936cd328ac59001f7a6716a3eb7e9075f3950f44 (Matt Farina)
 - fix: prevent segmentation violation on empty yaml in multidoc 81d244ca21e232e5ebccd67040cdf7596b572e8b (Benoit Tigeot)
 - fix: prevent reporting fallback on version when none specified 40e22dedb2d9fdb8c47376a2c3071b99ba056d9c (Benoit Tigeot)
@@ -82,13 +78,11 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: focus only on plugin name but give more info about what we get cf077ceb2758a63aa5f87410204d11c5f2ad3a7b (Benoit Tigeot)
 - fix: improve plugin name validation error messages c04e18e45253f08d127a37c8328e7084e486c7cc (Benoit Tigeot)
 - Fix syntax errors in the document faa0adcb3855a299596f68f7a18f3dd84ef9ed1a (Fish-pro)
-- docs: Fix LFX Health Score badge URL in README.md 40856bf50cdaa6a178b1c8433c98c25004e44735 (Michael Crenshaw)
 - Prevent surprising failure with SDK when timeout is not set 5f6fa437b2c2954092b6c3f8af5b83aef7dcb874 (Benoit Tigeot)
 - Avoid confusion between `--wait` (watcher) and no --wait (hookOnly) 8535e9f4ab5c143fcbd429f45a0f15cf510a0cc0 (Benoit Tigeot)
 - fix: do not run release workflow on forks d93ef03ee400292452dec97e88e821dc3188110e (Terry Howe)
 - fix(rollback): `errors.Is` instead of string comp d158708fbfb08bc452d1733d9b8cc4c7dc9f8902 (Hidde Beydals)
 - fix(uninstall): supersede deployed releases 2f1ecc7100868be90d302a299d707c70a7f45276 (Hidde Beydals)
-- chore: fix typo of public field 0d6de28bf446b4d1b2cb71e0441e5c8ebc9e91c9 (tison)
 - fix: Fix Helm v4 release distribtion/get-helm-3 script d5d1ea3f5527b4794c624e84c152f28fad860e10 (George Jenkins)
 - fix test ae4af69b9dbd5ad01dc9621a90e5b08327a3499e (Artem Vdovin)
 - fix: assign KUBECONFIG environment variable value to env.Kubeconfig b25fa862d5f7de6c20fa4b95ce5c85962669fd3b (LinPr)
@@ -117,7 +111,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - SDK: Fixed a bug where server-side apply defaults did not always match the CLI defaults #31732
 - SDK: Fixed a Go import issue when downstream tooling attempted to vendor helm.sh/helm/v4/pkg/kube #31852
 - Fix import d47cb2b7efaa26090510f4c2289127f40451062e (Evans Mungai)
-- Fix lint warning f7cec12e23fe800495814432da4368b54c6d4552 (Evans Mungai)
 - fix(values): preserve nil values when chart default is empty map 8c5fe4ef9781c714dc121288a4d499e62cc10bf8 (Evans Mungai)
 - fix: bump go.opentelemetry.io/otel/sdk to v1.40.0 for GO-2026-4394 5b26d4f1f99091262fef50ed51133e7ae8e3b011 (Terry Howe)
 - fix: bump fluxcd/cli-utils to v0.37.2-flux.1 360c1315ba2d468fcff77193f52764c6ad912c90 (Terry Howe)

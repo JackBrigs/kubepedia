@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**7 defects** the project fixed across **1 releases** of the 2.10 line, from 2.10.0 to
+**6 defects** the project fixed across **1 releases** of the 2.10 line, from 2.10.0 to
 2.10.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,13 +44,12 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 2.10.0
 
-- e5b3fbb5 - fix(Makefile): always build kube-router and gobgp `<Aaron U'Ren>`
-- 49076533 - fix(.grype.yaml): don't include upstream CNI plugin in grype results `<Aaron U'Ren>`
-- 8f95d669 - fix(NRC): correct exact-match policy name in checkPolicies test runner `<Aaron U'Ren>`
-- 41cc1b7e - fix(bgp): also reject defaultRouteSetV6 from peers `<Richard Kojedzinszky>`
-- d608404e - fix(NPC): return error when deny by default without range `<Aaron U'Ren>`
-- 81006c22 - fix(k8s): update k8s library calls for for version 0.36 `<Aaron U'Ren>`
-- 687b4ae6 - fix(NPC,LBC): harden network policy and load balancer controllers `<Aprazors>`
+- - fix(.grype.yaml): don't include upstream CNI plugin in grype results `<Aaron U'Ren>`
+- - fix(NRC): correct exact-match policy name in checkPolicies test runner `<Aaron U'Ren>`
+- - fix(bgp): also reject defaultRouteSetV6 from peers `<Richard Kojedzinszky>`
+- - fix(NPC): return error when deny by default without range `<Aaron U'Ren>`
+- - fix(k8s): update k8s library calls for for version 0.36 `<Aaron U'Ren>`
+- - fix(NPC,LBC): harden network policy and load balancer controllers `<Aprazors>`
 
 
 ## Diagnostics

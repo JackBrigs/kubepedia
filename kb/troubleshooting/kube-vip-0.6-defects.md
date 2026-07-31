@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**12 defects** the project fixed across **5 releases** of the 0.6 line, from 0.6.0 to
+**10 defects** the project fixed across **4 releases** of the 0.6 line, from 0.6.0 to
 0.6.4. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -48,7 +48,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 0.6.1
 
-- Fix makefile default target by @runsisi in https://github.com/kube-vip/kube-vip/pull/579
 - Fixes to e2e tests and re-enabling by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/592
 
 ### 0.6.2
@@ -57,10 +56,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix to main by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/598
 - action fix by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/599
 - Fix dos through checking for remaining services before releasing ip. … by @usiegl00 in https://github.com/kube-vip/kube-vip/pull/601
-
-### 0.6.3
-
-- chore: Spelling fixes by @mjtrangoni in https://github.com/kube-vip/kube-vip/pull/612
 
 ### 0.6.4
 

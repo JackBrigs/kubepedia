@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**10 defects** the project fixed across **1 releases** of the 3.5 line, from 3.5.0 to
+**6 defects** the project fixed across **1 releases** of the 3.5 line, from 3.5.0 to
 3.5.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -45,13 +45,9 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.5.0
 
 - passfd-io: fix FIFO opening and vsock handling by @Tim-Zhang in https://github.com/kata-containers/kata-containers/pull/9335
-- build: Fix tarball not building correctly in docker by @JakubLedworowski in https://github.com/kata-containers/kata-containers/pull/9549
-- doc: fix missing document link by @cncal in https://github.com/kata-containers/kata-containers/pull/9528
-- build: fix the confusing build message if yq doesn't exist in GOPATH/bin by @cncal in https://github.com/kata-containers/kata-containers/pull/9582
 - runtime-rs: fix the issue of the leak of dead shim by @lifupan in https://github.com/kata-containers/kata-containers/pull/9598
 - db: fix the issue of failed to init pci root bus by @lifupan in https://github.com/kata-containers/kata-containers/pull/9596
 - deploy: Fix wrong pushing of artifacts by @zvonkok in https://github.com/kata-containers/kata-containers/pull/9616
-- build: nvidia-gpu: Fix cache usage of the headers tarball by @fidencio in https://github.com/kata-containers/kata-containers/pull/9622
 - runtime-rs: Fix constructing the RTC struct by @emanuellima1 in https://github.com/kata-containers/kata-containers/pull/9571
 - kata-deploy: Fix tdx_not_supported call by @ldoktor in https://github.com/kata-containers/kata-containers/pull/9629
 

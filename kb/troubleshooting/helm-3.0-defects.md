@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**26 defects** the project fixed across **3 releases** of the 3.0 line, from 3.0.1 to
+**25 defects** the project fixed across **3 releases** of the 3.0 line, from 3.0.1 to
 3.0.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,7 +44,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 3.0.1
 
-- chart_downloader: fix lint issue. 7c22ef9ce89e0ebeb7125ba2ebf7d421f3e82ffa (Andreas Stenius)
 - fix(plugin): Avoid crash on missing flag 530c5a55835fe572b08c91ac4c8d978f9fd9610a (Marc Khouzam)
 - fix "Chart.lock is out of sync with Chart.yaml" (#7119) 5c9befa75d77a4bb37c3ac9f3d35e651087c1a46 (海的澜色)
 - fix stack overflow error (#7114) eea01af8f972dffec6fef3d6337c72259060d683 (海的澜色)

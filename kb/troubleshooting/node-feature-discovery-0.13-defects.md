@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**14 defects** the project fixed across **6 releases** of the 0.13 line, from 0.13.0 to
+**11 defects** the project fixed across **6 releases** of the 0.13 line, from 0.13.0 to
 0.13.5. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,15 +44,12 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 0.13.0
 
-- docs: fix internal cross-page references by injecting .md (#1030)
 - source/cpu: fix build flags of cpuid detection (#1063)
-- docs: fix usage customization guide typos (#1066)
 - deployment: fixes for mounting kubelet config (#1080)
 - hack/prepare-release.sh: fix name of one e2e test file (#1151)
 
 ### 0.13.1
 
-- pkg/nfd-master/nfd-master.go: Fix typo by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1177
 - nfd-master: fix -prune by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1165
 - nfd-master: fix a crash when processing NodeFeatureRules by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1174
 - nfd-topology-updater: fix wrong kubelet_internal_checkpoint path and compare basename to full path by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1183

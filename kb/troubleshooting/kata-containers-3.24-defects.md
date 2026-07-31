@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**7 defects** the project fixed across **1 releases** of the 3.24 line, from 3.24.0 to
+**6 defects** the project fixed across **1 releases** of the 3.24 line, from 3.24.0 to
 3.24.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,7 +44,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 3.24.0
 
-- tests: k8s: Fix typo in authenticated tests by @fidencio in https://github.com/kata-containers/kata-containers/pull/12111
 - gpu: TDX kernel cmdline fixes by @zvonkok in https://github.com/kata-containers/kata-containers/pull/12127
 - runtimeclasses: Fix nvidia-gpu podOverhead by @fidencio in https://github.com/kata-containers/kata-containers/pull/12132
 - runtime-rs: fix QMP 'mq' parameter type in netdev_add to boolean by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12137

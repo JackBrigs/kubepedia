@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**22 defects** the project fixed across **3 releases** of the 3.17 line, from 3.17.0 to
+**20 defects** the project fixed across **3 releases** of the 3.17 line, from 3.17.0 to
 3.17.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -51,9 +51,7 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix test b9d58a19f1fdb58da7cb84370e60bcd29cc534f6 (Mayank Shah)
 - fix upgrade 2541e465c402002a973682918ac8ee14bc8d7784 (Mayank Shah)
 - fix: fix label name e4062e7e000f54f6251c233329ef04f5d0799d59 (wangjingcun)
-- Fix typo in pkg/lint/rules/chartfile_test.go 0cc78c6ac34790698d66d419f22531040a3bf738 (Zach Burgess)
 - fix(hooks): correct hooks delete order f4f4a6b81fbdb90412bd906fa5458482e94625bd (Suleiman Dibirov)
-- chore: fix some function names in comment de9e138ec172c823788554f65710d103b9ac2388 (wangjingcun)
 - Fix failing tests 3c4d0bb06138713bd009b3daf34f34a18a0850d7 (Evans Mungai)
 - fix(helm): Retry Conflict error for createResource, deleteResource 79a1f2c80117cc4d9db7c48d80a7fc76d3d479ca (Andreas Karis)
 - minor spelling fix ca584648ee3776591d4d438c7a2d67310d35c424 (Jon Olsson)

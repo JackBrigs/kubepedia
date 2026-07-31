@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**14 defects** the project fixed across **1 releases** of the 1.11 line, from 1.11.0 to
+**5 defects** the project fixed across **1 releases** of the 1.11 line, from 1.11.0 to
 1.11.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,17 +44,8 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 1.11.0
 
-- fix(deps): update module github.com/stretchr/testify to v1.8.1 by @renovate in https://github.com/containers/skopeo/pull/1789
-- fix(deps): update module golang.org/x/term to v0.1.0 by @renovate in https://github.com/containers/skopeo/pull/1791
-- fix(deps): update module github.com/spf13/cobra to v1.6.1 by @renovate in https://github.com/containers/skopeo/pull/1800
-- fix(deps): update module golang.org/x/term to v0.2.0 by @renovate in https://github.com/containers/skopeo/pull/1804
-- fix(deps): update module github.com/containers/storage to v1.44.0 by @renovate in https://github.com/containers/skopeo/pull/1809
 - [skip-ci] GHA/Cirrus-cron: Fix execution order by @cevich in https://github.com/containers/skopeo/pull/1820
-- fix(deps): update module golang.org/x/term to v0.3.0 by @renovate in https://github.com/containers/skopeo/pull/1818
 - proxy: Fix leak of blobs from containers-storage by @cgwalters in https://github.com/containers/skopeo/pull/1837
-- fix(deps): update module golang.org/x/term to v0.4.0 by @renovate in https://github.com/containers/skopeo/pull/1839
-- fix(deps): update module github.com/containers/storage to v1.45.0 by @renovate in https://github.com/containers/skopeo/pull/1853
-- fix(deps): update module github.com/containers/storage to v1.45.1 by @renovate in https://github.com/containers/skopeo/pull/1857
 - Cirrus: Fix c/image CI testing by @cevich in https://github.com/containers/skopeo/pull/1862
 - Fix storage.conf overrides in test-system in CI, update c/storage by @mtrmac in https://github.com/containers/skopeo/pull/1864
 - Fix `make test-system` when run as an unprivileged user (containerized) by @mtrmac in https://github.com/containers/skopeo/pull/1868

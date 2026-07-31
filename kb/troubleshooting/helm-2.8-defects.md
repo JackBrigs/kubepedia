@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**58 defects** the project fixed across **3 releases** of the 2.8 line, from 2.8.0 to
+**53 defects** the project fixed across **3 releases** of the 2.8 line, from 2.8.0 to
 2.8.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -50,8 +50,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(helm): filter helm list to print latest release (#3335) e9203b826bb4f1efb6dfaa3a566c9cc1bbac4651 (Adam Reese)
 - Added notes on how to fix pulling errors fb1432264182baa52e89c1b8eb593f1074e66e06 (Andrey Chernih)
 - fix a typo 270969117c620b417cdc785dfa9d0a38c4fec2bf (Pure White)
-- fix typo 724b3898a4a79e247e5c8720bd214265053bdc1e (Luis Cordova)
-- docs(chart_template_guide): Fix link e4274c448ce70fb683dfbd52d53bf7804efed6fd (Mitchel Humpherys)
 - Fix broken bullets by Note in docs.helm.sh 9735642fe8b092da503e88c9ebca8c63ddcf7c92 (Gabriel Miretti)
 - Fix command formatting 219e1075ce0441d063d9604a563e9e9a2484288f (Gabriel Miretti)
 - Typo fix cfb7dfa82c5d7ebb54645ffd0727416b0ccf10a9 (Andrey Klimentyev)
@@ -84,9 +82,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix err checking 6f6d46de06a1b580d350f3cdf9bfb78cf4de76a3 (Alexander Lukyanchenko)
 - fix(tiller): upgrade last deployed release 82ef751414d9de6b64ffaf89d964ab67cb5d4766 (Adam Reese)
 - fix(docs): fix code comment for ReuseValues() b8734a173ec079e9ec181b03bee44bebae8e9c2e (Matt Tucker)
-- docs(templates): fix and expand config checksum example 25e851ecd03301030aa76b106520a52ec2a8f44e (Joan Rieu)
-- docs(templates): fix misleading/broken examples e464479cb2bb9b7228f595e513622bef2b173946 (Joan Rieu)
-- Fix typo for --service-account 3c3936fcaaf2c86d783ed87d6d1aca25d6dd5d15 (Simon Schmidt)
 - Fix for relative chart path support in index.yaml 8775f632f246ff3c7746c3cc3f71d51a06101e93 (Christian Jauvin)
 - fix(circleci): Fixing the glide/vendor cache so it is used by glide 4c7617a76e310fa53473b31b18b371b344da4fef (Matt Farina)
 - Update install tests to use ReleaseMock and associates from the helm package. Also fix release names to match expected reponse values 2bc97cfc839a542735a798bc7c24f1921387509f (Brad Bowman)

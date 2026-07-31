@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**31 defects** the project fixed across **11 releases** of the 0.0 line, from 0.0.22 to
+**30 defects** the project fixed across **11 releases** of the 0.0 line, from 0.0.22 to
 0.0.36. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -101,7 +101,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 0.0.36
 
-- fix: update dockerfile by @derekbit in https://github.com/rancher/local-path-provisioner/pull/574
 - fix: qualify image references to avoid short-name resolution and Docker Hub rate limits by @bejaratommy in https://github.com/rancher/local-path-provisioner/pull/573
 - fix: add helper pod template validation by @derekbit in https://github.com/rancher/local-path-provisioner/pull/576
 - fix: relax helper pod template validation by @derekbit in https://github.com/rancher/local-path-provisioner/pull/577

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**21 defects** the project fixed across **7 releases** of the 0.5 line, from 0.5.5 to
+**20 defects** the project fixed across **7 releases** of the 0.5 line, from 0.5.5 to
 0.5.12. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -50,7 +50,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 0.5.6
 
-- Fix typo in EnableControlPlane config option by @abhay-krishna in https://github.com/kube-vip/kube-vip/pull/467
 - Fixes to logging by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/470
 - Fixes all leaderElection code to use config by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/472
 - This fixes an issue with the cache being wiped by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/474

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**13 defects** the project fixed across **1 releases** of the 0.2 line, from 0.2.0 to
+**11 defects** the project fixed across **1 releases** of the 0.2 line, from 0.2.0 to
 0.2.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -49,14 +49,12 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix musl test function not parametered correctly by @yihuaf in https://github.com/containers/youki/pull/2158
 - Rust 1.71.0 by @utam0k in https://github.com/containers/youki/pull/2167
 - Make container_args clone-able by @yihuaf in https://github.com/containers/youki/pull/2193
-- Update CI go version to 1.20 by @YJDoc2 in https://github.com/containers/youki/pull/2227
 - Fix podman tests to properly run by @YJDoc2 in https://github.com/containers/youki/pull/2233
 - Named all GitHub Actions workflows by @utam0k in https://github.com/containers/youki/pull/2256
 - Include Breaking Changes section in the release note by @utam0k in https://github.com/containers/youki/pull/2265
 - Extend wait time for auto-merge by @utam0k in https://github.com/containers/youki/pull/2278
 - Switch codespace from gitpod by @utam0k in https://github.com/containers/youki/pull/2306
 - Rust 1.72 by @utam0k in https://github.com/containers/youki/pull/2323
-- Update Migration Guide for 0.2.0 release by @YJDoc2 in https://github.com/containers/youki/pull/2334
 
 
 ## Diagnostics

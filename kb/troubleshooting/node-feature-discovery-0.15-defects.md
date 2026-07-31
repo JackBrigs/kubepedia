@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**20 defects** the project fixed across **3 releases** of the 0.15 line, from 0.15.0 to
+**13 defects** the project fixed across **3 releases** of the 0.15 line, from 0.15.0 to
 0.15.3. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -52,16 +52,9 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix pkg name for test/utils/deployment (#1418)
 - nfd-master: fix retry of node updates (#1425)
 - test/e2e: fix broken feature-annotations test (#1440)
-- docs: fix documentation on SEV security features (#1447)
 - apis/nfd: fix incorrect comments of matching functions (#1467)
 - apis/nfd: fix logging of rule expression processing (#1458)
-- docs: fix small typo in customization guide (#1469)
 - apis/nfd: fix multiple matcher terms targeting the same feature (#1468)
-- Makefile: fix e2e-testing of the full image (#1500)
-- chore(nfd-worker): fix minor typo in wrong label value format error (#1506)
-- docs: fix name of prometheus kustomize overlay (#1517)
-- docs: fix wording and nfd version in master config ref (#1520)
-- docs: second fix to the prometheus kustomize overlay name (#1518)
 
 ### 0.15.2
 

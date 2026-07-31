@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**20 defects** the project fixed across **3 releases** of the 0.12 line, from 0.12.0 to
+**16 defects** the project fixed across **3 releases** of the 0.12 line, from 0.12.0 to
 0.12.4. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,16 +44,12 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 0.12.0
 
-- docs: remove fixed release tag in developer guide (#798)
-- docs: fix operator deployment instructions (#811)
-- docs: small typo fix in cpuid feature list (#824)
 - github: small fix in new-release issue template (#822)
 - test/e2e: fix checking of nfd-master annotation (#839)
 - source/fake: fix name of fake flag feature (#843)
 - nfd-master: fix incorrect log messages in crd controller (#860)
 - nfd-master: more fixes to log messages (#861)
 - Fix templates for NodeFeatureRule with MatchAny (#865)
-- docs: fix incorrect shell snippet for removing labels (#892)
 - test/e2e: fix segfault in case no e2e config file is specified (#891)
 - apis/nfd: fix NodeFeatureRule templating (#935)
 - test/e2e: fix topologu-updater cmdline args (#960)

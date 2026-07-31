@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**9 defects** the project fixed across **1 releases** of the 3.23 line, from 3.23.0 to
+**6 defects** the project fixed across **1 releases** of the 3.23 line, from 3.23.0 to
 3.23.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,10 +44,7 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 3.23.0
 
-- libs: Fix formatting issue by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/11995
 - dragonball: Bump kvm-ioctls to fix security issue by @spectator333 in https://github.com/kata-containers/kata-containers/pull/11867
-- tests: guest-pull: Fix names by @fidencio in https://github.com/kata-containers/kata-containers/pull/12028
-- ci: Fix failing static checks to enable IBM actionspz - Z specific by @BbolroC in https://github.com/kata-containers/kata-containers/pull/11924
 - runtime-rs: some remote hypervisor fixes by @pmores in https://github.com/kata-containers/kata-containers/pull/11857
 - runtime-rs: Fix several incorrect settings with guest empty dir. by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12067
 - runtime-rs: fix the issue of hot-unplug memory smaller by @lifupan in https://github.com/kata-containers/kata-containers/pull/12038

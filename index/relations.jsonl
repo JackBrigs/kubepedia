@@ -838,7 +838,6 @@
 {"source": "TROUBLE-AWX_OPERATOR", "target": "TROUBLE-PVC_PENDING_NO_STORAGECLASS", "type": "see_also"}
 {"source": "TROUBLE-AZURE_CSI_1_10_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-AZURE_CSI_1_12_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-AZURE_CSI_1_19_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-AZURE_CSI_1_25_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-AZURE_CSI_1_26_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-AZURE_CSI_1_27_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -852,7 +851,6 @@
 {"source": "TROUBLE-AZURE_CSI_1_3_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-AZURE_CSI_1_5_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-AZURE_CSI_1_6_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-AZURE_CSI_1_7_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-AZURE_CSI_1_8_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-AZURE_CSI_1_9_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-BOND_EXTRA_SLAVE_AGGREGATOR", "target": "CONCEPT-UBUNTU_NETPLAN", "type": "see_also"}
@@ -996,7 +994,6 @@
 {"source": "TROUBLE-CINDER_CSI_1_29_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CINDER_CSI_1_31_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CINDER_CSI_1_32_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-CINDER_CSI_1_34_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CINDER_CSI_BREAKING_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CLOCK_SKEW_TLS", "target": "PRACTICE-CERTIFICATE_EXPIRY", "type": "see_also"}
 {"source": "TROUBLE-CNI_PLUGINS_0_8_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -1032,7 +1029,6 @@
 {"source": "TROUBLE-CONSUL_SERVER_QUORUM", "target": "TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK", "type": "see_also"}
 {"source": "TROUBLE-CONSUL_UPGRADE_1X_TO_2X", "target": "CONCEPT-CONSUL_ON_K8S", "type": "see_also"}
 {"source": "TROUBLE-CONSUL_UPGRADE_1X_TO_2X", "target": "TROUBLE-CONSUL_ACL_BOOTSTRAP", "type": "see_also"}
-{"source": "TROUBLE-CONTAINERD_1_0_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_1_1_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_1_2_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CONTAINERD_1_3_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -1089,7 +1085,6 @@
 {"source": "TROUBLE-CRIO_REGISTRY_AUTHS_DUPLICATE", "target": "CONCEPT-CONTAINER_MANAGER", "type": "see_also"}
 {"source": "TROUBLE-CRIO_SHORT_NAME_REGISTRY", "target": "COMPONENT-CRI_O", "type": "see_also"}
 {"source": "TROUBLE-CRIO_SHORT_NAME_REGISTRY", "target": "TROUBLE-IMAGEPULLBACKOFF", "type": "see_also"}
-{"source": "TROUBLE-CRI_O_1_0_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CRI_O_1_10_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CRI_O_1_11_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CRI_O_1_12_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -1197,7 +1192,6 @@
 {"source": "TROUBLE-FLANNEL_0_20_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-FLANNEL_0_21_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-FLANNEL_0_25_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-FLANNEL_0_27_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-FLANNEL_0_28_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-FLANNEL_0_5_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-FLATCAR_APISERVER_WAIT_DNS", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
@@ -1326,7 +1320,6 @@
 {"source": "TROUBLE-KATA_CONTAINERS_3_12_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_14_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_15_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-KATA_CONTAINERS_3_16_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_17_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_18_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_19_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -1335,7 +1328,6 @@
 {"source": "TROUBLE-KATA_CONTAINERS_3_23_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_24_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_25_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-KATA_CONTAINERS_3_26_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_27_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_29_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KATA_CONTAINERS_3_31_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -1442,7 +1434,6 @@
 {"source": "TROUBLE-KUBE_OVN_0_10_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBE_OVN_0_4_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBE_OVN_0_9_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-KUBE_OVN_1_0_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBE_OVN_1_10_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBE_OVN_1_2_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-KUBE_OVN_1_5_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -1513,7 +1504,6 @@
 {"source": "TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS", "target": "COMPONENT-SNAPSHOT_CONTROLLER", "type": "see_also"}
 {"source": "TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS", "target": "CONCEPT-ADDON_SNAPSHOTTER", "type": "see_also"}
 {"source": "TROUBLE-MULTIPLE_SNAPSHOT_CONTROLLERS", "target": "CONCEPT-ADDON_VOLSYNC", "type": "see_also"}
-{"source": "TROUBLE-MULTUS_4_2_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-NAMESPACE_STUCK_TERMINATING", "target": "CONCEPT-TROUBLESHOOTING_MAP", "type": "see_also"}
 {"source": "TROUBLE-NAMESPACE_STUCK_TERMINATING", "target": "TROUBLE-POD_STUCK_TERMINATING", "type": "see_also"}
 {"source": "TROUBLE-NERDCTL_1_3_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
@@ -1533,13 +1523,11 @@
 {"source": "TROUBLE-NODE_DRAIN_GOTCHAS", "target": "TROUBLE-KCM_VOLUME_MULTIATTACH", "type": "see_also"}
 {"source": "TROUBLE-NODE_DRAIN_GOTCHAS", "target": "TROUBLE-NODE_LOCAL_PVC_DRAIN", "type": "see_also"}
 {"source": "TROUBLE-NODE_FEATURE_DISCOVERY_0_10_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-NODE_FEATURE_DISCOVERY_0_11_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-NODE_FEATURE_DISCOVERY_0_12_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-NODE_FEATURE_DISCOVERY_0_13_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-NODE_FEATURE_DISCOVERY_0_14_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-NODE_FEATURE_DISCOVERY_0_15_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-NODE_FEATURE_DISCOVERY_0_16_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-NODE_FEATURE_DISCOVERY_0_17_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-NODE_FEATURE_DISCOVERY_0_19_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-NODE_LOCAL_PVC_DRAIN", "target": "COMPONENT-LOCAL_PATH_PROVISIONER", "type": "see_also"}
 {"source": "TROUBLE-NODE_LOCAL_PVC_DRAIN", "target": "COMPONENT-LOCAL_VOLUME_PROVISIONER", "type": "see_also"}
@@ -1633,11 +1621,6 @@
 {"source": "TROUBLE-SERVICE_NO_ENDPOINTS", "target": "PRACTICE-SERVICE_NETWORKING_DEBUG", "type": "see_also"}
 {"source": "TROUBLE-SKOPEO_1_11_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-SKOPEO_1_14_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-SKOPEO_1_15_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-SKOPEO_1_16_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-SKOPEO_1_17_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-SKOPEO_1_18_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
-{"source": "TROUBLE-SKOPEO_1_19_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-SKOPEO_1_23_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-SNAPSHOT_CONTROLLER_2_1_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-SNAPSHOT_CONTROLLER_7_TO_8", "target": "COMPONENT-SNAPSHOT_CONTROLLER", "type": "see_also"}

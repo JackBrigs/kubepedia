@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**56 defects** the project fixed across **3 releases** of the 2.15 line, from 2.15.0 to
+**50 defects** the project fixed across **3 releases** of the 2.15 line, from 2.15.0 to
 2.15.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -54,20 +54,17 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: use nonexistent rather than inexistent a31d4ad43e785412fa7e69613422d1e9fc0623ab (Matthew Fisher)
 - fix(validate-license): update to work with newer versions of coreutils 935ee90d9ff3af9ffc22735c0d6c092c5050f3ef (Matthew Fisher)
 - fix(generator): fixup package comment linting error caff38ffa1fa8595b445f37c327c01015ea6bb58 (Matthew Fisher)
-- fixed typo 8648ccf5d35d682dcd5f7a9c2082f0aaf071e817 (Till Hoffmann)
 - fix-up typo (#6501) 9d8a84ee3daa0870689ba24ca8bf6bb13a0d38ec (陈谭军)
 - fix issue when dependency is URL b49f4269c5bdfee920b0d5fd7954513f5e17dad6 (Xiang Dai)
 - fix BusyBox sed (#6327) 540fe23b692ab22b04e4718644cc654d694abc04 (Anton)
 - fixes resetting os env after test run c839363f16447344f180b0318b09a571bb407882 (Ken Sipe)
 - Fix the developer.md typo (#6203) aaf24e065851e96632997b4849c98721745a7a12 (kamal namdeo)
-- fix typo 627283ac7441c7fc1890be843d15e580705f45b8 (Sakura)
 - Fix wrongly displayed markdown 74b6279f5fa2533fbc6e9462eaa9df2dad0bc9cc (Eduard Laur)
 - fix some log typos in tlsutil_test.go e9ea2e0d1524b7de68feb3efb7a763d92a360f91 (AllenZMC)
 - fix mis-spelling in manager.go 7b0a407ff7247aa41ad8efc6c4c1e0bd2cc2a046 (AllenZMC)
 - fix wrong spells in hooks.go 53f1ab50e5ec38a33e7329c79a2ad61e747c4e18 (AllenZMC)
 - fix word 'resoures' to 'resources 915d69a2c6a0026599f28c4857edff1c1f45bab9 (AllenZMC)
 - fix word 'efault' to 'default' 6b5ab08a61d73980ca6f84ccdb3f6b996d950cae (AllenZMC)
-- Fix typo notes -> note f653192882b488afd34422c9168e3d492f7df09f (Kevin Lau)
 - cleanup: log message typo fix 4117b38ae621a8061563417c4b125dfb8ff59b00 (dzzg)
 - fix word 'potgres' to 'postgres' b788e3dce965e76368f8af66b93c6a21abf730a3 (AllenZMC)
 - fix word `constrint` to `constraint` 6485fec30979357284ae989f29f223bf08b7034f (AllenZMC)
@@ -78,19 +75,16 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix broken link in docs/related.md 7247956b96d0f038195af41f1be9b7ce6002c662 (Pete Hodgson)
 - Fix documentation to use existing chart in the stable repository 5a39ff90ad25647b75a9e5351dd73ed36fe958e5 (Nenad Merdanovic)
 - Fixed failing tests for helm installer 70cd32c4cebac2af67f4da3934e141f0f0c00842 (Oleg Sidorov)
-- Revert "Fixed default value for `helm.sh/chart` label" b16ec08899658cad65cd5ae6a14334aed47f0101 (Shao Yang Hong)
 - fix(helm): Delete hooks should wait for resource to be removed from etcd before continuing cb2207c2fbddba7f0cabb626ecb7b02370ca9faa (Morten Torkildsen)
 - fix: include glick.lock 3a5e9709ee502ea1ed106feeba51db6365d7d711 (Ace Eldeib)
 - Fix nested null value overrides 5b9311d163654c2d3a7ee54742f6497a017a91ee (Adam Eijdenberg)
 - (helm): Proper fix for #5046 0239cc4457463cfd6af1f61ec26aa35845dcb1c5 (Marc Khouzam)
 - fix(helm): Disable schema validation for manifests ad886c5e36abd2b7cdc1d36b4a48ed638847a981 (Morten Torkildsen)
 - fix the short descriptions of all helm commands 8fcc438b67de564a3dd9255ec9c1634229b764c0 (Tariq Ibrahim)
-- Fix typo e1b993bae8444ca73b48e7a2fd51cae1f5ace2a3 (Jon Huhn)
 - fix(pkg/storage/driver): use shallowReleaseEqual() ae0d4b151b621a2f12a9b89e75a868349a6fc80f (Matthew Fisher)
 - fix(completion): --flag=val breaks zsh completion 3e1ca6fe6e3e2add0518925c5273b650fcb64280 (Marc Khouzam)
 - Fix plugin tar extract permissions 796f5eea85e47347709e024daeff5b3c3e7111f0 (Aaron Walker)
 - fix(helm): Only validate new manifests 94adb5bbe01c554486630287fe722e9ee0d578f0 (Morten Torkildsen)
-- Fix formatting issue f4052821c9b89eac9412f1f77b0242879d0400d8 (Elliot Maincourt)
 - fix(helm): improve error message for content outside base dir 720c28f4c517a72f71b294d35193825cbeeb7e53 (Arash Deshmeh)
 - Fix for missing $root fdbbcab3b381c029ff0d586f8deeb5bdf06a2fd0 (Michel Belleau)
 - fix(helm): fixed output leak from template command unit tests 9f4a9d206cd12b8ea57a59172dfa80a3b0c69586 (Arash Deshmeh)

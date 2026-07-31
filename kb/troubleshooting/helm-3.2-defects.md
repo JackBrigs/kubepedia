@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**58 defects** the project fixed across **3 releases** of the 3.2 line, from 3.2.0 to
+**55 defects** the project fixed across **3 releases** of the 3.2 line, from 3.2.0 to
 3.2.2. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -64,13 +64,11 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix(install): correct append tls config. bf5c0ae7f46dce9f44633e0d7e87b933c375bf5a (James McElwain)
 - Fix stray modules c8d8007c7aba5b66d185f4c82cc19a16c8246dd7 (Martin Hickey)
 - fix: add new static linter and fix issues it found (#7655) 16024dc19a23e83f00a19742033031717a56be0e (Matt Butcher)
-- test(helm): fix client update error 69d9722edaea6f54194d6ab508142d3f4eb2be14 (Dong Gang)
 - fix(helm): polish goimport c45869c4ad8f46140f6aea0d673aa7892f3eefad (Dong Gang)
 - fix(helm): respect resource policy on ungrade Don't delete a resource on upgrade if it is annotated with helm.io/resource-policy=keep. This can cause data loss for users if the annotation is ignored(e.g. for a PVC) 9744e9f619d3c1d8ddbe3af59e7d70d81c05dc5a (Dong Gang)
 - fix(ADOPTERS): alphabetize org list (#7645) 8edf86a7181c16fe4089c52f7b7fe58df5b08ce7 (Matthew Fisher)
 - Fixes verification output on pull command a3f92f65e26323a3f91343c29ee0c4d1b6282d21 (Matt Farina)
 - fix(helm): stdin values for helm upgrade --install 1ab52fa79c100332bc8014095cf7aed6937cae8a (Matt Morrissette)
-- Fix golangci-lint errors. f05ffdd2da3bc6acf31747c42c292a8e34cd8697 (Pavel Macík)
 - Fix dep build to be compatiable with Helm 2 when requirements use repo alias 13e2dcfde53c735dc313d0145bca063ba3a9d121 (Song Shukun)
 - fix(cmd/helm): upgrade go-shellwords c235470e59fd4f17149339757940537f95605cef (Adam Reese)
 - fix(helm): add --skipCRDs flag to 'helm upgrade' When 'helm upgrade --install' is run, this will allow to skip installing CRDs Closes #7452 e92a258a9d7cc684589cb22c317eb7ddaeaf753e (akash-gautam)
@@ -96,7 +94,6 @@ Entries are grouped by the release that fixed them, oldest first.
 ### 3.2.1
 
 - 3.2.2 is the next patch release and will contain bug fixes
-- docs: fix capitalization in a few help messages 9036e17fb6bca6609721385cc224acdf39b28ec9 (Liu Ming)
 - Fix markdown table in helm command doc 8635a19660e8d79da5e70a64de64c2b18f1fde73 (Lüchinger Dominic)
 - fix(pkg/plugin): copy plugins directly to the data directory (#7962) 48d09a26d2a7e5d9693e0d4f145287961b612020 (Adam Reese)
 - fix(helm): allow a previously failed release to be upgraded (#7653) 56ef9ab386c771d827dc502f5f8e12929fc5ee1f (Matthew Morrissette)

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**16 defects** the project fixed across **5 releases** of the 3.14 line, from 3.14.0 to
+**14 defects** the project fixed across **5 releases** of the 3.14 line, from 3.14.0 to
 3.14.4. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,8 +47,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - 3.14.1 will contain only bug fixes and will be on February 14, 2024
 - Fix issues when verify generation readiness was merged c042264a9d1dd5d584684e105aa1ab0e38d96f20 (Matt Farina)
 - fix test to use the default code's k8sVersionMinor 6e5332e79b01eb37f902a3569b1e7b80a8d86dd8 (Joe Julian)
-- Revert "fix(main): fix basic auth for helm pull or push" 24e2864c64844f34518caba11f659cc971aebca6 (Matt Farina)
-- Revert "fix(registry): address anonymous pull issue" 992dc58556506a8fe71b185d998a9ac532990261 (Matt Farina)
 - FIX Default ServiceAccount yaml 828763e0d841fbe513f7f28e22d23fd103f97753 (Lars Zimmermann)
 - fix(registry): address anonymous pull issue fe4c01f6241a8de566a6fc94cb6d1e5b5eb273d6 (Hidde Beydals)
 - fix(registry): unswallow error da3c666a8223376e091e362856ebf0759e16fcd6 (Hidde Beydals)

@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**83 defects** the project fixed across **12 releases** of the 1.30 line, from 1.30.0 to
+**75 defects** the project fixed across **12 releases** of the 1.30 line, from 1.30.0 to
 1.30.12. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -48,19 +48,11 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix: increase snapshot timeout to 20min by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1979
 - fix: allow resizing to min required size for performance plus disks by @RomanBednar in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1950
 - fix: ensure Kubernets conformant format for location by @daniel-weisse in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1981
-- doc: fix code spelling errors by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1995
-- test: fix verify-helm-chart failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2001
 - cleanup: fix k8s.io/endpointslice dependency by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2014
 - fix: v1.29.1.1-windows-hp image by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2060
-- doc: fix readOnly setting doc by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2091
 - fix: improve disk attach/detach error message by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2093
-- test: fix multi-zone test failure on capz multi-zone cluster by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2098
-- test: fix windows volume cloning test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2108
-- Chore: bump azclient and fix signature update in new version by @MartinForReal in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2113
 - fix: avoid disk lun collision issue in edge case by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2089
 - Chores:bump dependencies to fix cve by @MartinForReal in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2132
-- test: fix goveralls by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2180
-- test: fix windows ut failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2187
 
 ### 1.30.1
 

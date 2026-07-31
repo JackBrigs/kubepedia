@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**119 defects** the project fixed across **5 releases** of the 0.0 line, from 0.0.1 to
+**106 defects** the project fixed across **5 releases** of the 0.0 line, from 0.0.1 to
 0.0.5. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -44,7 +44,6 @@ Entries are grouped by the release that fixed them, oldest first.
 
 ### 0.0.1
 
-- Fix typo in README.md regarding opencontainers/runtime-tools by @akluth in https://github.com/containers/youki/pull/35
 - fix a memory subsystem by @utam0k in https://github.com/containers/youki/pull/36
 - Fixed spelling mistake in src/rootfs.rs by @PeterYordanov in https://github.com/containers/youki/pull/67
 - Change execution path and fix CI by @minakawa-daiki in https://github.com/containers/youki/pull/73
@@ -74,7 +73,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - fix doc comment of with_preserved_fds by @shorii in https://github.com/containers/youki/pull/302
 - Fix Changes Job in CI by @YJDoc2 in https://github.com/containers/youki/pull/306
 - Fix error message(`LinuixIdMapping` to `uid_mappings`) by @shorii in https://github.com/containers/youki/pull/318
-- style: Fix indentation by @kenoss in https://github.com/containers/youki/pull/319
 - avoid cloning LinuxResources because it is a large structure. by @utam0k in https://github.com/containers/youki/pull/320
 - fix vagrant errors #321 by @zidoshare in https://github.com/containers/youki/pull/322
 - fix build error in vagrant by @zidoshare in https://github.com/containers/youki/pull/323
@@ -123,7 +121,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix a comment explaining that `seccom_rule_add` requires multiple args to be broken into multiple rules. by @yihuaf in https://github.com/containers/youki/pull/775
 - introduce the timeout for github actions by @utam0k in https://github.com/containers/youki/pull/777
 - fix log control env val not passing properly. by @utam0k in https://github.com/containers/youki/pull/778
-- update README.md for makefile. by @utam1k in https://github.com/containers/youki/pull/779
 - fix the release workflow. by @utam0k in https://github.com/containers/youki/pull/781
 - make dependabot work again. by @utam0k in https://github.com/containers/youki/pull/782
 
@@ -139,12 +136,8 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix README issue links by @LeoColomb in https://github.com/containers/youki/pull/1183
 - fix a typo by @DriedYellowPeach in https://github.com/containers/youki/pull/1257
 - Small fix and refine documents by @udzura in https://github.com/containers/youki/pull/1351
-- chore(rustdoc): Fix `rustdoc` warnings by @adoerr in https://github.com/containers/youki/pull/833
 - Add flat logos to docs folder by @scary4cat in https://github.com/containers/youki/pull/873
 - Remove the build dependency from some tests. by @utam0k in https://github.com/containers/youki/pull/909
-- Update cargo-llvm-cov and use rust 1.60.0 for coverage by @taiki-e in https://github.com/containers/youki/pull/898
-- chore: a separate target directory for runtimetest by @tony84727 in https://github.com/containers/youki/pull/981
-- test: hooks integration test by @tony84727 in https://github.com/containers/youki/pull/959
 - Added podman local system tests by @stefins in https://github.com/containers/youki/pull/1009
 - Automatically publish packages by @MostlyAmiable in https://github.com/containers/youki/pull/1000
 - Changed bats installation script to apt package manager by @stefins in https://github.com/containers/youki/pull/1125
@@ -152,12 +145,9 @@ Entries are grouped by the release that fixed them, oldest first.
 - Add git commit sha placeholder if .git not found by @YJDoc2 in https://github.com/containers/youki/pull/1251
 - Log result of the command before returning from main by @YJDoc2 in https://github.com/containers/youki/pull/1302
 - Add TestContainerKill required error message in kill command by @YJDoc2 in https://github.com/containers/youki/pull/1319
-- Upgrade to 1.65 and fix lint errors by @YJDoc2 in https://github.com/containers/youki/pull/1321
 - Improve the flow of the containerd test with youki by @utam0k in https://github.com/containers/youki/pull/1297
 - Fix TestContainerNoBinaryExists test, by making create behaviour similar to runc by @YJDoc2 in https://github.com/containers/youki/pull/1347
 - [actions] add workflow file for containerd integration testing by @guni1192 in https://github.com/containers/youki/pull/968
-- Change targets in the makefile by @YJDoc2 in https://github.com/containers/youki/pull/1383
-- Update makefile changes in containerd ci by @YJDoc2 in https://github.com/containers/youki/pull/1386
 - Add hostname test by @chermehdi in https://github.com/containers/youki/pull/1376
 - Fix release script and prepare for release by @YJDoc2 in https://github.com/containers/youki/pull/1397
 
@@ -165,15 +155,12 @@ Entries are grouped by the release that fixed them, oldest first.
 
 - Fixed container init process not re-parent to youki main process by @yihuaf in https://github.com/containers/youki/pull/1637
 - Fix clippy warning by @yihuaf in https://github.com/containers/youki/pull/1638
-- Fix formatting with `cargo fmt --check` by @rumpl in https://github.com/containers/youki/pull/1532
 - fix the warns from cargo clippy by @utam0k in https://github.com/containers/youki/pull/1564
-- fix typo in container_main_process.rs by @minatoaquaMK2 in https://github.com/containers/youki/pull/1641
 - fix container delete error by @lengrongfu in https://github.com/containers/youki/pull/1649
 - Fix github actions by @utam0k in https://github.com/containers/youki/pull/1588
 - fix: doc link by @lengrongfu in https://github.com/containers/youki/pull/1542
 - fix: youki's image in doc by @shimatar0 in https://github.com/containers/youki/pull/1614
 - Fix CI rules not filtering integration test files properly by @lengrongfu in https://github.com/containers/youki/pull/1643
-- ci: Fix test for podman by @utam0k in https://github.com/containers/youki/pull/1655
 - fix(libcontainer): Run test_is_executable with a more common file by @Overflow0xFFFF in https://github.com/containers/youki/pull/1676
 
 

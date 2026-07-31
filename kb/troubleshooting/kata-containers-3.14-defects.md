@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**6 defects** the project fixed across **1 releases** of the 3.14 line, from 3.14.0 to
+**5 defects** the project fixed across **1 releases** of the 3.14 line, from 3.14.0 to
 3.14.0. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -47,7 +47,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - gpu: Fix rootfs build by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10736
 - agent: Update ttrpc to include the fix for connectivity issues by @fidencio in https://github.com/kata-containers/kata-containers/pull/10775
 - gpu: Fix arm64 kernel build by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10777
-- versions: Fix formatting by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/10828
 - gpu: Fix arm64 build by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10812
 - gpu: Add first target and fix extratarballs by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10791
 

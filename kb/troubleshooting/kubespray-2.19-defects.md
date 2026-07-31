@@ -30,7 +30,7 @@ relations:
 
 ## Summary
 
-**42 defects** the project fixed across **2 releases** of the 2.19 line, from 2.19.0 to
+**41 defects** the project fixed across **2 releases** of the 2.19 line, from 2.19.0 to
 2.19.1. A cluster running a version below the one an entry sits under still carries that defect.
 
 Use this before reproducing a suspected bug: on this line it is often already named and fixed, and
@@ -72,7 +72,6 @@ Entries are grouped by the release that fixed them, oldest first.
 - Fix remove-node.yaml playbook fails when host is unreachable (#8843, @oomichi)
 - Fix removing `docker-ce.repo` failed (#8856, @Thearas)
 - Fix the condition of drain on pre-remove task (#8634, @oomichi)
-- Fix typo and duplicated declaration of ingressclasses (#8591, @spaced)
 - Fix vagrant default value for parameters `local_path_provisioner_enabled`/`multi_networking` (#8650, @liupeng0518)
 - Fix wrong item in mitogen contrib (#8508, @kdszoom)
 - Fixed a bug where hosts with NetworkManager enabled were having their /etc/resolv.conf file edited directly instead of through NM. Fixed a bug where DNS lookup failures would cause reset.yml or scale.yml to error out when resolvconf_mode=host_resolvconf (#8575, @mac-chaffee)
