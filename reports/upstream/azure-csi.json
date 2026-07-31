@@ -1,5 +1,23 @@
 {
+ "1.34.4": {
+  "bug fixes": [
+   "[release-1.34] fix: helm chart index by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3592",
+   "[release-1.34] fix: wrong NVMe disk LUN mapping on Windows D4ads_v7 SKU VM by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3636"
+  ]
+ },
+ "1.33.10": {
+  "bug fixes": [
+   "fix: correct local uninstall command in v1.33.x install docs by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3594"
+  ]
+ },
  "1.34.3": {
+  "bug fixes": [
+   "[release-1.34] fix: trigger migration within few mins by batching the volumes or imp… by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3535",
+   "[release-1.34] fix: incorrect node attached on waitingForDetached call by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3547",
+   "[release-1.34] fix: increase checkDiskLun throttle threshold from 1s to 10s by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3566",
+   "[release-1.34] fix: skip ManagedBy polling after successful VMSS detach by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3568",
+   "[release-1.34] test: fix trivy action failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3576"
+  ],
   "security updates": [
    "[release-1.34] test: fix CVE-2026-25679 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3538",
    "[release-1.34] fix: CVE-2026-33186 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3548",
@@ -13,15 +31,27 @@
    "[release-1.33] fix: CVE-2026-24051 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3529",
    "[release-1.33] fix: CVE-2026-33186 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3549",
    "[release-1.33] fix: CVE-2026-39883 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3579"
+  ],
+  "bug fixes": [
+   "[release-1.33] fix: Correct CSI-Provisioner permissions for VAC by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3496",
+   "[release-1.33] test: fix trivy action failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3577"
   ]
  },
  "1.34.2": {
+  "bug fixes": [
+   "[release-1.34] fix: Correct CSI-Provisioner permissions for VAC by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3495",
+   "[release-1.34] fix: replace os.ReadDir with fs.ReadDir(1) to avoid extra memory usage by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3500"
+  ],
   "security updates": [
    "[release-1.34] test: fix trivy CVE-2025-68121 failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3503",
    "[release-1.34] test: fix trivy CVE-2025-68121 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3514"
   ]
  },
  "1.34.1": {
+  "bug fixes": [
+   "[release-1.34] fix: let nodeExpandVolume retried if block device size is taking time to reflect in host by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3476",
+   "[release-1.34] fix: handling dangling detaches in a better way by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3481"
+  ],
   "security updates": [
    "[release-1.34] test: fix CVE-2025-61726 trivy failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3486"
   ]
@@ -30,9 +60,21 @@
   "security updates": [
    "[release-1.33] test: fix trivy CVE-2025-61727 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3436",
    "[release-1.33] fix: CVE-2025-13281 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3456"
+  ],
+  "bug fixes": [
+   "[release-1.33] fix: ASH static provision segmentation fault by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3452",
+   "[release-1.33] fix: let nodeExpandVolume retried if block device size is taking time to reflect in host by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3474"
   ]
  },
  "1.32.12": {
+  "bug fixes": [
+   "[release-1.32] test: fix govet error by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3360",
+   "[release-1.32] fix: disable enable-minimum-retry-after by default by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3363",
+   "[release-1.32] test: fix sanity test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3368",
+   "[release-1.32] Revert \"fix: disable enable-minimum-retry-after by default\" by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3372",
+   "[release-1.32] fix: ASH static provision segmentation fault by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3453",
+   "[release-1.32] fix: create volume failure when requested pvc size is smaller than snapshot disk size by @priyansh17 in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3401"
+  ],
   "security updates": [
    "[release-1.32] test: fix CVE-2025-47912 error by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3398",
    "[release-1.32] fix: CVE-2025-52881 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3408",
@@ -52,14 +94,50 @@
    "fix: CVE-2025-58181 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3421",
    "test: fix trivy CVE-2025-61727 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3435",
    "fix: CVE-2025-13281 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3451"
+  ],
+  "bug fixes": [
+   "cleanup: fix helm chart index file by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3147",
+   "fix: make disk and snapshot uri regex case insensitive everywhere by @landreasyan in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3149",
+   "fix(doc): fixing typo in the doc by @pawanpraka1 in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3148",
+   "fix: xfs mount failure on Azure Linux 3.0 node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3160",
+   "fix: typo in the required permissions by @jsafrane in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3181",
+   "fix: batching implementation should allow for an early exit for disks already processed in the batch by @landreasyan in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3205",
+   "test: fix TestConcurrentDetachDisk ut failure on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3228",
+   "fix: allow `.` in Azure tags by @kalexmills in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3277",
+   "test: fix helm install by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3298",
+   "fix: China cloud endpoints by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3303",
+   "fix: ZRS disk should support 4 zones by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3309",
+   "fix: detach call should not use the full context deadline and should leave an active context for force detach on timeout by @landreasyan in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3294",
+   "test: fix flaky MaximumDataDisksExceeded e2e by @hccheng72 in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3322",
+   "test: fix govet error by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3357",
+   "fix: validating Block Device Size Before Resizing FileSystem by @landreasyan in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3355",
+   "fix: disable enable-minimum-retry-after by default by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3358",
+   "test: fix sanity test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3366",
+   "Revert \"fix: disable enable-minimum-retry-after by default\" by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3370",
+   "fix: reconcile loop to watch migrations if earlier submission had failed by @hasethuraman in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3344",
+   "fix: create volume failure when requested pvc size is smaller than snapshot disk size by @priyansh17 in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3379",
+   "fix: disk creation failure in AzureStack env by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3428",
+   "fix: ASH static provision segmentation fault by @Phaow in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3449"
   ]
  },
  "1.33.7": {
   "security updates": [
    "[release-1.33] fix: CVE-2025-58181 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3424"
+  ],
+  "bug fixes": [
+   "[release-1.33] fix: disk creation failure in AzureStack env by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3429"
   ]
  },
  "1.33.6": {
+  "bug fixes": [
+   "[release-1.33] test: fix govet error by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3359",
+   "[release-1.33] fix: validating Block Device Size Before Resizing FileSystem by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3361",
+   "[release-1.33] fix: disable enable-minimum-retry-after by default by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3362",
+   "[release-1.33] test: fix sanity test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3367",
+   "[release-1.33] Revert \"fix: disable enable-minimum-retry-after by default\" by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3371",
+   "[release-1.33] fix: reconcile loop to watch migrations if earlier submission had failed by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3384",
+   "[release-1.33] fix: create volume failure when requested pvc size is smaller than snapshot disk size by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3395"
+  ],
   "security updates": [
    "[release-1.33] test: fix CVE-2025-47912 error by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3397",
    "[release-1.33] fix: CVE-2025-52881 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3407"
@@ -68,6 +146,12 @@
  "1.33.5": {
   "security updates": [
    "[release-1.33] fix: CVE-2025-5187 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3289"
+  ],
+  "bug fixes": [
+   "[release-1.33] test: fix helm install by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3299",
+   "[release-1.33] fix: China cloud endpoints by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3305",
+   "[release-1.33] fix: ZRS disk should support 4 zones by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3310",
+   "[release-1.33] fix: detach call should not use the full context deadline by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3334"
   ]
  },
  "1.31.12": {
@@ -75,11 +159,21 @@
    "[release-1.31] fix: CVE-2025-22868 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3220",
    "[release-1.31] test: fix CVE-2025-47907 trivy test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3243",
    "[release-1.31] fix: CVE-2025-5187 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3291"
+  ],
+  "bug fixes": [
+   "[release-1.31] test: fix helm install by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3301",
+   "[release-1.31] fix: ZRS disk should support 4 zones by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3312"
   ]
  },
  "1.32.11": {
   "security updates": [
    "[release-1.32] fix: CVE-2025-5187 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3290"
+  ],
+  "bug fixes": [
+   "[release-1.32] test: fix helm install by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3300",
+   "[release-1.32] fix: China cloud endpoints by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3306",
+   "[release-1.32] fix: ZRS disk should support 4 zones by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3311",
+   "[release-1.32] fix: detach call should not use the full context deadline by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3335"
   ]
  },
  "1.33.4": {
@@ -95,64 +189,175 @@
  "1.33.3": {
   "security updates": [
    "[release-1.33] fix: CVE-2025-22868 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3218"
+  ],
+  "bug fixes": [
+   "[release-1.33] fix: batching implementation should allow for an early exit for disks already processed in the batch by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3211",
+   "[release-1.33] test: fix TestConcurrentDetachDisk ut failure on Windows by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3231"
   ]
  },
  "1.32.9": {
   "security updates": [
    "[release-1.32] fix: CVE-2025-22868 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3219"
+  ],
+  "bug fixes": [
+   "[release-1.32] fix: batching implementation should allow for an early exit for disks already processed in the batch by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3212"
   ]
  },
  "1.33.2": {
   "security updates": [
    "[release-1.33] test: fix CVE-2025-4673 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3135",
    "[release-1.33] fix: CVE-2025-4563 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3157"
+  ],
+  "bug fixes": [
+   "[release-1.33] fix: make disk and snapshot uri regex case insensitive everywhere by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3151",
+   "[release-1.33] fix: xfs mount failure on Azure Linux 3.0 node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3175",
+   "[release-1.33] fix: helm chart index on release-1.33 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3185"
   ]
  },
  "1.32.8": {
   "security updates": [
    "[release-1.32] test: fix CVE-2025-4673 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3136",
    "[release-1.32] fix: CVE-2025-4563 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3158"
+  ],
+  "bug fixes": [
+   "[release-1.32] fix: make disk and snapshot uri regex case insensitive everywhere by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3152",
+   "[release-1.32] fix: xfs mount failure on Azure Linux 3.0 node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3176",
+   "[release-1.32] fix: helm chart index on release-1.32 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3186"
   ]
  },
  "1.31.11": {
   "security updates": [
    "[release-1.31] test: fix CVE-2025-4673 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3137"
+  ],
+  "bug fixes": [
+   "[release-1.31] test: fix golint errors by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3139",
+   "[release-1.31] fix: xfs mount failure on Azure Linux 3.0 node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3177",
+   "[release-1.31] chore: fix helm chart index on release-1.31 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3187"
   ]
  },
  "1.33.0": {
+  "bug fixes": [
+   "fix: avoid duplicate ssl mounts on Fedora node in AzureStack environment by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2922",
+   "fix: avoid get disk call in disk creation by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2934",
+   "fix: reduce get disk calls in disk attach/detach on VMSS by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2941",
+   "fix: merge OTEL metrics with legacy registerer by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2949",
+   "fix: increase TaintRemovalInitialDelay as 30s by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2977",
+   "fix: detach disk should have more priority than attach disk on the same node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2992",
+   "fix: panic for GetZoneByNodeName on Azure Stack by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3017",
+   "fix: remove unnecessary get vmss call during disk attach by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3022",
+   "fix: decrease poller delay in AzureClient as 5s by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3034",
+   "fix: incorrect disk num discovery on Windows 2019 node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3038",
+   "fix: disk detach failure on AzureStack Hub by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3047",
+   "fix: vpa install and uninstall script by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3058",
+   "doc: fix snapshot crd illegal characters by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3061",
+   "doc: fix snapshot crd illegal characters in deploy by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3068",
+   "fix: adjust the batch size as per the number of disks allowed by @nearora-msft in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3039",
+   "fix: bump mount-utils to fix volume resizing failure when there are nfs unresponsive volumes by @gnufied in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3071",
+   "fix: vmss flex node naming parsing issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3091"
+  ],
   "security updates": [
    "fix: CVE-2025-30204 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2963",
    "test: fix CVE-2025-22871 in trivy action by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3005"
+  ]
+ },
+ "1.32.6": {
+  "bug fixes": [
+   "[release-1.32] fix: vmss flex node naming parsing issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3095"
+  ]
+ },
+ "1.31.10": {
+  "bug fixes": [
+   "[release-1.31] fix: vmss flex node naming parsing issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3096"
+  ]
+ },
+ "1.32.5": {
+  "bug fixes": [
+   "[release-1.32] fix: disk detach failure on AzureStack Hub by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3048",
+   "[release-1.32] doc: fix snapshot crd illegal characters by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3066",
+   "[release-1.32] fix: adjust the batch size as per the number of disks allowed by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3073"
+  ]
+ },
+ "1.31.9": {
+  "bug fixes": [
+   "[release-1.31] fix: adjust the batch size as per the number of disks allowed by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3075"
   ]
  },
  "1.30.12": {
   "security updates": [
    "[release-1.30] test: fix CVE-2025-22871 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3009",
    "[release-1.30] fix: CVE-2025-22872 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3031"
+  ],
+  "bug fixes": [
+   "[release-1.30] fix: adjust the batch size as per the number of disks allowed by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3077"
+  ]
+ },
+ "1.32.4": {
+  "bug fixes": [
+   "[release-1.32] fix: incorrect disk num discovery on Windows 2019 node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3040"
   ]
  },
  "1.31.8": {
   "security updates": [
    "[release-1.31] test: fix CVE-2025-22871 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3007",
    "[release-1.31] fix: CVE-2025-22872 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3030"
+  ],
+  "bug fixes": [
+   "[release-1.31] fix: incorrect disk num discovery on Windows 2019 node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3041"
   ]
  },
  "1.32.3": {
   "security updates": [
    "[release-1.32] test: fix CVE-2025-22871 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3006"
+  ],
+  "bug fixes": [
+   "[release-1.32] fix: panic for GetZoneByNodeName on Azure Stack by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3018",
+   "[release-1.32] fix: remove unnecessary get vmss call during disk attach by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3024",
+   "[release-1.32] fix: decrease poller delay in AzureClient as 5s by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/3035"
+  ]
+ },
+ "1.32.2": {
+  "bug fixes": [
+   "[release-1.32] fix: increase TaintRemovalInitialDelay as 30s by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2978",
+   "[release-1.32] fix: detach disk should have more priority than attach disk on the same node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2993"
+  ]
+ },
+ "1.31.7": {
+  "bug fixes": [
+   "[release-1.31] fix: increase TaintRemovalInitialDelay as 30s by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2981",
+   "[release-1.31] fix: detach disk should have more priority than attach disk on the same node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2994"
+  ]
+ },
+ "1.30.11": {
+  "bug fixes": [
+   "[release-1.30] fix: detach disk should have more priority than attach disk on the same node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2995"
   ]
  },
  "1.32.1": {
+  "bug fixes": [
+   "[release-1.32] fix: avoid duplicate ssl mounts on Fedora node in AzureStack environment by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2927",
+   "[release-1.32] fix: avoid get disk call in disk creation by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2935",
+   "[release-1.32] fix: reduce get disk calls in disk attach/detach on VMSS by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2942",
+   "[release-1.32] fix: merge OTEL metrics with legacy registerer by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2951"
+  ],
   "security updates": [
    "[release-1.32] fix: CVE-2025-30204 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2970"
   ]
  },
  "1.31.6": {
+  "bug fixes": [
+   "[release-1.31] fix: avoid duplicate ssl mounts on Fedora node in AzureStack environment by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2928",
+   "[release-1.31] fix: avoid get disk call in disk creation by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2938",
+   "[release-1.31] fix: reduce get disk calls in disk attach/detach on VMSS by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2943"
+  ],
   "security updates": [
    "[release-1.31] fix: CVE-2025-30204 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2960"
   ]
  },
  "1.30.10": {
+  "bug fixes": [
+   "[release-1.30] fix: avoid duplicate ssl mounts on Fedora node in AzureStack environment by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2929",
+   "[release-1.30] fix: avoid get disk call in disk creation by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2939"
+  ],
   "security updates": [
    "[release-1.30] fix: CVE-2025-22870 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2940",
    "[release-1.30] fix: CVE-2025-30204 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2961"
@@ -164,12 +369,18 @@
   ]
  },
  "1.28.12": {
+  "bug fixes": [
+   "[release-1.28] test: fix trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2598"
+  ],
   "security updates": [
    "[release-1.28] fix: CVE-2024-51744 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2607",
    "[release-1.28] fix: CVE-2025-22870 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2958"
   ]
  },
  "1.29.13": {
+  "bug fixes": [
+   "[release-1.29] fix: remove duplicated imagePullSecrets deployment config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2823"
+  ],
   "security updates": [
    "[release-1.29] test: fix trivy action failure due to CVE-2024-45336 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2842",
    "[release-1.29] test: fix CVE-2025-22866 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2855",
@@ -177,6 +388,48 @@
   ]
  },
  "1.32.0": {
+  "bug fixes": [
+   "fix: add CriticalAddonsOnly toleration into controller pod by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2560",
+   "fix: support attach operations after premiumV2 disk migration by @landreasyan in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2569",
+   "fix: vm-type is not overriding as expected by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2578",
+   "test: fix trivy action by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2594",
+   "fix: support old api version for Azure Stack Hub by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2617",
+   "fix: add serial format limit to fix OOM issue when formatting a few disks in parallel in csi-azuredisk-node by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2616",
+   "fix: tagValueDelimiter parameter mismatch by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2624",
+   "fix: avoid duplicate ssl mounts on Redhat in AzureStack environment by @gulywwx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2663",
+   "fix: avoid duplicate ssl mounts on Redhat in AzureStack in chart config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2668",
+   "fix: increase snapshot container memory limit by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2677",
+   "fix: update max data disk count table with v6 VM sku by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2682",
+   "fix: support disk discovery on Windows Gen2 and v6 VM sku by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2671",
+   "fix: unmount volume issue on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2691",
+   "chore: update cloud provider lib with UserAgent fix by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2689",
+   "test: fix building latest-windows-hp tag by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2698",
+   "fix: revert to go1.22 windows filesystem stdlib behavior by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2692",
+   "fix: allow more powershell command running at same time on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2699",
+   "fix: increase azuredisk memory limit on node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2705",
+   "fix: resize is required after snapshot restore/volume clone on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2733",
+   "fix: ModifyVolume interface parameter check by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2739",
+   "fix: runOnControlPlane chart config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2742",
+   "feat: add noformat option to fix fsck stuck issue on Linux node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2751",
+   "test: fix external e2e test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2758",
+   "fix: increase provisioner, resizer, snapshotter retry-interval-max by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2763",
+   "feat: add directmount option to fix fsck stuck issue on Linux node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2766",
+   "fix: get disk stuck issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2783",
+   "test: fix pv deletion timeout by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2796",
+   "fix: wrong node matching when detaching dangling disk by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2812",
+   "Revert \"fix: wrong node matching when detaching dangling disk\" by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2815",
+   "fix: remove duplicated imagePullSecrets deployment config by @adriananeci in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2819",
+   "doc: fix chart README doc by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2829",
+   "fix: set get disk timeout as 15s and make it configurable by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2857",
+   "fix: issue #2858 incorrect controller.affinity property processing by @olegch in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2859",
+   "fix: obsolete vmss cache issue after disk is resized successfully by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2865",
+   "fix: disable batch attach when hitting MaximumDataDisksExceeded error by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2883",
+   "fix: ignore GetDisk timeout during disk attach by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2894",
+   "fix: incorrect cloud provider setting in sovereign cloud by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2911",
+   "fix: merge mutable parameters for disk creation to support ModifyVolume changes by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2913",
+   "fix: Merge mutable parameters for disk creation by @antoine-gaillard in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2910",
+   "fix: storageEndpoint issue in sovereign cloud by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2916"
+  ],
   "security updates": [
    "fix: CVE-2024-51744 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2591",
    "fix: CVE-2024-45337 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2717",
@@ -186,13 +439,34 @@
    "fix: CVE-2025-0426 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2874"
   ]
  },
+ "1.31.5": {
+  "bug fixes": [
+   "[release-1.31] chore: upgrade Azure cloud provider lib to fix azclient timeout setting issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2904",
+   "[release-1.31] fix: merge mutable parameters for disk creation to support ModifyVolume changes by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2914",
+   "[release-1.31] fix: storageEndpoint issue in sovereign cloud by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2917"
+  ]
+ },
  "1.31.4": {
   "security updates": [
    "[release-1.31] test: fix CVE-2025-22866 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2853",
    "[release-1.31] fix: CVE-2025-0426 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2875"
+  ],
+  "bug fixes": [
+   "[release-1.31] fix: set get disk timeout as 15s and make it configurable by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2861",
+   "[release-1.31] fix: incorrect affinity chart config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2866",
+   "[release-1.31] fix: obsolete vmss cache issue after disk is resized successfully by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2870",
+   "[release-1.31] fix: disable batch attach when hitting MaximumDataDisksExceeded error by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2889",
+   "[release-1.31] fix: ignore GetDisk timeout during disk attach by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2895"
   ]
  },
  "1.30.8": {
+  "bug fixes": [
+   "[release-1.30] fix: remove duplicated imagePullSecrets deployment config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2822",
+   "[release-1.30] fix: set get disk timeout as 15s and make it configurable by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2863",
+   "[release-1.30] fix: incorrect affinity chart config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2867",
+   "[release-1.30] fix: disable batch attach when hitting MaximumDataDisksExceeded error by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2890",
+   "[release-1.30] fix: ignore GetDisk timeout during disk attach by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2896"
+  ],
   "security updates": [
    "[release-1.30] test: fix trivy action failure due to CVE-2024-45336 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2841",
    "[release-1.30] test: fix CVE-2025-22866 in trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2854",
@@ -200,56 +474,229 @@
   ]
  },
  "1.31.3": {
+  "bug fixes": [
+   "[release-1.31] fix: remove duplicated imagePullSecrets deployment config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2821",
+   "[release-1.31] fix: upgrade azure cloud provider lib to fix AzureStack env setting issue on AKS by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2831"
+  ],
   "security updates": [
    "[release-1.31] test: fix trivy action failure due to CVE-2024-45336 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2840"
   ]
  },
  "1.31.2": {
+  "bug fixes": [
+   "[release-1.31] fix: avoid duplicate ssl mounts on Redhat in AzureStack environment by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2665",
+   "[release-1.31] fix: increase snapshot container memory limit by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2678",
+   "[release-1.31] fix: update max data disk count table with v6 VM sku by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2683",
+   "[release-1.31] fix: support disk discovery on Windows Gen2 and v6 VM sku by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2686",
+   "[release-1.31] fix: unmount volume issue on Windows node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2693",
+   "[release-1.31] fix: revert to go1.22 windows filesystem stdlib behavior by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2700",
+   "[release-1.31] fix: allow more powershell command running at same time on Windows node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2703",
+   "[release-1.31] fix: increase azuredisk memory limit on node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2706",
+   "[release-1.31] fix: resize is required after snapshot restore/volume clone on Windows by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2734",
+   "[release-1.31] fix: ModifyVolume interface parameter check by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2741",
+   "[release-1.31] fix: runOnControlPlane chart config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2743",
+   "[release-1.31] test: fix external e2e test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2759",
+   "[release-1.31] feat: add noformat option to fix fsck stuck issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2755",
+   "[release-1.31] fix: increase provisioner, resizer, snapshotter retry-interval-max by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2764",
+   "[release-1.31] feat: add directmount option to fix fsck stuck issue on Linux node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2768",
+   "[release-1.31] fix: get disk stuck issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2784",
+   "[release-1.31] test: fix pv deletion timeout by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2797"
+  ],
   "security updates": [
    "[release-1.31] fix: CVE-2024-45337 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2723",
    "[release-1.31] fix: CVE-2024-45338 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2747"
   ]
  },
  "1.30.7": {
+  "bug fixes": [
+   "[release-1.30] fix: avoid duplicate ssl mounts on Redhat in AzureStack environment by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2666",
+   "[release-1.30] fix: increase snapshot container memory limit by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2680",
+   "[release-1.30] fix: update max data disk count table with v6 VM sku by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2684",
+   "[release-1.30] fix: unmount volume issue on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2695",
+   "[release-1.30] fix: revert to go1.22 windows filesystem stdlib behavior by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2701",
+   "[release-1.30] fix: allow more powershell command running at same time on Windows node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2704",
+   "[release-1.30] fix: increase azuredisk memory limit on node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2707",
+   "[release-1.30] fix: runOnControlPlane chart config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2744",
+   "[release-1.30] fix: resize is required after snapshot restore/volume clone on Windows by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2754",
+   "[release-1.30] test: fix external e2e test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2761",
+   "[release-1.30] feat: add noformat option to fix fsck stuck issue on Linux node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2756",
+   "[release-1.30] fix: increase provisioner, resizer, snapshotter retry-interval-max by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2765",
+   "[release-1.30] feat: add directmount option to fix fsck stuck issue on Linux node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2769",
+   "[release-1.30] fix: get disk stuck issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2785",
+   "[release-1.30] test: fix pv deletion timeout by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2798"
+  ],
   "security updates": [
    "[release-1.30] fix: CVE-2024-45337 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2724",
    "[release-1.30] fix: CVE-2024-45338 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2748"
   ]
  },
  "1.29.12": {
+  "bug fixes": [
+   "[release-1.29] fix: avoid duplicate ssl mounts on Redhat in AzureStack environment by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2667",
+   "[release-1.29] fix: increase snapshot container memory limit by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2681",
+   "[release-1.29] fix: update max data disk count table with v6 VM sku by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2685",
+   "[release-1.29] fix: unmount volume issue on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2696",
+   "[release-1.29] fix: revert to go1.22 windows filesystem stdlib behavior by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2702",
+   "[release-1.29] fix: increase azuredisk memory limit on node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2708",
+   "[release-1.29] fix: allow more powershell command running at same time on Windows node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2711",
+   "[release-1.29] test: fix external e2e test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2760",
+   "[release-1.29] feat: add noformat option to fix fsck stuck issue on Linux node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2757",
+   "[release-1.29] feat: add directmount option to fix fsck stuck issue on Linux node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2770",
+   "[release-1.29] fix: get disk stuck issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2786",
+   "[release-1.29] test: fix pv deletion timeout by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2799"
+  ],
   "security updates": [
    "[release-1.29] fix: CVE-2024-45337 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2725",
    "[release-1.29] fix: CVE-2024-45338 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2749"
   ]
  },
  "1.29.11": {
+  "bug fixes": [
+   "[release-1.29] fix: add CriticalAddonsOnly toleration into controller pod by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2567",
+   "[release-1.29] test: fix trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2597",
+   "[release-1.29] fix: tagValueDelimiter parameter mismatch by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2628"
+  ],
   "security updates": [
    "[release-1.29] fix: CVE-2024-51744 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2606"
   ]
  },
  "1.31.1": {
+  "bug fixes": [
+   "[release-1.31] fix: add CriticalAddonsOnly toleration into controller pod by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2565",
+   "[release-1.31] fix: support attach operations after premiumV2 disk migration by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2571",
+   "[release-1.31] fix: vm-type is not overriding as expected by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2580",
+   "[release-1.31] test: fix trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2595",
+   "[release-1.31] fix: support old api version for Azure Stack Hub by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2621",
+   "[release-1.31] fix: add serial format limit to fix OOM issue when formatting a few disks in parallel in csi-azuredisk-node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2622",
+   "[release-1.31] fix: tagValueDelimiter parameter mismatch by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2626"
+  ],
   "security updates": [
    "[release-1.31] fix: CVE-2024-51744 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2593"
   ]
  },
  "1.30.6": {
+  "bug fixes": [
+   "[release-1.30] fix: add CriticalAddonsOnly toleration into controller pod by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2566",
+   "[release-1.30] fix: support attach operations after premiumV2 disk migration by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2572",
+   "[release-1.30] fix: vm-type is not overriding as expected by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2581",
+   "[release-1.30] test: fix trivy action by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2596",
+   "[release-1.30] fix: add serial format limit to fix OOM issue when formatting a few disks in parallel in csi-azuredisk-node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2623",
+   "[release-1.30] fix: tagValueDelimiter parameter mismatch by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2627"
+  ],
   "security updates": [
    "[release-1.30] fix: CVE-2024-51744 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2592"
   ]
  },
  "1.31.0": {
+  "bug fixes": [
+   "fix: ensure azure cloud config could be loaded from secret by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2202",
+   "fix: enable check-d",
+   "fix: ensure azure cloud config could be loaded from secret by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2202",
+   "fix: enable check-disk-lun-collision during disk attach by default by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2208",
+   "fix: use force detach as backoff when disk detach failed by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2211",
+   "fix: copy volume error in cross zone scenario by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2223",
+   "fix: Workload identity is not working. by @cvvz in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2233",
+   "fix: refine check disk lun collision logic by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2239",
+   "fix: allow special char in tag value by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2246",
+   "fix: vendor get zone panic fix by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2249",
+   "fix: stop attaching disk when get disk lun failed by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2260",
+   "fix: possible dead loop in GetVolumeStats on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2267",
+   "fix: cache GetVolumeStats on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2273",
+   "fix: print error logs in NodeGetVolumeStats by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2279",
+   "fix: refine GetFreeSpace call on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2287",
+   "fix: use alternative driver name in used lun check by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2298",
+   "fix: liveness probe failure when hostNetwork not enabled in controller by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2315",
+   "fix: broken chart index by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2316",
+   "test: fix stdlib CVE due to golang v1.22.2 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2326",
+   "test: fix codespell error by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2345",
+   "fix: shield guard issues on node by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2358",
+   "fix: shield guard issues by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2354",
+   "fix: panic on Windows node when getFreeSpace failed on volume path by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2366",
+   "fix: shield guard issue on windows node hostprocess initContainer by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2364",
+   "fix: add ReservedDataDiskSlotNum copy from DriverOptions to Driver struct by @ClementLachaussee in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2384",
+   "test: fix trivy action failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2389",
+   "fix: reservedDataDiskSlotNum chart setting in v1.29.7 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2399",
+   "fix: GHSA-xr7q-jx4m-x55m by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2400",
+   "fix: managed identity token refresh issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2404",
+   "fix: increase azuredisk container memory limits as 600Mi by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2422",
+   "fix: add pv patch permission with HonorPVReclaimPolicy enabled by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2439",
+   "fix: create snapshot failure in edge zone by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2450",
+   "fix: only enable removeNotReadyTaint on driver node daemonset by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2456",
+   "fix: checkDiskLun throttling issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2461",
+   "fix: upgrade csi-provisioner to v5.0.2 to fix pv deletion stuck issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2472",
+   "fix: upgrade csi-provisioner to v5.0.2 to fix pv deletion stuck issue on v1.30.3, v1.29.8 charts by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2476",
+   "cleanup: upgrade golint version and fix golint errors by @Zhupku in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2487",
+   "fix: increase liveness-probe timeout on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2488",
+   "fix: resize failure when cloning a volume with bigger size on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2503",
+   "fix: upgrade node-driver-registrar to fix register timeout issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2510",
+   "fix: liveness probe failure when hostNetwork not enabled on linux node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2521"
+  ],
   "security updates": [
    "fix: CVE-2024-3177 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2305",
    "fix: CVE-2024-35255 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2350",
    "fix: CVE-2024-5321 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2417"
   ]
  },
+ "1.30.5": {
+  "bug fixes": [
+   "[release-1.30] cleanup: upgrade golint version and fix golint errors by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2489",
+   "[release-1.30] fix: resize failure when cloning a volume with bigger size on Windows by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2504",
+   "[release-1.30] fix: increase liveness-probe timeout on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2513",
+   "[release-1.30] fix: upgrade node-driver-registrar to fix register timeout issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2511",
+   "[release-1.30] fix: liveness probe failure when hostNetwork not enabled on linux node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2525"
+  ]
+ },
+ "1.29.10": {
+  "bug fixes": [
+   "[release-1.29] fix: resize failure when cloning a volume with bigger size on Windows by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2505",
+   "[release-1.29] cleanup: upgrade golint version and fix golint errors by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2508",
+   "[release-1.29] fix: upgrade node-driver-registrar to fix register timeout issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2512",
+   "[release-1.29] fix: increase liveness-probe timeout on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2514",
+   "[release-1.29] fix golint and disable staticcheck by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2523",
+   "[release-1.29] fix: liveness probe failure when hostNetwork not enabled on linux node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2526"
+  ]
+ },
+ "1.28.11": {
+  "bug fixes": [
+   "[release-1.28] fix: create snapshot failure in edge zone by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2454",
+   "[release-1.28] fix: resize failure when cloning a volume with bigger size on Windows by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2506",
+   "[release-1.28] cleanup: upgrade golint version and fix golint errors by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2507",
+   "[release-1.28] fix: increase liveness-probe timeout on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2515",
+   "[release-1.28] fix golint and disable staticcheck by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2522"
+  ]
+ },
+ "1.30.4": {
+  "bug fixes": [
+   "[release-1.30] fix: create snapshot failure in edge zone by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2451",
+   "[release-1.30] fix: only enable removeNotReadyTaint on driver node daemonset by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2459",
+   "[release-1.30] fix: checkDiskLun throttling issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2468",
+   "[release-1.30] fix: upgrade csi-provisioner to v5.0.2 to fix pv deletion stuck issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2474"
+  ]
+ },
+ "1.29.9": {
+  "bug fixes": [
+   "[release-1.29] fix: create snapshot failure in edge zone by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2453",
+   "[release-1.29] fix: checkDiskLun throttling issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2469",
+   "[release-1.30] fix: upgrade csi-provisioner to v5.0.2 to fix pv deletion stuck issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2475"
+  ]
+ },
  "1.29.8": {
+  "bug fixes": [
+   "[release-1.29] test: fix trivy action failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2391",
+   "[release-1.29] fix: GHSA-xr7q-jx4m-x55m by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2402",
+   "[release-1.29] fix: increase azuredisk container memory limits as 600Mi by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2424",
+   "[release-1.29] fix: add pv patch permission with HonorPVReclaimPolicy enabled by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2441"
+  ],
   "security updates": [
    "[release-1.29] fix: CVE-2024-5321 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2419"
   ]
  },
  "1.28.10": {
+  "bug fixes": [
+   "[release-1.28] test: fix trivy action failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2392",
+   "[release-1.28] fix: GHSA-xr7q-jx4m-x55m by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2403",
+   "[release-1.28] fix: increase azuredisk container memory limits as 600Mi by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2425"
+  ],
   "security updates": [
    "[release-1.28] fix: CVE-2024-5321 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2420"
   ]
@@ -257,9 +704,26 @@
  "1.30.3": {
   "security updates": [
    "[release-1.30] fix: CVE-2024-5321 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2418"
+  ],
+  "bug fixes": [
+   "[release-1.30] fix: increase azuredisk container memory limits as 600Mi by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2423",
+   "[release-1.30] fix: add pv patch permission with HonorPVReclaimPolicy enabled by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2440"
   ]
  },
  "1.30.2": {
+  "bug fixes": [
+   "[release-1.30] fix: refine GetFreeSpace call on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2289",
+   "[release-1.30] fix: use alternative driver name in used lun check by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2299",
+   "[release-1.30] fix: liveness probe failure when hostNetwork not enabled in controller by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2317",
+   "[release-1.30] test: fix stdlib CVE due to golang v1.22.2 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2327",
+   "[release-1.30] test: fix codespell error by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2346",
+   "[release 1.30] fix shield guard on csi controller and node by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2363",
+   "[release-1.30] fix: panic on Windows node when getFreeSpace failed on volume path by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2367",
+   "[release-1.30] fix: add ReservedDataDiskSlotNum copy from DriverOptions to Driver struct by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2385",
+   "[release-1.30] test: fix trivy action failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2390",
+   "[release-1.30] fix: GHSA-xr7q-jx4m-x55m by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2401",
+   "[release-1.30] fix: managed identity token refresh issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2405"
+  ],
   "security updates": [
    "[release-1.30] fix: CVE-2023-45288 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2294",
    "[release-1.30] fix: CVE-2024-3177 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2306",
@@ -267,43 +731,121 @@
   ]
  },
  "1.28.9": {
+  "bug fixes": [
+   "[release-1.28] test: fix codespell error by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2348",
+   "[release 1.28] fix shield guard on csi controller and node by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2360",
+   "[release-1.28] fix: panic on Windows node when getFreeSpace failed on volume path by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2369"
+  ],
   "security updates": [
    "[release-1.28] fix: CVE-2024-35255 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2353"
   ]
  },
  "1.29.7": {
+  "bug fixes": [
+   "[release-1.29] test: fix codespell error by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2347",
+   "[release 1.29] fix shield guard on csi controller and node by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2362",
+   "[release-1.29] fix: panic on Windows node when getFreeSpace failed on volume path by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2368"
+  ],
   "security updates": [
    "[release-1.29] fix: CVE-2024-35255 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2352"
   ]
  },
  "1.29.6": {
+  "bug fixes": [
+   "[release-1.29] fix: refine GetFreeSpace call on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2290",
+   "[release-1.29] fix: use alternative driver name in used lun check by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2300",
+   "[release-1.29] fix: liveness probe failure when hostNetwork not enabled in controller by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2318",
+   "[release-1.29] test: fix stdlib CVE due to golang v1.22.2 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2328"
+  ],
   "security updates": [
    "[release-1.29] fix: CVE-2023-45288 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2295",
    "[release-1.29] fix: CVE-2024-3177 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2307"
   ]
  },
  "1.28.8": {
+  "bug fixes": [
+   "[release-1.28] fix: print error logs in NodeGetVolumeStats by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2281",
+   "[release-1.28] fix: refine GetFreeSpace call on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2291",
+   "[release-1.28] fix: liveness probe failure when hostNetwork not enabled in controller by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2319",
+   "[release-1.28] test: fix stdlib CVE due to golang v1.22.2 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2329"
+  ],
   "security updates": [
    "[release-1.28] fix: CVE-2023-45288 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2296",
    "[release-1.28] fix: CVE-2024-3177 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2308"
   ]
  },
  "1.30.1": {
+  "bug fixes": [
+   "[release-1.30] fix: ensure azure cloud config could be loaded from secret by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2204",
+   "[release-1.30] fix: enable check-disk-lun-collision during disk attach by default by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2210",
+   "[release-1.30] fix: use force detach as backoff when disk detach failed by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2216",
+   "[release-1.30] fix: copy volume error in cross zone scenario by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2225",
+   "[release-1.30] fix: Workload identity is not working. by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2236",
+   "[release-1.30] fix: refine check disk lun collision logic by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2240",
+   "[release-1.30] fix: allow special char in tag value by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2247",
+   "[release-1.30] fix: enable http with track2 sdk by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2252",
+   "[release-1.30] fix: vendor get zone panic fix by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2256",
+   "[release-1.30] fix: stop attaching disk when get disk lun failed by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2262",
+   "[release-1.30] fix: revert http-endpoint change on windows daemonset by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2266",
+   "[release-1.30] fix: possible dead loop in GetVolumeStats on Windows by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2270",
+   "[release-1.30] fix: cache GetVolumeStats on Windows node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2274",
+   "[release-1.30] fix: print error logs in NodeGetVolumeStats by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2282"
+  ],
   "security updates": [
    "[release-1.30] fix: CVE-2024-24786 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2226"
   ]
  },
+ "1.29.5": {
+  "bug fixes": [
+   "[release-1.29] fix: allow special char in tag value by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2248",
+   "[release-1.29] fix: stop attaching disk when get disk lun failed by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2263",
+   "[release-1.29] fix: possible dead loop in GetVolumeStats on Windows by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2271",
+   "[release-1.29] fix: cache GetVolumeStats on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2275",
+   "[release-1.29] fix: print error logs in NodeGetVolumeStats by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2280"
+  ]
+ },
  "1.28.7": {
+  "bug fixes": [
+   "[release-1.28] test: fix goveralls by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2182",
+   "[release-1.28] fix: cache GetVolumeStats on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2276"
+  ],
   "security updates": [
    "[release-1.28] fix: CVE-2024-24786 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2228"
   ]
  },
  "1.29.4": {
+  "bug fixes": [
+   "cleanup: fix k8s.io/endpointslice dependency by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2167",
+   "[release-1.29] test: fix goveralls by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2181",
+   "[release-1.29] fix: ensure azure cloud config could be loaded from secret by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2205",
+   "[release-1.29] fix: Workload identity is not working. by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2237",
+   "[release-1.29] fix: enable check-disk-lun-collision during disk attach by default by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2241",
+   "[release-1.29] fix: refine check disk lun collision logic by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2242"
+  ],
   "security updates": [
    "[release-1.29] fix: CVE-2024-24786 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2227"
   ]
  },
  "1.30.0": {
+  "bug fixes": [
+   "fix: Ultra and PremiumV2 disk snapshot delay issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1953",
+   "fix: increase snapshot timeout to 20min by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1979",
+   "fix: allow resizing to min required size for performance plus disks by @RomanBednar in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1950",
+   "fix: ensure Kubernets conformant format for location by @daniel-weisse in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1981",
+   "doc: fix code spelling errors by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1995",
+   "test: fix verify-helm-chart failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2001",
+   "cleanup: fix k8s.io/endpointslice dependency by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2014",
+   "fix: v1.29.1.1-windows-hp image by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2060",
+   "doc: fix readOnly setting doc by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2091",
+   "fix: improve disk attach/detach error message by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2093",
+   "test: fix multi-zone test failure on capz multi-zone cluster by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2098",
+   "test: fix windows volume cloning test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2108",
+   "Chore: bump azclient and fix signature update in new version by @MartinForReal in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2113",
+   "fix: avoid disk lun collision issue in edge case by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2089",
+   "Chores:bump dependencies to fix cve by @MartinForReal in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2132",
+   "test: fix goveralls by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2180",
+   "test: fix windows ut failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2187"
+  ],
   "security updates": [
    "fix: CVE-2023-39325 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2007",
    "chore: fix OpenTelemetry-Go Contrib CVE-2023-45142 by @cvvz in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2033",
@@ -313,26 +855,48 @@
   ]
  },
  "1.29.3": {
+  "bug fixes": [
+   "[release-1.29] test: fix multi-zone test failure on capz multi-zone cluster by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2099",
+   "[release-1.29] fix: improve disk attach/detach error message by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2096",
+   "[release-1.29] test: fix windows volume cloning test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2109",
+   "[release-1.29] fix: avoid disk lun collision issue in edge case by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2117"
+  ],
   "security updates": [
    "[release-1.29] fix: CVE-2023-48795 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2135"
   ]
  },
  "1.28.6": {
+  "bug fixes": [
+   "[release-1.28] test: fix multi-zone test failure on capz multi-zone cluster by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2100",
+   "[release-1.28] fix: improve disk attach/detach error message by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2097",
+   "[release-1.28] test: fix windows volume cloning test failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2110"
+  ],
   "security updates": [
    "[release-1.28] fix: CVE-2023-48795 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2136"
   ]
  },
  "1.26.9": {
+  "bug fixes": [
+   "[release-1.26] test: fix multi-zone test failure on capz multi-zone cluster by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2102",
+   "[release-1.26] fix: improve disk attach/detach error message by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2104"
+  ],
   "security updates": [
    "[release-1.26] fix: CVE-2023-48795 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2138"
   ]
  },
  "1.29.2": {
+  "bug fixes": [
+   "[release-1.29]chore: fix google.golang.org/grpc GHSA-m425-mq94-257g by @cvvz in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2029",
+   "[release-1.29] fix: v1.29.1.1-windows-hp image by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2061"
+  ],
   "security updates": [
    "fix: CVE-2023-5528, CVE-2023-47108 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2069"
   ]
  },
  "1.28.5": {
+  "bug fixes": [
+   "[release-1.28]chore: fix google.golang.org/grpc GHSA-m425-mq94-257g by @cvvz in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2030"
+  ],
   "security updates": [
    "[releaes-1.28] fix: CVE-2023-5528, CVE-2023-47108 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2070"
   ]
@@ -344,16 +908,38 @@
   ]
  },
  "1.29.1": {
+  "bug fixes": [
+   "[release-1.29] fix: Ultra and PremiumV2 disk snapshot delay issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1980",
+   "[release-1.29] fix: increase snapshot timeout to 20min by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1982",
+   "[release-1.29] fix: allow resizing to min required size for performance plus disks by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1986",
+   "[release-1.29] fix: ensure Kubernets conformant format for location by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1988",
+   "[release-1.29] doc: fix code spelling errors by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1996",
+   "[release-1.29] test: fix verify-helm-chart failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2002"
+  ],
   "security updates": [
    "[release-1.29] fix: CVE-2023-39325 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2010"
   ]
  },
  "1.28.4": {
+  "bug fixes": [
+   "[release-1.28] fix: increase snapshot timeout to 20min by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1983",
+   "[release-1.28] fix: Ultra and PremiumV2 disk snapshot delay issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1984",
+   "[release-1.28] fix: allow resizing to min required size for performance plus disks by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1987",
+   "[release-1.28] fix: ensure Kubernets conformant format for location by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1989",
+   "[release-1.28] doc: fix code spelling errors by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1997",
+   "[release-1.28] fix: upgrade mount-utils lib by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1993",
+   "[release-1.28] test: fix verify-helm-chart failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2003"
+  ],
   "security updates": [
    "[release-1.28] fix: CVE-2023-39325 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2011"
   ]
  },
  "1.26.7": {
+  "bug fixes": [
+   "[release-1.26] fix: ensure Kubernets conformant format for location by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1990",
+   "[release-1.26] test: fix verify-helm-chart failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2005",
+   "[release-1.26] doc: fix code spelling errors by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2006"
+  ],
   "security updates": [
    "[release-1.26] fix: CVE-2023-39325 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/2013"
   ]
@@ -361,29 +947,43 @@
  "1.29.0": {
   "security updates": [
    "fix: CVE-2023-2431 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1886"
+  ],
+  "bug fixes": [
+   "fix: missing log when IMDS is not available on windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1885",
+   "fix: PerformancePlus setting issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1894",
+   "fix: cloned volume could not be recognized on Windows node when source volume is mounted on the same node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1909",
+   "fix: remove cross region snapshot copy 5s delay by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1938",
+   "fix: use env var in powershell cmdlet by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1939"
+  ]
+ },
+ "1.28.3": {
+  "bug fixes": [
+   "[release-1.28] fix: remove cross region snapshot copy 5s delay by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1941",
+   "[release-1.28] fix: use env var in powershell cmdlet by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1942"
   ]
  },
  "1.28.2": {
   "bug fixes": [
-   "fix: cloned volume could not be recognized on Windows node when source volume is mounted on the same node (#1914)"
+   "fix: cloned volume could not be recognized on Windows node when source volume is mounted on the same node (#1914)",
+   "[release-1.28] fix: cloned volume could not be recognized on Windows node when source volume is mounted on the same node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1914"
   ]
  },
  "1.26.6": {
-  "bug fixes": [
-   "fix: CVE-2023-2431 (#1889)"
-  ],
   "security updates": [
+   "fix: CVE-2023-2431 (#1889)",
    "[release-1.26] fix: CVE-2023-2431 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1889"
   ]
  },
  "1.28.1": {
-  "bug fixes": [
-   "fix: CVE-2023-2431 (#1887)",
-   "fix: missing log when IMDS is not available on windows node (#1888)",
-   "fix: PerformancePlus setting issue (#1895)"
-  ],
   "security updates": [
+   "fix: CVE-2023-2431 (#1887)",
    "[release-1.28] fix: CVE-2023-2431 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1887"
+  ],
+  "bug fixes": [
+   "fix: missing log when IMDS is not available on windows node (#1888)",
+   "fix: PerformancePlus setting issue (#1895)",
+   "[release-1.28] fix: missing log when IMDS is not available on windows node by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1888",
+   "[release-1.28] fix: PerformancePlus setting issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1895"
   ]
  },
  "1.26.5": {
@@ -392,41 +992,57 @@
   ]
  },
  "1.28.0": {
-  "bug fixes": [
+  "security updates": [
    "fix: CVE-2022-41723 (#1732)",
+   "fix: CVE-2022-41723 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1732"
+  ],
+  "bug fixes": [
    "fix: detach disk failure when there is throttling (#1755)",
    "fix: PremiumV2_LRS caching mode issue (#1790)",
    "fix: fix attach failure panic (#1802)",
-   "fix: make sure the VolumeSnapshots v1 CRDs exist before starting (#1851)"
-  ],
-  "security updates": [
-   "fix: CVE-2022-41723 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1732"
+   "fix: make sure the VolumeSnapshots v1 CRDs exist before starting (#1851)",
+   "tes: fix golint action failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1748",
+   "fix: detach disk failure when there is throttling by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1755",
+   "fix: PremiumV2_LRS caching mode issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1790",
+   "fix: add securityContext.seccompProfile for driver controller by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1805",
+   "fix: make sure the VolumeSnapshots v1 CRDs exist before starting by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1851"
   ]
  },
  "1.26.4": {
   "bug fixes": [
-   "fix: switch base image to fix CVEs (#1811)"
+   "fix: switch base image to fix CVEs (#1811)",
+   "[release-1.26] test: fix external e2e test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1812",
+   "[release-1.26] fix: switch base image to fix CVEs by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1811",
+   "[release-1.26] test: fix snapshot test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1834"
   ]
  },
  "1.27.1": {
-  "bug fixes": [
-   "fix: CVE-2022-41723 (#1779)",
-   "fix: detach disk failure when there is throttling (#1782)",
-   "fix: PremiumV2_LRS caching mode issue (#1795)"
-  ],
   "security updates": [
+   "fix: CVE-2022-41723 (#1779)",
    "[release-1.27] fix: CVE-2022-41723 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1779"
+  ],
+  "bug fixes": [
+   "fix: detach disk failure when there is throttling (#1782)",
+   "fix: PremiumV2_LRS caching mode issue (#1795)",
+   "[release-1.27] tes: fix golint action failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1778",
+   "[release-1.27] fix: detach disk failure when there is throttling by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1782",
+   "[release-1.27] fix: PremiumV2_LRS caching mode issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1795"
   ]
  },
  "1.26.3": {
   "bug fixes": [
    "fix: add disk attach/detach delay time to allow more batch (#1742)",
    "fix: second expand volume failure on Ubuntu 22.04 (#1743)",
-   "fix: CVE-2022-41723 (#1744)",
    "fix: detach disk failure when there is throttling (#1758)",
-   "fix: PremiumV2_LRS caching mode issue (#1794)"
+   "fix: PremiumV2_LRS caching mode issue (#1794)",
+   "[release-1.26] fix: buildx issue with provenance disabled by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1745",
+   "[release-1.26] fix: second expand volume failure on Ubuntu 22.04 by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1743",
+   "[release-1.26] tes: fix golint action failure by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1749",
+   "[release-1.26] fix: detach disk failure when there is throttling by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1758",
+   "[release-1.26] fix: PremiumV2_LRS caching mode issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1794"
   ],
   "security updates": [
+   "fix: CVE-2022-41723 (#1744)",
    "[release-1.26] fix: CVE-2022-41723 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1744"
   ]
  },
@@ -434,17 +1050,24 @@
   "bug fixes": [
    "fix: switch base image to fix CVEs (#1704)",
    "fix: increase csi-attacher worker-threads num (#1719)",
-   "fix: second expand volume failure on Ubuntu 22.04 (#1728)"
+   "fix: second expand volume failure on Ubuntu 22.04 (#1728)",
+   "fix: switch base image to fix CVEs by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1704",
+   "fix: incorrect driver version in CSIDriver by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1707",
+   "fix: buildx issue with provenance disabled by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1720",
+   "fix: increase csi-attacher worker-threads num by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1719",
+   "fix: second expand volume failure on Ubuntu 22.04 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1728"
   ]
  },
  "1.26.2": {
   "bug fixes": [
-   "fix: panic when allow-empty-cloud-config is set (#1699)"
+   "fix: panic when allow-empty-cloud-config is set (#1699)",
+   "fix: panic when allow-empty-cloud-config is set by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1699"
   ]
  },
  "1.26.1": {
   "bug fixes": [
-   "fix: update rather than replace existing cache entry (#1686)"
+   "fix: update rather than replace existing cache entry (#1686)",
+   "fix: update rather than replace existing cache entry by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1686"
   ]
  },
  "1.26.0": {
@@ -453,9 +1076,17 @@
    "fix: volume metrics on Windows csi-proxy v1beta (#1622)",
    "fix: add disk lun check in VMSSFlex AttachDisk to avoid race condition (#1632)",
    "fix: set ForceAttemptHTTP2 as false to increase ARM throttling limit (#1676)",
-   "fix: CVE-2022-41717 (#1656)"
+   "fix: volume metrics on Windows csi-proxy v1beta by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1622",
+   "fix: add disk lun check in VMSSFlex AttachDisk to avoid race condition by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1632",
+   "fix: race condition in VMSS cache update by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1639",
+   "fix: Add missing machine in SKU listings by @sboulkour in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1641",
+   "Add requirements.txt with fixed versions to use in pip install by @mauriciopoppe in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1652",
+   "fix e2e: disable podSecurity by @cvvz in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1668",
+   "Revert \"fix e2e: disable podSecurity\" by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1669",
+   "fix: set ForceAttemptHTTP2 as false to increase ARM throttling limit by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1676"
   ],
   "security updates": [
+   "fix: CVE-2022-41717 (#1656)",
    "fix: CVE-2022-41717 by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1656"
   ]
  },
@@ -464,17 +1095,25 @@
    "fix: add disk lun check in AttachDisk to avoid race condition (#1610)",
    "fix: reduce VMSS cache refresh (#1564, #1611)",
    "fix: resource group issue in disk attach (#1616)",
-   "fix: support noProxy in chart config (#1613)"
+   "fix: support noProxy in chart config (#1613)",
+   "fix: panic in vmss cache conversion by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1601",
+   "[chore] Fix E2E failure in VMSS Flex cluster by @zmyzheng in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1609",
+   "fix: support noProxy in chart config by @umagnus in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1613",
+   "fix: add disk lun check in AttachDisk to avoid race condition by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1610",
+   "fix: resource group issue in disk attach by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1616",
+   "fix: reduce VMSS cache refresh by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1611"
   ]
  },
  "1.24.0": {
   "bug fixes": [
    "fix: increase csi-attacher client QPS (#1539)",
    "fix: increase api qps limit of csi-provisioner and csi-attacher (#1559)",
-   "fix: CVE-2022-32149 (#1547)",
-   "fix: avoid recreate vmss cache in race condition (#1558)"
+   "fix: avoid recreate vmss cache in race condition (#1558)",
+   "fix: increase csi-attacher client QPS by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1539",
+   "fix: avoid recreate vmss cache in race condition by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1558"
   ],
   "security updates": [
+   "fix: CVE-2022-32149 (#1547)",
    "fix: fix CVE-2022-32149 by @edreed in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1547"
   ]
  },
@@ -482,36 +1121,51 @@
   "bug fixes": [
    "fix: Ultra Disk DefaultDiskMBPSReadWrite calc issue (#1494)",
    "fix: reduce VMSS throttling when throttling happens (#1498)",
-   "fix: zone format check when cloud config is empty (#1521)"
+   "fix: zone format check when cloud config is empty (#1521)",
+   "fix: increase sidecar container memory limits on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1490",
+   "fix: Ultra Disk DefaultDiskMBPSReadWrite calc issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1494",
+   "fix: reduce VMSS throttling when throttling happens by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1498",
+   "fix: zone format check when cloud config is empty by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1521"
   ]
  },
  "1.22.0": {
   "bug fixes": [
-   "fix: invalid ultra disk default iops issue (#1445)"
+   "fix: invalid ultra disk default iops issue (#1445)",
+   "chore: gofmt 1.19 fixes by @edreed in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1436",
+   "fix: invalid ultra disk default iops issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1445"
   ]
  },
  "1.21.0": {
   "bug fixes": [
    "fix: reuse armclient connections to fix performance issues (#1426)",
    "fix: VMSSList throttling when VM is in Deleting state (#1426)",
-   "fix: CSI function should return internal error (#1418)"
+   "fix: CSI function should return internal error (#1418)",
+   "fix: CSI function should return internal error by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1418"
   ]
  },
  "1.20.0": {
   "bug fixes": [
-   "fix: CSI function should return internal error (#1418)"
+   "fix: CSI function should return internal error (#1418)",
+   "fix: Put GetDiskLun log after it is called by @nearora-msft in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1381"
   ]
  },
  "1.19.0": {
   "bug fixes": [
    "fix: incorrect runOnMaster config (#1358)",
-   "fix: NodeGetVolumeStats failure on Windows node (#1368)"
+   "fix: NodeGetVolumeStats failure on Windows node (#1368)",
+   "test: fix unstable e2e tests which check file content by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1341",
+   "fix: cache data loss issue on Windows when unmount disk by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1352",
+   "fix: incorrect runOnMaster config by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1358",
+   "test: fix windows e2e test failure on 1.25 cluster by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1362",
+   "fix: NodeGetVolumeStats failure on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1368"
   ]
  },
  "1.18.0": {
   "bug fixes": [
    "fix: resize failure on Windows (#1314)",
-   "fix: filesystem is not resized when restoring from snapshot with a bigger size (#1309)"
+   "fix: filesystem is not resized when restoring from snapshot with a bigger size (#1309)",
+   "fix: resize failure on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1314",
+   "fix: filesystem is not resized when restoring from snapshot with a bigger size by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1309"
   ]
  },
  "1.17.0": {
@@ -525,7 +1179,9 @@
  "1.16.0": {
   "bug fixes": [
    "fix: CVE issues in image build (#1264, #1267, #1279)",
-   "fix: vmss cache regression issue (#1265)"
+   "fix: vmss cache regression issue (#1265)",
+   "fix: vmss cache regression issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1265",
+   "test: fix golinter error by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1268"
   ],
   "security updates": [
    "fix: CVE-2018-25032 in image build by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1264",
@@ -535,60 +1191,89 @@
  "1.15.0": {
   "bug fixes": [
    "fix: disk attach/detach failure when operation is preempted (#1248)",
-   "fix: CVE issues in image build (#1249)"
+   "fix: CVE issues in image build (#1249)",
+   "fix: CVE issues in image build by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1249",
+   "fix: disk attach/detach failure when operation is preempted by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1248"
   ]
  },
  "1.14.0": {
-  "bug fixes": [
-   "fix: CVE-2022-0778 in image build (#1222)",
-   "fix: leader-election namespace issue (#1238)"
-  ],
   "security updates": [
+   "fix: CVE-2022-0778 in image build (#1222)",
    "fix: CVE-2022-0778 in image build by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1222"
+  ],
+  "bug fixes": [
+   "fix: leader-election namespace issue (#1238)",
+   "test: fix capz test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1221",
+   "test: fix volume cloning test failure on capz by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1233",
+   "test: fix clone volume test failure on capz by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1235",
+   "fix: leader-election namespace issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1238"
   ]
  },
  "1.13.0": {
   "bug fixes": [
    "fix: GetNodeInfo should succeed when IMDS is unavailable on the node (#1200)",
-   "fix: disable disk capacity check in CreateVolume (#1213)"
+   "fix: disable disk capacity check in CreateVolume (#1213)",
+   "fix: GetNodeInfo should succeed when IMDS is unavailable by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1200",
+   "chore: Fix script to check for driver pod restarts by @edreed in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1205",
+   "fix: armclient panic when response is nil by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1210",
+   "fix: disable disk capacity check in CreateVolume by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1213"
   ]
  },
  "1.12.0": {
   "bug fixes": [
    "fix: return emtpy topology when get zone failed in NodeGetInfo (#1176)",
    "fix: adjust memory requests and limits on Windows node (#1180)",
-   "fix: GetDisk throttling issue (#1181)"
+   "fix: GetDisk throttling issue (#1181)",
+   "fix: return emtpy topology when get zone failed in NodeGetInfo by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1176",
+   "fix: remove memory requests on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1179",
+   "fix: GetDisk throttling issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1181",
+   "fix: adjust memory requests and limits on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1180",
+   "fix: NodePublishVolume idempotent issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1186",
+   "fix: azure disk controller install issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1190"
   ]
  },
  "1.11.0": {
   "bug fixes": [
    "fix: tag parsing issue in CreateSnapshot (#1140)",
-   "fix: CVE-2021-3996 in image build (#1150)"
+   "test: fix kcm log print issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1136",
+   "fix: tag parsing issue in CreateSnapshot by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1140",
+   "fix: add leases rbac delete permission by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1146",
+   "chore: Fix misuse of fmt.Sprint in nodeserver_test.go by @edreed in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1170"
   ],
   "security updates": [
+   "fix: CVE-2021-3996 in image build (#1150)",
    "fix: CVE-2021-3996 in image build by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1150"
   ]
  },
  "1.2.2": {
-  "bug fixes": [
-   "fix: CVE-2021-3996 in image build (#1150)"
-  ],
   "security updates": [
+   "fix: CVE-2021-3996 in image build (#1150)",
    "fix: patch CVE-2021-3995 and CVE-2021-3996 by @mainred in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1149"
   ]
  },
  "1.2.1": {
   "bug fixes": [
-   "fix: CVE in docker image build (#1147)"
+   "fix: CVE in docker image build (#1147)",
+   "fix: patchable CVEs in 1.2.0 by @mainred in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1147"
   ]
  },
  "1.10.0": {
   "bug fixes": [
    "fix: detach disk should return error when throttled (#1105)",
-   "fix: CVE-2021-43618 in Ubuntu image (#1117)",
-   "fix: CVE-2021-38561 with golang lib (#1119)"
+   "fix: arm64 image build by @mainred in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1048",
+   "fix: install updated packages to fix CVE issues by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1055",
+   "fix: missing static PV data in VolumeAttachments by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1062",
+   "fix: increase registrar container cpu limit by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1065",
+   "fix: snapshot throttling issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1066",
+   "fix: increase registrar probe timeout value on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1068",
+   "fix: upgrade azure lib to fix panic issue on node driver by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1081",
+   "test: fix Windows containerd test failures by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1091",
+   "fix: update v1.9.0 chart file by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1103",
+   "fix: detach disk should return error when throttled by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1105"
   ],
   "security updates": [
+   "fix: CVE-2021-43618 in Ubuntu image (#1117)",
+   "fix: CVE-2021-38561 with golang lib (#1119)",
    "fix: CVE-2021-43618 in Ubuntu image by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1117",
    "fix: CVE-2021-38561 with golang lib by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1119"
   ]
@@ -597,7 +1282,15 @@
   "bug fixes": [
    "fix: install updated packages to fix CVE issues (#1055)",
    "fix: missing static PV data in VolumeAttachments (#1062)",
-   "fix: snapshot throttling issue (#1066)"
+   "fix: snapshot throttling issue (#1066)",
+   "fix: arm64 image build by @mainred in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1048",
+   "fix: install updated packages to fix CVE issues by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1055",
+   "fix: missing static PV data in VolumeAttachments by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1062",
+   "fix: increase registrar container cpu limit by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1065",
+   "fix: snapshot throttling issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1066",
+   "fix: increase registrar probe timeout value on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1068",
+   "fix: upgrade azure lib to fix panic issue on node driver by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1081",
+   "test: fix Windows containerd test failures by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1091"
   ]
  },
  "1.8.0": {
@@ -607,19 +1300,31 @@
    "fix: driver pod crash issue on Windows (#1033)",
    "fix: add zoned field for backward compatibility (#1037)",
    "fix: get MaxDataDiskCount error on Windows (#1039)",
-   "fix: GetZone error when instance metadata is disabled on Windows (#1042)"
+   "fix: GetZone error when instance metadata is disabled on Windows (#1042)",
+   "fix: add AccessMode_SINGLE_NODE_READER_ONLY cap by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1022",
+   "fix: upgrade to debian 11.0 to fix vulnerability by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1028",
+   "fix: driver pod crash issue on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1033",
+   "fix: add zoned field for backward compatibility by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1037",
+   "fix: get MaxDataDiskCount error on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1039",
+   "fix: GetZone error when instance metadata is disabled on Windows by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1042"
   ]
  },
  "1.7.0": {
   "bug fixes": [
    "fix: detach disk issue on deleting vmss node (#988)",
    "fix: remove ClusterFirstWithHostNet dnsPolicy (#997)",
-   "fix: panic when vm size not in SkuMap table (#1000)"
+   "fix: panic when vm size not in SkuMap table (#1000)",
+   "fix: detach disk issue on deleting vmss node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/988",
+   "fix: remove ClusterFirstWithHostNet dnsPolicy by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/997",
+   "fix: panic when vm size not in SkuMap table by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1000",
+   "fix: enable avset setting by default by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1005",
+   "doc: fix shared disk doc by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/1004"
   ]
  },
  "1.5.1": {
   "bug fixes": [
-   "fix: disable networkAccessPolicy on Azure Stack Cloud (#964)"
+   "fix: disable networkAccessPolicy on Azure Stack Cloud (#964)",
+   "fix: disable networkAccessPolicy on Azure Stack Cloud by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/964"
   ]
  },
  "1.6.0": {
@@ -627,7 +1332,14 @@
    "fix: disable uuid checks on XFS (#955)",
    "fix: driver register issue on Windows node (#970)",
    "fix: disable disk related rate limit (#979)",
-   "fix: ignore GetDisk throttling in DeleteDisk (#980)"
+   "fix: ignore GetDisk throttling in DeleteDisk (#980)",
+   "fix: Remove gen-skus-map by @jsafrane in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/961",
+   "fix: disable networkAccessPolicy on Azure Stack Cloud by @songjiaxun in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/960",
+   "fix: driver register issue on Windows node by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/970",
+   "fix: remove kubelet-registration-probe on Linux by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/972",
+   "fix: set default userAgent issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/973",
+   "fix: disable disk related rate limit by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/979",
+   "fix: ignore GetDisk throttling in DeleteDisk by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/980"
   ]
  },
  "1.5.0": {
@@ -637,24 +1349,55 @@
    "fix: increase csi-attacher timeout to 10min (#907)",
    "fix: detach disk crash on Azure Stack (#909)",
    "fix: translation issue due to lower case managed kind (#915)",
-   "fix: unmount failure due to incorrect mount path check (#940)"
+   "fix: unmount failure due to incorrect mount path check (#940)",
+   "fix: create PV failure in zone and nonzone mixed cluster by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/893",
+   "fix: reduce GetDisk in AttachDisk by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/904",
+   "test: fix broken code coverage by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/905",
+   "fix: ZRS node affinity setting by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/906",
+   "fix: detach disk crash on Azure Stack by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/909",
+   "fix: translation issue due to lower case managed kind by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/915",
+   "fix: remove node metricsPort by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/923",
+   "fix: customized role naming by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/928",
+   "fix: always enable csi-snapshotter in helm install by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/932",
+   "fix: unmount failure due to incorrect mount path check by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/940"
   ]
  },
  "1.4.0": {
   "bug fixes": [
-   "fix: read cloud config from secret regression in v1.3.0 (#886)"
+   "fix: read cloud config from secret regression in v1.3.0 (#886)",
+   "bug: fix perfProfile in the storageclass for performance test by @abhisheksinghbaghel in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/867",
+   "fix: helm chart value bugs by @songjiaxun in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/878",
+   "fix: read cloud config from secret regression by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/886",
+   "fix: add snapshot controller tolerations by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/888",
+   "bug: fix perfProfile in the storageclass for performance test by @abhisheksinghbaghel in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/867",
+   "fix: helm chart value bugs by @songjiaxun in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/878",
+   "fix: read cloud config from secret regression by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/886",
+   "fix: add snapshot controller tolerations by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/888"
   ]
  },
  "1.3.0": {
   "bug fixes": [
    "fix RedHat/CentOS certificate issue in helm installation(`--set linux.distro=\"fedora\"`)(#852)",
-   "fix crp throttling in create/attach disk scenario(#837)"
+   "fix crp throttling in create/attach disk scenario(#837)",
+   "fix: remove VolumeSnapshotDataSource feature gate by @chewong in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/823",
+   "fix: set correct DisableAvailabilitySetNodes in disk driver by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/831",
+   "test: fix containerd Windows e2e test failure by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/830",
+   "fix: increase csi-attacher work-threads as 100 by default by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/833",
+   "fix: reduce crp throttling in attach disk scenario by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/835",
+   "chore: upgrade base image to fix CVE issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/838",
+   "fix: GetDisk operation throttling issue by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/842",
+   "fix: no sleep when GetDisk is throttled by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/844",
+   "fix: CentOS/RedHat cert issue in chart installation by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/848",
+   "fix: RedHat/CentOS issue in helm installation by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/852",
+   "fix: remove unnecessary lock in NodePublish by @andyzhangx in https://github.com/kubernetes-sigs/azuredisk-csi-driver/pull/854"
   ]
  },
  "1.2.0": {
   "bug fixes": [
    "fix: check disk state before attach disk",
-   "fix: disk attach issue when vm in failed status",
+   "fix: disk attach issue when vm in failed status"
+  ],
+  "security updates": [
    "fix: Bump K8s to v0.21.0 to address CVE-2021-3121"
   ]
  },
@@ -682,6 +1425,16 @@
    "fix disk API 10s latency issue",
    "fix initial delay(1s) when mount azure disk",
    "fix incorrect max azure disk max count"
+  ]
+ },
+ "0.4.0": {
+  "bug fixes": [
+   "fix IMDS issue"
+  ]
+ },
+ "0.3.0": {
+  "bug fixes": [
+   "fix all sanity test failures"
   ]
  }
 }

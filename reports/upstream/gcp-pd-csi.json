@@ -1,7 +1,143 @@
 {
+ "1.26.3": {
+  "bug fixes": [
+   "[release-1.26] fix: add attach limits for n4d/n4a by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2367"
+  ]
+ },
+ "1.26.0": {
+  "bug fixes": [
+   "fix: add missing space in Windows e2e test shell syntax by @pierluigilenoci in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2292",
+   "Fix typo: Recieved -> Received in test error message by @SAY-5 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2322",
+   "fix: remove duplicate call to mutex.Unlock by @sdowell in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2332"
+  ]
+ },
+ "1.24.1": {
+  "bug fixes": [
+   "[btrfs-only] fix blkid argument by @motiejus in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2248",
+   "fix: Add a step to build node labler image by @hdp617 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2271"
+  ]
+ },
+ "1.24.0": {
+  "bug fixes": [
+   "[btrfs-only] fix blkid argument by @motiejus in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2248",
+   "fix: Add a step to build node labler image by @hdp617 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2271"
+  ]
+ },
+ "1.23.2": {
+  "bug fixes": [
+   "[btrfs csi driver] fix blkid argument by @motiejus in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2251"
+  ]
+ },
+ "1.22.5": {
+  "bug fixes": [
+   "[btrfs csi driver] fix blkid argument by @motiejus in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2252"
+  ]
+ },
+ "1.23.0": {
+  "bug fixes": [
+   "Fix disk size validation branch by @hajiler in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2229"
+  ]
+ },
+ "1.22.2": {
+  "bug fixes": [
+   "[release-1.22] Fix disk size validation branch by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2233"
+  ]
+ },
+ "1.22.1": {
+  "bug fixes": [
+   "Fix partial cache tail latency by correcting the cache chunk size calc by @cemakd in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2176",
+   "Fix invalid maintenance exclusion command by @tonyzhc in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2204"
+  ]
+ },
+ "1.22.0": {
+  "bug fixes": [
+   "Fix partial cache tail latency by correcting the cache chunk size calc by @cemakd in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2176",
+   "Fix invalid maintenance exclusion command by @tonyzhc in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2204"
+  ]
+ },
+ "1.21.2": {
+  "bug fixes": [
+   "[release-1.21] Fix partial cache tail latency by correcting the cache chunk size calc by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2177"
+  ]
+ },
+ "1.12.15": {
+  "bug fixes": [
+   "Fix missing nvme dependencies. by @tonyzhc in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2149"
+  ]
+ },
+ "1.21.1": {
+  "bug fixes": [
+   "fix: update Hyperdisk attach limits to match GCP documentation for Ge… by @arsiesys in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2127",
+   "fix ci by @carlory in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2139"
+  ]
+ },
+ "1.21.0": {
+  "bug fixes": [
+   "fix: update Hyperdisk attach limits to match GCP documentation for Ge… by @arsiesys in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2127",
+   "fix ci by @carlory in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2139"
+  ]
+ },
+ "1.20.1": {
+  "bug fixes": [
+   "fix: update Hyperdisk attach limits to match GCP documentation for Gen4 machines by @sunnylovestiramisu in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2129"
+  ]
+ },
+ "1.19.0": {
+  "bug fixes": [
+   "Fix logic bug while checking available LSSDs for RAIDing for Data Cache by @hungnguyen243 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1993",
+   "update debian image to fix CVE by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1997",
+   "Use strings.Fields for whitespace splitting to fix issues with strings.Split in case of multiple consecutive spaces by @hungnguyen243 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2006",
+   "Fix units for cache size while calculating chunk size for LVM by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2007",
+   "fix outdated metadata error in watcher by @hungnguyen243 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2028",
+   "Fix hyperdisk attach limits by @jsafrane in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2057",
+   "Fix Hyperdisk Resize That Requires Iops/Throughput Adjustment by @sunnylovestiramisu in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2054",
+   "Fix Gen4 Custom VM Cases by @sunnylovestiramisu in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2096"
+  ]
+ },
+ "1.17.13": {
+  "bug fixes": [
+   "[release-1.17] Fix Gen4 Custom VM Cases by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2099"
+  ]
+ },
+ "1.14.5": {
+  "bug fixes": [
+   "[release-1.14] Fix Gen4 Custom VM Cases by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2100"
+  ]
+ },
+ "1.18.1": {
+  "bug fixes": [
+   "[release-1.18] Fix Gen4 Custom VM Cases by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2098"
+  ]
+ },
  "1.18.0": {
+  "bug fixes": [
+   "Fix logic bug while checking available LSSDs for RAIDing for Data Cache by @hungnguyen243 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1993",
+   "update debian image to fix CVE by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1997",
+   "Use strings.Fields for whitespace splitting to fix issues with strings.Split in case of multiple consecutive spaces by @hungnguyen243 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2006",
+   "Fix units for cache size while calculating chunk size for LVM by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2007",
+   "fix outdated metadata error in watcher by @hungnguyen243 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2028",
+   "Fix hyperdisk attach limits by @jsafrane in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2057",
+   "Fix Hyperdisk Resize That Requires Iops/Throughput Adjustment by @sunnylovestiramisu in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2054"
+  ],
   "security updates": [
    "Bump golang.org version to 0.39 to fix CVE-2025-22872 by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2073"
+  ]
+ },
+ "1.17.10": {
+  "bug fixes": [
+   "[release-1.17] Fix hyperdisk attach limits by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2060",
+   "Fix Hyperdisk Resize That Requires Iops/Throughput Adjustment by @sunnylovestiramisu in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2061"
+  ]
+ },
+ "1.17.7": {
+  "bug fixes": [
+   "[release-1.17] fix outdated metadata error in watcher by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2029"
+  ]
+ },
+ "1.17.6": {
+  "bug fixes": [
+   "[release-1.17] Use strings.Fields for whitespace splitting to fix issues with strings.Split in case of multiple consecutive spaces by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2008",
+   "[release-1.17] Fix units for cache size while calculating chunk size for LVM by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/2012"
   ]
  },
  "1.10.19": {
@@ -12,9 +148,15 @@
  "1.17.4": {
   "security updates": [
    "Fix CVE-2025-22870 by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1991"
+  ],
+  "bug fixes": [
+   "[release-1.17] Fix logic bug while checking available LSSDs for RAIDing for Data Cache by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1994"
   ]
  },
  "1.17.3": {
+  "bug fixes": [
+   "Fix build issues for Windows image. by @tonyzhc in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1953"
+  ],
   "security updates": [
    "Fix CVE-2022-1996 by @mattcary in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1967"
   ]
@@ -24,15 +166,43 @@
    "Fix CVE-2024-45337, CVE-2024-45338 by @pwschuurman in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1934"
   ]
  },
+ "1.15.4": {
+  "bug fixes": [
+   "[release-1.15] [metrics] Fix panic during metrics manager startup by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1898"
+  ]
+ },
  "1.12.13": {
   "security updates": [
    "Update Go version and dependencies to fix CVE-2024-24790,CVE-2024-24789 by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1851"
   ]
  },
+ "1.12.11": {
+  "bug fixes": [
+   "[release-1.12] Update debian image from bullseye to bookworm to fix CVEs by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1735"
+  ]
+ },
+ "1.13.7": {
+  "bug fixes": [
+   "[release-1.13] Update debian image from bullseye to bookworm to fix CVEs by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1734"
+  ]
+ },
  "1.14.0": {
+  "bug fixes": [
+   "fix pointer issue for GCE staging support by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1609",
+   "Fix error when no compute endpoint is passed by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1620",
+   "Fix nvme path filtering logic for udevadm trigger by @pwschuurman in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1633",
+   "Fix e2e tests to run on cloudtop by @mattcary in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1692",
+   "Update debian image from bullseye to bookworm to fix CVEs by @Sneha-at in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1694"
+  ],
   "security updates": [
    "CVE-2024-24786: bump google.golang.org/protobuf to v1.33.0 by @dobsonj in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1642",
    "Fix CVE-2023-45288 by @dannawang0221 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1680"
+  ]
+ },
+ "1.10.17": {
+  "bug fixes": [
+   "[release-1.10] Fix nvme path filtering logic for udevadm trigger by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1731",
+   "[release-1.10] Update debian image from bullseye to bookworm to fix CVEs by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1738"
   ]
  },
  "1.13.6": {
@@ -65,6 +235,16 @@
    "Fix CVE-2023-45288 by @dannawang0221 in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1687"
   ]
  },
+ "1.12.9": {
+  "bug fixes": [
+   "[release-1.12] Fix nvme path filtering logic for udevadm trigger by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1647"
+  ]
+ },
+ "1.13.4": {
+  "bug fixes": [
+   "[release-1.13] Fix nvme path filtering logic for udevadm trigger by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/1634"
+  ]
+ },
  "0.7.0": {
   "breaking changes": [
    "Adding `PodSecurityPoliciy` to allow `csi-gce-pd-node` in clusters with policies enabled.",
@@ -74,7 +254,9 @@
    "Fixed bug where ControllerExpandVolume was returning incorrect size when disk was already the requested size or larger ([#462](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/462), [@davidz627](https://github.com/davidz627))",
    "Set volume limits to 15 only for machine-types: \"f1-micro\", \"g1-small\", \"e2-micro\", \"e2-small\", \"e2-medium\". Limit is 127 for all others ([#455](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/455), [@davidz627](https://github.com/davidz627))",
    "Changed deployment of Controller and Node components to use hostNetwork for compatibility with GKE Workload Identity ([#436](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/436), [@davidz627](https://github.com/davidz627))",
-   "During NodeStageVolume run udevadm --trigger to fix device symlinks if device path is not found or device path points to the wrong device ([#459](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/459), [@davidz627](https://github.com/davidz627))",
+   "During NodeStageVolume run udevadm --trigger to fix device symlinks if device path is not found or device path points to the wrong device ([#459](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/459), [@davidz627](https://github.com/davidz627))"
+  ],
+  "security updates": [
    "Bump external-snapshotter version to v1.2.2 for fix of CVE-2019-11255 ([#434](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/434), [@davidz627](https://github.com/davidz627))"
   ]
  },
@@ -84,6 +266,7 @@
    "Some error codes have been changed, please see below for details if you rely on specific error codes of the driver"
   ],
   "bug fixes": [
+   "Picking up support for inline volume migration and some fixes for backward compatible access modes for migration ([#324](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/324), [@davidz627](https://github.com/davidz627))",
    "Reduces node attach limits by 1 since the node boot disk is considered an attachable disk ([#361](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/361), [@davidz627](https://github.com/davidz627))",
    "Fixed a bug that causes disks in the same zone/region to be provisioned serially ([#344](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/344), [@hantaowang](https://github.com/hantaowang))",
    "Remove cross validation of access modes, multiple access modes can be specified that represent all the capabilities of the volume ([#289](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/289), [@davidz627](https://github.com/davidz627))",
@@ -91,6 +274,14 @@
    "Updated CSI Attacher to stop ignoring errors from ControllerUnpublish ([#378](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/378), [@davidz627](https://github.com/davidz627))",
    "CreateVolume will now fail with NOT_FOUND error when VolumeContentSource SnapshotId does not refer to a snapshot that can be found ([#312](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/pull/312), [@davidz627](https://github.com/davidz627))",
    "ControllerUnpublishVolume now returns success when the Node is GCE API NotFound."
+  ]
+ },
+ "0.5.1": {
+  "breaking changes": [
+   "BREAKING: The driver now enforces AccessMode validation for all calls, supported access modes are SINGLE_NODE_WRITER, SINGLE_NODE_READER_ONLY, MULTI_NODE_READER_ONLY"
+  ],
+  "bug fixes": [
+   "Added additional support and fixes for compatibility with CSI Migration"
   ]
  }
 }

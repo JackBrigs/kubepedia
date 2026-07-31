@@ -332,6 +332,9 @@
 {"alias": "architecture-compatibility", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
 {"alias": "argo cd security", "ids": ["TROUBLE-ARGOCD_KNOWN_CVES"]}
 {"alias": "argo-cd 8.5.7", "ids": ["CONCEPT-ADDON_ARGOCD"]}
+{"alias": "argo-cd action required upgrade", "ids": ["TROUBLE-ARGOCD_BREAKING_CHANGES"]}
+{"alias": "argo-cd breaking changes", "ids": ["TROUBLE-ARGOCD_BREAKING_CHANGES"]}
+{"alias": "argo-cd upgrade broke", "ids": ["TROUBLE-ARGOCD_BREAKING_CHANGES"]}
 {"alias": "argocd", "ids": ["COMPONENT-ARGOCD", "TAG-ARGOCD"]}
 {"alias": "argocd 2.11 to 2.14", "ids": ["UPGRADE-ARGOCD_2_11_TO_2_14"]}
 {"alias": "argocd 3.0 rbac broke", "ids": ["TROUBLE-ARGOCD_UPGRADE_3_RBAC"]}
@@ -608,10 +611,13 @@
 {"alias": "cert rotation", "ids": ["PRACTICE-CERTIFICATE_EXPIRY"]}
 {"alias": "cert-manager", "ids": ["COMPONENT-CERT_MANAGER", "TAG-CERT_MANAGER"]}
 {"alias": "cert-manager 1.18.2", "ids": ["CONCEPT-ADDON_CERT_MANAGER"]}
+{"alias": "cert-manager action required upgrade", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
 {"alias": "cert-manager addon", "ids": ["CONCEPT-ADDON_CERT_MANAGER"]}
+{"alias": "cert-manager breaking changes", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
 {"alias": "cert-manager cve", "ids": ["TROUBLE-CERT_MANAGER_KNOWN_CVES"]}
 {"alias": "cert-manager order pending", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
 {"alias": "cert-manager ordering webhooks", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
+{"alias": "cert-manager upgrade broke", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
 {"alias": "cert-manager version kubespray", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "cert-manager-setup", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "cert_management", "ids": ["VARIABLE-CERT_MANAGEMENT"]}
@@ -874,6 +880,9 @@
 {"alias": "ciliumcli_binary_checksums", "ids": ["VARIABLE-CILIUMCLI_BINARY_CHECKSUMS"]}
 {"alias": "ciliumcli_download_url", "ids": ["VARIABLE-CILIUMCLI_DOWNLOAD_URL"]}
 {"alias": "cinder-csi", "ids": ["COMPONENT-CINDER_CSI"]}
+{"alias": "cinder-csi action required upgrade", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
+{"alias": "cinder-csi breaking changes", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
+{"alias": "cinder-csi upgrade broke", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
 {"alias": "cinder-csi-driver", "ids": ["TAG-CINDER_CSI_DRIVER"]}
 {"alias": "cinder_application_credential_id", "ids": ["VARIABLE-CINDER_APPLICATION_CREDENTIAL_ID"]}
 {"alias": "cinder_application_credential_name", "ids": ["VARIABLE-CINDER_APPLICATION_CREDENTIAL_NAME"]}
@@ -982,6 +991,9 @@
 {"alias": "consul values boolean string field", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
 {"alias": "consul-k8s", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
 {"alias": "consul-k8s 2.0 upgrade", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
+{"alias": "consul-k8s action required upgrade", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
+{"alias": "consul-k8s breaking changes", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
+{"alias": "consul-k8s upgrade broke", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
 {"alias": "container engine kubespray", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "container keeps restarting", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "container killed memory limit", "ids": ["TROUBLE-OOMKILLED"]}
@@ -997,6 +1009,8 @@
 {"alias": "containerd 2 migration", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd 2.x", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd ImagePullBackOff after disabling proxy", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
+{"alias": "containerd action required upgrade", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
+{"alias": "containerd breaking changes", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
 {"alias": "containerd config version 3", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd config.toml v3", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd cve", "ids": ["TROUBLE-CONTAINERD_KNOWN_CVES"]}
@@ -1010,6 +1024,7 @@
 {"alias": "containerd security", "ids": ["TROUBLE-CONTAINERD_KNOWN_CVES"]}
 {"alias": "containerd still uses proxy after removing http_proxy", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "containerd task v3 downgrade", "ids": ["TROUBLE-CONTAINERD_TASK_V3_DOWNGRADE"]}
+{"alias": "containerd upgrade broke", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
 {"alias": "containerd vs cri-o vs docker", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "containerd-http-proxy-conf", "ids": ["TROUBLE-CONTAINERD_NO_PROXY_CHAR_ARRAY"]}
 {"alias": "containerd-shim-runc-v2 memory leak", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
@@ -1808,6 +1823,9 @@
 {"alias": "gateway_api_version", "ids": ["VARIABLE-GATEWAY_API_VERSION"]}
 {"alias": "gc_thresh3 kubernetes", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "gcp-pd-csi", "ids": ["COMPONENT-GCP_PD_CSI"]}
+{"alias": "gcp-pd-csi action required upgrade", "ids": ["TROUBLE-GCP_PD_CSI_BREAKING_CHANGES"]}
+{"alias": "gcp-pd-csi breaking changes", "ids": ["TROUBLE-GCP_PD_CSI_BREAKING_CHANGES"]}
+{"alias": "gcp-pd-csi upgrade broke", "ids": ["TROUBLE-GCP_PD_CSI_BREAKING_CHANGES"]}
 {"alias": "gcp-pd-csi-driver", "ids": ["TAG-GCP_PD_CSI_DRIVER"]}
 {"alias": "gcp_pd_csi_attacher_image_tag", "ids": ["VARIABLE-GCP_PD_CSI_ATTACHER_IMAGE_TAG"]}
 {"alias": "gcp_pd_csi_controller_replicas", "ids": ["VARIABLE-GCP_PD_CSI_CONTROLLER_REPLICAS"]}
@@ -1891,9 +1909,12 @@
 {"alias": "helm 4 breaking changes", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
 {"alias": "helm 4 plugin broke", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
 {"alias": "helm 4 server side apply", "ids": ["TROUBLE-HELM_3_TO_4_UPGRADE"]}
+{"alias": "helm action required upgrade", "ids": ["TROUBLE-HELM_BREAKING_CHANGES"]}
+{"alias": "helm breaking changes", "ids": ["TROUBLE-HELM_BREAKING_CHANGES"]}
 {"alias": "helm chart inventory", "ids": ["CONCEPT-ADDON_CATALOG"]}
 {"alias": "helm cve", "ids": ["TROUBLE-HELM_KNOWN_CVES"]}
 {"alias": "helm in kubespray", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
+{"alias": "helm upgrade broke", "ids": ["TROUBLE-HELM_BREAKING_CHANGES"]}
 {"alias": "helm-apps", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
 {"alias": "helm_archive_checksum", "ids": ["VARIABLE-HELM_ARCHIVE_CHECKSUM"]}
 {"alias": "helm_archive_checksums", "ids": ["VARIABLE-HELM_ARCHIVE_CHECKSUMS"]}
@@ -2124,9 +2145,12 @@
 {"alias": "kube-scheduler version", "ids": ["CONCEPT-CONTROL_PLANE_COMPONENT_VERSIONS", "CONCEPT-K8S_CONTROL_PLANE_VERSIONS"]}
 {"alias": "kube-vip", "ids": ["COMPONENT-KUBE_VIP", "TAG-KUBE_VIP"]}
 {"alias": "kube-vip VIP not working", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP"]}
+{"alias": "kube-vip action required upgrade", "ids": ["TROUBLE-KUBE_VIP_BREAKING_CHANGES"]}
 {"alias": "kube-vip arp bgp", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
+{"alias": "kube-vip breaking changes", "ids": ["TROUBLE-KUBE_VIP_BREAKING_CHANGES"]}
 {"alias": "kube-vip leader election", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
 {"alias": "kube-vip no mode selected", "ids": ["TROUBLE-KUBE_VIP_VIP_NOT_UP"]}
+{"alias": "kube-vip upgrade broke", "ids": ["TROUBLE-KUBE_VIP_BREAKING_CHANGES"]}
 {"alias": "kube-vip vip not working", "ids": ["TROUBLE-KUBE_VIP_CONTROL_PLANE_VIP"]}
 {"alias": "kube-vip vs metallb vs cilium", "ids": ["CONCEPT-SERVICE_EXPOSURE"]}
 {"alias": "kube-vip-capabilities-and-version", "ids": ["TROUBLE-KUBE_VIP_CAPS_VERSION"]}
@@ -3385,6 +3409,9 @@
 {"alias": "scheduled etcd backup", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
 {"alias": "scheduler slow at scale", "ids": ["TROUBLE-SCHEDULER_PERF"]}
 {"alias": "scheduler-plugins", "ids": ["COMPONENT-SCHEDULER_PLUGINS"]}
+{"alias": "scheduler-plugins action required upgrade", "ids": ["TROUBLE-SCHEDULER_PLUGINS_BREAKING_CHANGES"]}
+{"alias": "scheduler-plugins breaking changes", "ids": ["TROUBLE-SCHEDULER_PLUGINS_BREAKING_CHANGES"]}
+{"alias": "scheduler-plugins upgrade broke", "ids": ["TROUBLE-SCHEDULER_PLUGINS_BREAKING_CHANGES"]}
 {"alias": "schedulerName pod never scheduled", "ids": ["TROUBLE-SCHEDULER_POD_PENDING"]}
 {"alias": "scheduler_e2e_scheduling_duration_seconds", "ids": ["TROUBLE-SCHEDULER_PERF"]}
 {"alias": "scheduler_extra_volumes", "ids": ["VARIABLE-SCHEDULER_EXTRA_VOLUMES"]}
@@ -3887,6 +3914,9 @@
 {"alias": "x509 kubelet exec", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "x509 unknown authority pull", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
 {"alias": "youki", "ids": ["COMPONENT-YOUKI", "TAG-YOUKI"]}
+{"alias": "youki action required upgrade", "ids": ["TROUBLE-YOUKI_BREAKING_CHANGES"]}
+{"alias": "youki breaking changes", "ids": ["TROUBLE-YOUKI_BREAKING_CHANGES"]}
+{"alias": "youki upgrade broke", "ids": ["TROUBLE-YOUKI_BREAKING_CHANGES"]}
 {"alias": "youki_archive_checksum", "ids": ["VARIABLE-YOUKI_ARCHIVE_CHECKSUM"]}
 {"alias": "youki_bin_dir", "ids": ["VARIABLE-YOUKI_BIN_DIR"]}
 {"alias": "youki_checksums", "ids": ["VARIABLE-YOUKI_CHECKSUMS"]}

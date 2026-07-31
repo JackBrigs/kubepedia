@@ -1,10 +1,142 @@
 {
+ "2.31.0": {
+  "breaking changes": [
+   "Action required",
+   "Action required",
+   "Action required"
+  ],
+  "bug fixes": [
+   "Fix OCI CCM deployment failure caused by incorrect template filename in lookup (#13151, @amoghazy)",
+   "Fix broken NO_PROXY variable (#12981, @VannTen)",
+   "Fix calico missing RBAC permissions for kube-controller-manager to access tiers in manifest installs, which was preventing proper resource garbage collection. (#13100, @guoard)",
+   "Fix calico missing staged policy permissions for api server (#13101, @guoard)",
+   "Fix cilium_enable_prometheus variable having no effect by wiring it to the Helm values template. (#13142, @yankay)",
+   "Fix crash when CiliumBGPAdvertisement is defined without a labels key. (#13149, @karimzakzouk)",
+   "Fix drain tasks failing with UNREACHABLE when drain_timeout exceeds the Ansible SSH connection timeout by using async/poll. (#13081, @0xMH)",
+   "Fix terraform openstack compute `image_id` and update `openstack_blockstorage_volume_v3` (#12910, @HauptJ)",
+   "Fixed Gateway API v1.4.1 unexpected checksum change and add test (#13006, @labaq)",
+   "Fixed openeuler metalink 24.03LTS wrong url (#13144, @tico88612)"
+  ]
+ },
+ "2.26.1": {
+  "bug fixes": [
+   "Always copy cert generation scripts to first etcd to pick up fixes on existing clusters (#11615, @k8s-infra-cherrypick-robot)",
+   "Fix: cannot stop & remove all cri containers via remove_node.yml (#11637, @k8s-infra-cherrypick-robot)",
+   "Fix kubecontrollersconfigurations list permission (#12038, @k8s-infra-cherrypick-robot)",
+   "Fix manage-offline-container-images.sh get image_id (#12315, @k8s-infra-cherrypick-robot)",
+   "Fix PodSecurity Admission \"empty\" definition handling (#12477, @k8s-infra-cherrypick-robot)"
+  ]
+ },
+ "2.30.0": {
+  "breaking changes": [
+   "Action required"
+  ],
+  "bug fixes": [
+   "Fixed `kube_vip_version` variable for managing kube-vip version instead of `kube_vip_image_tag` (#12835, @ThisIsQasim)",
+   "Fix(cilium): prevent installation failure with unprivileged agent (#12628, @r3m8)",
+   "Fix Calico apiserver RBAC permissions for Kubernetes 1.33+ (#12654, @rickerc)",
+   "Fix Cilium loadBalancer.mode rendering in Kubespray values template. (#12701, @intojhanurag)",
+   "Fix RBAC for calico using the etcd datastore (#12828, @LawiK974)",
+   "Fix automatic certs renew with systemd timer (#12876, @VannTen)",
+   "Fix broken upgrade path/control plane node rotation for cluster using calico in etcd datastore mode with separate etcd.",
+   "Fix kubeadm init retry after first failure on cluster creation (#12785, @VannTen)",
+   "Fix(calico): Add missed rbac verb watch for hostendpoints (#12641, @jmeza-xyz)",
+   "Fixed an issue in the config.json.j2 template where the CRI-O registry authentication configuration could render invalid JSON when multiple `crio_registry_auth` entries were defined, resulting in duplicate top-level `auths` keys in the generated config. (#12845, @accuROAMC)"
+  ]
+ },
+ "2.29.1": {
+  "bug fixes": [
+   "Fix Calico apiserver RBAC permissions for Kubernetes 1.33+ (#12695, @k8s-infra-cherrypick-robot)",
+   "Fix Cilium loadBalancer.mode rendering in Kubespray values template. (#12705, @k8s-infra-cherrypick-robot)",
+   "Fix(calico): Add missed rbac verb watch for hostendpoints (#12644, @k8s-infra-cherrypick-robot)"
+  ]
+ },
+ "2.29.0": {
+  "breaking changes": [
+   "Action required",
+   "Action required",
+   "Action required",
+   "Action required",
+   "Action required",
+   "Action required"
+  ],
+  "bug fixes": [
+   "Fix Cilium installation issues (caused by templating syntax errors) when certain non-default features (encryption, etc.) are enabled (#12280, @spantaleev)",
+   "Fix Hubble-Relay peer discovery in clusters using non-default cluster name by properly configuring clusterDomain in Cilium Helm values (#12346, @mertcancam)",
+   "Fix cilium installation role to render cilium_config_extra_vars into helm values (#12335, @atobaum)",
+   "Fix cilium_policy_audit_mode variable (#12569, @guoard)",
+   "Fix error when using `kubeadm_ignore_preflight_errors: ['all']` (#12606, @VannTen)",
+   "Fix ingress-nginx DaemonSet and Service templates rendering TCP/UDP ports as strings, which prevented correct export of TCP/UDP services via NGINX ingress controller. (#12442, @MahdadGhasemian)",
+   "Fix invalid PodSecurity admission configuration when `kube_pod_security_use_default: false` (#12439, @AMacedoP)",
+   "Fix scale.yml problems with cached IP facts (#12243, @fox0430)",
+   "Fix the Cilium cluster, which is upgraded from 2.27 to 2.28 will break",
+   "Fix the issue of etcd node addition failure caused by incorrect ETCD_INITIAL_CLUSTER configuration. (#12342, @liuxu623)",
+   "Fix(kubeadm): Conditionally add --skip-phases flag for v1.32.0+ (#12351, @ErikJiang)",
+   "Fix: A timeout occurs when running the offline deployment script using Podman. (#11962, @DearJey)",
+   "Fix: When running `./manage-offline-container-images.sh register` with using Podman, getting the image_id fails and the script is interrupted. (#11961, @DearJey)",
+   "Fix: kubeadm secondary nodes use file discovery validation failed (#12132, @tico88612)",
+   "Fixed a looping timeout bug when deleting an entire cluster (#12300, @chadswen)",
+   "Fixed cilium_enable_bgp_control_plane config (#12430, @XuhuiSun95)",
+   "Fixed packages installation on Alma/Rocky Linux when behind a proxy (#12264, @root-expert)",
+   "Fixes a syntax error that made the '_bgp_config' an 'AnsibleUnsafeText' instead of a 'dict', which caused the \"Calico | Process BGP Configuration\" step to fail (#12258, @mathgaming)",
+   "Fix netcheck etcd image tag align with the etcd current version (#12402, @wangsifei99)"
+  ]
+ },
+ "2.28.1": {
+  "bug fixes": [
+   "Fix Cilium installation issues (caused by templating syntax errors) when certain non-default features (encryption, etc.) are enabled (#12283, @k8s-infra-cherrypick-robot)",
+   "Fix Hubble-Relay peer discovery in clusters using non-default cluster name by properly configuring clusterDomain in Cilium Helm values (#12374, @k8s-infra-cherrypick-robot)",
+   "Fix cilium installation role to render cilium_config_extra_vars into helm values (#12338, @k8s-infra-cherrypick-robot)",
+   "Fix invalid PodSecurity admission configuration when `kube_pod_security_use_default: false` (#12478, @k8s-infra-cherrypick-robot)",
+   "Fix the Cilium cluster, which is upgraded from 2.27 to 2.28 will break",
+   "Fix the issue of etcd node addition failure caused by incorrect ETCD_INITIAL_CLUSTER configuration. (#12352, @k8s-infra-cherrypick-robot)",
+   "Fix(kubeadm): Conditionally add --skip-phases flag for v1.32.0+ (#12354, @k8s-infra-cherrypick-robot)",
+   "Fix: When running `./manage-offline-container-images.sh register` with using Podman, getting the image_id fails and the script is interrupted. (#12316, @k8s-infra-cherrypick-robot)",
+   "Fixed cilium_enable_bgp_control_plane config (#12432, @k8s-infra-cherrypick-robot)",
+   "Fixes a syntax error that made the '_bgp_config' an 'AnsibleUnsafeText' instead of a 'dict', which caused the \"Calico | Process BGP Configuration\" step to fail (#12394, @k8s-infra-cherrypick-robot)"
+  ]
+ },
  "2.27.1": {
   "security updates": [
    "Upgrade ingress-nginx to version `v1.12.1` to resolve critical vulnerabilities (CVE-2025-1974 and others) and webhook certgen to `v1.5.2`. (#12080, @tico88612)"
+  ],
+  "bug fixes": [
+   "Fix sample inventory for the reserved resource (#11922, @k8s-infra-cherrypick-robot)",
+   "Fix CI by exclude the `.ansible` in `.ansible-lint`",
+   "Fix coredns deployment with `coredns_pod_disruption_budget: true` or `enable_nodelocaldns_secondary` (#11957, @k8s-infra-cherrypick-robot)",
+   "Fix: When running `./manage-offline-container-images.sh register` with using Podman, getting the image_id fails and the script is interrupted. (#12314, @k8s-infra-cherrypick-robot)",
+   "[calico] Fix kubecontrollersconfigurations list permission (#12039, @k8s-infra-cherrypick-robot)"
   ]
  },
  "2.28.0": {
+  "breaking changes": [
+   "Action required",
+   "Action required",
+   "Action required"
+  ],
+  "bug fixes": [
+   "Fix cilium network plugin config issue deploying cilium 1.17 (#11986, @pedro-peter)",
+   "Network: Fix calico-kube-controller can't list the tiers resources (#12169, @cyclinder)",
+   "Fix documentation for offline usage by adding the 'v' prefix in download urls (#12166, @tmurakam)",
+   "Fix path to facts.yml in node facts refresh section (#12177, @guoard)",
+   "Fix sample inventory for the reserved resource (#11895, @anshuman-agarwala)",
+   "Fix CI by exclude the `.ansible` in `.ansible-lint`",
+   "Fix a bug where `kubeadm_certificate_key` was not defined if control plane nodes were not in correct order (#11875, @Xartos)",
+   "Fix a bug where custom TCP/UDP ports were not exposed by the ingress-nginx-controller container and service. (#11850, @commx)",
+   "Fix broken calico Typha template when using both `calico_ipam_host_local` and `typha_secure` (#11917, @c-romeo)",
+   "Fix broken dhclient hooks when using resolvconf (#11946, @kyrbrbik)",
+   "Fix control plane pods deletion with proper shell quoting (#11943, @iptizer)",
+   "Fix coredns deployment with `coredns_pod_disruption_budget: true` or `enable_nodelocaldns_secondary` (#11952, @RaulButuc)",
+   "Fix hubble-ui deployment to not renders tls volume when the `cilium_hubble_tls_generate` option not configured. (#12143, @atobaum)",
+   "Fix scale.yml problems with cached IP facts (#12020, @0ekk)",
+   "Fix: Using the ./manage-offline-container-images.sh register command does not create a new container but registers the image in the existing container registry. (#11964, @DearJey)",
+   "Fix: arm64 checksums for youki and kata-containers (#12173, @ErikJiang)",
+   "Fix: missing 'v' prefix in offline image tags (#12086, @ErikJiang)",
+   "Fix: prevent kubeadm to override coredns configuration/deployment on upgrade (#12028, @sathieu)",
+   "Fixed an issue where the second and subsequent parameters in `kubelet_cpu_manager_policy_options` were ignored due to incorrect indentation. (#12123, @HoKim98)",
+   "Fixed kube-vip to use `kube-vip/kube-vip-iptables` image instead of `kube-vip/kube-vip` when `lb_fwdmethod` or `kube_vip_lb_fwdmethod` is set to `masquerade` (#12145, @aviral-agarwal)",
+   "[calico] Fix kubecontrollersconfigurations list permission (#12035, @darkobas2)"
+  ],
   "security updates": [
    "Upgrade ingress-nginx to version `v1.12.1` to resolve critical vulnerabilities (CVE-2025-1974 and others) and webhook certgen to `v1.5.2`. (#12075, @farshadasadpour)"
   ]
@@ -15,17 +147,469 @@
    "Action required",
    "Action required",
    "Action required",
+   "Action required",
    "Action required"
+  ],
+  "bug fixes": [
+   "Fix CI: elastx cleanup security groups (#11411, @yankay)",
+   "Always copy cert generation script to first etcd to pick up fixes on existing clusters (#11612, @VannTen)",
+   "Fix Cilium agent permission can't read loadbalancerippools and secrets (#11466, @foobaar)",
+   "Fix calico dual stack installation when using `ip` and `ip6`. (#11770, @VannTen)",
+   "Fix collection usage for calico and other configuration depending on .sh and .conf files in Kubespray (#11707, @VannTen)",
+   "Fix format of kubeadm-config v1beta4 (#11709, @VannTen)",
+   "Fix kube-vip container securityContext (#11647, @KubeKyrie)",
+   "Fix openEuler system packages installation (#11688, @VannTen)",
+   "Fix pretty-printing (in kubectl) of nodelocaldns and coredns configmap when using `dns_upstream_forward_extra_opts` with an empty value option. (#11694, @VannTen)",
+   "Fix spurious failure with 'localhost' when using `scale.yml --limit <some nodes>` (#11817, @VannTen)",
+   "Fix task naming in bootstrap-os (#11714, @ErikJiang)",
+   "Fix terraform.py on python >=3.12 (#11773, @enrico9034)",
+   "Fix the check for cached data when using --limit (#11693, @VannTen)",
+   "Fix the usage of --limit when using legacy groups (#11577, @VannTen)",
+   "Fix usage of admission plugins configuration. (#11779, @VannTen)",
+   "Fix using the default network manager in reset.yml (#11678, @KubeKyrie)",
+   "Fix: cannot stop & remove all cri containers via remove_node.yml (#11631, @tico88612)",
+   "Fixed: VSphere CSI and CPI drivers and are now retrieved from registry.k8s.io instead of gcr.io, as they have been deleted from the latter. Only a few recent versions are available in the new repository; if you have pinned `vsphere_csi_controller`, `vsphere_csi_driver_image_tag` or `vsphere_syncer_image_tag` to a version older than `v3.1.2`, please check if that version is available from the new repository. The same goes for `external_vsphere_cloud_controller_image_tag` which can no longer be `latest`, and should align with the running version of Kubernetes. It now defaults to `v1.31.0`. (#11564, @luringens)",
+   "Fix `roles/download/tasks/download_file.yml` task name typo (#11684, @dmncmn)"
+  ]
+ },
+ "2.25.1": {
+  "bug fixes": [
+   "User has a possibility to fix nodePort of ingress-nginx service with property in addons.yaml (#11339, @k8s-infra-cherrypick-robot)",
+   "Always copy cert generation script to first etcd to pick up fixes on existing clusters (#11616, @k8s-infra-cherrypick-robot)",
+   "Fix: cannot stop & remove all cri containers via remove_node.yml (#11638, @k8s-infra-cherrypick-robot)"
+  ]
+ },
+ "2.24.3": {
+  "bug fixes": [
+   "User has a possibility to fix nodePort of ingress-nginx service with property in addons.yaml (#11361, @k8s-infra-cherrypick-robot)"
+  ]
+ },
+ "2.26.0": {
+  "bug fixes": [
+   "User has a possibility to fix nodePort of ingress-nginx service with property in addons.yaml (#11310, @mochizuki875)",
+   "[calico] add calico support v3.27.4 to fix high cpu load due to XDP program in iptables (#11476, @ehsan310)",
+   "[containerd] fixes wrong templating for tracing config (#11372, @ugur99)",
+   "Fix Hetzner kubernetes group names (#11232, @jmaccabee13)",
+   "Fix: skip multus when not defined (#10934, @darkobas2)",
+   "Fix CI with fail docker pull in gitlab runner by change DOCKER_HOST (#11315, @yankay)",
+   "Fix etcd not starting up when using a custom access address (#11388, @derselbst)",
+   "Fix the Auto Bump PR is blocked by the label `do-not-merge/release-note-label-needed` by adding dependabot `release-note-none` label. (#11256, @yankay)",
+   "Fix kube_reserved so it only controls kubeReservedCgroup . (#11367, @rptaylor)",
+   "Fix error in boostrap-os when git does not handle symlinks (#11508, @VannTen)",
+   "Fix static kube-apiserver advertise address based on first control plane (#11457, @Seljuke)",
+   "Fix incorrect member matching when removing etcd nodes (#11488, @ErikJiang)",
+   "Fix double pop of access_ip (#11435, @rptaylor)",
+   "Fix use super-admin.conf for kube-vip on first master when it exists to support initial k8s v1.29+ installation with kube-vip enabled (#11422, @Seljuke)",
+   "Fix openstack cleanup by change the delete security_group order (#11299, @yankay)"
+  ]
+ },
+ "2.24.2": {
+  "bug fixes": [
+   "Fix CentOS 7 yum repo baseurl update (#11364, @tico88612 )"
+  ]
+ },
+ "2.25.0": {
+  "bug fixes": [
+   "Prevent nodelocaldns to be OOM-killed (#11056, @sathieu)",
+   "Fix secondary coredns missing var (#10821, @VannTen)",
+   "Fix typo in vagrant.md (#10836, @kundan2707)",
+   "Fix typo mistake in roles/kubernetes/control-plane/tasks/define-first-kube-control.yml (#10835, @kimsehwan96)",
+   "Fixed typos in inventory/sample/group_vars/k8s_cluster (#10911, @arahmangulov)",
+   "Fix ClusterRole for Calico >=v1.26.x with Calico API Server installed (#11089, @RaSerge)",
+   "Fix ansible parameter ssh_args in ansible.cfg file not work (#10981, @joy717)",
+   "Fix boostrap for Amazon Linux (#11139, @VannTen)",
+   "Fix crio registries config file when using slashes in the registry path (#11030, @pedro-peter)",
+   "Fix file loss during download (#10779, @ErikJiang)",
+   "Fix kubespray-defaults: Check for boostrap-os FQCN (#11073, @KubeKyrie)",
+   "Fix local path provisioner image repo in sample inventory. (#11180, @tico88612)",
+   "Fix logical error when checking for boostrap-os (#10867, @VannTen)",
+   "Fix lsattr command error when kubelet has symbolic link (#11074, @KubeKyrie)",
+   "Fix network manage service of Debian 12 (#11058, @KubeKyrie)",
+   "Fix nginx controller leader election RBAC (#10913, @VannTen)",
+   "Fix python regex matching problem when finding docker packages (#11075, @KubeKyrie)",
+   "Fix waiting for MetalLB controller (#10858, @flxbwr)",
+   "Fix(kubernetes): taint nodes on cluster upgrade (#10705, @maxime1907)",
+   "Fix: config hostname as string type in kubeadmConfig rendering (#10997, @ErikJiang)",
+   "Fixes running `recover-control-plane.yml` with offline broken etcd nodes. (#10660, @yuha0)",
+   "Revert OCCM standard dnsPolicy to ClusterFirst to fix #10914 which was introduced with #10618 and make dnsPolicy configurable to furthermore support #10618 (#11168, @Payback159)",
+   "[etcd] fixes wrong distributed tracing flag for etcd (#11175, @ugur99)",
+   "Correct the POLY1305 cipher suites by adding the suffix _SHA256 (#10641, @yckaolalala)"
+  ],
+  "breaking changes": [
+   "BREAKING CHANGE: This script is introduced to facilitate living documentation and its administration. This leads to a restructuring in the documentation at https://kubespray.io/#/ to simplify the automatic creation of links, as the structure in the sidebar changes. (#11128, @Payback159)"
+  ]
+ },
+ "2.24.1": {
+  "bug fixes": [
+   "Fix logical error when checking for boostrap-os (#10953, @VannTen)"
+  ]
+ },
+ "2.22.2": {
+  "bug fixes": [
+   "Fix hardcoded pod infra version (#10805, @ErikJiang)",
+   "[Multus] Fix loop_control template error when item is None (#10347, @nicolas-goudry)"
+  ]
+ },
+ "2.23.3": {
+  "bug fixes": [
+   "Fix hardcoded pod infra version (#10806, @ErikJiang)"
+  ]
+ },
+ "2.24.0": {
+  "bug fixes": [
+   "[cilium] Fix invalid hubble yaml if `cilium_hubble_tls_generate` is enabled (#10430, @toonalbers)",
+   "[containerd] Fix invalid version check in containerd jinja-template config (#10620, @khanhngobackend)",
+   "Fix 'kube-apiserver' tag inappropriately overwriting secrets at rest encryption token (#10460, @jwitko)",
+   "Fix assertion for task item verify-settings (#10699, @piwinkler)",
+   "Fix external-lb in kubelet.conf server address and kube-proxy api-server address (#10490, @ugur99)",
+   "Fix forgotten update of etcd-servers list in apiserver manifest when scaling (#8253, @liupeng0518)",
+   "Fix metallb example yaml (#10545, @caruccio)",
+   "Fix reset job for cri-o container engine (#10197, @turbosnail)",
+   "Fix restart network task cannot be skipped (ansible boolean conversion needed) (#10512, @ErikJiang)",
+   "Fix: add kubelet tag in task of Fetch facts to avoid kubelet config inconsistencies (#10423, @NierYYDS)",
+   "Fixes the path of the certificates use in the etcdctl.sh wrapper when the deployment type is not kubeadm. (#10467, @RomainMou)",
+   "Fix undefined retries variable when copying etcdctl (#10634, @ErikJiang)",
+   "Fix download retry when get_url has no status_code (#10613, @RomainMou)",
+   "Fix ntp installation on SLES and openSUSE (#10786, @goldyfruit)",
+   "Fix crio_version version comparison (#10780, @ledroide)",
+   "Fix disable swap failed in Centos/RHEL 7 (#10751, @yankay)",
+   "Fix image pull fail with insecure-registry (#10775, @yankay)",
+   "Refactor check_galaxy + fix version (#10729, @VannTen)",
+   "Fix Helm installation on SLES and openSUSE (#10794, @goldyfruit)",
+   "Fix incorrect ciliumcli binary (#10575, @tu1h)",
+   "Fix ntp installation on SLES and openSUSE (#10786, @goldyfruit)",
+   "Fix the cluster installation on cluster using etcd clients nodes (cilium / calico / ...) (#10769, @VannTen)"
+  ]
+ },
+ "2.23.2": {
+  "bug fixes": [
+   "[containerd] Fix invalid version check in containerd jinja-template config (#10620, @khanhngobackend)",
+   "Fix calico-node in etcd mode. (#10768, @VannTen)",
+   "Fix download retry when get_url has no status_code (#10613, @RomainMou) (#10791, @VannTen)"
+  ]
+ },
+ "2.23.1": {
+  "bug fixes": [
+   "[Cilium] Fix invalid hubble yaml if `cilium_hubble_tls_generate` is enabled (#10476, @toonalbers)",
+   "[ingress-nginx] Fix nginx controller leader election RBAC permissions (#10569, @mzaian)",
+   "Fix get currently configured nameservers error where there are inline comments in /etc/resolv.conf (#10415, @yankay)"
+  ]
+ },
+ "2.23.0": {
+  "bug fixes": [
+   "[local_path_provisioner] Fix invalid podhelper yaml (#10237, @MrFreezeex)",
+   "[crio] Fix etcdctl copy operation (#10242, @ErikJiang)",
+   "[youki] Fix youki binary download url (not requiring 'v' in version) (#10337, @ErikJiang)",
+   "[multus] Fix loop_control template error when item is None (#10347, @nicolas-goudry)",
+   "Update Calico to lowercase and fix broken calico link in README (#10232, @Xieql)",
+   "Fix Dockerfile for newest directory layout (#10128, @dabeck)",
+   "Fix Flatcar bootstrap issues (yaml module missing and ntp issue) (#10363, @tenni-paws)",
+   "Fix argocd install not working using the kubespray docker image (#10371, @cortex3)",
+   "Fix correctly mount ssl ca directories (#9794, @maxime1907)",
+   "Fix etcdctl copy operation (#10230, @ErikJiang)",
+   "Fix gce-pd-csi driver (#10208, @ashishsinghdev)",
+   "Fix grep command without -w option causing prefix matched while adding one etcd member (#10291, @yangsenzk)",
+   "Fix hcloud-cloud-controller-manager not working in certain setups (#10297, @cortex3)",
+   "Fix helm (kubelet-csr-approver) installation on redhat distro (#10204, @MrFreezeex)",
+   "Fix kubelet-csr-approver usage with upgrade-cluster.yml and missing package with helm role (#10165, @j4m3s-s)",
+   "Fix nginxingress-class template (missing newline) (#10174, @richard-fairthorne)",
+   "Fix problem migration problem with k8s 1.27 (#10136, @batazor)",
+   "Fix reset_confirmation not working when inputing correct value (#10288, @somewho)",
+   "Fix wrong path in manage-offline-files script (#9886, @Medosopher)",
+   "Fix an issue where using Rocky Linux 8 as OS for Vagrant for testing purposes causing etcd to fail on start. (#10252, @nltimv)",
+   "Fix ansible-lint galaxy rule (#10277, @MrFreezeex)",
+   "Fix ansible-lint key-order error (#10314, @MrFreezeex)",
+   "Fix outdated tag and experimental ansible-lint rules (#10254, @MrFreezeex)",
+   "Fix dockerfile build error (#10127, @yankay)",
+   "Fix metrics-server deployment to run with kubernetes 1.26+ (#10183, @mzaian)",
+   "Fix undefined `reset_confirmation_prompt` variable in reset play (#10303, @Mishavint)",
+   "Fix CIS Kubernetes V1.23 Benchmark item number 4.1.9 to enhance security (Change kubelet-config.yaml and kubelet.env file permissions from 640 to 600) (#10304, @satandyh)",
+   "Fix parsing of RHSM proxy configuration (#10228, @tmurakam)",
+   "Fix var-spacing ansible rule (#10266, @MrFreezeex)",
+   "Fix specify owner to kube_owner in task of copy cni plugins (#10407, @NierYYDS)",
+   "Fix typo kubelet_topoloy_manager_policy => kubelet_topology_manager_policy (#10384, @hangscer8)",
+   "Fix recover_control_plane playbook (also add debian 12 with cilium as a new nightly test) (#10411, @floryut)",
+   "Fix nameserver inline comments in /etc/resolv.conf (#10415, @yankay)",
+   "Fix typo kubelet_topoloy_manager_policy => kubelet_topology_manager_policy (#10384, @hangscer8) ⚠️ **(See Notes 1)**",
+   "[CI] fix tf-elastx_cleanup fail (#10133, @yankay)",
+   "Resolve ansible-lint name errors (#10253, @MrFreezeex)"
+  ]
+ },
+ "2.22.1": {
+  "bug fixes": [
+   "Fix Dockerfile for newest directory layout (#10128, @dabeck)",
+   "Fix dockerfile build error (#10181, @yankay)",
+   "Fix metrics-server deployment to run with kubernetes 1.26+ (#10183, @mzaian)",
+   "Fix Update MetalLB deployment, wait for resource. (#9995, @Jeroen0494)"
+  ]
+ },
+ "2.22.0": {
+  "bug fixes": [
+   "Fix kube-bench 1.2.20 to enhance security (Ensure that the --audit-log-maxbackup argument is set to 10) (#9939, @yankay)",
+   "Fix kube-bench 1.1.19 to enhance security (Change Kubernetes Cert directory and file ownership is set to root:root) (#9937, @yankay)",
+   "Fix kube-bench 4.1.1 to enhance security (Change kubelet systemd init file from 644 to 600) (#9934, @yankay)",
+   "Fix kubernetes-app/argocd: download related things with the download role (#9786, @pli01)",
+   "[cri-o] Fix install order -> first runc then crictl (#9780, @mvandergiesen)",
+   "[cri-o] Fix missed double quotes in cri-o config (#10040, @turbosnail)",
+   "[cri-o] Fix CRI-O amd64 v1.26.0 wrong archive checksum (#9872, @panguicai008)",
+   "[cri-o] Fix cri-o restart if config change (#10057, @MrFreezeex)",
+   "[Calico] Fix installation while applying CRD (#10068, @hangscer8)",
+   "[Cilium] Fix Hubble relay configuration (#9876, @prashantchitta)",
+   "[Cilium] Fix the configuration of TLS for hubble (#9880, @utam0k)",
+   "[multus] fix multus include error (#10105, @darkobas2)",
+   "Fix sidebar documentation (#9988, @lijin-union)",
+   "Fix `cert_manager_trusted_internal_ca` manifest failing when dns policy is set (#9922, @peschmae)",
+   "Fix `containerd_insecure_registries` => move `with_item` to `with_dict` (#9729, @lengrongfu)",
+   "Fix allow unsupported distribution (#9904, @ErikJiang)",
+   "Fix cilium's hubble ui configuration (#9735, @j4m3s-s)",
+   "Fix comma-separated-list splitting of `kubelet_enforce_node_allocatable` variable (#9694, @Tristan971)",
+   "Fix confusing instance sizing (etcd, kube_master) in Vagrantfile (#9966, @THUzxj)",
+   "Fix ingress url not found issue (#9789, @JaneLiuL)",
+   "Fix playbook names to support import via galaxy (#10021, @dkasanic)",
+   "Fix restart k8s components, checking yml files instead of manifest (#9962, @liupeng0518)",
+   "Fix uniontech OS installation failure (#9862, @ErikJiang)",
+   "Fix calico rbac issue (#9806, @JaneLiuL)",
+   "[etcd] fix make-ssl-etcd.sh.j2; move pem files only if any new certs exist (#9974, @2k0ri)",
+   "[vSphere-csi-driver] Fixes the run of the `cluster.yml` playbook when `vsphere_csi_namespace` is set to non-default (#9946, @eugene-marchanka)",
+   "Fix(contrib/terraform): do not set ansible_ssh_port to 22 (#9828, @maxime1907)",
+   "Fix arithmetic outside of jinja (#10106, @MrFreezeex)",
+   "Fix CI broken by flannel-cni-plugin docker hub rate limit (#10083, @yankay)",
+   "[CI] Fix CentOS Extras repo url for Oracle Linux 7 aarch64 (#9791, @bin456789)",
+   "[CI] Fix tests for files lookup path for custom-cni (#10088, @j4m3s-s)",
+   "Fix playbook names to support import via galaxy (⚠️ ADD NOTE : recover-control-panel => recover_control_plane, remove-node => remove_node, upgrade-cluster => upgrade_cluster)"
   ]
  },
  "2.21.0": {
+  "bug fixes": [
+   "Fix a pre-upgrade node drain rescue task failure when `kube_override_hostname` is set (#9556, @chadswen)",
+   "Fix default value for kubelet_secure_addresses (#9355, @willtrnr)",
+   "[kube-vip] Minor changes on Kube VIP configuration parameters (and fix wrong properties) (#9414, @woutergd)",
+   "Fix remove Cilium CNI failed because the CNI bin dependency (#9563, @yankay)",
+   "Fix cert-manager deployment on hardening environments (#9404, @oomichi)",
+   "Fix checksum of ciliumcli v0.12.5 for arm64 (#9614, @oomichi)",
+   "Fix inconsistent handling of admission plugin list (`kube_apiserver_enable_admission_plugins` must be specified as a list of individual plugin names instead of a single item comma-separated list) (#9407, @willtrnr)",
+   "Fix kube token dir permissions (#9590, @C-Romeo)",
+   "Fix missing control plane taint in kubeadm (#9592, @yankay)",
+   "Fix regex for comments nameserver in resolv.conf (#9523, @yankay)",
+   "Fix reset for RedHat based distro with major version >=8 (#9537, @dougsland)",
+   "Fix wrong cri_socket path for containerd (#9401, @maxime1907)",
+   "Fix wrong rbac of the ClusterRole `csi-snapshotter-role` (#9610, @maxime1907)",
+   "Fix OL9 setup - disable Centos Extras repo creation (#9483, @psvmcc)",
+   "[Cilium] Fix the Hubble certificate being faulty because the cluster name has an hard coded value (#9340, @dcwbq)",
+   "[Cilium] Fix tls settings not being properly set (#9457, @charlychiu)",
+   "[Cilium] Remove trailing backslash and fix yaml indent (#9339, @reneluria)",
+   "[Openstack] Fix a race condition in terraform causing ports to not get an IP (#9345, @bl0m1)",
+   "[Openstack] Fix missing permissions for Openstack cloud-controller-manager (#9335, @bl0m1)",
+   "[upcloud] Fixed issue where DNS would be blocked while using allowlist (#9510, @Xartos)",
+   "[CI] Add check_typo job (and fix a bunch of typos) (#9361, @oomichi)",
+   "[CI] Fix YAML format in hardening.md file (#9387, @oomichi)",
+   "[CI] Increase the fedora memory at CI to fix the CI broken (#9640, @yankay)"
+  ],
   "security updates": [
    "[Docker] Update docker package to 20.10.20 (partial fix for CVE-2022-39253) (#9410, @floryut)"
   ]
  },
+ "2.20.0": {
+  "bug fixes": [
+   "[Openstack] Fix subnet order and number of master nodes (#9159, @robinelastisys)",
+   "Fix failure to look up user etcd when adding a user (#9016, @yankay)",
+   "Fix Hetzner CCM cluster-cidr (wrongly set to a static value) (#9127, @ym)",
+   "Fix calicoctl.sh path error when getting calico configuration (#9217, @tasekida)",
+   "Fix failing tasks when calico_datastore is set to etcd (#9228, @chadswen)",
+   "Fix missing quote in task \"See if node is schedulable\" (#9146, @emiran-orange)",
+   "Fix number node name can't be added. (#9266, @cleverhu)",
+   "Fix regex for replacing http_proxy host in RedHat Subscription Manager (#8957, @dicksontung)",
+   "Fix some docker reset task (don't remove already uninstalled packages, ignore error on remove docker config files if already removed) (#8966, @orange-llajeanne)",
+   "Fix the Centos/RHEL docker installation issue in ARM64 (#9047, @yankay)",
+   "Fix the kube-vip missed SAN issue (#9099, @yankay)",
+   "Fixed concatenate str & int in `auto_renew_certificates_systemd_calendar` (#8979, @floryut)",
+   "Fixes the issue when it cannot correctly set the namespace for vphere-csi-driver (#9046, @eminaktas)",
+   "Fixes vSphere CSI for vSphere CSI >= 2.4.0 on vSphere 6.7U3 (#8944, @snowball77)",
+   "[ingress-nginx] Fix ingress-nginx RBAC rules when deployed classless (#9156, @cristicalin)",
+   "Remove the 'etcd-unsupported-arch' args to fix the etcd issue in arm64 (#9049, @yankay)",
+   "Fix duplicate field in ingress-nginx template (#9285, @cloud-66)",
+   "Fix CoreDNS memory leak issue by adding `max_concurrent=1000` in the CoreDNS config (#9307, @yankay)",
+   "Fix ansible user module create_home property (erroneously written as createhome) (#9314, @liupeng0518)",
+   "[CI] Fix cloud_init files for different distros (#9232, @floryut)"
+  ]
+ },
+ "2.19.1": {
+  "bug fixes": [
+   "Fix failing tasks when calico_datastore is set to etcd ([#9234](https://github.com/kubernetes-sigs/kubespray/pull/9234), [@chadswen](https://github.com/chadswen))"
+  ]
+ },
+ "2.18.2": {
+  "bug fixes": [
+   "Fix cert-manager unusable due to leader election namespace problem ([#8681](https://github.com/kubernetes-sigs/kubespray/pull/8681), [@rtsp](https://github.com/rtsp))",
+   "Fix image_command_tool var ignored since PR #8601 ([#8684](https://github.com/kubernetes-sigs/kubespray/pull/8684), [@sathieu](https://github.com/sathieu))"
+  ]
+ },
  "2.19.0": {
+  "bug fixes": [
+   "[Calico] Fix Wireguard support for CentOS Stream 9/RHEL 9 Beta (#8625, @ThisIsQasim)",
+   "[Calico] fix calico-kube-controllers verbs (#8847, @irizzant)",
+   "[MetalLB] Fix wrong port name in metallb.yml.j2 (metrics not monitoring) (#8510, @binkoni)",
+   "[OpenStack] Fixed cluster roles for openstack cloud controller (#8638, @Xartos)",
+   "[OpenStack] Fix templating of ansible_ssh_common_args in no_floating.yml if used as TF module (#8646, @frittentheke)",
+   "[containerd] Fix containerd image download bug (#8894, @liupeng0518)",
+   "CRI-O: fix unqualified-search registries (#8496, @krystianmlynek)",
+   "Fix DNS configuration when using resolvconf_mode='host_resolvconf' during scale (#8361, @unai-ttxu)",
+   "Fix GCP PVC creation on k8s v1.22 (#8616, @lmercl)",
+   "Fix `0090-etchosts` file when setting `override_system_hostname=false` (#7634, @liupeng0518)",
+   "Fix `kube-dns` service will no longer be deleted if not created by kubespray (#8565, @cyril-corbon)",
+   "Fix an issue the kube-vip manifest with extra space. (#8831, @yankay)",
+   "Fix an issue users cannot skip redhat registration by specifying -e rhel_enable_repos=False (#8871, @gleb108)",
+   "Fix an issue where offline script could not output URLs of both containerd and krew. (#8379, @oomichi)",
+   "Fix condition on kata_containers_version/kube_version check when kata_containers_enabled is false (#8804, @emiran-orange)",
+   "Fix container engine still installed on dedicated etcd node even if `etcd_deployment_type: host` (#8386, @rtsp)",
+   "Fix cri-o packages install for Rocky 8 (#8594, @brankomijuskovic)",
+   "Fix etcd certificates reference to support `etcd_kubeadm_enabled: true` (#7766, @forselli-stratio)",
+   "Fix imageRepository path for CoreDNS (ensure coredns repository namespace is kept) (#8572, @nicolas-goudry)",
+   "Fix incorrect condition type (#8822, @cyclinder)",
+   "Fix incorrect leader election namespace with cert-manager leading to insufficient permission (#8433, @rtsp)",
+   "Fix issue when PodSecurityPolicy is enabled static pods are now mirrored earlier by kubelet. Problem when installing HA etcd via kubeadm. (#8744, @robinAwallace)",
+   "Fix kubectl call before installing it when setting `first_kube_control_plane`/`joined_control_planes` (#8412, @floryut)",
+   "Fix kubelet_kubelet_cgroups_cgroupfs pointing incorrectly to slice (#8500, @fungusakafungus)",
+   "Fix print_hostnames of inventory.py (#8554, @oomichi)",
+   "Fix remove-node.yaml playbook fails when host is unreachable (#8843, @oomichi)",
+   "Fix removing `docker-ce.repo` failed (#8856, @Thearas)",
+   "Fix the condition of drain on pre-remove task (#8634, @oomichi)",
+   "Fix typo and duplicated declaration of ingressclasses (#8591, @spaced)",
+   "Fix vagrant default value for parameters `local_path_provisioner_enabled`/`multi_networking` (#8650, @liupeng0518)",
+   "Fix wrong item in mitogen contrib (#8508, @kdszoom)",
+   "Fixed a bug where hosts with NetworkManager enabled were having their /etc/resolv.conf file edited directly instead of through NM.",
+   "Fixed a bug where updated versions of etcd weren't being applied. Check your etcd instances to make sure their versions are what you expect. If not, restarting all etcd members should apply the update. (#8556, @mac-chaffee)",
+   "Fixed a bug where upgrade-cluster.yaml would not apply updates to etcd-events (#8550, @mac-chaffee)",
+   "Fixes missing checksum for kata-containers 2.2.3 on arm architectures (#8383, @Payback159)",
+   "Fixes the etcd node removal by pointing ETCDCTL_ENDPOINTS to localhost (127.0.0.1) (#8526, @roedie)",
+   "Prevent removing etcd member when running in check mode (#8570, @fungusakafungus)",
+   "[Terraform-AWS] Fix error when creating subnets more than AZ (#8516, @sophalHong)",
+   "[cert-manager] Fix missing RBAC rules for ClusterRole cert-manager-cainjector (#8444, @onock)",
+   "[reset] fix task inclusion logic for network plugin (#8727, @cristicalin)",
+   "[systemd-resolved] Fix DNS early and late stages (`dns_early`|`dns_late`) of cluster deployment"
+  ],
   "security updates": [
    "[containerd] upgrade versions to fix CVE-2022-23648 (#8597, @cristicalin)"
+  ]
+ },
+ "2.18.1": {
+  "bug fixes": [
+   "Fix an issue where offline script could not output URLs of both containerd and krew. ([#8379](https://github.com/kubernetes-sigs/kubespray/pull/8379), [@oomichi](https://github.com/oomichi))",
+   "Fix container engine still installed on dedicated etcd node even if `etcd_deployment_type: host` ([#8404](https://github.com/kubernetes-sigs/kubespray/pull/8404), [@rtsp](https://github.com/rtsp))"
+  ]
+ },
+ "2.18.0": {
+  "bug fixes": [
+   "[Openstack] Fix a bug where Openstack cloud provider could not be used with username/password ([#8021](https://github.com/kubernetes-sigs/kubespray/pull/8021), [@bl0m1](https://github.com/bl0m1))",
+   "[Calico] Fix Kube-bench security warnings on calico controller (file ownership/permissions) ([#8072](https://github.com/kubernetes-sigs/kubespray/pull/8072), [@oomichi](https://github.com/oomichi))",
+   "[Calico] Fix typha prometheus causing a deployment error ([#8005](https://github.com/kubernetes-sigs/kubespray/pull/8005), [@ericlake](https://github.com/ericlake))",
+   "[Cilium] Fix operator metrics activation (`enable-metrics` key missing) ([#8000](https://github.com/kubernetes-sigs/kubespray/pull/8000), [@L3o-pold](https://github.com/L3o-pold))",
+   "[containerd] Fix the usage of cgroupfs with containerd and introduce cgroupsfs specific variables (⚠️ `containerd_runtimes` is now `containerd_additional_runtimes` ) ([#8123](https://github.com/kubernetes-sigs/kubespray/pull/8123), [@pasqualet](https://github.com/pasqualet))",
+   "Fix CentOS7 issue with allowPrivilegeEscalation value from metrics-server ([#8014](https://github.com/kubernetes-sigs/kubespray/pull/8014), [@oomichi](https://github.com/oomichi))",
+   "Fix Heketi deployment logic that was broken by the ansible 3.4 upgrade ([#8118](https://github.com/kubernetes-sigs/kubespray/pull/8118), [@cristicalin](https://github.com/cristicalin))",
+   "~Fix `apiserver_loadbalancer_domain_name` pointing to external LB instead of dbip ([#8299](https://github.com/kubernetes-sigs/kubespray/pull/8299), [@singeleaf](https://github.com/singeleaf))~ [REVERTED]",
+   "Fix a conflict with containerd and podman under CentOS 8.x (remove podman when installing Docker/Containerd) ([#8016](https://github.com/kubernetes-sigs/kubespray/pull/8016), [@panpan0000](https://github.com/panpan0000))",
+   "Fix bad indentation in cert-manager when trusted internal ca is defined ([#8314](https://github.com/kubernetes-sigs/kubespray/pull/8314), [@infra-monkey](https://github.com/infra-monkey))",
+   "Fix calico's inventory check (Check if inventory match current cluster configuration) conversion ([#8120](https://github.com/kubernetes-sigs/kubespray/pull/8120), [@juliohm1978](https://github.com/juliohm1978))",
+   "Fix cert_manager ClusterIssuer manifest by removing deprecated ClusterIssuer ([#8064](https://github.com/kubernetes-sigs/kubespray/pull/8064), [@rtsp](https://github.com/rtsp))",
+   "Fix cloud_provider check in preinstall task, allowing `oci` value (and removing deprecated ones) ([#8164](https://github.com/kubernetes-sigs/kubespray/pull/8164), [@oomichi](https://github.com/oomichi))",
+   "Fix containerd failed to start if apparmor is not installed ([#8011](https://github.com/kubernetes-sigs/kubespray/pull/8011), [@rtsp](https://github.com/rtsp))",
+   "Fix debian 9 check for apt cache update in bootstrap-os ([#8215](https://github.com/kubernetes-sigs/kubespray/pull/8215), [@floryut](https://github.com/floryut))",
+   "Fix deploying loadbalancer to masters when bind-address is not set to 0.0.0.0 (and `loadbalancer_apiserver_localhost` is `true`) ([#8262](https://github.com/kubernetes-sigs/kubespray/pull/8262), [@Bledai](https://github.com/Bledai))",
+   "Fix forgotten update of etcd-servers list in apiserver manifest when scaling ([#8253](https://github.com/kubernetes-sigs/kubespray/pull/8253), [@liupeng0518](https://github.com/liupeng0518))",
+   "Fix k8s-certs-renew cp path wrongly using `/usr/bin/` ([#7992](https://github.com/kubernetes-sigs/kubespray/pull/7992), [@lazybetrayer](https://github.com/lazybetrayer))",
+   "Fix k8scsi/csi-resizer repo (from gcr to quay) ([#8270](https://github.com/kubernetes-sigs/kubespray/pull/8270), [@oomichi](https://github.com/oomichi))",
+   "Fix kata-containers runtime with version 2.x ([#8068](https://github.com/kubernetes-sigs/kubespray/pull/8068), [@cristicalin](https://github.com/cristicalin))",
+   "Fix kubespray flatcar ansible_os_family and ansible_distribution for backward compatibility ([#8029](https://github.com/kubernetes-sigs/kubespray/pull/8029), [@isantospardo](https://github.com/isantospardo))",
+   "Fix quorum check when recovering broken etcd cluster (with etcd 3.5.x) ([#8126](https://github.com/kubernetes-sigs/kubespray/pull/8126), [@floryut](https://github.com/floryut))",
+   "Fix reset playbook for Fedora OS ([#8205](https://github.com/kubernetes-sigs/kubespray/pull/8205), [@cristicalin](https://github.com/cristicalin))",
+   "Fix wrong baseurl for centos extra repo for Oracle Linux (missing `/os/`) ([#8208](https://github.com/kubernetes-sigs/kubespray/pull/8208), [@buker](https://github.com/buker))",
+   "Fixes incongruence between metrics-server resources limits/requests defined in official templates ([#8088](https://github.com/kubernetes-sigs/kubespray/pull/8088), [@irizzant](https://github.com/irizzant))",
+   "[Calico] Fix support for version 3.21.x ([#8250](https://github.com/kubernetes-sigs/kubespray/pull/8250), [@cristicalin](https://github.com/cristicalin))",
+   "Fix resolved config when nodelocaldns is not enabled ([#8351](https://github.com/kubernetes-sigs/kubespray/pull/8351), [@liupeng0518](https://github.com/liupeng0518))"
+  ]
+ },
+ "2.17.1": {
+  "bug fixes": [
+   "[Openstack] Fix a bug where Openstack cloud provider could not be used with username/password ([#8021](https://github.com/kubernetes-sigs/kubespray/pull/8021), [@bl0m1](https://github.com/bl0m1))",
+   "[Calico] Fix typha prometheus causing a deployment error ([#8005](https://github.com/kubernetes-sigs/kubespray/pull/8005), [@ericlake](https://github.com/ericlake))",
+   "[Cilium] Fix operator metrics activation (`enable-metrics` key missing) ([#8000](https://github.com/kubernetes-sigs/kubespray/pull/8000), [@L3o-pold](https://github.com/L3o-pold))",
+   "Fix CentOS7 issue with allowPrivilegeEscalation value from metrics-server ([#8014](https://github.com/kubernetes-sigs/kubespray/pull/8014), [@oomichi](https://github.com/oomichi))",
+   "Fix k8s-certs-renew cp path wrongly using `/usr/bin/` ([#7992](https://github.com/kubernetes-sigs/kubespray/pull/7992), [@lazybetrayer](https://github.com/lazybetrayer))",
+   "Fix containerd failed to start if apparmor is not installed ([#8011](https://github.com/kubernetes-sigs/kubespray/pull/8011), [@rtsp](https://github.com/rtsp))"
+  ]
+ },
+ "2.16.0": {
+  "bug fixes": [
+   "[CRI-O] Fix support for cri-o on OracleLinux and add support for AlmaLinux (#7541)",
+   "[Containerd] Fix reset.yml failing when using containerd (#7308)",
+   "Fix issue with kubeadm when *_PROXY variables are present in the environment (#7275)"
+  ]
+ },
+ "2.15.1": {
+  "bug fixes": [
+   "calico: fix NetworkManager check (#7169)",
+   "Correct Jinja Syntax for etcd-unsupported-arch (#6919)",
+   "Fix unintended SIGPIPEs. (#7214)",
+   "Fix: Bastion undefined variable (#7227)",
+   "Fix ansible calico route reflector tasks in calico role (#7224)",
+   "Fix Restart network doesn't work on Fedora CoreOS (#7271)",
+   "Fix k8s-certs-renew for k8s < 1.20 (#7410)",
+   "Fix \"api is up\" check (#7295)",
+   "Fix remove-node by removing jq usage (#7405)",
+   "Fix reset when using containerd (#7308)",
+   "Fix proxy usage when *_PROXY are present in environment (#7309)",
+   "Fix the filename </etc/vault> is Duplicate in the reset role. (#7313)",
+   "Fix recover-control-plane undefined 'proxy_disable_env' variable (#7326)",
+   "Fix: added string to bool conversion for use_localhost_as_kube api load balancer (#7324)"
+  ]
+ },
+ "2.15.0": {
+  "bug fixes": [
+   "Small Proxy fixes (add svc,svc.{{ dns_domain }} to no_proxy) (#7102)"
+  ],
+  "breaking changes": [
+   "Action required: users that relies on the default value of calico_datastore needs to explicitly configure their datastore choice."
+  ]
+ },
+ "2.14.2": {
+  "bug fixes": [
+   "Fix cinder & external_openstack cacert deployment (#6832)",
+   "Fix unintended SIGPIPE (#6817)"
+  ]
+ },
+ "2.14.1": {
+  "bug fixes": [
+   "fix kubelet_flexvolumes_plugins_dir undefined (#6670)"
+  ]
+ },
+ "2.14.0": {
+  "bug fixes": [
+   "Add Oracle Linux 8 support and fixes (#6198)",
+   "[CRI-O] Fix kubelet cgroup driver detection (#6331)",
+   "Fix resolv.conf configuration for Fedora CoreOS (#6138)",
+   "Multiples fixes for proxy and no_proxy variables (#6112 #6431 #6558)"
+  ]
+ },
+ "2.13.2": {
+  "bug fixes": [
+   "Fix resolv.conf configuration for Fedora CoreOS (#6155)"
+  ]
+ },
+ "2.12.6": {
+  "bug fixes": [
+   "Fix scaling etcd and master (#5911)"
+  ]
+ },
+ "2.12.5": {
+  "bug fixes": [
+   "Fix certificates checking when adding etcd node to existing k8s node (#5826)",
+   "Fix failures in network connection cleanup in kube-proxy (#5828)"
+  ]
+ },
+ "2.12.1": {
+  "bug fixes": [
+   "Fix invalid variable in Terraform host inventory script (#5482)"
   ]
  },
  "2.11.0": {
@@ -55,8 +639,15 @@
    "ingress-nginx v0.25.1"
   ]
  },
+ "2.10.4": {
+  "bug fixes": [
+   "Fix double tolerations in `dns-autoscaler.yml` bug",
+   "fix start CoreDNS when init secondary master (#4867)"
+  ]
+ },
  "2.10.0": {
   "bug fixes": [
+   "Fix ipip: false in calico v3",
    "Unmask Docker service in ClearLinux",
    "Avoid creating k8s cert dir on non-k8s nodes",
    "Fix runc absolute path",
@@ -89,6 +680,11 @@
    "Move node-cidr-mask-size to ControllerManagerextraArgs",
    "Fixup line breaks for kubeadm SANs",
    "Fix apiServerCertSANs in kubeadm config file"
+  ]
+ },
+ "2.8.0": {
+  "bug fixes": [
+   "Fix DNS loop when `resolvconf_mode` is set to `host_resolvconf`"
   ]
  },
  "2.3.0": {

@@ -1,5 +1,49 @@
 {
+ "1.24.0": {
+  "bug fixes": [
+   "A few small man page fixes by @mtrmac in https://github.com/podman-container-tools/skopeo/pull/2895",
+   "Fix minor grammar error in skopeo.1.md by @NateEag in https://github.com/podman-container-tools/skopeo/pull/2903",
+   "fix issue_pr_lock.yml workflow and do not run cronjobs at midnight by @Luap99 in https://github.com/podman-container-tools/skopeo/pull/2925"
+  ]
+ },
  "1.23.0": {
+  "bug fixes": [
+   "fix(deps): update module github.com/containers/storage to v1.59.1 by @renovate[bot] in https://github.com/containers/skopeo/pull/2670",
+   "fix(deps): update module github.com/containers/image/v5 to v5.36.1 by @renovate[bot] in https://github.com/containers/skopeo/pull/2671",
+   "fix(deps): update module github.com/containers/common to v0.64.1 by @renovate[bot] in https://github.com/containers/skopeo/pull/2672",
+   "fix(deps): update module golang.org/x/term to v0.34.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2673",
+   "fix(deps): update module github.com/stretchr/testify to v1.11.1 by @renovate[bot] in https://github.com/containers/skopeo/pull/2685",
+   "fixes to have test-*-local Makefile targets work by @lsm5 in https://github.com/containers/skopeo/pull/2654",
+   "fix(deps): update module golang.org/x/term to v0.36.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2722",
+   "fix(deps): update module go.podman.io/storage to v1.61.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2728",
+   "fix(deps): update module go.podman.io/image/v5 to v5.38.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2727",
+   "fix(deps): update module go.podman.io/common to v0.66.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2726",
+   "fix(deps): update github.com/opencontainers/image-spec digest to 26647a4 by @renovate[bot] in https://github.com/containers/skopeo/pull/2736",
+   "Fix test-system and remove stale Makefile target by @lsm5 in https://github.com/containers/skopeo/pull/2731",
+   "fix(deps): update module golang.org/x/term to v0.37.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2742",
+   "fix(deps): update module github.com/spf13/cobra to v1.10.2 by @renovate[bot] in https://github.com/containers/skopeo/pull/2762",
+   "fix(deps): update module golang.org/x/term to v0.38.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2768",
+   "fix(deps): update common, image, and storage deps to afd10d8 by @renovate[bot] in https://github.com/containers/skopeo/pull/2765",
+   "fix(deps): update common, image, and storage deps to b0f86df by @renovate[bot] in https://github.com/containers/skopeo/pull/2774",
+   "chore: fix function name in comment by @promalert in https://github.com/containers/skopeo/pull/2780",
+   "fix(deps): update module golang.org/x/term to v0.39.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2785",
+   "fix(deps): update common, image, and storage deps to e7626b7 by @renovate[bot] in https://github.com/containers/skopeo/pull/2786",
+   "fix(deps): update module github.com/sirupsen/logrus to v1.9.4 by @renovate[bot] in https://github.com/containers/skopeo/pull/2787",
+   "fix(deps): update common, image, and storage deps to b2572af by @renovate[bot] in https://github.com/containers/skopeo/pull/2790",
+   "fix(deps): update common, image, and storage deps to b5801a6 by @renovate[bot] in https://github.com/containers/skopeo/pull/2792",
+   "fix(deps): update common, image, and storage deps to 0e2aefd by @renovate[bot] in https://github.com/containers/skopeo/pull/2794",
+   "fix(deps): update module golang.org/x/term to v0.40.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2798",
+   "Packit: fix downstream post-modifications action by @lsm5 in https://github.com/containers/skopeo/pull/2810",
+   "fix(deps): update common, image, and storage deps to 854aaaf by @renovate[bot] in https://github.com/containers/skopeo/pull/2812",
+   "fix(deps): update github.com/opencontainers/image-spec digest to a4c6ade by @renovate[bot] in https://github.com/containers/skopeo/pull/2813",
+   "fix(deps): update common, image, and storage deps to d48bc74 by @renovate[bot] in https://github.com/containers/skopeo/pull/2819",
+   "fix(deps): update module golang.org/x/term to v0.41.0 by @renovate[bot] in https://github.com/containers/skopeo/pull/2821",
+   "Fix misc. warnings by @mtrmac in https://github.com/containers/skopeo/pull/2823",
+   "fix(deps): update common, image, and storage deps to ddaabae by @renovate[bot] in https://github.com/containers/skopeo/pull/2825",
+   "fix(deps): update common, image, and storage deps to 94ad023 by @renovate[bot] in https://github.com/containers/skopeo/pull/2831",
+   "fix(deps): update common, image, and storage deps to 8af7873 by @renovate[bot] in https://github.com/containers/skopeo/pull/2835",
+   "fix(deps): update go.podman.io/storage digest to f0ddf1a by @renovate[bot] in https://github.com/containers/skopeo/pull/2837"
+  ],
   "security updates": [
    "Bump google.golang.org/grpc to v1.79.3 - CVE-2026-33186 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2843"
   ]
@@ -13,6 +57,9 @@
  "1.14.6": {
   "security updates": [
    "[release-1.14] Bump Go Jose to v3.0.5, CVE-2026-34986 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2862"
+  ],
+  "bug fixes": [
+   "[release-1.14] Fixes Listing tags in JFrog Artifactory may fail by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2381"
   ]
  },
  "1.20.1": {
@@ -24,6 +71,11 @@
   "security updates": [
    "[release-1.18] Bump Go Jose v4.1.4, CVE-2026-34986 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2853",
    "[release-1.18] Fix CVE-2025-27144, bump Skopeo to v1.18.1 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2543"
+  ]
+ },
+ "1.22.2": {
+  "bug fixes": [
+   "Fixes signature verification of images which only sign the per-platform manifest in `skopeo proxy`, by @wking in https://github.com/containers/skopeo/pull/2847"
   ]
  },
  "1.22.1": {
@@ -48,6 +100,104 @@
    "[release-1.11] CVE-2024-3727 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2424"
   ]
  },
+ "1.20.0": {
+  "bug fixes": [
+   "[skip-ci] RPM: fix gating.yaml by @lsm5 in https://github.com/containers/skopeo/pull/2620",
+   "fix(deps): update module github.com/containers/common to v0.63.1 by @renovate[bot] in https://github.com/containers/skopeo/pull/2621",
+   "Fix recognizing “tag not found” in `oci:`, and add that for `oci-archive:` by @mtrmac in https://github.com/containers/skopeo/pull/2613",
+   "fix(deps): update github.com/opencontainers/image-spec digest to 2daaaaf by @renovate[bot] in https://github.com/containers/skopeo/pull/2664"
+  ]
+ },
+ "1.19.0": {
+  "bug fixes": [
+   "fix(deps): update module github.com/spf13/cobra to v1.9.1 by @renovate in https://github.com/containers/skopeo/pull/2523",
+   "fix(deps): update module github.com/containers/image/v5 to v5.34.1 by @renovate in https://github.com/containers/skopeo/pull/2528",
+   "fix(deps): update module github.com/containers/common to v0.62.1 by @renovate in https://github.com/containers/skopeo/pull/2534",
+   "fix(deps): update module github.com/opencontainers/image-spec to v1.1.1 by @renovate in https://github.com/containers/skopeo/pull/2535",
+   "fix(deps): update module github.com/containers/storage to v1.57.2 by @renovate in https://github.com/containers/skopeo/pull/2538",
+   "fix(deps): update module github.com/containers/image/v5 to v5.34.2 by @renovate in https://github.com/containers/skopeo/pull/2540",
+   "fix(deps): update module github.com/containers/common to v0.62.2 by @renovate in https://github.com/containers/skopeo/pull/2546",
+   "fix(deps): update module golang.org/x/term to v0.30.0 by @renovate in https://github.com/containers/skopeo/pull/2553",
+   "fix(deps): update module github.com/containers/common to v0.62.3 by @renovate in https://github.com/containers/skopeo/pull/2560",
+   "chore: fix some function names in comment by @luozexuan in https://github.com/containers/skopeo/pull/2562",
+   "fix(deps): update module golang.org/x/term to v0.31.0 by @renovate in https://github.com/containers/skopeo/pull/2569",
+   "Add golangci-lint run --tests=false, fix found issues by @kolyshkin in https://github.com/containers/skopeo/pull/2565",
+   "fix(deps): update module github.com/containers/storage to v1.58.0 by @renovate in https://github.com/containers/skopeo/pull/2580",
+   "fix(deps): update module golang.org/x/term to v0.32.0 by @renovate in https://github.com/containers/skopeo/pull/2593",
+   "fix(deps): update module github.com/containers/image/v5 to v5.35.0 by @renovate in https://github.com/containers/skopeo/pull/2607",
+   "fix(deps): update module github.com/containers/common to v0.63.0 by @renovate in https://github.com/containers/skopeo/pull/2608"
+  ]
+ },
+ "1.18.0": {
+  "bug fixes": [
+   "fix(deps): update module github.com/moby/sys/capability to v0.4.0 by @renovate in https://github.com/containers/skopeo/pull/2457",
+   "fix(deps): update module github.com/masterminds/semver/v3 to v3.3.1 by @renovate in https://github.com/containers/skopeo/pull/2462",
+   "fix(deps): update module github.com/stretchr/testify to v1.10.0 by @renovate in https://github.com/containers/skopeo/pull/2464",
+   "fix(deps): update golang.org/x/exp digest to 2d47ceb by @renovate in https://github.com/containers/skopeo/pull/2467",
+   "Fix handling of errorShouldDisplayUsage by @mtrmac in https://github.com/containers/skopeo/pull/2469",
+   "fix(deps): update module golang.org/x/term to v0.27.0 by @renovate in https://github.com/containers/skopeo/pull/2471",
+   "fix(deps): update module github.com/containers/ocicrypt to v1.2.1 by @renovate in https://github.com/containers/skopeo/pull/2475",
+   "fix(deps): update golang.org/x/exp digest to b2144cd by @renovate in https://github.com/containers/skopeo/pull/2482",
+   "fix(deps): update module golang.org/x/term to v0.28.0 by @renovate in https://github.com/containers/skopeo/pull/2487",
+   "fix(deps): update module github.com/containers/storage to v1.56.1 by @renovate in https://github.com/containers/skopeo/pull/2494",
+   "fix(deps): update module github.com/containers/image/v5 to v5.33.1 by @renovate in https://github.com/containers/skopeo/pull/2495",
+   "fix(deps): update module github.com/containers/common to v0.61.1 by @renovate in https://github.com/containers/skopeo/pull/2498",
+   "fix(deps): update module github.com/containers/storage to v1.57.0 by @renovate in https://github.com/containers/skopeo/pull/2506",
+   "fix(deps): update module github.com/containers/storage to v1.57.1 by @renovate in https://github.com/containers/skopeo/pull/2507",
+   "fix(deps): update module github.com/containers/image/v5 to v5.34.0 by @renovate in https://github.com/containers/skopeo/pull/2508",
+   "fix(deps): update module github.com/spf13/pflag to v1.0.6 by @renovate in https://github.com/containers/skopeo/pull/2505",
+   "fix(deps): update module github.com/containers/common to v0.62.0 by @renovate in https://github.com/containers/skopeo/pull/2509",
+   "fix(deps): update module golang.org/x/term to v0.29.0 by @renovate in https://github.com/containers/skopeo/pull/2511"
+  ]
+ },
+ "1.17.0": {
+  "bug fixes": [
+   "fix(deps): update module golang.org/x/term to v0.23.0 by @renovate in https://github.com/containers/skopeo/pull/2390",
+   "fix(deps): update module github.com/containers/image/v5 to v5.32.1 by @renovate in https://github.com/containers/skopeo/pull/2394",
+   "fix(deps): update module github.com/containers/common to v0.60.1 by @renovate in https://github.com/containers/skopeo/pull/2396",
+   "fix(deps): update module github.com/containers/image/v5 to v5.32.2 by @renovate in https://github.com/containers/skopeo/pull/2403",
+   "fix(deps): update module github.com/containers/common to v0.60.2 by @renovate in https://github.com/containers/skopeo/pull/2405",
+   "fix(deps): update module github.com/masterminds/semver/v3 to v3.3.0 by @renovate in https://github.com/containers/skopeo/pull/2410",
+   "fix(deps): update golang.org/x/exp digest to 9b4947d by @renovate in https://github.com/containers/skopeo/pull/2415",
+   "fix(deps): update module golang.org/x/term to v0.24.0 by @renovate in https://github.com/containers/skopeo/pull/2418",
+   "fix(deps): update module github.com/containers/common to v0.60.3 by @renovate in https://github.com/containers/skopeo/pull/2425",
+   "fix(deps): update golang.org/x/exp digest to 701f63a by @renovate in https://github.com/containers/skopeo/pull/2429",
+   "fix(deps): update module github.com/containers/common to v0.60.4 by @renovate in https://github.com/containers/skopeo/pull/2430",
+   "fix(deps): update module golang.org/x/term to v0.25.0 by @renovate in https://github.com/containers/skopeo/pull/2431",
+   "Fix format string inconsistency causing a build failure by @mtrmac in https://github.com/containers/skopeo/pull/2440",
+   "fix(deps): update module github.com/containers/storage to v1.55.1 by @renovate in https://github.com/containers/skopeo/pull/2444",
+   "fix(deps): update golang.org/x/exp digest to f66d83c by @renovate in https://github.com/containers/skopeo/pull/2447",
+   "fix(deps): update module github.com/containers/image/v5 to v5.33.0 by @renovate in https://github.com/containers/skopeo/pull/2453"
+  ]
+ },
+ "1.16.0": {
+  "bug fixes": [
+   "fix(deps): update module github.com/containers/common to v0.58.1 by @renovate in https://github.com/containers/skopeo/pull/2275",
+   "fix(deps): update module golang.org/x/term to v0.19.0 by @renovate in https://github.com/containers/skopeo/pull/2281",
+   "[skip-ci] Fix issue/pr lock workflow by @cevich in https://github.com/containers/skopeo/pull/2289",
+   "fix(deps): update module github.com/containers/common to v0.58.2 by @renovate in https://github.com/containers/skopeo/pull/2300",
+   "chore: fix function names by @writegr in https://github.com/containers/skopeo/pull/2304",
+   "fix(deps): update module golang.org/x/exp to v0.0.0-20240416160154-fe59bbe5cc7f by @renovate in https://github.com/containers/skopeo/pull/2313",
+   "fix summaries for `standalone-sign` and `standalone-verify` by @ktdreyer in https://github.com/containers/skopeo/pull/2315",
+   "fix(deps): update module golang.org/x/term to v0.20.0 by @renovate in https://github.com/containers/skopeo/pull/2318",
+   "fix(deps): update module golang.org/x/exp to v0.0.0-20240506185415-9bf2ced13842 by @renovate in https://github.com/containers/skopeo/pull/2319",
+   "fix(deps): update module github.com/containers/common to v0.58.3 by @renovate in https://github.com/containers/skopeo/pull/2324",
+   "fix(deps): update module github.com/containers/image/v5 to v5.31.0 by @renovate in https://github.com/containers/skopeo/pull/2334",
+   "fix(deps): update module github.com/containers/common to v0.59.0 by @renovate in https://github.com/containers/skopeo/pull/2336",
+   "fix(deps): update golang.org/x/exp digest to fd00a4e by @renovate in https://github.com/containers/skopeo/pull/2345",
+   "fix(deps): update module github.com/containers/common to v0.59.1 by @renovate in https://github.com/containers/skopeo/pull/2347",
+   "fix(deps): update module golang.org/x/term to v0.21.0 by @renovate in https://github.com/containers/skopeo/pull/2348",
+   "fix(deps): update module github.com/spf13/cobra to v1.8.1 by @renovate in https://github.com/containers/skopeo/pull/2355",
+   "fix(deps): update module github.com/containers/image/v5 to v5.31.1 by @renovate in https://github.com/containers/skopeo/pull/2363",
+   "fix(deps): update golang.org/x/exp digest to 7f521ea by @renovate in https://github.com/containers/skopeo/pull/2372",
+   "fix(deps): update module github.com/containers/ocicrypt to v1.2.0 by @renovate in https://github.com/containers/skopeo/pull/2373",
+   "fix(deps): update module golang.org/x/term to v0.22.0 by @renovate in https://github.com/containers/skopeo/pull/2374",
+   "fix(deps): update module github.com/containers/common to v0.59.2 by @renovate in https://github.com/containers/skopeo/pull/2379",
+   "fix(deps): update module github.com/containers/storage to v1.55.0 by @renovate in https://github.com/containers/skopeo/pull/2384",
+   "fix(deps): update module github.com/containers/image/v5 to v5.32.0 by @renovate in https://github.com/containers/skopeo/pull/2383",
+   "fix(deps): update module github.com/containers/common to v0.60.0 by @renovate in https://github.com/containers/skopeo/pull/2386"
+  ]
+ },
  "1.14.4": {
   "security updates": [
    "[release-1.14] CVE-2024-3727 by @TomSweeneyRedHat in https://github.com/containers/skopeo/2337",
@@ -59,9 +209,186 @@
    "[release-1.15] CVE-2024-3727, bump to v1.15.1 by @TomSweeneyRedHat in https://github.com/containers/skopeo/pull/2329"
   ]
  },
+ "1.15.0": {
+  "bug fixes": [
+   "fix(deps): update module github.com/opencontainers/image-spec to v1.1.0-rc6 by @renovate in https://github.com/containers/skopeo/pull/2201",
+   "fix(deps): update module github.com/containers/storage to v1.52.0 by @renovate in https://github.com/containers/skopeo/pull/2196",
+   "fix(deps): update module github.com/containers/common to v0.57.3 by @renovate in https://github.com/containers/skopeo/pull/2208",
+   "fix(deps): update golang.org/x/exp digest to 1b97071 by @renovate in https://github.com/containers/skopeo/pull/2211",
+   "fix(deps): update module github.com/containers/common to v0.57.4 by @renovate in https://github.com/containers/skopeo/pull/2212",
+   "fix(deps): update module github.com/opencontainers/image-spec to v1.1.0 by @renovate in https://github.com/containers/skopeo/pull/2231",
+   "Avoid a warning by gopls / VSCode by @mtrmac in https://github.com/containers/skopeo/pull/2237",
+   "fix(deps): update github.com/containers/image/v5 digest to faa4f4f by @renovate in https://github.com/containers/skopeo/pull/2239",
+   "fix(deps): update module golang.org/x/term to v0.18.0 by @renovate in https://github.com/containers/skopeo/pull/2244",
+   "fix(deps): update module github.com/containers/storage to v1.53.0 by @renovate in https://github.com/containers/skopeo/pull/2243",
+   "fix(deps): update module github.com/containers/image/v5 to v5.30.0 by @renovate in https://github.com/containers/skopeo/pull/2248",
+   "fix(deps): update module github.com/containers/common to v0.58.0 by @renovate in https://github.com/containers/skopeo/pull/2250",
+   "fix(deps): update module github.com/containers/ocicrypt to v1.1.10 by @renovate in https://github.com/containers/skopeo/pull/2254"
+  ]
+ },
+ "1.14.1": {
+  "bug fixes": [
+   "fix(deps): update module golang.org/x/term to v0.15.0 by @renovate in https://github.com/containers/skopeo/pull/2163",
+   "fix(deps): update golang.org/x/exp digest to 6522937 by @renovate in https://github.com/containers/skopeo/pull/2169",
+   "fix(deps): update module github.com/containers/common to v0.57.1 by @renovate in https://github.com/containers/skopeo/pull/2176",
+   "fix(deps): update golang.org/x/exp digest to 02704c9 by @renovate in https://github.com/containers/skopeo/pull/2186",
+   "fix(deps): update module golang.org/x/term to v0.16.0 by @renovate in https://github.com/containers/skopeo/pull/2191",
+   "Fix libsubid detection by @lsm5 in https://github.com/containers/skopeo/pull/2190",
+   "fix(deps): update module github.com/containers/image/v5 to v5.29.1 by @renovate in https://github.com/containers/skopeo/pull/2197",
+   "fix(deps): update module github.com/containers/common to v0.57.2 by @renovate in https://github.com/containers/skopeo/pull/2199"
+  ]
+ },
+ "1.14.0": {
+  "bug fixes": [
+   "[CI:BUILD] RPM: fix ELN builds by @lsm5 in https://github.com/containers/skopeo/pull/2026",
+   "fix(deps): update module github.com/containers/common to v0.55.2 by @renovate in https://github.com/containers/skopeo/pull/2044",
+   "Follow-up fixes to #2029 by @mtrmac in https://github.com/containers/skopeo/pull/2048",
+   "fix(deps): update module golang.org/x/term to v0.11.0 by @renovate in https://github.com/containers/skopeo/pull/2067",
+   "fix(deps): update golang.org/x/exp digest to 352e893 by @renovate in https://github.com/containers/skopeo/pull/2060",
+   "fix(deps): update module github.com/containers/common to v0.55.3 by @renovate in https://github.com/containers/skopeo/pull/2065",
+   "fix(deps): update module github.com/containers/ocicrypt to v1.1.8 by @renovate in https://github.com/containers/skopeo/pull/2080",
+   "fix(deps): update module github.com/containers/storage to v1.49.0 by @renovate in https://github.com/containers/skopeo/pull/2089",
+   "fix(deps): update module github.com/containers/common to v0.55.4 by @renovate in https://github.com/containers/skopeo/pull/2091",
+   "fix(deps): update github.com/containers/image/v5 digest to 58d5eb6 by @renovate in https://github.com/containers/skopeo/pull/2099",
+   "Fix a man page link by @mtrmac in https://github.com/containers/skopeo/pull/2103",
+   "fix(deps): update golang.org/x/exp digest to 9212866 by @renovate in https://github.com/containers/skopeo/pull/2100",
+   "fix(deps): update module github.com/containers/storage to v1.50.1 by @renovate in https://github.com/containers/skopeo/pull/2105",
+   "fix(deps): update module github.com/containers/storage to v1.50.2 by @renovate in https://github.com/containers/skopeo/pull/2108",
+   "fix(deps): update module github.com/containers/image/v5 to v5.28.0 by @renovate in https://github.com/containers/skopeo/pull/2109",
+   "fix(deps): update module github.com/containers/common to v0.56.0 by @renovate in https://github.com/containers/skopeo/pull/2112",
+   "fix(deps): update module github.com/opencontainers/image-spec to v1.1.0-rc5 by @renovate in https://github.com/containers/skopeo/pull/2113",
+   "fix(deps): update github.com/containers/common digest to 745eaa4 by @renovate in https://github.com/containers/skopeo/pull/2119",
+   "fix(deps): update module github.com/docker/distribution to v2.8.3+incompatible by @renovate in https://github.com/containers/skopeo/pull/2120",
+   "fix(deps): update module golang.org/x/term to v0.13.0 by @renovate in https://github.com/containers/skopeo/pull/2122",
+   "Fix ENTRYPOINT documentation, drop others. by @mtrmac in https://github.com/containers/skopeo/pull/2138",
+   "fix(deps): update module github.com/containers/ocicrypt to v1.1.9 by @renovate in https://github.com/containers/skopeo/pull/2142",
+   "fix(deps): update github.com/containers/common digest to 3e5caa0 by @renovate in https://github.com/containers/skopeo/pull/2143",
+   "fix(deps): update module github.com/spf13/cobra to v1.8.0 by @renovate in https://github.com/containers/skopeo/pull/2148",
+   "fix(deps): update module golang.org/x/term to v0.14.0 by @renovate in https://github.com/containers/skopeo/pull/2152",
+   "fix(deps): update module github.com/containers/storage to v1.51.0 by @renovate in https://github.com/containers/skopeo/pull/2155",
+   "fix(deps): update module github.com/containers/image/v5 to v5.29.0 by @renovate in https://github.com/containers/skopeo/pull/2156",
+   "fix(deps): update module github.com/containers/common to v0.57.0 by @renovate in https://github.com/containers/skopeo/pull/2158"
+  ]
+ },
+ "1.13.0": {
+  "bug fixes": [
+   "[CI:BUILD] RPM: fix ELN builds by @lsm5 in https://github.com/containers/skopeo/pull/2026"
+  ]
+ },
+ "1.12.0": {
+  "bug fixes": [
+   "[CI:DOCS] Fix up language in README",
+   "[CI:BUILD] copr: fix el8 build and enable debuginfo",
+   "Fix tabelating output in (skopeo inspect --format)",
+   "Fix formatting of inspect examples",
+   "systemtests: Fix 040-local-registry-auth about XDG_RUNTIME_DIR",
+   "Avoid use of a deprecated capability.NewPid",
+   "Fix error handling of signature.NewEphemeralGPGSigningMechanism"
+  ]
+ },
  "1.6.3": {
   "security updates": [
    "[release-1.6] bump golang.org/x/net to v0.7.0 [CVE-2022-41723] by @lsm5 in https://github.com/containers/skopeo/pull/1949"
+  ]
+ },
+ "1.11.0": {
+  "bug fixes": [
+   "fix(deps): update module github.com/stretchr/testify to v1.8.1 by @renovate in https://github.com/containers/skopeo/pull/1789",
+   "fix(deps): update module golang.org/x/term to v0.1.0 by @renovate in https://github.com/containers/skopeo/pull/1791",
+   "fix(deps): update module github.com/spf13/cobra to v1.6.1 by @renovate in https://github.com/containers/skopeo/pull/1800",
+   "fix(deps): update module golang.org/x/term to v0.2.0 by @renovate in https://github.com/containers/skopeo/pull/1804",
+   "fix(deps): update module github.com/containers/storage to v1.44.0 by @renovate in https://github.com/containers/skopeo/pull/1809",
+   "[skip-ci] GHA/Cirrus-cron: Fix execution order by @cevich in https://github.com/containers/skopeo/pull/1820",
+   "fix(deps): update module golang.org/x/term to v0.3.0 by @renovate in https://github.com/containers/skopeo/pull/1818",
+   "proxy: Fix leak of blobs from containers-storage by @cgwalters in https://github.com/containers/skopeo/pull/1837",
+   "fix(deps): update module golang.org/x/term to v0.4.0 by @renovate in https://github.com/containers/skopeo/pull/1839",
+   "fix(deps): update module github.com/containers/storage to v1.45.0 by @renovate in https://github.com/containers/skopeo/pull/1853",
+   "fix(deps): update module github.com/containers/storage to v1.45.1 by @renovate in https://github.com/containers/skopeo/pull/1857",
+   "Cirrus: Fix c/image CI testing by @cevich in https://github.com/containers/skopeo/pull/1862",
+   "Fix storage.conf overrides in test-system in CI, update c/storage by @mtrmac in https://github.com/containers/skopeo/pull/1864",
+   "Fix `make test-system` when run as an unprivileged user (containerized) by @mtrmac in https://github.com/containers/skopeo/pull/1868"
+  ]
+ },
+ "1.10.0": {
+  "bug fixes": [
+   "Fix running tests on macOS",
+   "Fix a comment",
+   "Fix looking for commands with GNU make 4.2.1",
+   "Fix documentation in the default registries.d content."
+  ]
+ },
+ "1.9.0": {
+  "bug fixes": [
+   "Avoid hard-coding the location of bash",
+   "fix make completions for all POSIX shells",
+   "[CI:DOCS] skopeo.spec.rpkg: Fix syntax highlighting",
+   "Update & fix skopeo multiarch image Containerfiles"
+  ]
+ },
+ "1.6.1": {
+  "bug fixes": [
+   "Resolved workaround by @mtrmac in https://github.com/containers/skopeo/pull/1568"
+  ]
+ },
+ "1.5.2": {
+  "bug fixes": [
+   "Fix test bug that prevented useful diagnostics on registry fail"
+  ]
+ },
+ "1.5.0": {
+  "bug fixes": [
+   "Add codespell fixes by @rhatdan in https://github.com/containers/skopeo/pull/1414"
+  ]
+ },
+ "1.4.0": {
+  "bug fixes": [
+   "Fix two instances of unused err found by go-staticcheck",
+   "CONTRIBUTING: small fixes to commands",
+   "Fix --tls-verify",
+   "Fix using images from rate-limited docker hub",
+   "Fix TestDockerRepositoryReferenceParser",
+   "Fix some comments in man-page-checker",
+   "Fix automation re: master->main rename",
+   "Fix documentation of the --format option of skopeo copy and skopeo sync",
+   "Fix multi-arch build version check",
+   "[CI:DOCS] Fix docs links due to branch rename",
+   "Fix wrong directory name"
+  ]
+ },
+ "1.2.2": {
+  "bug fixes": [
+   "Fix gating test in release-1.2 port"
+  ]
+ },
+ "1.2.1": {
+  "bug fixes": [
+   "Fix `skopeo login` example in README",
+   "Avoid overriding LDFLAGS in Makefile",
+   "Fix #858 Add support for digests in sync",
+   "Fix #858 Add --all sync flag to emulate copy --all",
+   "Fix naming and language",
+   "Fix creds sync from yaml",
+   "Fix reading the after-sync list of tags in SyncSuite.TestYamlUntagged"
+  ]
+ },
+ "0.1.41": {
+  "bug fixes": [
+   "Fix typos in doc for image encryption"
+  ]
+ },
+ "0.1.40": {
+  "bug fixes": [
+   "System tests: various fixes"
+  ]
+ },
+ "0.1.38": {
+  "bug fixes": [
+   "Fix lowest possible go version to be 1.9"
+  ]
+ },
+ "0.1.24": {
+  "bug fixes": [
+   "Fixed fetching blobs with external URLs in images served by docker/distribution registries."
   ]
  }
 }

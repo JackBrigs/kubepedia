@@ -89,6 +89,23 @@ REPOS = {
 }
 
 SEC_RX = re.compile(r"CVE-\d{4}-\d{4,7}")
+# Заголовки размечают не все проекты: containerd делит по подсистемам (CRI, Runtime),
+# у kube-ovn и youki списки идут сплошняком. Поэтому строка классифицируется и сама по себе.
+LINE_FIX_RX = re.compile(r"^\W*(fix|fixed|fixes|correct|resolve[sd]?|prevent|avoid)\b|\bfix(es|ed)?\b", re.I)
+LINE_BREAK_RX = re.compile(r"^\W*(BREAKING|\[BREAKING\]|Action required)", re.I)
+
+
+def classify(text, heading_sec):
+    """Секция строки: явный заголовок сильнее, дальше — признаки самой строки."""
+    if LINE_BREAK_RX.search(text):
+        return "breaking changes"
+    if SEC_RX.search(text):
+        return "security updates"
+    if heading_sec:
+        return heading_sec
+    if LINE_FIX_RX.search(text):
+        return "bug fixes"
+    return None
 BREAK_RX = re.compile(r"breaking|action required|upgrade note|incompatib", re.I)
 FIX_RX = re.compile(r"bug ?fix|fixes|fixed", re.I)
 SECURITY_RX = re.compile(r"security|vulnerab|advisor", re.I)
@@ -160,8 +177,7 @@ def changelog_notes(path):
             item = re.match(r"^\s*[-*]\s+(.{10,})$", line)
             if item and ver:
                 txt = re.sub(r"\s+", " ", item.group(1)).strip()
-                key = sec or ("security updates" if SEC_RX.search(txt) else
-                              "breaking changes" if txt.upper().startswith("BREAKING") else None)
+                key = classify(txt, sec)
                 if key:
                     out[ver].setdefault(key, []).append(txt)
     return {v: s for v, s in out.items() if s}
@@ -215,7 +231,7 @@ def from_api(repo, tok, pages=3):
                 item = re.match(r"^\s*[-*]\s+(.{10,})$", line)
                 if item:
                     txt = re.sub(r"\s+", " ", item.group(1)).strip()
-                    key = sec or ("security updates" if SEC_RX.search(txt) else None)
+                    key = classify(txt, sec)
                     if key:
                         secs.setdefault(key, []).append(txt)
             if secs:

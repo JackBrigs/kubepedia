@@ -1,0 +1,300 @@
+{
+ "0.28.7": {
+  "bug fixes": [
+   "fix: use install-conf in chart by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/2484"
+  ]
+ },
+ "0.28.6": {
+  "bug fixes": [
+   "fix: skip invalid CIDRs in subnet file readers by @immanuwell in https://github.com/flannel-io/flannel/pull/2454",
+   "etcd: bug fixes suggested by Claude by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/2472",
+   "fix: use semver tag type in Docker meta to support release events by @thomasferrandiz with @Copilot in https://github.com/flannel-io/flannel/pull/2483"
+  ]
+ },
+ "0.28.5": {
+  "bug fixes": [
+   "fix(vxlan): guard ifaceAddrsV6[0] on IPv4-only setups by @SAY-5 in https://github.com/flannel-io/flannel/pull/2434",
+   "fix: reap orphaned zombie child processes when running as PID 1 by @pratikjagrut in https://github.com/flannel-io/flannel/pull/2438"
+  ]
+ },
+ "0.28.4": {
+  "bug fixes": [
+   "fix go version (don't set patch version) by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/2428"
+  ]
+ },
+ "0.28.3": {
+  "bug fixes": [
+   "fix: honor --stderrthreshold flag when --logtostderr is enabled by @pierluigilenoci in https://github.com/flannel-io/flannel/pull/2405",
+   "vxlan: fix v6 direct route deletion to use v6DirectRoute by @cuiweixie in https://github.com/flannel-io/flannel/pull/2403",
+   "lease: fix LeaseAttrs.String() after json.Marshal errors by @cuiweixie in https://github.com/flannel-io/flannel/pull/2404"
+  ]
+ },
+ "0.28.2": {
+  "bug fixes": [
+   "fix extensions code exec by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/2400"
+  ]
+ },
+ "0.28.1": {
+  "bug fixes": [
+   "Fix blackhole creation test logic in AddBlackholeV4Route and AddBlackholeV6Route by @axeal in https://github.com/flannel-io/flannel/pull/2329"
+  ]
+ },
+ "0.28.0": {
+  "bug fixes": [
+   "Added TAG to fix bin version by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/2297",
+   "fix GHA path in dependabot.yaml by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/2304",
+   "Fix spelling by @fguendling in https://github.com/flannel-io/flannel/pull/2302"
+  ]
+ },
+ "0.27.4": {
+  "bug fixes": [
+   "Fix: recreate VXLAN device (flannel.*) when external interface is deleted and re-added by @pratikjagrut in https://github.com/flannel-io/flannel/pull/2272",
+   "Fix interface IP address lookup in dual-stack mode by @np-13 in https://github.com/flannel-io/flannel/pull/2283"
+  ]
+ },
+ "0.27.1": {
+  "bug fixes": [
+   "Fix deadlock in startup for large clusters by @sudheerv in https://github.com/flannel-io/flannel/pull/2251"
+  ]
+ },
+ "0.27.0": {
+  "bug fixes": [
+   "test: fix e2e tests in CI workflows and don't run the workflows on \"push\" events by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/2240",
+   "fix: clean-up rules when starting instead of shutting down by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/2239"
+  ]
+ },
+ "0.26.6": {
+  "bug fixes": [
+   "Fix release workflow by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/2228"
+  ]
+ },
+ "0.26.4": {
+  "bug fixes": [
+   "fix: add missing MY_NODE_NAME environment variable in chart by @go-bai in https://github.com/flannel-io/flannel/pull/2148",
+   "fix: Fix high CPU usage when losing etcd connection and try to re-est… by @dhilgarth in https://github.com/flannel-io/flannel/pull/2172"
+  ]
+ },
+ "0.25.7": {
+  "bug fixes": [
+   "Fixed IPv6 chosen in case of public-ipv6 configured by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/2072"
+  ]
+ },
+ "0.25.6": {
+  "bug fixes": [
+   "Fixed values file on flannel chart by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/2036"
+  ]
+ },
+ "0.25.5": {
+  "bug fixes": [
+   "Fix bug in hostgw-windows by @manuelbuil in https://github.com/flannel-io/flannel/pull/1998"
+  ]
+ },
+ "0.25.4": {
+  "bug fixes": [
+   "Fix bug in the logic polling the interface by @manuelbuil in https://github.com/flannel-io/flannel/pull/1996"
+  ]
+ },
+ "0.25.3": {
+  "bug fixes": [
+   "Bump knftables 0.0.16 and fix e2e test by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1986"
+  ]
+ },
+ "0.25.2": {
+  "bug fixes": [
+   "Bug fixes by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1947",
+   "Fixed IPv6 0 initialization by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/1969"
+  ]
+ },
+ "0.25.1": {
+  "bug fixes": [
+   "chore: fix typo in comment by @looklose in https://github.com/flannel-io/flannel/pull/1934"
+  ]
+ },
+ "0.25.0": {
+  "bug fixes": [
+   "chore: fix typo by @pavedroad in https://github.com/flannel-io/flannel/pull/1903"
+  ]
+ },
+ "0.24.4": {
+  "bug fixes": [
+   "fix: ipv6 iptables rules were created even when IPv6 was disabled by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1914"
+  ]
+ },
+ "0.24.3": {
+  "bug fixes": [
+   "Fix bug in chart config template by @manuelbuil in https://github.com/flannel-io/flannel/pull/1862"
+  ]
+ },
+ "0.24.0": {
+  "bug fixes": [
+   "Helm chart: Quote wireguard psk to fix config errors by @koskev in https://github.com/flannel-io/flannel/pull/1826",
+   "Update opentelemetry dependencies to fix CVE by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1836"
+  ]
+ },
+ "0.23.0": {
+  "bug fixes": [
+   "Upgrade etcd and grpc deps to fix CVE by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1819"
+  ]
+ },
+ "0.22.3": {
+  "bug fixes": [
+   "fix: goroutine leak during watch leases (kube) by @iiiceoo in https://github.com/flannel-io/flannel/pull/1799"
+  ]
+ },
+ "0.22.1": {
+  "bug fixes": [
+   "Fix: Correct various spelling mistakes in the Documentation project directory. by @mcdonagj in https://github.com/flannel-io/flannel/pull/1778"
+  ]
+ },
+ "0.22.0": {
+  "bug fixes": [
+   "fix incorrect version setting by @arminzqm in https://github.com/flannel-io/flannel/pull/1768"
+  ]
+ },
+ "0.21.4": {
+  "bug fixes": [
+   "Fixed iptables rules in case random-fully is not supported by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/1743",
+   "Fix existing ns issue by @lexfrei in https://github.com/flannel-io/flannel/pull/1741"
+  ]
+ },
+ "0.21.3": {
+  "bug fixes": [
+   "fix randomness in k3s end to end tests by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1729",
+   "Fix etcd index outofrange by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1726"
+  ]
+ },
+ "0.21.0": {
+  "bug fixes": [
+   "Upgrade base images to fix CVE by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1708",
+   "fix: old document with wrong path :tea: by @mrnonz in https://github.com/flannel-io/flannel/pull/1710"
+  ]
+ },
+ "0.20.2": {
+  "bug fixes": [
+   "Fixed IPv4 podCIDR check in case spec.PodCIDR is IPv6 by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/1672",
+   "fix flannel clusterrole by @xh4n3 in https://github.com/flannel-io/flannel/pull/1677",
+   "Fixed masquerade rule to avoid double NAT bug by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/1681",
+   "pkg/ip/iface_windows_test.go: fix TestGetInterfaceByIP by @UweErikMartin in https://github.com/flannel-io/flannel/pull/1680"
+  ]
+ },
+ "0.20.1": {
+  "bug fixes": [
+   "docs: fix troubleshooting by @satoru-takeuchi in https://github.com/flannel-io/flannel/pull/1664"
+  ]
+ },
+ "0.20.0": {
+  "bug fixes": [
+   "Correct workflow trivy.yml and upgrade vulnerable dependencies by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1643",
+   "Fixes backend configuration documentation by @masstamike in https://github.com/flannel-io/flannel/pull/1645"
+  ]
+ },
+ "0.19.2": {
+  "bug fixes": [
+   "Fix CI by @manuelbuil in https://github.com/flannel-io/flannel/pull/1631",
+   "fix some typos by @cuishuang in https://github.com/flannel-io/flannel/pull/1635",
+   "Fixed iptables-restore version check in case of version older than 1.6.2 by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/1637"
+  ]
+ },
+ "0.19.1": {
+  "bug fixes": [
+   "Fixed wireguard interface MTU with the overhead by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/1620"
+  ]
+ },
+ "0.19.0": {
+  "bug fixes": [
+   "Fixed subnet allocation in case of etcd manager with IPv6 by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/1582",
+   "Fix the v6 unit test failing by @manuelbuil in https://github.com/flannel-io/flannel/pull/1597",
+   "Fix etcd key removal in CI and add -e flag by @manuelbuil in https://github.com/flannel-io/flannel/pull/1595",
+   "wireguard: fix segmentation fault if only ipv6 is enabled by @andreek in https://github.com/flannel-io/flannel/pull/1601",
+   "Fix waiting for iperf docker is running before launch test by @louiznk in https://github.com/flannel-io/flannel/pull/1599"
+  ]
+ },
+ "0.18.1": {
+  "bug fixes": [
+   "fix: assign IPv6 `podCIDR` from kubelet spec. by @sergelogvinov in https://github.com/flannel-io/flannel/pull/1572"
+  ]
+ },
+ "0.18.0": {
+  "bug fixes": [
+   "Fix overwriting etcd data when local subnet file exists by @zhangzhangzf in https://github.com/flannel-io/flannel/pull/1505",
+   "ARM64 build fix by @AleksandrNull in https://github.com/flannel-io/flannel/pull/1553",
+   "fix document and comment of configuration by @ari1021 in https://github.com/flannel-io/flannel/pull/1555",
+   "Fixed a route conflict bug. by @zhangzhangzf in https://github.com/flannel-io/flannel/pull/1546",
+   "Upgrade netlink to fix ipsec issue by @thomasferrandiz in https://github.com/flannel-io/flannel/pull/1565",
+   "Fixed wireguard MTU and added windows iface func by @rbrtbnfgl in https://github.com/flannel-io/flannel/pull/1567"
+  ]
+ },
+ "0.17.0": {
+  "bug fixes": [
+   "Fix wrong interface match when using the \"iface-regex\" option by @spideyfusion in https://github.com/flannel-io/flannel/pull/1536",
+   "Add golangci-lint github action and fix all errors by @manuelbuil in https://github.com/flannel-io/flannel/pull/1540",
+   "Fix iptables comment typo by @manuelbuil in https://github.com/flannel-io/flannel/pull/1541"
+  ]
+ },
+ "0.16.3": {
+  "bug fixes": [
+   "update to golang v1.17 + go mod fixes for CVE by @luthermonson in https://github.com/flannel-io/flannel/pull/1534"
+  ]
+ },
+ "0.16.1": {
+  "bug fixes": [
+   "Fix windows build by @manuelbuil in https://github.com/flannel-io/flannel/pull/1519"
+  ]
+ },
+ "0.10.0": {
+  "bug fixes": [
+   "A number of other bug fixes and improvements. See below for the full list."
+  ]
+ },
+ "0.8.0": {
+  "bug fixes": [
+   "Improved Kubernetes scale (fix problem when using kube-subnet-mgr with more than 100 nodes #719 )",
+   "Lots of little improvements and fixes - see the list below."
+  ]
+ },
+ "0.7.1": {
+  "bug fixes": [
+   "backend/hostgw: Fix memory leak #630"
+  ]
+ },
+ "0.5.5": {
+  "bug fixes": [
+   "Bug fix: out of memory crash when vxlan used with bonded interfaces."
+  ]
+ },
+ "0.5.4": {
+  "bug fixes": [
+   "Bug fix: close http connection during watch in client mode. Thanks, @jonboulle"
+  ]
+ },
+ "0.5.3": {
+  "bug fixes": [
+   "Fix for kernels that report \"special\" ARP entries with nil IP that caused VXLAN to not work"
+  ]
+ },
+ "0.5.2": {
+  "bug fixes": [
+   "Fix seg fault when aws subnet linked to main route table"
+  ]
+ },
+ "0.5.1": {
+  "bug fixes": [
+   "alloc - fix nil pointer deference bug"
+  ]
+ },
+ "0.5.0": {
+  "bug fixes": [
+   "VXLAN: Statically configure FDB entries. This fixes the first packet dropped issue. Thank you, @titanous and @MohdAhmad"
+  ]
+ },
+ "0.4.1": {
+  "bug fixes": [
+   "fixed problem of flannel failing to work with interfaces that have peer addresses defined."
+  ]
+ },
+ "0.3.1": {
+  "bug fixes": [
+   "fix for etcd sockets being leaked (thank you, Lv Lv)"
+  ]
+ }
+}

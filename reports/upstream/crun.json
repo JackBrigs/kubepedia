@@ -2,11 +2,78 @@
  "1.28": {
   "security updates": [
    "CVE-2026-47766: do not follow rootfs /dev symlinks. Open rootfs /dev with safe_openat before creating default or handler-specific devices, preventing rootfs-controlled /dev symlinks from redirecting device setup outside the container rootfs."
+  ],
+  "bug fixes": [
+   "chroot_realpath: fix potential buffer overflows in destination buffer when resolving symlink chains.",
+   "fix UID/GID mapping buffer offset for multi-line mappings.",
+   "krun: fix parsing optional fields from krun_vm.json."
+  ]
+ },
+ "1.27.1": {
+  "bug fixes": [
+   "linux: fix bind mount propagation regression. Mounts hot-plugged after container start (e.g. USB drives) were invisible or owned by nobody inside the container because propagation peer groups were destroyed.",
+   "utils: fix AppArmor profile inside a user namespace.",
+   "cgroup: fix recursive cgroup cleanup failure that could cause EBADF errors when deleting containers with sub-cgroups.",
+   "libcrun: fix \"unlink /dev/console: Read-only file system\" error when running containers with --read-only."
   ]
  },
  "1.27": {
   "security updates": [
    "CVE-2026-30892: fix parsing in `crun exec -u` that could lead to the process running with the wrong user."
+  ],
+  "bug fixes": [
+   "container: fix createRuntime hooks not receiving bundle path.",
+   "container: fix exit code return.",
+   "cgroup: fix read_pids_cgroup skipping child cgroups.",
+   "criu: fix missing umount() in error path.",
+   "utils: fix memory leak and missing cache in libcrun_initialize_apparmor().",
+   "container: fix CPU busy loop when output pipe is blocked.",
+   "seccomp: fix n_plugins calculation.",
+   "restore: fix memory leak.",
+   "numerous fixes for error handling, errno usage, and resource leaks."
+  ]
+ },
+ "1.26": {
+  "bug fixes": [
+   "container: fix error release on failure paths."
+  ]
+ },
+ "1.25": {
+  "bug fixes": [
+   "src: fix some double allocations on errors."
+  ]
+ },
+ "1.24": {
+  "bug fixes": [
+   "linux: fix regression mounting within userns. Detect when running inside a user namespace and treat the mounts in the same way as they would be treated with a new user namespace."
+  ]
+ },
+ "1.23.1": {
+  "bug fixes": [
+   "exec: fix a bug where the terminal could lose some bytes when reading from the exec'ed process."
+  ]
+ },
+ "1.23": {
+  "bug fixes": [
+   "linux: fix issue when RestrictAddressFamilies=\"AF_UNIX AF_NETLINK\" is in place in the systemd unit. Regression introduced in crun 1.17.",
+   "linux: fix regression with idmapped mounts. Support idmapped mounts also when there is no user namespace specified for the container. crun 1.22 introduced the regression."
+  ]
+ },
+ "1.22": {
+  "bug fixes": [
+   "criu: fix checkpoint and restore for containers that have a bind mount where the destination is a symbolic link.",
+   "cgroup: fix incorrect setting of cpu.max when the OCI quota is -1.",
+   "fix a regression that caused issues when dealing with paths that do not exist and openat2 is not available.",
+   "fix an issue where the file descriptor for the rootfs would become stale if the rootfs was replaced by a mount.",
+   "fix parsing of rootless options.",
+   "fix a potential crash in krun by checking if library handles exist before being unloaded.",
+   "cgroup: fix a regression on WSL when running with cgroup v1."
+  ]
+ },
+ "1.21": {
+  "bug fixes": [
+   "cgroup: fix handling of absent subcgroup when configuring cpuset on cgroup v1.",
+   "fix PATH lookup. Support filenames starting with a dot."
   ]
  },
  "1.20": {
@@ -14,24 +81,344 @@
    "krun: fix CVE-2025-24965. The .krun_config.json file could be created outside of the container rootfs."
   ]
  },
+ "1.19.1": {
+  "bug fixes": [
+   "linux: fix a hang if there are no reads from the tty. Use non blocking sockets to read and write from the tty so that the \"crun exec\" process doesn't hang when the terminal is not consuming any data."
+  ]
+ },
+ "1.19": {
+  "bug fixes": [
+   "build: fix build with musl libc."
+  ]
+ },
+ "1.18.2": {
+  "bug fixes": [
+   "cgroup, systemd: fix a regression when a configuration file includes only one default rule."
+  ]
+ },
+ "1.18.1": {
+  "bug fixes": [
+   "cgroup: fix regression setting up the devices cgroup on cgroup v1.",
+   "cgroup: fix regression and work again with the default Docker devices configuration on systemd.",
+   "linux: fix setting up user namespace when newuidmap/newgidmap are not available."
+  ]
+ },
+ "1.18": {
+  "bug fixes": [
+   "linux: fix running on kernel without user namespaces."
+  ]
+ },
+ "1.17": {
+  "bug fixes": [
+   "Fix double-free in crun exec code that could lead to a crash.",
+   "Fix error handling for `getpwuid_r`, `recvfrom` and `libcrun_kill_linux`.",
+   "Fix handling of device paths with trailing slashes."
+  ]
+ },
+ "1.16.1": {
+  "bug fixes": [
+   "fix a regression introduced by 1.16 where using 'rshared' rootfs mount propagation and the rootfs itself is a mountpoint."
+  ]
+ },
+ "1.16": {
+  "bug fixes": [
+   "build: fix build for s390x.",
+   "linux: fix mount of special files with rro. Open the mount target with O_PATH to prevent open(2) failures with special files like FIFOs or UNIX sockets.",
+   "Fix sd-bus error handling for cpu quota and period props update.",
+   "cgroup, systemd: use MemoryMax instead of MemoryLimit. Fixes a warning for using an old configuration name."
+  ]
+ },
+ "1.15": {
+  "bug fixes": [
+   "fix a mount point leak under /run/crun, add a retry mechanism to unmount the directory if the removal failed with EBUSY.",
+   "linux: cgroups: fix potential mount leak when /sys/fs/cgroup is already mounted, causing the posthooks to not run.",
+   "linux: fix \"harden chdir()\" security measure. The previous check was not correct."
+  ]
+ },
+ "1.14.4": {
+  "bug fixes": [
+   "linux: fix mount of file with recursive flags. Do not assume it is a directory, but check the source type."
+  ]
+ },
  "1.14.1": {
   "security updates": [
    "there was recently a security vulnerability (CVE-2024-21626) in runc"
+  ],
+  "bug fixes": [
+   "fix a regression caused by 1.14 when installing the ebpf filter on a",
+   "cgroup, systemd: fix segfault if the resources block is not specified."
+  ]
+ },
+ "1.13": {
+  "bug fixes": [
+   "libcrun: fix compilation when building without libseccomp and libcap.",
+   "fix relative idmapped mount when using the custom annotation."
+  ]
+ },
+ "1.11.2": {
+  "bug fixes": [
+   "fix a regression caused by 1.11.1 where the process crashes if there are no CPU limits configured on cgroup v1.",
+   "fix error code check for the ptsname_r function."
+  ]
+ },
+ "1.9.1": {
+  "bug fixes": [
+   "utils: ignore ENOTSUP when chmod a symlink. It fixes a problem on Linux 6.6 that always refuses chmod on a symlink.",
+   "build: fix build on CentOS 7"
+  ]
+ },
+ "1.9": {
+  "bug fixes": [
+   "linux: fix check for oom_score_adj. Write the oom_score_adj file even when the new value is 0."
+  ]
+ },
+ "1.8.7": {
+  "bug fixes": [
+   "linux: fix a race condition when an exec was performed immediately after the start and the setns with the procfd failed.",
+   "features: Fix annotations formatting."
+  ]
+ },
+ "1.8.6": {
+  "bug fixes": [
+   "linux: fix handling of idmapped mounts when the container joins an existing PID namespace.",
+   "crun: fix segfault for \"ps\" when the container is not using cgroups."
+  ]
+ },
+ "1.8.5": {
+  "bug fixes": [
+   "cgroup: fix creating cgroup under \"domain threaded\".",
+   "criu: check if the criu_join_ns_add function exists. Fix a segfault with new versions of CRIU.",
+   "linux: do not precreate devs with euid > 0. Fix creating devices when running the OCI runtime as non root user.",
+   "criu: fix memory leak."
+  ]
+ },
+ "1.8.4": {
+  "bug fixes": [
+   "fix build on CentOS 7.",
+   "cgroup: fix set quota to -1 on cgroup v1."
+  ]
+ },
+ "1.8.1": {
+  "bug fixes": [
+   "cgroup: rmdir the entire systemd scope. It fixes a leak on cgroupv1."
+  ]
+ },
+ "1.8": {
+  "bug fixes": [
+   "build: fix build without dlfcn.h.",
+   "utils: fix applying AppArmor profile.",
+   "cgroup: fix enter cgroupv1 mount on RHEL 7."
+  ]
+ },
+ "1.7.1": {
+  "bug fixes": [
+   "handlers: fix rewriting the argv if the full cmdline doesn't fit.",
+   "utils: fix creating the default user namespace when running with euid != 0.",
+   "Fix timestamp format in the error messages."
+  ]
+ },
+ "1.6": {
+  "bug fixes": [
+   "build: fix build with glibc 2.36."
+  ]
+ },
+ "1.5": {
+  "bug fixes": [
+   "fix creating devices in the rootfs",
+   "fix copyup of files from the container to the tmpfs"
+  ]
+ },
+ "1.4.5": {
+  "bug fixes": [
+   "exec: fix double free when using --apparmor and --process-label."
   ]
  },
  "1.4.4": {
+  "bug fixes": [
+   "Resolve symlinks in bind mounts when creating a user namespace."
+  ],
   "security updates": [
    "Fix CVE-2022-27650: exec does not set inheritable capabilities."
+  ]
+ },
+ "1.4.2": {
+  "bug fixes": [
+   "Fix running with a read-only /dev. The /dev/console file is created before re-mounting /dev as read-only."
+  ]
+ },
+ "1.4.1": {
+  "bug fixes": [
+   "Fix check for an invalid path. crun was performing the wrong check to validate a path, causing spurious failures at runtime.",
+   "Fix regression when joining a container that has explicit paths for the namespaces.",
+   "Fix build issues when configured with --enable-shared.",
+   "Fix build on systems where OPEN_TREE_CLOEXEC is not defined."
+  ]
+ },
+ "1.4": {
+  "bug fixes": [
+   "ebpf: fix build on 32 bits systems."
+  ]
+ },
+ "1.3": {
+  "bug fixes": [
+   "fix race condition when enabling controllers on cgroup v2."
+  ]
+ },
+ "1.2": {
+  "bug fixes": [
+   "exec: fix regression in 1.1 where containers are being wrongly reported as paused."
+  ]
+ },
+ "1.1": {
+  "bug fixes": [
+   "criu: fix save of external descriptors. Now restored containers attach correctly their standard streams."
+  ]
+ },
+ "1.0": {
+  "bug fixes": [
+   "Makefile.am: fix link error when using directly libcrun.",
+   "Fix symlink target mangling for tmpcopyup targets."
+  ]
+ },
+ "0.19": {
+  "bug fixes": [
+   "fix some memory leaks on errors when libcrun is used by a long running process.",
+   "fix the SELinux label for masked directories."
+  ]
+ },
+ "0.18": {
+  "bug fixes": [
+   "fix build without CLONE_NEWCGROUP.",
+   "fix conversion from blkio to io.",
+   "fix symlink lookup on old kernels that lack openat2",
+   "Fix permission error when using NOTIFY_SOCKET with username spaces."
+  ]
+ },
+ "0.17": {
+  "bug fixes": [
+   "fix an issue with hooks running in the container PID namespace.",
+   "fix building without seccomp.",
+   "fix building without libcap."
+  ]
+ },
+ "0.16": {
+  "bug fixes": [
+   "fix another race reading cgroup freeze. Reading from the cgroup fails with ENODEV if the cgroup was deleted in the meanwhile."
+  ]
+ },
+ "0.15.1": {
+  "bug fixes": [
+   "fix check for pidfd availability on older kernels.",
+   "linux: do not set data when remounting read-only. Fix 'ro' mounts on older kernels when SELinux is enabled.",
+   "exec: fix check for read bytes from the sync socket."
+  ]
+ },
+ "0.15": {
+  "bug fixes": [
+   "fix bundle option for `crun create` and `crun run`."
+  ]
+ },
+ "0.14.1": {
+  "bug fixes": [
+   "fix a regression in crun-0.14 where openat2(2) would fail when bind mounting a symlink.",
+   "various small fixes to allow running regression tests outside of source tree."
+  ]
+ },
+ "0.14": {
+  "bug fixes": [
+   "linux: fix an issue where the basename for $NOTIFY_SOCKET is different than /notify.",
+   "cgroup: fix an issue on CentOS 7.8 when using net_cls and net_prio.",
+   "cgroup, v2: fix crun update with both --memory -1 --memory-swap -1.",
+   "libcrun: fix read_pid_stat usage.",
+   "linux: fix double close on the same file descriptor.",
+   "linux: fix path lookups for relative paths containing '/'."
+  ]
+ },
+ "0.13": {
+  "bug fixes": [
+   "utils: fix mount on not writeable path.",
+   "ebpf: fix endianess issue on s390x.",
+   "linux: fix recursive mount on cgroup v1."
+  ]
+ },
+ "0.12.2": {
+  "bug fixes": [
+   "fix mount of cgroup v1 when using a cgroup namespace",
+   "fixed several issues with cgroup v2 and the cgroupfs driver"
+  ]
+ },
+ "0.12.1": {
+  "bug fixes": [
+   "fix the order of clone syscall arguments on s390 and cris.",
+   "fix running with a relative bundle directory.",
+   "fix some regressions in the mounts path resolution."
+  ]
+ },
+ "0.12": {
+  "bug fixes": [
+   "fix exec if a namespace is not available."
+  ]
+ },
+ "0.11": {
+  "bug fixes": [
+   "fix joining cgroup on cgroup v2 when a named hierarchy is also present.",
+   "fix creating user namespaces with more than 2^32 IDs mapped."
   ]
  },
  "0.10.5": {
   "security updates": [
    "fix CVE-2019-18837"
+  ],
+  "bug fixes": [
+   "fix running on CentOS/RHEL 8"
+  ]
+ },
+ "0.10.3": {
+  "bug fixes": [
+   "fix build on Alpine"
+  ]
+ },
+ "0.10.2": {
+  "bug fixes": [
+   "fix a regression in 0.10.1 where cgroups v1 could not be created"
+  ]
+ },
+ "0.10.1": {
+  "bug fixes": [
+   "fix exec of rootless containers when cgroups are not available"
   ]
  },
  "0.10": {
   "security updates": [
    "fix for CVE-2019-16884, make sure writes to /proc for the SELinux and AppArmor labels are on procfs"
+  ],
+  "bug fixes": [
+   "seccomp: fix lookup for pseudo syscalls, seccomp now works fine on non native archs"
+  ]
+ },
+ "0.9.1": {
+  "bug fixes": [
+   "fix an issue with tmpcopyup that didn't work correctly with symlinks"
+  ]
+ },
+ "0.9": {
+  "bug fixes": [
+   "fix exec into containers running systemd on cgroups v2"
+  ]
+ },
+ "0.8": {
+  "bug fixes": [
+   "fix notify socket when used from create and prevent it hanging indefinitely when the container exits"
+  ]
+ },
+ "0.5": {
+  "bug fixes": [
+   "fix all issues found by Coverity"
+  ]
+ },
+ "0.4": {
+  "bug fixes": [
+   "fixed some issues that prevented crun to work on older kernels"
   ]
  }
 }

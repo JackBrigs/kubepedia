@@ -1,4 +1,170 @@
 {
+ "controller-v1.15.0": {
+  "bug fixes": [
+   "Lua: Fix type mismatch. (#14513)",
+   "Controller: Fix sync for when host clock jumps to future. (#14440)",
+   "Util: Fix panic for empty `cpu.max` file. (#14441)",
+   "Docs: Fix typos. (#14391)",
+   "Docs: Fix typo. (#14185)",
+   "Controller: Fix host/path overlap detection for multiple rules. (#13162)"
+  ]
+ },
+ "controller-v1.14.4": {
+  "bug fixes": [
+   "Lua: Fix type mismatch. (#14514)"
+  ]
+ },
+ "controller-v1.13.8": {
+  "bug fixes": [
+   "Lua: Fix type mismatch. (#14515)"
+  ]
+ },
+ "controller-v1.14.3": {
+  "bug fixes": [
+   "Controller: Fix sync for when host clock jumps to future. (#14451)",
+   "Util: Fix panic for empty `cpu.max` file. (#14448)"
+  ]
+ },
+ "controller-v1.13.7": {
+  "bug fixes": [
+   "Controller: Fix sync for when host clock jumps to future. (#14450)",
+   "Util: Fix panic for empty `cpu.max` file. (#14449)"
+  ]
+ },
+ "controller-v1.14.2": {
+  "bug fixes": [
+   "Docs: Fix typos. (#14396)"
+  ]
+ },
+ "controller-v1.13.6": {
+  "bug fixes": [
+   "Docs: Fix typos. (#14395)"
+  ]
+ },
+ "controller-v1.14.1": {
+  "bug fixes": [
+   "Docs: Fix typo. (#14186)",
+   "Controller: Fix host/path overlap detection for multiple rules. (#14132)"
+  ]
+ },
+ "controller-v1.13.5": {
+  "bug fixes": [
+   "Docs: Fix typo. (#14187)",
+   "Controller: Fix host/path overlap detection for multiple rules. (#14131)"
+  ]
+ },
+ "controller-v1.14.0": {
+  "bug fixes": [
+   "Controller: Fix `limit_req_zone` sorting. (#14005)",
+   "Annotations: Fix log format. (#13998)",
+   "Metrics: Fix `nginx_ingress_controller_config_last_reload_successful`. (#13830)",
+   "Docs: Bump mkdocs to v9.6.16, fix links. (#13741)",
+   "Docs: Fix default config values and links. (#13737)",
+   "CI: Fix typo. (#13697)",
+   "Controller: Fix nil pointer in path validation. (#13679)",
+   "Controller: Fix SSL session ticket path. (#13665)",
+   "Docs: Fix links and formatting in user guide. (#13654)",
+   "Config/Annotations: Fix `proxy-busy-buffers-size`. (#13610)"
+  ]
+ },
+ "controller-v1.13.4": {
+  "bug fixes": [
+   "Controller: Fix `limit_req_zone` sorting. (#14006)",
+   "Annotations: Fix log format. (#14002)"
+  ]
+ },
+ "controller-v1.12.8": {
+  "bug fixes": [
+   "Controller: Fix `limit_req_zone` sorting. (#14007)",
+   "Annotations: Fix log format. (#14003)"
+  ]
+ },
+ "controller-v1.13.2": {
+  "bug fixes": [
+   "Metrics: Fix `nginx_ingress_controller_config_last_reload_successful`. (#13860)"
+  ]
+ },
+ "controller-v1.12.6": {
+  "bug fixes": [
+   "Metrics: Fix `nginx_ingress_controller_config_last_reload_successful`. (#13859)"
+  ]
+ },
+ "controller-v1.13.1": {
+  "bug fixes": [
+   "Docs: Bump mkdocs to v9.6.16, fix links. (#13743)",
+   "Docs: Fix default config values and links. (#13738)",
+   "CI: Fix typo. (#13698)",
+   "Controller: Fix nil pointer in path validation. (#13681)",
+   "Controller: Fix SSL session ticket path. (#13667)",
+   "Docs: Fix links and formatting in user guide. (#13661)",
+   "Config/Annotations: Fix `proxy-busy-buffers-size`. (#13638)"
+  ]
+ },
+ "controller-v1.12.5": {
+  "bug fixes": [
+   "Docs: Bump mkdocs to v9.6.16, fix links. (#13744)",
+   "Docs: Fix default config values and links. (#13739)",
+   "CI: Fix typo. (#13699)",
+   "Controller: Fix nil pointer in path validation. (#13682)",
+   "Controller: Fix SSL session ticket path. (#13668)",
+   "Docs: Fix links and formatting in user guide. (#13662)"
+  ]
+ },
+ "controller-v1.13.0": {
+  "bug fixes": [
+   "Docs: Fix function names in comments. (#13517)",
+   "Images: Fix LuaRocks. (#13476)",
+   "Lua: Fix `ExternalName` services without endpoints. (#13154)",
+   "Fix 🐛: Markdown requires nested content inside a list item to be indented (#13388)",
+   "Docs: Fix link in installation instructions. (#13190)",
+   "Images: Fix FromAsCasing. (#13117)",
+   "Docs: Fix OpenTelemetry listing. (#13106)",
+   "Go: Fix Mage. (#13077)",
+   "Controller: Several security fixes. (#13068)",
+   "fix DNS issues with unresolvable backends with ExternalName (#10989)",
+   "Docs: Fix character format. (#12770)"
+  ]
+ },
+ "controller-v1.12.4": {
+  "bug fixes": [
+   "Docs: Fix function names in comments. (#13518)",
+   "Images: Fix LuaRocks. (#13477)"
+  ]
+ },
+ "controller-v1.11.8": {
+  "bug fixes": [
+   "Docs: Fix function names in comments. (#13519)",
+   "Images: Fix LuaRocks. (#13478)"
+  ]
+ },
+ "controller-v1.12.3": {
+  "bug fixes": [
+   "Lua: Fix `ExternalName` services without endpoints. (#13429)",
+   "Fix 🐛: Markdown requires nested content inside a list item to be indented (#13390)"
+  ]
+ },
+ "controller-v1.11.7": {
+  "bug fixes": [
+   "Lua: Fix `ExternalName` services without endpoints. (#13430)",
+   "Fix 🐛: Markdown requires nested content inside a list item to be indented (#13391)"
+  ]
+ },
+ "controller-v1.12.2": {
+  "bug fixes": [
+   "Docs: Fix link in installation instructions. (#13192)",
+   "Images: Fix FromAsCasing. (#13125)",
+   "Docs: Fix OpenTelemetry listing. (#13107)",
+   "Go: Fix Mage. (#13078)"
+  ]
+ },
+ "controller-v1.11.6": {
+  "bug fixes": [
+   "Docs: Fix link in installation instructions. (#13193)",
+   "Images: Fix FromAsCasing. (#13126)",
+   "Docs: Fix OpenTelemetry listing. (#13108)",
+   "Go: Fix Mage. (#13080)"
+  ]
+ },
  "controller-v1.12.1": {
   "security updates": [
    "CVE-2025-1097",
@@ -6,6 +172,11 @@
    "CVE-2025-1974",
    "CVE-2025-24513",
    "CVE-2025-24514"
+  ],
+  "bug fixes": [
+   "Controller: Several security fixes. (#13069)",
+   "fix DNS issues with unresolvable backends with ExternalName (#12951)",
+   "Docs: Fix character format. (#12773)"
   ]
  },
  "controller-v1.11.5": {
@@ -15,11 +186,178 @@
    "CVE-2025-1974",
    "CVE-2025-24513",
    "CVE-2025-24514"
+  ],
+  "bug fixes": [
+   "Controller: Several security fixes. (#13070)",
+   "fix DNS issues with unresolvable backends with ExternalName (#12952)",
+   "Docs: Fix character format. (#12774)"
+  ]
+ },
+ "helm-chart-4.12.0": {
+  "bug fixes": [
+   "CI: Fix chart testing. (#12258)"
+  ]
+ },
+ "helm-chart-4.11.4": {
+  "bug fixes": [
+   "CI: Fix chart testing. (#12259)"
+  ]
+ },
+ "helm-chart-4.10.6": {
+  "bug fixes": [
+   "CI: Fix chart testing. (#12260)"
+  ]
+ },
+ "controller-v1.12.0": {
+  "bug fixes": [
+   "GitHub: Fix `exec` in issue template. (#12387)",
+   "Config: Fix panic on invalid `lua-shared-dict`. (#12283)",
+   "Docs: fix limit-rate-after references (#12278)",
+   "CI: Fix chart testing. (#12258)",
+   "[fix] fix nginx temp configs cleanup (#12225)",
+   "Metrics: Fix namespace in `nginx_ingress_controller_ssl_expire_time_seconds`. (#10274)",
+   "Fix minor typos (#11935)",
+   "Controller: Fix panic in alternative backend merging. (#11789)",
+   "Cloud Build: Fix substitutions. (#11758)",
+   "Docs: Fix typo in AWS LB Controller reference (#11723)",
+   "Docs: Fix `from-to-www` redirect description. (#11712)",
+   "unskip the ocsp tests and update images to fix cfssl bug (#11606)",
+   "Fix indent in YAML for example pod (#11598)",
+   "README: Fix support matrix. (#11586)"
+  ]
+ },
+ "controller-v1.11.4": {
+  "bug fixes": [
+   "GitHub: Fix `exec` in issue template. (#12388)",
+   "Config: Fix panic on invalid `lua-shared-dict`. (#12284)",
+   "Docs: fix limit-rate-after references (#12279)",
+   "CI: Fix chart testing. (#12259)",
+   "[fix] fix nginx temp configs cleanup (#12223)"
+  ]
+ },
+ "controller-v1.10.6": {
+  "bug fixes": [
+   "GitHub: Fix `exec` in issue template. (#12389)",
+   "Config: Fix panic on invalid `lua-shared-dict`. (#12282)",
+   "Docs: fix limit-rate-after references (#12280)",
+   "CI: Fix chart testing. (#12260)",
+   "[fix] fix nginx temp configs cleanup (#12224)"
+  ]
+ },
+ "controller-v1.11.3": {
+  "bug fixes": [
+   "Metrics: Fix namespace in `nginx_ingress_controller_ssl_expire_time_seconds`. (#11986)",
+   "Fix minor typos (#11941)"
+  ]
+ },
+ "controller-v1.10.5": {
+  "bug fixes": [
+   "Metrics: Fix namespace in `nginx_ingress_controller_ssl_expire_time_seconds`. (#11985)",
+   "Fix minor typos (#11940)"
+  ]
+ },
+ "controller-v1.11.2": {
+  "bug fixes": [
+   "Controller: Fix panic in alternative backend merging. (#11794)",
+   "Cloud Build: Fix substitutions. (#11760)",
+   "Docs: Fix typo in AWS LB Controller reference (#11725)",
+   "Docs: Fix `from-to-www` redirect description. (#11716)"
+  ]
+ },
+ "controller-v1.10.4": {
+  "bug fixes": [
+   "Controller: Fix panic in alternative backend merging. (#11793)",
+   "Cloud Build: Fix substitutions. (#11759)",
+   "Docs: Fix typo in AWS LB Controller reference (#11724)",
+   "Docs: Fix `from-to-www` redirect description. (#11715)"
+  ]
+ },
+ "controller-v1.11.1": {
+  "bug fixes": [
+   "unskip the ocsp tests and update images to fix cfssl bug (#11616)",
+   "Fix indent in YAML for example pod (#11610)",
+   "fix: Ensure changes in MatchCN annotation are detected (#11529)"
+  ]
+ },
+ "controller-v1.10.3": {
+  "bug fixes": [
+   "unskip the ocsp tests and update images to fix cfssl bug (#11615)",
+   "Fix indent in YAML for example pod (#11609)",
+   "README: Fix support matrix. (#11593)"
+  ]
+ },
+ "controller-v1.11.0": {
+  "bug fixes": [
+   "fix: Ensure changes in MatchCN annotation are detected (#11529)",
+   "Fix boolean configuration (#11483)",
+   "fixed fastcgi userguide (#11454)",
+   "fix for docs issue 11432 (#11433)",
+   "Chart: Fix `IngressClass` annotations. (#11416)",
+   "Rename variable to fix typo (#11395)",
+   "Fix helm install on cloud provider admonition block (#11394)",
+   "Fix function name in comment (#11296)",
+   "fix path in file changed detected message (#11271)",
+   "chore: fix function names in comment (#11280)",
+   "fix: update kube version requirement to 1.21 (#11275)",
+   "Fix-semver (#11193)",
+   "fixes brotli build issue (#10484)",
+   "fix geoip2 configuration docs (#11150)",
+   "Fix typos in OTel doc (#11081)",
+   "Fix admission controller logging of `admissionTime` and `testedConfigurationSize` (#11089)",
+   "[mTLS] Fix acme verfication when mTLS and Client CN verification is enabled (#11062)"
+  ]
+ },
+ "controller-v1.10.2": {
+  "bug fixes": [
+   "fix: Ensure changes in MatchCN annotation are detected (#11528)",
+   "Fix boolean configuration (#11484)",
+   "fixed fastcgi userguide (#11455)",
+   "fix for docs issue 11432 (#11446)",
+   "Rename variable to fix typo (#11413)",
+   "Fix helm install on cloud provider admonition block (#11412)",
+   "fix path in file changed detected message (#11286)",
+   "chore: fix function names in comment (#11281)",
+   "fix: update kube version requirement to 1.21 (#11279)",
+   "Fix-semver (#11199)",
+   "fixes brotli build issue (#11187)",
+   "fix geoip2 configuration docs (#11151)",
+   "Fix typos in OTel doc (#11081) (#11129)",
+   "Fix admission controller logging of `admissionTime` and `testedConfigurationSize` (#11114)"
+  ]
+ },
+ "controller-v1.10.1": {
+  "bug fixes": [
+   "Fix-semver (#11199)",
+   "fixes brotli build issue (#11187)",
+   "fix geoip2 configuration docs (#11151)",
+   "Fix typos in OTel doc (#11081) (#11129)",
+   "Fix admission controller logging of `admissionTime` and `testedConfigurationSize` (#11114)"
+  ]
+ },
+ "controller-v1.10.0": {
+  "bug fixes": [
+   "This version does not support chroot image, this will be fixed on a future minor patch release",
+   "Fix kubewebhook image tag (#11033)",
+   "fix datasource, $exported_namespace variable in grafana nginx dashboard (#9092)",
+   "Fix print-e2e-suite (#9536)",
+   "Fix golang makefile var name (#10932)",
+   "fix: live-docs script (#10928)"
   ]
  },
  "controller-v1.9.5": {
+  "bug fixes": [
+   "fix: remove tcpproxy copy error handling (#10715)",
+   "fix: adjust unfulfillable validation check for session-cookie-samesite annotation (#10604)",
+   "fix: Validate x-forwarded-prefix annotation with RegexPathWithCapture (#10603)",
+   "fix brotli build issues (#10468)"
+  ],
   "security updates": [
    "[release-1.9] add upstream patch for CVE-2023-44487 (#10499)"
+  ]
+ },
+ "controller-v1.9.4": {
+  "bug fixes": [
+   "Cherry pick fcgi fix and release v1.9.4 (#10544)"
   ]
  },
  "controller-v1.9.3": {
@@ -27,13 +365,260 @@
    "add upstream patch for CVE-2023-44487 (#10494)"
   ]
  },
+ "controller-v1.9.0": {
+  "bug fixes": [
+   "fix: remove curl on base container #9716",
+   "Fix e2e test suite doc (#10396)",
+   "Deployment/DaemonSet: Fix templating & value. (#10240)",
+   "Fix deferInLoop error (#10387)",
+   "fix: remove curl on base container #9716 (#10306)",
+   "Fix http default backend test (#10382)",
+   "fix: path with sepecial characters warning #10281 #10308 (#10330)",
+   "Fix golangci-lint errors (#10196)",
+   "chore(build): Fix Run make dev-env syntax error (#10294)",
+   "Fix “dev-env” Makefile target to work with kubectl 1.28+ (#10350)",
+   "fix: update action file to auto release plugin #10197 (#10321)",
+   "fix: add /etc/mime.types #10309 (#10310)",
+   "ci(helm): fix Helm Chart release action 422 error (#10237)",
+   "Updated index.md - Fix typos (#10256)",
+   "Fix golang-ci linter errors (#10128)"
+  ]
+ },
+ "controller-v1.8.1": {
+  "bug fixes": [
+   "Fix loadBalancerClass value (#10139)",
+   "fix: obsolete warnings (#10029)",
+   "Fix mirror-target values without path separator and port (#9889)",
+   "fix: add canary to sidebar in examples (#10068)",
+   "fix broken kubernetes.io/user-guide/ docs links (#10055)",
+   "Fix typo in controller_test (#10034)"
+  ]
+ },
+ "controller-v1.8.0": {
+  "bug fixes": [
+   "openssl CVE fix (#9996)",
+   "helm: Fix opentelemetry module installation for daemonset (#9792)",
+   "Correct annotations in monitoring docs (#9976)",
+   "fix: avoid builds and tests for changes to markdown (#9962)"
+  ]
+ },
+ "controller-v1.7.1": {
+  "bug fixes": [
+   "Fix typo in OpenTelemetry (#9903)",
+   "Values: Fix indention of commented values. (#9812)",
+   "The Ingress-Nginx project recently released version 1.7.0 of the controller, but the deployment documentation still referenced version 1.6.4. This commit updates the documentation to reference the latest version, ensuring that users have access to the most up-to-date information. Fixes#9787 (#9788)"
+  ]
+ },
+ "controller-v1.7.0": {
+  "bug fixes": [
+   "Fix canary-weight-total annotation ignored in rule backends (#9729)",
+   "fix: controller psp's volume config (#9740)",
+   "Fix several Helm YAML issues with extraModules and extraInitContainers (#9709)",
+   "docs(helm): fix value key in readme for enabling certManager (#9640)",
+   "fix some comments (#9688)",
+   "Fix rewrite example (#9633)",
+   "Fix incorrect annotation name in upstream hashing configuration (#9617)"
+  ]
+ },
+ "controller-v1.6.4": {
+  "bug fixes": [
+   "Fix incorrect annotation name in upstream hashing configuration (#9617)",
+   "build 1.6.2 to fix (#9569)",
+   "fix(grafana-dashboard): remove hardcoded namespace references (#9523)",
+   "fix(grafana-dashboard): remove hardcoded namespace references (#9523)",
+   "fix: disable auth access logs (#9049)",
+   "Fix indentation on serviceAccount annotation (#9129)",
+   "fix change images (#9463)",
+   "avoid builds and tests for non-code changes (#9392)",
+   "[user-guide configmap] fix doc for global-auth-snippet (#9372)",
+   "fix: missing CORS headers when auth fails (#9251)",
+   "Fix styling in canary annotation docs. (#9259)",
+   "resolved ginkgo deprecation message (#9365)",
+   "fix(hpa): deprecated api version, bump to v2 (#9348)",
+   "fix(typo): pluralize provider (#9346)",
+   "Fix typos found by codespell (#9353)",
+   "Fixed indentation in commented-out autoscaling (#9225)",
+   "fix broken annotation yaml (#9243)"
+  ]
+ },
  "controller-v1.5.1": {
+  "bug fixes": [
+   "Fix Service Name length Bug [9245](https://github.com/kubernetes/ingress-nginx/pull/9245)",
+   "chore Fixed to Support Versions table by @yutachaos in https://github.com/kubernetes/ingress-nginx/pull/9117",
+   "Fixed docs helm-docs version by @yutachaos in https://github.com/kubernetes/ingress-nginx/pull/9121",
+   "Fix CVE 2022 27664 by @strongjz in https://github.com/kubernetes/ingress-nginx/pull/9109",
+   "fix e2e resource leak when ginkgo exit before clear resource by @loveRhythm1990 in https://github.com/kubernetes/ingress-nginx/pull/9103",
+   "fix: handle 401 and 403 by external auth by @johanneswuerbach in https://github.com/kubernetes/ingress-nginx/pull/9131",
+   "fix null ports by @tombokombo in https://github.com/kubernetes/ingress-nginx/pull/9149",
+   "fix typo in docs. by @guettli in https://github.com/kubernetes/ingress-nginx/pull/9167",
+   "Fix Markdown header level by @jaens in https://github.com/kubernetes/ingress-nginx/pull/9210",
+   "fix svc long name by @tombokombo in https://github.com/kubernetes/ingress-nginx/pull/9245"
+  ],
   "security updates": [
    "CVE fixes CVE-2022-32149, CVE-2022-27664, CVE-2022-1996",
    "Fix CVE-2022-32149 by @esigo in https://github.com/kubernetes/ingress-nginx/pull/9258",
    "Fix CVE-2022-1996 by @esigo in https://github.com/kubernetes/ingress-nginx/pull/9244",
    "fix CVE-2022-27664 by @esigo in https://github.com/kubernetes/ingress-nginx/pull/9273",
    "Add CVE-2022-27664 #9273 in latest release by @strongjz in https://github.com/kubernetes/ingress-nginx/pull/9275"
+  ]
+ },
+ "controller-v1.4.0": {
+  "bug fixes": [
+   "[9104](https://github.com/kubernetes/ingress-nginx/pull/9104) Fix yaml formatting error with multiple annotations",
+   "[9090](https://github.com/kubernetes/ingress-nginx/pull/9090) fix chroot module mount path",
+   "[9074](https://github.com/kubernetes/ingress-nginx/pull/9074) fix: do not apply job-patch psp on Kubernetes 1.25 and newer",
+   "[9028](https://github.com/kubernetes/ingress-nginx/pull/9028) fix otel init_module",
+   "[9017](https://github.com/kubernetes/ingress-nginx/pull/9017) fix LD_LIBRARY_PATH for opentelemetry"
+  ]
+ },
+ "controller-v1.3.1": {
+  "bug fixes": [
+   "bump baseimage alpine to v3.16.2 for zlib CVE fix by @longwuyuan in https://github.com/kubernetes/ingress-nginx/pull/8939",
+   "Fixed typo by @mtnezm in https://github.com/kubernetes/ingress-nginx/pull/8817",
+   "fix(docs): describe MetalLB configuration via CRDs rather than configMap by @tamcore in https://github.com/kubernetes/ingress-nginx/pull/8821",
+   "fix: test-runner Makefile by @tao12345666333 in https://github.com/kubernetes/ingress-nginx/pull/8840",
+   "FIx typo x_forwarded_for by @inosato in https://github.com/kubernetes/ingress-nginx/pull/8838",
+   "added fixes for make dev-env by @longwuyuan in https://github.com/kubernetes/ingress-nginx/pull/8804",
+   "fix: test-runner prow build by @tao12345666333 in https://github.com/kubernetes/ingress-nginx/pull/8863",
+   "fix: make use of sed portable for BSD and GNU by @Volatus in https://github.com/kubernetes/ingress-nginx/pull/8859",
+   "fix: test-runner prow build by @tao12345666333 in https://github.com/kubernetes/ingress-nginx/pull/8864",
+   "Revert \"fix: test-runner prow build\" by @tao12345666333 in https://github.com/kubernetes/ingress-nginx/pull/8865",
+   "fix: change cloudbuild configuration by @tao12345666333 in https://github.com/kubernetes/ingress-nginx/pull/8869",
+   "fix: change all cloudbuild jobs configuration by @tao12345666333 in https://github.com/kubernetes/ingress-nginx/pull/8870",
+   "fix(controller): typo in catch-all CheckIngress error message by @aslafy-z in https://github.com/kubernetes/ingress-nginx/pull/8905",
+   "Fix defaultServer backend update for Ingress with defaultBackend. by @harry1064 in https://github.com/kubernetes/ingress-nginx/pull/8825",
+   "fix: go-restful CVE #8745 by @Volatus in https://github.com/kubernetes/ingress-nginx/pull/8969",
+   "fixed deprecated ginkgo flags by @longwuyuan in https://github.com/kubernetes/ingress-nginx/pull/8984",
+   "issue:8739 fix doc issue by @sreelakshminarayananm in https://github.com/kubernetes/ingress-nginx/pull/9006",
+   "Fix cloud build git error by @strongjz in https://github.com/kubernetes/ingress-nginx/pull/9012"
+  ]
+ },
+ "controller-v1.3.0": {
+  "bug fixes": [
+   "This release reports a false positive on go-restful library that will be fixed with Kubernetes v1.25 release - Issue #8745",
+   "fix the gosec test and a make target for it by @strongjz in https://github.com/kubernetes/ingress-nginx/pull/8699",
+   "Fix several typos by @stefanlasiewski in https://github.com/kubernetes/ingress-nginx/pull/8701",
+   "Fix typos and add links to developer guide by @Pearl1594 in https://github.com/kubernetes/ingress-nginx/pull/8769",
+   "fix bullet md format by @longwuyuan in https://github.com/kubernetes/ingress-nginx/pull/8771",
+   "fix: add MAC_OS variable for static-check by @tao12345666333 in https://github.com/kubernetes/ingress-nginx/pull/8796",
+   "Fix example Helm chart values to enable custom http errors by @kevinscholz in https://github.com/kubernetes/ingress-nginx/pull/8558"
+  ]
+ },
+ "controller-v1.2.1": {
+  "bug fixes": [
+   "Fix tls1.0 test by @rikatz in https://github.com/kubernetes/ingress-nginx/pull/8632",
+   "Fix small typo in GRPC README by @poblahblahblah in https://github.com/kubernetes/ingress-nginx/pull/8639"
+  ]
+ },
+ "controller-v1.2.0": {
+  "bug fixes": [
+   "Fix log creation in chroot script by @rikatz in https://github.com/kubernetes/ingress-nginx/pull/8481",
+   "fix change log changes list by @strongjz in https://github.com/kubernetes/ingress-nginx/pull/8421",
+   "Fix suggested annotation-value-word-blocklist by @sathieu in https://github.com/kubernetes/ingress-nginx/pull/8446",
+   "Fix for buggy ingress sync with retries by @davideshay in https://github.com/kubernetes/ingress-nginx/pull/8325"
+  ]
+ },
+ "controller-v1.1.3": {
+  "bug fixes": [
+   "docs: fix changelog formatting for 1.1.2 by @solidnerd in https://github.com/kubernetes/ingress-nginx/pull/8302",
+   "Fix 50% split between canary and mainline tests by @anaclaudiar in https://github.com/kubernetes/ingress-nginx/pull/8315",
+   "fix indent on env by @strongjz in https://github.com/kubernetes/ingress-nginx/pull/8352",
+   "downgrade to 3.14.4 and fix tag by @strongjz in https://github.com/kubernetes/ingress-nginx/pull/8386",
+   "fix document for monitoring by @tomoyk in https://github.com/kubernetes/ingress-nginx/pull/8392",
+   "Fix OpenTelemetry build by @dmathieu in https://github.com/kubernetes/ingress-nginx/pull/8396",
+   "doc: fix deployment manifest example from user-guide/monitoring by @dajsn in https://github.com/kubernetes/ingress-nginx/pull/8407"
+  ]
+ },
+ "controller-v1.1.2": {
+  "bug fixes": [
+   "fix inconsistent-label-cardinality for prometheus metrics: nginx_ingress_controller_requests by @ekovacs in https://github.com/kubernetes/ingress-nginx/pull/8225",
+   "Minor fix for missing pathType property by @r0mdau in https://github.com/kubernetes/ingress-nginx/pull/8244",
+   "fix: deny locations with invalid auth-url annotation by @nabokihms in https://github.com/kubernetes/ingress-nginx/pull/8256",
+   "Fix OpenTelemetry sidecar image build by @dmathieu in https://github.com/kubernetes/ingress-nginx/pull/8286"
+  ]
+ },
+ "controller-v1.1.1": {
+  "bug fixes": [
+   "fix nginx compilation flags by @dmitry-j-mikhin in https://github.com/kubernetes/ingress-nginx/pull/8023",
+   "docs: fix typo'd executible name by @noelleleigh in https://github.com/kubernetes/ingress-nginx/pull/8041",
+   "fix custom-error-pages file not exist by @learn0208 in https://github.com/kubernetes/ingress-nginx/pull/7728",
+   "Fix Edit this page link to use main branch by @nasa9084 in https://github.com/kubernetes/ingress-nginx/pull/8088",
+   "Fix chashsubset backend with canary by @weiwu-sre in https://github.com/kubernetes/ingress-nginx/pull/7235",
+   "Fix codegen errors by @rikatz in https://github.com/kubernetes/ingress-nginx/pull/8117",
+   "fix syntax in docs for multi-tls example by @tomoncle in https://github.com/kubernetes/ingress-nginx/pull/8129"
+  ]
+ },
+ "controller-v1.0.5": {
+  "bug fixes": [
+   "[7800](https://github.com/kubernetes/ingress-nginx/pull/7800) Fix thread synchronization issue"
+  ]
+ },
+ "controller-v1.0.4": {
+  "bug fixes": [
+   "Fix diverse documentation"
+  ]
+ },
+ "controller-v1.0.3": {
+  "bug fixes": [
+   "Ingress controller now (starting from v1.0.0) mandates cluster scoped access to IngressClass. This leads to problems when updating old Ingress controller to newest version, as described [here](https://github.com/kubernetes/ingress-nginx/issues/7510). We plan to fix it in v1.0.4 (promise!!), see [this](https://github.com/kubernetes/ingress-nginx/pull/7578).",
+   "[X] [#7727](https://github.com/kubernetes/ingress-nginx/pull/7727) Fix selector for shutting down Pods status",
+   "[X] [#7719](https://github.com/kubernetes/ingress-nginx/pull/7719) Fix overlap check when ingress is configured as canary",
+   "Diverse docs fixes and libraries bumping"
+  ]
+ },
+ "controller-v0.49.3": {
+  "bug fixes": [
+   "[X] [#7731](https://github.com/kubernetes/ingress-nginx/pull/7727) Fix selector for shutting down Pods status",
+   "[X] [#7741](https://github.com/kubernetes/ingress-nginx/pull/7719) Fix overlap check when ingress is configured as canary"
+  ]
+ },
+ "controller-v1.0.2": {
+  "bug fixes": [
+   "Ingress controller now (starting from v1.0.0) mandates cluster scoped access to IngressClass. This leads to problems when updating old Ingress controller to newest version, as described [here](https://github.com/kubernetes/ingress-nginx/issues/7510). We plan to fix it in v1.0.3, see [this](https://github.com/kubernetes/ingress-nginx/pull/7578)."
+  ]
+ },
+ "controller-v1.0.1": {
+  "bug fixes": [
+   "Ingress controller now (starting from v1.0.0) mandates cluster scoped access to IngressClass. This leads to problems when updating old Ingress controller to newest version, as described [here](https://github.com/kubernetes/ingress-nginx/issues/7510). We plan to fix it in v1.0.2, see [this](https://github.com/kubernetes/ingress-nginx/pull/7578).",
+   "[X] [#7640](https://github.com/kubernetes/ingress-nginx/pull/7640) fix typos. (#7640)",
+   "[X] [#7460](https://github.com/kubernetes/ingress-nginx/pull/7460) Fix old tag of custom error pages used in example (#7460)",
+   "[X] [#7606](https://github.com/kubernetes/ingress-nginx/pull/7606) fix cli flag typo in faq (#7606)",
+   "[X] [#7601](https://github.com/kubernetes/ingress-nginx/pull/7601) fix charts README.md to give additional detail on prometheus metrics … (#7601)",
+   "[X] [#7598](https://github.com/kubernetes/ingress-nginx/pull/7598) fix 7591 (#7598)",
+   "[X] [#7556](https://github.com/kubernetes/ingress-nginx/pull/7556) Fix YAML indentation issue (#7556)"
+  ]
+ },
+ "controller-v1.0.0": {
+  "bug fixes": [
+   "[X] [#7443](https://github.com/kubernetes/ingress-nginx/pull/7443) fix ingress-nginx panic when the certificate format is wrong.",
+   "[X] [#7487](https://github.com/kubernetes/ingress-nginx/pull/7487)[Cherry - Pick] - Fix default backend annotation and tests",
+   "[X] [#7478](https://github.com/kubernetes/ingress-nginx/pull/7478) Release new helm chart with certgen fixed",
+   "[X] [#7341](https://github.com/kubernetes/ingress-nginx/pull/7341) Fix IngressClass logic for newer releases (#7341)",
+   "[X] [#7161](https://github.com/kubernetes/ingress-nginx/pull/7161) fix: allow scope/tcp/udp configmap namespace to altered (#7161)",
+   "[X] [#7331](https://github.com/kubernetes/ingress-nginx/pull/7331) Fix forwarding of auth-response-headers to gRPC backends (#7331)",
+   "[X] [#7107](https://github.com/kubernetes/ingress-nginx/pull/7107) Fix MaxWorkerOpenFiles calculation on high cores nodes",
+   "[X] [#6940](https://github.com/kubernetes/ingress-nginx/pull/6940) Fix definition order of modsecurity directives"
+  ]
+ },
+ "controller-v0.49.0": {
+  "bug fixes": [
+   "[x] [#7486](https://github.com/kubernetes/ingress-nginx/pull/7486) Fix default backend annotation test",
+   "[x] [#7331](https://github.com/kubernetes/ingress-nginx/pull/7331) Fix forwarding of auth-response-headers to gRPC backends",
+   "[x] [#7228](https://github.com/kubernetes/ingress-nginx/pull/7228) fix: discover mounted geoip db files",
+   "[x] [#7449](https://github.com/kubernetes/ingress-nginx/pull/7449) Fix cap for NET_BIND_SERVICE",
+   "[x] [#7423](https://github.com/kubernetes/ingress-nginx/pull/7423) Fixed chart version",
+   "[x] [#7361](https://github.com/kubernetes/ingress-nginx/pull/7361) doc: fix monitoring usage docs"
+  ]
+ },
+ "controller-v0.48.1": {
+  "bug fixes": [
+   "#6940 Fix definition order of modsecurity directives for controller",
+   "#7255 Fix nilpointer in admission and remove failing test"
+  ]
+ },
+ "ingress-nginx-3.1.0": {
+  "bug fixes": [
+   "Fix helm chart admissionReviewVersions regression #6180"
   ]
  }
 }

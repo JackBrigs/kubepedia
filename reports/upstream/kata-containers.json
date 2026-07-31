@@ -1,33 +1,524 @@
 {
+ "3.32.0": {
+  "bug fixes": [
+   "runtime-rs: Fix sandbox-api lifecycle and CRI status handling by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12957",
+   "packaging: fix parallel kernel build race and kata-deploy script bugs by @hdp617 in https://github.com/kata-containers/kata-containers/pull/13077",
+   "runtime / agent / kernel: fix cold-plug VFIO guest-kernel mode for SR-IOV RoCE/InfiniBand by @fidencio in https://github.com/kata-containers/kata-containers/pull/13103",
+   "tests: fix TDX runtime-rs and initdata tests by @mythi in https://github.com/kata-containers/kata-containers/pull/12931",
+   "cri-containerd: fix v1 sanity-check config generation by @fidencio in https://github.com/kata-containers/kata-containers/pull/13192",
+   "tests: fix k8s-number-cpus expectation by @manuelh-dev in https://github.com/kata-containers/kata-containers/pull/13190",
+   "generate_vendor: Fix heavily broken logic by @gkurz in https://github.com/kata-containers/kata-containers/pull/13202",
+   "fix: pin idna and pymdown-extensions to remediate CVEs by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/13215",
+   "runtime-rs: Fix queue_size of zero in block_rootfs by @glingy in https://github.com/kata-containers/kata-containers/pull/13211",
+   "agent: fix get_oom_event deadlock after connection restart by @thejasn in https://github.com/kata-containers/kata-containers/pull/13116",
+   "runtime-rs: fix default_memory annonation processing by @pmores in https://github.com/kata-containers/kata-containers/pull/13129"
+  ]
+ },
  "3.31.0": {
   "security updates": [
    "CVE-2026-44210 via https://github.com/kata-containers/kata-containers/commit/ffa59ce3aa7877d067c9a372df0c329a23a01744",
    "CVE-2026-47243 via 555b7738fe2f699af6d57712cf75330f012b4e3b"
+  ],
+  "bug fixes": [
+   "genpolicy: Fix matching of `..` in paths by @gkurz in https://github.com/kata-containers/kata-containers/pull/12991",
+   "runtime-rs: Fix warnings in rust runtime by @Apokleos in https://github.com/kata-containers/kata-containers/pull/13011",
+   "kata-deploy: Fix containerd debug level path for config schema v4 by @fidencio in https://github.com/kata-containers/kata-containers/pull/13021",
+   "fix: add click 8.3.3 to docs requirements by @pavithiran34 in https://github.com/kata-containers/kata-containers/pull/13037",
+   "dragonball: fix typo in VsockEpollListener doc comment by @SAY-5 in https://github.com/kata-containers/kata-containers/pull/13024",
+   "kata-ctl: Fix failures when kata-ctl exec with short id by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12437",
+   "Fix #13008: runtime/fc track real firecracker PID instead of jailer PID by @sebwolf-de in https://github.com/kata-containers/kata-containers/pull/13009",
+   "agent-ctl: CLH virtio fs queue size fix by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/13073"
   ]
  },
  "3.30.0": {
   "security updates": [
    "Linux Kernel Copy Fail [CVE-2026-31431](https://github.com/advisories/GHSA-2274-3hgr-wxv6) fixed by bumping our guest image kernel in https://github.com/kata-containers/kata-containers/commit/803531dd9cd6679dfb54ef50102038325e0f0a07"
+  ],
+  "bug fixes": [
+   "shell check: Let the bot fix those issues by @fidencio in https://github.com/kata-containers/kata-containers/pull/12890",
+   "runtime-rs: fix exec when selinux is disabled on guest by @pmores in https://github.com/kata-containers/kata-containers/pull/12913",
+   "ci: Fix cri-containerd-test names by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12942",
+   "release: fix release workflow concurrency deadlock by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12973"
   ]
  },
  "3.29.0": {
   "security updates": [
    "[CVE-2026-41326](https://github.com/kata-containers/kata-containers/security/advisories/GHSA-q49m-57vm-c8cc) in https://github.com/kata-containers/kata-containers/commit/1b9e49eb2763aa6ea6a99b276d3ff5e2c7f658f2"
+  ],
+  "bug fixes": [
+   "Security fixes 23 mar 26 by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12704",
+   "gatekeeper: Unrequire NVIDIA GPU SNP tests till auth is fixed by @fidencio in https://github.com/kata-containers/kata-containers/pull/12733",
+   "kata-deploy: Fix kata-deploy pods crashing if containerd restarts by @fidencio in https://github.com/kata-containers/kata-containers/pull/12766",
+   "runtime-rs: Fix FC API fields by @ananos in https://github.com/kata-containers/kata-containers/pull/12767",
+   "runtime-rs: Fix typo in share_fs error message by @YutingNie in https://github.com/kata-containers/kata-containers/pull/12762",
+   "runtime: fix Docker 26+ networking by rescanning after Start by @llink5 in https://github.com/kata-containers/kata-containers/pull/12754",
+   "runtime-rs: fix setting directio via config file by @PiotrProkop in https://github.com/kata-containers/kata-containers/pull/12682",
+   "fix: updated image-rs to v0.18.0 by @pavithiran34 in https://github.com/kata-containers/kata-containers/pull/12782",
+   "kata-deploy: Fix noisy caused by unformatted code by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12791",
+   "runtime: Fix concurrent map read/write panic in Wait() by @fidencio in https://github.com/kata-containers/kata-containers/pull/12826",
+   "runtime-rs: Fix unformatted code in runtime-rs by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12844",
+   "docs: fix nerdctl guest image command by @Xynnn007 in https://github.com/kata-containers/kata-containers/pull/11611",
+   "Confidential tests fixes by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12879",
+   "runtime-rs/ch: Fix pod deletion hang and make deletion idempotent by @sprt in https://github.com/kata-containers/kata-containers/pull/12887"
+  ]
+ },
+ "3.28.0": {
+  "bug fixes": [
+   "kata-deploy: Fix nydus snapshotter config (on v3 config version) by @fidencio in https://github.com/kata-containers/kata-containers/pull/12577",
+   "kata-deploy: a bunch of fixes regarding uninstall, rke2 and k3s tests by @fidencio in https://github.com/kata-containers/kata-containers/pull/12626",
+   "runtime-rs: Fix dragonball's flaky unit tests by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12623",
+   "nvidia: fix invalid CTK reference by @manuelh-dev in https://github.com/kata-containers/kata-containers/pull/12646"
   ]
  },
  "3.27.0": {
   "security updates": [
    "CVE-2026-24834 in e17f96251dc35b0bb1a1e16b42ca6f20db877827, c727332b0ee001eb5467dc74459329602422587f, 48aa077e8cb41226598c3e9f3f46a72d2f57ee4d, 336b922d4f7fe5dc94087de2af3992a1a786d0d9"
+  ],
+  "bug fixes": [
+   "runtime-rs: Fix stdout empty when exec process by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12376",
+   "Fix CVE 2026 25541 by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12475",
+   "Fix CVE 2026 25727 by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12474",
+   "tests: nvidia: Fix genpolicy error when pulling nvcr.io images by @fidencio in https://github.com/kata-containers/kata-containers/pull/12514",
+   "infra: fix multi-arch manifest publish by @fidencio in https://github.com/kata-containers/kata-containers/pull/12524",
+   "kata-deploy: runtime_platform -> runtime_platforms ... plus a few fixes by @fidencio in https://github.com/kata-containers/kata-containers/pull/12530",
+   "runtime-rs/ch: Fix inverted vcpu/tid mapping in get_ch_vcpu_tids by @chiranjeevi-max in https://github.com/kata-containers/kata-containers/pull/12526"
   ]
  },
  "3.26.0": {
   "security updates": [
    "[CVE-2026-24054](https://github.com/kata-containers/kata-containers/security/advisories/GHSA-5fc8-gg7w-3g5c) in 20ca4d2d79aa5bf63aa1254f08915da84f19e92a"
+  ],
+  "bug fixes": [
+   "static-checks: Fix kata-deploy reference by @fidencio in https://github.com/kata-containers/kata-containers/pull/12359",
+   "kata-deploy: Fix tests and issues found with non-kubeadm deployments by @fidencio in https://github.com/kata-containers/kata-containers/pull/12372",
+   "ci: Fix stalebot permissions by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12305",
+   "runtime-rs: se File instead of UnixStream for FIFO to fix ENOTSOCK by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12388",
+   "ci.ocp: Two little fixes regarding the openshift-ci by @ldoktor in https://github.com/kata-containers/kata-containers/pull/12274"
+  ]
+ },
+ "3.25.0": {
+  "bug fixes": [
+   "kata-deploy: sa: Fix permissions for patching nodefeaturerules by @fidencio in https://github.com/kata-containers/kata-containers/pull/12232",
+   "build: Fix GPG key for gperf & Pass PUSH_TO_REGISTRY and GH_TOKEN to Docker builds by @fidencio in https://github.com/kata-containers/kata-containers/pull/12247",
+   "virtiofsd: fix RUSTUP_HOME and CARGO_HOME permissions for non-root bu… by @BbolroC in https://github.com/kata-containers/kata-containers/pull/12313",
+   "docs: Fix trusted-image-storage reference by @manuelh-dev in https://github.com/kata-containers/kata-containers/pull/12297",
+   "kata-deploy: Fix extraction of the containerd major version by @facorazza in https://github.com/kata-containers/kata-containers/pull/12312",
+   "packaging: Fix tools permissions issue by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/12315",
+   "docs: Navigation improvements and bug fixes to Pages by @LandonTClipp in https://github.com/kata-containers/kata-containers/pull/12330",
+   "kernel: Add DAX fix for arm64 by @fidencio in https://github.com/kata-containers/kata-containers/pull/12347",
+   "runtime: fix no network when VMM does not support network device hotplug by @Xander-C in https://github.com/kata-containers/kata-containers/pull/11501"
+  ]
+ },
+ "3.24.0": {
+  "bug fixes": [
+   "tests: k8s: Fix typo in authenticated tests by @fidencio in https://github.com/kata-containers/kata-containers/pull/12111",
+   "gpu: TDX kernel cmdline fixes by @zvonkok in https://github.com/kata-containers/kata-containers/pull/12127",
+   "runtimeclasses: Fix nvidia-gpu podOverhead by @fidencio in https://github.com/kata-containers/kata-containers/pull/12132",
+   "runtime-rs: fix QMP 'mq' parameter type in netdev_add to boolean by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12137",
+   "agent: fix the list_routes failure by @shwetha-s-poojary in https://github.com/kata-containers/kata-containers/pull/12112",
+   "kata-deploy: Fix multiInstallSuffix for NV shims by @fidencio in https://github.com/kata-containers/kata-containers/pull/12142",
+   "kata-deploy: Fix binary find install_tools_helper by @manuelh-dev in https://github.com/kata-containers/kata-containers/pull/12129"
+  ]
+ },
+ "3.23.0": {
+  "bug fixes": [
+   "libs: Fix formatting issue by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/11995",
+   "dragonball: Bump kvm-ioctls to fix security issue by @spectator333 in https://github.com/kata-containers/kata-containers/pull/11867",
+   "tests: guest-pull: Fix names by @fidencio in https://github.com/kata-containers/kata-containers/pull/12028",
+   "ci: Fix failing static checks to enable IBM actionspz - Z specific by @BbolroC in https://github.com/kata-containers/kata-containers/pull/11924",
+   "runtime-rs: some remote hypervisor fixes by @pmores in https://github.com/kata-containers/kata-containers/pull/11857",
+   "runtime-rs: Fix several incorrect settings with guest empty dir. by @Apokleos in https://github.com/kata-containers/kata-containers/pull/12067",
+   "runtime-rs: fix the issue of hot-unplug memory smaller by @lifupan in https://github.com/kata-containers/kata-containers/pull/12038",
+   "runtime-rs: fix the issue of wrong vcpu number by @lifupan in https://github.com/kata-containers/kata-containers/pull/12095",
+   "runtime: fix the issue of update interface error by @lifupan in https://github.com/kata-containers/kata-containers/pull/12044"
+  ]
+ },
+ "3.22.0": {
+  "bug fixes": [
+   "agent/rustjail: Fix double free in TTY handling by @sprt in https://github.com/kata-containers/kata-containers/pull/11833",
+   "tests: agent-ctl: Fix cleanup for testing with qemu by @Sumynwa in https://github.com/kata-containers/kata-containers/pull/11847",
+   "gha: zizmor: fix \"workflow or action definition without a name\" error by @sprt in https://github.com/kata-containers/kata-containers/pull/11855",
+   "libs: Fix the test_parse_mount_options failure on ppc64le by @shwetha-s-poojary in https://github.com/kata-containers/kata-containers/pull/11849",
+   "agent/rustjail: Fix potentially uninitialized memory read in unsafe code by @sprt in https://github.com/kata-containers/kata-containers/pull/11872",
+   "build: Fix initramfs build by @fidencio in https://github.com/kata-containers/kata-containers/pull/11879",
+   "gpu: Some fixes regarding the rootfs v580 by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11896",
+   "gha: Fix `docs-url-alive-check` workflow by @sprt in https://github.com/kata-containers/kata-containers/pull/11901",
+   "runtime: fix device typo by @M-Phansa in https://github.com/kata-containers/kata-containers/pull/11894",
+   "runtime: fix \"num-queues expects uint64\" error with virtio-blk by @spuzirev in https://github.com/kata-containers/kata-containers/pull/11888",
+   "build: Fix KBUILD_SIGN_PIN usage by @fidencio in https://github.com/kata-containers/kata-containers/pull/11914",
+   "gpu: Fix kernel module signing by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11916",
+   "build: Fix nvidia kernel breakage by @fidencio in https://github.com/kata-containers/kata-containers/pull/11929",
+   "virtcontainers: fix nydus cleanup on rootfs unmount by @katexochen in https://github.com/kata-containers/kata-containers/pull/11899",
+   "tests: Fix cca test failure on arm64 and other architectures by @kevinzs2048 in https://github.com/kata-containers/kata-containers/pull/11975",
+   "gpu: rootfs fixes by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11966"
+  ]
+ },
+ "3.21.0": {
+  "bug fixes": [
+   "cgroups: Fix \".\" parent cgroup special case by @fidencio in https://github.com/kata-containers/kata-containers/pull/11717",
+   "ci: security: Fix \"commit hash does not point to a Git tag\" by @sprt in https://github.com/kata-containers/kata-containers/pull/11772",
+   "libs: Fix unit tests under non-root user by @RuoqingHe in https://github.com/kata-containers/kata-containers/pull/11775",
+   "runtime: fix the issue clh resize vcpu failed by @lifupan in https://github.com/kata-containers/kata-containers/pull/11761",
+   "tools: agent-ctl: Fix unresolved ch import by @fidencio in https://github.com/kata-containers/kata-containers/pull/11811",
+   "runtime-rs: Fix annotations within runtime-rs to pass the agent policy check by @Apokleos in https://github.com/kata-containers/kata-containers/pull/11753",
+   "qemu: Fix submodules location change by @fidencio in https://github.com/kata-containers/kata-containers/pull/11829",
+   "agent: Fix format issues by @fidencio in https://github.com/kata-containers/kata-containers/pull/11838"
+  ]
+ },
+ "3.20.0": {
+  "breaking changes": [
+   "**Breaking change**: In https://github.com/kata-containers/kata-containers/pull/11693 the annotation for passing through the initdata confidential containers feature was changed from `io.katacontainers.config.runtime.cc_init_data` to `io.katacontainers.config.hypervisor.cc_init_data`"
+  ],
+  "bug fixes": [
+   "dragonball: Fix warnings in default build by @RuoqingHe in https://github.com/kata-containers/kata-containers/pull/11618",
+   "build: nvidia: Fix KBUILD_SIGN_PIN breakage by @fidencio in https://github.com/kata-containers/kata-containers/pull/11645",
+   "runtime-rs: Fix issues for initdata by @BbolroC in https://github.com/kata-containers/kata-containers/pull/11693"
   ]
  },
  "3.19.0": {
+  "bug fixes": [
+   "runtime-rs: fix the issue return the wrong volume by @lifupan in https://github.com/kata-containers/kata-containers/pull/11467",
+   "runtime-rs: Fix calculation of odd memory sizes by @fidencio in https://github.com/kata-containers/kata-containers/pull/11470",
+   "runtime-rs: Fix noise with frequently appearing in unstaged changes by @Apokleos in https://github.com/kata-containers/kata-containers/pull/11490",
+   "test: fix broken testing code in libs by @zhaodiaoer in https://github.com/kata-containers/kata-containers/pull/11423",
+   "kata-agent: mount.rs: Fix warning of test by @teawater in https://github.com/kata-containers/kata-containers/pull/11509",
+   "security: ci: Fixes for Zizmor GHA security scanning by @sprt in https://github.com/kata-containers/kata-containers/pull/11475",
+   "runtime-rs: refactor and fix the implementation of guest-pull by @Apokleos in https://github.com/kata-containers/kata-containers/pull/11482",
+   "runtime: Fix rootlessDir not correctly set in rootless VMM mode by @StevenFryto in https://github.com/kata-containers/kata-containers/pull/11527",
+   "gh: Fix released VERSION file by @fidencio in https://github.com/kata-containers/kata-containers/pull/11554",
+   "Rust advisory fixes pre 3.19.0 by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/11555",
+   "runtime-rs: Fix initdata length field missing when create block by @Apokleos in https://github.com/kata-containers/kata-containers/pull/11557",
+   "build: Fix cache for nvidia-gpu-initrd builds by @fidencio in https://github.com/kata-containers/kata-containers/pull/11571",
+   "gpu: Fix kata deploy.sh by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11335",
+   "runk: Fix build errors by @Tim-Zhang in https://github.com/kata-containers/kata-containers/pull/11575",
+   "agent: fix the issue of parent writer pipe fd leak by @lifupan in https://github.com/kata-containers/kata-containers/pull/11504",
+   "shellcheck: fix kernel/build.sh by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10961",
+   "workflow: Fix osv-scanner action by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/11581",
+   "runtime-rs: Fix the issue of blocking socket with Tokio by @justxuewei in https://github.com/kata-containers/kata-containers/pull/11578",
+   "kernel: fix enable kernel debug by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11584",
+   "qemu: tdx: Fix binary path for non-gpu TDX by @fidencio in https://github.com/kata-containers/kata-containers/pull/11589"
+  ],
   "security updates": [
    "chore: Update protobuf to fix CVE-2025-53605 by @Tim-Zhang in https://github.com/kata-containers/kata-containers/pull/11576"
+  ]
+ },
+ "3.18.0": {
+  "bug fixes": [
+   "osbuilder: lib.sh: Fix indent by @Rtoax in https://github.com/kata-containers/kata-containers/pull/11267",
+   "runtime-rs: fix vfio pci address domain 0001 problem by @sampleyang in https://github.com/kata-containers/kata-containers/pull/11254",
+   "Drop outdated erofs patches for 6.1.y kernels & fix a dragonball vsock issue by @hsiangkao in https://github.com/kata-containers/kata-containers/pull/10964",
+   "runtime-rs: fix the issue of delete cgroup failed by @lifupan in https://github.com/kata-containers/kata-containers/pull/11301",
+   "genpolicy: fix svc_name regex by @katexochen in https://github.com/kata-containers/kata-containers/pull/11314",
+   "runtime: fix cgroupv2 deletion when sandbox_cgroup_only=false by @Champ-Goblem in https://github.com/kata-containers/kata-containers/pull/11324",
+   "Fix | Support initdata for SNP by @Xynnn007 in https://github.com/kata-containers/kata-containers/pull/11329",
+   "ci: fix artifact name of RISC-V tarball by @burgerdev in https://github.com/kata-containers/kata-containers/pull/11387",
+   "ci: Fix Mariner rootfs build failure by @sprt in https://github.com/kata-containers/kata-containers/pull/11396",
+   "Revert \"ci: Fix Mariner rootfs build failure\" by @sprt in https://github.com/kata-containers/kata-containers/pull/11398",
+   "protocols: Fix the noise caused by non-formatted codes in protocols by @Apokleos in https://github.com/kata-containers/kata-containers/pull/11345",
+   "genpolicy: fix rules syntax issues, rego v1 compatibility; ci: checks for rego parsing by @katexochen in https://github.com/kata-containers/kata-containers/pull/11412",
+   "Fix logging on virtiofs shutdown by @pawelbeza in https://github.com/kata-containers/kata-containers/pull/11359",
+   "gpu: Fix module signing by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11337",
+   "workflows: Fix permissions by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/11435",
+   "release: Fix helm push typo by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/11438"
+  ]
+ },
+ "3.17.0": {
+  "bug fixes": [
+   "tests/k8s: fix kbs installation on Azure AKS by @wainersm in https://github.com/kata-containers/kata-containers/pull/11164",
+   "ci: revert temp: ci: Fix AKS cluster creation by @Camelron in https://github.com/kata-containers/kata-containers/pull/11223",
+   "shimv2: fix the issue logger write failed by @lifupan in https://github.com/kata-containers/kata-containers/pull/11209",
+   "runtime: Fix logging for remote hypervisor by @bpradipt in https://github.com/kata-containers/kata-containers/pull/11287",
+   "config: Fix typos by @Rtoax in https://github.com/kata-containers/kata-containers/pull/11283",
+   "kata-deploy: fix bug when config does not exist by @kimullaa in https://github.com/kata-containers/kata-containers/pull/11093"
+  ]
+ },
+ "3.16.0": {
+  "bug fixes": [
+   "ci: shellcheck fixes by @ldoktor in https://github.com/kata-containers/kata-containers/pull/11053",
+   "kata-deploy: Fix kata-cleanup's CrashLoopBackOff by @kimullaa in https://github.com/kata-containers/kata-containers/pull/11088",
+   "runtime-go: qemu: Fix sandbox start failing with virtio-mem enable on arm64 by @kevinzs2048 in https://github.com/kata-containers/kata-containers/pull/11085",
+   "ci: required-tests fixes/updates by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/11090",
+   "gpu: Fix CDI annotations by @zvonkok in https://github.com/kata-containers/kata-containers/pull/11150",
+   "temp: ci: Fix AKS cluster creation by @sprt in https://github.com/kata-containers/kata-containers/pull/11189"
+  ]
+ },
+ "3.15.0": {
+  "bug fixes": [
+   "ci: Fix spell_check and improve header_check by @RuoqingHe in https://github.com/kata-containers/kata-containers/pull/10893",
+   "minor build fixes by @mythi in https://github.com/kata-containers/kata-containers/pull/10881",
+   "agent: Fix race condition with cgroup watchers by @sprt in https://github.com/kata-containers/kata-containers/pull/10911",
+   "gpu: IOMMUFD fix by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10931",
+   "agent: Fix non-guest-pull build by @fidencio in https://github.com/kata-containers/kata-containers/pull/10934",
+   "kata-deploy: k0s: Fix drop-in path by @fidencio in https://github.com/kata-containers/kata-containers/pull/10960",
+   "Fix virtio-net-ccw by @Jakob-Naucke in https://github.com/kata-containers/kata-containers/pull/10817",
+   "gpu: fix init symlinks by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10965",
+   "Shell check errors fix by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/10958",
+   "Rework and fix metrics issues by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/10954",
+   "agent: Fix default linux device permissions by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10976",
+   "agent: fix permisssion according to runc by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10982",
+   "kata-types: Fix bugs related to annotations in kata-types by @Apokleos in https://github.com/kata-containers/kata-containers/pull/10937",
+   "runtime-rs: Fix log_level's comments in configuration-dragonball.toml.in by @teawater in https://github.com/kata-containers/kata-containers/pull/10975",
+   "tests: fix confidential ssh Dockerfile by @ryansavino in https://github.com/kata-containers/kata-containers/pull/11006"
+  ]
+ },
+ "3.14.0": {
+  "bug fixes": [
+   "gpu: Fix rootfs build by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10736",
+   "agent: Update ttrpc to include the fix for connectivity issues by @fidencio in https://github.com/kata-containers/kata-containers/pull/10775",
+   "gpu: Fix arm64 kernel build by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10777",
+   "versions: Fix formatting by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/10828",
+   "gpu: Fix arm64 build by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10812",
+   "gpu: Add first target and fix extratarballs by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10791"
+  ]
+ },
+ "3.13.0": {
+  "bug fixes": [
+   "packaging: fix the broken usage help by @deagon in https://github.com/kata-containers/kata-containers/pull/9387",
+   "tests: Fix qemu-coc-dev skip by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/10676"
+  ]
+ },
+ "3.12.0": {
+  "bug fixes": [
+   "osbuilder: Fix build dependency of ubuntu rootfs with Docker by @coolljt0725 in https://github.com/kata-containers/kata-containers/pull/10377",
+   "docs: Fix several build failures when I tried the procedures in \"Kata Containers with AMD SEV-SNP VMs\" by @kimullaa in https://github.com/kata-containers/kata-containers/pull/10386",
+   "ci: Fix error on self-hosted machines by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10516",
+   "runtime-rs: fix vfio device name combination issue by @Apokleos in https://github.com/kata-containers/kata-containers/pull/10577",
+   "agent: fix startup when guest_components_procs is set to none by @squarti in https://github.com/kata-containers/kata-containers/pull/10583",
+   "ci: Fix variant for confidential targets by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10590",
+   "ci: Fix Docker publishing for CSI driver by @sprt in https://github.com/kata-containers/kata-containers/pull/10609",
+   "ci: Fix Docker publishing for CSI driver, 2nd try by @sprt in https://github.com/kata-containers/kata-containers/pull/10612",
+   "workflows: Fix remove artifact name filter by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/10615",
+   "runtime-rs: Fix the issues with stderr fifo by @justxuewei in https://github.com/kata-containers/kata-containers/pull/10638",
+   "runtime-rs & agent: Fix the issues with bind volumes by @justxuewei in https://github.com/kata-containers/kata-containers/pull/10643",
+   "kata-ctl: fix outdated comments by @liubogithub in https://github.com/kata-containers/kata-containers/pull/10655",
+   "qemu: Fix aarch64 build by @zvonkok in https://github.com/kata-containers/kata-containers/pull/10669"
+  ]
+ },
+ "3.11.0": {
+  "bug fixes": [
+   "gha: Fix source for gha stability run script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/10485",
+   "agent: fix typo on getting EphemeralHandler size option by @fidencio in https://github.com/kata-containers/kata-containers/pull/10491",
+   "runtime: fix comment to accurately reflect clh behavior by @Camelron in https://github.com/kata-containers/kata-containers/pull/10545"
+  ]
+ },
+ "3.10.1": {
+  "bug fixes": [
+   "docs: Fix misspelling in CI documentation by @GabyCT in https://github.com/kata-containers/kata-containers/pull/10438",
+   "workflows: Possibly fix the release workflow by @fidencio in https://github.com/kata-containers/kata-containers/pull/10471"
+  ]
+ },
+ "3.10.0": {
+  "bug fixes": [
+   "kata-deploy: clean up and fix docs for k0s by @sprt in https://github.com/kata-containers/kata-containers/pull/10335",
+   "runtime-rs: fix the issue of using block_on by @lifupan in https://github.com/kata-containers/kata-containers/pull/10339",
+   "tests: Fix loop device handling for exec_host() by @BbolroC in https://github.com/kata-containers/kata-containers/pull/10232",
+   "agent: fix the issue of setup sandbox pidns by @lifupan in https://github.com/kata-containers/kata-containers/pull/10351",
+   "build: Fix RPM build fail due to AGENT_POLICY by @emanuellima1 in https://github.com/kata-containers/kata-containers/pull/10389",
+   "agent:cdh: fix unit tests about sealed secret by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/10406"
+  ]
+ },
+ "3.9.0": {
+  "bug fixes": [
+   "tests: Fix k8s test issues on s390x by @BbolroC in https://github.com/kata-containers/kata-containers/pull/10202",
+   "helm: Several fixes, including some reasonable re-work on kata-deploy.sh script by @fidencio in https://github.com/kata-containers/kata-containers/pull/10192",
+   "runtime: fix bad default machine_type for remote hypervisor by @squarti in https://github.com/kata-containers/kata-containers/pull/10250",
+   "runtime: Fix runtime/cdi panic with assignment to entry in nil map by @Apokleos in https://github.com/kata-containers/kata-containers/pull/10276",
+   "genpolicy: fix and re-enable create container UID verification by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/10291",
+   "tests: Fix indentation in the cri containerd tests by @GabyCT in https://github.com/kata-containers/kata-containers/pull/10304",
+   "local-build: Fix unbound variable issue for lib_se.sh by @BbolroC in https://github.com/kata-containers/kata-containers/pull/10321",
+   "ci: Fix indentation of install libseccomp script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/10324",
+   "agent: Fix CPU usage reporting for cgroup v2 in kata-agent by @alexman-stripe in https://github.com/kata-containers/kata-containers/pull/10279",
+   "shim: Fix memory usage reporting for cgroup v2 by @alexman-stripe in https://github.com/kata-containers/kata-containers/pull/10283"
+  ]
+ },
+ "3.8.0": {
+  "bug fixes": [
+   "runtime-rs: container: fix the issue of missing cleanup container by @lifupan in https://github.com/kata-containers/kata-containers/pull/10045",
+   "tests: Fix missing log on TDX by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/10031",
+   "Fix issue while adding multiple networks with nerdctl by @amshinde in https://github.com/kata-containers/kata-containers/pull/9899",
+   "runtime-rs : fix the issue of stop sandbox by @lifupan in https://github.com/kata-containers/kata-containers/pull/10043",
+   "runtime-rs: Fix QEMU backend for runtime-rs by @ananos in https://github.com/kata-containers/kata-containers/pull/10052",
+   "ci: Fix rate limit error by migrating busybox_image by @AdithyaKrishnan in https://github.com/kata-containers/kata-containers/pull/10101",
+   "tests: Fix error with `kubectl debug` by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/10102",
+   "agent: fix the AllowRequestsFailingPolicy functionality by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/10098",
+   "Fix metrics json results file by @dborquez in https://github.com/kata-containers/kata-containers/pull/10120",
+   "tools: Fix container image build warning by @hex2dec in https://github.com/kata-containers/kata-containers/pull/10137",
+   "osbuilder: fix typo in ubuntu rootfs depends by @deagon in https://github.com/kata-containers/kata-containers/pull/10172",
+   "kata-deploy: fix kata-deploy reset by @beraldoleal in https://github.com/kata-containers/kata-containers/pull/10170",
+   "ci: stdio: Fix typo on getting the containerd version by @fidencio in https://github.com/kata-containers/kata-containers/pull/10181"
+  ]
+ },
+ "3.7.0": {
+  "bug fixes": [
+   "sandbox: fix the issue of failed to get the vmm master tid by @lifupan in https://github.com/kata-containers/kata-containers/pull/9834",
+   "tests: nerdctl: Fix variables names and remove network by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9874",
+   "runtime-rs: fix the bug of func count_files by @gaohuatao-1 in https://github.com/kata-containers/kata-containers/pull/9830",
+   "runtime: fix missing of VhostUserDeviceReconnect parameter assignment by @markyangcc in https://github.com/kata-containers/kata-containers/pull/9849",
+   "rootfs: Fix spurious error by @zvonkok in https://github.com/kata-containers/kata-containers/pull/9918",
+   "kata-deploy: fix qemu static build on ppc64le by @Amulyam24 in https://github.com/kata-containers/kata-containers/pull/9914",
+   "tests: Fixes TEE timeout issue by @AdithyaKrishnan in https://github.com/kata-containers/kata-containers/pull/9943",
+   "Fix issues on CI about guest-pull by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/9695",
+   "gha: Fix pip installation for nerdctl GHA by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9971",
+   "ci: fix run-nydus tests by @sprt in https://github.com/kata-containers/kata-containers/pull/9992",
+   "Fix ctr exec stuck problem by @Tim-Zhang in https://github.com/kata-containers/kata-containers/pull/9534",
+   "tests: fix ps command in k8s-security-context by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/10020"
+  ]
+ },
+ "3.6.0": {
+  "bug fixes": [
+   "gha: Fix indentation in gha run k8s common by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9627",
+   "metrics: Fix random write value for FIO by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9610",
+   "ci: cache: Fix unbound variable by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/9647",
+   "Fix launch times timestamp generation. by @dborquez in https://github.com/kata-containers/kata-containers/pull/9662",
+   "fix: kata-deploy.sh VERSION_ID unbound-variable by @networkhermit in https://github.com/kata-containers/kata-containers/pull/9671",
+   "runtime: fix duplicated devices requested to the agent by @cncal in https://github.com/kata-containers/kata-containers/pull/9624",
+   "tests: Fix indentation in confidential common script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9685",
+   "metrics: Fix minvalue for boot time by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9686",
+   "kata-deploy / kata-cleanup / ci: Fixes and improvements to kata-deploy / kata-cleanup and its usage in the CI by @fidencio in https://github.com/kata-containers/kata-containers/pull/9721",
+   "vfio: Fix hot-unplug by @zvonkok in https://github.com/kata-containers/kata-containers/pull/9723",
+   "ci: Fix tools builder images by @zvonkok in https://github.com/kata-containers/kata-containers/pull/9743",
+   "tests: Fix indentation in static checks script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9741",
+   "tests: Fix indentation in common script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9779",
+   "kata-types: fix bug in kata-types several test cases by @Apokleos in https://github.com/kata-containers/kata-containers/pull/9784",
+   "runtime: fix the bug of func countFiles by @gaohuatao-1 in https://github.com/kata-containers/kata-containers/pull/9781",
+   "tests: fix yq command line in k8s-policy-pvc by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/9844",
+   "ci: fix the expected yq version string by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/9843",
+   "runtime: fix minor spelling issues by @EmmEff in https://github.com/kata-containers/kata-containers/pull/9818",
+   "sandbox: fix the issue of double initial_size_manager config by @lifupan in https://github.com/kata-containers/kata-containers/pull/9836",
+   "genpolicy: fix settings path flag name by @msanft in https://github.com/kata-containers/kata-containers/pull/9815"
+  ]
+ },
+ "3.5.0": {
+  "bug fixes": [
+   "passfd-io: fix FIFO opening and vsock handling by @Tim-Zhang in https://github.com/kata-containers/kata-containers/pull/9335",
+   "build: Fix tarball not building correctly in docker by @JakubLedworowski in https://github.com/kata-containers/kata-containers/pull/9549",
+   "doc: fix missing document link by @cncal in https://github.com/kata-containers/kata-containers/pull/9528",
+   "build: fix the confusing build message if yq doesn't exist in GOPATH/bin by @cncal in https://github.com/kata-containers/kata-containers/pull/9582",
+   "runtime-rs: fix the issue of the leak of dead shim by @lifupan in https://github.com/kata-containers/kata-containers/pull/9598",
+   "db: fix the issue of failed to init pci root bus by @lifupan in https://github.com/kata-containers/kata-containers/pull/9596",
+   "deploy: Fix wrong pushing of artifacts by @zvonkok in https://github.com/kata-containers/kata-containers/pull/9616",
+   "build: nvidia-gpu: Fix cache usage of the headers tarball by @fidencio in https://github.com/kata-containers/kata-containers/pull/9622",
+   "runtime-rs: Fix constructing the RTC struct by @emanuellima1 in https://github.com/kata-containers/kata-containers/pull/9571",
+   "kata-deploy: Fix tdx_not_supported call by @ldoktor in https://github.com/kata-containers/kata-containers/pull/9629"
+  ]
+ },
+ "3.4.0": {
+  "bug fixes": [
+   "gha: Fix nydus namespace clean up by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9265",
+   "scripts: Fix unbound variables in k8s setup script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9329",
+   "agent: Fix errors in `make check` by @c3d in https://github.com/kata-containers/kata-containers/pull/9345",
+   "gha: Fix indentation in gha run script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9450",
+   "agent: Fix the issue with the \"test_new_fs_manager\" test by @justxuewei in https://github.com/kata-containers/kata-containers/pull/9457",
+   "kata: Remove check for \"Fixes\" in PR by @zvonkok in https://github.com/kata-containers/kata-containers/pull/9501"
+  ]
+ },
+ "3.3.0": {
+  "bug fixes": [
+   "runtime-rs: fix a typo in device manager by @ZizhengBian in https://github.com/kata-containers/kata-containers/pull/8294",
+   "utils: kata manager: Fix version checks by @jodh-intel in https://github.com/kata-containers/kata-containers/pull/8323",
+   "network: Fix network attach for ipvlan and macvlan by @amshinde in https://github.com/kata-containers/kata-containers/pull/8334",
+   "docs: Fix broken links by @cmaf in https://github.com/kata-containers/kata-containers/pull/8255",
+   "kata-manager: Fix deployment of containerd on architectures other than amd64. by @brianwang12 in https://github.com/kata-containers/kata-containers/pull/7057",
+   "Docs: Fix Dragonball link by @sazzy4o in https://github.com/kata-containers/kata-containers/pull/8285",
+   "gha: stale: Fix typo and allow manually triggering it by @fidencio in https://github.com/kata-containers/kata-containers/pull/8368",
+   "tests: fixes permission denied when running test by @beraldoleal in https://github.com/kata-containers/kata-containers/pull/8217",
+   "network: Fix network hotplug for ipvlan and macvlan endpoints for qemu and add tests by @amshinde in https://github.com/kata-containers/kata-containers/pull/8367",
+   "runtime: Fix TestCheckHostIsVMContainerCapable unstablity issue by @justxuewei in https://github.com/kata-containers/kata-containers/pull/8389",
+   "gha: Fix regex used to get kubectl version from the k3s version by @fidencio in https://github.com/kata-containers/kata-containers/pull/8411",
+   "runtime-rs: fix a typo in shm by @studychao in https://github.com/kata-containers/kata-containers/pull/8169",
+   "runtime-rs: ch: Fix TDX by @jodh-intel in https://github.com/kata-containers/kata-containers/pull/8419",
+   "metrics: Fix function that completely stops kata containers before running a test by @dborquez in https://github.com/kata-containers/kata-containers/pull/8338",
+   "kernel: Fix vsock packets drop when the driver initializes by @alex-matei in https://github.com/kata-containers/kata-containers/pull/8431",
+   "Fixes make check errors by @beraldoleal in https://github.com/kata-containers/kata-containers/pull/8345",
+   "metrics: Fix result finding in tensorflow benchmark by @GabyCT in https://github.com/kata-containers/kata-containers/pull/8467",
+   "runtime-rs on arm64: Fixes unable to Boot Container Image using Cloud… by @brianwang12 in https://github.com/kata-containers/kata-containers/pull/8422",
+   "runtime: Fix configmap/secrets updates with FS sharing disabled by @Sumynwa in https://github.com/kata-containers/kata-containers/pull/8239",
+   "gha: fix artefacts build on ppc64le by @Amulyam24 in https://github.com/kata-containers/kata-containers/pull/8526",
+   "metrics: Fix iperf parallel bandwidth limit by @GabyCT in https://github.com/kata-containers/kata-containers/pull/8531",
+   "libs:logging: Fix logger by @jodh-intel in https://github.com/kata-containers/kata-containers/pull/8547",
+   "runtime-rs: fix panic when hypervisor mismatches with configuration by @liubogithub in https://github.com/kata-containers/kata-containers/pull/8566",
+   "GHA: Fix kata-deploy-runtime-classes-check for kata-qemu-se by @BbolroC in https://github.com/kata-containers/kata-containers/pull/8624",
+   "tests: k8s: Fix indentation in setup script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/8676",
+   "tests: k8s: Fix indentation in confidential common script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/8699",
+   "kata-deploy: snapshotter typo fixes by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/8721",
+   "kata-monitor: fix Dockerfile to build image by @liubin in https://github.com/kata-containers/kata-containers/pull/8729",
+   "kata-deploy: Fix shim check for snapshotter configuration by @fidencio in https://github.com/kata-containers/kata-containers/pull/8733",
+   "dragonball: Fix compilation issue without all net features by @justxuewei in https://github.com/kata-containers/kata-containers/pull/8744",
+   "agent: Fix an issue reporting OOM events by mistake by @justxuewei in https://github.com/kata-containers/kata-containers/pull/8773",
+   "packaging: Fix indentation of build static stratovirt by @GabyCT in https://github.com/kata-containers/kata-containers/pull/8778",
+   "gha: Fix the failure of gha metrics for StratoVirt by @WenyuanLau in https://github.com/kata-containers/kata-containers/pull/8657",
+   "Fix backport check hub by @stevenhorsman in https://github.com/kata-containers/kata-containers/pull/8763",
+   "genpolicy: cargo clippy fixes by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/8822",
+   "runtime-rs: fix unused driverInfo error by @yaoyinnan in https://github.com/kata-containers/kata-containers/pull/8928",
+   "genpolicy: fix ConfigMap volume mount paths by @danmihai1 in https://github.com/kata-containers/kata-containers/pull/8924",
+   "dragonball: fix noop-method-call warning by @kalil-pelissier in https://github.com/kata-containers/kata-containers/pull/8932",
+   "kata-deploy: fix deprecations on kustomization files by @wainersm in https://github.com/kata-containers/kata-containers/pull/8269",
+   "packaging: cache: Fix caching kernels which rely on extra modules by @fidencio in https://github.com/kata-containers/kata-containers/pull/8987",
+   "packaging: Fix pushing artefacts to the registry by @fidencio in https://github.com/kata-containers/kata-containers/pull/9000",
+   "kata-monitor: fix agentUrl from containerd shim by @deagon in https://github.com/kata-containers/kata-containers/pull/9012",
+   "cri-containerd: fix loop in TestContainerMemoryUpdate() by @wainersm in https://github.com/kata-containers/kata-containers/pull/9025",
+   "runtime-rs: fix assert error in `make check` by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/9043",
+   "runtime-rs: fix interoperability issues between runtime-rs and cri-o by @pmores in https://github.com/kata-containers/kata-containers/pull/8986",
+   "runtime: fix creation of SEV confidential container on SNP enabled host. by @niteeshkd in https://github.com/kata-containers/kata-containers/pull/9037",
+   "tools.kata-webhook: Fix lib path by @ldoktor in https://github.com/kata-containers/kata-containers/pull/9023",
+   "runtime: fix checksum mismatch error in `make vendor` by @ChengyuZhu6 in https://github.com/kata-containers/kata-containers/pull/9112",
+   "ci: k8s: Fix checks used to skip confidential tests by @fidencio in https://github.com/kata-containers/kata-containers/pull/9108",
+   "gha: nydus: Fix indentation in gha run script by @GabyCT in https://github.com/kata-containers/kata-containers/pull/9088",
+   "tests/runk: fix the \"run ps command\" flaky test by @wainersm in https://github.com/kata-containers/kata-containers/pull/9009",
+   "release: Add the needed fixes for the release process by @fidencio in https://github.com/kata-containers/kata-containers/pull/9170",
+   "releases: Second round of follow-up fixes by @fidencio in https://github.com/kata-containers/kata-containers/pull/9188",
+   "rootfs: Fix PAUSE_IMAGE_TARBALL addition to the rootfs by @fidencio in https://github.com/kata-containers/kata-containers/pull/9180",
+   "ci.ocp: Backport service-up detection fixes by @ldoktor in https://github.com/kata-containers/kata-containers/pull/9169",
+   "katautils: fix panic on tracing. by @liubogithub in https://github.com/kata-containers/kata-containers/pull/9201",
+   "tests/kata-deploy: fix checker for kata-deploy running by @wainersm in https://github.com/kata-containers/kata-containers/pull/9184",
+   "CI: fix the issue of ci failure on crio by @lifupan in https://github.com/kata-containers/kata-containers/pull/9206",
+   "gpu: fix build guest kernel with gpu by @Jimmy-Xu in https://github.com/kata-containers/kata-containers/pull/9155",
+   "Dragonball: fix unit test problems when switching to new virt github machine by @studychao in https://github.com/kata-containers/kata-containers/pull/9208",
+   "fixed - Change the deprecated module from 'io/util' to util. 'io/util… by @chungeun-choi in https://github.com/kata-containers/kata-containers/pull/9154",
+   "tests: fix nounset error with $GITHUB_ENV by @wainersm in https://github.com/kata-containers/kata-containers/pull/9278",
+   "kata-manager: Fix Docker install by @jodh-intel in https://github.com/kata-containers/kata-containers/pull/9293",
+   "ocp.ci: Various fixes and improvements to the OCP pipeline by @ldoktor in https://github.com/kata-containers/kata-containers/pull/9229"
+  ]
+ },
+ "2.4.1": {
+  "bug fixes": [
+   "Fixes related to hugepages (#3816, #3695)",
+   "Fixes for pod terminating (#4043, #4081)"
+  ]
+ },
+ "2.4.0": {
+  "bug fixes": [
+   "Improved and fixed support for OCI hooks, allowing to run nerdctl with Kata Containers. (@sameo, @liubin). As nerdctl exposes a CLI that is very close to the docker one, this brings an easier, docker-like, development workflow with Kata Containers as a backend."
+  ]
+ },
+ "2.3.3": {
+  "bug fixes": [
+   "stable-2.3 | agent: fix invalid hooks env issues by @liubin in https://github.com/kata-containers/kata-containers/pull/3716"
+  ]
+ },
+ "2.3.0": {
+  "bug fixes": [
+   "Fixes / Improvements from the host cgroups",
+   "Fixes for the agent's files watcher",
+   "Fixes for the Firecracker integration"
+  ]
+ },
+ "2.1.0": {
+  "bug fixes": [
+   "A whole bunch of fixes and improvements to `kata-deploy`, which is the",
+   "Innumerous documentations fixes and cleanups."
+  ]
+ },
+ "2.0.4": {
+  "bug fixes": [
+   "Fixes for `virtio_fs_extra_args` annotation"
+  ]
+ },
+ "2.0.3": {
+  "bug fixes": [
+   "Fixes for building `agent-ctl`",
+   "Improvements and fixes for kata-deploy, such as:",
+   "Improvements and fixes for scripts used to prepare this release"
   ]
  }
 }

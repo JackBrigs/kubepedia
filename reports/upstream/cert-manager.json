@@ -1,15 +1,46 @@
 {
+ "1.21.1": {
+  "bug fixes": [
+   "Avoid controller panic if a Certificate sets spec.renewal.policy=Disabled (#9038, @sklirg)",
+   "Fix Issuer/ClusterIssuer stuck at Ready=False/InvalidSolver after a missing ACME DNS-01 solver Secret is created (#9083, @SebTardif)",
+   "Fix log spam and dropped Secret informer events for non-cert-manager Secrets, caused by a generics regression introduced in 1.21.0. (#9037, @wallrj-cyberark)",
+   "Fixed the commented Gateway API config example in the Helm chart values to use `gatewayAPI.enabled` instead of the invalid `gatewayAPI.enable`. (#9012, @mateenali66)",
+   "Bump `golang.org/x/text` to v0.40.0 to fix a reported security vulnerability (#9039, @wallrj-cyberark)",
+   "Bump `google.golang.org/grpc` to v1.82.1 to fix a reported security vulnerability (#9063)",
+   "Bump `github.com/google/cel-go` to v0.29.0 to fix a reported security vulnerability (#9072)",
+   "Bump `go.opentelemetry.io/otel` to v1.44.0 to fix a reported security vulnerability (#9073)"
+  ]
+ },
  "1.21.0": {
   "bug fixes": [
+   "**Controller crash-loops when a Certificate sets `renewal.policy: Disabled`**: the new Certificate renewal policies feature (#8258) causes a nil pointer dereference panic in the trigger controller whenever a Certificate's `spec.renewal.policy` is set to `Disabled` — `pki.RenewalTime()` returns `(nil, nil)` for that policy, but the caller unconditionally dereferences the result. This crashes the controller process (crash-loop) for any cluster with such a Certificate. **Workaround**: do not set `renewal.policy: Disabled` on any Certificate until this is fixed; remove the field (or set a different policy) from any Certificate that already has it, and restart the controller if it is currently crash-looping. See #9031 for details.",
+   "**Issuer/ClusterIssuer can get stuck at `Ready: False, Reason: InvalidSolver` and never self-correct**: new eager validation of ACME solver Secrets (#8255) means an Issuer/ClusterIssuer referencing a solver Secret (e.g. a DNS01 provider credential) that doesn't exist yet will correctly report `Ready: False`, but creating the missing Secret afterwards does not trigger re-reconciliation — the controller's Secret-watch logic was never updated to recognise solver Secrets. It will only recover on the next 10-hour informer resync, a change to the Issuer/ClusterIssuer's own spec, or a controller restart. **Workaround**: after creating the missing Secret, make a trivial edit to the Issuer/ClusterIssuer spec (or delete and recreate it) to force reconciliation. See cert-manager/cert-manager#9036 for details and a fix proposal.",
    "**Integer overflow in `renewBeforePercentage`**: Certificates with durations longer than approximately 3 years were incorrectly rejected or assigned incorrect renewal times. (#8947)",
    "**Infinite re-issuance loop**: cert-manager no longer loops when an issuer returns an already-expired certificate. (#8610)",
    "**ACME transient network errors**: challenges no longer permanently fail on TLS handshake timeouts, DNS resolution failures, or context cancellation during nonce fetches and authorization waits. (#8760)",
    "**DNS-over-HTTPS response body cap**: response body reads are now bounded at 128 KB to prevent potential OOM. (#8803)",
    "**Vault path traversal**: the Vault issuer webhook now rejects `..` path segments, preventing `path.Join` from silently resolving relative segments. (#8930)",
-   "**DNS issuer secrets validated before ready**: prevents silent misconfiguration. (#8255)"
+   "**DNS issuer secrets validated before ready**: prevents silent misconfiguration. (#8255)",
+   "Fix Venafi TPP issuer setup and signing regression on master: restore authentication of the vcert connector in the client constructor, which was removed in #8808. (#8843, @wallrj-cyberark)",
+   "Fix a performance issue in the certificateRequestApproval webhook where CertificateRequests referencing a GroupKind whose CRD is not yet installed would trigger repeated API server discovery queries on every admission request. Negative results are now cached for 30 seconds. (#8651, @mateenali66)",
+   "Fix webhook serving certificate not being renewed after system suspend. (#8464, @Peac36)",
+   "Fixed a rare panic in the trigger controller when a Certificate is deleted from the informer cache while a reconcile is in progress (e.g. during namespace teardown). (#8962, @hjoshi123)",
+   "Fixed an integer overflow in `renewBeforePercentage` calculations that caused Certificates with durations longer than approximately 3 years to be incorrectly rejected by validation or assigned incorrect renewal times. (#8947, @ThatsMrTalbot)",
+   "Fixed duplicate `parentRef` bug when both issuer config and annotations are present. (#8619, @hjoshi123)",
+   "Fixed infinite re-issuance loop when issuer returns an already expired certificate (#8610, @onurmicoogullari)",
+   "Fixed local `e2e-setup-samplewebhook` installation to use the samplewebhook image repository and tag from the saved image tarball manifest. (#8821, @wallrj)",
+   "Fixed potential OOM in DNS-over-HTTPS client by bounding response body read with io.LimitReader (128 KB cap). (#8803, @SebTardif)",
+   "Fixed validation of timezone-prefixed renewal window cron specs without a schedule. (#8813, @immanuwell)",
+   "Helm: Fix invalid YAML generated when both `webhook.config` and `webhook.volumes` are defined. (#8664, @jnohlgard)"
+  ],
+  "breaking changes": [
+   "**BREAKING**: The Helm chart no longer ships a default `Role` and `RoleBinding` granting the cert-manager controller ServiceAccount permission to create tokens for itself (`serviceaccounts/token: create`). This RBAC was added in v1.16 (#7213) but no documented workflow requires it, and the motivating Route53 docs section was removed in Oct 2024. If you rely on `serviceAccountRef.name` pointing at the controller ServiceAccount (an undocumented pattern), you must now create your own `Role` and `RoleBinding` granting `serviceaccounts/token: create` on that ServiceAccount, or migrate to one of the documented patterns (IRSA ambient, or a dedicated ServiceAccount with its own RBAC). (#8931, @wallrj-cyberark)"
   ]
  },
  "1.20.3": {
+  "bug fixes": [
+   "Bump go to 1.26.3, other deps to fix several govulncheck issues (#8789, @SgtCoDFish)"
+  ],
   "security updates": [
    "Update Go to `v1.26.4` to fix CVE-2026-27145, CVE-2026-42504, and CVE-2026-42507 (#8926, @wallrj-cyberark)"
   ]
@@ -17,9 +48,32 @@
  "1.19.6": {
   "security updates": [
    "Update Go to `v1.25.11` to fix CVE-2026-27145, CVE-2026-42504, and CVE-2026-42507 ([#8925](https://github.com/cert-manager/cert-manager/pull/8925), [@wallrj-cyberark](https://github.com/wallrj-cyberark))"
+  ],
+  "bug fixes": [
+   "Upgrade Go to 1.25.10 to fix reported vulnerabilities, along with other dependency bumps ([#8788](https://github.com/cert-manager/cert-manager/pull/8788), [@SgtCoDFish](https://github.com/SgtCoDFish))"
+  ]
+ },
+ "1.20.2": {
+  "bug fixes": [
+   "Helm: Fix invalid YAML generated when both `webhook.config` and `webhook.volumes` are defined. (#8665, @cert-manager-bot)"
+  ]
+ },
+ "1.20.1": {
+  "bug fixes": [
+   "Fixed duplicate `parentRef` bug when both issuer config and annotations are present. (#8658, @hjoshi123)",
+   "Bump google.golang.org/grpc to fix vulnerability reported by scanners. This isn't a vulnerability that affects cert-manager, but we are bumping it because it is reported by scanners. (#8657, @erikgb)"
   ]
  },
  "1.20.0": {
+  "bug fixes": [
+   "Fixed an issue where kind or group in the issuerRef of a Certificate was omitted, upgrading to 1.19.x incorrectly caused the certificate to be renewed (#8160, @inteon)",
+   "Fix an issue where ACME challenge TXT records are not cleaned up when there are many resource records in CloudDNS. (#8456, @tkna)",
+   "Fix unregulated retries with the DigitalOcean DNS-01 solver",
+   "Fixed an infinite re-issuance loop that could occur when an issuer returns a certificate with a public key that doesn't match the CSR. The issuing controller now validates the certificate before storing it and fails with backoff on mismatch. (#8403, @calm329)",
+   "Fixed an issue where HTTP-01 challenges failed when the Host header contains an IPv6 address. This means that users can now issue IP address certificates for IPv6 address subjects. (#8424, @SlashNephy)",
+   "Fixed the HTTP-01 Gateway solver creating invalid HTTPRoutes by not setting spec.hostnames when the challenge DNSName is an IP address. (#8443, @alviss7)",
+   "Security (MODERATE): Fix a potential panic in the cert-manager controller when a DNS response in an unexpected order was cached. If an attacker was able to modify DNS responses (or if they controlled the DNS server) it was possible to cause denial of service for the cert-manager controller. (#8469, @SgtCoDFish)"
+  ],
   "security updates": [
    "Update Go to `v1.25.5` to fix `CVE-2025-61727` and `CVE-2025-61729` (#8290, @octo-sts[bot])"
   ]
@@ -34,6 +88,20 @@
    "Bump Go to address CVE-2025-68121 (#8525, @SgtCoDFish)"
   ]
  },
+ "1.19.3": {
+  "bug fixes": [
+   "Fixed an infinite re-issuance loop that could occur when an issuer returns a certificate with a public key that doesn't match the CSR. The issuing controller now validates the certificate before storing it and fails with backoff on mismatch. (#8415, @cert-manager-bot)",
+   "Fixed an issue where HTTP-01 challenges failed when the Host header contained an IPv6 address. This means that users can now issue IP address certificates for IPv6 address subjects. (#8436, @cert-manager-bot)",
+   "Security (MODERATE): Fix a potential panic in the cert-manager controller when a DNS response in an unexpected order was cached. If an attacker was able to modify DNS responses (or if they controlled the DNS server) it was possible to cause denial of service for the cert-manager controller. (#8468, @SgtCoDFish)"
+  ]
+ },
+ "1.18.5": {
+  "bug fixes": [
+   "Fixed an infinite re-issuance loop that could occur when an issuer returns a certificate with a public key that doesn't match the CSR. The issuing controller now validates the certificate before storing it and fails with backoff on mismatch. (#8414, @cert-manager-bot)",
+   "Fixed an issue where HTTP-01 challenges failed when the Host header contains an IPv6 address. This means that users can now issue IP address certificates for IPv6 address subjects. (#8437, @cert-manager-bot)",
+   "Security (MODERATE): Fix a potential panic in the cert-manager controller when a DNS response in an unexpected order was cached. If an attacker was able to modify DNS responses (or if they controlled the DNS server) it was possible to cause denial of service for the cert-manager controller. (#8467, @SgtCoDFish)"
+  ]
+ },
  "1.19.2": {
   "security updates": [
    "Address false positive vulnerabilities `CVE-2025-47914` and `CVE-2025-58181` which were reported by Trivy. (#8283, @SgtCoDFish)",
@@ -46,12 +114,42 @@
    "Update Go to `v1.24.11` to fix `CVE-2025-61727` and `CVE-2025-61729` (#8295, @wallrj-cyberark)"
   ]
  },
+ "1.19.1": {
+  "bug fixes": [
+   "Bump Go to 1.25.3 to fix a backwards incompatible change to the validation of DNS names in X.509 SAN fields which prevented the use of DNS names with a trailing dot (#8177, @wallrj-cyberark)"
+  ]
+ },
  "1.18.3": {
   "security updates": [
    "Bump Go to 1.24.9. Fixes the following vulnerabilities: CVE-2025-61724, CVE-2025-58187, CVE-2025-47912, CVE-2025-58183, CVE-2025-61723, CVE-2025-58186, CVE-2025-58185, CVE-2025-58188, CVE-2025-61725 (#8176, @wallrj-cyberark)"
   ]
  },
+ "1.19.0": {
+  "bug fixes": [
+   "ACME: Increased challenge authorization timeout to 2 minutes to fix `error waiting for authorization` (#7796, @hjoshi123)",
+   "Helm: Fix naming template of `tokenrequest` RoleBinding resource to improve consistency (#7761, @lunarwhite)"
+  ]
+ },
+ "1.18.1": {
+  "bug fixes": [
+   "ACME: Increased challenge authorization timeout to 2 minutes to fix `error waiting for authorization`. ([`#7801`](https://github.com/cert-manager/cert-manager/pull/7801), @hjoshi123)"
+  ]
+ },
+ "1.17.3": {
+  "bug fixes": [
+   "Bump Go to 1.23.10 to fix GO-2025-3749, GO-2025-3750, and GO-2025-3751 (#7799, @wallrj)",
+   "ACME: Increased challenge authorization timeout to 2 minutes to fix error `waiting for authorization` (#7798, @hjoshi123)"
+  ]
+ },
  "1.18.0": {
+  "bug fixes": [
+   "Fix some comments (#7620, @teslaedison)",
+   "Fix AWS Route53 error detection for not-found errors during deletion of DNS records. (#7690, @wallrj)",
+   "Fix behavior when running with `--namespace=<namespace>`: limit the scope of cert-manager to a single namespace and disable cluster-scoped controllers. (#7678, @tsaarni)",
+   "Fix handling of certificates with IP addresses in the `commonName` field; IP addresses are no longer added to the DNS `subjectAlternativeName` list and are instead added to the `ipAddresses` field as expected. (#7081, @johnjcool)",
+   "Fix issuing of certificates via DNS01 challenges on Cloudflare after a breaking change to the Cloudflare API (#7549, @LukeCarrier)",
+   "Fixed the `certmanager_certificate_renewal_timestamp_seconds` metric help text indicating that the metric is relative to expiration time, rather than Unix epoch time. (#7609, @solidDoWant)"
+  ],
   "security updates": [
    "Bump `go-jose` dependency to address `CVE-2025-27144`. (#7606, @SgtCoDFish)",
    "Bump `golang.org/x/oauth2` to patch `CVE-2025-22868`. (#7638, @NicholasBlaskey)",
@@ -94,21 +192,41 @@
    "CVE-2024-45336",
    "CVE-2024-45341",
    "CVE-2025-22866"
+  ],
+  "bug fixes": [
+   "Fix issuing of certificates via DNS01 challenges on Cloudflare after a breaking change to the Cloudflare API (#7568, @SgtCoDFish + @LukeCarrier)"
   ]
  },
  "1.17.1": {
+  "bug fixes": [
+   "❗ Fix issuing of certificates via DNS01 challenges on Cloudflare after a breaking change to the Cloudflare API (#7565, @LukeCarrier)"
+  ],
   "security updates": [
    "Bump go to 1.23.6 to address CVE-2025-22866 reported by Trivy (#7563, @SgtCoDFish"
   ]
  },
  "1.16.4": {
+  "bug fixes": [
+   "❗ Fix issuing of certificates via DNS01 challenges on Cloudflare after a breaking change to the Cloudflare API (#7566, @LukeCarrier)"
+  ],
   "security updates": [
    "Bump go to 1.23.6 to address CVE-2025-22866 reported by Trivy (#7562, @SgtCoDFish)"
+  ]
+ },
+ "1.17.0": {
+  "bug fixes": [
+   "BUGFIX: A change in v1.16.0 caused cert-manager's ACME ClusterIssuer to look in the wrong namespace for resources required for the issuance (eg. credential Secrets). This is now fixed in v1.16.1+ and v1.17.0+ (#7339, @inteon)",
+   "Fix ACME HTTP-01 solver for IPv6 endpoints (#7391, @Peac36)",
+   "Fix the behavior of `renewBeforePercentage` to comply with its spec (#7421, @adam-sroka)",
+   "The issuer will now more quickly retry when its linked Secret is updated to fix an issue that caused a high back-off timeout. (#7455, @inteon)"
   ]
  },
  "1.16.3": {
   "security updates": [
    "Bump `golang.org/x/net` and `golang.org/x/crypto` to address CVE-2024-45337 and CVE-2024-45338 (#7485, @erikgb)"
+  ],
+  "bug fixes": [
+   "Fix the behaviour of `renewBeforePercentage` to comply with its spec (#7441, @cert-manager-bot)"
   ]
  },
  "1.15.5": {
@@ -123,24 +241,50 @@
  },
  "1.12.14": {
   "bug fixes": [
-   "Set a maximum size for PEM inputs which cert-manager will accept to remove possibility of taking a long time to process an input (#7403, @SgtCoDFish)",
+   "Set a maximum size for PEM inputs which cert-manager will accept to remove possibility of taking a long time to process an input (#7403, @SgtCoDFish)"
+  ],
+  "security updates": [
    "Fix CVE-2024-5174 in `github.com/golang-jwt/jwt/v4` (#7407, @SgtCoDFish)"
   ]
  },
+ "1.16.1": {
+  "bug fixes": [
+   "BUGFIX: A change in `v1.16.0` caused cert-manager's ACME ClusterIssuer to look in the wrong namespace for resources required for the issuance (e.g. credential Secrets). This is now fixed in `v1.16.1`. ([#7342](https://github.com/cert-manager/cert-manager/pull/7342), [`@inteon`](https://github.com/inteon))"
+  ]
+ },
  "1.16.0": {
+  "bug fixes": [
+   "Venafi TPP issuer can now be used with a username & password combination with OAuth. Fixes #4653.",
+   "BUGFIX: fix issue that caused Vault issuer to not retry signing when an error was encountered. ([#7105](https://github.com/cert-manager/cert-manager/pull/7105), [`@inteon`](https://github.com/inteon))",
+   "Bump `grpc-go` to fix `GHSA-xr7q-jx4m-x55m` ([#7164](https://github.com/cert-manager/cert-manager/pull/7164), [`@SgtCoDFish`](https://github.com/SgtCoDFish))",
+   "Fix Azure DNS causing panics whenever authentication error happens ([#7177](https://github.com/cert-manager/cert-manager/pull/7177), [`@eplightning`](https://github.com/eplightning))",
+   "Fix incorrect indentation of `endpointAdditionalProperties` in the `PodMonitor` template of the Helm chart ([#7190](https://github.com/cert-manager/cert-manager/pull/7190), [`@wallrj`](https://github.com/wallrj))",
+   "Fixes ACME HTTP01 challenge behavior when using Gateway API to prevent unbounded creation of HTTPRoute resources ([#7178](https://github.com/cert-manager/cert-manager/pull/7178), [`@miguelvr`](https://github.com/miguelvr))"
+  ],
   "security updates": [
    "Bump the `go-retryablehttp` dependency to fix `CVE-2024-6104` ([#7125](https://github.com/cert-manager/cert-manager/pull/7125), [`@SgtCoDFish`](https://github.com/SgtCoDFish))",
    "Update `github.com/Azure/azure-sdk-for-go/sdk/azidentity` to address `CVE-2024-35255` ([#7087](https://github.com/cert-manager/cert-manager/pull/7087), [`@dependabot[bot]`](https://github.com/apps/dependabot))"
   ]
  },
  "1.12.13": {
-  "bug fixes": [
+  "security updates": [
    "Bump the `go-retryablehttp` dependency to fix `CVE-2024-6104` ([#7128](https://github.com/cert-manager/cert-manager/pull/7128), [@SgtCoDFish](https://github.com/SgtCoDFish))",
    "Updated Helm dependency to resolve `CVE-2024-25620` and `CVE-2024-26147` and Docker dependency to resolve `CVE-2024-41110` ([#7214](https://github.com/cert-manager/cert-manager/pull/7214), [@ThatsMrTalbot](https://github.com/ThatsMrTalbot))",
    "Updates Go to `1.21.13` to resolve `CVE-2024-24791` ([#7216](https://github.com/cert-manager/cert-manager/pull/7216), [@ThatsMrTalbot](https://github.com/ThatsMrTalbot))"
   ]
  },
+ "1.15.2": {
+  "bug fixes": [
+   "Bump `grpc-go` to fix `GHSA-xr7q-jx4m-x55m` ([#7167](https://github.com/cert-manager/cert-manager/pull/7167), [`@SgtCoDFish`](https://github.com/SgtCoDFish))",
+   "Fix Azure DNS causing panics whenever authentication error happens ([#7188](https://github.com/cert-manager/cert-manager/pull/7188), [`@cert-manager-bot`](https://github.com/cert-manager-bot))",
+   "Fix incorrect value and indentation of `endpointAdditionalProperties` in the `PodMonitor` template of the Helm chart ([#7191](https://github.com/cert-manager/cert-manager/pull/7191), [`@inteon`](https://github.com/inteon))",
+   "Fixes ACME HTTP01 challenge behavior when using Gateway API to prevent unbounded creation of `HTTPRoute` resources ([#7186](https://github.com/cert-manager/cert-manager/pull/7186), [`@cert-manager-bot`](https://github.com/cert-manager-bot))"
+  ]
+ },
  "1.15.1": {
+  "bug fixes": [
+   "BUGFIX: fix issue that caused Vault issuer to not retry signing when an error was encountered. (#7111, @inteon)"
+  ],
   "security updates": [
    "Update github.com/Azure/azure-sdk-for-go/sdk/azidentity to address CVE-2024-35255 (#7092, @ThatsMrTalbot)",
    "Bump the go-retryablehttp dependency to fix CVE-2024-6104 (#7130, @SgtCoDFish)"
@@ -163,7 +307,29 @@
    "Update github.com/Azure/azure-sdk-for-go/sdk/azidentity to address CVE-2024-35255 (#7099, @ThatsMrTalbot)"
   ]
  },
+ "1.14.6": {
+  "bug fixes": [
+   "Updated Go to 1.21.11 bringing in security fixes for archive/zip and net/netip. (#7076, @ThatsMrTalbot)"
+  ]
+ },
+ "1.12.11": {
+  "bug fixes": [
+   "Updated Go to 1.21.11 bringing in security fixes for archive/zip and net/netip. (#7077, @ThatsMrTalbot )"
+  ]
+ },
  "1.15.0": {
+  "bug fixes": [
+   "Add hint to validation error message to help users of external issuers more easily fix the issue if they specify a Kind but forget the Group (#6913, @SgtCoDFish)",
+   "BUGFIX: Fixes issue with JSON-logging, where only a subset of the log messages were output as JSON. (#6779, @inteon)",
+   "Fix backwards incompatible removal of default prometheus Service resource. (#6699, @inteon)",
+   "Fix broken cainjector image value in Helm chart (#6692, @SgtCoDFish)",
+   "Helm: Fix a bug in the logic that differentiates between 0 and an empty value. (#6713, @inteon)",
+   "Fix ACME issuer being stuck waiting for DNS propagation when using Azure DNS with multiple instances issuing for the same FQDN (#6351, @eplightning)",
+   "Fix cainjector ConfigMap not mounted in the cainjector deployment. (#7055, @inteon)"
+  ],
+  "breaking changes": [
+   "Breaking Change: Fixed unintended certificate chain is used if `preferredChain` is configured. (#6755, @import-shiburin)"
+  ],
   "security updates": [
    "Bump golang.org/x/net to fix CVE-2023-45288 (#6929, @SgtCoDFish)",
    "Bump github.com/go-jose/go-jose to v3.0.3 to fix CVE-2024-28180 (#6854, @wallrj)",
@@ -192,16 +358,63 @@
   ]
  },
  "1.13.5": {
+  "bug fixes": [
+   "BUGFIX: fix race condition due to registering and using global runtime.Scheme variables (#6832, @inteon)"
+  ],
   "security updates": [
    "Upgrade go to 1.21.8: fixes CVE-2024-24783 (#6824, @inteon)"
   ]
  },
  "1.12.9": {
+  "bug fixes": [
+   "BUGFIX: fix race condition due to registering and using global runtime.Scheme variables (#6833, @inteon)"
+  ],
   "security updates": [
    "Upgrade go to 1.21.8: fixes CVE-2024-24783 (#6826, @jetstack-bot)"
   ]
  },
+ "1.14.3": {
+  "bug fixes": [
+   "BUGFIX: Fixes issue with JSON-logging, where only a subset of the log messages were output as JSON. (#6781, @jetstack-bot)"
+  ]
+ },
+ "1.13.4": {
+  "bug fixes": [
+   "Fix CVE 2023 48795 by upgrading to golang.org/x/crypto@v0.17.0 (#6675, @wallrj)",
+   "Fix GHSA-7ww5-4wqc-m92c by upgrading to `github.com/containerd/containerd@v1.7.12` (#6684, @wallrj)"
+  ]
+ },
+ "1.12.8": {
+  "bug fixes": [
+   "Fix CVE 2023 48795 by upgrading to golang.org/x/crypto@v0.17.0 (#6678, @wallrj)",
+   "Fix GHSA-7ww5-4wqc-m92c by upgrading to `github.com/containerd/containerd@v1.7.12` (#6689, @wallrj)"
+  ]
+ },
+ "1.14.2": {
+  "bug fixes": [
+   "Logging-format json sometimes writes plaintext messages (see https://github.com/cert-manager/cert-manager/issues/6768). FIXED in v1.14.3",
+   "Helm: Fix a bug in the logic that differentiates between 0 and an empty value. (#6729, @jetstack-bot)"
+  ]
+ },
+ "1.14.1": {
+  "bug fixes": [
+   "Fix broken cainjector image value in Helm chart ([#6693](https://github.com/cert-manager/cert-manager/pull/6693), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "Fix bug in cmctl namespace detection which prevented it being used as a startupapicheck image in namespaces other than cert-manager. ([#6706](https://github.com/cert-manager/cert-manager/pull/6706), [@inteon](https://github.com/inteon))",
+   "Fix bug in cmctl which caused `cmctl experimental install` to panic. ([#6706](https://github.com/cert-manager/cert-manager/pull/6706), [@inteon](https://github.com/inteon))"
+  ]
+ },
  "1.14.0": {
+  "bug fixes": [
+   "New option `.spec.keystores.pkcs12.algorithms` to specify encryption and MAC algorithms for PKCS[#12](https://github.com/cert-manager/cert-manager/pull/12) keystores. Fixes issues [#5957](https://github.com/cert-manager/cert-manager/pull/5957) and [#6523](https://github.com/cert-manager/cert-manager/pull/6523). ([#6548](https://github.com/cert-manager/cert-manager/pull/6548), [@snorwin](https://github.com/snorwin))",
+   "BUGFIX[helm]: Fix issue where webhook feature gates were only set if controller feature gates are set. ([#6380](https://github.com/cert-manager/cert-manager/pull/6380), [@asapekia](https://github.com/asapekia))",
+   "Fix runaway bug caused by multiple Certificate resources that point to the same Secret resource. ([#6406](https://github.com/cert-manager/cert-manager/pull/6406), [@inteon](https://github.com/inteon))",
+   "Fix(helm): templating of required value in controller and webhook ConfigMap resources ([#6435](https://github.com/cert-manager/cert-manager/pull/6435), [@ABWassim](https://github.com/ABWassim))",
+   "Fixed a webhook validation error message when the key algorithm was invalid. ([#6571](https://github.com/cert-manager/cert-manager/pull/6571), [@pevidex](https://github.com/pevidex))",
+   "Fixed error messaging when setting up vault issuer ([#6433](https://github.com/cert-manager/cert-manager/pull/6433), [@vinny](https://github.com/vinny-sabatini))",
+   "The Venafi issuer now properly resets the certificate and should no longer get stuck with `WebSDK CertRequest Module Requested Certificate` or `This certificate cannot be processed while it is in an error state. Fix any errors, and then click Retry.`. ([#6398](https://github.com/cert-manager/cert-manager/pull/6398), [@maelvls](https://github.com/maelvls))",
+   "Fix gosec G601: Implicit memory aliasing of items from a range statement ([#6551](https://github.com/cert-manager/cert-manager/pull/6551), [@wallrj](https://github.com/wallrj))",
+   "Fix handling of serial numbers in literal certificate subjects. Previously a serial number could be specified in `subject.serialNumber` while using a literal certificate subject. This was a mistake and has been fixed. ([#6533](https://github.com/cert-manager/cert-manager/pull/6533), [@inteon](https://github.com/inteon))"
+  ],
   "security updates": [
    "Bump Go to `1.21.3` to address `CVE-2023-39325`. Also bumps base images. ([#6410](https://github.com/cert-manager/cert-manager/pull/6410), [@SgtCoDFish](https://github.com/SgtCoDFish))",
    "Bump `golang.org/x/net v0.15.0 => v0.17.0` as part of addressing `CVE-2023-44487` / `CVE-2023-39325` ([#6427](https://github.com/cert-manager/cert-manager/pull/6427), [@SgtCoDFish](https://github.com/SgtCoDFish))"
@@ -216,18 +429,59 @@
  "1.13.3": {
   "security updates": [
    "[`CVE-2023-47108`](https://access.redhat.com/security/cve/CVE-2023-47108): DoS vulnerability in `otelgrpc` due to unbound cardinality metrics."
+  ],
+  "bug fixes": [
+   "Upgrade Go modules: `otel`, `docker`, and `jose` to fix CVE alerts. See https://github.com/advisories/GHSA-8pgv-569h-w5rw, https://github.com/advisories/GHSA-jq35-85cj-fj4p, and https://github.com/advisories/GHSA-2c7c-3mj9-8fqh. ([#6514](https://github.com/cert-manager/cert-manager/pull/6514), [@inteon](https://github.com/inteon))"
   ]
  },
  "1.13.2": {
   "security updates": [
    "Bump golang.org/x/net v0.15.0 => v0.17.0 as part of addressing CVE-2023-44487 / CVE-2023-39325 (#6432, @SgtCoDFish)",
    "Bump go to 1.20.10 to address CVE-2023-39325. Also bumps base images. (#6411, @SgtCoDFish)"
+  ],
+  "bug fixes": [
+   "BUGFIX[helm]: Fix issue where webhook feature gates were only set if controller feature gates are set. (#6381, @asapekia)",
+   "Fix runaway bug caused by multiple Certificate resources that point to the same Secret resource. (#6425, @inteon)",
+   "The Venafi issuer now properly resets the certificate and should no longer get stuck with `WebSDK CertRequest Module Requested Certificate` or `This certificate cannot be processed while it is in an error state. Fix any errors, and then click Retry.`. (#6402, @maelvls)"
   ]
  },
  "1.12.6": {
   "security updates": [
    "Bump golang.org/x/net v0.15.0 => v0.17.0 as part of addressing CVE-2023-44487 / CVE-2023-39325 (#6431, @SgtCoDFish)",
    "Bump go to 1.20.10 to address CVE-2023-39325. Also bumps base images. (#6412, @SgtCoDFish)"
+  ],
+  "bug fixes": [
+   "The Venafi issuer now properly resets the certificate and should no longer get stuck with `WebSDK CertRequest Module Requested Certificate` or `This certificate cannot be processed while it is in an error state. Fix any errors, and then click Retry.`. (#6401, @maelvls)"
+  ]
+ },
+ "1.13.1": {
+  "bug fixes": [
+   "BUGFIX: fix CertificateRequest name collision bug in StableCertificateRequestName feature. (#6358, @jetstack-bot)"
+  ]
+ },
+ "1.12.5": {
+  "bug fixes": [
+   "BUGFIX: fix CertificateRequest name collision bug in StableCertificateRequestName feature. (#6359, @jetstack-bot)"
+  ]
+ },
+ "1.13.0": {
+  "bug fixes": [
+   "Fix CloudDNS issuers stuck in propagation check, when multiple instances are issuing for the same FQDN (#6088, @cypres)",
+   "Fix indentation of Webhook NetworkPolicy matchLabels in helm chart. (#6220, @ubergesundheit)",
+   "Fixed Cloudflare DNS01 challenge provider race condition when validating multiple domains (#6191, @Richardds)",
+   "Fixes a bug where webhook was pulling in controller's feature gates.",
+   "Fixes an issue where cert-manager would incorrectly reject two IP addresses as being unequal when they should have compared equal. This would be most noticeable when using an IPv6 address which doesn't match how Go's `net.IP.String()` function would have printed that address. (#6293, @SgtCoDFish)"
+  ]
+ },
+ "1.12.4": {
+  "bug fixes": [
+   "Fixes an issue where cert-manager would incorrectly reject two IP addresses as being unequal when they should have compared equal. This would be most noticeable when using an IPv6 address which doesn't match how Go's `net.IP.String()` function would have printed that address. (#6297, @SgtCoDFish)",
+   "Use Go 1.20.7 to fix a security issue in Go's `crypto/tls` library. (#6318, @maelvls)"
+  ]
+ },
+ "1.11.5": {
+  "bug fixes": [
+   "Use Go 1.19.9 to fix a security issue in Go's `crypto/tls` library. (#6317, @maelvls)"
   ]
  },
  "1.12.3": {
@@ -235,9 +489,30 @@
    "BUGFIX[cainjector]: 1-character bug was causing invalid log messages and a memory leak (#6235, @jetstack-bot)"
   ]
  },
+ "1.11.4": {
+  "bug fixes": [
+   "Resolved docker/docker trivy CVE alert (#6164, @inteon)"
+  ]
+ },
  "1.12.2": {
   "bug fixes": [
+   "cainjector contains a memory leak in v1.12.0, v1.12.1 and v1.12.2 due to re-assignment of a log variable (see https://github.com/cert-manager/cert-manager/issues/6217). The fix was released in v1.12.3. See https://github.com/cert-manager/cert-manager/pull/6232 for further context.",
    "BUGFIX: `cmctl check api --wait 0` exited without output; we now make sure we perform the API check at least once (#6116, @jetstack-bot)"
+  ]
+ },
+ "1.12.1": {
+  "bug fixes": [
+   "[`cmctl` API check](https://cert-manager.io/docs/installation/verify/) is broken in v1.12.0 and v1.12.1. We suggest that you do not upgrade `cmctl` to this version. The fix was released in v1.12.2 (which has an additional issue, see below). See #6116 for context.",
+   "cainjector contains a memory leak in v1.12.0, v1.12.1 and v1.12.2 due to re-assignment of a log variable (see https://github.com/cert-manager/cert-manager/issues/6217). The fix was released in v1.12.3. See https://github.com/cert-manager/cert-manager/pull/6232 for further context."
+  ]
+ },
+ "1.12.0": {
+  "bug fixes": [
+   "[`cmctl` API check](https://cert-manager.io/docs/installation/verify/) is broken in v1.12.0 and v1.12.1. We suggest that you do not upgrade `cmctl` to this version. The fix was released in v1.12.2 (which has an additional issue, see below). See #6116 for context.",
+   "cainjector contains a memory leak in v1.12.0, v1.12.1 and v1.12.2 due to re-assignment of a log variable (see https://github.com/cert-manager/cert-manager/issues/6217). The fix was released in v1.12.3. See https://github.com/cert-manager/cert-manager/pull/6232 for further context.",
+   "Fix development environment and go vendoring on Linux arm64. ([#5810](https://github.com/cert-manager/cert-manager/pull/5810), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "Fix ordering of remote git tags when preparing integration tests ([#5910](https://github.com/cert-manager/cert-manager/pull/5910), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "The auto-retry mechanism added in VCert 4.23.0 and part of cert-manager 1.11.0 (#5674) has been found to be faulty. Until this issue is fixed upstream, we now use a patched version of VCert. This patch will slowdown the issuance of certificates by 9% in case of heavy load on TPP. We aim to release at an ulterior date a patch release of cert-manager to fix this slowdown. ([#5805](https://github.com/cert-manager/cert-manager/pull/5805), [@inteon](https://github.com/inteon))"
   ]
  },
  "1.11.2": {
@@ -245,17 +520,319 @@
    "Bumps Docker libraries to fix vulnerability scan alert for CVE-2023-28840, CVE-2023-28841, CVE-2023-28842 ([#6037](https://github.com/cert-manager/cert-manager/pull/6037), [@irbekrm](https://github.com/irbekrm))"
   ]
  },
+ "1.11.1": {
+  "bug fixes": [
+   "Bump helm and other dependencies to fix CVEs, along with upgrading go and base images (#5815, @SgtCoDFish)",
+   "The auto-retry mechanism added in VCert 4.23.0 and part of cert-manager 1.11.0 (#5674) has been found to be faulty. Until this issue is fixed upstream, we now use a patched version of VCert. This patch will slowdown the issuance of certificates by 9% in case of heavy load on TPP. We aim to release at an ulterior date a patch release of cert-manager to fix this slowdown. (#5819, @maelvls)"
+  ]
+ },
  "1.11.0": {
+  "breaking changes": [
+   "Breaking: updates the gateway API integration to use the more stable v1beta1 API version. Any users of the cert-manager `ExperimentalGatewayAPISupport` alpha feature must ensure that `v1beta` of Gateway API is installed in cluster. (#5583, @lvyanru8200)"
+  ],
+  "bug fixes": [
+   "Fixed a bug in AzureDNS resolver that led to early reconciliations in misconfigured Workload Identity-enabled setups (when Federated Identity Credential is not linked with a controller's k8s service account) (#5663, @weisdd)",
+   "`vcert` was upgraded to `v4.23.0`, fixing two bugs in cert-manager. The first bug was preventing the Venafi issuer from renewing certificates when using TPP has been fixed. You should no longer see your certificates getting stuck with `WebSDK CertRequest Module Requested Certificate` or `This certificate cannot be processed while it is in an error state. Fix any errors, and then click Retry.`. The second bug that was fixed prevented the use of `algorithm: Ed25519` in Certificate resources with VaaS. (#5674, @maelvls)",
+   "Bug fix: When using feature gates with the helm chart, enable feature gate flags on webhook as well as controller (#5584, @lvyanru8200)",
+   "Fix `golang.org/x/text` vulnerability (#5562, @SgtCoDFish)",
+   "Fixes a bug that caused the Vault issuer to omit the Vault namespace in requests to the Vault API. (#5591, @wallrj)",
+   "Fix cainjector's --namespace flag. Users who want to prevent cainjector from reading all Secrets and Certificates in all namespaces (i.e to prevent excessive memory consumption) can now scope it to a single namespace using the --namespace flag. A cainjector that is only used as part of cert-manager installation only needs access to the cert-manager installation namespace. (#5694, @irbekrm)",
+   "Fixes a bug where cert-manager controller was caching all Secrets twice (#5691, @irbekrm)"
+  ],
   "security updates": [
    "Upgrade `golang/x/net` to fix CVE-2022-41717 (#5632, @SgtCoDFish)",
    "Upgrade to go 1.19.4 to fix CVE-2022-41717 (#5619, @SgtCoDFish)"
   ]
  },
  "1.10.2": {
+  "bug fixes": [
+   "Fixes a bug where the cert-manager controller was caching all Secrets twice (#5704, @irbekrm)",
+   "Fix `golang.org/x/text` vulnerability (#5592, @SgtCoDfish)"
+  ],
   "security updates": [
    "Bump helm version to fix CVE-2022-23525 (#5676, @SgtCoDFish)",
    "Upgrade golang/x/net to fix CVE-2022-41717 (#5635, @SgtCoDFish)",
    "Upgrade to go 1.19.4 to fix CVE-2022-41717 (#5620, @SgtCoDfish)"
+  ]
+ },
+ "1.9.2": {
+  "bug fixes": [
+   "Fix issue where CertificateRequests marked as InvalidRequest did not properly trigger issuance failure handling leading to 'stuck' requests."
+  ]
+ },
+ "1.10.0": {
+  "bug fixes": [
+   "Fix issue where CertificateRequests marked as InvalidRequest did not properly trigger issuance failure handling leading to 'stuck' requests (#5366, @munnerz)",
+   "Avoid hard-coding release namespace in helm chart (#5163, @james-callahan)"
+  ]
+ },
+ "1.9.0": {
+  "bug fixes": [
+   "Fixed a bug where the Venafi Issuer would not verify its access token (TPP) or API key (Cloud) before becoming ready. Venafi Issuers now remotely verify the access token or API key (#5212, @jahrlin)",
+   "Fixed release artifact archives generated by Make so that a leading `./` is stripped from paths. This ensures that behaviour is the same as v1.7 and earlier (#5050, @jahrlin)"
+  ]
+ },
+ "1.8.1": {
+  "bug fixes": [
+   "Bumps the version of Go used to build the cert-manager binaries to 1.17.11 which fixes a few CVEs (we don't think that those were likely to be exploited in cert-manager) ([cert-manager#5203](https://github.com/cert-manager/cert-manager/pull/5203), @irbekrm )"
+  ]
+ },
+ "1.8.0": {
+  "breaking changes": [
+   "ACTION REQUIRED: The field `spec.privateKey.rotationPolicy` on Certificate resources is now validated. Valid options are Never and Always. If you are using a GitOps flow and one of your YAML manifests contains a Certificate with an invalid value, you will need to update it with a valid value to prevent your GitOps tool from failing on the new validation. ([#4913](https://github.com/cert-manager/cert-manager/pull/4913), [@jahrlin](https://github.com/jahrlin))",
+   "ACTION REQUIRED: Server-Side Apply: the feature gate `ServerSideApply=true` now configures the `ingress-shim` and `gateway-shim` controllers to use Kubernetes Server-Side Apply on Certificate resources. When upgrading to cert-manger 1.8 with `ServerSideApply=true`, do make sure there are no Challenge resources currently in the cluster. If there are some, you will need to manually delete them once they are in 'valid' state as cert-manager post-1.8 with the Server-Side Apply feature is not able to clean up Challenge resources created pre-1.8. ([#4811](https://github.com/cert-manager/cert-manager/pull/4811), [@JoshVanL](https://github.com/JoshVanL))",
+   "ACTION REQUIRED: The import path for cert-manager has been updated to `github.com/cert-manager/cert-manager`. If you import cert-manager as a go module (which isn't currently recommended), you'll need to update the module import path in your code to import cert-manager 1.8 or later. ([#4587](https://github.com/cert-manager/cert-manager/pull/4587), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "ACTION REQUIRED: The field `additionalOutputFormats`, which is available as an alpha feature on Certificate resources, is now correctly validated. Previously, it would only get validated when the `privateKey` field was set on the Certificate. If you are using the `additionalOutputFormats` field, you will want to add the feature gate `AdditionalCertificateOutputFormats` to both the webhook and the controller. Previously, you only needed to set `AdditionalCertificateOutputFormats` on the controller. If the feature gate is missing on either the controller or the webhook, you won't be able to use the `additionalOutputFormat` field. ([#4814](https://github.com/cert-manager/cert-manager/pull/4814), [@JoshVanL](https://github.com/JoshVanL))"
+  ],
+  "bug fixes": [
+   "The Go version used to build the cert-manager binaries has been bumped to 1.17.8 to fix a slew of CVEs (none of which were likely to be exploited). ([#4970](https://github.com/cert-manager/cert-manager/pull/4970), [@vhosakot](https://github.com/vhosakot))"
+  ]
+ },
+ "1.7.2": {
+  "bug fixes": [
+   "Bumps the version of Go used to build the cert-manager binaries to 1.17.8, to fix a slew of CVEs (none of which were likely to be exploited) ([#4976 ](https://github.com/cert-manager/cert-manager/pull/4976), @vhosakot)",
+   "Fixes an expired hardcoded certificate which broke unit tests ([#4978](https://github.com/cert-manager/cert-manager/pull/4978), @SgtCoDFish @jakexks)"
+  ]
+ },
+ "1.6.3": {
+  "bug fixes": [
+   "Bumps the version of Go used to build the cert-manager binaries to 1.17.8, to fix a slew of CVEs (none of which were likely to be exploited) ([#4975](https://github.com/cert-manager/cert-manager/pull/4975), @vhosakot)",
+   "Fixes an expired hardcoded certificate which broke unit tests ([#4977](https://github.com/cert-manager/cert-manager/pull/4977), @SgtCoDFish @jakexks)"
+  ]
+ },
+ "1.7.1": {
+  "bug fixes": [
+   "Fix: The alpha feature Certificate's `additionalOutputFormats` is now correctly validated at admission time, and no longer _only_ validated if the `privateKey` field of the Certificate is set. The Webhook component now contains a separate feature set."
+  ]
+ },
+ "1.7.0": {
+  "breaking changes": [
+   "Breaking change: pprof now runs by default on localhost:6060 for webhook and controller, but only if explicitly enabled. Pprof can now be enabled also for cainjector. All three components have `--enable-profiling`, `--profiler-address` CLI flags to configure profiling. Thanks to @bitscuit for help with this! (#4550, @irbekrm)",
+   "Breaking change: removes the deprecated `dns01-self-check-nameservers` flag. Use `--dns01-recursive-nameservers` instead. (#4551, @irbekrm)"
+  ],
+  "bug fixes": [
+   "Fix unexpected exit when multiple DNS providers are passed to `RunWebhookServer` (#4702, @devholic)",
+   "Fixed a bug in the way the Helm chart handles service annotations on the controller and webhook services. (#4329, @jwenz723)",
+   "Fixed a bug that can cause `cmctl version` to erroneously display the wrong webhook pod versions when older failed pods are present. (#4615, @johnwchadwick)",
+   "Fixes a bug where a previous failed CertificateRequest was picked up during the next issuance. Thanks to @MattiasGees for raising the issue and help with debugging! (#4688, @irbekrm)",
+   "Fixes an issue in `cmctl` that prevented displaying the Order resource with cert-manager 1.6 when running `cmctl status certificate`. (#4569, @maelvls)",
+   "The `cmctl experimental install` command now uses the cert-manager namespace. This fixes a bug which was introduced in release 1.6 that caused cert-manager to be installed in the default namespace. (#4763, @wallrj)"
+  ]
+ },
+ "1.6.2": {
+  "bug fixes": [
+   "cert-manager now does one call to the ACME API instead of two when an Order fails. This fix is part of the effort towards mitigating [the high load](https://github.com/jetstack/cert-manager/issues/3298) that cert-manager deployments have on the Let's Encrypt API ([#4619](https://github.com/jetstack/cert-manager/pull/4619), [@irbekrm](https://github.com/irbekrm))"
+  ]
+ },
+ "1.5.5": {
+  "bug fixes": [
+   "Fixed a regression where cert-manager was creating Ingresses using the field `ingressClassName` instead of the annotation `kubernetes.io/ingress.class`. More details about this regression are available [in the 1.7 release notes](https://cert-manager.io/next-docs/release-notes/release-notes-1.7/#ingress-class-semantics). ([#4783](https://github.com/jetstack/cert-manager/pull/4783), [@maelvls](https://github.com/maelvls))"
+  ]
+ },
+ "1.6.1": {
+  "bug fixes": [
+   "Fixes an issue in `cmctl` that prevented displaying the Order resource with cert-manager 1.6 when running `cmctl status certificate`. ([#4572](https://github.com/jetstack/cert-manager/pull/4572), [@maelvls](https://github.com/maelvls))"
+  ]
+ },
+ "1.6.0": {
+  "bug fixes": [
+   "FIX: Prevent Vault Client from panicing when request to Vault health endpoint fails. ([#4456](https://github.com/jetstack/cert-manager/pull/4456), [@JoshVanL](https://github.com/JoshVanL))",
+   "Fix CRDs which were accidentally changed in cert-manager v1.5.0 ([#4353](https://github.com/jetstack/cert-manager/pull/4353), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "Fix regression in Ingress PathType introduced in v1.5.0 ([#4373](https://github.com/jetstack/cert-manager/pull/4373), [@jakexks](https://github.com/jakexks))",
+   "Fixed the HTTP-01 solver creating ClusterIP instead of NodePort services by default. ([#4393](https://github.com/jetstack/cert-manager/pull/4393), [@jakexks](https://github.com/jakexks))",
+   "Fixes renewal time issue for certs with skewed duration period. ([#4399](https://github.com/jetstack/cert-manager/pull/4399), [@irbekrm](https://github.com/irbekrm))",
+   "Fix manually specified PKCS#10 CSR and X.509 Certificate version numbers (although these were ignored in practice) ([#4392](https://github.com/jetstack/cert-manager/pull/4392), [@SgtCoDFish](https://github.com/SgtCoDFish))"
+  ]
+ },
+ "1.5.4": {
+  "bug fixes": [
+   "FIX: Prevent Vault Client from panicing when request to Vault health endpoint fails. ([#4476](https://github.com/jetstack/cert-manager/pull/4476), [@JoshVanL](https://github.com/JoshVanL))"
+  ]
+ },
+ "1.5.3": {
+  "bug fixes": [
+   "Fixes renewal time issue for certs with skewed duration period. ([#4403](https://github.com/jetstack/cert-manager/pull/4403), @irbekrm). Thanks to @mfmbarros for help with debugging the issue!"
+  ]
+ },
+ "1.4.4": {
+  "bug fixes": [
+   "Fixes renewal time issue for certs with skewed duration period. ([#4403](https://github.com/jetstack/cert-manager/pull/4403), @irbekrm). Thanks to @mfmbarros for help with debugging the issue!"
+  ]
+ },
+ "1.5.2": {
+  "bug fixes": [
+   "Fix regression in Ingress PathType introduced in v1.5.0 ([#4385](https://github.com/jetstack/cert-manager/pull/4385), [@jakexks](https://github.com/jakexks))",
+   "Fixed the HTTP-01 solver creating ClusterIP instead of NodePort services by default. ([#4394](https://github.com/jetstack/cert-manager/pull/4394), [@jakexks](https://github.com/jakexks))"
+  ]
+ },
+ "1.5.1": {
+  "bug fixes": [
+   "Fix v1beta1 CRDs which were accidentally changed in cert-manager v1.5.0 ([#4355](https://github.com/jetstack/cert-manager/pull/4355), [@jetstack-bot](https://github.com/jetstack-bot))"
+  ]
+ },
+ "1.5.0": {
+  "bug fixes": [
+   "Fix a bug where failed Certificate Requests were not retried ([#4130](https://github.com/jetstack/cert-manager/pull/4130), [@irbekrm](https://github.com/irbekrm))",
+   "Fix check for self-signed certificates in EncodeX509Chain which broke certs whose subject DN matched their issuer's subject DN ([#4237](https://github.com/jetstack/cert-manager/pull/4237), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "Fix handling of chains which don't have a root in ParseSingleCertificateChain, and improve handling in situations where that function is passed a single certificate. ([#4261](https://github.com/jetstack/cert-manager/pull/4261), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "Fixed a bug in the \"gateway shim\" controller that was causing the cert-manager controller to crash",
+   "Fixed a goroutine leak that was causing the controller's memory usage to grow with time ([#4233](https://github.com/jetstack/cert-manager/pull/4233), [@maelvls](https://github.com/maelvls))",
+   "Fixed a race condition introduced in v0.15.0 that would crash cert-manager for clusters"
+  ]
+ },
+ "1.4.2": {
+  "bug fixes": [
+   "Fix handling of chains which don't have a root in ParseSingleCertificateChain, and improve handling in situations where that function is passed a single certificate. ([#4272](https://github.com/jetstack/cert-manager/pull/4272), [@jetstack-bot](https://github.com/jetstack-bot))",
+   "Fixed a goroutine leak that was causing the controller's memory usage to grow with time ([#4278](https://github.com/jetstack/cert-manager/pull/4278), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "Fixed a race condition introduced in v0.15.0 that would crash cert-manager for clusters"
+  ]
+ },
+ "1.3.2": {
+  "bug fixes": [
+   "Fixed a goroutine leak that was causing the controller's memory usage to grow with time ([#4279](https://github.com/jetstack/cert-manager/pull/4279), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "Fixed a race condition introduced in v0.15.0 that would crash cert-manager for clusters"
+  ]
+ },
+ "1.4.1": {
+  "bug fixes": [
+   "Fix check for self-signed certificates in EncodeX509Chain which broke certs whose subject DN matched their issuer's subject DN ([#4238](https://github.com/jetstack/cert-manager/pull/4238), [@SgtCoDFish](https://github.com/SgtCoDFish))"
+  ]
+ },
+ "1.4.0": {
+  "bug fixes": [
+   "Fix incorrect `PublicKeysEqual` comparison function for public keys and improve doc comments on related functions ([#3914](https://github.com/jetstack/cert-manager/pull/3914), [@SgtCoDFish](https://github.com/SgtCoDFish))",
+   "Fixes a bug where the default cert renewal duration (30d) was clashing with the duration of certs issued by Vault PKI. All Certificates are now renewed 2/3 through the duration unless custom renew period specified by setting spec.renewBefore on the Certificate. ([#4092](https://github.com/jetstack/cert-manager/pull/4092), [@irbekrm](https://github.com/irbekrm))",
+   "Fixes an issue where an ACME `Certificate` with a long name (52 characters or more) does not get renewed due to non-unique `Order` names being generated. ([#3866](https://github.com/jetstack/cert-manager/pull/3866), [@jandersen-plaid](https://github.com/jandersen-plaid))",
+   "Fixes stuck Orders in case of a misbehaving ACME server ([#3805](https://github.com/jetstack/cert-manager/pull/3805), [@irbekrm](https://github.com/irbekrm))"
+  ]
+ },
+ "1.3.1": {
+  "bug fixes": [
+   "Fixes an upgrade issue with Helm. People upgrading from cert-manager v1.2 should now be able to upgrade with no error. ([#3886](https://github.com/jetstack/cert-manager/pull/3886), [@irbekrm](https://github.com/irbekrm))",
+   "Fixes a regression that was introduced in v1.3. Before v1.3, a CertificateRequest that would fail would have the condition `Ready=False` added to it. After v1.3, the `Ready=False` was not set anymore due to the addition of the [Approval API](https://cert-manager.io/docs/concepts/certificaterequest/#approval). ([#3892](https://github.com/jetstack/cert-manager/pull/3892), [@JoshVanL](https://github.com/JoshVanL))"
+  ]
+ },
+ "1.3.0": {
+  "bug fixes": [
+   "Correct permissions on edit aggregate role ([#3697](https://github.com/jetstack/cert-manager/pull/3697), [@yann-soubeyrand](https://github.com/yann-soubeyrand))",
+   "Fix a bug that prevented the immediate re-issuance of a failing certificate: even when the user",
+   "Fixed approle login when namespaces were used in HashiCorp Vault",
+   "Fixes Helm upgrade bug ([#3647](https://github.com/jetstack/cert-manager/pull/3647), [@irbekrm](https://github.com/irbekrm))",
+   "Fixes multiple Certificate Requests issue - see #3603 ([#3665](https://github.com/jetstack/cert-manager/pull/3665), [@irbekrm](https://github.com/irbekrm))"
+  ]
+ },
+ "1.1.1": {
+  "bug fixes": [
+   "Fix Helm chart type conversion bug ([#3647](https://github.com/jetstack/cert-manager/pull/3647), [@irbekrm](https://github.com/irbekrm))"
+  ]
+ },
+ "1.2.0": {
+  "breaking changes": [
+   "**⚠️ BREAKING CHANGE ⚠️ The minimum supported Kubernetes version is now v1.16.0** as of cert-manager `v1.2.0`. Users still running Kubernetes `v1.15` or below should upgrade to a supported version before installing cert-manager or use cert-manager `v1.1`."
+  ],
+  "bug fixes": [
+   "Fix a bug in the AWS Route53 DNS01 challenge that to retrying over and over instead of observing an exponential back off ([#3485](https://github.com/jetstack/cert-manager/pull/3485), [@maelvls](https://github.com/maelvls))",
+   "Fix Vault issuer not to store a root CA into a certificate bundle (`tls.crt`). Also, Vault issuer now stores a root CA instead of an issuing CA into a CA bundle (`ca.crt`), from a CA chain returned from Vault. ([#3433](https://github.com/jetstack/cert-manager/pull/3433), [@sorah](https://github.com/sorah))",
+   "Fix Helm chart type conversion bug ([#3647](https://github.com/jetstack/cert-manager/pull/3647), [@irbekrm](https://github.com/irbekrm))"
+  ]
+ },
+ "1.1.0": {
+  "bug fixes": [
+   "Fix a panic when changing the max concurrent challenges to a lower value ([#3399](https://github.com/jetstack/cert-manager/pull/3399), [@meyskens](https://github.com/meyskens))",
+   "Fix bug in AWS route53 zone lookup that caused too many IAM requests ([#3354](https://github.com/jetstack/cert-manager/pull/3354), [@supriya-premkumar](https://github.com/supriya-premkumar))",
+   "Fix conversion webhook when given v1beta1 requests ([#3242](https://github.com/jetstack/cert-manager/pull/3242), [@meyskens](https://github.com/meyskens))",
+   "Fix logic in patchDuplicateKeyUsage when signing and digital signature were set ([#3343](https://github.com/jetstack/cert-manager/pull/3343), [@meyskens](https://github.com/meyskens))",
+   "Fix nil pointer error in Cloud DNS when specific config was used. ([#3417](https://github.com/jetstack/cert-manager/pull/3417), [@meyskens](https://github.com/meyskens))",
+   "Fixes incorrect CSR validation when both \"signing\" and \"digital signature\" are set ([#3279](https://github.com/jetstack/cert-manager/pull/3279), [@meyskens](https://github.com/meyskens))",
+   "Revert de-duplication of cainjector leader-election to fix scenario where it crashes at startup due to broken webhook. ([#3254](https://github.com/jetstack/cert-manager/pull/3254), [@wallrj](https://github.com/wallrj))"
+  ]
+ },
+ "1.0.4": {
+  "bug fixes": [
+   "Fix a bug where the Venafi Issuer and ClusterIssuer did not set the Ready condition and message if there was an API connection or API authentication failure. The Ready condition will now always be set, including details of any errors during setup. ([#3389](https://github.com/jetstack/cert-manager/pull/3389), [@wallrj](https://github.com/wallrj))",
+   "Fix a panic when changing the max concurrent challenges to a lower value ([#3418](https://github.com/jetstack/cert-manager/pull/3418), [@meyskens](https://github.com/meyskens))",
+   "Fix bug in AWS route53 zone lookup that caused too many IAM requests ([#3375](https://github.com/jetstack/cert-manager/pull/3375), [@supriya-premkumar](https://github.com/supriya-premkumar))",
+   "Fix logic in patchDuplicateKeyUsage when signing and digital signature were set ([#3352](https://github.com/jetstack/cert-manager/pull/3352), [@meyskens](https://github.com/meyskens))",
+   "Fix nil pointer error in Cloud DNS when specific config was used. ([#3420](https://github.com/jetstack/cert-manager/pull/3420), [@meyskens](https://github.com/meyskens))"
+  ]
+ },
+ "1.0.3": {
+  "bug fixes": [
+   "Fix logic in patchDuplicateKeyUsage when signing and digital signature were set ([#3352](https://github.com/jetstack/cert-manager/pull/3352), [@meyskens](https://github.com/meyskens))",
+   "Fixes incorrect CSR validation when both \"signing\" and \"digital signature\" are set ([#3306](https://github.com/jetstack/cert-manager/pull/3306), [@meyskens](https://github.com/meyskens))"
+  ]
+ },
+ "1.0.2": {
+  "bug fixes": [
+   "Fixes incorrect CSR validation when both \"signing\" and \"digital signature\" are set ([#3306](https://github.com/jetstack/cert-manager/pull/3306), @meyskens)"
+  ]
+ },
+ "1.0.1": {
+  "bug fixes": [
+   "Fix conversion webhook when given v1beta1 requests ([#3243](https://github.com/jetstack/cert-manager/pull/3243), [@meyskens](https://github.com/meyskens), [@wallrj](https://github.com/wallrj))",
+   "Revert de-duplication of cainjector leader-election to fix scenario where it crashes at startup due to broken webhook. ([#3255](https://github.com/jetstack/cert-manager/pull/3255), [@wallrj](https://github.com/wallrj))"
+  ]
+ },
+ "1.0.0": {
+  "bug fixes": [
+   "Fix bug of status certificate command where the matching CR gets overwritten ([#3117](https://github.com/jetstack/cert-manager/pull/3117), [@hzhou97](https://github.com/hzhou97))",
+   "Fixes generation of ACME resources if the the 52nd character in a CR name is a symbol. ([#3232](https://github.com/jetstack/cert-manager/pull/3232), [@meyskens](https://github.com/meyskens))"
+  ]
+ },
+ "0.16.0": {
+  "bug fixes": [
+   "Experimental certificates controllers: fix automated certificate renewal ([#3027](https://github.com/jetstack/cert-manager/pull/3027), [@munnerz](https://github.com/munnerz))",
+   "Fix bug causing `kubectl cert-manager convert` to not work when conversions need to be performed ([#3018](https://github.com/jetstack/cert-manager/pull/3018), [@hzhou97](https://github.com/hzhou97))"
+  ]
+ },
+ "0.15.2": {
+  "bug fixes": [
+   "Fix entrypoint being inside a shell in UBI images ([cert-manager-olm#12](https://github.com/jetstack/cert-manager-olm/pull/12), [@meyskens](https://github.com/meyskens))"
+  ]
+ },
+ "0.15.0": {
+  "bug fixes": [
+   "Fix bug causing the experimental PKCS12 and JKS keystore feature to not work ([#2723](https://github.com/jetstack/cert-manager/pull/2723), [@munnerz](https://github.com/munnerz))",
+   "Fix bug in webhook based validation on Kubernetes API servers older than 1.15 ([#2851](https://github.com/jetstack/cert-manager/pull/2851), [@munnerz](https://github.com/munnerz))",
+   "Fix bug that could cause ACME Orders that contain already valid Authorizations to not be completed ([#2869](https://github.com/jetstack/cert-manager/pull/2869), [@munnerz](https://github.com/munnerz))",
+   "Fix bug that could cause the `webhookbootstrap` controller to fail to Update webhook TLS resources in certain cases ([#2739](https://github.com/jetstack/cert-manager/pull/2739), [@munnerz](https://github.com/munnerz))",
+   "Fix build system issue causing docker images to use user ID 0 (root) instead of '1000' as before ([#2708](https://github.com/jetstack/cert-manager/pull/2708), [@munnerz](https://github.com/munnerz))",
+   "Fix case where cert-manager.io/issuer doesn't set `Issuer` kind ([#2837](https://github.com/jetstack/cert-manager/pull/2837), [@meyskens](https://github.com/meyskens))",
+   "Fix incorrect service name being used in the --webhook-dns-names flag ([#2733](https://github.com/jetstack/cert-manager/pull/2733), [@munnerz](https://github.com/munnerz))",
+   "Fix issuing causing CRDs to added to the static manifests twice ([#2790](https://github.com/jetstack/cert-manager/pull/2790), [@munnerz](https://github.com/munnerz))",
+   "Fix validatingwebhookconfiguration to use correct URL path and to suport v1alpha3 API objects. ([#2831](https://github.com/jetstack/cert-manager/pull/2831), [@wallrj](https://github.com/wallrj))",
+   "Properly fix user ID used for Docker images in release targets ([#2771](https://github.com/jetstack/cert-manager/pull/2771), [@munnerz](https://github.com/munnerz))",
+   "Webhook: add `--tls-min-version` to allow configuring the minimum allowed TLS version and fix default ciphers list. ([#2769](https://github.com/jetstack/cert-manager/pull/2769), [@munnerz](https://github.com/munnerz))"
+  ]
+ },
+ "0.14.3": {
+  "bug fixes": [
+   "Fix bug in webhook based validation on Kubernetes API servers older than 1.15 ([#2860](https://github.com/jetstack/cert-manager/pull/2860), [@munnerz ](https://github.com/munnerz))",
+   "Fix case where cert-manager.io/issuer doesn't set `Issuer` kind ([#2838](https://github.com/jetstack/cert-manager/pull/2838), [@meyskens](https://github.com/meyskens))",
+   "Fix validatingwebhookconfiguration to use correct URL path and to suport v1alpha3 API objects. ([#2832](https://github.com/jetstack/cert-manager/pull/2832), [@wallrj ](https://github.com/wallrj ))"
+  ]
+ },
+ "0.14.2": {
+  "bug fixes": [
+   "Properly fix user ID used for Docker images in release targets ([#2774](https://github.com/jetstack/cert-manager/pull/2774), [@munnerz](https://github.com/munnerz))"
+  ]
+ },
+ "0.14.1": {
+  "bug fixes": [
+   "Fix bug causing the experimental PKCS12 and JKS keystore feature to not work ([#2728](https://github.com/jetstack/cert-manager/pull/2728), [@munnerz](https://github.com/munnerz))",
+   "Fix bug that could cause the `webhookbootstrap` controller to fail to Update webhook TLS resources in certain cases ([#2742](https://github.com/jetstack/cert-manager/pull/2742), [@munnerz](https://github.com/munnerz))",
+   "Fix incorrect service name being used in the --webhook-dns-names flag ([#2735](https://github.com/jetstack/cert-manager/pull/2735), [@munnerz](https://github.com/munnerz))",
+   "Fix issue causing cert-manager docker images to run as the root user instead of UID 1000 ([#2720](https://github.com/jetstack/cert-manager/pull/2720), [@munnerz](https://github.com/munnerz))",
+   "Fix issue that could cause the ACME client to block for extended periods when the server responds with a long `retry-after` header, causing cert-manager to not process new orders or challenges. ([#2729](https://github.com/jetstack/cert-manager/pull/2729), [@JoshVanL](https://github.com/JoshVanL))"
+  ]
+ },
+ "0.14.0": {
+  "bug fixes": [
+   "Fix `GroupVersionKind` set on `OwnerReference` of resources created by HTTP01 challenge solver, causing HTTP01 validations to fail on OpenShift 4 ([#2546](https://github.com/jetstack/cert-manager/pull/2546), [`@munnerz`](https://github.com/munnerz))",
+   "Fix Venafi Cloud URL field being marked required ([#2568](https://github.com/jetstack/cert-manager/pull/2568), [`@munnerz`](https://github.com/munnerz))",
+   "Fix bug in ingress-shim causing Certificate resources to be rapidly updated if multiple `spec.tls[].hosts` entries refer to the same Secret name but a different set of hosts ([#2611](https://github.com/jetstack/cert-manager/pull/2611), [`@munnerz`](https://github.com/munnerz))",
+   "Fix bug that could cause certificates to be incorrectly issued with an invalid public key ([#2539](https://github.com/jetstack/cert-manager/pull/2539), [`@munnerz`](https://github.com/munnerz))",
+   "Fix `cainjector.enabled=False` override being ignored by the Helm Chart ([#2544](https://github.com/jetstack/cert-manager/pull/2544), [`@gtaylor`](https://github.com/gtaylor))"
   ]
  },
  "0.13.1": {
@@ -274,7 +851,8 @@
    "Fix bug causing temporary certificates to overwrite previously issued certificates when adding a new `dnsName` to an existing Certificate resource ([#2469](https://github.com/jetstack/cert-manager/pull/2469), [`@munnerz`](https://github.com/munnerz))",
    "Fix `certmanager_certificate_expiration_timestamp_seconds` metric recording ([#2416](https://github.com/jetstack/cert-manager/pull/2416), [`@munnerz`](https://github.com/munnerz))",
    "Fixes `ClusterIssuers` not finding the secret when the secret is in a different namespace than the certificate request using the Venafi issuer type ([#2520](https://github.com/jetstack/cert-manager/pull/2520), [`@mathianasj`](https://github.com/mathianasj))",
-   "Fixes generation if invalid certificate name the the 52nd character in a domain name is a symbol. ([#2516](https://github.com/jetstack/cert-manager/pull/2516), [`@meyskens`](https://github.com/meyskens))"
+   "Fixes generation if invalid certificate name the the 52nd character in a domain name is a symbol. ([#2516](https://github.com/jetstack/cert-manager/pull/2516), [`@meyskens`](https://github.com/meyskens))",
+   "Fix false-y values in helm chart to mitigate [`kubernetes/kubernetes#66450`](https://github.com/kubernetes/kubernetes/issues/66450) ([#2383](https://github.com/jetstack/cert-manager/pull/2383), [`@colek42`](https://github.com/colek42))"
   ]
  },
  "0.12.0": {
@@ -292,6 +870,12 @@
    "Fix outdated documentation for solver configuration in Issuers and ClusterIssuers ([#2210](https://github.com/jetstack/cert-manager/pull/2210), [@nickbp](https://github.com/nickbp))"
   ]
  },
+ "0.11.1": {
+  "bug fixes": [
+   "Fix setting ownerReference on Challenge resources created by Orders controller ([#2333](https://github.com/jetstack/cert-manager/pull/2333), [@CoaxVex](https://github.com/CoaxVex))",
+   "Fix outdated documentation for solver configuration in Issuers and ClusterIssuers ([#2212](https://github.com/jetstack/cert-manager/pull/2212), [@nickbp](https://github.com/nickbp))"
+  ]
+ },
  "0.11.0": {
   "breaking changes": [
    "Rename `certmanager.k8s.io` API group to `cert-manager.io` ([#2096](https://github.com/jetstack/cert-manager/pull/2096), [@munnerz](https://github.com/munnerz))",
@@ -300,8 +884,88 @@
    "Allow controlling whether temporary certificates are issued using a new annotation \"certmanager.k8s.io/issue-temporary-certificate\""
   ]
  },
- "0.6.0": {
+ "0.10.0": {
   "bug fixes": [
+   "chart: fix formatting of values table in README.md ([#1936](https://github.com/jetstack/cert-manager/pull/1936), [@Starefossen](https://github.com/Starefossen))",
+   "Fix concurrent map write panic in certificates controller ([#1980](https://github.com/jetstack/cert-manager/pull/1980), [@munnerz](https://github.com/munnerz))",
+   "Fix documentation for AzureDNS service principal creation ([#1960](https://github.com/jetstack/cert-manager/pull/1960), [@elsesiy](https://github.com/elsesiy))",
+   "helm: fix labels and add Service for Prometheus ServiceMonitor ([#1942](https://github.com/jetstack/cert-manager/pull/1942), [@Starefossen](https://github.com/Starefossen))"
+  ]
+ },
+ "0.9.1": {
+  "bug fixes": [
+   "Fix concurrent map write panic in certificates controller ([#1980](https://github.com/jetstack/cert-manager/pull/1980), [@munnerz](https://github.com/munnerz))",
+   "Fix panic when an ACME Order fails ([#1965](https://github.com/jetstack/cert-manager/pull/1965), [@munnerz](https://github.com/munnerz))"
+  ]
+ },
+ "0.9.0": {
+  "bug fixes": [
+   "Fix bug causing ECDSA certificates to be issued using 2048-bit RSA private keys ([#1757](https://github.com/jetstack/cert-manager/pull/1757), [@munnerz](https://github.com/munnerz))",
+   "Fix bug with auto-generated Order names being longer than 63 characters ([#1765](https://github.com/jetstack/cert-manager/pull/1765), [@cheukwing](https://github.com/cheukwing))",
+   "Fix a panic when a misconfigured Issuer is used for HTTP01 challenge solving ([#1758](https://github.com/jetstack/cert-manager/pull/1758), [@munnerz](https://github.com/munnerz))",
+   "Fix a bug where the logic to select a solver would always return the last solver and may return the wrong kind of solver for the challenge that it returned. ([#1717](https://github.com/jetstack/cert-manager/pull/1717), [@dobesv](https://github.com/dobesv))",
+   "Fix indentation on ACME setup examples ([#1785](https://github.com/jetstack/cert-manager/pull/1785), [@lachlancooper](https://github.com/lachlancooper))",
+   "Fix a the logic to select the most specific solver from an issuer if multiple matched ([#1715](https://github.com/jetstack/cert-manager/pull/1715), [@dobesv](https://github.com/dobesv))",
+   "Fix issue causing challenge controller to attempt to list Secrets across all namespaces even when --namespace is specified ([#1849](https://github.com/jetstack/cert-manager/pull/1849), [@munnerz](https://github.com/munnerz))",
+   "Fix issue with private managed-zone being picked in CloudDNS ([#1704](https://github.com/jetstack/cert-manager/pull/1704), [@cheukwing](https://github.com/cheukwing))",
+   "Fix incorrect handling of `issuewild` tag when verifying CAA ([#1777](https://github.com/jetstack/cert-manager/pull/1777), [@cheukwing](https://github.com/cheukwing))"
+  ]
+ },
+ "0.8.1": {
+  "bug fixes": [
+   "Fix indentation on ACME setup examples (#1785, @lachlancooper)",
+   "Fix ECDSA certificate issuance with ACME issuer (#1757, @munnerz)",
+   "Fix panic in HTTP01 solver if ingress field is not specified (#1758, @munnerz)",
+   "Fix solver selection logic to return the selected solver rather than always returning the last one (#1717, @dobesv)",
+   "Fix logic to select the solver that has the most labels (#1715, @dobesv)"
+  ]
+ },
+ "0.8.0": {
+  "bug fixes": [
+   "Fix bug when handling resources that have `lastTransitionTime` set to `null` (#1628, @munnerz)",
+   "Fix issue where ingress-shim would not clear old configuration when migrating to the new 'solvers' field (#1620, @munnerz)",
+   "Fixes additionalPrinterColumn formatting for Certificate resources (#1616, @munnerz)",
+   "Fix update loop in certificates controller and add additional debug logging (#1602, @munnerz)",
+   "Fix issues running the cainjector controller on Kubernetes 1.9 (#1579, @munnerz)",
+   "Fix upgrade bug where lastTransitionTime may be set to nil, rendering cert-manager inoperable without manual intervention (#1576, @munnerz)",
+   "- fix typo in the deployment template (#1546, @cpanato)"
+  ]
+ },
+ "0.7.2": {
+  "bug fixes": [
+   "Fix update loop in certificates controller and add additional debug logging (#1602, @munnerz)",
+   "Fixes additionalPrinterColumn formatting for Certificate resources (#1616, @munnerz)",
+   "Fix issues running the cainjector controller on Kubernetes 1.9 (#1579, @munnerz)"
+  ]
+ },
+ "0.7.1": {
+  "bug fixes": [
+   "Fix issues running the cainjector controller on Kubernetes 1.9 (#1579, @munnerz)",
+   "Fix upgrade bug where lastTransitionTime may be set to nil, rendering cert-manager inoperable without manual intervention (#1576, @munnerz)"
+  ]
+ },
+ "0.7.0": {
+  "bug fixes": [
+   "Fix potential race when updating secret resource (#1318, @munnerz)",
+   "Fix bug causing certficates to be re-issued endlessly in certain edge cases (#1280, @munnerz)",
+   "Fix bug when specify certificate keyAlgorithm without an explicit keySize (#1309, @munnerz)",
+   "Fix typo in SelfSigned Issuer in webhook deployment manifests (#1294, @munnerz)",
+   "Fix bug where --dns01-recursive-nameservers flag was not respected when looking up the zone to update for a DNS01 challenge (#1266, @munnerz)"
+  ]
+ },
+ "0.6.1": {
+  "bug fixes": [
+   "Fix bug when specify certificate keyAlgorithm without an explicit keySize (#1309, @munnerz)",
+   "Fix typo in SelfSigned Issuer in webhook deployment manifests (#1294, @munnerz)",
+   "Fix bug where --dns01-recursive-nameservers flag was not respected when looking up the zone to update for a DNS01 challenge (#1266, @munnerz)"
+  ]
+ },
+ "0.6.0": {
+  "breaking changes": [
+   "ACTION REQUIRED: Fix ACME issues relating to wildcard CNAME records and add a 'cnameStrategy' field to the ACME Issuer DNS01 provider config. (#1136, @munnerz)"
+  ],
+  "bug fixes": [
+   "RFC2136 provider: fixes a minor bug where dns01 `nameserver` key has value with no port (#908, @splashx)",
    "Increase time between retries for failing issuers and clusterissuers (#981, @munnerz)",
    "Fix concurrent map write race condition in ACME solver (#1033, @munnerz)",
    "Fix bug when updating ACME server URL on an existing Issuer resource (#1230, @munnerz)",
@@ -309,9 +973,54 @@
    "Fix affinity and tolerations declaration (#1209, @GuillaumeSmaha)"
   ]
  },
+ "0.5.2": {
+  "bug fixes": [
+   "Fix bug when cleaning up ingress resources after performing ACME HTTP01 validation (#1082, @munnerz)"
+  ]
+ },
+ "0.5.1": {
+  "bug fixes": [
+   "Fix concurrent map write race condition in ACME solver (#1033, @munnerz)"
+  ]
+ },
+ "0.5.0": {
+  "bug fixes": [
+   "Fix issue that could cause Certificates to fail renewal (#800, @munnerz)",
+   "[jjo] fix panic from acmedns.go constructor failure (#858, @jjo)",
+   "Fix cloudflare provider failing on cleanup if no record is found (#849, @frankh)",
+   "Fixed Route53 cleanup errors for already deleted records. (#746, @euank)",
+   "Fix a race that could cause ACME orders to fail despite them being in a 'valid' state (#764, @munnerz)",
+   "Fix cleanup of Google Cloud DNS hosted zone for dns-01 challenge records (#754, @kragniz)",
+   "Fix issue causing existing Ingresses to not be cleaned up properly after HTTP01 challenges in some cases (#831, @munnerz)"
+  ]
+ },
+ "0.4.1": {
+  "bug fixes": [
+   "Fix issue that could cause Certificates to fail re-issuance if triggered before certificate expiry (#800, @munnerz)",
+   "Fix a race that could cause ACME orders to fail despite them being in a 'valid' state (#764, @munnerz)",
+   "Fixed Route53 cleanup errors for already deleted records. (#746, @euank)",
+   "Fix cleanup of Google Cloud DNS hosted zone for dns-01 challenge records (#754, @kragniz)"
+  ]
+ },
  "0.4.0": {
   "breaking changes": [
    "Check the acme issuer has the 'HTTP01' challenge type configured if in use. (#629, @groner)"
+  ],
+  "bug fixes": [
+   "Fix bugs affecting eTLD and CNAMEs during DNS zone resolution (#582, @ThatWasBrilliant)"
+  ]
+ },
+ "0.3.2": {
+  "bug fixes": [
+   "Fix panic when a Certificate specifies a DNS01 provider that is not present on the Issuer resource (#708, @munnerz)",
+   "Fix bug that could cause changes to Ingress resources when using ingress-shim to not be properly propagated to their respective Certificate resources (#686, @kragniz)"
+  ]
+ },
+ "0.3.1": {
+  "bug fixes": [
+   "Fix a bug that could cause ACME Issuers to re-check Account validation status every few seconds (#662, @munnerz)",
+   "Fix bug that could cause ACME Certificates to not be renewed near renewal time (#674, @munnerz)",
+   "vault: fix panic when vault is sealed or uninitialized (#587, @vdesjardins)"
   ]
  },
  "0.3.0": {
@@ -323,16 +1032,57 @@
    "Add `certmanager.k8s.io/acme-http01-edit-in-place` annotation and change ingress-shim to set 'ingressClass' on ACME Certificate resources by default. (#493, @munnerz)"
   ],
   "bug fixes": [
+   "Fix panic when ACME server returns an error other than HTTP Status Conflict during registration (#237, @munnerz)",
    "Fix a race condition in the package responsible for scheduling renewals (#218, @munnerz)",
    "Fix a bug that caused ACME certificates to not be automatically renewed (#215, @munnerz)",
    "Fix a bug in checking certificate validity and improve validation of dnsNames and commonName (#183, @munnerz)",
    "Fix bugs when checking validity of certificate resources (#184, @munnerz)"
   ]
  },
+ "0.2.5": {
+  "bug fixes": [
+   "Fix bug that could cause excessive validation/issuance attempts for failing Certificate resources (#496, @munnerz)"
+  ]
+ },
+ "0.2.3": {
+  "bug fixes": [
+   "Fix panic when ACME server returns an error other than HTTP Status Conflict during registration (#237, @munnerz)",
+   "Fix a race condition in the package responsible for scheduling renewals (#218, @munnerz)",
+   "Fix a bug in the ACME authorizer that would cause cert-manager to panic when certificate.spec.acme was not specified (#219, @munnerz)"
+  ]
+ },
+ "0.2.2": {
+  "bug fixes": [
+   "Fix a bug that caused ACME certificates to not be automatically renewed (#215, @munnerz)"
+  ]
+ },
+ "0.2.1": {
+  "bug fixes": [
+   "Fix bugs when checking validity of certificate resources (#184, @munnerz)",
+   "Fix a bug in checking certificate validity and improve validation of dnsNames and commonName (#183, @munnerz)"
+  ]
+ },
  "0.2.0": {
   "breaking changes": [
    "Move to 'jetstack' organisation. Action required: this will require updating your existing deployments to point to the new image repository, as new tags will not be pushed to the old 'jetstackexperimental/cert-manager-controller` repository. A `helm upgrade` should take care of this. (#145, @munnerz)",
    "Set the Kubernetes secret type to TLS. Action required: this will cause renewals of existing certificates to fail. You **must** delete certificates that have been previously produced by cert-manager else cert-manager may enter a renewal loop when saving the new certificates. Alternatively, you may specify a new secret to store your certificate in and manually update your ingress resource/applications to reference the new secret. (#172, @munnerz)"
+  ],
+  "bug fixes": [
+   "Fix checking for invalid data in issuer secrets (#170, @munnerz)",
+   "Fix bug in ACME HTTP01 solver causing self-check to return true before paths have propagated (#166, @munnerz)",
+   "Fix panic if the secret named in an ACME issuer exists but contains invalid data (or no data) (#165, @munnerz)",
+   "Fix race condition in ACME HTTP01 solver when validating multiple domains (#155, @munnerz)"
+  ]
+ },
+ "0.1.2": {
+  "bug fixes": [
+   "Fix panic if the secret named in an ACME issuer exists but contains invalid data (or no data) (#165, @munnerz)",
+   "Fix bug in ACME HTTP01 solver causing self-check to return true before paths have propagated (#166, @munnerz)"
+  ]
+ },
+ "0.1.1": {
+  "bug fixes": [
+   "Fix race condition in ACME HTTP01 solver when validating multiple domains (#155, @munnerz)"
   ]
  }
 }

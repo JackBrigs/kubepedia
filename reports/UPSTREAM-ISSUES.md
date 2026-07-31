@@ -4,45 +4,45 @@ _Сгенерировано `kubepedia issues`. Числа — то, что об
 
 | Компонент | Репозиторий | Релизов | CVE | Ломающих | Дефектов | Источник |
 |---|---|---:|---:|---:|---:|---|
-| kube-ovn | `kubeovn/kube-ovn` | 49 | 15 | 0 | 577 | GitHub Releases API |
+| talos | `siderolabs/talos` | 136 | 3 | 0 | 3798 | GitHub Releases API |
+| containerd | `containerd/containerd` | 170 | 30 | 11 | 2610 | GitHub Releases API |
+| kube-ovn | `kubeovn/kube-ovn` | 143 | 15 | 0 | 1622 | GitHub Releases API |
+| helm | `helm/helm` | 148 | 2 | 3 | 1597 | GitHub Releases API |
+| cri-o | `cri-o/cri-o` | 207 | 11 | 2 | 840 | GitHub Releases API |
+| azure-csi | `kubernetes-sigs/azuredisk-csi-driver` | 125 | 50 | 0 | 654 | GitHub Releases API |
+| argo-cd | `argoproj/argo-cd` | 111 | 4 | 8 | 553 | клон: CHANGELOG |
+| kubespray | `kubernetes-sigs/kubespray` | 51 | 3 | 31 | 457 | GitHub Releases API |
 | envoy-gateway | `envoyproxy/gateway` | 50 | 12 | 52 | 446 | клон: release-notes/*.yaml |
-| argo-cd | `argoproj/argo-cd` | 44 | 4 | 8 | 353 | клон: CHANGELOG |
-| youki | `youki-dev/youki` | 21 | 3 | 14 | 322 | GitHub Releases API |
-| cilium | `cilium/cilium` | 82 | 0 | 228 | 110 | клон: CHANGELOG |
-| azure-csi | `kubernetes-sigs/azuredisk-csi-driver` | 105 | 50 | 0 | 108 | GitHub Releases API |
-| cni-plugins | `containernetworking/plugins` | 15 | 1 | 2 | 67 | GitHub Releases API |
-| runc | `opencontainers/runc` | 22 | 10 | 1 | 58 | GitHub Releases API |
-| kubespray | `kubernetes-sigs/kubespray` | 13 | 3 | 15 | 51 | GitHub Releases API |
-| cert-manager | `cert-manager/cert-manager` | 50 | 49 | 13 | 43 | GitHub Releases API |
-| node-feature-discovery | `kubernetes-sigs/node-feature-discovery` | 3 | 0 | 0 | 17 | GitHub Releases API |
-| calico | `projectcalico/calico` | 6 | 0 | 0 | 16 | GitHub Releases API |
-| metrics-server | `kubernetes-sigs/metrics-server` | 9 | 2 | 1 | 16 | GitHub Releases API |
-| kube-router | `cloudnativelabs/kube-router` | 4 | 1 | 2 | 15 | GitHub Releases API |
-| consul-k8s | `hashicorp/consul-k8s` | 48 | 22 | 4 | 14 | клон: CHANGELOG |
-| kube-vip | `kube-vip/kube-vip` | 3 | 0 | 9 | 14 | GitHub Releases API |
-| gcp-pd-csi | `kubernetes-sigs/gcp-compute-persistent-disk-csi-driver` | 15 | 10 | 4 | 12 | GitHub Releases API |
-| etcd | `etcd-io/etcd` | 55 | 32 | 218 | 1 | клон: CHANGELOG |
+| etcd | `etcd-io/etcd` | 147 | 32 | 218 | 420 | клон: CHANGELOG |
+| youki | `youki-dev/youki` | 23 | 3 | 14 | 415 | GitHub Releases API |
+| cert-manager | `cert-manager/cert-manager` | 140 | 49 | 24 | 360 | GitHub Releases API |
+| kata-containers | `kata-containers/kata-containers` | 38 | 7 | 1 | 348 | GitHub Releases API |
+| ingress-nginx | `kubernetes/ingress-nginx` | 69 | 9 | 0 | 321 | GitHub Releases API |
+| skopeo | `containers/skopeo` | 37 | 7 | 0 | 223 | GitHub Releases API |
+| consul-k8s | `hashicorp/consul-k8s` | 114 | 22 | 4 | 221 | клон: CHANGELOG |
+| node-feature-discovery | `kubernetes-sigs/node-feature-discovery` | 40 | 0 | 0 | 191 | GitHub Releases API |
+| kube-router | `cloudnativelabs/kube-router` | 33 | 1 | 2 | 180 | GitHub Releases API |
+| cilium | `cilium/cilium` | 130 | 0 | 228 | 175 | клон: CHANGELOG |
+| kube-vip | `kube-vip/kube-vip` | 37 | 0 | 9 | 146 | GitHub Releases API |
+| crun | `containers/crun` | 67 | 7 | 0 | 135 | GitHub Releases API |
+| runc | `opencontainers/runc` | 39 | 10 | 1 | 106 | GitHub Releases API |
+| cinder-csi | `kubernetes/cloud-provider-openstack` | 41 | 4 | 6 | 96 | GitHub Releases API |
+| cni-plugins | `containernetworking/plugins` | 24 | 1 | 2 | 89 | GitHub Releases API |
+| flannel | `flannel-io/flannel` | 53 | 0 | 0 | 86 | GitHub Releases API |
+| nerdctl | `containerd/nerdctl` | 44 | 19 | 0 | 82 | GitHub Releases API |
+| gcp-pd-csi | `kubernetes-sigs/gcp-compute-persistent-disk-csi-driver` | 44 | 10 | 5 | 73 | GitHub Releases API |
+| coredns | `coredns/coredns` | 18 | 2 | 0 | 49 | GitHub Releases API |
+| calico | `projectcalico/calico` | 22 | 0 | 0 | 45 | GitHub Releases API |
+| local-path-provisioner | `rancher/local-path-provisioner` | 11 | 0 | 0 | 34 | GitHub Releases API |
+| scheduler-plugins | `kubernetes-sigs/scheduler-plugins` | 11 | 3 | 4 | 33 | GitHub Releases API |
+| metrics-server | `kubernetes-sigs/metrics-server` | 14 | 2 | 1 | 21 | GitHub Releases API |
+| snapshot-controller | `kubernetes-csi/external-snapshotter` | 12 | 0 | 1 | 20 | GitHub Releases API |
+| nodelocaldns | `kubernetes/dns` | 8 | 3 | 0 | 14 | GitHub Releases API |
+| multus | `k8snetworkplumbingwg/multus-cni` | 7 | 0 | 0 | 11 | GitHub Releases API |
 | kyverno | `kyverno/kyverno` | 1 | 0 | 0 | 1 | клон: CHANGELOG |
 | aws-ebs-csi | `kubernetes-sigs/aws-ebs-csi-driver` | 0 | 0 | 0 | 0 | GitHub Releases API |
-| cinder-csi | `kubernetes/cloud-provider-openstack` | 8 | 4 | 3 | 0 | GitHub Releases API |
-| containerd | `containerd/containerd` | 46 | 30 | 11 | 0 | GitHub Releases API |
-| coredns | `coredns/coredns` | 1 | 2 | 0 | 0 | GitHub Releases API |
-| cri-o | `cri-o/cri-o` | 36 | 11 | 1 | 0 | GitHub Releases API |
-| crun | `containers/crun` | 7 | 7 | 0 | 0 | GitHub Releases API |
-| flannel | `flannel-io/flannel` | 0 | 0 | 0 | 0 | GitHub Releases API |
-| helm | `helm/helm` | 9 | 2 | 3 | 0 | GitHub Releases API |
-| ingress-nginx | `kubernetes/ingress-nginx` | 5 | 9 | 0 | 0 | GitHub Releases API |
-| kata-containers | `kata-containers/kata-containers` | 6 | 7 | 0 | 0 | GitHub Releases API |
 | kubernetes | `kubernetes/kubernetes` | 0 | 0 | 0 | 0 | GitHub Releases API |
-| local-path-provisioner | `rancher/local-path-provisioner` | 1 | 0 | 0 | 0 | GitHub Releases API |
 | metallb | `metallb/metallb` | 0 | 0 | 0 | 0 | GitHub Releases API |
-| multus | `k8snetworkplumbingwg/multus-cni` | 0 | 0 | 0 | 0 | GitHub Releases API |
-| nerdctl | `containerd/nerdctl` | 7 | 19 | 0 | 0 | GitHub Releases API |
-| nodelocaldns | `kubernetes/dns` | 2 | 3 | 0 | 0 | GitHub Releases API |
-| scheduler-plugins | `kubernetes-sigs/scheduler-plugins` | 4 | 3 | 4 | 0 | GitHub Releases API |
-| skopeo | `containers/skopeo` | 12 | 7 | 0 | 0 | GitHub Releases API |
-| snapshot-controller | `kubernetes-csi/external-snapshotter` | 1 | 0 | 1 | 0 | GitHub Releases API |
-| talos | `siderolabs/talos` | 12 | 3 | 0 | 0 | GitHub Releases API |
 
 **Всего уникальных CVE по всем компонентам: 218**
 

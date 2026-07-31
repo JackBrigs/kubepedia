@@ -1,20 +1,402 @@
 {
+ "3.21.3": {
+  "bug fixes": [
+   "fix: drop containerd v1 dep to resolve govulncheck CVEs 037733e7d51b08e30a0233bd546c345ab3ea3bba (Benoit Tigeot)"
+  ]
+ },
+ "3.21.2": {
+  "bug fixes": [
+   "3.21.3 will contain only bug fixes.",
+   "fixes b52e27609b4420d206c1874ce9b0c75e271665e7 (Matheus Pimenta)"
+  ]
+ },
+ "4.2.2": {
+  "bug fixes": [
+   "Revert: Fixed a race condition in WaitForDelete where the status observer canceled the watch too early, causing intermittent failures when running a full test suite #32214",
+   "Revert \"fix(kube): prevent spurious early exit in WaitForDelete during informer sync\" b05881cf967a5a09e19866799d0edfd40675803a (George Jenkins)"
+  ]
+ },
+ "4.2.1": {
+  "bug fixes": [
+   "Fixed data race detected by -race flag when concurrent goroutines (upgrade + rollback, install + uninstall) both call GetWaiterWithOptions on the same FailingKubeClient instance #31925",
+   "Fixed helm command success messages writing to stderr instead of stdout. Now correctly outputing to stdout #32056",
+   "Fixed Helm 4 emitting \"unable to find exact version\" when using version range constraints #31757",
+   "Fixed a race condition in WaitForDelete where the status observer canceled the watch too early, causing intermittent failures when running a full test suite #32081",
+   "Fixed SDK errors by upgrading dependencies: cli-utils 1.2.1, controller-runtime 0.24.1 and k8s 1.36.1 #32128",
+   "fix: protect FailingKubeClient.RecordedWaitOptions from data race (#31925) d591a19b953bd9cfdf7d9ddd83c2f4ffdaeafb29 (Terry Howe)",
+   "fix: route registry client output to stdout instead of stderr (#32056) 2a9fcae29280472edec988c6bf0528e4ae79b33a (Terry Howe)",
+   "fix(version): avoid false range detection on prerelease x/X eabfae560459d1ffe1f7a3268d5441238e9f84b2 (Benoit Tigeot)",
+   "fix(version): version range || can has no space e3fd51f331e14fb4056951540d2f2ffde81b405c (Benoit Tigeot)",
+   "fix: prevent warning when using version range constraints a33e23939a85ac60eb9a6bee818f2c5459fda576 (Benoit Tigeot)",
+   "fix(kube): always propagate context.Canceled in WaitForDelete fa06d4455724afe22bbe00af7925549a82d95e6c (Terry Howe)",
+   "fix(kube): prevent spurious early exit in WaitForDelete during informer sync 360d4835df0fb8bd7cbde4cad0cbc79de01a6e93 (Terry Howe)",
+   "fix(deps): bump golang.org/x/net to v0.55.0 to address GO-2026-5026 eee491a7461a524b87e5bb73ea5a0c4f82c72469 (Terry Howe)",
+   "fix(upstream): upgrade to cli-utils 1.2.1, controller-runtime 0.24.1 and k8s 1.36.1 57a4803bd4953d8ef9d51d927f492ecaaf5df9db (Matheus Pimenta)"
+  ]
+ },
+ "3.21.1": {
+  "bug fixes": [
+   "Fixed nil pointer panic that could happen with helm template in ClientOnly flows. Now correctly returns a template error https://github.com/helm/helm/pull/31920",
+   "fix(action): avoid nil REST client getter panic when installing CRDs c56dd0095fd76da5d7b30ecdf506103e7f26745e (sergiochan)",
+   "fix(registry): keep credentials on plain-HTTP fallback with oras-go v2.6.1 702529f90a0021e4d9df4880d6589198ec0e05f7 (Terry Howe)",
+   "fix(deps): bump golang.org/x/net to v0.55.0 to address GO-2026-5026 bad6cd478f5b3f3c96b795f4d6a010f04a89624f (Terry Howe)"
+  ]
+ },
+ "4.2.0": {
+  "bug fixes": [
+   "4.2.1 will contain only bug fixes",
+   "fix: add -extldflags -static to dist target to match build-cross f60ab7c31c81a73b8e0aade5aff41bfc01c08820 (Terry Howe)",
+   "fix: address goreleaser build issues flagged in review c075022ce16489f5f7afd45a37b679cf58fa36ea (Terry Howe)",
+   "fix: pass VERSION as GORELEASER_CURRENT_TAG to preserve v-prefix in archive names 04885dd905b6f8a823733dbc9b9f5cb2843a975f (Terry Howe)",
+   "fix: disable goreleaser checksums.txt and restrict zip to windows only 93103ce66cb6374d9d7b552802f53b21ea2c2dd1 (Terry Howe)",
+   "fix: use index for optional env var in version_template e49a1dc16eee526928d8928b8d96c01ee513ebd9 (Terry Howe)",
+   "fix: canary build file names eaa09100b9b18175d878b1e114cbe9df2a3f70c2 (Terry Howe)",
+   "Fix archive name 5a75279c1a017a60b97bd44986288af7399c6ff8 (Terry Howe)",
+   "fix goreleaser archive 37284a9211972f7f41a2acc3c3313517596dd4b0 (Terry Howe)",
+   "fix artifact directory a9659b07e3eec20ab5b964fddae05f51f478f704 (Terry Howe)",
+   "fix: adds topLevel permissions to improve openSSF scores 277d9702555532d13426119d31c70fffb389d589 (Gagan H R)",
+   "fix(templating): hooks conflicting with templates in post-renderers (#32049) 8f56f24d638612a46f3e23265d06338c1f93bccb (Matheus Pimenta)",
+   "docs: fix grammar and spacing in CONTRIBUTING.md db40adb1d13573280b65bc2002df7d75c009235a (Mohit)",
+   "fix(templating): SplitManifests must preserve line endings for downstream YAML parsers (#31952) 265c5eb530a36ec651e79ecf4d37ba2f098b7e59 (Matheus Pimenta)",
+   "fix(values): do not copy chart-default nils into coalesced values 00638773d1366dc962c785de3d297cf0279b9a0d (Johannes Lohmer)",
+   "fix(templating): fix wrong YAML separator parsing for post-renderers (#31941) a27f1add79c6c02459413dbb60f8438d8051cf06 (Matheus Pimenta)",
+   "fix: add debug logging to HTTP getter for helm pull c26be60d81e5cb6a147d6088477cf86fd5aaf1f0 (Cairon)",
+   "fix: unnecessary-format lint issues from merge 087736b66e97393ccaa0bdf1e5df13dcc9d88340 (George Jenkins)",
+   "fix: Plugin missing provenance bypass 586eb57338d848e65686a3a9616e2776e87cfd1e (George Jenkins)",
+   "test(kube): fix flaky WaitForDelete test by avoiding informer sync race a7f84439aacd3864b40055b60a3c3e54292d1646 (Terry Howe)",
+   "test(kube): fix flaky WaitForDelete timing in status wait tests 4c0d21f53f2ca78b525e31dbbf9cc9cfb818a2e3 (Terry Howe)",
+   "Minor nit: fix import instructions to comply with canonical import paths de58531ca7ff557342acaa2c906082e58521ef47 (Anmol Virdi)",
+   "fix(action): return correct error variable in prepareUpgrade 8ef2d45934ba1b9ca341818f1157112fcf7cdf1d (Rhys McNeill)",
+   "fix(kube): clarify server-side apply patch errors f257c95c783f5595e36cb5a7dcc862cc1f6266b5 (abhay1999)",
+   "fix: pin codeql-action/upload-sarif to commit SHA in scorecards workflow 7025480397d8b6b7fd8cdb5e083dc37b62dbd3d8 (Terry Howe)",
+   "docs(registry): fix incorrect and improve clarity of comments in client.go 85bf56ea82fd21452e53cae91b380b0afb3e8b83 (Debasish Mohanty)",
+   "docs(engine): fix misleading toTOML doc comment c1a5a6e260bd070bce9a8299795400340e10c468 (Ilya Kiselev)",
+   "chore: fix unnecessary-format issues from revive 7edfff33ebcb0f5d961afec34393c222de92de12 (Matthieu MOREL)",
+   "chore: fix bool-compare issues from testifylint 071558d69ffbb408dcb56403d387a1aa90a7d3a8 (Matthieu MOREL)",
+   "fix(kube): remove legacy import comments from test files e64d628a139fab8c876a1d2f4c2928096b286bed (Terry Howe)",
+   "fix: Plugin version path traversal 36dcc27ca3c0cd6d0d08713b03dca82f43d7c5f9 (George Jenkins)",
+   "chore: fix some minor issues in the comments 259f181808f267493d56eccd7f6191f78225a6fa (tsinglua)",
+   "fix: Chart dot-name path bug 60184996e5332d26e0b6390cefbf86776829dc46 (George Jenkins)",
+   "fix: insert newline after doc separators glued to content by template trimming af94abf976ce69dd635aaf086a0bb4b17bd95bc1 (Matheus Pimenta)",
+   "fix: bump go.opentelemetry.io/otel/sdk to v1.40.0 for GO-2026-4394 b550ce90946b3b47cecd290fc5d0eee637ddb531 (Terry Howe)",
+   "fix: bump fluxcd/cli-utils to v0.37.2-flux.1 1dfa77ed8ba6f9e26542064248bc9eab40c1a662 (Terry Howe)",
+   "chore(pkg): fix perfsprint linter issues part 6 dc0e3f10c3ba8f25aa71c523d2e273690d338a17 (Matthieu MOREL)",
+   "fix: enable nolinlint linter 5b6c6bbfc7ca9850c69d3823ca1e21b445e75c0d (Matthieu MOREL)",
+   "chore: fixes 92b64e87ad6245d64d5b49bbbbf8dead83faac22 (George Jenkins)",
+   "fix: correct import comment in statuswait.go from v3 to v4 c59c140ce07ce973f16fe50c0c5e991e1d6308a6 (rohansood10)",
+   "fix: handle OCI digest algorithm prefix in chart downloader (#31601) ee018608f6fbf381fac1bae9759164a65c6a0b1f (Evans Mungai)",
+   "fix(pkg): errorlint linter 259f76a849391e6ff60a9a2e95ce7310d958c602 (Matthieu MOREL)",
+   "fix(internal): errorlint linter 025418291a7911441e7962895ba4bc24b72b55b3 (Matthieu MOREL)",
+   "fix(pkg): errorlint linter 6d1490ed1ea5968235087658d03bb440e4014a36 (Matthieu MOREL)",
+   "fix(pkg): errorlint linter 4d0ae7f33a09093f8f52d02b952e3822c87b8c5f (Matthieu MOREL)",
+   "fix(internal): errorlint linter abecafa0f507a69888877b9ddb714095714b64c8 (Matthieu MOREL)",
+   "fix(pkg): errorlint linter 4330bdea0409f428e75145f15532bfa0e2bc945c (Matthieu MOREL)",
+   "fix(pkg): errorlint linter c8989d984ff69e8ad21b27d6ac6193dd3150b1a7 (Matthieu MOREL)",
+   "fix(cmd): errorlint linter edbd705bd034246700cc0998016caa303cff42dc (Matthieu MOREL)",
+   "fix(downloader): safely handle concurrent file writes on Windows 76eb37c01aaece271343039f44d7803017dd5c81 (Orgad Shaneh)",
+   "fix(install): check nil for restClientGetter and fix tests 9817a68618245370e98e09d7f06c7cc1cefe8a62 (Manuel Alonso)",
+   "chore(pkg): fix modernize linter 0d75d8611d3daa6b820d94fc95347a069b062f72 (Matthieu MOREL)",
+   "chore(internal): fix modernize linter 859292e31bd4ceb170050eaa49e727bcd69572e2 (Matthieu MOREL)",
+   "chore(pkg): fix modernize linter 5cc2e55714d20e6d1bd2663878a00571c084d6c2 (Matthieu MOREL)",
+   "chore(pkg): fix modernize linter ba38159313d4f09280591ba7f860ef0523716220 (Matthieu MOREL)",
+   "chore(internal): fix modernize linter e2d184c79e9049c19bcc466bfe1289ccc6b73717 (Matthieu MOREL)",
+   "chore(pkg): fix modernize linter 111d4e6e0e86af6ba25a355be1a7599f5258ee58 (Matthieu MOREL)",
+   "fix pulling charts from OCI indices d983696e354a9e0605cbb3034937dc84af42995c (Pedro Tôrres)",
+   "fix(template): deprecate unused --hide-notes and --render-subchart-notes flags 6d5f56fa6e7c8e4462d80895fcce87b926e4b8ce (Scott Rigby)",
+   "fix(copystructure): handle nil elements in slice copying e3829ebbbb833e159926c6193e474eb9d067ef75 (Philipp Born)",
+   "bugfix(storage): fix storage not getting logger from driver a8eb5278478c940c615741312ca9f4fec0d84c1a (Matheus Pimenta)",
+   "fix(test): fix tests and check nil for restclient 0f949a92c149cf11e5bb19caf4d19d05567be6eb (Manuel Alonso)",
+   "fix(test): merge fix correctly 561410ae1d09c2aa289ff8d8cad5b7fa979cd135 (Manuel Alonso Gonzalez)",
+   "Fix import b8937ad1922bca47be8bbf8e6274608ebc34a778 (Evans Mungai)",
+   "Fix rollback for missing resources 374aeb4b4e0463f72e3a0175138ed4bf7e87a156 (Feruzjon Muyassarov)",
+   "fix(install): add more tests and check nil file data 00f0a48a7dae379c2b6bd0dea43984d42b27a494 (Manuel Alonso)",
+   "fix(test): no check empty resources 0357e8d0f7eab074252ca49e1ca3aded834a001d (Manuel Alonso)",
+   "fix(install): check lenght and file nil, add tests 52235cc0bf7d0c8faf17c7dc8cddd77f93434aea (Manuel Alonso)",
+   "fix(action): crd resources can be empty 268593bf2e9769ef4b75328b33dfb4195e6e9e5a (Manuel Alonso)",
+   "fix: casing issue fixed 170911459bc4f2b5efea7e549e09bd45c7578cc4 (Mujib Ahasan)",
+   "fix: error handled correctly 94860626ce9c83a9227b5bce02a5c03a050816ac (Mujib Ahasan)",
+   "fix: doc string added 12e8b715aa0732b613c3a9896fa6af29b3201536 (Mujib Ahasan)",
+   "Fix lint warning 3416dd5f215a6421a70c6ab22340a96312ce8c0b (Evans Mungai)",
+   "fix(values): preserve nil values when chart default is empty map 292fe702193e8ba9ce4c8ffffdd90cdfa761501c (Evans Mungai)",
+   "fixed: --dry-run=server now respect generateName 2820ebe8c97b7d7b8a447375b74c9cb3741a4ffa (Mujib Ahasan)"
+  ]
+ },
+ "3.21.0": {
+  "bug fixes": [
+   "3.21.1 will contain only bug fixes.",
+   "fix: upgrade opentelemetry packages to patch CVEs 13d5fc4ae0e7222e1af8796ff4fa467b52208471 (Terry Howe)",
+   "fix: Chart dot-name path bug 2552884e3bc1b763c3901c5ea7240b59ef6791f1 (George Jenkins)",
+   "fix: pin codeql-action/upload-sarif to commit SHA in scorecards workflow ec05dd5f0481c2de3a41a554adf3c52a6a2a9bb6 (Terry Howe)",
+   "fix pulling charts from OCI indices e629995c5d65ec2d5095ecd6d094bf85d02b3266 (Pedro Tôrres)",
+   "Fix import 97affe067aa1e39fe6552c0d46de749f02063183 (Evans Mungai)",
+   "Fix lint warning d409df87ff6c2cbe17cc465b93ce646003b71d28 (Evans Mungai)",
+   "fix(values): preserve nil values when chart default is empty map b13743c8d4ef5488f40148af1d6ccd35ee9b97e3 (Evans Mungai)"
+  ]
+ },
  "4.1.4": {
   "security updates": [
    "[GHSA-hr2v-4r36-88hr ](https://github.com/helm/helm/security/advisories/GHSA-hr2v-4r36-88hr) Helm Chart extraction output directory collapse via `Chart.yaml` name dot-segment",
    "[GHSA-q5jf-9vfq-h4h7](https://github.com/helm/helm/security/advisories/GHSA-q5jf-9vfq-h4h7) Plugin verification fails open when `.prov` is missing, allowing unsigned plugin install",
    "[GHSA-vmx8-mqv2-9gmg](https://github.com/helm/helm/security/advisories/GHSA-vmx8-mqv2-9gmg) Path traversal in plugin metadata version enables arbitrary file write outside Helm plugin directory"
+  ],
+  "bug fixes": [
+   "4.1.5 and 3.20.3 are the next patch (bug fix) releases and will be on April 8, 2026",
+   "fix: Plugin missing provenance bypass 05fa37973dc9e42b76e1d2883494c87174b6074f (George Jenkins)",
+   "fix: Chart dot-name path bug 4e7994d4467182f535b6797c94b5b0e994a91436 (George Jenkins)",
+   "fix: Plugin version path traversal 36c8539e99bc42d7aef9b87d136254662d04f027 (George Jenkins)",
+   "fix: pin codeql-action/upload-sarif to commit SHA in scorecards workflow c61e0860ec797330a4c26a78dde7020cdc6743b1 (Terry Howe)"
   ]
  },
  "3.20.2": {
   "security updates": [
    "[GHSA-hr2v-4r36-88hr](https://github.com/helm/helm/security/advisories/GHSA-hr2v-4r36-88hr) Helm Chart extraction output directory collapse via `Chart.yaml` name dot-segment"
+  ],
+  "bug fixes": [
+   "4.1.5 and 3.20.3 are the next patch (bug fix) releases and will be on April 8, 2026",
+   "fix: Chart dot-name path bug 8fb76d6ab555577e98e23b7500009537a471feee (George Jenkins)",
+   "fix: pin codeql-action/upload-sarif to commit SHA in scorecards workflow 3a8927e275c50cecde273872dad2a5576bd46375 (Terry Howe)"
+  ]
+ },
+ "4.1.3": {
+  "bug fixes": [
+   "Fixed a bug where --dry-run=server was not respecting generateName #31563",
+   "Fixed a bug where empty CRD resources caused a crash. Now it prints an error #31578",
+   "Fixed a bug where OCI references with tag+digest failed with \"invalid byte\" error #31601",
+   "Fixed a bug where user-provided nil value was not preserved when chart has an empty map or no default for a key #31644",
+   "Fixed a regression since Helm 3.18.0 where Pulling charts from OCI repositories that use an index to store both Container Images and Helm Charts under the same tag failed #31776",
+   "Fixed a Helm 4 regression where gotemplate white space trimming directly after YAML doc separators, when present after postrendering, caused YAML file corruption #31868",
+   "Fixed a bug where `FailedStatus` is treated as a terminal state, causing upgrades to fail prematurely when cluster autoscalers needed time to provision nodes, or when pods were being deleted during rolling updates #31897",
+   "Fixed broken backwards compatibility for deprecated `--atomic` flag on install command #31901",
+   "SDK: Fixed a Windows 'Access Deined' error if multiple processes try to download the same chart version concurrently #31128",
+   "SDK: Fixed a bug where users did not receive any logs from the waiter, causing confusion as several minutes could pass with no user feedback #31717",
+   "SDK: Fixed a bug where server-side apply defaults did not always match the CLI defaults #31732",
+   "SDK: Fixed a Go import issue when downstream tooling attempted to vendor helm.sh/helm/v4/pkg/kube #31852",
+   "Fix import d47cb2b7efaa26090510f4c2289127f40451062e (Evans Mungai)",
+   "Fix lint warning f7cec12e23fe800495814432da4368b54c6d4552 (Evans Mungai)",
+   "fix(values): preserve nil values when chart default is empty map 8c5fe4ef9781c714dc121288a4d499e62cc10bf8 (Evans Mungai)",
+   "fix: bump go.opentelemetry.io/otel/sdk to v1.40.0 for GO-2026-4394 5b26d4f1f99091262fef50ed51133e7ae8e3b011 (Terry Howe)",
+   "fix: bump fluxcd/cli-utils to v0.37.2-flux.1 360c1315ba2d468fcff77193f52764c6ad912c90 (Terry Howe)",
+   "fix: insert newline after doc separators glued to content by template trimming b868e6a7cce696744d3f0c87e3f6bba6a779aff3 (Matheus Pimenta)",
+   "fix: correct import comment in statuswait.go from v3 to v4 dbfbea91e34220911481f82fc6831284d954959a (rohansood10)",
+   "fix pulling charts from OCI indices 2fe6b106e6d515b6792d53aff517489ae97387be (Pedro Tôrres)",
+   "fix: handle OCI digest algorithm prefix in chart downloader (#31601) e3e2d01ef45c6e4179d0536ea4a475f18fa23846 (Evans Mungai)",
+   "fix(install): check nil for restClientGetter and fix tests c15e7114dc0a0f24e0fda65dff83e7a18e264f60 (Manuel Alonso)",
+   "fix(test): fix tests and check nil for restclient 4b896ca82fa827760086998d6521965e0ace059f (Manuel Alonso)",
+   "fix(test): merge fix correctly 3fc79399c8af02b6704c10cba14be2ced9497cb2 (Manuel Alonso Gonzalez)",
+   "fix(install): add more tests and check nil file data 6017d2b470b07a4f55efd2c55ac0745203ddcd0b (Manuel Alonso)",
+   "fix(test): no check empty resources f451967ab5a5a9b1a26deb699bd1a1f4f2ba6b1e (Manuel Alonso)",
+   "fix(install): check lenght and file nil, add tests fdadff59eb8c3552de76c7647a9c787c248cdbd2 (Manuel Alonso)",
+   "fix(action): crd resources can be empty 10d606726560f1e813617c050c7b9cfbb8b0cb26 (Manuel Alonso)",
+   "fix: casing issue fixed 0fec40f9b61a1dc5799e67bd4fb4ea4321cdd836 (Mujib Ahasan)",
+   "fix: error handled correctly 263749874cb21ba31ebca17fe6c19fb3d0379417 (Mujib Ahasan)",
+   "fix: doc string added 961d7d7cd6b39ccc3a63bce7bba505b94a9be384 (Mujib Ahasan)",
+   "fixed: --dry-run=server now respect generateName f289d1605c9f02c843dd1b5dd03221fdb980f28e (Mujib Ahasan)",
+   "fix(downloader): safely handle concurrent file writes on Windows bfac7393e4cc8b22a36fb015264d10ddb30e03da (Orgad Shaneh)"
+  ]
+ },
+ "3.20.1": {
+  "bug fixes": [
+   "Backport of #31644: Fixed a bug where user-provided nil value was not preserved when chart has an empty map or no default for a key",
+   "Backport of #31601: Fixed a bug where OCI references with tag+digest failed with \"invalid byte\" error",
+   "fix pulling charts from OCI indices 911f2e908ae40b01ca95b857e94b8894043f64fd (Pedro Tôrres)",
+   "Fix import 45c12f71407b6054a37d3e425d5293ee79a1ab37 (Evans Mungai)",
+   "Fix lint warning 09f5129d49a14c9336cea6f33adf5f52889915ef (Evans Mungai)",
+   "fix(values): preserve nil values when chart default is empty map 5417bfaa84871feae9c8171f192e2f9796475054 (Evans Mungai)"
+  ]
+ },
+ "4.1.1": {
+  "bug fixes": [
+   "fix: fine-grained context options for waiting #31735",
+   "fix: kstatus do not wait forever on failed resources #31730",
+   "fix: Revert \"Consider GroupVersionKind when matching resources\" #31772",
+   "fix: handle nil elements in slice copying #31751",
+   "fix(copystructure): handle nil elements in slice copying 261387a112bd91edca6511d34de23f7cc5ce9f8b (Philipp Born)"
+  ]
+ },
+ "4.1.0": {
+  "bug fixes": [
+   "Fixed bug where a plugin name could already be used by another command #31427",
+   "Fixed bug where --server-side flag was not passed to install when using upgrade --install #31635",
+   "Fixed bug where HELM_ environment variables were not passed to plugins. this fixes a regression which was blocking some getter plugins #31613",
+   "Fixed bug where Helm test --logs failed with hook-delete-policy \"hook-failed\" or \"hook-succeed\" #31579",
+   "Fixed kube client logging issue #31560",
+   "Fixed regression where vendor-specific suffixes were stripped from .Capabilities.KubeVersion.GitVersion, breaking charts that detect managed Kubernetes platforms #31528",
+   "Fixed a bug where helm uninstall with --keep-history did not suspend previous deployed releases #12564",
+   "docs: fixed documentation about default wait strategy",
+   "fix(release): fix test compilation error e751a70e84175212d9338738122d045aecb2ad89 (Evans Mungai)",
+   "fix: typo in the function names 138f730aacf96d0d94535a1d5b29d6dd128a062e (Gergely Brautigam)",
+   "fix: add default casess to switch statements 1c119bcaa6f68a73f27a21f9d7dba22c4baf4d7d (Brenden Ehlers)",
+   "test(statuswait): fix Copilot code review suggestion for goroutine in tests d6b35cedeb0519b648941911298ebb08fa3b0edf (Mohsen Mottaghi)",
+   "fix: use namespace-scoped watching to avoid cluster-wide LIST permissions 3dd54ed0b693e5e5805cceb535ed5167fa5ada25 (Mohsen Mottaghi)",
+   "fix(doc): Update default wait strategy f92ae18977bfe4fad74c7cb0e8c7f7fc68d85306 (Deepak)",
+   "Fix TestCliPluginExitCode 3c6557dcf57ef4feee0d4840d4095f1479a63b40 (tison)",
+   "Fix `TestConcurrencyDownloadIndex` typo 592815ea2b020b354510685bfa61d252095baafb (George Jenkins)",
+   "chore: fix some comments to improve readability 858cf315830dd4818297e00d8098e6f79422d306 (wangjingcun)",
+   "fix(upgrade): pass --server-side flag to install when using upgrade --install 2dc581dc1c9c07e36dde9acc70bd86e23963662a (Evans Mungai)",
+   "Fix govulncheck in CI bc9462f20fc9a948fe557c87c895c06d4c0ddc6a (Matt Farina)",
+   "fix(cli): handle nil config in EnvSettings.Namespace() 8534663e730f7d32ac8777c3b41a7e6c6a94ab96 (Zadkiel AHARONIAN)",
+   "fix(getter): pass settings environment variables 119341dca7fba0ae2987b4d0ffd41e9574e03a38 (Zadkiel AHARONIAN)",
+   "fixes comment in install.go a109ac2f06d7cdca85c23567f3c545c726727904 (Stephanie Hohenberg)",
+   "fixes tests after merge 2f598ffc850d9f83642da362a7be4121cf617275 (Stephanie Hohenberg)",
+   "fixes lint issue bb9356e182a8abb0f806cd4866a317f273631862 (Stephanie Hohenberg)",
+   "Fix linting issue 9f1c8a26f00ebbe2942064a06b49c275162d10ef (Benoit Tigeot)",
+   "chore: fix typo in pkg/downloader/chart_downloader.go e71a29ce4ff045c8194625c0d804f789d121023e (megha1906)",
+   "Fix kube client logging 936cd328ac59001f7a6716a3eb7e9075f3950f44 (Matt Farina)",
+   "fix: prevent segmentation violation on empty yaml in multidoc 81d244ca21e232e5ebccd67040cdf7596b572e8b (Benoit Tigeot)",
+   "fix: prevent reporting fallback on version when none specified 40e22dedb2d9fdb8c47376a2c3071b99ba056d9c (Benoit Tigeot)",
+   "fix: add missing context to debug logs 2dc5864f447d0429f7101526a518529e9919b067 (shuv0id)",
+   "fix: preserve vendor suffixes in KubeVersion.GitVersion ce273eea48c8e42323c648527bb8e0d0dbf6fd8c (Benoit Tigeot)",
+   "fix b1a976073f11a972b3f5a6860bc5647a79268ef5 (George Jenkins)",
+   "fix: Use server-side apply for object create during update 18616e6ce969cd7fbbd8a85d77557402839d59db (George Jenkins)",
+   "fix: correct LDFLAGS path for default Kubernetes version b6a8c6521614f99d54752110a955b4f6fb5b8f5a (Benoit Tigeot)",
+   "fix: improve plugin name validation err messages early via unmarshalling acf331a0057ee79246f6058fca02313be29506fa (Benoit Tigeot)",
+   "fix: Make invalid name error message more similar and move tests 9e1e3d21c59820b39a05d950bf27027ba7ef1662 (Benoit Tigeot)",
+   "fix: focus only on plugin name but give more info about what we get cf077ceb2758a63aa5f87410204d11c5f2ad3a7b (Benoit Tigeot)",
+   "fix: improve plugin name validation error messages c04e18e45253f08d127a37c8328e7084e486c7cc (Benoit Tigeot)",
+   "Fix syntax errors in the document faa0adcb3855a299596f68f7a18f3dd84ef9ed1a (Fish-pro)",
+   "docs: Fix LFX Health Score badge URL in README.md 40856bf50cdaa6a178b1c8433c98c25004e44735 (Michael Crenshaw)",
+   "Prevent surprising failure with SDK when timeout is not set 5f6fa437b2c2954092b6c3f8af5b83aef7dcb874 (Benoit Tigeot)",
+   "Avoid confusion between `--wait` (watcher) and no --wait (hookOnly) 8535e9f4ab5c143fcbd429f45a0f15cf510a0cc0 (Benoit Tigeot)",
+   "fix: do not run release workflow on forks d93ef03ee400292452dec97e88e821dc3188110e (Terry Howe)",
+   "fix(rollback): `errors.Is` instead of string comp d158708fbfb08bc452d1733d9b8cc4c7dc9f8902 (Hidde Beydals)",
+   "fix(uninstall): supersede deployed releases 2f1ecc7100868be90d302a299d707c70a7f45276 (Hidde Beydals)",
+   "chore: fix typo of public field 0d6de28bf446b4d1b2cb71e0441e5c8ebc9e91c9 (tison)",
+   "fix: Fix Helm v4 release distribtion/get-helm-3 script d5d1ea3f5527b4794c624e84c152f28fad860e10 (George Jenkins)",
+   "fix test ae4af69b9dbd5ad01dc9621a90e5b08327a3499e (Artem Vdovin)",
+   "fix: assign KUBECONFIG environment variable value to env.Kubeconfig b25fa862d5f7de6c20fa4b95ce5c85962669fd3b (LinPr)",
+   "fix index concurrency 351bb78ee5a22cb0e68818a310d77d7240edc0b1 (Artem Vdovin)"
+  ]
+ },
+ "3.20.0": {
+  "bug fixes": [
+   "v3 backport: Fixed a bug where helm uninstall with --keep-history did not suspend previous deployed releases https://github.com/helm/helm/pull/12564",
+   "fix(rollback): `errors.Is` instead of string comp 0cd9a60723d2fde199a625582ff068f5a253886c (Hidde Beydals)",
+   "fix(uninstall): supersede deployed releases 8bb0b372268b45b260593061450f1c9dca9ddbb8 (Hidde Beydals)",
+   "Fix `helm pull` untar dir check with repo urls e5e101cced707693ff7fd26880fd8c537c4297f0 (Luna Stadler)",
+   "[backport] fix: get-helm-3 script use helm3-latest-version bd337b46bcce12bd903dc41c73340940fdcf8dab (George Jenkins)",
+   "Fix deprecation warning 9a366b447452e78b092b1a5267d7efc9bbe74f11 (Benoit Tigeot)",
+   "Avoid \"panic: interface conversion: interface {} is nil\" 2fe49f99ce39e9a33c77b664a8b9cef6117c1c3b (Benoit Tigeot)",
+   "fix: set repo authorizer in registry.Client.Resolve() ffbc53723a47fe0b47551c35963ef8b7f7523832 (Eric Stroczynski)",
+   "fix null merge f0b699eabba56ef3057561779dc30fafc5c07064 (Ben Foster)"
+  ]
+ },
+ "4.0.5": {
+  "bug fixes": [
+   "Fixed bug where helm uninstall with --keep-history did not suspend previous deployed releases #12556",
+   "Fixed rollback error when a manifest is removed in a failed upgrade #13437",
+   "Fixed check to ensure CLI plugin does not load with the same name as an existing Helm command",
+   "Fixed helm test --logs failure with hook-delete-policy \"hook-failed\" or \"hook-succeed\" #9098",
+   "Fixed a bug where empty dependency lists were incorrectly treated as present",
+   "Fixed a bug where the watch library did not only watch namespaces associated with the objects",
+   "Fixed regression in downloader plugins environment variables #31612",
+   "Fixed bug where --server-side flag is not respected with helm upgrade --install #31627",
+   "fix(upgrade): pass --server-side flag to install when using upgrade --install 1b6053d48b51673c5581973f5ae7e104f627fcf5 (Evans Mungai)",
+   "fix(cli): handle nil config in EnvSettings.Namespace() 1e3ee1d2ba5a421165fe053a41aa4071cf69ed62 (Zadkiel AHARONIAN)",
+   "fix(getter): pass settings environment variables 31bd995ce201e295ff2f87e11fdf13bf55fdffd2 (Zadkiel AHARONIAN)",
+   "test(statuswait): fix Copilot code review suggestion for goroutine in tests 41a6b364a1433dabcefca945619b55a43046f6ce (Mohsen Mottaghi)",
+   "fix: use namespace-scoped watching to avoid cluster-wide LIST permissions 66cab24bb95f68448a83304c6d3297ec45c8fdb7 (Mohsen Mottaghi)",
+   "Fix linting issue 417aae9c01a79c01f3de8c2a08079fddada6078e (Benoit Tigeot)",
+   "Fix TestCliPluginExitCode e845b68fe3ea0c91f429b384e3b78f3f853ae208 (tison)",
+   "Fix rollback for missing resources 0fd2c418b0146c1ea6182c7f7c7676a345554156 (Feruzjon Muyassarov)",
+   "fix: assign KUBECONFIG environment variable value to env.Kubeconfig b456e274652c84316d5bfcf06d6a8b648e3cc23b (LinPr)",
+   "fix(rollback): `errors.Is` instead of string comp e2021f8818d2cf20c118d91fdba8fba5c472c3bb (Hidde Beydals)",
+   "fix(uninstall): supersede deployed releases af7c15303ace3c506c5c790c41186a09df1c8a54 (Hidde Beydals)"
+  ]
+ },
+ "3.19.5": {
+  "bug fixes": [
+   "Fixed bug where removing subchart value via override resulted in warning #31118",
+   "Fixed bug where helm uninstall with --keep-history did not suspend previous deployed releases https://github.com/helm/helm/issues/12556",
+   "fix(rollback): `errors.Is` instead of string comp 4a19a5b6fb912c5c28a779e73f2e0880d9e239a4 (Hidde Beydals)",
+   "fix(uninstall): supersede deployed releases 7a00235a0622b6eae1d06fbb87c2a33b718cbd7e (Hidde Beydals)",
+   "fix null merge 578564ee26171e5ca2ee0edd0c06cb58a72fba87 (Ben Foster)"
+  ]
+ },
+ "4.0.2": {
+  "bug fixes": [
+   "fix: prevent reporting fallback on version when none specified 94659f25033af6eb43fc186c24e6c07b1091800b (Benoit Tigeot)",
+   "fix: prevent segmentation violation on empty yaml in multidoc 2dd1f662cce36de8910e925921dc9f86ec72205b (Benoit Tigeot)",
+   "fix: Fix Helm v4 release distribtion/get-helm-3 script 0bef6bdbe6e20832dea995037c975a8631072212 (George Jenkins)"
+  ]
+ },
+ "3.19.3": {
+  "bug fixes": [
+   "[backport] fix: get-helm-3 script use helm3-latest-version 8766e718a0119851f10ddbe4577593a45fadf544 (George Jenkins)"
+  ]
+ },
+ "4.0.1": {
+  "bug fixes": [
+   "fix 4b6472ffb042a2c76c5323b9bfb1e8000cb3fd1e (George Jenkins)",
+   "fix: Use server-side apply for object create during update 9dfe3b35ec7fb16b941c5904c8b8dee716cc225a (George Jenkins)",
+   "Fix kube client logging 861adc2f4a14e96bc5c627a6c557d80461777735 (Matt Farina)",
+   "Fix syntax errors in the document a156195c35525cfaf404058b0f9aa61610e9e791 (Fish-pro)",
+   "fix: correct LDFLAGS path for default Kubernetes version 2c0dcda29b56f1e65098a4a2acb3c384734721af (Benoit Tigeot)"
+  ]
+ },
+ "3.19.2": {
+  "bug fixes": [
+   "[backport] fix: get-helm-3 script use helm3-latest-version 8766e718a0119851f10ddbe4577593a45fadf544 (George Jenkins)"
+  ]
+ },
+ "3.19.1": {
+  "bug fixes": [
+   "Avoid \"panic: interface conversion: interface {} is nil\" 2f619be224790e7b2447b10faa3b965701177e40 (Benoit Tigeot)",
+   "Fix `helm pull` untar dir check with repo urls 8112d47cbba491a70d84005e5a88bd0e72ef5040 (Luna Stadler)",
+   "Fix deprecation warning 5dff7ce71b53828d36121f81ac59cf389b811ebc (Benoit Tigeot)"
+  ]
+ },
+ "3.19.0": {
+  "bug fixes": [
+   "Fixed a `helm pull` regression from 3.18 - error pulling OCI charts with --password #31230",
+   "Fixed a `helm lint` regression from Helm 3.18 - rejected JSON Schema $ref URLs that worked in 3.17.x #31166",
+   "Fixed go mod tidy #31154",
+   "Fixed k8s version parsing not matching original #31091",
+   "Fixed charts failing when using a redirect registry #31087",
+   "Fixed missing debug logging for OCI transport",
+   "Fixed broken legacy docker support for login #30941",
+   "Fixed bugs from the move to ORAS v2",
+   "Fixed processing all hook deletions on failure #30673",
+   "3.19.1 will contain only bug fixes.",
+   "fix: use username and password if provided 9a54bf1df6245232aff6235ebc5da7616f06afa7 (Evans Mungai)",
+   "fix(helm-lint): fmt b27802031110bcfcaf0b685f7f3efda8a309ce8c (Isaiah Lewis)",
+   "fix(helm-lint): Add TLSClientConfig d33ac5e44b4eb884d67141b00753817b091054ca (Isaiah Lewis)",
+   "fix(helm-lint): Add HTTP/HTTPS URL support for json schema references 854370978eb4664ed75e1918df733ecf1503e904 (Isaiah Lewis)",
+   "fix: go mod tidy for v3 da4c583145cf4de6a291e81b499ba53785739c2b (Terry Howe)",
+   "fix Chart.yaml handling f13afaacd6f8f9dca4ad914d87fabbe129692eda (Matt Farina)",
+   "json schema fix 6d9509aadcfb44aaaa6fc6528443815343a551b4 (Robert Sirchia)",
+   "fix: k8s version parsing to match original 807225ed62b2901fcbaf56923111d9d7f9204a59 (Borys Hulii)",
+   "fix: user username password for login 2c55a4e8ce483fe1a03d7afa46a89e26852bc3c5 (Terry Howe)",
+   "fix: add debug logging to oci transport b52bb41484bca2eab616aed83aa922cbb5ef1e3b (Terry Howe)",
+   "fix: legacy docker support broken for login 733f94c86a98f2fc4a12eba510e26615d4b8aa59 (Terry Howe)",
+   "fix: plugin installer test with no Internet fc360417024f4734e5b7356385512a08a31c743e (Terry Howe)",
+   "Prevent fetching newReference again as we have in calling method c33215d765e291bc9321984d4f60a0182c738938 (Benoit Tigeot)",
+   "Prevent failure when resolving version tags in oras memory store f552b672305a420b54a725185f98e34e51fbd7ba (Benoit Tigeot)",
+   "fix(client): skipnode utilization for PreCopy a18a52e8982b399101f7f20e2473de8514e85226 (Brandt Keller)",
+   "fix(client): layers now returns manifest - remove duplicate from descriptors b07ab77da3a2d20508b8e775981e233a81d4c753 (Brandt Keller)",
+   "fix(client): return nil on non-allowed media types c225c124ac76eedc3ca6e013df40da8d2c50650d (Brandt Keller)",
+   "Fix 3.18.0 regression: registry login with scheme c0f3ace52d974b7465f33079bbf54ed961f875f1 (Scott Rigby)",
+   "Revert \"fix (helm) : toToml` renders int as float [ backport to v3 ]\" c5249c1f8d83d44081afee41efeac3ee36d6e9bc (Matt Farina)",
+   "fix: move warning to top of block eb5b6d50474842db17330b11e0db70077e1c4510 (Feng Cao)",
+   "fix: govulncheck workflow 6b15f26bd45c2856b36bdf3e8c32b44595e4580f (Matthieu MOREL)",
+   "fix: replace fmt warning with slog 6b5c94475db950a981523344029f0a7c620a2e32 (Feng Cao)",
+   "fix: add warning when ignore repo flag 247bf7c2e0c591554b6cfd4c2f62cb2700b034ee (Feng Cao)"
+  ]
+ },
+ "3.18.6": {
+  "bug fixes": [
+   "fix(helm-lint): fmt b76a950f6835474e0906b96c9ec68a2eff3a6430 (Isaiah Lewis)",
+   "fix(helm-lint): Add TLSClientConfig b79a4212e803ad50c66f06799b8bbdb51f918603 (Isaiah Lewis)",
+   "fix(helm-lint): Add HTTP/HTTPS URL support for json schema references b9180e674fccb57e6ea6934ed7deb4448a3c9ddb (Isaiah Lewis)"
   ]
  },
  "3.18.5": {
   "security updates": [
    "[Helm Charts with Specific JSON Schema Values Can Cause Memory Exhaustion](https://github.com/helm/helm/security/advisories/GHSA-9h84-qmv7-982p)",
    "[Incorrect YAML Content Leads To Panic](https://github.com/helm/helm/security/advisories/GHSA-f9f8-9pmf-xv68)"
+  ],
+  "bug fixes": [
+   "fix Chart.yaml handling 7799b483f52ceb665264a4056da3d2569d60f910 (Matt Farina)",
+   "json schema fix cb8595bc650e2ec7459427d2b0430599431a3dbe (Robert Sirchia)"
   ]
  },
  "3.17.4": {
@@ -31,12 +413,320 @@
    "[GHSA-557j-xg8c-q2mm](https://github.com/helm/helm/security/advisories/GHSA-557j-xg8c-q2mm): Chart Dependency Updating With Malicious Chart.yaml Content And Symlink"
   ]
  },
+ "3.18.3": {
+  "bug fixes": [
+   "fix: user username password for login 5b9e2f6b4c4e2c8e21d85dc01fbb9d8a454a1fa9 (Terry Howe)",
+   "fix: add debug logging to oci transport 191f05c068a25a80cd206c1256c6b11a63c4068b (Terry Howe)"
+  ]
+ },
+ "3.18.2": {
+  "bug fixes": [
+   "fix: legacy docker support broken for login 04cad4610054e5d546aa5c5d9c1b1d5cf68ec1f8 (Terry Howe)"
+  ]
+ },
+ "3.18.1": {
+  "bug fixes": [
+   "This release fixes regressions around template generation and OCI registry interaction in 3.18.0",
+   "3.18.2 will contain only bug fixes.",
+   "fix(client): skipnode utilization for PreCopy f6f8700a539c18101509434f3b59e6a21402a1b2 (Brandt Keller)",
+   "fix(client): layers now returns manifest - remove duplicate from descriptors 4da701593f8c8a137fc36a95f9e9ecfe1d01528f (Brandt Keller)",
+   "fix(client): return nil on non-allowed media types 1a8507fd5ad910f466accfd1c784ed0c333c343a (Brandt Keller)",
+   "Prevent fetching newReference again as we have in calling method 015531ca4f386a6fee6c9f48eae63124d19c76a7 (Benoit Tigeot)",
+   "Prevent failure when resolving version tags in oras memory store 9db1a120f9f7404044cc4619ea7379b430004e36 (Benoit Tigeot)",
+   "Fix 3.18.0 regression: registry login with scheme ea04cea48bf2b312e506ae03c412c6fd95929c5c (Scott Rigby)",
+   "Revert \"fix (helm) : toToml` renders int as float [ backport to v3 ]\" bec66098fdb4ac37298f46701a2d5b28e5776b72 (Matt Farina)"
+  ]
+ },
+ "3.18.0": {
+  "bug fixes": [
+   "3.18.1 on June 11th, 2025 will contain only bug fixes.",
+   "fix: govulncheck workflow bf1436baf3c235cb1b689a016b7162d0cddd3947 (Matthieu MOREL)",
+   "fix:add proxy support when mTLS configured 48377fe4515cc6a5bf5ac92ea6086090e7b82798 (Rongrong Liu)",
+   "Fix --take-ownership 4ee3a19e9a98e3b58eb4579f019666e834408ca3 (Patrick Seidensal)",
+   "Unarchiving fix 3ce10e4f81e064a3807098c3d466c33f2ece8a18 (Matt Farina)",
+   "Fix typo 422c58e4a2d7a00e2275916be1bfda0b28efba82 (Benoit Tigeot)",
+   "Fix cherry-pick helm.sh/helm/v4 -> helm.sh/helm/v3 bcb83e465f4487b481b8843f4d5dfe4f26472c55 (Scott Rigby)",
+   "clarify fix error message 97b0e11871252ad99054d911d92666f84fdac79a (Scott Rigby)",
+   "fix err check 2f79afb0a3c506fd41ea89f13efcfa4379f88b5f (Scott Rigby)",
+   "Fix lint 4cb639ed4edab7729859328d443b102d05a4b32d (Chris Berry)",
+   "Fix linter warning b39411a66829d711168de543fa823cbd5e749ca4 (Evans Mungai)",
+   "Additional review fixes from PR 483ebf915da5ab2c2bbdb46644bca2fe22ae51f9 (Evans Mungai)",
+   "fix: check group for resource info match 2ebce786ba295a3ca7a281c3ffd78086cf561f89 (Jiasheng Zhu)",
+   "This commit fixes the issue where the yaml.Unmarshaller converts all int values into float64, this passes in option to decoder, which enables conversion of int into . 0a6834fdf060b4fbc4e1ea4bcb85908891539d48 (Althaf M)"
+  ]
+ },
+ "3.17.3": {
+  "bug fixes": [
+   "Unarchiving fix e4da49785aa6e6ee2b86efd5dd9e43400318262b (Matt Farina)"
+  ]
+ },
+ "3.17.1": {
+  "bug fixes": [
+   "fix: check group for resource info match a2d36029d5dba292073d23acea2ef59cfb429ee9 (Jiasheng Zhu)"
+  ]
+ },
  "3.17.0": {
+  "bug fixes": [
+   "fix: make ORAS reference private 949b2e604067a43797c640db4d6ed69af7aa3e5b (Terry Howe)",
+   "fix: issue with helm template and oci chart aba95b9cb4827fe932e5eebabd55513333543d7c (Terry Howe)",
+   "Fix dev-v3 from take ownership changes a3a9e4f6432f7732f2e802962b8cea19c34817b8 (Matt Farina)",
+   "fix test output edf7b66ae92b16f84d86fb98bc1508d66be7bcfb (Mayank Shah)",
+   "fix test b9d58a19f1fdb58da7cb84370e60bcd29cc534f6 (Mayank Shah)",
+   "fix upgrade 2541e465c402002a973682918ac8ee14bc8d7784 (Mayank Shah)",
+   "fix: fix label name e4062e7e000f54f6251c233329ef04f5d0799d59 (wangjingcun)",
+   "Fix typo in pkg/lint/rules/chartfile_test.go 0cc78c6ac34790698d66d419f22531040a3bf738 (Zach Burgess)",
+   "fix(hooks): correct hooks delete order f4f4a6b81fbdb90412bd906fa5458482e94625bd (Suleiman Dibirov)",
+   "chore: fix some function names in comment de9e138ec172c823788554f65710d103b9ac2388 (wangjingcun)",
+   "Fix failing tests 3c4d0bb06138713bd009b3daf34f34a18a0850d7 (Evans Mungai)",
+   "fix(helm): Retry Conflict error for createResource, deleteResource 79a1f2c80117cc4d9db7c48d80a7fc76d3d479ca (Andreas Karis)",
+   "minor spelling fix ca584648ee3776591d4d438c7a2d67310d35c424 (Jon Olsson)",
+   "fix: Use chart archive modifed time for OCI push 02ef83fe28f123c57bdb3893740d64a63a01be22 (George Jenkins)",
+   "fix: add missing formatChartName call de18ac16027201bb201c4cfe8736202d9feda8cd (Terry Howe)",
+   "Grammar fixes ef85fa7f2ddc0a7a810007e283846c123f486748 (Nathan Baulch)",
+   "Fix typos ff9dd262e394a48b689e3e1a33456dc18a1f4f47 (Nathan Baulch)",
+   "fix: fix testchart lint errors ddead08eb8e7e3fbbdbb6d40938dda36905789af (Rui Chen)",
+   "fix: fixed the token-permission and pinned-dependencies issue b4caed94cd8e725d8c29c241dfd01c69aba95b33 (harshitasao)",
+   "fix(helm): pass down username/password CLI parameters to OCI registry clients dc158f6208782b888fc5be6d23d8991042cf9f9c (Evans Mungai)"
+  ],
   "security updates": [
    "Upgrade golang.org/x/net to v0.33.0 to address CVE-2024-45338 79993d2e5bb05a1eba5978353db084f1ca9cb7ac (cx)"
   ]
  },
+ "3.16.3": {
+  "bug fixes": [
+   "fix: fix label name cfd07493f46efc9debd9cc1b02a0961186df7fdf (wangjingcun)",
+   "Fix typo in pkg/lint/rules/chartfile_test.go a303060fc60bc713cd0757503b3fcb4636b14f34 (Zach Burgess)",
+   "fix(hooks): correct hooks delete order 19fe320ae87e8d1d4bc1952d9da8ea2fe435aa6e (Suleiman Dibirov)"
+  ]
+ },
+ "3.16.2": {
+  "bug fixes": [
+   "Grammar fixes 46e0a0f9e44b56b0d2fc81cc0e624534662b1df7 (Nathan Baulch)",
+   "Fix typos a1bd541d17cd6d120635c1f65ada92edcd224517 (Nathan Baulch)"
+  ]
+ },
+ "3.16.0": {
+  "bug fixes": [
+   "fixed bug to now use burst limit setting for discovery",
+   "Fix linting error for pr 12876 8a26add23ff165b56f012777bbef0059210e9391 (Scott Rigby)",
+   "fix repository-cache flag help description from file to directory 84cbb2c59b6b3c29ed0127608731417d09f53221 (Maor Friedman)",
+   "Fix race condition in TestInstallRelease_Wait_Interrupted test f69a2dd03e7ef7491fa7e770186a8c5ff78c77c6 (Alex Johnson)",
+   "fix: update error handling in Configuration.Init method, add tests for the method 800c33a5aa1e676895e3c288a59f1dd6b6117469 (Suleiman Dibirov)",
+   "fix(helm): Use burst limit setting for discovery 69362df367d6a4a620fde0d7833a805436e23506 (Evan Foster)",
+   "fixed dependency_update_test.go 4d25dd3d8e403496065a130da92787f9fb175f0e (Suleiman Dibirov)",
+   "fix(dependencyBuild): prevent race condition in concurrent helm dependency adeb4ca3d974936349f1980db3ac5599bac8611e (Suleiman Dibirov)",
+   "fix: respect proxy envvars on helm install/upgrade b0603fb042c3299d16e9fdd861d3da5616e44d4a (Sidharth Menon)",
+   "fix docs of DeployedAll 90df4fa4d1b4a98b1fb208b8f5fcec87dd54ccca (Daniel Strobusch)",
+   "fix typo in load_plugins.go 7fbde331092329d1103c62cfd60398019b8e65a0 (yxxhero)",
+   "fix: wrong cli description bf4d6f290bce58388e38d4ec1b8be5621ed5623c (yyzxw)"
+  ]
+ },
+ "3.15.3": {
+  "bug fixes": [
+   "3.15.4 will contain only bug fixes and be released on August 14, 2024.",
+   "fix(helm): Use burst limit setting for discovery 3bb50bbbdd9c946ba9989fbe4fb4104766302a64 (Evan Foster)",
+   "fixed dependency_update_test.go f440d3b19ed772502b85ade33f7ee6bf4a35c85c (Suleiman Dibirov)",
+   "fix(dependencyBuild): prevent race condition in concurrent helm dependency f262d80d30bd7c13f2ffe9719d23035adcbc7ede (Suleiman Dibirov)",
+   "fix: respect proxy envvars on helm install/upgrade 7413819bb9c481707efa58b111ff0b85829b79f9 (Sidharth Menon)"
+  ]
+ },
+ "3.15.2": {
+  "bug fixes": [
+   "3.15.3 will contain only bug fixes and be released on July 10, 2024.",
+   "fix: wrong cli description 1a500d5625419a524fdae4b33de351cc4f58ec35 (yyzxw)",
+   "fix typo in load_plugins.go 70b225c9abc014cfeb73f7c9f506b0e73e912b61 (yxxhero)",
+   "fix docs of DeployedAll b3640f196a2cf77136ab01295bffe76fa184991d (Daniel Strobusch)"
+  ]
+ },
+ "3.15.0": {
+  "bug fixes": [
+   "Fix namespace on kubeconfig error 214fb6eff393f1c17890d45e9eaee86f6b37ea17 (Calvin Krist)",
+   "Update testdata PKI with keys that have validity until 3393 (Fixes #12880) 1b75d48189c2484cb5904f7996933d8d85315adb (Dirk Müller)",
+   "Some fixes 764557c470533fa57aad99f865c9ff75a64d4163 (Matt Farina)",
+   "Fix: Ignore alias validation error for index load 68294fdae0deba2464805067228790e025207ebd (George Jenkins)",
+   "validation fix 8e6a5149d2e2e3beffa51d53048b2fed90d8c529 (Matt Farina)",
+   "Fix grammatical error c25736c894ed1058c75b68fca0094c8fd953e131 (Matt Carr)",
+   "fix: reinstall previously uninstalled chart with --keep-history 9e198fa89d3c798dec1012bb4dff7107e22700d7 (Alex Petrov)"
+  ]
+ },
+ "3.14.4": {
+  "bug fixes": [
+   "fix: reinstall previously uninstalled chart with --keep-history 5a11c768386dab08ff026fb1001e592ab0a033f8 (Alex Petrov)"
+  ]
+ },
+ "3.14.3": {
+  "bug fixes": [
+   "3.14.4 will contain only bug fixes and be released on April 10, 2024.",
+   "Fix: Ignore alias validation error for index load d6acc0027dca47dec40ccdd66febd0c8bcf4813f (George Jenkins)"
+  ]
+ },
+ "3.14.2": {
+  "bug fixes": [
+   "3.14.3 will contain only bug fixes and be released on March 13, 2024."
+  ]
+ },
+ "3.14.1": {
+  "bug fixes": [
+   "3.14.2 will contain only bug fixes and be released on March 13, 2024."
+  ]
+ },
+ "3.14.0": {
+  "bug fixes": [
+   "3.14.1 will contain only bug fixes and will be on February 14, 2024.",
+   "Fix issues when verify generation readiness was merged c042264a9d1dd5d584684e105aa1ab0e38d96f20 (Matt Farina)",
+   "fix test to use the default code's k8sVersionMinor 6e5332e79b01eb37f902a3569b1e7b80a8d86dd8 (Joe Julian)",
+   "Revert \"fix(main): fix basic auth for helm pull or push\" 24e2864c64844f34518caba11f659cc971aebca6 (Matt Farina)",
+   "Revert \"fix(registry): address anonymous pull issue\" 992dc58556506a8fe71b185d998a9ac532990261 (Matt Farina)",
+   "FIX Default ServiceAccount yaml 828763e0d841fbe513f7f28e22d23fd103f97753 (Lars Zimmermann)",
+   "fix(registry): address anonymous pull issue fe4c01f6241a8de566a6fc94cb6d1e5b5eb273d6 (Hidde Beydals)",
+   "fix(registry): unswallow error da3c666a8223376e091e362856ebf0759e16fcd6 (Hidde Beydals)",
+   "Fix missing run statement on release action 21ea847ff25960f6f3a5fdbeb1bf002a5cf8fd95 (Ian Zink)",
+   "fix: pass 'passCredentialsAll' as env-var to getter fa067ec16c576dcf7ea20974baa152dca5121a9c (Mathias Neerup)",
+   "fix post install hook deletion due to before-hook-creation policy fa025fc28be80ff30ef0b2d7475aaee13a8bdaaf (zak905)"
+  ]
+ },
+ "3.13.2": {
+  "bug fixes": [
+   "Revert \"fix(main): fix basic auth for helm pull or push\" e785e6c50c622ed5019fd4020a13509c87a3022d (Matt Farina)",
+   "Revert \"fix(registry): address anonymous pull issue\" 268dcedba6a231b623c8252a3dafa0052d161c6e (Matt Farina)"
+  ]
+ },
+ "3.13.1": {
+  "bug fixes": [
+   "FIX Default ServiceAccount yaml bae7b3293c4c8ce2561874cf93ebae56d490b2f6 (Lars Zimmermann)",
+   "fix(registry): unswallow error 06e4fb10a66ea984d555905702775aab639f8790 (Hidde Beydals)",
+   "fix(registry): address anonymous pull issue 0ac78941abfed981a47f263fa59931e9123f73a1 (Hidde Beydals)",
+   "Fix missing run statement on release action 09012691de50da37254d1ef98d97333c4a3e35c5 (Ian Zink)"
+  ]
+ },
+ "3.13.0": {
+  "bug fixes": [
+   "Values handling had numerous issues fixed and now consistently has a priority of (1) User specified values (e.g CLI), (2) parent chart values, (3) imported values, and (4) subchart values. Additionally, null can now consistently be used to remove values. Note, there is a regression around this in 3.13.0 that's fixed in 3.13.1.",
+   "3.13.1 is the next bug fix release and will be on October 11, 2023.",
+   "Fix leaking goroutines in Install 169561a1b381ae1a6a3974d84c303f19f324ffa0 (Michał Słapek)",
+   "fix conflict 4944acb3410d9baf377a495f41df628115a3ce35 (Maxim Trofimov)",
+   "fix conflict 199784f7116cd1949aacb6af0b3e1cd473227d75 (Maxim Trofimov)",
+   "fix b786cb40f09212a2b1c2c337f233a9b9c28122d9 (Maxim Trofimov)",
+   "fix(helm): fix GetPodLogs, the hooks should be sorted before get the logs of each hook 4e5e68d55c3d4bb385a582e633cfeaa5635981eb (Bingtan Lu)",
+   "fix: helm rollback err tips db9460cc8710c37525e08e7d314c354108d69383 (ithrael)",
+   "fix: precedence typo bf543d94e95557cd4cc796ec5313e4548b4d126f (guoguangwu)",
+   "Avoid nil dereference if passing a nil resolver 3607cd7110a8e62c69ea02900139c1c54534aaa9 (Antonio Gamez Diaz)",
+   "Fix #3352, add support for --ignore-not-found just like kubectl delete 48dbda2fa8d1e8981c271a56fe51bdf8b131fac2 (suzaku)",
+   "Fix helm may identify achieve of the application/x-gzip as application/vnd.ms-fontobject 5c7a63138b70f2493be7ea5245791ba40091b9b2 (MR ZHAO)",
+   "fix(main): fix basic auth for helm pull or push 4a27baaffc7ae112c2f45e3cd72dd249d9563a5a (cuisongliu)",
+   "Fix multiple bugs in values handling 0a5148faffb7110bab58a466a52be0686a69947c (Matt Farina)",
+   "chore: fix a typo in `manager.go` 15e6066a45cbd2b98023cf07bb1cfb45e18d2d95 (Yarden Shoham)",
+   "fix comment grammar error. 8e1c3d0d397922313e7c3201bd3d01ec1e8747eb (wujunwei)",
+   "pkg/engine: fix nil-dereference 2a9594c0feadf0ab637c4e4c6cf50a931ba1778c (AdamKorcz)",
+   "pkg/chartutil: fix nil-dereference 2f13355e40ca2790bebb19b7182500d312a536de (AdamKorcz)",
+   "pkg/action: fix nil-dereference 6fc815da5a2951cecf6805d61b25d53bfe0ab980 (AdamKorcz)",
+   "fix: add podLabels b441f5341dd796b1ecdfcec0706a38d51cd8efb7 (genofire)",
+   "fix typo: mountPath fc1a5a1123793691a0e6f7e339ab49448fc3be77 (Eugene Zuev)",
+   "Avoid confusing error when passing in '--version X.Y.Z' 0d9eb1341b70955c266936295e6415c12c671280 (Justin Wood)",
+   "Fix flaky TestSQLCreate test by making sqlmock ignore order of sql requests 28ab648d3c6d9e9ec2b611c5c2c65fba53c8cb97 (Dmitry Chepurovskiy)",
+   "Fix broken tests for SQL storage driver c7eedbd9c583933a483917416d5c86bd6704631d (Dmitry Chepurovskiy)",
+   "Fix broken tests for configmap and secret storage drivers 95bb77c261f0965dc4e6ecf938cc754a3006939b (Dmitry Chepurovskiy)",
+   "fix: plugin does not load when helm base dir contains space 2b49de086072b24d7b93f9ddbb66b4a933963384 (Suresh Kumar)",
+   "Fixes #10566 c598a226e9c69113fc7265739b92818d6a2adf37 (alexandr.danilin)",
+   "fix(search): print repo search result in original case 488add2cfe4a4d34ce875d6f89244c6575a834db (Höhl, Lukas)"
+  ]
+ },
+ "3.12.2": {
+  "bug fixes": [
+   "3.12.3 is the next patch/bug fix release and will be on August 9, 2023."
+  ]
+ },
+ "3.12.1": {
+  "bug fixes": [
+   "3.12.2 is the next patch/bug fix release and will be on July 12, 2023.",
+   "fix comment grammar error. 91bb1e34e605a2bfc3fbc4de14921e071af84fd7 (wujunwei)",
+   "fix(search): print repo search result in original case 5b19d8eedb24691a035f1d1f1d42cb0cdde97813 (Höhl, Lukas)"
+  ]
+ },
+ "3.12.0": {
+  "bug fixes": [
+   "3.12.1 is the next patch/bug fix release and will be on June 14, 2023.",
+   "Fix goroutine leak in action install 7c9d636f40e751c775cd1baea5ef2fd4f7139f6e (Matt Farina)",
+   "fix quiet lint does not fail on non-linting errors 853c18002f51cbdc62011bf14b361362dd6a82d0 (Joe Julian)",
+   "Fixes Readiness Check for statefulsets using partitioned rolling update. (#11774) eea2f27babb0fddd9fb1907f4d8531c8f5c73c66 (Aman Nijhawan)",
+   "fix: failed testcase on windows 878e962b23ece82d2fd42fc66f01dcabaa6e8b45 (wujunwei)",
+   "Fix 32bit-x86 typo in testsuite 1fc836935684cd7505b481f2e9f3182ac23814a3 (Dirk Müller)",
+   "Fix goroutine leak in perform 11150cdcc6bb69b62ec88faa523d9ff6727e8be7 (willzgli)",
+   "Fix improper use of Table request/response to k8s API 36e18fa6e16049b5e5ec8ca4f9fefd76e6abd212 (Matt Farina)",
+   "fix template --output-dir issue 1c25a1fadd1f5f11fae9ea85f981ba0947ac97cb (yxxhero)"
+  ]
+ },
+ "3.11.3": {
+  "bug fixes": [
+   "Fix goroutine leak in perform 548366cb6c91301e595c9093ffd0ec119ca9dad0 (willzgli)",
+   "Fix goroutine leak in action install 4a3a2683536b4d46639dc7460846e44f426e5e01 (Matt Farina)",
+   "Fix 32bit-x86 typo in testsuite 272f6b9d80e35d68efb4e45942aa4d746e2df0f3 (Dirk Müller)",
+   "Fixes Readiness Check for statefulsets using partitioned rolling update. (#11774) 7994bb4d357a3846263dfb22b97da867159253fe (Aman Nijhawan)"
+  ]
+ },
+ "3.11.2": {
+  "bug fixes": [
+   "3.11.3 is the next patch/bug fix release and will be on April 12, 2023.",
+   "fix template --output-dir issue d44881ddc096444f210e1f4c3e39f95f80723753 (yxxhero)"
+  ]
+ },
+ "3.11.1": {
+  "bug fixes": [
+   "3.11.2 is the next patch/bug fix release and will be on March 08, 2023."
+  ]
+ },
+ "3.11.0": {
+  "bug fixes": [
+   "3.11.1 is the next patch/bug fix release and will be on February 08, 2023.",
+   "Fix improper use of Table request/response to k8s API 472c5736ab01133de504a826bd9ee12cbe4e7904 (Matt Farina)",
+   "Fix after CR 3d81ea22ac74e667b98a26eb80a5d427d75f7009 (Jakub Warczarek)",
+   "Fix User-Agent header in requests made by Helm 2fa7b3d1b7a289690ccc2c820b3329c6b07a1458 (Jakub Warczarek)",
+   "fix adopted resource not replaced 3181c7ddadd2271d67a457522abc13410929b64c (Vaibhav Sharma)",
+   "Resolve conflicts for go.mod and go.sum 6c76abb3df72df415dd54b9a09ce26fcee8fad95 (Soujanya Mangipudi)",
+   "Fix backwards compatibility b6fef6c4665130644acf7742040ebd46f9cc957c (Martin Hickey)",
+   "fix a few function names on comments 09d3f31358882970d02018bd84bcbcd28b47f986 (cui fliter)",
+   "Fix code style ae828ce0ee0f0ad48482cc9fd773c28b137dd23d (Martin Hickey)",
+   "fix: add cases.NoLower option for we can get same effect to strings.Title f0037e5ef6bb118dbcd6e26497014b97436888d6 (wujunwei)",
+   "avoid adding new public function cd76fcd80557490d2f2ee1204b1bdbf78c738ec9 (CI)",
+   "fix tests 32a41fcfac9ca1b4f4997a6660bacba9a01a9d45 (CI)",
+   "fix: clean up temp files in FindChartInAuthAndTLSAndPassRepoURL (#11171) 24fa3d910d774b9d7f40f1fc8002bc1fb55565ca (CI)",
+   "Fix URL with encoded path support for ChartDownloader d9e5bbc09d4d44660fe20df41ce3b567f0336f85 (Mathieu Parent)"
+  ]
+ },
+ "3.10.3": {
+  "bug fixes": [
+   "Fix backwards compatibility 835b7334cfe2e5e27870ab3ed4135f136eecc704 (Martin Hickey)"
+  ]
+ },
+ "3.10.2": {
+  "bug fixes": [
+   "3.10.3 will contain only bug fixes and be released on December 14, 2022",
+   "fix a few function names on comments 50f003e5ee8704ec937a756c646870227d7c8b58 (cui fliter)"
+  ]
+ },
+ "3.10.1": {
+  "bug fixes": [
+   "3.10.2 will contain only bug fixes and be released on November 9, 2022",
+   "avoid adding new public function 75a1369794499daa7223271996781cadaf2c1adf (CI)",
+   "fix tests 959acd8a1da38d33b5069f083a040fa237c04bfd (CI)",
+   "fix: clean up temp files in FindChartInAuthAndTLSAndPassRepoURL (#11171) f6830f7b0ab91909454fbdc476b4e760d6525abc (CI)",
+   "Fix URL with encoded path support for ChartDownloader 4e075315f81311372568d73f2c929577d10c0de2 (Mathieu Parent)",
+   "fix: add cases.NoLower option for we can get same effect to strings.Title 48444319694a4b6110541ef7bfea9a8627c1aa39 (wujunwei)"
+  ]
+ },
  "3.10.0": {
+  "bug fixes": [
+   "3.10.1 will contain only bug fixes and be released on October 12, 2022.",
+   "fix special string in the filename ece46c1d3a44e5f90cca0cbb96ae302dc47885cb (d-d-up)",
+   "fixes #11142 missing array length check on release b9f347a574851d01f058663d7b65a108b9f980bc (Arvid E. Picciani)",
+   "fix: use `go install` instead of `go get` aa6e82bac8db0b50766c03276dd0fed1bba6208c (Matthew Fisher)",
+   "fix: improve logging & safety of statefulSetReady 7c74f1dd027709156c3345e1965693f04b8dd9ac (Dominic Evans)",
+   "Fixed helm uninstall not deleting the resource. fe00c9296d50acc490dd08cd95eb014d37409716 (Mayank Thakur)",
+   "Fix UT d8c0e01132705b427d27835f9d3e2e8bb3e4da22 (stan-sz)",
+   "Fix linter 6c55d9e3e9f45afd576a9480fcad88d7d9d12ef5 (stan-sz)",
+   "fix --registry-config issue 9f199b6517c21394bca555983c70fc232d65014c (yxxhero)",
+   "fix(helm): ignore file-not-found error for `helm repo list -o json` 94779dc99f266adde81882412ee944072da3b136 (Teo Klestrup Röijezon)"
+  ],
   "security updates": [
    "Bump k8s.io/kube-openapi to fix CVE-2022-1996 in github.com/emicklei/go-restful 1e0f8a4ee9991d1244b8576021011ef45982e955 (Guilherme Macedo)"
   ]
@@ -44,6 +734,1304 @@
  "3.9.3": {
   "security updates": [
    "Bump k8s.io/kube-openapi to fix CVE-2022-1996 in github.com/emicklei/go-restful 414ff28d4029ae8c8b05d62aa06c7fe3dee2bc58 (Guilherme Macedo)"
+  ],
+  "bug fixes": [
+   "fixes #11142 missing array length check on release c801d8876a6fc9c9a5bfa15f31892e16cd30c7bd (Arvid E. Picciani)"
+  ]
+ },
+ "3.9.2": {
+  "bug fixes": [
+   "3.9.3 will contain only bug fixes will be on August 10, 2022"
+  ]
+ },
+ "3.9.1": {
+  "bug fixes": [
+   "3.9.2 will contain only bug fixes will be on August 10, 2022",
+   "fix: improve logging & safety of statefulSetReady 06f449dd762e54f5d6c1245c1ec306182d1a16d7 (Dominic Evans)"
+  ]
+ },
+ "3.9.0": {
+  "bug fixes": [
+   "3.9.1 will contain only bug fixes and will be released on June 8, 2022",
+   "Fix --untardir reference in --destination description 41ccf7b5aba9677573952ba4b4a47be5f0170525 (Simon Alling)",
+   "fix(helm): update golang.org/x/crypto to latest 5105899a86c78630d8cd507c266f8d86c4ea1524 (Colleen Murphy)",
+   "Fix confusing test failure message 56e52d139c27b43397c567ecc31aea1ce0e73b5d (Simon Alling)",
+   "fix: \"... has no deployed releases\" error when release history contains only failed releases and history limit reached da8e7d25329f9539cf034588d5638099fd69fda9 (Timofey Kirillov)",
+   "repo: fix repo merge unit test 7a08426869abd4c0bcfe09081c337bdb2bab909a (Markus Lehtonen)",
+   "fix: run 'go mod tidy' for go 1.17 45af381aa4890a1306d56c5b5082390eb3bb248e (Theo Chupp)",
+   "maint: fix syntax error in deploy.sh 75fa221b75326f7ef1815281534b4887dc122c9e (Josh Dolitsky)",
+   "linting issue fixed cfeb431e3c52d59f2bd1853f66bab042f208e989 (Sourik Ghosh)",
+   "Avoid querying for OCI tags can explicit version provided in chart dependencies 01ff5bb00de47709f3c386b28077141df4d1032a (Andrew Block)",
+   "fix: remove deadcode e97c436a8679fa8d5b62e8582249faf0c79e170f (Tomas Pizarro Moreno)",
+   "fix: helm package tests 0963617b9b0100f8b84cde0037be02abe9628b23 (Tomas Pizarro Moreno)",
+   "fix: helm package with dependency update for charts with OCI dependencies e02aeab0e9babe9b16f31362746b5e70790f6e7f (Tomas Pizarro Moreno)",
+   "fix: support empty args with --post-renderer-args 1a7a73b47bd1b0475422211dbacd0d22c99e2394 (guofutan)",
+   "fix: fix args name in postrender/exec_test.go and error if order in postRendererArgsSlice 04e79e936d59d953339cc5b283327bb4b6a64f2d (guofutan)",
+   "fix: change postRendererArgs to Slice Type and use args... d12170b3f20f287268283f2809da751a14f2d743 (guofutan)",
+   "fix: keep the API: postrender.NewExec and Add NewExecWithArgs 44423fb2ca59547968b1028427b5ea0c3176d5a8 (guofutan)",
+   "fix: keep the API: postrender.NewExec and Add NewExecWithArgs 1aab7eb3a1046731d55c14b302bd35fcc4da1140 (guofutan)",
+   "Fix typo Unset the env var before func return in Unit Test 141f2dd501a93ffdb29f2550239a1fc460db9987 (Kay Yan)",
+   "Fix install memory/goroutine leak 5059ae843ef6b504fe55f914953e249a14ff5838 (Neven Miculinic)",
+   "fix(rollback): fix helm rollback doesn't have meta.helm.sh annotations 94dc605968758a63067eceb4978d2347194d2c5b (cndoit18)",
+   "Make validation errors easier to fix 65ec3d6fd6e88f100216edbde789ed8417d1a87f (Damien Nozay)",
+   "fix tarFromLocalDir saving file dependencies in dest path adfb52eda508b80a854da34dd7978d480d46e345 (Matthew Fisher)",
+   "Fix value precedence c4952c9c8c5fce29635b9795b6070f616a31615c (Aram Zegerius)"
+  ]
+ },
+ "3.8.2": {
+  "bug fixes": [
+   "Make validation errors easier to fix 7df8251760085ba247fce49415e2be20e6f08ab7 (Damien Nozay)",
+   "fix tarFromLocalDir saving file dependencies in dest path bd77989fb14b017880fde4bf842c7fa459b13f0a (Matthew Fisher)",
+   "Fix value precedence 5d017e11f1f47345a3559bf70f63d81a7edc981a (Aram Zegerius)"
+  ]
+ },
+ "3.8.1": {
+  "bug fixes": [
+   "3.8.2 will contain only bug fixes and will be released on April 13, 2022.",
+   "fix: remove deadcode 952d034ed0d4e48f64e894ecc96712a2b5a6ad8f (Tomas Pizarro Moreno)",
+   "fix: helm package tests 02028a27a88d2a800a6ffc95163246987e5754dc (Tomas Pizarro Moreno)",
+   "fix: helm package with dependency update for charts with OCI dependencies bc3d14cbc5399fcce1aa739a15a7a02416cf6133 (Tomas Pizarro Moreno)",
+   "Fix typo Unset the env var before func return in Unit Test 9499df01bbc5eff5a463045977918f714d79a0c5 (Kay Yan)",
+   "maint: fix syntax error in deploy.sh 7663ffa87b5294152152c9a1b0d8b424dcd51952 (Josh Dolitsky)",
+   "linting issue fixed 803ecb837a5f842f57f3a9a86788e468469d9fcc (Sourik Ghosh)",
+   "Avoid querying for OCI tags can explicit version provided in chart dependencies 3aacde171ef8504c431e783c25a01de0d1776801 (Andrew Block)",
+   "Fix install memory/goroutine leak 4827ca1f167937f9599ad2486e43ce3914192f43 (Neven Miculinic)"
+  ]
+ },
+ "3.8.0": {
+  "bug fixes": [
+   "3.8.1 will contain only bug fixes and be released on March 09, 2022.",
+   "Fix panic with OCI for install, upgrade, and show 548ec55cf9ee54f8563c2848b9f9fd33b8753936 (Matt Farina)",
+   "Fix linting ba4020770ec21286dbf9cb4b6c6c82b42ee8d4d3 (Scott Rigby)",
+   "Fixed bad commit 9c3b0008896d840237617bae8cc9823b77b536d4 (Andrew Block)",
+   "Fix import 4c8a3faaa28e67316297d68fcb1cca0a54a8ae56 (Scott Rigby)",
+   "Fix Trim to TrimPrefix 1fabbabae9fd0c76fccf2a6658de867d8cf96ab9 (Scott Rigby)",
+   "Add OCI tag verions to the Dependency object before Resolve. TODO: fix HTTP HTTPS error for local registries e3f2fb42357fbe67257b0eeacd82cb6cba98c7c1 (Scott Rigby)",
+   "Fix typo. Thanks buildbot. Also comments at 80 chars 157ac85ab72827062b963a99ab7990c31804c5dd (Scott Rigby)",
+   "Fix memory leak in upgrade action ad3d2cc8efc12e2aa7a0144ed4a11169193646e3 (Jerome Küttner)",
+   "fix(pkg/kube): statefulSetReady: handle partition cases correctly c3310bb72496e97237008f5f9fafa52f5d7d69a9 (Bhavin Gandhi)",
+   "Fix specifying of Kubernetes version from build scripts 7838fb769d00f53c858d994a873f42c2960a7d25 (Matt Farina)",
+   "fix: added resource info into the validation error 7f68bfa1fa9146b0fcc0cb6b30a50f6df40cc7ff (Timofey Kirillov)",
+   "fix a SIGSEGV similar to issue 1347 fe6f348490f32d5dab3173e037626b8f12cd431c (Brandon Cole)",
+   "Fix a golint issue caused by typo 9b7a45a384dff68c96e0811e267cebfbe6b6ac2f (Guangwen Feng)",
+   "fix(helm): process dependencies import-values 1931b0702dd7f0d19a66ddd9b882d62e7622943d (Stuart Drennan)",
+   "docs: fix typo Charts.yaml 5753f61ae35c2507b3116d84662d45f51cfa2099 (Alexey Igrychev)",
+   "Fix default registry config path of oci protocol provider 52cbc2f49c0f2e1675783f04b1426166419da46c (Kai Takac)",
+   "Make validation errors easier to fix 9fa373e8be0a6f4f3d25be91a6c7be874f7714ac (Damien Nozay)",
+   "fix tarFromLocalDir saving file dependencies in dest path d2dd32470b312095e8c7399146bc684b89ffeaa6 (Matthew Fisher)",
+   "fix(install): if subcharts are disabled, the CRD for subcharts should not be installed da15d96a680111a09f0436b19afb07fd9895fa02 (cndoit18)"
+  ]
+ },
+ "3.7.2": {
+  "bug fixes": [
+   "Fix memory leak in upgrade action 95c03eecdb87feae2ba5d5651225ef6f53d6892a (Jerome Küttner)",
+   "Fix specifying of Kubernetes version from build scripts bb7f8b2b4092f4040247525ab406f62babc174c5 (Matt Farina)"
+  ]
+ },
+ "3.7.1": {
+  "bug fixes": [
+   "3.6.4 will contain only bug fixes and is planned for release on November 10, 2021.",
+   "docs: fix typo Charts.yaml 2aacc5f07a67d207f14f28f84c63a7e85dfd4ec7 (Alexey Igrychev)",
+   "Fix default registry config path of oci protocol provider 57ecc256a0225ba396da4aed00b08853bd90b6c9 (Kai Takac)"
+  ]
+ },
+ "3.7.0": {
+  "bug fixes": [
+   "3.7.1 will contain only bug fixes.",
+   "fix tarFromLocalDir saving file dependencies in dest path eeac83883cb4014fe60267ec6373570374ce770b (Matthew Fisher)",
+   "Fix HELM_DRIVER docs for sql option bc1fefa9f33f14521c44e08768c9f9bac3681907 (Ed Carrel)",
+   "Fix encoded path for 'helm dependency build' 58018d121098992121071e83b576700cd4f273e1 (Mathieu Parent)",
+   "Fix SIGSEGV when job.Spec.Completions is nil 249d1b5fb98541f5fb89ab11019b6060d6b169f1 (lsowen)",
+   "fix: refactor downloadAll 4b23d0a25b15f990e5de9bc2e1e8cbd80de9243c (Matthew Fisher)",
+   "[fix concern] implement test 2131f4cba830dc2910990b629ba12f40de8edd3c (André Schröder)",
+   "[fix concern] use io.ReadAll instead of ioutil.ReadAll 6515ea84e2c20e844fd015ca8a973953c87285bd (André Schröder)",
+   "fix(engine): parse fail messages with newlines 79df3926f623e040ae50dd6d84a0bbd985c591af (Cory Snider)",
+   "fix HELM PLUGINS behavior another_way 90fa4c962a16ea0d62f0f9b835760e98ecc33630 (yxxhero)",
+   "Resolve PR comments 4bc901c95f3589b6d6b4b3bc0843347334cd0f68 (Stephane Moser)",
+   "fix(typo): fix typo of storage doc 2deb641efd1af421d4afd28f2ae75a4b10b0870f (longkai)",
+   "fix(tests): Remove unnecessary test 6a3daaa7aa5b89a150042cadcbe869b477bb62a1 (Marc Khouzam)",
+   "fix(ci-lint): increase timeout for golangci-lint d1da9e757e140268068d32c051ccd88013138096 (Adam Reese)",
+   "fix(doc): fix kube client interface doc. (#9882) cf0c6fed519d48101cd69ce01a355125215ee46f (小龙同学)",
+   "Fix the url being set by WithURL on the getters 4e2e4084edc0fa1e21d6a9a83b3ffdc8c1ec5e01 (Matt Farina)",
+   "resolve golint errors 8f60ee76a5b78b406d3f9f304e671ce581c1b8d5 (Josh Dolitsky)",
+   "Fix coalesce globals to prevent subchart globals to leak upstream 3b68afc1c820d456e8281a6e6911af59c4b661c8 (Giacomo Margaria)",
+   "fix(dep update): helm dep update is not respecting the \"version\" stipulated in the requirements 402c7f1a52eb93dbd78710c8afd6291fd8b0c4c7 (cndoit18)",
+   "fix v2 install script, hardcode to v2.17.0 74c41179755120516f0f4f16d8dbe0510f2a6eed (Cameron Motevasselani)",
+   "fix helm dep build/update doesn't inherit --insecure-skip-tls-verify from helm repo add f735a240b6fc483b74e324202dad414ee419225e (yxxhero)",
+   "Fixed Test 7a663a56c24f4dd05375a4ece81e6107eb1b0d78 (Marcus Speight)",
+   "[FIX]error string should not be capitalized 89f2f84a0241422d3c430e2e67c3e4e21fbf4eb8 (Scaat Feng) [FIX]comment should start with whitespace 9020c95fb139944a99632ad5154a4fd5d89032d1 (Scaat Feng)",
+   "[FIX]comment should start with whitespace f1f2e6ff4c4d65d14b1caa809be4257919047049 (Scaat Feng)",
+   "[FIX]comment should start with whitespace 1852694a65a1d64496af06492833b3182032bec6 (Scaat Feng)",
+   "[FIX]error string should not be capitalized 14f6bde04a062da4e5491fdfd9e42263e127534b (Scaat Feng)",
+   "[COMMENT]fix comment 0de89685d428b8af7f1188711f256e7c12703e64 (Scaat Feng)",
+   "[FIX]'rest' collides with imported package name b6bd8d7363cf6ffeb7178526e7284603a6bb4495 (Scaat Feng)",
+   "[FIX]receiver names are different 5c14eec3a39fb2f2cabdd616e9638f15a0946934 (Scaat Feng)",
+   "Fail message is now the same as the required message. Fixed #8973 Helm function 'fail' should not fail when doing 'helm lint' 7a0739a863d36371ed7e57ac5205926c7e574a24 (Marcus Speight)",
+   "fix(sql storage): Query() should return ErrReleaseNotFound immediately when no records are found b86105aebc535541b8a40aefdfc443d434d06106 (Mike Ng)"
+  ]
+ },
+ "3.6.3": {
+  "bug fixes": [
+   "3.6.4 will contain only bug fixes and is planned for release on August 11, 2021",
+   "fix(dep update): helm dep update is not respecting the \"version\" stipulated in the requirements fb31357e6b9f3f048d4d7ed57a00a7d942e86fd8 (cndoit18)",
+   "fix(doc): fix kube client interface doc. (#9882) 29d4e1b9beec93d21f09c614b9ca3e770993ee2f (小龙同学)",
+   "Fix the url being set by WithURL on the getters 473e83e303ca19403eb7cb5f110a001cf7adf632 (Matt Farina)",
+   "fix(sql storage): Query() should return ErrReleaseNotFound immediately when no records are found f2d7ed8d8099dfd94478be40eed1a237bc2d8ef5 (Mike Ng)",
+   "Fixed Test cbd2868ac2f73899dda1df9546d69ccd26230150 (Marcus Speight)",
+   "Fail message is now the same as the required message. Fixed #8973 Helm function 'fail' should not fail when doing 'helm lint' bcee7a30fe97133ef4302354f06261abe1a8b917 (Marcus Speight)",
+   "fix helm dep build/update doesn't inherit --insecure-skip-tls-verify from helm repo add 80402dc078908408fb724395177093f358ee7dae (yxxhero)"
+  ]
+ },
+ "3.6.2": {
+  "bug fixes": [
+   "3.6.3 will contain only bug fixes and is planned for release on July 14, 2021",
+   "Fix the url being set by WithURL on the getters ee407bdf364942bcb8e8c665f82e15aa28009b71 (Matt Farina)"
+  ]
+ },
+ "3.6.1": {
+  "bug fixes": [
+   "3.6.2 will contain only bug fixes and is planned for release on July 14, 2021"
+  ]
+ },
+ "3.6.0": {
+  "bug fixes": [
+   "3.6.1 will contain only bug fixes and is planned for release on July 14, 2021",
+   "Fix capabilities changes leaking into other tests 0156ca61ca6999bcfb093d210a4ee597aece0edf (Thomas Dy)",
+   "fix(ci) update ci to use main branch db2aa1a8d633756ec0814cf2f58889d8a767a9a1 (Adam Reese)",
+   "Fix the example for --time-format flag 30f643ce6791b35afeff6b220afeb399cfee54cc (mert)",
+   "fix(cmd): Show that flags can be used for zsh/fish 7b6dcfae98527c3ff7233fc16cbeac782dd82977 (Marc Khouzam)",
+   "fix windows tests 4f1ab5a331d99370ff7bbd1f2004fe80878fbdaf (Christian)",
+   "fix(test): Increase golangci-lint timeout 8d33624520375f5c7d60b15e9ff24a59232f336f (Marc Khouzam)",
+   "fix(helm): get/get-helm-3 whitespace support in runAsRoot 784782013a11c5f1640fb454ec7b9ea0fbf2c389 (Michael Musenbrock)",
+   "fix release sha256 24925c4ca384145706c59da8c5605177c4f0f31a (houfangdong)",
+   "fix(*): Validate metadata semver and printable characters 657ce552cb6e582976c08cccc9605e42c242084e (Adam Reese)",
+   "Fix-9253: Change the deprecated charts repo URL in release notes 64e2d596cf17688d4db1446c62255b07c755db64 (Jack Whitter-Jones)",
+   "Fix `helm list --offset` cli help string f9200231813d1804038a602deb0f979ec60a56b8 (Krish)",
+   "Fix dep build with OCI based charts 1135392b482f26f244c3c69f51511a1d82590eb7 (Matt Farina)",
+   "Fix typo in comment fee2257e3493e9d06ca6caa4be7ef7660842cbdb (Guangwen Feng)",
+   "fix(Makefile): rebuild the binary if go.mod has changed a58209dfa41d291c49dcb42b123b336c782356f3 (Adam Reese)",
+   "fix(pkg/storage): If storage.Create fails to clean up recent release versions, return an error 00cf10d360de3fbe440789ee51662c2894e041ce (Daniel Lipovetsky)"
+  ]
+ },
+ "3.5.3": {
+  "bug fixes": [
+   "3.5.4 will contain only bug fixes and be released on April 14, 2021",
+   "Fix the example for --time-format flag 041ce5a2c17a58be0fcd5f5e16fb3e7e95fea622 (mert)",
+   "fix(pkg/storage): If storage.Create fails to clean up recent release versions, return an error d552cb3b1d491f4a1aa170d9903a897c1e9ffc7f (Daniel Lipovetsky)",
+   "fix(test): Increase golangci-lint timeout bc3cd84eda51a2732d323f21aa67999eb4b9f4a7 (Marc Khouzam)",
+   "fix release sha256 dc3971631e1032b6d79c09513a9c3741b3ea6dba (houfangdong)",
+   "Fix-9253: Change the deprecated charts repo URL in release notes ec560e5f2b3405413a025d031a16c7f7f24ff547 (Jack Whitter-Jones)"
+  ]
+ },
+ "3.5.2": {
+  "bug fixes": [
+   "During an audit, Helm core maintainers discovered sanitization issues [described in a security advisory](https://github.com/helm/helm/security/advisories/GHSA-c38g-469g-cmgx). These have been fixed.",
+   "The Go team renamed a crypto library (golang.org/x/crypto/ssh/terminal to golang.org/x/term). This was NOT a security fix. But it was a breaking change to the Helm build.",
+   "3.5.3 will contain only bug fixes and be released on March 10, 2021.",
+   "fix(*): Validate metadata semver and printable characters 2bf5c280d56e0043bf1870f84d63e82d5c5d4230 (Adam Reese)"
+  ]
+ },
+ "3.5.1": {
+  "bug fixes": [
+   "3.5.2 will contain only bug fixes and be released on February 10, 2021."
+  ]
+ },
+ "3.5.0": {
+  "bug fixes": [
+   "3.5.1 will contain only bug fixes and be released on February 10, 2021.",
+   "Fix dep build with OCI based charts 32c22239423b3b4ba6706d450bd044baffdcf9e6 (Matt Farina)",
+   "Fixed bug - The flags --cert-file/--key-file where ignored when --insecure-skip-tls-verify flag is set (#9070) a202fb0c0b73a1093609251476e0d8a1b76b3b8f (Dinu Mathai)",
+   "fix(pkg/chartutil): Remove warning for nils bed1a42a398b30a63a279d68cc7319ceb4618ec3 (Marc Khouzam)",
+   "Fix test f30badd5709ebc1afbc809716c8aae3c9ebcc7fc (rimas)",
+   "Fixes #9083 ce1a46899f5b1e7ba9d485d7800d0d23313d7d7b (rimas)",
+   "[COMMENT]fix comment 7c4932c485edb49874919c2cd6bb171506497c3d (Scaat Feng)",
+   "Fix typo 5d08a0d00e4f0d31d6db55e71bccbcd665366c9a (Jon Huhn)",
+   "fix: ingress path issue 50144aad0332692059534acd574fcf141307ef2d (Salim Salaues)",
+   "fix(helm): flag descriptions start with lowercase e16d26717b1b7588ab24fa0a87e48dc1940c80d2 (Marc Khouzam)",
+   "fix style conformance bd03e1b5c70cffd13e740f40ef1c0e8c3a49e092 (zhangye15)",
+   "fix test-style error c96dc48f21adbc79e410fafc63f6f6daa221c424 (zhangye15)",
+   "Fix that the invalid version number of the helm package command will escape 2c19838295b9b1efd7fb548d047eaff53095ab52 (wawa0210)",
+   "Fixes Error: could not find protocol handler for 882db2543c90bb6e50ffe98083963b65a47cc662 (Matt Farina)",
+   "Fix the lint error message for valid names 5785dd6d497f3eb025a92416db19508cc9a372f0 (Martin Hickey)",
+   "fix(test): display error message 38c964ae8134a65c1ffda13e37ac8e5573bd3de3 (Matthew Fisher)",
+   "fix(helm): allow skipping manifests in tests directories 3d66daeb55d947c4d30d542dfb7459afc21a3c10 (Torsten Walter)"
+  ]
+ },
+ "3.4.2": {
+  "bug fixes": [
+   "fix: ingress path issue 3ba833f5ad97c157a3a27b9985d6f0c660db901e (Salim Salaues)"
+  ]
+ },
+ "3.4.1": {
+  "bug fixes": [
+   "3.4.2 will contain only bug fixes and be released on December 9, 2020",
+   "Fix that the invalid version number of the helm package command will escape b266b571ce971574ac07e4513cdce05e2db0a8be (wawa0210)",
+   "Fix the lint error message for valid names 1f6fd5df26514907d1ac2014f44ca399cdf0b8fc (Martin Hickey)",
+   "Fixes Error: could not find protocol handler for e1858f78359af4948a94628fa318e44cd2e1aaa0 (Matt Farina)"
+  ]
+ },
+ "3.4.0": {
+  "bug fixes": [
+   "3.4.1 will contain only bug fixes. It will be released on November 11, 2020.",
+   "Fix wrong function's name in comment a167b3fc8719db19e87280bc134a24801808272e (zouyu)",
+   "fix example time format b17cf19a2eab5664375c8578531940cafe4aa035 (Abhilash Gnan)",
+   "fix ls command example 78177de664942452485aee890ddf07fa1cf4e420 (Abhilash Gnan)",
+   "fix: allow serverInfo field on index files f19acbdc94578194d19a6758f01cd8eed85b792e (Matthew Fisher)",
+   "fix(cmd/helm): add build tags for architecture 45d230fcc95c1c4d2e055b7451a988441f038509 (Adam Reese)",
+   "fixed bug that caused helm create to not overwrite modified files 106f1fb45c93fe862ac86d9b774e2de8b1dd314c (Matt Butcher)",
+   "fix: if not .Values.autoscaling.enabled indent b4bb73d8ceeb4abf70c1a2e57d4779b5bfd6a82e (Thulio Ferraz Assis)",
+   "fix: check mode bits on kubeconfig file 82398667dfe208407be9fe499ac96240aa8ce54b (Matt Butcher)",
+   "fix incorrect wildcard expand d1c8561be6e6b08bbf425dc79631149100a1e0db (Li Zhijian)",
+   "fix(comp): Disable file comp for output formats 459dcd7f728b38ec44c72d79192ee93d6964d53d (Marc Khouzam)",
+   "Makefile: Fix LDFLAGS overriding f917c169d001a96fbdfd7943c441fb09509b9f7f (Morten Linderud)",
+   "fix: with .Values.podAnnotations indent template 6766017d388cbc21636f6b1deb9ab931a4617259 (Thulio Ferraz Assis)",
+   "Fixed a variable name collision caused by two PR merges (#8681) 04fb35814f64122c0aa08165f6fdb7b67c216558 (Matt Butcher)",
+   "Fix/8467 linter failing (#8496) 70d03e5cefa8f42727e29db310f78aeae4d65bb0 (Matt Butcher)",
+   "fix name length check on lint (#8543) 96d9ab9663b69cbd85444ca5232d8283017eeeea (Matt Butcher)",
+   "Fix spelling in completion.go 45b084b25504a1e19592684f964f43b57792875a (knrt10)",
+   "pkg/*: Small linting fixes 4abcdc40efb9ad455ed99bc73c8ee716fe89123d (Manuel Rüger)",
+   "Correct checksum file links 8a545d6ca7e40ae412c53f5dc683ecc8a8ecdb96 (Ma Xinjian)",
+   "Fix Quick Start Guide Link in README.md 5421c7e99526af9683491fe5e069ed001fb5fd58 (Tero)",
+   "Fix linting issues 09172b468a7c8278c566880c26efd1078e43e5c8 (Dmitry Chepurovskiy)",
+   "fix test that modifies the wrong cache data 131510aa94faaa66ea4b3c3b7e4156206902ffc5 (Matt Butcher)",
+   "bufix: fix validateNumColons docs fbc32aea3d43853f94768e4bc7bc4045fe9fb749 (bellkeyang)",
+   "Fix typo 4cc19d1d82c4f4ee4bb9af5739e1184f5800f588 (Martin Hickey)",
+   "Fix issue with install and upgrade running all hooks 44212f83dc9c893d962fe48648320e7b7b66950c (Matt Farina)",
+   "fix watch error due to elb/proxy timeout 4faeedd98b03e5af7733317a84e77ebff28c55f7 (Rajat Jindal)",
+   "Avoid hardcoded container port in default notes d141593d834f99822c08b9f3ca768258483afbf1 (She Jiayu)",
+   "fix(sdk): Polish the downloader/manager package error return (#8491) ffc3d42f87f8334684f12372bbdda8147702a12d (Holder)",
+   "fix insecure-skip-tls-verify flag does't work on helm install, Keep FindChartInRepoURL and FindChartInAuthRepoURL functions signatures intact. 52295490fd7a22c05058ad6eab794ccd4fdf3193 (yxxhero)",
+   "fix: Allow building in a path containing spaces 9a13385022b0976a704c24c8d11e7b0f3561b931 (Chris Wells)",
+   "fix(create): update the hook name of test-connection pod 9777925a2ae1e98a3e7ec3923d0b56b7199c7806 (Dong Gang)",
+   "fix(helm): Update test during pending install 0d70c63396083f868963797632715f06c9b90ca9 (Cristian Klein)",
+   "Correct make target in Makefile 08517a9ec0abbf238d56ec97de80e6ecc8946ab6 (Bridget Kromhout)",
+   "fix(helm): Added test for concurrent upgrades 20fb7bac4e9001751a0b04c71006b4bb506378cf (Cristian Klein)",
+   "fix(helm): Avoid corrupting storage via a lock 9a4f4ec64b8092d2ba3d7493001837df4737e36c (Cristian Klein)",
+   "fix the code style error 1dfe66aa85bf09cd1f09271c2810c5deb9f22454 (Dong Gang)",
+   "fix(kube): use logger instead of fmt.Printf 8217aba4a6cf04bac538ba2178603ec1378dbaef (Hidde Beydals)",
+   "fix windows build failure caused by #8431 7ba8343b8d0edc1a3de96ee15003b072c7e72627 (Jack Weldon)",
+   "fix conflict d58a984878ea290e04a135ef037b75e13b7b8df5 (zwwhdls)",
+   "fix another extreme case 4532485fd03a8cb56186c93ffeba285431073429 (zwwhdls)",
+   "fix #6116 5396df2e282c61ffb1fc8fa65240c36a0216055f (zwwhdls)"
+  ]
+ },
+ "2.17.0": {
+  "bug fixes": [
+   "Fix for issue 8761 d46f7bc2ca9b160e9a7ddf51f56be3a77959ee1c (Martin Hickey)",
+   "fix formatting error (#8758) b9566b8799f3981fe68d543fb3a6c2cb0dc0c3dc (Matt Butcher)",
+   "fix: use yaml annotations for yaml.v2 validation a9d1204edd6bb87ad9209694297798bcbd3b4e59 (Matthew Fisher)",
+   "backported fixes from helm3 7c287078c1505fbe662fcb77fcb2b873b01d501f (Matt Butcher)",
+   "fix: removed strict template errors from v2 linter a979ba8c587b4b0511b1822f3f1aa521755b864d (Jeff Knurek)",
+   "[v2] fix stack overflow error in helm template. (#7185) 0b31450452666da00e55c41699b5c320171e9748 (zwwhdls)",
+   "fix(ci): use go 1.14 (#8288) 7606f0879c9eef980e652bd74842c6dcf1ee28a7 (Adam Reese)",
+   "fix(Makefile): disable go modules b6771ab6c4f297cb26092ff3fe507ae7b55e9d79 (Matthew Fisher)",
+   "fix(tiller): Avoid corrupting storage via a lock c32c9a510bce24278ff5c17cc8401e0ff5c32042 (Cristian Klein)"
+  ]
+ },
+ "3.3.4": {
+  "bug fixes": [
+   "3.3.5 will contain only bug fixes."
+  ]
+ },
+ "3.3.3": {
+  "bug fixes": [
+   "3.3.4 will contain only bug fixes.",
+   "fix: allow serverInfo field on index files 55e3ca022e40fe200fbc855938995f40b2a68ce0 (Matthew Fisher)"
+  ]
+ },
+ "2.16.12": {
+  "bug fixes": [
+   "Fix for issue 8761 47f0b88409e71fd9ca272abc7cd762a56a1c613e (Martin Hickey)"
+  ]
+ },
+ "3.3.2": {
+  "bug fixes": [
+   "3.3.3 will contain only bug fixes.",
+   "fix(cmd/helm): add build tags for architecture 45d230fcc95c1c4d2e055b7451a988441f038509 (Adam Reese)",
+   "fixed bug that caused helm create to not overwrite modified files 106f1fb45c93fe862ac86d9b774e2de8b1dd314c (Matt Butcher)",
+   "fix: check mode bits on kubeconfig file 82398667dfe208407be9fe499ac96240aa8ce54b (Matt Butcher)"
+  ]
+ },
+ "2.16.11": {
+  "bug fixes": [
+   "fix formatting error (#8758) 73b28bab84490d18ab1b71489a574ee18e229eea (Matt Butcher)",
+   "fix: use yaml annotations for yaml.v2 validation 077ffec4149aed43ba43942841473399afe4d3d1 (Matthew Fisher)",
+   "backported fixes from helm3 6aab63765f99050b115f0aec3d6350c85e8da946 (Matt Butcher)"
+  ]
+ },
+ "3.3.1": {
+  "bug fixes": [
+   "3.3.2 will contain only bug fixes.",
+   "Fix spelling in completion.go 249e5215cde0c3fa72e27eb7a30e8d55c9696144 (knrt10)",
+   "Fix Quick Start Guide Link in README.md 800c627556938a0d632ef9d998dc1599f7ccc74c (Tero)",
+   "fix test that modifies the wrong cache data fcb5e7789045cb7e3cad5a7319d56819c7105ceb (Matt Butcher)",
+   "bufix: fix validateNumColons docs 53f68d8b64df51f87f70e0a9f28258bef18752a1 (bellkeyang)",
+   "Fix typo ffc0aff3408e5c4b1973543e05f67e5aefe8ef59 (Martin Hickey)",
+   "fix: Allow building in a path containing spaces 58f61d740ac5e97c66124bd5e69b7874d84cb971 (Chris Wells)"
+  ]
+ },
+ "2.16.10": {
+  "bug fixes": [
+   "The Helm v2 bugfix window is now closed. Security fixes will still be accepted until November 13th, 2020.",
+   "fix: removed strict template errors from v2 linter f8d18c868c18e876080102c515d3a47e8198d9f4 (Jeff Knurek)",
+   "fix(tiller): Avoid corrupting storage via a lock 5f66676300a134f467d7dc8cf714947eba04de12 (Cristian Klein)"
+  ]
+ },
+ "3.3.0": {
+  "bug fixes": [
+   "3.3.1 will contain only bug fixes.",
+   "Fix issue with install and upgrade running all hooks 8a4aeec08d67a7b84472007529e8097ec3742105 (Matt Farina)",
+   "fix(template):Issue:helm template with --output-dir (#8156) ceff32d5f8aa173549426625b608137a47981447 (DongGang)",
+   "fix(cmd): display warnings on stderr 863588ca69209153863f72327fe8c818c963904a (Matthew Fisher)",
+   "Fix some go-lint warnings c6a00e63ef638c14be5560534c339484e35eb7ba (zouyu)",
+   "Fix golint issue 7ec501155d082d2e2cc314d7fd03729b5873f21c (Guangwen Feng)",
+   "fix template command use --show-only flags error in windows environment 4f136861d397ec37b18c92ceee8027333ba1bc24 (ShenXinkang)",
+   "fix(chartutil): do not set helpers.tpl filetype for vim aa033196692ea9c4416fbb3859bebf05aded6bef (Adam Reese)",
+   "fix(doc): generic description for --version/verify e09e8604e6160775890c154b1fb8b6683a8bbb6f (Marc Khouzam)",
+   "Fix description is ignore when installed with upgrade 562767b04015546e53677bb3c8aa5cae12897fa3 (wawa0210)",
+   "Fix crashing `helm chart list` with large list a0fd1d81f03aaabbd961f0bfd0dfd907493078c6 (Peter Engelbert)",
+   "Fix issue with unhandled error on Stat f182ebc11c9ea7a5bf75e35d8e061f3ac68482fd (Matt Farina)",
+   "Fix unit test 5600a2c82d236422e54b6089d5384dea44349900 (Martin Hickey)",
+   "Fix repo cache setting 2ae83f276b60085c550fc81fb6e21b38146e2d9f (Martin Hickey)",
+   "Add new line to fix code formatting in doc e6069769151b91c91a107bd4d79ca3a941658518 (Maksim Kochkin)",
+   "fix(comp): Prepare plugin completion for Cobra 1.0 0366f9970f0ff5c0b61b02521d139445bfaeba8f (Marc Khouzam)",
+   "chore(*): Fix formatting b18e7e201e55ba38fdecbcf81e4da512e55444b4 (Marc Khouzam)",
+   "fix: upgrade using --force shoud not run patch logic (#8000) decab8ea2e6ea4b31560aff50abb2676a67ec8ba (小明同学)",
+   "fix security mailing list address 2f39854d3f5da2f13cd749ccb08d61982cafef2f (Matthew Fisher)",
+   "Fixes repo parsing 8cb9ab7095c885e1f8d9bea3a28229f58ba59a5e (Juned Memon)",
+   "Fixes repo parsing b473f8adec7dab35614f0c20b0738a865830b443 (Juned Memon)",
+   "docs: fix capitalization in a few help messages bc515991f8fb7c3294e7f7809778fd360751d5cb (Liu Ming)",
+   "fix: removed strict template errors in linter (#8017) 08e546f169ff3d5694863f0766c3132da2f095b7 (Matt Butcher)",
+   "fix: use correct regular expression for Kubernetes names (#8013) 524150c662f9c030d2caa9ad8f79d2ff9521c431 (Matt Butcher)",
+   "Fix markdown table in helm command doc fb829c2c843df01ad1dd5ffd13c4e923be4ab9e9 (Lüchinger Dominic)",
+   "Fix : Prints empty list in json/yaml is no repositories are present (#7949) cd50d0c3621ad91b3848f14b7ef3a8d6aa29d2c9 (Anshul Verma)",
+   "fix: write index.yaml file atomically (#7954) 984d2ac7676874ae78a7617f7417513a7a9b5ef2 (Raphaël)",
+   "fix(pkg/cli): ensure correct configuration from kubeconfig file 4a0dfbe53b2191e09a7034ce97e4caf84989d6db (Adam Reese)",
+   "fix(cmd/env): make helm env command respect cli flags (#7978) 9ced0165aba1f0d90990396306d6f7e7a6725a91 (Adam Reese)",
+   "fix(*): remove bom in utf files when loading chart files (#6081) 27ebfa8c561e758b60872b9bb081253036e559ff (Thomas FREYSS)",
+   "fix(pkg/plugin): copy plugins directly to the data directory (#7962) 1cdd0a20488637c77d92e9a4844e89e8cefd578d (Adam Reese)",
+   "fix linting error with lookup function (#7969) bb47286f09331271e88e6047c51fd6e0ea936506 (Matt Butcher)",
+   "fix(helm): allow a previously failed release to be upgraded (#7653) 1911870958098b774973c6fe56bfdf4441f61596 (Matthew Morrissette)",
+   "fix(pkg/kube): continue deleting objects when one fails bdf6f48704ed9e09d7fa636f025a3e2d344d42d4 (Adam Reese)",
+   "fix: allow to rollback to previous version even if no deployed releases(#6978) cca68288063d235a4c32ef1ba822dd487317c8dc (liuming216448)",
+   "fixed to mirror master f604105547dc260f4388792de44a6eb9d2a1353f (EItanya)",
+   "fix test 2f534f97424ce4eaa3356e199e453e94bd65b4c6 (EItanya)",
+   "Fix a typo \"update\" -> \"updates\" (#7346) 00769c4512c9c145eafb84f60e8a473de83b0209 (Hu Shuai)",
+   "fix(cmd): Fixes logging on action conf init error (#6909) b7ff1e29327d33b6fe9b44b11d84c182d1adea45 (Jorge I. Gasca)"
+  ]
+ },
+ "2.16.9": {
+  "bug fixes": [
+   "v2.16.10 will contain only bug fixes."
+  ]
+ },
+ "2.16.8": {
+  "bug fixes": [
+   "v2.16.9 will contain only bug fixes.",
+   "fix(ci): use go 1.14 7606f0879c9eef980e652bd74842c6dcf1ee28a7 (Adam Reese)"
+  ]
+ },
+ "3.2.2": {
+  "bug fixes": [
+   "3.2.3 will contain only bug fixes.",
+   "Fix issue with unhandled error on Stat 1da74ed1bb60b200340db95e672f2c20f7dc5596 (Matt Farina)",
+   "Fix unit test 564044c7d0250b3ace563ca7001097f2f8cee979 (Martin Hickey)",
+   "Fix repo cache setting 4cdc98264bb5a0817075c7287f9af609f232a514 (Martin Hickey)",
+   "fix: upgrade using --force shoud not run patch logic (#8000) 4b91e1639745fdead179d1ddef394a657c501ed1 (小明同学)"
+  ]
+ },
+ "3.2.1": {
+  "bug fixes": [
+   "3.2.2 is the next patch release and will contain bug fixes",
+   "docs: fix capitalization in a few help messages 9036e17fb6bca6609721385cc224acdf39b28ec9 (Liu Ming)",
+   "Fix markdown table in helm command doc 8635a19660e8d79da5e70a64de64c2b18f1fde73 (Lüchinger Dominic)",
+   "fix(pkg/plugin): copy plugins directly to the data directory (#7962) 48d09a26d2a7e5d9693e0d4f145287961b612020 (Adam Reese)",
+   "fix(helm): allow a previously failed release to be upgraded (#7653) 56ef9ab386c771d827dc502f5f8e12929fc5ee1f (Matthew Morrissette)",
+   "fix: write index.yaml file atomically (#7954) cb7189f6ce0ba3ce73ba564e81c379a446261216 (Raphaël)"
+  ]
+ },
+ "2.16.7": {
+  "bug fixes": [
+   "v2.16.8 will contain only bug fixes.",
+   "Fix issue with sorting pod lists 493cd340091e441ab6a84c3f0be220270c755467 (Matt Farina)",
+   "fix: lint with strict passes for helm create (#7926) 0e32e6417b57ef72fd3bda0001b17db6f27040a8 (Matt Butcher)",
+   "fix: fixes for Go 1.14 (#7848) 5f6269d00852c471b6f951e501d017a7eb2f95d6 (Matt Butcher)",
+   "Fix nul pointer error 88e95b0d7c62ad91e2c910251797e80c4a1cd014 (Matt Farina)",
+   "fix recursion count in templates 9d7b269499f83e19a49e9e5e8121edeae4da26c7 (Matthew Fisher)",
+   "fix(engine): allow limited recursion in templates af3a02140697c7950aac12622ba2800b0277b64a (Matthew Fisher)",
+   "fix(requirements): refactor to use common codepath for table coalescing (#7047) b7d2947d1010a5abf8f986886b3189d6e55b1d36 (Fernando Antivero)",
+   "fix(Makefile): disable go modules 725cd915bc26bc8fba11af144f3cb54c2c6a5a59 (Matthew Fisher)",
+   "Fix secure installation link in v2 (#6912) dc2f5bcb33185dbe9691c19a36a7e085c65a83a7 (Yury Fedorov)",
+   "fix(tiller): improve handling of corrupted storage 840e0e271d28584200d7d6304bad6cb5b993beac (Cristian Klein)",
+   "fix: backport #6901 to Helm 2 (#7196) ab797325c6363afae3e238c17a7992a84c9802f4 (Matt Butcher)",
+   "fix(kube): Fixes wait for jobs 77c973422c44bc3e6877400ba22aaa71ebdfa1e4 (Taylor Thomas)",
+   "fix(kube): Fixes missing API versions e2894a18ee1d28341aedd5fc786aff4cc7f2c092 (Taylor Thomas)",
+   "Fix url for bsd license 394ba588b9ecb0c23d86cf007dcf443b9684b1a2 (Brice Rising)",
+   "Fix linting issues 16852f04d92b97de4599b60c2c6a540e950cb97e (Brice Rising)",
+   "Fix style issues 3d15ec7125bff4a43f4da57225c88c086cbdf108 (Brice Rising)",
+   "Fix rename for helm dep upgrade 94d87ef95db922c23ee9fff0a1808482635dcd6a (Brice Rising)"
+  ]
+ },
+ "3.2.0": {
+  "bug fixes": [
+   "We fixed a number of issues in the update/delete/rollback logic.",
+   "Fixed [critical vulnerability in lookup function](https://github.com/helm/helm/security/advisories/GHSA-q8q8-93cv-v6h8). **Note:** The security issue only impacts Helm 3.1.x, not 3.0.x. (The security update will be adjusted when its review period is over.)",
+   "3.2.1 will contain only bug fixes.",
+   "fix linting error with lookup function (#7969) e11b7ce3b12db2941e90399e874513fbd24bcb71 (Matt Butcher)",
+   "fix: removed inaccurate comment (#7937) 853ba2de16a04d0715c44937162e0b58752a99d6 (Matt Butcher)",
+   "fix: Fixed a regression that was introduced with changed nil handling (#7938) 7b89e66e0c350c7d61443ed6de647298fc9e9a2b (Matt Butcher)",
+   "Fix nested null value overrides (#7743) a34f3115395474fbf3b8a167ef3473eb8b0952e9 (uzxmx)",
+   "fix: rebuild chart after dependency update on install (#7897) fa5eb64f32c99a2771acf326c4b0e01481d23066 (Matt Butcher)",
+   "fix(tests): fix broken unit tests in storage (#7928) e1d046bc43ad1ec53c4c0d38aa7723c82e2ff9d2 (Adam Reese)",
+   "fix(storage): preserve last deployed revision (#7806) b9445616b522fe701620b18becdae3a783c054cb (Eric Bailey)",
+   "fixed capitalization in a few help messages. (#7898) 469837b92cefa0c633397dea1e49606ba0105d56 (Matt Butcher)",
+   "fix: fixed bug in Dependency.List() (#7852) bd13b80b12c246acf8959f510c1b21f72b2ccebd (Matt Butcher)",
+   "Avoid downloading same chart multiple times f3350defec881dc36217f4774703f252d3c895af (Andrey Voronkov)",
+   "fix(helm): Data race in kube/client Delete func. (#7820) c12a9aee02ec07b78dce07274e4816d9863d765e (lnattrass)",
+   "fix: update unit test for go 1.14 error string change (#7835) 3706aa7ca666fda6d8301c55118fa1c092f124a2 (Matt Butcher)",
+   "Fix a bug in Delete() in storage/driver/cfgmaps.go (#7367) 26830942d275b3a70edfdc32474230f3499a18e4 (tiendc)",
+   "Fix a bug in storage/driver/secrets.go Delete() (#7348) 06bc18c624c3ce264c926632ce8bc9fe471ce6e6 (tiendc)",
+   "fix(cli): Make upgrade check if cluster reachable 22b7562c62c2fc0cc89f568755f0c2e09106c0ab (Marc Khouzam)",
+   "fix(install): correct append tls config. bf5c0ae7f46dce9f44633e0d7e87b933c375bf5a (James McElwain)",
+   "Fix stray modules c8d8007c7aba5b66d185f4c82cc19a16c8246dd7 (Martin Hickey)",
+   "fix: add new static linter and fix issues it found (#7655) 16024dc19a23e83f00a19742033031717a56be0e (Matt Butcher)",
+   "test(helm): fix client update error 69d9722edaea6f54194d6ab508142d3f4eb2be14 (Dong Gang)",
+   "fix(helm): polish goimport c45869c4ad8f46140f6aea0d673aa7892f3eefad (Dong Gang)",
+   "fix(helm): respect resource policy on ungrade Don't delete a resource on upgrade if it is annotated with helm.io/resource-policy=keep. This can cause data loss for users if the annotation is ignored(e.g. for a PVC) 9744e9f619d3c1d8ddbe3af59e7d70d81c05dc5a (Dong Gang)",
+   "fix(ADOPTERS): alphabetize org list (#7645) 8edf86a7181c16fe4089c52f7b7fe58df5b08ce7 (Matthew Fisher)",
+   "Fixes verification output on pull command a3f92f65e26323a3f91343c29ee0c4d1b6282d21 (Matt Farina)",
+   "fix(helm): stdin values for helm upgrade --install 1ab52fa79c100332bc8014095cf7aed6937cae8a (Matt Morrissette)",
+   "Fix golangci-lint errors. f05ffdd2da3bc6acf31747c42c292a8e34cd8697 (Pavel Macík)",
+   "Fix dep build to be compatiable with Helm 2 when requirements use repo alias 13e2dcfde53c735dc313d0145bca063ba3a9d121 (Song Shukun)",
+   "fix(cmd/helm): upgrade go-shellwords c235470e59fd4f17149339757940537f95605cef (Adam Reese)",
+   "fix(helm): add --skipCRDs flag to 'helm upgrade' When 'helm upgrade --install' is run, this will allow to skip installing CRDs Closes #7452 e92a258a9d7cc684589cb22c317eb7ddaeaf753e (akash-gautam)",
+   "Fix output of list action when it is failed 1ff7202a9841b0a6a8d409342305ead6eb1503da (Song Shukun)",
+   "pkg/helmpath: fix unit test for Windows eda60a59b61abc7fb20063d9dc0608fe877b3206 (Song Shukun)",
+   "fix golint failure in pkg/action e9f40ed7a51b40966e4d91957357e6f6efc60251 (Song Shukun)",
+   "Fix render error not being propogated 7b9dc71c25f0dea9013d2174b45f16fa202468c3 (Martin Hickey)",
+   "fix(scripts): scrape for the latest v2/v3 release from the releases page 0087d838073abcc93fb9ea694256e0b93238ae23 (Matthew Fisher)",
+   "fix(kube): generate k8s native scheme only once e41184a585800dd672856d422b4f8a2bd3d430e0 (Hidde Beydals)",
+   "fix(kube): use non global Scheme to convert b55224ebb9541b690daca59f6d85867c6e275d75 (Hidde Beydals)",
+   "fix(helm): improved logs af0007c9087c3e714aafc2bdac80bb55df6dbffd (Federico Bevione)",
+   "Fix shasums to be usable by shasum and sha256sum applications 8e9c62b1bc3c557a1d2cc88a8e4fdc83ef498cb5 (Matt Farina)",
+   "fix(comp): Fix broken completion for --output flag e3965e11852f908646d2c02f55fd463c4b755538 (Marc Khouzam)",
+   "fix recursion count in templates 8528548441b826533d896ebf01b6a0c911eff6d8 (Daniel Cheng)",
+   "Fix 'helm template' to also print invalid yaml 2a73967ca214d38ed22f5f3ecfda3d1dcc2b4773 (Reinhard Naegele)",
+   "fixed missing bullet 9daca76f16b7b17c6ecb36b30ff7832a4b83b70f (Matt Butcher)",
+   "fix(helm): Reworded logs for clarity 077503f17502ea2ad59d73a08897f238dc72ebb0 (Federico Bevione)",
+   "fix(helm): Don't wait for service to be ready when external IP are set 438eaec971774b2e30e97aa640abd5cfe8b3ef40 (Federico Bevione)",
+   "fixed dependencies processing in case of helm install or upgrade for disabled/enabled sub charts d03db32c250bc7906c9d4b0e0858b0412c55dfcf (Florian Hopfensperger)",
+   "fix(helm): sort hooks by kind for equal weight 9a2ff7802ff84fcc260c0eff940fa0af3ea91137 (Daniel Strobusch)",
+   "fix(install): use ca file for install (#7140) e9bf446fa8faf5fa31352aa708829a951404200e (James McElwain)"
+  ]
+ },
+ "2.16.6": {
+  "bug fixes": [
+   "v2.16.7 will contain only bug fixes.",
+   "Fix nul pointer error dd2e5695da88625b190e6b22e9542550ab503a47 (Matt Farina)",
+   "fix: fixes for Go 1.14 (#7848) 288b521d5eda8a3bde7fef81a462bf7b22d2d873 (Matt Butcher)"
+  ]
+ },
+ "2.16.5": {
+  "bug fixes": [
+   "v2.16.6 will contain only bug fixes."
+  ]
+ },
+ "2.16.4": {
+  "bug fixes": [
+   "v2.16.5 will contain only bug fixes.",
+   "fix recursion count in templates 5e135cc465d4231d9bfe2c5a43fd2978ef527e83 (Matthew Fisher)",
+   "fix(engine): allow limited recursion in templates 7ea3d725a32cdaec74ff73447d7175f5594be48a (Matthew Fisher)",
+   "fix(requirements): refactor to use common codepath for table coalescing (#7047) 42941797f394d94800f17ea84566f0a838ec55dc (Fernando Antivero)",
+   "Fix secure installation link in v2 (#6912) 0629eb6dc0aec96a0a044098bf801e37dc1f995a (Yury Fedorov)",
+   "fix(tiller): improve handling of corrupted storage 0c99ca7b9dcb03fcf1d593c4549994a92dbfd1d8 (Cristian Klein)",
+   "fix: backport #6901 to Helm 2 (#7196) 713ed84dcbce0abfe751a41dcf3e78655d6b93cd (Matt Butcher)"
+  ]
+ },
+ "3.1.2": {
+  "bug fixes": [
+   "3.1.3 will contain only bug fixes.",
+   "fix(install): correct append tls config. 7397096823f7d4ae4bf855a5fd8ad7cc1467fb27 (James McElwain)",
+   "fix(install): use ca file for install (#7140) ecf50b376374441c117ad04af7f18c6886519f68 (James McElwain)",
+   "fix(helm): add --skipCRDs flag to 'helm upgrade' When 'helm upgrade --install' is run, this will allow to skip installing CRDs Closes #7452 110336fc30ddb40e67a6c9555f142fcb2500d965 (akash-gautam)",
+   "Fix dep build to be compatiable with Helm 2 when requirements use repo alias 2188551563f5bf52fafe85c2128dbf38ba0b8c8e (Song Shukun)",
+   "Fixes verification output on pull command 47a79b58698f730ccbf31c176b43166c59260691 (Matt Farina)",
+   "fixed dependencies processing in case of helm install or upgrade for disabled/enabled sub charts 2b932d5eddc63979456e3c3b0006765243403b75 (Florian Hopfensperger)"
+  ]
+ },
+ "3.1.1": {
+  "bug fixes": [
+   "v3.1.2 will contain bug fixes",
+   "Fix output of list action when it is failed 3fa62f4da11862c03742fa4306c8dacbaf9ded41 (Song Shukun)",
+   "fix(kube): generate k8s native scheme only once 8d012c25ff46a64f34821e769f0cde1f0fc96a70 (Hidde Beydals)",
+   "fix(kube): use non global Scheme to convert 742a46948b6665b8b916d7123e67b36787b853f3 (Hidde Beydals)",
+   "fix(helm): improved logs 54524f92734961ca86a4e31a20672c843266c4f5 (Federico Bevione)",
+   "fix(helm): Reworded logs for clarity 9791686136e84e2f7b78c7447fbb0469a3b2719e (Federico Bevione)",
+   "fix(helm): Don't wait for service to be ready when external IP are set 30ebfaf20d36489513142ce060c6e8549e8b8c6b (Federico Bevione)",
+   "Fix render error not being propogated af0960456ae56412575a5f356f2de24c97081164 (Martin Hickey)"
+  ]
+ },
+ "3.1.0": {
+  "bug fixes": [
+   "v3.1.1 will contain only bug fixes.",
+   "fix recursion count in templates 805a591b5057845be0e872a3f667e81d07203367 (Daniel Cheng)",
+   "Fix shasums to be usable by shasum and sha256sum applications 9887a3e4ca4ef473a4ddd419573edbd5c82bb231 (Matt Farina)",
+   "fix(comp): Fix broken completion for --output flag 374e9d8c7dc49cdd5623d15c794e46a80e3134b5 (Marc Khouzam)",
+   "fix(version): fix typo in doc comment 8b6233fc3ef50903bd527605ffe9a2f617b3e616 (Matthew Fisher)",
+   "fix(memory_test): rebase master 8e1fc4bc6fb871af3aa73fc79a2ca86901092610 (Matthew Fisher)",
+   "fix(cmd): Specify namespace for template command be7de1c376347b3f97d24aab85270ced0c039a58 (Marc Khouzam)",
+   "fix(tests): Add namespace support to memory driver e6d2d10bad8a872478783b0b1483cf467c05741b (Marc Khouzam)",
+   "Fixes issue where non-CRDs are read in from the crd directory ed80cf4548712cb779bd1607f98dff21d905d346 (Matt Farina)",
+   "Fix engine.newFiles doc comment 43e628599564bafd5b16514fae799eab9fbc5ffd (Jon Huhn)",
+   "Fixes issue where <CHARTNAME> is left in starter values file 1bd819a7b28d48a931db3f89be35f346d3e61e37 (Matt Farina)",
+   "fix(tests): Ignores tarball that will change on dep update 15e2659191cdba73afc8c5c08d2645f8b32d3433 (Taylor Thomas)",
+   "fix(chart): lock digest differs when dependency build with Helm 2 and then Helm 3 (#7261) 5ec70ab27fbf54ab529984db154953cbf68da78f (Martin Hickey)",
+   "fix(tests): Make tests pass on MacOS 1897d4d60a387f4b516c2382b5ae2f36abde844c (Marc Khouzam)",
+   "fix(test) use newly created index instead of ignoring it 6cfcc96cea4344b9b1003eafbf4cbe670494d5b0 (Karuppiah Natarajan)",
+   "Fix tests on arm64 and ppc64le (#7500) df20164cd27f12d8f4cadda608ca1caea5c25759 (Yaakov Selkowitz)",
+   "fix(lookup_func): do not return error when object is not found 1b1d6bba9cec81a6bbc77dd948779a45bc8a63c8 (Matthew Fisher)",
+   "Fix typo d70b50b3a11b62efe942d0429d1d7c54f8656a52 (Jon Huhn)",
+   "fix(template): helm template \"--show-only\" flag producing duplicates when flag used more than once (#7204) e483dce2895dd23400816b7852405edbf726e396 (Lee Bontecou)",
+   "Fix some spelling errors in comment (#7492) 1d79ed2c189da65315a597d51a92f0213f224126 (LongKB)",
+   "fix(comp): Allow zsh completion to handle -n flag 4f4779ca3a456468851f446fd978c4c71563fa96 (Marc Khouzam)",
+   "fix(package): remove --set, --values, etc. flags 50dcd39ba5a3c50bd046b5b539c2c7e6ac68aea1 (Matthew Fisher)",
+   "fix(chartutil): remove empty lines and a space from rendered chart templates (#7455) 0beb9f70407bed715e67dc28eaf6e6eb3c3263e1 (Shota Nakamura)",
+   "fix test-style 16a85f757066c44aff6dacd8c598ac7a9d699eaa (zwwhdls)",
+   "fix(test): Remove invalid subcommand in test 559c4053620352f76953a8ef7adbeed50c5fef32 (Marc Khouzam)",
+   "fix(kube) only add to scheme.Scheme once 8fe2097ffeb0d5a6d898b6850738c14fdca0991e (Jakub Bielecki)",
+   "fix(comp): Update based on review comments 77b900106f923bf1d9b787f5e1d2c6c85be9722f (Marc Khouzam)",
+   "fix: catch one additional discovery client warning (#7176) 6cc039ea79a435c9f335d677b78d9be574b8e770 (Matt Butcher)",
+   "fix(helm): improve handling of corrupted storage 1f0582cadc1ba222c5d7a7f9977a091edd55f6af (Cristian Klein)",
+   "Signed-off-by: Ahmad Kazemi <ahmad.kazemi@recordpoint.com> log.Printf replaced to fix the log issue. d4c37d33d1a186d8b271b4f4276da434da6a20e0 (Ahmad Kazemi)",
+   "Fix: helm3 - kind sorter incorrectly compares unknown and namespace e2946c7e343f0b0404b5f4e9ecabdccd970a87c8 (Bradley Skuse)",
+   "Fix typo in comment for func IsReachable 0cdbbf287f04e10f6b44faf1bf9185b48ca7f3fa (Guangwen Feng)",
+   "fix(test): Make resetEnv() properly reset settings 16f62050044d8eaca1ee794ab1903a719895662f (Marc Khouzam)",
+   "fix(helm): move ServiceAccount before Secret in InstallOrder. 08663e6bb3c5694726aac665d71be26494475781 (Daniel Strobusch)",
+   "fix error output ab905010fd3ce671f9e0cd74f4d8ca3bc944c130 (bakito)",
+   "fix(tests): use sigs.k8s.io/yaml ff0257de29e589f9550aa6c04bc3283d652dc976 (Matthew Fisher)",
+   "Fix a typo \"update\" -> \"updates\" (#7346) de9118b87961c3ec15370d6b77293d6fe36fa88a (Hu Shuai)",
+   "fix(cmd): Fixes logging on action conf init error (#6909) ad07bb690dbf34e7067171235861a3c0fb9897b6 (Jorge I. Gasca)",
+   "Fix typo in --values cmd flag a58430a944454ff8e5a560a9d3d70f5e05385310 (Anton Kvashenkin)",
+   "Fix a typo \"the the\" -> \"the\" 3eb8df0c5ee5b6e9753cf99440644423e392073e (Hu Shuai)",
+   "fix(comp): tail cannot open +2 for reading 2eab781b35019ce452738012092f9df4ce9fdf00 (Frank Lin PIAT)",
+   "fix(tests): Use relative path to acceptance tests b47a5b746d57e0ca93c9e31066a2c4ef6fa9cdc4 (Marc Khouzam)",
+   "fix(helm): add .orig as typical backup file a2bbb67839722713d48b3c775d9402efba12c108 (Jan Heylen)",
+   "feat(checksum): update to get/get-helm-3 to match shasum fix 5680f4d50644de2f4d3fd6c890b7153b533410ed (Thilak Somasundaram)",
+   "Port PR #4161 Fix incorrect timestamp when helm package to Helmv3 8cb3c02c47a6133d87efbefe507878d900809f36 (Romain Grenet)",
+   "Add back fix for CRD patch creation afa612df9d132180837e7c122088d44b1c72df1e (Adrian Gonzalez-Martin)",
+   "fix(kube): Port use of watcher with retries to wait for resources (#7217) b6e2a14306964a6fe756abff85d3195542a2f1fd (Martin Hickey)",
+   "fixed golint fa643cfa31af72f06b6d041c310a29bed18f0ac4 (raffaelespazzoli)",
+   "additional fixes based on @thomastaylor312 comment a62ba049624d3212619005bc87fec410a248ca22 (raffaelespazzoli)",
+   "fixed test issue 8e088fc4a2a616354872b21d9ceb84e9d55a40de (raffaelespazzoli)",
+   "fixed circle ci issues 02ce01b2415fe270a760c984f2e0158b18476573 (raffaelespazzoli)",
+   "fix(install) crd install with apiextensions.k8s.io/v1 1c6424cb189817c46dc7ea3e3812f7f75df52cff (Vibhav Bobade)",
+   "fix(helm): Validate number of arguments in install client a3f00fde691585ffa2dc4934c6813d69ff0ec284 (Lennard Eijsackers)",
+   "fix(cmd): Add message about deprecated chart (#6889) 0fd76b2a2bca5b3febf6488c860a7c6502c70086 (kvendingoldo)",
+   "fix(*): Helm v3 handling of APIVersion v1 charts dependencies (#7009) 0cb0eaca948d55da1c824f201aa78f9313763f69 (Paul \"TBBle\" Hampson)",
+   "fix(tests): Repair tests failures 735bc652a6618afb7502d8154086a1535c7629ea (Marc Khouzam)",
+   "fix(helm): add --description flag to helm (#7074) 357d265de0e72f02c493701cdbee9ecc6eb0a016 (Juan Matías de la Cámara Beovide)",
+   "fix: clarified behavior of 'list --deleted' (#6950) e47c67c427e9831d3df20befc7fa139404829ddc (Matt Butcher)",
+   "fix this inconsistency in the docs (#7157) 36a8001e2adc0e5cf1bc3a06c75777a0b2ee15b6 (海的澜色)",
+   "Fix godoc badge 361db773881415398ce05637f9f56bd6f2820c85 (Robert Brennan)",
+   "fix \"Chart.lock is out of sync with Chart.yaml\" (#7119) e062146db3a9a9bec0e64f5db939416441b1af38 (海的澜色)",
+   "fix(tests): mapfile is not available on MacOS cc33e394c7c464be1940a2f737a1f24887e4ca6f (Marc Khouzam)",
+   "fix(cli): IsReachable check for \"get values\" bf4cc97bbe7ca994894a87df63fdf7da6ee0841a (Marc Khouzam)",
+   "fix stack overflow error (#7114) 750b870aedd35b69b9ca1e1517635fa70367a309 (海的澜色)",
+   "fix: ignore pax header files in chart validation 48704034a9f37a23eee192b32e15249b299e0767 (chloel)",
+   "fix(plugin): Avoid crash on missing flag 32b4e2e5e998ee11559d132eae796f2b22fac0f7 (Marc Khouzam)",
+   "chart_downloader: fix lint issue. 4c4328398ecc4f6eef07524f4bcddaca153b4570 (Andreas Stenius)",
+   "fix(plugin): Avoid duplication of flag list 5179f8d698d30b243fd9aa646fac76224510b28b (Marc Khouzam)",
+   "fix(plugin): Add missing -n known flag 6473234f43cbec7603124d684cb630dfdc4b1419 (Marc Khouzam)",
+   "fix(lint): Remove requirement that directory name and chart name match 32ce016054648f20168a2d7f4ff4b954686e0689 (Scott Morgan)",
+   "fix(lint): Remove requirement that directory name and chart name match 8a8463e08d8a52b59fd20739ec3aa98be5bf1177 (Scott Morgan)",
+   "fix: change error message to contain correct field name 8889625af63a93d08909af0c2cfdbddbcd7204db (Daniel Strobusch)",
+   "fix(get-helm-3): remove tiller checks, fixup version check c9da1eaae780488ba34c7bb66c5bff518c6c06ee (Matthew Fisher)",
+   "fix(get): hard code DESIRED_VERSION when unset 3e77ca22c71e182860b0ef9508d229e25d8f4140 (Matthew Fisher)",
+   "fix(wait): Adds support for waiting on v1 apiextensions for CRDs ecb55c1de7bcc0063b2cf956a0e2172fcd75bc59 (Taylor Thomas)",
+   "fix(get): install Helm v2.16.1 06a5eb2272f26fcdb2bd5abf5abe45d7078b5e50 (Matthew Fisher)",
+   "fix(reame): update links to docs a9b178758c6c3c3f36f6bbd7a1b4359efae27366 (flynnduism)",
+   "fix(install): log the error when recording the release e91feed1a3c34ec15ff2bff4d07ee5e275a6d7b4 (Matthew Fisher)",
+   "fix(pkg/downloader): resolve repo alias before checking digests on build 0987c6f7b91bffc360a8c604b9dfb87b845cc919 (Hang Park)",
+   "fix(pkg/downloader): add failing test for build with repo alias 17553db485f6165c15aa17c6dfcc7589edb025ee (Hang Park)",
+   "fix(strvals): port #3912, #4142, #4682, and #5151 to Helm 3 b30467c2e52ffebd0b4708ca318d34251ab5a692 (Matthew Fisher)",
+   "fix(ci): pin golangci-lint to v1.21.0 4d1c11f05bf732bf914d5529493fc77d5134d1c9 (Matthew Fisher)",
+   "fix(cli): helm list was ignoring some errors 30e8ed2f3df9e776b5a5937d92e8ff45c54f984f (Marc Khouzam)",
+   "fix(tlsutil): accept only a CA certificate for validation aa6104e442ef8b574ae88efd8b5c41004437ac88 (Matthew Fisher)",
+   "fix: stop discovery errors from halting chart rendering. (#6908) 865c46c014cdb7622f97ae287ee92fb8a280f3a9 (Matt Butcher)",
+   "fix(cli): Sort output of helm env 3e09e2fa2831ab0b51678171b7934cf9e6b4f8a7 (Marc Khouzam)",
+   "fix(show): restore comments from raw values bd1f4a443e95ea4eda88affad96577b63c0d6622 (Matthew Fisher)",
+   "Correct spelling mistakes d683a431e241a37c40042ad168f04460e9306eaf (yuxiaobo)",
+   "fix(cmd): Standardizes all output to use lower snake_case names 4226c45dfd7419874583a37b79124afdd55129ec (Taylor Thomas)",
+   "fix(version): implement `helm version -c`, mark as hidden 444d006fe27bdea5ade0333fdb78c2141de2f175 (Matthew Fisher)",
+   "fix(getter): set up TLS options during .Get() c9b127c3ee2fd6832c02c645600fc0caff7827c2 (Matthew Fisher)",
+   "fix(chart): add JSON tags to chart object 668f51bfdf8171bfaf8d369752ff938ed630d655 (Matthew Fisher)",
+   "fix(comp): Protect against user's aliases f16d3e295ca2dee5aeab0bd36c09400e74dd3f4d (Marc Khouzam)",
+   "fix(cmd): Updates description for template validation flag 432fd9c110bf75de46cfc8db4748ad0a0fdc28fd (Taylor Thomas)",
+   "fix(action): strip file extensions from name bf012282c846a1173f4ddc987756c2aa4dda9172 (Matthew Fisher)",
+   "fix(kube): return error when object cannot be patched a505f910732f3a431fd44b52707760c39889ebcd (Matthew Fisher)",
+   "fix(comp): helm plugin 'remove' is now 'uninstall' 1e58f484ff590d9f06e131226787eb55fb8f2d1f (Marc Khouzam)",
+   "fix(version): lift \"unreleased\" status 1c64d8fb8164406e63bf91e263b11485d43a8324 (Matthew Fisher)",
+   "Porting fix from commit f5986db184cf6d16dcd48760ac749a20236fb845 afda6b49408bad8f7a7a5faa9eeda016c8763400 (Lam Le)",
+   "Fix import 41e70306b3464b99cf3afe4e23e85948fede3483 (Yagnesh Mistry)",
+   "fix rename for helm dependency upgrade ceb6bcb318fa1f93ad2f67e3ba1cbbf1600fc154 (Yagnesh Mistry)"
+  ]
+ },
+ "2.16.3": {
+  "bug fixes": [
+   "v2.16.4 will contain only bug fixes."
+  ]
+ },
+ "2.16.2": {
+  "bug fixes": [
+   "v2.16.3 will contain only bug fixes."
+  ]
+ },
+ "3.0.3": {
+  "bug fixes": [
+   "Signed-off-by: Ahmad Kazemi <ahmad.kazemi@recordpoint.com> log.Printf replaced to fix the log issue. bba7bc1c88ec045199b66fe88b1468a6a17102a3 (Ahmad Kazemi)",
+   "fix(package): remove --set, --values, etc. flags cde43f8d9e4d9318c29c5e1f16c4cfd67a356f53 (Matthew Fisher)",
+   "fix(chartutil): remove empty lines and a space from rendered chart templates (#7455) ee8c924115cf55b1446ff4be9e9609a105d45c75 (Shota Nakamura)",
+   "fix(helm): improve handling of corrupted storage d3836d6f74bfe6ada6d992868561159b66396cd3 (Cristian Klein)",
+   "Fix: helm3 - kind sorter incorrectly compares unknown and namespace 86839f249031c348412409565b05f7ca5b3e3eab (Bradley Skuse)",
+   "Fix a typo \"update\" -> \"updates\" (#7346) d2cf1284ee75954ffedaba8af5d8339b68e72368 (Hu Shuai)",
+   "fix(cmd): Fixes logging on action conf init error (#6909) 64e57d92b649a67f222bff23582b5d665b639791 (Jorge I. Gasca)",
+   "fix(comp): tail cannot open +2 for reading 50a647728f78925802abfa4d06bb41a4c52ade05 (Frank Lin PIAT)",
+   "Add back fix for CRD patch creation 4771f256cdaac056a6553af42cfa3ffac5b7896c (Adrian Gonzalez-Martin)",
+   "Port PR #4161 Fix incorrect timestamp when helm package to Helmv3 d72867582536615c311e39578dcdf65421ed9de4 (Romain Grenet)"
+  ]
+ },
+ "3.0.2": {
+  "bug fixes": [
+   "v3.0.3 will contain only bug fixes.",
+   "fix(kube): Port use of watcher with retries to wait for resources (#7217) 19e47ee3283ae98139d98460de796c1be1e3975f (Martin Hickey)",
+   "fix(cmd): Add message about deprecated chart (#6889) b88a28a25feb55829649ef14c43fb27f6fda79bf (kvendingoldo)",
+   "fix(*): Helm v3 handling of APIVersion v1 charts dependencies (#7009) 8c283e8706ce19c0f19226344854906596414fcf (Paul \"TBBle\" Hampson)",
+   "fix: stop discovery errors from halting chart rendering. 7f6da66ae80862eeea0de3acce32ad9453692674 (Matt Butcher)"
+  ]
+ },
+ "3.0.1": {
+  "bug fixes": [
+   "v3.0.2 will contain only bug fixes.",
+   "chart_downloader: fix lint issue. 7c22ef9ce89e0ebeb7125ba2ebf7d421f3e82ffa (Andreas Stenius)",
+   "fix(plugin): Avoid crash on missing flag 530c5a55835fe572b08c91ac4c8d978f9fd9610a (Marc Khouzam)",
+   "fix \"Chart.lock is out of sync with Chart.yaml\" (#7119) 5c9befa75d77a4bb37c3ac9f3d35e651087c1a46 (海的澜色)",
+   "fix stack overflow error (#7114) eea01af8f972dffec6fef3d6337c72259060d683 (海的澜色)",
+   "fix: ignore pax header files in chart validation 767c9aeacee89570b7c7436fb88a47293c9699ba (chloel)",
+   "fix(cli): helm list was ignoring some errors 00465540402994561171c37af8743eb9a19e28a6 (Marc Khouzam)",
+   "fix: change error message to contain correct field name af1c07015d8aa2d134589d8a306a1740a6632db6 (Daniel Strobusch)",
+   "fix(plugin): Avoid duplication of flag list 80e6ce6b2d701cbe70afd49614a1d458aef25201 (Marc Khouzam)",
+   "fix(plugin): Add missing -n known flag 27b0442252af557ec86c127a339af1f3ed9d0610 (Marc Khouzam)",
+   "fix(cli): IsReachable check for \"get values\" da496234a85938721a1704e55fb74e53d4ba363b (Marc Khouzam)",
+   "fix(lint): Remove requirement that directory name and chart name match 73074769a4c639e83e0d43ebff4a7bd53eec0f44 (Scott Morgan)",
+   "fix(lint): Remove requirement that directory name and chart name match 5c4125f88a839c4ead411ce8a3002a0f79ac1998 (Scott Morgan)"
+  ]
+ },
+ "2.16.1": {
+  "bug fixes": [
+   "v2.16.2 will contain only bug fixes.",
+   "fix(kube): Fixes missing API versions bbdfe5e7803a12bbdf97e94cd847859890cf4050 (Taylor Thomas)",
+   "fix(kube): Fixes wait for jobs eec697424c7255a9689fe78c2c8e6d9004a68950 (Taylor Thomas)"
+  ]
+ },
+ "2.16.0": {
+  "bug fixes": [
+   "Fix url for bsd license 78242d1378cd6275f876639235f055f3e6b050bc (Brice Rising)",
+   "Fix linting issues 42f12563e49da9d79d25616e0dbf48f0b0248304 (Brice Rising)",
+   "Fix style issues 14f051ef50e26a7624b53d4610e693b37b7de275 (Brice Rising)",
+   "Fix rename for helm dep upgrade c41037d9014efee44b0a9a3c79766e920609df19 (Brice Rising)",
+   "Fix error when loading irregular files a4f46d7a38551d8dae01b19ce2d100ed3473c161 (Matt Farina)",
+   "fix(wait): Removes ingress checks 93e4697f4a21f407fee2d27d1c0d0a60f6684aef (Taylor Thomas)",
+   "fix(repo/search): fix helm repo search command to display proper versions 71fa47f576129e2e18092f1a71b989bfaef7f55b (Mateusz Szostok)",
+   "fix silent lint ignore for non existing packaged charts 23926365a0654a0d12cd66022b0b54f67fdd79ef (Karuppiah Natarajan)",
+   "fix(ci): only build Helm 2 off a tag 50b838f9d38696ec1feb5423821c97a5cb770841 (Matthew Fisher)",
+   "fix(sympath): walk symbolic links one once 8489290300515730983eb88cb50fa1e950a9ab79 (Matthew Fisher)",
+   "fix(cmd): acquire file lock on repository.lock 0a2d58457afc08dcdddc07db8bb67d3eaade1959 (Matthew Fisher)",
+   "fix(kube): fix race condition 33bb88851d48bc80bf713a353db275edd5911adb (Matthew Fisher)"
+  ]
+ },
+ "2.15.2": {
+  "bug fixes": [
+   "v2.15.3 will contain only bug fixes.",
+   "Fix error when loading irregular files 8dce272473e5f2a7bf58ce79bb5c3691db54c96b (Matt Farina)"
+  ]
+ },
+ "2.15.1": {
+  "bug fixes": [
+   "v2.15.2 will contain only bug fixes.",
+   "fix(sympath): walk symbolic links one once cf1de4f8ba70eded310918a8af3a96bfe8e7683b (Matthew Fisher)"
+  ]
+ },
+ "2.15.0": {
+  "bug fixes": [
+   "fixed an issue where numbers were being parsed as floating point numbers (see https://github.com/helm/helm/pull/6010 for more context)",
+   "fix(kube): fix race condition d6580a1c4aa5cd0f7e499c34f96439ed0994c6e5 (Matthew Fisher)",
+   "fix(kube): watch events from a matching pod 9b9dcebea87f6a719f4d5ad6a08314612cf9c616 (Matthew Fisher)",
+   "fix file mode,it should be octal expressed ecf9afbe06e07189b04cbf1a33fb8bbc288a3b64 (Guangming Wang)",
+   "fix repo url being decoded while downloading repo index (#6060) 519ccac2949695ad54a8f8b159b353b998462e03 (Karuppiah Natarajan)",
+   "fix style 91356c81ebf843fee5f1b2fddfba12ec4e1ecaee (Matthew Fisher)",
+   "fix: return more information to the user 74653d3794617fab35976fea2e5e02269b7a6101 (Matthew Fisher)",
+   "fix: use nonexistent rather than inexistent a31d4ad43e785412fa7e69613422d1e9fc0623ab (Matthew Fisher)",
+   "fix(validate-license): update to work with newer versions of coreutils 935ee90d9ff3af9ffc22735c0d6c092c5050f3ef (Matthew Fisher)",
+   "fix(generator): fixup package comment linting error caff38ffa1fa8595b445f37c327c01015ea6bb58 (Matthew Fisher)",
+   "fixed typo 8648ccf5d35d682dcd5f7a9c2082f0aaf071e817 (Till Hoffmann)",
+   "fix-up typo (#6501) 9d8a84ee3daa0870689ba24ca8bf6bb13a0d38ec (陈谭军)",
+   "fix issue when dependency is URL b49f4269c5bdfee920b0d5fd7954513f5e17dad6 (Xiang Dai)",
+   "fix BusyBox sed (#6327) 540fe23b692ab22b04e4718644cc654d694abc04 (Anton)",
+   "fixes resetting os env after test run c839363f16447344f180b0318b09a571bb407882 (Ken Sipe)",
+   "Fix the developer.md typo (#6203) aaf24e065851e96632997b4849c98721745a7a12 (kamal namdeo)",
+   "fix typo 627283ac7441c7fc1890be843d15e580705f45b8 (Sakura)",
+   "Fix wrongly displayed markdown 74b6279f5fa2533fbc6e9462eaa9df2dad0bc9cc (Eduard Laur)",
+   "fix some log typos in tlsutil_test.go e9ea2e0d1524b7de68feb3efb7a763d92a360f91 (AllenZMC)",
+   "fix mis-spelling in manager.go 7b0a407ff7247aa41ad8efc6c4c1e0bd2cc2a046 (AllenZMC)",
+   "fix wrong spells in hooks.go 53f1ab50e5ec38a33e7329c79a2ad61e747c4e18 (AllenZMC)",
+   "fix word 'resoures' to 'resources 915d69a2c6a0026599f28c4857edff1c1f45bab9 (AllenZMC)",
+   "fix word 'efault' to 'default' 6b5ab08a61d73980ca6f84ccdb3f6b996d950cae (AllenZMC)",
+   "Fix typo notes -> note f653192882b488afd34422c9168e3d492f7df09f (Kevin Lau)",
+   "cleanup: log message typo fix 4117b38ae621a8061563417c4b125dfb8ff59b00 (dzzg)",
+   "fix word 'potgres' to 'postgres' b788e3dce965e76368f8af66b93c6a21abf730a3 (AllenZMC)",
+   "fix word `constrint` to `constraint` 6485fec30979357284ae989f29f223bf08b7034f (AllenZMC)",
+   "fix: upgrade with CRD changes ae52477fbd1c9fd177a638a7954332772463b77f (Yusuke Kuoka)",
+   "Fix subchart values not being deleted by setting value to nil in parent chart's values e53613db3f386b8728ac3d6038b9d13eba9caece (Stefan Deitmer)",
+   "fix golint issues reported by make test 276bb9b1c8ee3c51064f768e8c0e2fb64c3fd5f2 (Tariq Ibrahim)",
+   "Fixes per helpful feedback ce0ad06e941e12e335c5d083c145f830bf7f3083 (Bridget Kromhout)",
+   "Fix broken link in docs/related.md 7247956b96d0f038195af41f1be9b7ce6002c662 (Pete Hodgson)",
+   "Fix documentation to use existing chart in the stable repository 5a39ff90ad25647b75a9e5351dd73ed36fe958e5 (Nenad Merdanovic)",
+   "Fixed failing tests for helm installer 70cd32c4cebac2af67f4da3934e141f0f0c00842 (Oleg Sidorov)",
+   "Revert \"Fixed default value for `helm.sh/chart` label\" b16ec08899658cad65cd5ae6a14334aed47f0101 (Shao Yang Hong)",
+   "fix(helm): Delete hooks should wait for resource to be removed from etcd before continuing cb2207c2fbddba7f0cabb626ecb7b02370ca9faa (Morten Torkildsen)",
+   "fix: include glick.lock 3a5e9709ee502ea1ed106feeba51db6365d7d711 (Ace Eldeib)",
+   "Fix nested null value overrides 5b9311d163654c2d3a7ee54742f6497a017a91ee (Adam Eijdenberg)",
+   "(helm): Proper fix for #5046 0239cc4457463cfd6af1f61ec26aa35845dcb1c5 (Marc Khouzam)",
+   "fix(helm): Disable schema validation for manifests ad886c5e36abd2b7cdc1d36b4a48ed638847a981 (Morten Torkildsen)",
+   "fix the short descriptions of all helm commands 8fcc438b67de564a3dd9255ec9c1634229b764c0 (Tariq Ibrahim)",
+   "Fix typo e1b993bae8444ca73b48e7a2fd51cae1f5ace2a3 (Jon Huhn)",
+   "fix(pkg/storage/driver): use shallowReleaseEqual() ae0d4b151b621a2f12a9b89e75a868349a6fc80f (Matthew Fisher)",
+   "fix(completion): --flag=val breaks zsh completion 3e1ca6fe6e3e2add0518925c5273b650fcb64280 (Marc Khouzam)",
+   "Fix plugin tar extract permissions 796f5eea85e47347709e024daeff5b3c3e7111f0 (Aaron Walker)",
+   "fix(helm): Only validate new manifests 94adb5bbe01c554486630287fe722e9ee0d578f0 (Morten Torkildsen)",
+   "Fix formatting issue f4052821c9b89eac9412f1f77b0242879d0400d8 (Elliot Maincourt)",
+   "fix(helm): improve error message for content outside base dir 720c28f4c517a72f71b294d35193825cbeeb7e53 (Arash Deshmeh)",
+   "Fix for missing $root fdbbcab3b381c029ff0d586f8deeb5bdf06a2fd0 (Michel Belleau)",
+   "fix(helm): fixed output leak from template command unit tests 9f4a9d206cd12b8ea57a59172dfa80a3b0c69586 (Arash Deshmeh)",
+   "fix(helm): refactor lint unit tests to table-driven 764c3187e9d1e355513a064ffc8e151a1228b27f (Arash Deshmeh)",
+   "fix(helm): allow lint to parse pre-release charts bfc0d76fff148865aa1e9d5ba28693da2947b4fe (Arash Deshmeh)",
+   "fix(pkg/chartutil): conditions for alias and umrella charts (#3734) d80a96cf77ce40283006d3b7bad0ec5400d83acd (Christian Koeberl)",
+   "fix(helm): fix unit tests of the history command to ensure the max option is covered. Add the required support to the fake client ff3dc9dd33f3a31b6bbc3681d2853c03cd57ebdf (Arash Deshmeh)"
+  ]
+ },
+ "2.14.3": {
+  "bug fixes": [
+   "v2.14.4 will contain only bug fixes.",
+   "fix: upgrade with CRD changes 0e7f3b6637f7af8fcfddb3d2941fcc7cbebb0085 (Yusuke Kuoka)"
+  ]
+ },
+ "2.14.2": {
+  "bug fixes": [
+   "v2.14.3 will contain only bug fixes.",
+   "fix(helm): Delete hooks should wait for resource to be removed from etcd before continuing a8b13cc5ab6a7dbef0a58f5061bcc7c0c61598e7 (Morten Torkildsen)",
+   "Fix nested null value overrides 85b4eef973d73ed9213b7ef76a404f2da7216dd3 (Adam Eijdenberg)"
+  ]
+ },
+ "2.14.1": {
+  "bug fixes": [
+   "v2.14.2 will contain only bug fixes.",
+   "fix(helm): Disable schema validation for manifests 5270352a09c7e8b6e8c9593002a73535276507c0 (Morten Torkildsen)",
+   "fix(helm): Only validate new manifests bf377c5ad5c05f0966ec5671b77ef8105c3c04dc (Morten Torkildsen)"
+  ]
+ },
+ "2.14.0": {
+  "bug fixes": [
+   "fixed an issue where Helm will print `ROLLING BACK` on all failed upgrades when atomic has not been set",
+   "fixed an issue where CRDs installed through the `crd_install` hook might not be in the established state before the hook completed",
+   "fixed an issue where the scaffold chart (`helm create`) would not install",
+   "fixed an issue where `helm reset --force` hangs when Tiller pod is already removed",
+   "fixed an issue where Helm completion in zsh was not compatible on MacOS",
+   "v2.14.1 will contain only bug fixes.",
+   "fix(pkg/storage/driver): use shallowReleaseEqual() 05811b84a3f93603dd6c2fcfe57944dfa7ab7fd0 (Matthew Fisher)",
+   "Fix formatting issue ee63d06192c7f8f90c8520d541defd32864e3977 (Elliot Maincourt)",
+   "Fix typo e6d5fc933b81093050459397f011673ca83c508c (Jon Huhn)",
+   "Fix missing link 51c99b125224093802def010a48d763ffab5b6df (Joshua Bussdieker)",
+   "fix(helm): Regenerate go types from proto 072cd6af37bb9856aaabebe02b7489cd18a80293 (Morten Torkildsen)",
+   "Fix scaffold chart label in helper template 470d92e126968478d4e7a0d96207f102d174d545 (Martin Hickey)",
+   "Fix environment list in helm doc d082754b1ad9b93349e572cb6cee1a0e95dc49e5 (Martin Hickey)",
+   "Reduce template code duplication. Fixes #5372 0270f2e2b5d75439d8c835969ec8d8d80bb55bcf (Luis Davim)",
+   "Fix reset force which hangs Tiller pod removed 77185d31a95e5e66bb65a082ab0ed5cbf27a6192 (Martin Hickey)",
+   "fix(helm): Fix manifest validation 32d7f1a3fc226c1745a58b51e318b7362bc7a0bf (Morten Torkildsen)",
+   "Fix 'THE INCLUDE FUNCTION' in 'Developing Templates' output 2aa41559524f6d170a131eab251735b51fbc452c (Kenta Iso)",
+   "Fixed default value for `helm.sh/chart` label e2a9bf29134297cacacf441c10ee6b1b2107ce5d (Sergey Kozlov)",
+   "Fixed typos in docs/chart_best_practices 87e495c57d4585e6570cf2635644b97992ea5cd9 (Sergey Kozlov)",
+   "Fixed a typo in docs 6cf433d719acbe165cf96000c935e11ad0147750 (Sergey Kozlov)",
+   "fix(helm): Wait for CRDs to reach established state for crd_install hook b8e40a7c31faf094c950be40a0d08ce554bdc7dd (Morten Torkildsen)",
+   "Fix description of helm dependency command 7990363d152dabf8de7b0d59d20d2f1d40733980 (Xiangxuan Liu)",
+   "Fix `no RESOURCE with the name NAME found` 5ffe4ce5881449d31b9e14cb94d56dcf2453b0d7 (Timofey Kirillov)",
+   "fix(script): remove check on release URL 65193adc10bc50edcf96499b5321c7aab46b796c (Arief Hidayat)",
+   "fix(script): follow redirected URL of github latest release 7cb03fb5628f3decb9ab547c1f71ca6a21a31ee8 (Arief Hidayat)",
+   "style: fix golint error in init.go for redundant err!=nil check 29795691edbc4ca28e8da28bb06700ae0d6d97d8 (tariqibrahim)",
+   "fix(scripts): use a more precise method of grepping ab9cc982a0616e28d6e308d69033534cb7e62025 (Matthew Fisher)",
+   "fix(tiller): fixed a typo in tiller and unit test 63ef73d4168980e650bc95c225f9be1b63b7b37c (Mikhail Kirpichev)",
+   "Fix \"helm init\" parameters b480badd05ad01006363763c92b5394cdc5fc9c4 (Jens Frank)",
+   "Fix debug printouts for zsh completion 4fec4b67661b7cc48b8ed1f1c5827a255c74db75 (Marc Khouzam)",
+   "pkg/chartutil: fix SaveDir for nested templates directories a9c10fe104302f19e0eda5cec5b2ca314991cff0 (Joe Lanford)",
+   "Fix #5046 compatible with MacOS (#5406) c94c00915f29fba5e816c277ff617babb3790cb1 (Marc Khouzam)",
+   "Fix some typos (#5352) 63c970c5ce29b0971cdc6409d9c0e156321ea32a (Nguyen Quang Huy)",
+   "Fix typos in various places (#5360) 268695813ba957821e53a784ac849aa3ca7f70a3 (tuanvcw)",
+   "Fix many misspelling words (#5357) d9d2b3ae4812d756297ac89b8930eee61273c871 (Nguyen Hai Truong)",
+   "trivial fix typo 2ca5d2ab9cf41a23a1d650ae2dc88a44344c898b (Nguyen Hai Truong)",
+   "Correct misspelling of Helm d24ba97faeb39f692f74c87d183a723b4138ee52 (Nguyen Hai Truong)",
+   "Fix wording in error message (#5322) 73a17eb59900348234ad7c4cba75a537dcef9708 (Miroslav Spousta)",
+   "fix: helm display confused error message if version is empty (without quotes) (#5310) 9f964c11da1c1ae865aed2be87c1929f04683b82 (Alex)"
+  ]
+ },
+ "2.13.1": {
+  "bug fixes": [
+   "v2.13.2 will contain only bug fixes.",
+   "pkg/chartutil: fix SaveDir for nested templates directories 618447cbf203d147601b4b9bd7f8c37a5d39fbb4 (Joe Lanford)",
+   "Fix #5046 compatible with MacOS (#5406) a6ccbdaa9e47d61111c88dae259a155bc1540f02 (Marc Khouzam)"
+  ]
+ },
+ "2.13.0": {
+  "bug fixes": [
+   "fixed an issue where the output of `helm status` was unsorted",
+   "fixed an issue where helm ignored build metadata with `helm fetch --version`",
+   "fixed an issue where Tiller was improperly sorting unknown resource types and namespaces",
+   "fixed an issue where `helm install --set someval=0` would treat the value `0` as a string",
+   "fixed an issue where tiller would not respect `helm.io/resource-policy: keep` during an upgrade",
+   "fixed a regression where `helm reset --force` would orphan the replicaset backing Tiller",
+   "fixed a regression where `helm install --name` would not accept periods in the release name",
+   "v2.13.1 will contain only bug fixes.",
+   "fix: helm display confused error message if version is empty (without quotes) (#5310) ccf1d7bc4b30a2c53f18d52bd5c2de36c75e42e4 (Alex)",
+   "fix: helm fetch wrong version chart (#4850) f5986db184cf6d16dcd48760ac749a20236fb845 (liaoj)",
+   "fix: Update gRPC to get better TLS connection handling (v2 minor release) (#5210) 70c509e77ee2acecc722c429bc78415b2c660616 (Matt Butcher)",
+   "Fix function comment to consistent with its name (#5294) 9fb9850aca4afab0d38bcd73218098a145b4e7ac (lIuDuI)",
+   "Fix function comment to consistent with its name 5767f13aaa5bfb513747b73f3c5d8cd4b0640684 (xichengliudui)",
+   "Correct golint warning (#5287) bed4054c412f95d140c8c98b6387f40df7f3139e (Gábor Lipták)",
+   "Fix issue #5273 for get script on armv7l (#5275) 6e26320befd19cc112f72d51e29230c26a191d9e (Alex Ellis)",
+   "fix(helm): add descriptive error if dependency has blank \"repository\" (#5152) d8bdf484cc77e5e816b311d99609a2511c897eea (adshmh)",
+   "fixed minor typo in doc (#5249) c2e8720c7258dbfbee7cd2ed73114160a937e8fd (Jecho)",
+   "fix(helm): add test for repo update strict flag (#5183) 3953f0e884afd85a68ab4d8b4488cec735e2bc58 (adshmh)",
+   "Fix: kind sorter incorrectly compares unknown and namespace (#5186) f5df47b1c855e02c66f57756af224bc9b1055b09 (Alexander Matyushentsev)",
+   "Fix incorrect flow example and improve operator documentation (#4919) 7a70459ca1913fcffeb374eca4446c5f97427da9 (Alex Speaks)",
+   "Fix: type conversion for zero values (#5151) 69c7ba320e041894c073f7f62a98075b72c6bfd8 (Flavian)",
+   "Fix some spelling errors in comment (#5246) 9e18364fea6cc8a2cd97a2fa1b40650583b1eeff (JoeWrightss)",
+   "Fix code syntax highlighting in docs (#5245) 251a6a2b580158b5dfb34e8b08b10071e6353c1a (Dean Coakley)",
+   "fix(tiller): respect resource policy on upgrade (#5225) ab0ba3aa630f64e0fd46cdd6726645a7e3520db9 (James Ravn)",
+   "Fixes #5046, zsh completion (#5072) 4c1edcf0492f7e6a315dbeced3c008e96a40bc47 (Peter Stalman)",
+   "Fix codestyle and update docs 869efd59be7a960466055bc30966ebd572a4ee09 (Alexander Nesterenko)",
+   "Fix some typos in comment (#5215) 197e68ec1f5cde7a78fc5053a798f939378f4158 (JoeWrightss)",
+   "fix: ignore pax header \"file\"s in chart validation 05a365358f43a452e523d3f76b1107b6f4ff2aa7 (Geoff Baskwill)",
+   "fix: use RFC 1123 subdomains for name verification (#5132) 581e6cdbb8e42753556ae48ccba8cef84c40f736 (Matthew Fisher)",
+   "Fix delete.go file permission (#5194) 812b74aca5f14ea67b531a41687abfee8a6399a6 (Koichi Shiraishi)",
+   "fix: perform extra validation on paths in tar archives (#5165) 5603fe8d3e6ca9347ea0c2a94b2b33a55f5134cd (Matt Butcher)",
+   "Fix some spelling errors (#5114) e70bea6adb6825e4f0cce1917121e6e000bf9049 (JoeWrightss)",
+   "fix minor build issue cbf9ad11be1153d72cade3212d708112af97eefe (Elad Iwanir)",
+   "Revert \"Fix for existing CRDs are deleted when crd-install hook is introduced (#4709)\" (#5067) 29ab7a0a775ec7182be88a1b6daa9e65a472b46b (Matthew Fisher)",
+   "Fix(helm): Use spaces in ingress template 89467a8bf154aa19ad41c6775dc4a4f7ce6dfc04 (Alex Humphreys)",
+   "Fix some spelling error (#5032) e9a5465c661a7543d5a968f0020fc4729f95874f (JoeWrightss)",
+   "fix(helm): Correct and improve resilence of template check in unit test (#5010) 146c61af3765417c4b0d95bbb1a4ad73d3c228c9 (Henry Nash)",
+   "fix(helm): get rid of lint warning in pkg/storage (#5021) adce632c830b28ca5bf56e5a9df583a06cacef82 (Henry Nash)",
+   "fix(helm): Print details for pod resource ede43a313dde2611ea63e89546af46854b4121d4 (Morten Torkildsen)",
+   "fix(helm): Fix linebreaks when printing custom resources 5ac37fba9952e2df8a29c42500ee5746c3325c74 (Morten Torkildsen)",
+   "fix(helm): add --render-subchart-notes flag to 'helm install' and 'helm upgrade' 1518f961af426bfb4ce8f4ef515c4d90b1a475fb (jgleonard)",
+   "fix lint warning 61156e66565aaf5903efabcc5710846989a20f84 (Rajat Jindal)"
+  ]
+ },
+ "2.12.3": {
+  "bug fixes": [
+   "v2.12.4 will contain only bug fixes.",
+   "fix: ignore pax header \"file\"s in chart validation 940400b5a635e9e7e0028786c3d58e3ce2ca4069 (Geoff Baskwill)",
+   "fix: use RFC 1123 subdomains for name verification (#5132) 4268e69a2a7fa69952c02dbc8ad7b77f0bbdc16a (Matthew Fisher)"
+  ]
+ },
+ "2.12.2": {
+  "bug fixes": [
+   "v2.12.3 will contain only bug fixes.",
+   "fix: perform extra validation on paths in tar archives (#5165) c194e4a4016902e2ab3f06b29dc8628f27d971a4 (Matt Butcher)"
+  ]
+ },
+ "2.12.1": {
+  "bug fixes": [
+   "v2.12.2 will contain only bug fixes.",
+   "Revert \"Fix for existing CRDs are deleted when crd-install hook is introduced (#4709)\" (#5067) 02a47c7249b1fc6d8fd3b94e6b4babf9d818144e (Matthew Fisher)"
+  ]
+ },
+ "2.12.0": {
+  "bug fixes": [
+   "v2.12.1 will contain only bug fixes.",
+   "fix(helm): Fix linebreaks when printing custom resources 7247537c3dfc761f58ad03424bc598d411923b3e (Morten Torkildsen)",
+   "fix(helm): Print details for pod resource b536c8de104f0e68c7117ca7d4bb14872f791109 (Morten Torkildsen)",
+   "fix(helm): Allow custom resources in hooks (#4986) 55a338579a5b3150f3b9466b4fe471a6f0118f70 (Morten Torkildsen)",
+   "Fix for existing CRDs are deleted when crd-install hook is introduced (#4709) e2a0e7fa545585a29c1e9602e6320479788eb9a6 (Michael Merrill)",
+   "avoid kubernetes import for slice contains logic (#4963) c095b9232dfd6631f0ce02ba1cb5ff35909153d8 (Tariq Ibrahim)",
+   "fix(storage): when pruning release versions, never delete the last deployed revision 5bf38a2d7d572c4317e18c4ecbe7023403b979bb (Matt Tucker)",
+   "Fix doc charts indent (#4940) 8fcefd7d959ce10448507944b2418f29da532f5d (Jintao Zhang)",
+   "fix(windows): fix unit tests on Windows (#4897) 97465abda0b6a9e9934092c6245070fd91088023 (Matthew Fisher)",
+   "fix(helm): --set for out of order list values (#4682) e23793120b8ce3deeeede070813cd74689ed729c (Dan Winter)",
+   "fix(docs): run `make docs` (#4924) 3a8a797eab0e1d02456c7944bf41631546ee2e47 (Matthew Fisher)",
+   "fix(helm): Non-zero exit code on failed chart repository update (#4348) f6b1189aa201231b67133df4c75db0709465c84f (Lev Aminov)",
+   "fix(tiller): rollback deleted release (#3722) (#4820) 9ae00bebadad9e29ca79ae9ae93486576497059b (Brent)",
+   "fix(helm): Merge nested values correctly on upgrade (#4806) 82d01cb3124906e97caceb967a09f2941d6a392d (Morten Torkildsen)",
+   "fix:#4873, check release name (#4883) d41ca72e425c529896632e3cf4b98e2972e3dbd2 (liaoj)",
+   "fix(helm): fix incorrect yaml output format of get hooks command (#4684) 1801fa0074a0207f4d5724667858b53d52c486f8 (adshmh)",
+   "fix snap install command (#4877) 833ee712b254c618fe7afc2af20fc9e8094524a1 (Mike Garuccio)",
+   "fix(engine): Fix template rendering thread safety issue (#4828) 6635bff38faab593ee2eb50a888e8d8d4c6c15d7 (Sean Eagan)",
+   "Small typo fix (#4887) 4a49abb81ef78a1e4c6c69fc2e29bd8b98d6ce40 (Daniel M Barlow)",
+   "docs(release_checklist): fix changelog generation command (#4694) 8442851a5c566a01d9b4c69b368d64daa04f6a7f (Matthew Fisher)",
+   "test(tiller): cover crash fixed by #4630 (#4853) 0522b34e056f6dda012a763b7ed2acd4ef552e1f (Matt Rasmus)",
+   "Fix cmd/helm use tillerTunnel values (#4777) 440e79ff958becbcbd6135fd4a7fddd553de06af (masahiro)",
+   "fix(helm): Use line breaks consistently in status output 586dc1db61d5e18921acc36933752f00904337f2 (Morten Torkildsen)",
+   "fix(helm): Update status output to include resource details (#4791) dd9ed71429999bd267db53c9533a6224ff48e719 (Morten Torkildsen)",
+   "Fix reference to wordpress (#4803) ea5d2bb7bdbca360eff4b730498f73815ec94cba (Marc Khouzam)",
+   "Grammar fix (#4801) d8f38e5cee80d6e6e4ebff2f4ea48534d49647ee (mgresser)",
+   "fix(tiller): correctly sort PodDisruptionBudget objects before pods that might use them (#4769) 147c8217c7843b53e98528f6df12890d64c696be (Matt Tucker)",
+   "Fix Slack channel references (#4752) e7d93f231d1a53b5ed63e32aa6d7687e5715b6d2 (Martin Hickey)",
+   "fix(helm): fix paths in the ingress template and values file written by helm create 1a54463bdb1e4cf9b6f93fa2f7452c77e68bb54e (Arash Deshmeh)",
+   "fix(helm): fix regression with TLS flags/environment variables not being parsed (#4657) 8be42bae885a04b4acc242cf420911145b32ee1c (Matthew Fisher)",
+   "Fix credentials not set for ResolveChartVersion default HTTP client (#4662) fbda50a452b6db58faf2016b17c206ee27ddc999 (Caleb Delnay)",
+   "fix(helm): fix selector typo in service template for 'helm create' (#4663) 4dd9047586f0cfa8ed77a21d2f1062c382f27d3e (Qiang Li)",
+   "fix merge conflicts/linter errors (#4653) a297a0a7fe14779e7cfdcfa15a13237a34b42af7 (Matthew Fisher)",
+   "Fix type in Values File (#4629) 5211bfa110ab4b99ad53800098f4928711521b96 (Pratyush Verma)",
+   "Fix race condition in `helm list` (#4620) 5b236324468ad8958c351dd3c734880c0fa5d561 (Matthew Fisher)",
+   "Fix for checking helm version slice bounds out of range (#4609) 2b33bf6ba719e602c026d07ae483327d84da6b7c (Robert James Hernandez)"
+  ]
+ },
+ "2.11.0": {
+  "bug fixes": [
+   "fixed a bug where `helm lint` would fail when a `required` template value was not provided",
+   "fixed an issue where tiller running locally wouldn't respect kubectl's auth provider plugins",
+   "fixed a bug in `helm list` where only the first release in a given chunk from tiller was displayed",
+   "fixed a regression where proxy environment variables were not respected",
+   "fixed a race condition in `helm init --wait`",
+   "fixed a bug where `helm dependency build` and `helm dependency update` did not respect a repository's credentials",
+   "v2.11.1 will contain only bug fixes.",
+   "fix(helm): fix regression with TLS flags/environment variables not being parsed (#4657) 2e55dbe1fdb5fdb96b75ff144a339489417b146b (Matthew Fisher)",
+   "Fix credentials not set for ResolveChartVersion default HTTP client (#4662) 19467a536a23c46d0a8d5df9136ebbcf4e43917e (Caleb Delnay)",
+   "fix(helm): fix selector typo in service template for 'helm create' (#4663) 3946629409699a7f90997ee82bb90bb0066a4735 (Qiang Li)",
+   "Fix race condition in `helm list` (#4620) 8d408876a059223c9a29d99efb35b3497a53504c (Matthew Fisher)",
+   "Fix for checking helm version slice bounds out of range (#4609) 67b142ab0daeec1c3cd34b5813b9982c1afdf37d (Robert James Hernandez)",
+   "Fix grammer for tests (#4599) c539454c9cddaa50f1de184062e172cea4932aa8 (Ian Chen)",
+   "fix(release_server): handle the case when requested values is empty (#4604) 941b1f4d68b6cf3d299df880152d90227e1a441e (Matthew Fisher)",
+   "Avoid importing k8s.io/kubernetes from pkg/helm (#4499) 37a731db798de00bf94837e207a8a418c76b6557 (Fabian Ruff)",
+   "Set proxy for all connections, fixes #4326 (#4579) 2e9855b98ba0a04a4aa1576f3ed769b0dbd15c42 (Christian Köberl)",
+   "fix(helm): Add --tiller-tls-hostname flag to 'helm init' 1b34a511d4ae38e43518e99a8250330515e3a93c (aswinkarthik)",
+   "Fix typo in message.go 0b4e086e0572ae405a65af0a61c2dbe5a4ced2e5 (Jon Huhn)",
+   "Fix helm create note for k8 label convention changes 7306b4c28eadcd06a9f090546d6edec8a0067ac0 (Martin Hickey)",
+   "Fix typo in parser.go d92939119993174ae264dfec06db7cb1b07e37c9 (Jon Huhn)",
+   "fix: link to custom resource definitions section f15d65845019f549679d06e18db9ec7ce7686922 (Alexey Volkov)",
+   "fix(client): fix bug in list releases to append all releases 38eb73760b44f25b517f6f2f3c48cbb7dc047bb8 (Matt Tucker)",
+   "fix(helm): fix(helm): add `--tls-hostname` flag to tls flags bd0686731c4d0bcf2bf1282f915bb20da3770c21 (fibonacci1729)",
+   "fix(release_server): fix how we merge values 3e0de0dae9be9dd42386ab7e5a73abd9cc831204 (Michelle Noorali)",
+   "Fixed error in docs for file access 1b955e63f7862c95c3e5033d67f2b2b6e2a11759 (Michael Huttner)"
+  ]
+ },
+ "2.10.0": {
+  "bug fixes": [
+   "Fixed a bug where `helm init -o` wouldn't display the service and secrets to be installed",
+   "Fixed a bug where `helm install --dep-up` wouldn't deploy the updated dependencies",
+   "Fixed a bug where `helm install --set foo=null` wouldn't coerce into a null type",
+   "Fixed a bug where `helm install --set-string foo=null,bar=true` wouldn't coerce into string types",
+   "Fixed a bug where `helm lint` wouldn't fail when Chart.yaml was missing",
+   "Fixed a bug where `helm list` on a fresh cluster would show a stack trace",
+   "Fixed a bug where `helm template -x` would error out due to pathing issues for Windows users",
+   "Fixed a bug where `helm upgrade --force --dry-run` wouldn't obey `--dry-run`",
+   "Fixed a bug where installing packaged charts from servers returning `application/x-tar` headers rather than `application/x-gzip` headers resulted in an error",
+   "Fixed a regression where users needed to `--set` a bogus field for `--reuse-values` to work",
+   "Fixed a regression where using Tiller with the [helm-local](https://github.com/adamreese/helm-local) plugin wouldn't support kubeconfig files with `auth-provider` authorization support",
+   "Fixed the `--tiller-namespace` flag for helm plugins",
+   "v2.10.1 will contain only bug fixes.",
+   "fix(helm): fix(helm): add `--tls-hostname` flag to tls flags df03a10a09b267329e6b662dadc002e46b2f50b6 (fibonacci1729)",
+   "fix(release_server): fix how we merge values 39d41d09c6ab4937eca03d622891c536d47fe2f4 (Michelle Noorali)",
+   "fix `helm template -x` pathing issues on Windows 1a1ea6383004e13c400070ec50e5003da69963e5 (Matthew Fisher)",
+   "fix path output for Windows d8b46d840be34f2232cd72ee980b646ccdf8aa6c (Matthew Fisher)",
+   "Revert \"fix(helm): add `--tls-hostname` flag to tls flags.\" aedd306e83fa8319ddaaa9df0a9e5111c3538e37 (Brian)",
+   "fix(helm): add --tls-hostname flag to tls-flags 7faf62a209e91bfae17522e4a63c750a3482f6f3 (fibonacci1729)",
+   "fix(helm): return when listing with no releases or nil 6767f3cf08b30fda5f031cda7e2d0cb9d66a7bd8 (fibonacci1729)",
+   "Fix(helm): fix the bug of the charts not deployed after downloaded in helm install --dep-up 4d579bbbdff7d9b7c6b380d256f29a5732147d22 (rocky)",
+   "typo fix for template test 5d2140be384eaba7ed8bb0ff1bc2fb9be6284b4d (liyongxin)",
+   "typo fix for lengh to length 63760b29377fde5e3d2ac9f3a3df97d133161858 (liyongxin)",
+   "Typo fix: indentifies -> identifies b4cfb5f2f3efe957b1cb1b671ee33cfe18aeaf93 (ruicao)",
+   "Fix incorrect timestamp when helm package 96a85a06ed48e618c53441cdc988680eb00f8e0c (mattjmcnaughton)",
+   "Typo fix: retruns->returns 4d22b104b72cc1b6b024d047c423ba496ec05e0c (AdamDang)",
+   "Fix test failure message e8b788dc4f3533934394e783cda94e65faf75918 (mattjmcnaughton)",
+   "small typo fix 03d502c4313fdd516bf1ec4d5d9021accd377106 (Rob Salmond)",
+   "Documentation: add syntax highlighting to code examples & fix spelling of kube primitives 4e29c7e2fd4ced670da320c7587cd8a9e7a895e2 (radbaron)",
+   "Fix concurrency issues with helm install 53c8e9b67ed9482edd1c03146a55b73b014134b5 (mattjmcnaughton)",
+   "Fix inaccurate comment in `tiller` 2b04523bafa1cc96eb92b64980f7672a399e3715 (mattjmcnaughton)",
+   "fix charts doc: extra space in requirement condition 091dd84c71814fdeb8b67aaaf90179629f1f7f84 (Eric Zhang)",
+   "Typo fix: mach->match 51f92b47877bcc36401dacc6b624eecff8a8931d (AdamDang)",
+   "fix lint warning f2abb2ae1409ef0c897bd5f7a943561b17af0b3a (Rajat Jindal)",
+   "fix(kube): run schema validation on BuildUnstructured b831efdf5853dceb0249eaf441024d115b5cb633 (Adam Reese)",
+   "Typo fix: usa helm->use helm ddb536aa7a9287a6bf45994f4430891d00c1f529 (AdamDang)",
+   "Typo fix: evalutes->evaluates 07bebe6bff7885cafc800c063e52bf4669ed1c93 (AdamDang)",
+   "Revert \"Fix tiller deployment on RBAC clusters\" 4d1a401a9fb52cfbad97c31a9d038935434b413c (Matthew Fisher)",
+   "Revert \"toYaml - Fix #3470 and #3410's trailing \\n issues\" f7f686f7d065218ef6df3fbb75ce6348e699a0f3 (Matthew Fisher)",
+   "Fix for - Downloader plugins not used when downloading new repo's index.yaml #3938 c2fa72ebcdc9a12381eec29b642374af75f5b45c (eyalbe4)",
+   "fix(kube): output internal object table cefee4b749122bc38d019c2791faf79a4ab1376f (Adam Reese)",
+   "Fix --tiller-namespace flag for plugins ed39f16ee57c094476ea61ef4983efcb501e7643 (Fabian Ruff)",
+   "Avoid to call 'go' with empty -tags argument 6b2384f8b4dbc64e0452dfb60b987e94e8c21f00 (Julius Kammerl)",
+   "Typo fix in plugins.md \"that that\"->\"that\" 28fb950588f64c4341886509a62d3b7670578e7a (AdamDang)",
+   "fixed flag for tls ca cert option in the documentation b0eb40b2ca67146b7bb76e0197bfba0c83c5dd60 (Colin Dickson)",
+   "fix(kube): get correct versioned object from info helper 6ffff5fea9febb3c2522a391a80cb09b838288a7 (Adam Reese)",
+   "fix(kube): use correct object type in watch 31ddd707e8f832c2ac429aa09284e196f1664ec6 (Adam Reese)",
+   "fix(pkg/strvals): evaluate \"null\" values 1850aeade9efe7edb960b130daa46c727ad98bab (Michelle Noorali)",
+   "Correct the returned message in reset_test.go fac7caf5d266c33cc95d0413e73a9a4636e48317 (AdamDang)",
+   "Correct the returned message 9f78c33c644cbf4599c30605470b752126573471 (AdamDang)",
+   "Typo fix in functions_and_pipelines.md f291fdbb43730dbb266d7aeb146c40aa978a0c66 (AdamDang)",
+   "fix(helm): resolve linter's warning on template command unit tests 75682ed5844400e5dcd24ec7532c0fa454defd4d (Arash Deshmeh)",
+   "Fix some typo 4b09b0489b6ba1fbd413aaf599fe44e6697a1b1c (xianlubird)",
+   "fix(helm): refactor tiller release install unit tests using chart and install request stubs c22492ff016ea85d7b05be013ecd4458b00b02ae (Arash Deshmeh)",
+   "Typo fix 3f5e82c83207c7444f98cc65a73bf71a0babeb1d (Erik Sundell)",
+   "fix(helm) refactor reset command unit tests to remove duplication in test code 826781a1a3ceddaf0abeced14bee867d86c96b4e (Arash Deshmeh)",
+   "typo fix get->Get's ee9ef91df0ea72646ae0ea23497622bfd019a944 (AdamDang)",
+   "fix(docs): Add the missing docs 85282ab864973cbbb85d97849c37be0432df7149 (Taylor Thomas)",
+   "fix(package): Adds missing `set-string` flag and parameter b718b1c87038d44f2519f50d2df25454aad5f926 (Taylor Thomas)",
+   "Fix some typos 138de17c64e6c01468f4e17ddff0231b34d3f683 (AdamDang)",
+   "toYaml - Fixes #3470 - trailing \\n issue 6cdf6cee56dcd90e3dca82950b15d46e6bb4587b (Erik Sundell)",
+   "toYaml - Fixes #3410 - trailing \\n issue 35132d141c54598e7dab23207acce7e6fb1dfa4a (Erik Sundell)",
+   "Fixes typos introduced in #3540. Closes #3823 1e7915587f383a5e37f8506c9c1784bd37f43753 (Daryl Walleck)",
+   "fix(pkg/tiller): reuseValues combines all prev val 9266731dc45aac2aa6a726e5a887ee1078aaf35f (Michelle Noorali)",
+   "Typo fix helm->Helm 58ac6023653632afe1bb13d01ed5516fff3737f5 (AdamDang)",
+   "Fix #3822 1d3ae54185e369477f42fb15d3a97f80c014c09c (Zack Williams)",
+   "fix(helm) refactor release_testing unit tests to utilize runReleaseCases ea7c3fefc8cd79ac497965a7fca2aef390f82287 (Arash Deshmeh)",
+   "Fix tiller deployment on RBAC clusters 1e03f1bce5eaab384c8ddabbf38b8f566d1c1d14 (John Koleszar)",
+   "(fix) Handle caFile alone being set for repos 332dc83c46b1cb135bc42b7afa1c9b50629e0e15 (Morgan Parry)",
+   "fix `helm get manifest` context deadline exceeded error 87c64e7987f348c0a99a4f6e12d6ec187723b7cc (Matthew Fisher)",
+   "fix output leak from tiller release install test a43ddcc191f851e343075142a3b0f9a456e95be0 (Arash Deshmeh)",
+   "Fixed SIGSEGV when running helm create with -p and no values.yaml file 99da9fb54817a00e0138a08ce0b0643b923e5b6e (Ali Rizwan)",
+   "fix(helm): add service, secret manifests in `init -o` af80059b45804a3c9eb51b98f2bb8eded091d677 (ryane)",
+   "fix(helm): fix importValues warnings from disabled charts fbe80437a499e6b5c7301588522b03dde593ce10 (Justin Scott)"
+  ]
+ },
+ "2.9.1": {
+  "bug fixes": [
+   "Revert \"toYaml - Fix #3470 and #3410's trailing \\n issues\" a00bcc297914fe2f9e7eadab45ea34d1d99f8e87 (Matthew Fisher)",
+   "Revert \"Fix tiller deployment on RBAC clusters\" c6e7f0335bc083aa298127c5e4d72a28a6822f3f (Matthew Fisher)"
+  ]
+ },
+ "2.9.0": {
+  "bug fixes": [
+   "2.9.1 will contain only bug fixes.",
+   "Fix for - Downloader plugins not used when downloading new repo's index.yaml #3938 26f4405fdf9d7334fc8ae966aae8f880e2b1b9a4 (eyalbe4)",
+   "fix(kube): output internal object table 4c14bc4f342786a949d256c5b7dbe4335bb329bb (Adam Reese)",
+   "fix(pkg/tiller): reuseValues combines all prev val 4dd21780bb6debf2eccfef2c37bdcb52bf649abd (Michelle Noorali)",
+   "fix(kube): get correct versioned object from info helper f91c62f888e0a8f764fda8d7e3c2abf98abf1081 (Adam Reese)",
+   "fix(kube): use correct object type in watch 561e034ada08d9ab707227756a62a4da47cee10d (Adam Reese)",
+   "toYaml - Fixes #3410 - trailing \\n issue 9d81cc097119a88b072ebddc31db9ad941c1da44 (Erik Sundell)",
+   "toYaml - Fixes #3470 - trailing \\n issue 1dc32f78491856085b88217a1686936a8bb6ef5c (Erik Sundell)",
+   "fix `helm get manifest` context deadline exceeded error 73324d5ec971359c2a6fa4011d619232dc1e34f5 (Matthew Fisher)",
+   "Fix tiller deployment on RBAC clusters 992effc1cd8870ab9061ec5d56847bf25e818af3 (John Koleszar)",
+   "fix(helm): fix output leak from unit tests of helm create command e0056a9e41d5432192ee4d103a72e36ba9aeec36 (Arash Deshmeh)",
+   "fix 'eveything' -> 'everything' (#3754) 0ba75b6652aec058c51fc1152988e01403496318 (muhongwei)",
+   "fix 'mulitenant'->'multitenant' (#3755) 75387fe3183a724684b2bea29c2a0023e7a9a354 (muhongwei)",
+   "Fix several golint warnings (#3756) 1a55161a53345816d724e1df9664f789113e1328 (adshmh)",
+   "fixed typo + moved into Helm Included section 6abbee0d44f2890ad76cb5f2bd09a79a540a63d9 (James Strachan)",
+   "fix Syntax error bddb6591d46ce176e87668ed458da54fa0da5eaf (fqsghostcloud)",
+   "Fix HTML parsing when setting TAG with wget 908addd6fc778515fc0b2ed54a5050149554b961 (Ferenc-)",
+   "Fixed typo 08f450404b1a7711d12efcdbfc47abafdd42bcda (Andrii Soldatenko)",
+   "fix(helm): fix helm history unit tests 34b6d12ebe0824cae6fc9ebb1b14d3c8fd822a92 (Adam Reese)",
+   "fix(helm): refactor tests on helm dependency list command to remove duplication 74bf7584a0333e817bca52b80e56e189cb1ed98c (Arash Deshmeh)",
+   "fix(helm): remove duplication in tests of repo-add command b66c10df10a4039adc26ae21edb649b7a2a5f630 (Arash Deshmeh)",
+   "fixed an issue in versioning.mk (#3653) a53f93c8ee28ad6b5ac043382b63e483a1f70e55 (John Rowley)",
+   "fix windows path issues on `helm template -x` 6de9ebccbca7dd085f5d8857f1715c20075ed40e (Matthew Fisher)",
+   "fix(helm): refactor search command tests to remove duplication 1e4770248c9f263ee2fd54516a93a28cd2fd6670 (Arash Deshmeh)",
+   "fix(helm): search command returns error on index search failures (specifically on regular expression errors) 4b145622a268a3aca5643c149da5a3172df03dd4 (Arash Deshmeh)",
+   "Fixed referencing the wrong env variable if SHA sum doesn't match. 08a92b23d1defbb03a3f6580f3ce9b3dcb935c76 (Michal Zerola)",
+   "Fix link to github issues bb932f77022b55d3090506cb0a02d4431c52eaf2 (Stuart Leeks)",
+   "fix(helm): refactor helm version command tests to remove duplication 23b570fabdb2907a6cc2887a4885cc9086cc7ad3 (Arash Deshmeh)",
+   "fix(helm) refactor helm status command tests to use releaseCase struct and the corresponding function runReleaseCases. Fixes #3659 e25df2ae76e3c772ee6ae86e2eaf5be3be72cca9 (Arash Deshmeh)",
+   "fix(helm): remove duplicate code from cmd/helm/history_test.go. Closes #3649 cdd9a85676edc2f126486ff7ccb5b14093744857 (Arash Deshmeh)",
+   "fix typo in docs and fake 92972b0353430344c7dc1b9f7abc152f08bdc4f2 (Rajat Jindal)",
+   "fix protoc 250d25fdceaf5546f29228f3711cedd8d6776fcd (Matthew Fisher)",
+   "fix helm init --wait a66a39a171fa453f6515cbe23d7d2715cba9cc81 (Matthew Fisher)",
+   "fix(helm): remove duplicate test code from cmd/helm/list_test. Closes #3637 75ccc353eb12884ebf2f8c653cee7730cc397f67 (Arash Deshmeh)",
+   "fix kubeVersion example 01b404b68e4be94fe7776fc51cd65c155308a5fa (Matthew Fisher)",
+   "Fixed bad link to Issues page 3058644f364f5fbce596aac1fc0edd718b504f5b (bryangunn)",
+   "fix(helm): fix the bug in test code 'cmd/helm/init_test.go' and 'cmd/helm/repo_update_test.go' that leave behind temporary helm home directories during build. With this fix, the build process no longer leaves behind 'helm_home-*' temp directories. da989dc275a92fd48343263baf99231b310ce9ac (Arash Deshmeh)",
+   "fix(helm): Don't crash in search if upper case chars are encountered. d8489901224c8279b724c84c0f17df67a9d5aaf2 (Morgan Parry)",
+   "Add --replicas option for HA fixes #2334 2f252e95242849123fa7826748cbfd050fde870c (Yaroslav Molochko)",
+   "fix(circle): fix download link to download.docker.com 286c902572a209d1a827b32ce794c721fcf21e44 (Matthew Fisher)",
+   "fix(tiller): Supersede multiple deployments (#3539) 5f1a21bc321b326f3fab87b71bdc12bcd7125441 (Johnny Bergström)",
+   "fix(plugins): support installing plugins by relative path (#3568) fa611fe2853f3393c7c2d902b8dabc72c88d63df (Adam Reese)",
+   "fix(plugins): support newer git (#3571) c314e2e2f1a3ef1d54daea24c66bed215c9be152 (Adam Reese)",
+   "Fix link to Slack 64b7d060baa92150f8a45cdff644a6cadc34ddb5 (Mauricio Scheffer)",
+   "Fix minor typo df041c4b19d4007256123bfba57c56355086c934 (Radu Matei)",
+   "fix(helm): fix the bug in tests under cmd/helm that leaves behind temporary directories named \"repo-test-*\" during build. 55cc23cb0168d527ba60de359e38c5717cf2577d (Arash Deshmeh)",
+   "fix(helm): fix the bug in test code under pkg/tiller that leaks output to stdout during build 5b25eef9e260f2658914c5b9de27d8f69efcc2a3 (Arash Deshmeh)",
+   "fix(helm): fix the output leak to stdout during build by tests under pkg/releasetesting, by redirecting output from mock clients. 4fcf69bc5287f6ca6090655ef8b8bb8087d6fa8a (Arash Deshmeh)",
+   "Fix typo fbe17d277e5e4260edea47c9ede97dadab78be7c (Frederik Carlier)",
+   "Fix linting bug with charts containing more than one hyphen abd33764e8738e9d46b6ec9dc5d7f73f1eeee675 (Liam White)",
+   "fix(helm): fix the implicit dependency of TestSetAppVersion test on previous tests, due to helm home, by explicitly creating a temporary helm directory for the test. c78af5483c895fc4ccc204c350ed47b5da48fc17 (Arash Deshmeh)",
+   "fix(helm): fix the bug in test code 'cmd/helm/create_test.go' that leaves behind temp directories during build a9ba3aa89777d651b4515b53f7cae98637447503 (Arash Deshmeh)",
+   "fix occurences typo in charts.md 50cba63c5c3054f10d09b493b010ac4ee82441ae (Yann Coleu)",
+   "fix a typo in client 76a40fc573120cca95042a0385dc97701b98c228 (yank1)",
+   "docs: Fix FromJson comment a59d2125123d9d829e99823e1f969309841fefd8 (Thibaut Rousseau)",
+   "Fix bash example ffc76861fe2e97ec63f36575bb2b3898a8b3a11d (Jonathan Hall)",
+   "Grammar fixes and clarifications 0d12288e46fb21f57cf8974c8b9df0c80a4c529a (Jonathan Hall)",
+   "fix(helm): update helm reset --force tip for clarity 084a2bb945ef2c6fcb3a97cb3ee00210a2f0fe5d (Justin Scott)",
+   "fix(helm): fix the build-time golint warning on 'cmd/helm/install.go' 244b1b152865c3f7d86f38a16d4dc9ce2a574bd2 (Arash Deshmeh)",
+   "fix(grpc): Fixes issue where message sending limited to 4mb 614cd9dfe7413a3b8624311bebaf8e8229b05e3f (Matt Farina)",
+   "fix(api-machinery): Fixes patching for unstructured objects e6137ff05fd6d6e736a108cf91f5752e8669b268 (Matt Farina)",
+   "Fix subchart2 example tag 782b394e9799e875649219295e6ace6bd54ec39a (Jonas Fonseca)",
+   "fix doc spell check f953b2be2d4440228056af93912d91897f528faf (lihuangzym)",
+   "Fix 'getSelectorFromObject' ea520afd3e4d0eb3637a10b7443ca83bcaf340e8 (Reinhard Nägele)",
+   "Fix typo 3c66183cb51eea000ad7120ba68b9b7e4fef26f8 (Bin Liu)",
+   "Fix type 1e0906ed67c08f754cc28c7047eea228cb76e373 (Bin Liu)",
+   "fix helm init --upgrade logic 4947e5aaf8a5354cfada9816e837420ff7a75ca7 (Matthew Fisher)",
+   "fix RELEASE_BRANCH_NAME 4763cca8cb49e6166475d19442ad379067531bdf (Matthew Fisher)",
+   "change child-parent title & links to fix links d77a60a4621479b0d8c42cdafebfdcf69b1b10e0 (jonathan.striebel)",
+   "docs: fixed incorrect clone path in developer docs 03f35cdd32fbfc41ab49a0c1106ee0e9cbf6d520 (scriptonist)",
+   "fix link to image 9fcd6be4ffbc032396d7cb0d71c8f551a51aa277 (Matthew Fisher)",
+   "Fix pod recreation 3d05da010980fd93258d4f10ff4d0dbabe53dba2 (Reinhard Nägele)"
+  ]
+ },
+ "2.8.2": {
+  "bug fixes": [
+   "fix protoc e647416e1e5720dd71a05c7ffd0cbaf4eeaa7127 (Matthew Fisher)",
+   "fix helm init --wait a5394ea0fb4bcde72e34c51261767fa9abe10186 (Matthew Fisher)",
+   "fix(helm): Don't crash in search if upper case chars are encountered. cc5a8abefd38ff98591ecbe42edcd4f9d4d7fe2d (Morgan Parry)",
+   "fix(tiller): Supersede multiple deployments (#3539) 5847d922111ccb90beba3e6ea072bdc357355fdd (Johnny Bergström)"
+  ]
+ },
+ "2.8.1": {
+  "bug fixes": [
+   "fix(grpc): Fixes issue where message sending limited to 4mb e2f688fa0d3cead645dc6737fa236021fa740f82 (Matt Farina)",
+   "fix(api-machinery): Fixes patching for unstructured objects 90957b905c6f8446c590a05ca43171e4e3073918 (Matt Farina)",
+   "fix helm init --upgrade logic 2b2b994092fc7b8407dd8403c673844721ccd929 (Matthew Fisher)",
+   "Fix 'getSelectorFromObject' 7086a16e29cfb106c272437f756b6cef628e7582 (Reinhard Nägele)",
+   "Fix pod recreation d6dc3ded8465f177866e67e8acc1694f189064f0 (Reinhard Nägele)",
+   "fix RELEASE_BRANCH_NAME fdbbfecb55b6cd23ea59cc668ec55cc900cd3ea4 (Matthew Fisher)"
+  ]
+ },
+ "2.8.0": {
+  "bug fixes": [
+   "2.8.1 will contain only bug fixes.",
+   "Added a --wait flag for helm init which pings the Tiller server and ensures that it is ready to receive requests Fixes #2114 b29d25ef0be611cffb28c5ac8b494e2c735178b3 (Alex Johnson)",
+   "fix(capabilities): Adding GitVersion to default set d5a865b5f4fe5392defb7aba40711aa8135933a8 (Matt Farina)",
+   "Fix filename 9ad292b3ef701c9a7d97b5533991e476c2f9776c (Dennis Benzinger | SAP Hybris)",
+   "fix(helm): filter helm list to print latest release (#3335) e9203b826bb4f1efb6dfaa3a566c9cc1bbac4651 (Adam Reese)",
+   "Added notes on how to fix pulling errors fb1432264182baa52e89c1b8eb593f1074e66e06 (Andrey Chernih)",
+   "fix a typo 270969117c620b417cdc785dfa9d0a38c4fec2bf (Pure White)",
+   "fix typo 724b3898a4a79e247e5c8720bd214265053bdc1e (Luis Cordova)",
+   "docs(chart_template_guide): Fix link e4274c448ce70fb683dfbd52d53bf7804efed6fd (Mitchel Humpherys)",
+   "Fix broken bullets by Note in docs.helm.sh 9735642fe8b092da503e88c9ebca8c63ddcf7c92 (Gabriel Miretti)",
+   "Fix command formatting 219e1075ce0441d063d9604a563e9e9a2484288f (Gabriel Miretti)",
+   "Typo fix cfb7dfa82c5d7ebb54645ffd0727416b0ccf10a9 (Andrey Klimentyev)",
+   "Fix package url bd8178d50b867abf0785939bb8c1c5eaf9036b12 (Nauris Sadovskis)",
+   "fix(helm): Init not creating local-index symlink on Windows 9129188fadd62e2baf01dbc0f0c2c21638aab4bf (Pietro Menna)",
+   "Fix helm ls in Quickstart 6029f4dc9325f436a2112fc4afa717329a2dd430 (Luk Burchard)",
+   "Fix example and reference version matching syntax a3af75f9b607ee6f96b1c61f09e5c13f29a06538 (Tim H)",
+   "fix(helm): Apply PR comments for tpl template name fix Modified existing unit test to verify the changed behavior. Removed debug print. 8bc7dede1864b94ced115a566c115e522b4af11b (Lukas Eichler)",
+   "Fixed warning for missing formating parameter inside error message. 1cebc760a036f41caf8ce2207237775b0d13055b (Lukas Eichler)",
+   "fix(helm): Set template context inside tpl function to outer function. docs(helm): Added documentation about tpl function 2c338db1bd9b8624dd908eb6ac137c913d9ec39d (Lukas Eichler)",
+   "fix TLS default path 618094ccd2a37acb0adbdcd43885eb6aae0a712c (Matthew Fisher)",
+   "fix(sprig): Update to v2.14.1 that fixes an issue 57f95213f356125da730aa98f09300bbebd14619 (Matt Farina)",
+   "fix signatures 93bce130fbee835a2c136189b661c9a8ec0812cb (Federico Gimenez)",
+   "fix(tiller): Forces close of idle gRPC connections 44e5cecdcaee14c15055d20d6b9a72e80cd4794d (Taylor Thomas)",
+   "fix links to service_accounts.md 35616bd0df6d46b1f988bfdbb1f39c80d75fda3e (Matthew Fisher)",
+   "fixed bad link. c20ec8fedaef10e0642d20bfe554baeb932aa0ee (Ralph Squillace)",
+   "fix(helm): add --app-version flag to 'helm package' 9e869700c0bbb76ebec94b7b12871d6fe27b59ab (Arash Deshmeh)",
+   "Fix a typo in install.go, update helm_install.md d81780032a167816ec2c900857c7d074b8ae267c (Igor Vuk)",
+   "correct typo 335ea3c6ac1786aab4f3a0028d0c5bc7941d33d8 (Mark Gibaud)",
+   "fix(helm): Fixed semantic version constraints on 'search' command (#3116) b74c21a7b291033cfe417a153eb4b455eba60696 (Morgan Parry)",
+   "Fix helmignore for .* (#3114) d762a42168308d93a46be1d7bc37bc518eee496f (Johnny Bergström)",
+   "fix: rename variable due to linter warning 2106766ab81b6fb881809aa25a9e35999a6170f7 (Christoph Hösler)",
+   "fix: updated docs b45293feb006013094213d6380cb881956a4672b (Christoph Hösler)",
+   "fix(helm): resolve relative chart paths 09313ad26c38d905b7ff87921fa5754ade0152d5 (Christoph Hösler)",
+   "fix(helm): Tunnel closing already closed channel (#3157) fe3eeaf39d44a95aa9e7cff29647cd12ab60da5a (Matt Cholick)",
+   "Fix/missing ssl params (#3152) e8e6ac5d7783808cc0bd1adad053bec339849647 (Matt Butcher)",
+   "Fix incorrect line 7e0e27726df8b7b7023f78f1ed593a58bc15377a (Denis Mikhaylov)",
+   "fix(helm): update documentation to reflect $HOME env var change 8ee89fe5dcdf35bc937508367dce8133ed08f43e (Pietro Menna)",
+   "fix(helm): home env not set on Windows ece9486182db705923e3f04618c5f6a37e71076d (Pietro Menna)",
+   "Fix err checking 6f6d46de06a1b580d350f3cdf9bfb78cf4de76a3 (Alexander Lukyanchenko)",
+   "fix(tiller): upgrade last deployed release 82ef751414d9de6b64ffaf89d964ab67cb5d4766 (Adam Reese)",
+   "fix(docs): fix code comment for ReuseValues() b8734a173ec079e9ec181b03bee44bebae8e9c2e (Matt Tucker)",
+   "docs(templates): fix and expand config checksum example 25e851ecd03301030aa76b106520a52ec2a8f44e (Joan Rieu)",
+   "docs(templates): fix misleading/broken examples e464479cb2bb9b7228f595e513622bef2b173946 (Joan Rieu)",
+   "Fix typo for --service-account 3c3936fcaaf2c86d783ed87d6d1aca25d6dd5d15 (Simon Schmidt)",
+   "Fix for relative chart path support in index.yaml 8775f632f246ff3c7746c3cc3f71d51a06101e93 (Christian Jauvin)",
+   "fix(circleci): Fixing the glide/vendor cache so it is used by glide 4c7617a76e310fa53473b31b18b371b344da4fef (Matt Farina)",
+   "Update install tests to use ReleaseMock and associates from the helm package. Also fix release names to match expected reponse values 2bc97cfc839a542735a798bc7c24f1921387509f (Brad Bowman)",
+   "Review fixes applied 9a42d71898612c8bee21e6d1b417789b8167cece (Marcin Kłopotek)",
+   "Fixes shell installation script #2977 42bc36d24093c6b1f4a6fb4c4df7a79be7e82151 (Marcin Kłopotek)"
+  ]
+ },
+ "2.7.2": {
+  "bug fixes": [
+   "fix(helm): fix missing ssl params (#3152) e8e6ac5d7783808cc0bd1adad053bec339849647 (Matt Butcher)"
+  ]
+ },
+ "2.7.1": {
+  "bug fixes": [
+   "fix(helm): update documentation to reflect $HOME env var change db76009b67dade70c65dfa08fb20f295b3671dad (Pietro Menna)",
+   "fix(helm): home env not set on Windows 4f04c1cdb62e1559934fb973bf5951288c70bb92 (Pietro Menna)",
+   "fix(tiller): upgrade last deployed release 0647a7b17a76cb0c89ed6bea1c063344ced098ed (Adam Reese)",
+   "Fix for relative chart path support in index.yaml a97e4dba9470c69ecd4e943d743416e1863addd4 (Christian Jauvin)"
+  ]
+ },
+ "2.7.0": {
+  "bug fixes": [
+   "2.7.1 will contain only bug fixes.",
+   "fix circle not building tags f4f932fabd197f7e6d608c8672b33a483b4b76fa (Matthew Fisher)",
+   "Fix a small typo in `yaml_techniques.md` bbad3c574eb03b8430df8f41921624d0cbc3dcc0 (Edward Medvedev)",
+   "fix(tiller): Adds CRD ordering 29c3b5276f0290d21d43ef45ad0230e45b460b27 (Taylor Thomas)",
+   "fix(semver): fixed edge cases that do not match prerelease b27b11a2806eb5134c92a09796850ec7100b1871 (Matt Farina)",
+   "Fix #2937 - helm always appends /index.yaml at the end of URL (#2988) dad8c6f644b618983c7b6eca8146d736c73d04fd (Michal Cwienczek)",
+   "fix(helm): invoking getterConstructor returns downstream error now a28e5dd2b30caad633834d132a61d754a0479676 (Nandor Kracser)",
+   "fix(sorter): Adds missing unit test 333f8dd35493bff310fe27faf90103f4557ccc64 (Taylor Thomas)",
+   "Avoid panics if test is failing a6872c124ac1c89b740f81200fb4bf9e2c71b34c (Maxim Ivanov)",
+   "Revert \"fix(helm): resolve symlinks when loading chart\" 211f5f6f33eee7ab6ee2c75fbfd45fcd4262aae7 (Matthew Fisher)",
+   "fix(deps): fix issues when running glide up b69d6ceca0bca9290efb9d1ca89c50cf337cbb08 (Matt Farina)"
+  ]
+ },
+ "2.6.2": {
+  "bug fixes": [
+   "fix(deps): fix issues when running glide up be3ae4ea91b2960be98c07e8f73754e67e87963c (Matt Farina)",
+   "fix(helm): Fix the bug in helm dependency update -verify 7ed614d06d1f6b6ad243c04f9e36ae79ed8f74f0 (@rocky-nupt)",
+   "fix(helm):Fix dependency aliaes not working 5f1defd07255b98760be568cc380ab0b4e90db18 (@llsheldon)"
+  ]
+ },
+ "2.6.1": {
+  "bug fixes": [
+   "Fix(helm): Fix the bug of dependency update deleting subcharts 165818e39102e84c7dcb76e72db5670fc16b7a42 (Adam Reese)"
+  ]
+ },
+ "2.6.0": {
+  "bug fixes": [
+   "2.6.1 will contain only bug fixes.",
+   "Fix Typo in Contributing Guidelines 6de79b7ea8d5769c6aad4ffb34cc98a5603fc7b5 (Malepati Bala Siva Sai Akhil)",
+   "Fix the default NOTES.txt bbf2d6b7e8b9208e5246f134eb881de65b455116 (Maxime Guyot)",
+   "fix(helm): pass os.stdin when executing a plugin (#2740) e61ee5c54e1d24e791f516cb61059fc910befd1b (Maciej Strzelecki)",
+   "Fix link 1c3d9b892e3ec7496e9bac53274d3a01396136c8 (Miouge1)",
+   "fix spelling error 3ee74217d162a21ced3df5c6b901b520ed64a4d4 (jiaweizhou)",
+   "fix(pkg/strvals): use rune literal instead of ASCII a5dc546726e664db822104cb612fb74a4a134df0 (Sam Leavens)",
+   "fix(pkg/strvals): preserve leading zeros in vals 609e72b357c8be43c3ec5f2d148f2188233ef0b1 (Sam Leavens)",
+   "docs(fix): fixed misspelled word 97893afc620fb454c880df1cdef35f7430f5f7a5 (gardlt)",
+   "fix(pkg/chartutil): Fix test, improve message cf09e344d186b6292fed5ddc5c2aeea1350ed199 (Sam Leavens)",
+   "fix(tiller): remove locking system from storage and rely on backend controls fa68a6e1db81cbc113c3b289c81ab5d0600ec4a3 (Justin Scott)",
+   "fix(helm): fix flag parsing once and for all a29e610938b1a4f59ea2c038d0d23193d54bb2f9 (Adam Reese)",
+   "fix(dep): Fixes out of date dependency info 564ba7ba7ccc5aaf074222d8dec1c0f5091ca2f2 (Taylor Thomas)",
+   "fix(helm): fix `helm get` subcommands b671888ff4442cadaa47bd46d37eb1ff5639181c (Matt Butcher)",
+   "fix(helm): support HELM_HOME during plugin loading 876cbc205c8d3a158a65db903b256596df2523e5 (Adam Reese)",
+   "fix(tests): fix sorting hooks test flake 9325d136d4ee619a3d8fc1cd22c91585f31b67fa (Adam Reese)",
+   "fix(helm): load home from flags during runtime dd952e61f0922a5baad2d2e39107913fdaf4ec5a (Adam Reese)",
+   "fix(docs): run docs generator 057c747c1fcca755ea4dfc4c61ac50905acccffc (Adam Reese)",
+   "fix(semver): Prerelease number comparison issues 453e79ffc51c89c193d513a26eece343753e56c1 (Matt Farina)",
+   "Fix a bug causing 'helm depndency update' to delete required charts 04a7e241e67630e2019e6a58f373f6490829dc9c (Alon Lavi)",
+   "fix scripts/get runAsRoot CMD var building 974c4b67c7a9241887ca223d978f47052b29e575 (Tony Fahrion)",
+   "Fix broken tests due to \"server-side\" text change. b704947d54cbbe10c54e247f85fcfa5fb79d6065 (Justin Scott)",
+   "Correct punctuation and capitalization for user facing strings. af4c243ee377ca1b52a55f5b5292bba33b25cf31 (Justin Scott)",
+   "Fixed helm test sample. c19bba17c530453e02c5fd85012092643103f676 (William Denniss)",
+   "Fix markdown syntax in doc 963aca1d7843f9894cc8a7010050634ca84f2485 (Yuvi Panda)"
+  ]
+ },
+ "2.5.1": {
+  "bug fixes": [
+   "The deadlock problem with Tiller has been found and fixed. A huge thanks to the dozen community members who submitted use cases and data to help us find the problem.",
+   "fix(tiller): remove locking system from storage and rely on backend controls b6624b78ea7da2aa1ef171963d08e67664f99cd5 (Justin Scott)",
+   "fix(helm): fix flag parsing once and for all 97857297a6da1d1d4a4df3d2e0ce3a0fa3583484 (Adam Reese)",
+   "fix(helm): fix `helm get` subcommands e960523b3e870a85804acb77750406fe77cb04b7 (Matt Butcher)",
+   "fix(helm): support HELM_HOME during plugin loading d68562faa245403a16d0a3c684dd329042ff7281 (Adam Reese)",
+   "fix(helm): load home from flags during runtime 7692de7ff0b22233b32c9574690dd6ab7a9acb09 (Adam Reese)",
+   "Fix a bug causing 'helm depndency update' to delete required charts 30a5c6c19f31acbf61591fa7beddbaf514b51a04 (Alon Lavi)"
   ]
  },
  "2.5.0": {
@@ -51,6 +2039,185 @@
    "`helm install` and `helm update` no longer download remote charts to the current working directroy. `helm fetch` continues to work as it always has.",
    "Since `--set` now accepts array indices, `values.yaml` keys of the (literal) form `\"foo[0]\"` will no longer work.",
    "A new field, `Force`, was added to the `UpdateReleaseRequest` and `RollbackReleaseRequset` gRPC calls. This will not break existing gRPC clients, but could break forks of Tiller that override existing gRPC calls."
+  ],
+  "bug fixes": [
+   "2.5.1 will be the first patch release in the 2.5 tree. It will contain _only_ bug fixes.",
+   "Fix typo in command line. 8dfec4db6152f34d2be54dd83c69c1e994b5ebf2 (Julien Balestra)",
+   "fix(helm): helm home print to stdout 985dbae2aceabc6415de1d49bec31d6b64c15f1a (Adam Reese)",
+   "fix(tests): Fixes broken unit test 5cfb4e8cf8c00d3fc8c2634dceae2bd8c0c565f9 (Taylor Thomas)",
+   "fix(helm): Ensures tiller pod lands on a linux node 8a0e051c1dd059f3fede4147154b40f857b7d304 (Taylor Thomas)",
+   "fix(helm): modify `helm repo update` help info c8b8c1e6d635c55fbf2c548c465cf6eafcf18692 (willise)",
+   "fix(tiller): track hooks in multi-def manifests 83c69a8e10dcf6e85ad7f81afdb7eb7de58fc654 (Michelle Noorali)",
+   "fix(tiller): make GetReleaseContent return any release c9139113378b0ba7301b2a4fcc5716bc21d40c3f (Matt Butcher)",
+   "docs(helm): fix typo af8730032a14da71870213f7ea0bfb0399ee7fd2 (willise)",
+   "fix(helm): remove unnecessary values merge in processImportValues 40052d3e8fbdc7ad7eda830e4325c0606e5ac916 (Justin Scott)",
+   "fix(docs): A couple spelling mistakes a2d559bd0b5b7ac4dca965f92065fa2945f36438 (Cory Smith)",
+   "fix(docs): Updated non-working example in 'Using Helm' documentation 2b0a61285818e06e9e5da0461b9fea12c538aa19 (Nikhil Manchanda)",
+   "fix(tiller): Adds missing import back d9c0a8b434d88ae366bf23c0a7677b9ee4b87dfe (Taylor Thomas)",
+   "fix(plugins): exists --> exist e7a51d542415dd347a89e21b48c573da8eb1a3dc (Seth Goings)",
+   "fix(helm): fix race conditions in flag parsing d797acbd7bb97270698ce718b2d45ecdda1dc18e (Adam Reese)",
+   "fix(2452): sort templates before parse 8937c775a9799387d5e1b76222d197919a992ae7 (Matt Butcher)",
+   "fix(helm): prepend repo URL to packages missing scheme 4c6a7cf7590fc354f625eb8af2fde927f05aa8e4 (Matt Butcher)",
+   "fix(docs): Remove \"no nested globals allowed\" 7c7646cce2bc7b8b4f34be88d5586473ef498d6a (Justin Scott)",
+   "fix(plugins): add error when updating modified plugins 1e8ebae249ccf9cd1b9358c6b0c7780caf95f7b6 (Adam Reese)",
+   "fix(helm): fix setting home via `helm --home=HOME` 9832e7df96bfe19f3e0469c7b70532fd9a4e60c7 (Adam Reese)",
+   "fixed fromYaml | toJson bb4be3333162926c8652e868ba8c1dfa371e4e05 (lead4good)",
+   "fix(helm): fix itermittent release testing failures 19a33b3f955b30018bd052c316a13aed8c8c66a0 (Michelle Noorali)",
+   "fix(helm): add --devel flag to allow dev releases again 28ec92355bd676c5775ea82504cde5a3465000a0 (Matt Butcher)",
+   "fix(Dockerfile): add ca-certificates 70f6aa4c239b689100c4bc8f154f28f133197939 (Matt Butcher)",
+   "fix(windows): Updating docker/distribution 3f1c6a1e870b8c860267c2a22895140615282a29 (Matt Farina)",
+   "fix(lint): add KubeVersion and TillerVersion to linter d863d9a886c187cee2a5b606d146e8c0ea26a0e5 (Matt Butcher)",
+   "minor typo fix 5408b60ad64b5580de1f2be8f52986f99ca17c35 (Kent Rancourt)",
+   "fix(*): return non-zero exit code on test failure 488ca6fdd86d1158523db3db1bf2daccd65d0226 (Michelle Noorali)",
+   "fix(tiller): Fixes bug with `--wait` and updated deployments d3106125262cdaebefccbbfe4fca8bd6e630ecc4 (Taylor Thomas)",
+   "Fix minor typo in test doc ce12341bfa5997c6cf3ccf1748a6963332ec1d7e (Kent Rancourt)",
+   "Fixes messages for plugin remove option 1c5aab8e7853e33de550cc75edb7a1e7aa88a8cc (Sushil Kumar)",
+   "Fixed issues reported by test-style 61c3a44dc3ec96f1c4e99510a229dc5376bd3280 (Sushil Kumar)",
+   "fix(Dockerfile): only copy tiller binary in Dockerfile fabb7208ab52516162388934bc13f02c586bd2cb (Adam Reese)",
+   "chore(helm): fix go style issues in completion.go 9fe76d3430b6288cb667ae0d769a6d96117bbbba (Michelle Noorali)",
+   "fix typo: ' instead of ` 267a09193be23a55ada0e76604b0afc03ed4b26c (Hoat Le)",
+   "fix(helm): reverted upgrade of imdario/mergo 0d62c3ab56aff538efb367e8efb5741144225b86 (Rod Cloutier)",
+   "Fix for vbom.ml bootstrap b18625092e2a225ebd75d30ca98683a6418b5cd1 (Maxim Ivanov)"
+  ]
+ },
+ "2.4.2": {
+  "bug fixes": [
+   "Fix for the `--wait` flag",
+   "fix(helm): add --devel flag to allow dev releases again 0b4c60b7d4ddf5ed75997efdbe974446554e2f0b (Matt Butcher)",
+   "fix(Dockerfile): add ca-certificates f9696b9f42f2215a02b01cccc1f149d2780493ba (Matt Butcher)",
+   "fix(lint): add KubeVersion and TillerVersion to linter 504f0f4d0a8786a9125ebd034a33469b428bc2c9 (Matt Butcher)",
+   "fix(*): return non-zero exit code on test failure ddfd9a05aa91d38291fb18388f2a965404e46fcf (Michelle Noorali)",
+   "Fixes messages for plugin remove option 61d01766985b7bc58649eb9b0f4f955524fa282c (Sushil Kumar)",
+   "fix(Dockerfile): only copy tiller binary in Dockerfile c27b24fb2e162cbbd69be493e101b37e37bdc070 (Adam Reese)",
+   "fix(tiller): Fixes bug with `--wait` and updated deployments 79c492b6aba9f018608d635530f00a17bf3539b8 (Taylor Thomas)"
+  ]
+ },
+ "2.4.1": {
+  "bug fixes": [
+   "fix(helm): reverted upgrade of imdario/mergo 201169a860ff5c560312596b55733bb7c1447ba7 (Rod Cloutier)"
+  ]
+ },
+ "2.4.0": {
+  "bug fixes": [
+   "fix(releaseutil): remove newline on SplitManifests dcfbb2bd35b90cac6a25fa2a9bbd59150ff70abf (Michelle Noorali)",
+   "fix(create): incorrect URL in default NOTES.txt f8b2c5eb571e46d99b88dab8498408b35f892f11 (Adnan Abdulhussein)",
+   "fix(tiller): make new version check backwards compatible 9ae84c730f6b1b3e77f013138c1b6420a585c494 (Adam Reese)",
+   "fix(*): handle unreleased versioning 2e819e014d78b83c15252571f7bcac75cd226ab7 (Adam Reese)",
+   "fix(tiller): fix TOML panic 46035c35c418a18df7c62686196ac7d3ef54ac2f (Matt Butcher)",
+   "fix(helm): fix style issues 3c55a0ee65804293c9f20d48108d5f4f273a35ba (Matt Butcher)",
+   "fix(helm): return error when dependencies are missing 6246fa12a807e5c6ceb863f38dd6afa05ffc14fb (Matt Butcher)",
+   "fix(tiller): update tls client auth policy d7240ff9430e31fa950e27fe5aa7a60edc3d99bf (fibonacci1729)",
+   "Fix indent for defaultDeployment ce505f16e6671417135c23ebc9d28916ce8cea6c (Matthias Thubauville)",
+   "fix(tiller): ignore empty YAML documents during delete 573a8a190c85e6bea538f4a739e16d5634c128b2 (Matt Butcher)",
+   "fix(scripts): don't include plugins for generating docs 6bcd19d5191b223612b1cda5b73dab2fab66b978 (Adam Reese)",
+   "fix(helm): fix nil pointer in requirements.go 19b111b1238d6aa770cb371dbf8b99492ae38d99 (Matt Butcher)",
+   "fix(tiller): increase maximum size of gRPC message 26343023a3cff4ef4a484e9a04b80ed0fc6190c1 (Serguei Bezverkhi)",
+   "fix(helm): correct import for apps api 7a141a10b3972a0761aab7b47d4d159bf7b59df0 (Adam Reese)",
+   "fix(init): use ImagePullPolicy Always for canary installs 264ad3271ed01697c359bdfd1506c8cacf35721c (Adam Reese)",
+   "Fixes hard-coded linux based file-separator 84fc5b776f6aadc5bcaecfdbf5e521dee4d45d72 (Sushil Kumar)",
+   "fix(helm): remove duplicate commands 1a79c28f45f64967be118d0d684008dd7e493835 (Matt Butcher)",
+   "Fix spacing 22cec7cdc13ccf26f24f80d0b911c7a9045bdd16 (Scott Rigby)"
+  ]
+ },
+ "2.3.1": {
+  "bug fixes": [
+   "fix(tiller): ignore empty YAML documents during delete db8b1f1418665153459c77a3a3d3ef6c47cb01b5 (Matt Butcher)",
+   "fix(helm): fix nil pointer in requirements.go f3f4f0651c5dc5a58e5f8b656408bace3c74e4af (Matt Butcher)",
+   "fix(tiller): increase maximum size of gRPC message ddf4e23280c4fcdbd00738cd8da1355f16b4b6da (Serguei Bezverkhi)",
+   "Fixes hard-coded linux based file-separator 83d15d13a85861b3d3c7a5a8c80e46b38e237f59 (Sushil Kumar)",
+   "fix(helm): remove duplicate commands 33bdcfdce7c3f5e1f8424f2dc7165f39ff03fb38 (Matt Butcher)"
+  ]
+ },
+ "2.3.0": {
+  "bug fixes": [
+   "Patch releases will begin with Helm 2.3.1, focused on bug fixes and documentation changes.",
+   "fix (pkg/chartutil): correctly parse input values for ProcessRequirementsEnabled 8c720ee2c2804880491319b74fead9fa187a2bf1 (Justin Scott)",
+   "fix(*): add missing proto for weight hook e4d39fd8c8fd5597611aaf22ead21cce6f538798 (Adam Reese)",
+   "fix(glide.yaml): update SemVer to 1.2.3 8928a10071aa32d3bdbe4f5a9e7e91e7e8a4e035 (Matt Butcher)",
+   "fix(helm): add 'skip-refresh' flag to 'helm init' ba6c55c987aa76b6c6f63cefdacaebbe037106a5 (Matt Butcher)",
+   "fix(hooks): Change annotation from hookWeight to hook-weight b9ef8dbe563e6626c047d1cf91b1367ac7f087c2 (Jonathan Chauncey)",
+   "Correct indention of YAML field in subchartB 75ea56641318bd8f47cce9f1687c69efeb3068f4 (Justin Scott)",
+   "Fix codefences and nits in charts.md. Correct whitespace in charts. Add clarity to description of ImportValues requirements field. 3bf143f05223018eec79ca7ea9d91cf3fa559ec8 (Justin Scott)",
+   "Fix identation of `helm dep` help text 5734c2162e6960b015b23a443421b77b10b817ad (David Wittman)",
+   "Fixes TestInstallRelease_VerifyOptions & TestUpdateRelease_VerifyOptions a484d00e33039d91a42104060d5e59e623e1f9ae (Sushil Kumar)",
+   "fix(helm): local path in requirements.yaml relative to working dir e6b79e138b1ec26c519b805fd9b100fe08128451 (Qin Wang)",
+   "fix(helm): fix typo 76ebf20aac7b7939904130a3bf61b56e22cdf904 (Anubhav Mishra)",
+   "fix(helm): more quotation fixes b208258f5304f8beb748f23e9f43129bb6ea3362 (Anubhav Mishra)",
+   "fix tests 6aeadb272d53872f41b48c4b7aed9e58fafe6c56 (Anubhav Mishra)",
+   "fix(helm): fix comments and removed unwanted split 1cf197d69e824e2747d674b3e4e2e0c6708fbcfa (Anubhav Mishra)",
+   "fix(tiller): now better formatting 73fd0e4557e6557121b573db51b731bc214966ce (Anubhav Mishra)",
+   "fix(helm): using regexp to match whitespaces instead 837da9360edea2d53169b2199202ba7a8a10a298 (Anubhav Mishra)",
+   "fix(tiller): adding kind to tiller client logs c17ce5f9c1bd5d32ccdd0e48f3607ffd41707f1e (Anubhav Mishra)",
+   "fix(helm): manifests string parsing works for newlines in the manifests 611bba0f51770d9b6671183171505e68b801383d (Anubhav Mishra)",
+   "fix(helm): Don't assume index.yaml is sorted f4486d485855f389e8244ea56cc3f0ebd43e1e49 (John Welsh)",
+   "Fix typo in chart guide 694402a7638cad445d5e118b512a9ddf34427ef8 (Mario Lamontagne)",
+   "fix(helm): add --destination flag to 'helm package' a2ab1aaa09300186bd9d137e794c9b8a24313ff1 (Louis Taylor)",
+   "fix(ci): disable gosimple 41f727761556c0b37a0794c9317ca9bf60f2f98f (Adam Reese)",
+   "fix(tiller): fix helm status failure on missing resource 27c3ff595a6ec7aad28bba27a37cf782b83528d7 (Matt Butcher)",
+   "fix(tiller): enforce release name length on uninstall d4061b5b608cb328dc62c37e52348d0bdbe8fcd0 (Adam Reese)",
+   "fix(helm): remove max column width for repo list 3a5787335e1b9fab995bb9aad063c875ecde8df2 (Adam Reese)",
+   "fix(tiller): Fixes problem with `--wait` on headless Services 185fb4f43c0f77664430d7946f2a42a7c468b238 (Taylor Thomas)",
+   "Fix link for chart.md file 0499e3101789dd4795d7125fec478623b256190b (Eduardo Baitello)",
+   "fix(docs): Updates hook documentation for `--wait` flag 6a319bd8f5c5bee3c81b0ec036ff5afa9057566a (Taylor Thomas)",
+   "fix(helm): fix bug when helm update can't find release 1. d0c9bae9e92fbd2512d775fbaef8bfa52ef50da5 (Matt Butcher)",
+   "Fix link to charts.md file 6ba9a14db0bff7981c6c23562b6fa33c592268a7 (Eduardo Baitello)",
+   "fix checksum example 65a33d6ff0423d446090462068ae360a352fb338 (Fabian Ruff)",
+   "Fix helm dep list reporting wrong status ee5dab9cb3eced74f5709cda6726794df4e152ae (Qin Wang)",
+   "fix(tiller): Fixes `--wait` panic on upgrade 9afa04b71bfdea012898f0790a381e70bdd0c61b (Taylor Thomas)",
+   "Fix typo singing -> signing cbe372b8b149314757c457b5cbdd0d6104ffd5ab (Luke Kysow)",
+   "fix(helm): add message if release deleted successfully e0596ec4c3d1254ca7cb659ff39da1a127bb4c87 (Tao Zhou)",
+   "docs(wrapping_up): fix broken link to Tips and Tricks 6888a12f3d96603b3164f3538af5e3dbb9aaf05c (Tao Zhou)",
+   "fix(kube): fix wait and recreate 12db1f945f2ab229910b431eec0df235c1801331 (Adam Reese)",
+   "fix(helm): resolve symlinks when loading chart edd4e561124d1d9620f510cf020b8227ff08e85e (Maxim Ivanov)",
+   "docs(named_templates): fixed broken template 078c365677ab617279b6f8f0cd5cb25aebf979b5 (Matt Butcher)",
+   "fix(local-cluster): fix missing variable option 84e014026cedd5382e08cac9e95f6420874e7065 (Ladicle)",
+   "docs(chart_repository): fix bug in code example 393d13af31278bb5865feea88b6f664af2aeec27 (Matt Butcher)",
+   "fix(helm): fix broken cache paths in repositories 4829fad3a39c86f3062ca2cd839b718246b43f79 (Matt Butcher)"
+  ]
+ },
+ "2.2.1": {
+  "bug fixes": [
+   "The incompatibility with a `repositories.yaml` file created with older Helm versions has been fixed. #1974"
+  ]
+ },
+ "2.2.0": {
+  "bug fixes": [
+   "Patch releases will begin with Helm 2.2.1, and will be released as needed. These will contain only bug fixes and security fixes."
+  ]
+ },
+ "2.1.3": {
+  "bug fixes": [
+   "Fix for Deis Workflow installation (we accidentally changed an assumption about the contents of a default values. It's fixed now.).",
+   "A bug in namespace detection has been fixed",
+   "2.1.4 is the next bug fix release"
+  ]
+ },
+ "2.1.2": {
+  "bug fixes": [
+   "If necessary, a 2.1.3 bug fix release will be generated."
+  ]
+ },
+ "2.1.1": {
+  "bug fixes": [
+   "If necessary, a 2.1.2 bug fix release will be generated."
+  ]
+ },
+ "2.1.0": {
+  "bug fixes": [
+   "2.1.1 will be our next bugfix release. Bugfix releases will be made available as we find and fix issues."
+  ]
+ },
+ "2.0.2": {
+  "bug fixes": [
+   "A substantial bug with `helm upgrade -f` has been fixed",
+   "An updated Sprig library (2.7.0) has been included because it contains a substantial bug fix for `quote`"
+  ]
+ },
+ "2.0.1": {
+  "bug fixes": [
+   "An important bug in `helm delete` has been fixed. For this reason, we recommend updating.",
+   "The parser for `--set` has been fixed, and now handles backslash escaping of characters like `.` and `=`.",
+   "A 2.0.2 release is planned, and this release will contain only bug fixes."
   ]
  }
 }

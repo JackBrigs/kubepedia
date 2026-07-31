@@ -1,11 +1,186 @@
 {
+ "2.10.0": {
+  "bug fixes": [
+   "e5b3fbb5 - fix(Makefile): always build kube-router and gobgp `<Aaron U'Ren>`",
+   "49076533 - fix(.grype.yaml): don't include upstream CNI plugin in grype results `<Aaron U'Ren>`",
+   "8f95d669 - fix(NRC): correct exact-match policy name in checkPolicies test runner `<Aaron U'Ren>`",
+   "41cc1b7e - fix(bgp): also reject defaultRouteSetV6 from peers `<Richard Kojedzinszky>`",
+   "d608404e - fix(NPC): return error when deny by default without range `<Aaron U'Ren>`",
+   "81006c22 - fix(k8s): update k8s library calls for for version 0.36 `<Aaron U'Ren>`",
+   "687b4ae6 - fix(NPC,LBC): harden network policy and load balancer controllers `<Aprazors>`"
+  ]
+ },
+ "2.9.0": {
+  "bug fixes": [
+   "fix(NRC): use atomic.Bool for bgpServerStarted to prevent data race by @Aprazor in https://github.com/cloudnativelabs/kube-router/pull/2038",
+   "fix(NSC): harden Network Services Controller against panics, races, and sync errors by @Aprazor in https://github.com/cloudnativelabs/kube-router/pull/2041",
+   "fix(NRC): Remove debug logging of raw node annotations by @catherinetcai in https://github.com/cloudnativelabs/kube-router/pull/2052"
+  ]
+ },
+ "2.8.1": {
+  "bug fixes": [
+   "bed22a2cd65ea52f632fe1fa6bfc21245870add8 Merge pull request #2052 from cloudnativelabs/advisory-fix-1"
+  ]
+ },
+ "2.8.0": {
+  "bug fixes": [
+   "a1f0b2ee - fix: validate external IPs and LB IPs against configured ranges `<Aaron U'Ren>`",
+   "06cff2e4 - doc: remove slashes from headings to fix website generation `<Aaron U'Ren>`"
+  ]
+ },
+ "2.7.1": {
+  "bug fixes": [
+   "fda5ebcf1b4fdb7a822957641b4261465acc4f4c fix(aws.go): load region before attempting to assume a role"
+  ]
+ },
+ "2.7.0": {
+  "bug fixes": [
+   "Retry certain netlink calls which fixes early start race conditions - Some users noticed a race condition on ip link",
+   "Documentation fixes: @xieyubo",
+   "Go Safecast bug fixes and unit test efficiencies: @ccoVeille",
+   "Fix TCPMSS clamping for IPv6: @rkojedzinszky",
+   "3157e85e - test(NSC): fix two DSR service tests to create pods `<Aaron U'Ren>`",
+   "04868070 - fix(NSC): cleanup historical bad IPv6 TCPMSS vals `<Aaron U'Ren>`",
+   "59814eb6 - fix: convert ginkgo tests to standard go tests `<Aaron U'Ren>`",
+   "827cb4ae - fix(BGP): always configure AFI SAFI `<Aaron U'Ren>`",
+   "ee0940b8 - fix(dsr): set TCPMSS based on address family `<Richard Kojedzinszky>`",
+   "440ad4d0 - fix: Replace all netlink functions that throw ErrDumpInterrupted with a retry wrapper `<Cat C>`",
+   "a8326ca3 - fix(nrc): Update make test-pretty to test internal subdirectory. Update nlretry and LocalLinkQuerier interface to support passing in contexts `<Cat C>`",
+   "8ea5e44d - fix(nrc): Add netlink.Handle wrapper to retry netlink calls that raise ErrDumpInterrupted errors `<Cat C>`"
+  ]
+ },
+ "2.6.3": {
+  "bug fixes": [
+   "b72910c8 - fix(service.go): rely on LabelServiceName only `<Aaron U'Ren>`",
+   "0155169e - fix(node.go): embed root cause errors in returned errors `<Aaron U'Ren>`",
+   "acd0a94d - fix: do not advertise Pod IPv4 CIDR in a Cluster composed of IPv6-only Nodes) `<sunhuanran>`"
+  ]
+ },
+ "2.6.2": {
+  "bug fixes": [
+   "09239b0e - fix(ipset): don't strip inet6 prefixing of ipsets `<Aaron U'Ren>`",
+   "65f7f9b6 - fix(ipset): store kube-router-local-ips ipset `<Bukal, Tomáš>`"
+  ]
+ },
+ "2.6.1": {
+  "bug fixes": [
+   "92572c75ac5c4fbc0de9faf873e48f16748ab3ba fix(ipset): ignore non-kube-router ipsets"
+  ]
+ },
  "2.6.0": {
   "bug fixes": [
    "[1895](https://github.com/cloudnativelabs/kube-router/issues/1895) - IPv6 NDP NA/NS dropped when using egress network policy",
    "[1875](https://github.com/cloudnativelabs/kube-router/issues/1875) - Collect service statistics real-time",
    "[1888](https://github.com/cloudnativelabs/kube-router/issues/1860) - Resilience to TCP SYN Node Loss",
    "[1816](https://github.com/cloudnativelabs/kube-router/issues/1816) - support change the default port of GoBGP",
-   "[1614](https://github.com/cloudnativelabs/kube-router/issues/1614) - Fix CLI Options - --master doesn't work without --kubeconfig"
+   "[1614](https://github.com/cloudnativelabs/kube-router/issues/1614) - Fix CLI Options - --master doesn't work without --kubeconfig",
+   "94e72aa8 - fix(NPC): allow bi-directional ipv6 network discovery `<Aaron U'Ren>`",
+   "732d7a72 - fix(nsc): add loadbalancer IPs to metrics `<Aaron U'Ren>`",
+   "c2fd6333 - fix(nsc): sync field name `<Richard Kojedzinszky>`",
+   "b4a9ba70 - fix(nsc): rename network_services_metrics.go `<Richard Kojedzinszky>`",
+   "5e397e50 - fix failed message `<Anupam Ghosh>`",
+   "8504c52e - fix(DSR): setup source routing for all external IPs `<Aaron U'Ren>`",
+   "e6edc853 - fix(ipAddrDel): check to see if IP exists on interface before delete `<Aaron U'Ren>`",
+   "94bfc0d9 - fix(ipAddrDel): check for routes before trying to delete `<Aaron U'Ren>`",
+   "e29b6a32 - fix(NSC): pass fwmark to traffic director as an int `<Aaron U'Ren>`",
+   "b070531e - fix: add proper nil rule src handling `<Aaron U'Ren>`",
+   "4795a07e - fix(ip rule): use NewRule() for all rule creations `<Aaron U'Ren>`",
+   "56076051 - fix(linux_networking.go): add scope to local routes `<Aaron U'Ren>`",
+   "80328ace - fix(linux_networking.go): filter routes to be deleted by table `<Aaron U'Ren>`",
+   "2836065f - fix(linux_routing.go): choose first rt_tables file `<Aaron U'Ren>`"
+  ]
+ },
+ "2.5.0": {
+  "bug fixes": [
+   "d8430e21 - fix(lint): remove nolint for error messages `<Aaron U'Ren>`",
+   "760fcd5c - fix(lint): remove non-constant format string (govet) `<Aaron U'Ren>`",
+   "48b631c4 - fix(lint): remove unnecessary variable initializations (copyloopvar) `<Aaron U'Ren>`",
+   "858fdf65 - fix(lint): prevent against integer overflow errors `<Aaron U'Ren>`",
+   "aa7cffb6 - fix(NSC): only set rp_filter to 2 if it is 1 `<Dmitry Sharshakov>`",
+   "6ce2c6db - fix(NRC): find all node IPs for NAT exclusion `<Aaron U'Ren>`"
+  ]
+ },
+ "2.4.1": {
+  "bug fixes": [
+   "4dafd5c63c02cfc2b1bbfbc7c4eb0e56b3b11b2b fix(NRC): find all node IPs for NAT exclusion"
+  ]
+ },
+ "2.4.0": {
+  "bug fixes": [
+   ".goreleaser.yml: Fix ldflag paths by @mrueg in https://github.com/cloudnativelabs/kube-router/pull/1770",
+   "fix: avoid to use http.DefaultServeMux which includes defaults routes inited by go like /debug/pprof by @morlay in https://github.com/cloudnativelabs/kube-router/pull/1771"
+  ]
+ },
+ "2.3.0": {
+  "bug fixes": [
+   "fix: select ICMP version for common ICMP rules by @qbnit in https://github.com/cloudnativelabs/kube-router/pull/1713",
+   "Fix various issues with refactors by @aauren in https://github.com/cloudnativelabs/kube-router/pull/1755",
+   "fix(dsr): change grpc resolver to passthrough by @aauren in https://github.com/cloudnativelabs/kube-router/pull/1756",
+   "Misc Fixes and Updates by @aauren in https://github.com/cloudnativelabs/kube-router/pull/1763"
+  ]
+ },
+ "2.2.2": {
+  "bug fixes": [
+   "5179953b - fix(dsr): change grpc resolver to passthrough `<Aaron U'Ren>`"
+  ]
+ },
+ "2.2.1": {
+  "bug fixes": [
+   "fix: select ICMP version for common ICMP rules by @qbnit in https://github.com/cloudnativelabs/kube-router/pull/1713"
+  ]
+ },
+ "2.2.0": {
+  "bug fixes": [
+   "a0442e5a - fix: allow basic ICMPv6 neighbor discovery `<Aaron U'Ren>`",
+   "2522b4d1 - fix(getAllLocalIPs): get IPv6 & IPv4 addresses `<Aaron U'Ren>`",
+   "b217e7b4 - fix(NSC): ensure kube-router owns kube-router-svip `<Aaron U'Ren>`",
+   "e8962dd8 - fix(linux_networking.go): remove dangling IPv6 routes `<Aaron U'Ren>`",
+   "26b539e8 - fix(feature_request.md): update markdown templating `<Aaron U'Ren>`",
+   "84c35498 - fix(bug_report.md): update markdown templating `<Aaron U'Ren>`",
+   "94b17b8f - fix(utils.go): static /32 subnet mask reference `<Aaron U'Ren>`",
+   "4013d21d - fact(Dockerfile): fix linter warning for AS `<Aaron U'Ren>`",
+   "a2d2e011 - fix(Dockerfile): re-add ip6tables binary `<Aaron U'Ren>`",
+   "a1125f6e - fix: ensure that ipv6 is not disabled in kernel `<Natanael Copa>`"
+  ]
+ },
+ "2.1.3": {
+  "bug fixes": [
+   "e980a17b - fix(nsc): remove previous TCPMSS rules during setting up DSR `<Richard Kojedzinszky>`",
+   "defdf64a - fix(nsc): remove previous TCPMSS rules `<Aaron U'Ren>`",
+   "5fdde068 - fix(nsc): TCPMSS rules are created per-service and for reply packets only `<Richard Kojedzinszky>`"
+  ]
+ },
+ "2.1.2": {
+  "bug fixes": [
+   "82f7917e - fix(ipset): reset ipset handler before use `<Aaron U'Ren>`",
+   "28585f65 - fix(ipset.go): make IP families distinct in ipset handler `<Aaron U'Ren>`"
+  ]
+ },
+ "2.1.1": {
+  "bug fixes": [
+   "Fixes IPv6 network policy which has been substantially broken since v2.0.0. When IPv6 network policy was introduced, it was missed that iptables statements need to reference these sets via the `inet6` prefix in order to use them correctly. As such, most network policies were not correctly applying.",
+   "Fixes `--cleanup-config` mode which has been broken since v2.0.0 (please see docs for updated examples of how to run this from within a container)",
+   "317c754a - fix(hairpin): rely on CNI hairpin mode `<Aaron U'Ren>`",
+   "9d9b796d - fix(service_endpoints_sync): bail out of DSR when HostNetwork detected `<Aaron U'Ren>`",
+   "567c8913 - fix(linux_networking): add more information to errors `<Aaron U'Ren>`",
+   "e40f46ed - fix(user-guide.md): update cleanup example `<Aaron U'Ren>`",
+   "ecaad2c6 - fix(cleanup): add missing handlers for cleanup `<Aaron U'Ren>`",
+   "7755b4a6 - fix(node.go): improve logic for GetNodeObject `<Aaron U'Ren>`",
+   "d12f422f - fix(policy): generate ipv6 names correctly `<Aaron U'Ren>`",
+   "2c7151b5 - fix(policy.go): use new utility method ipSetName `<Aaron U'Ren>`",
+   "ada3179c - fix: wrong ipset name used by ip6tables. `<xujunjie-cover>`",
+   "af1b07ae - fix(service_endpoints_sync.go): error to be indicative of failure type `<Aaron U'Ren>`",
+   "421a1130 - fix(DSR): setup DSR inside pod on local eps only `<Aaron U'Ren>`",
+   "b1cc1584 - fix(Dockerfile): install iptables-legacy package `<elchenberg>`",
+   "4b011db7 - Fix typo `<Jean-Philippe Evrard>`",
+   "1db3438b - fix: rt_tables -> rt-tables in daemonset examples `<Aaron U'Ren>`",
+   "70920609 - fix(rt_tables): add path fallback logic `<Aaron U'Ren>`",
+   "5bbbd13f - doc(CONTRIBUTING.md): fix relative link `<Aaron U'Ren>`"
+  ]
+ },
+ "1.6.1": {
+  "bug fixes": [
+   "a382475c - fix(rt_tables): add path fallback logic `<Aaron U'Ren>`"
   ]
  },
  "2.1.0": {
@@ -19,10 +194,112 @@
    "`--service-tcpfin-timeout` - (default: `0s` preserves system value, typically 120 seconds)",
    "`--service-udp-timeout` - (default: `0s` preserves system value, typically 300 seconds)",
    "kube-router now abides by the service label `service.kubernetes.io/service-proxy-name`. Setting this label to something other than `kube-router` will result in kube-router ignoring the service",
-   "kube-router now honors `spec.internalTrafficPolicy` and implements `spec.externalTrafficPolicy` correctly. For more information see: https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies for more information"
+   "kube-router now honors `spec.internalTrafficPolicy` and implements `spec.externalTrafficPolicy` correctly. For more information see: https://kubernetes.io/docs/reference/networking/virtual-ips/#traffic-policies for more information",
+   "47fe189f - feat(lint): update golangci-lint and fix lint errors `<Aaron U'Ren>`",
+   "eb262887 - fix(manifests): add hostPID for hairpin `<Aaron U'Ren>`",
+   "aebaa48e - fix(NSC): handle endpoint slice ready nil `<Aaron U'Ren>`",
+   "0f3714b9 - fix(hairpin): set hairpin_mode for veth iface `<Aaron U'Ren>`"
+  ]
+ },
+ "2.0.1": {
+  "bug fixes": [
+   "503f9fe7 - fix(NSC): only run for enabled families `<Aaron U'Ren>`",
+   "8ccd687a - fix(Makefile): version and build date for v2 `<Aaron U'Ren>`"
+  ]
+ },
+ "1.6.0": {
+  "bug fixes": [
+   "5d718973 - fix(NRC): withdraw advertised VIPs based on annotation `<Aaron U'Ren>`",
+   "168a2b4b - fix(ci): checkout before go setup `<Aaron U'Ren>`",
+   "c22c6af6 - fix(ci.yml): remove deprecated goreleaser flag `<Aaron U'Ren>`",
+   "ef77a2d5 - Fix lint `<Manuel Rüger>`",
+   "1d1ff059 - fix(NSC): add check for podCidr before use `<Aaron U'Ren>`",
+   "f102bc58 - .github: Fix name of the RC step `<Manuel Rüger>`",
+   "efd10015 - fix invalid MTU in CNI config file `<Tamihiro Lee>`",
+   "88266bc2 - fix(gobgp): update binary in container image to v3.2.0 `<Aaron U'Ren>`"
+  ]
+ },
+ "1.5.4": {
+  "bug fixes": [
+   "f350859 - fix(dsr): CRI runtime/v1alpha2 -> runtime/v1 `<Aaron U'Ren>`"
+  ]
+ },
+ "1.5.2": {
+  "bug fixes": [
+   "8574163c - iptables mode selection fixed. iptables-wrapper script updated to the latest upstream version <@makhov>"
+  ]
+ },
+ "1.5.1": {
+  "bug fixes": [
+   "`8a17e3e1` - fix(NSC): don't check protocol on DSR svcs (21 minutes ago) <Aaron U'Ren>",
+   "`422edd29` - fix(ipset): remove initval during ipset parse (21 minutes ago) <Aaron U'Ren>",
+   "`86aa942a` - fix(bgp): set graceful restart on enabled family (21 minutes ago) <Aaron U'Ren>",
+   "`b0da24c4` - fix: remove multiple MTU reductions (22 minutes ago) <Aaron U'Ren>"
+  ]
+ },
+ "1.5.0": {
+  "bug fixes": [
+   "fix(NPC): make code more understandable by @lx1036 in https://github.com/cloudnativelabs/kube-router/pull/1261",
+   "fix(NPC): add missing quotes by @aauren in https://github.com/cloudnativelabs/kube-router/pull/1278",
+   "fix(constant): use constant from resourcelock package by @lx1036 in https://github.com/cloudnativelabs/kube-router/pull/1298"
+  ]
+ },
+ "1.4.0": {
+  "bug fixes": [
+   "Greatly Fixed and Improved Hairpinning:",
+   "Fixed an issue where hairpinning rules weren't being updated on service / endpoint updates (see: #1200)",
+   "Fixed issue where hairpinning rules weren't being regenerated correctly (see: #1200)",
+   "DSR Fixes",
+   "Fixed an issue where sometimes FWMarks generated for DSR would collide",
+   "Fixed issue where DSR mangle table definitions were not being cleaned up",
+   "Fixed issue where peer might not be seen correctly as established due to a bad double-negative condition (see: #1184 thanks to @lx1036 )",
+   "2ca39f14 fix(nsc): properly check hairpinning rule",
+   "146786ad fix(nsc): sync hairpinning on service modification",
+   "8f13f069 fix(nsc): don't overwrite err & add comments",
+   "5101a4fe fix(nsc): remove error for lookupFWMarkByService",
+   "bf325e16 fix(go.mod): update image-spec v1.0.2",
+   "4c86d3dd fix(go.mod): update containerd to v1.5.8",
+   "b9a9246e fix(lint): don't error on deprecated protobuf funcs",
+   "9fd17497 fix(go.mod): add google.golang.org/protobuf v1.26.0",
+   "b0882791 Fix typo in filter rule comment",
+   "73b7c22a fix(bgp policy): sort the slice items before deep equal(#1188)",
+   "8e7d5852 fix(bgp): use PeerState_ESTABLISHED logic like function name(#1184)",
+   "bee2c208 fix bug when adding ip rule for fwmark (#1178)",
+   "c3f90c54 Fix Misc DSR Issues (#1174)",
+   "5e1d033a fix(sysctl): revert is fatal check for some conditions",
+   "da5f8e00 fix: address minor PR feedback and misspells"
+  ]
+ },
+ "1.3.2": {
+  "bug fixes": [
+   "c7ed2d51 - fix(NPC): don't rely on exit code for chain check (#1157) `<Aaron U'Ren>`",
+   "a60c5a87 - fix(bgp_policies_test.go): Add missing import statement to all test cases `<Lucas Mundim>`",
+   "be96deab - fix(bgp_policies_test.go): fails if there are any unexpected statement `<Lucas Mundim>`"
   ]
  },
  "1.3.1": {
+  "bug fixes": [
+   "`--cleanup-config` flag should now be more comprehensive. There were a couple of bugs introduced in the 1.3 release that caused this flag to not function at all. These have been fixed. Additionally, it now cleans up most, if not all kube-router artifacts, where before it would leave some lingering parts of the Network Policy Controller.",
+   "Additional ipset locking was missing causing some errors around multiple invocations. This has been fixed.",
+   "bffdc729 - fix(npc): ordering of firewall / service rules (#1144) (4 days ago) <Aaron U'Ren>",
+   "35d334ca - fix: add sleeps between iptables and ipset cleanup (8 days ago) <Aaron U'Ren>",
+   "cafd69df - fix(NRC): reduce logging for egress cleanup errors (8 days ago) <Aaron U'Ren>",
+   "fb070265 - fix(NSC): actually remove IPVS definitions (8 days ago) <Aaron U'Ren>",
+   "bbc0666a - fix(NSC): add exists checking to Cleanup() (8 days ago) <Aaron U'Ren>",
+   "1a8c3548 - fix(NPC): Cleanup() function overhaul (8 days ago) <Aaron U'Ren>",
+   "9bc55dc1 - fix(NPC): missed ipset locking (8 days ago) <Aaron U'Ren>",
+   "06e246ff - fix(NRC): PR feedback fixes (2 weeks ago) <Aaron U'Ren>",
+   "445ad9a1 - fix(injectRoute): process withdrawls first (2 weeks ago) <Aaron U'Ren>",
+   "2e590a41 - fix(NRC): consolidate route delete logic (2 weeks ago) <Aaron U'Ren>",
+   "d0501c07 - fix(injectRoute): cleanup tunnels & routes when peer drops (2 weeks ago) <Aaron U'Ren>",
+   "e9be04ef - fix: add nil checking to ipsetMutex cleanup actions (#1129) (4 weeks ago) <Aaron U'Ren>",
+   "c26f98c9 - fix(ci): only run build actions on non-forks (6 weeks ago) <Aaron U'Ren>",
+   "f3e8fc00 - fix(README.md): update badge link to GitHub Actions (6 weeks ago) <Aaron U'Ren>",
+   "f8214ef8 - .github/workflows: Fix yaml error (6 weeks ago) <Manuel Rüger>",
+   "8697d81d - .github: Fix tag workflow (6 weeks ago) <Manuel Rüger>",
+   "fc4ddef2 - .github: Fix tag workflow (6 weeks ago) <Manuel Rüger>",
+   "9b7f98e0 - .github: Fix Tag/Push workflow (6 weeks ago) <Manuel Rüger>"
+  ],
   "security updates": [
    "2e08d479 - fix(go.mod): containerd CVE-2021-32760 (11 days ago) <Aaron U'Ren>"
   ]
@@ -31,6 +308,12 @@
   "breaking changes": [
    "The way network policies are configured using iptables on the nodes has been modified to keep built in chains cleaner. You need to flush the iptables filter table or reboot the node before running this version of kube-router",
    "if you have egress network policies applied to workload, you need to ensure proper value for `service-cluster-ip-range` and `service-node-port-range` configured to ensure pod's can access service cluster IP's and NodePort services"
+  ]
+ },
+ "0.2.0": {
+  "bug fixes": [
+   "various fixes/enhancements to intelligently advertise/withdraw service VIP's (cluster IP, external IP and load balancer IP's) in case of service with `service.Spec.ExternalTrafficPolicy=Local`",
+   "bug fixes to BGP graceful restart functionality integrated in kube-router. data-path is not impacted when performing rolling upgrade of kube-router"
   ]
  }
 }

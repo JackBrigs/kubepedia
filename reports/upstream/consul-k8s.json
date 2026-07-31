@@ -2,21 +2,63 @@
  "2.0.0": {
   "security updates": [
    "security: update `google.golang.org/grpc` to fix CVE-2026-33186 [[GH-5183](https://github.com/hashicorp/consul-k8s/issues/5183)]"
+  ],
+  "bug fixes": [
+   "cli: Fix the issue when both Consul and Gateway API HTTPRoute CRDs are installed, kubectl encounters a naming ambiguity. [[GH-5328](https://github.com/hashicorp/consul-k8s/issues/5328)]",
+   "cli: Fix installation and upgrade failures caused by supplying boolean types to strictly typed string fields in custom helm values.yaml [[GH-5327](https://github.com/hashicorp/consul-k8s/issues/5327)]",
+   "connect-init: fix incorrect FIPS Consul version check that caused misleading WARN messages in the `consul-connect-inject-init` init container logs even when a fully FIPS-compliant setup was used. The original check queried `/v1/agent/version` with a non-pointer map, so the response was never decoded and both FIPS warnings fired on every pod startup. The fix decodes the endpoint response correctly and checks the returned `FIPS` value. [[GH-5252](https://github.com/hashicorp/consul-k8s/issues/5252)]",
+   "custom-gateway: Fix filename mismatch in gateway-resources-configmap-custom that prevented CPU and memory resource limits from being applied to the custom GatewayClassConfig. [[GH-5334](https://github.com/hashicorp/consul-k8s/issues/5334)]"
+  ]
+ },
+ "1.9.8": {
+  "bug fixes": [
+   "connect-init: fix incorrect FIPS Consul version check that caused misleading WARN messages in the `consul-connect-inject-init` init container logs even when a fully FIPS-compliant setup was used. The original check queried `/v1/agent/version` with a non-pointer map, so the response was never decoded and both FIPS warnings fired on every pod startup. The fix decodes the endpoint response correctly and checks the returned `FIPS` value. [[GH-5252](https://github.com/hashicorp/consul-k8s/issues/5252)]"
+  ]
+ },
+ "1.8.13": {
+  "bug fixes": [
+   "connect-init: fix incorrect FIPS Consul version check that caused misleading WARN messages in the `consul-connect-inject-init` init container logs even when a fully FIPS-compliant setup was used. The original check queried `/v1/agent/version` with a non-pointer map, so the response was never decoded and both FIPS warnings fired on every pod startup. The fix decodes the endpoint response correctly and checks the returned `FIPS` value. [[GH-5252](https://github.com/hashicorp/consul-k8s/issues/5252)]"
   ]
  },
  "1.9.6": {
+  "bug fixes": [
+   "api-gateway: Fix cross-namespace ACL resource collisions by keying policy/role/binding-rule caches with gatewayName + namespace. Managed resource names are now namespace-scoped to prevent one gateway from affecting another when deployed in different Kubernetes namespaces. [[GH-5140](https://github.com/hashicorp/consul-k8s/pull/5140)]"
+  ],
   "security updates": [
    "update google.golang.org/grpc to fix CVE-2026-33186 [[GH-5183](https://github.com/hashicorp/consul-k8s/pull/5183)]"
   ]
  },
  "1.8.11": {
+  "bug fixes": [
+   "api-gateway: Fix cross-namespace ACL resource collisions by keying policy/role/binding-rule caches with gatewayName + namespace. Managed resource names are now namespace-scoped to prevent one gateway from affecting another when deployed in different Kubernetes namespaces. [[GH-5140](https://github.com/hashicorp/consul-k8s/pull/5140)]"
+  ],
   "security updates": [
    "update google.golang.org/grpc to fix CVE-2026-33186 [[GH-5183](https://github.com/hashicorp/consul-k8s/pull/5183)]"
   ]
  },
  "1.7.13": {
+  "bug fixes": [
+   "api-gateway: Fix cross-namespace ACL resource collisions by keying policy/role/binding-rule caches with gatewayName + namespace. Managed resource names are now namespace-scoped to prevent one gateway from affecting another when deployed in different Kubernetes namespaces. [[GH-5140](https://github.com/hashicorp/consul-k8s/pull/5140)]"
+  ],
   "security updates": [
    "update google.golang.org/grpc to fix CVE-2026-33186 [[GH-5183](https://github.com/hashicorp/consul-k8s/pull/5183)]"
+  ]
+ },
+ "1.9.1": {
+  "bug fixes": [
+   "crypto: upgrade golang.org/x/crypto to v0.45.0 to fix GO-2025-4134, GO-2025-4135, GO-2025-4116, GHSA-f6x5-jh6r-wrfv"
+  ]
+ },
+ "1.8.6": {
+  "bug fixes": [
+   "crypto: upgrade golang.org/x/crypto to v0.45.0 to fix GO-2025-4134, GO-2025-4135, GO-2025-4116, GHSA-f6x5-jh6r-wrfv",
+   "cni: fixed race conditions with older versions where no cleanup was done for binary"
+  ]
+ },
+ "1.7.8": {
+  "bug fixes": [
+   "crypto: upgrade golang.org/x/crypto to v0.45.0 to fix GO-2025-4134, GO-2025-4135, GO-2025-4116, GHSA-f6x5-jh6r-wrfv",
+   "cni: fixed race conditions with older versions where no cleanup was done for binary"
   ]
  },
  "1.8.1": {
@@ -25,13 +67,25 @@
   ]
  },
  "1.7.4": {
+  "bug fixes": [
+   "control-plane: Fixed bug in TerminatingGateway controller workflow for handling AdminPartition enabled cluster ACL policies for associated TerminatingGateway services."
+  ],
   "security updates": [
    "cve: upgrade helm.sh/helm/v3 to v3.18.5 to fix CVE-2025-55198, CVE-2025-55199"
   ]
  },
  "1.6.8": {
+  "bug fixes": [
+   "control-plane: Fixed bug in TerminatingGateway controller workflow for handling AdminPartition enabled cluster ACL policies for associated TerminatingGateway services."
+  ],
   "security updates": [
    "cve: upgrade helm.sh/helm/v3 to v3.18.5 to fix CVE-2025-55198, CVE-2025-55199"
+  ]
+ },
+ "1.8.0": {
+  "bug fixes": [
+   "updated golang.org/x/net dependency to 0.37.0 to fix vulnerability [[GO-2025-3503](https://pkg.go.dev/vuln/GO-2025-3503)] in CLI, CNI, acceptance and control-plane submodule.",
+   "control-plane: Fixed bug in TerminatingGateway controller workflow for handling AdminPartition enabled cluster ACL policies for associated TerminatingGateway services. [[GH-4468](https://github.com/hashicorp/consul-k8s/issues/4468)]"
   ]
  },
  "1.7.2": {
@@ -64,6 +118,9 @@
  "1.7.1": {
   "security updates": [
    "Updated base image for ubi builds to ubi9-minimal:9.5-x to fix (CVE-2024-3596)[https://nvd.nist.gov/vuln/detail/CVE-2024-3596], (CVE-2024-56171)[https://nvd.nist.gov/vuln/detail/CVE-2024-56171] and (CVE-2025-24928)[https://nvd.nist.gov/vuln/detail/CVE-2025-24928] [[GH-4570](https://github.com/hashicorp/consul-k8s/issues/4570)]"
+  ],
+  "bug fixes": [
+   "cni: CNI update strategy to be fixed to pod by pod rolling update and removed older CNI updateStrategy configuration"
   ]
  },
  "1.6.5": {
@@ -76,83 +133,239 @@
    "Updated base image for ubi builds to ubi9-minimal:9.5-x to fix (CVE-2024-3596)[https://nvd.nist.gov/vuln/detail/CVE-2024-3596], (CVE-2024-56171)[https://nvd.nist.gov/vuln/detail/CVE-2024-56171] and (CVE-2025-24928)[https://nvd.nist.gov/vuln/detail/CVE-2025-24928] [[GH-4570](https://github.com/hashicorp/consul-k8s/issues/4570)]"
   ]
  },
+ "1.7.0": {
+  "bug fixes": [
+   "Upgrade to Go 1.23.8 to fix CVE [GO-2025-3563](https://pkg.go.dev/vuln/GO-2025-3563)"
+  ]
+ },
+ "1.6.4": {
+  "bug fixes": [
+   "Upgrade to Go 1.23.8 to fix CVE [GO-2025-3563](https://pkg.go.dev/vuln/GO-2025-3563)"
+  ]
+ },
+ "1.5.7": {
+  "bug fixes": [
+   "Upgrade to Go 1.23.8 to fix CVE [GO-2025-3563](https://pkg.go.dev/vuln/GO-2025-3563)"
+  ]
+ },
+ "1.6.2": {
+  "bug fixes": [
+   "cli: fix issue where the `consul-k8s proxy list` command does not include API gateways. [[GH-4426](https://github.com/hashicorp/consul-k8s/issues/4426)]",
+   "connect-inject: fix issue where the ACL policy for the connect-injector included the `acl = \"write\"` rule twice when namespaces were not enabled. [[GH-4434](https://github.com/hashicorp/consul-k8s/issues/4434)]",
+   "updated golang.org/x/net dependency to 0.34.0 to fix vulnerability [[GO-2024-3333](https://pkg.go.dev/vuln/GO-2024-3333)] in CLI, CNI, acceptance and control-plane submodule.[[PR-4452](https://github.com/hashicorp/consul-k8s/pull/4452)]"
+  ]
+ },
+ "1.5.5": {
+  "bug fixes": [
+   "cli: fix issue where the `consul-k8s proxy list` command does not include API gateways. [[GH-4426](https://github.com/hashicorp/consul-k8s/issues/4426)]",
+   "connect-inject: fix issue where the ACL policy for the connect-injector included the `acl = \"write\"` rule twice when namespaces were not enabled. [[GH-4434](https://github.com/hashicorp/consul-k8s/issues/4434)]",
+   "updated golang.org/x/net dependency to 0.34.0 to fix vulnerability [[GO-2024-3333](https://pkg.go.dev/vuln/GO-2024-3333)] in CLI, CNI, acceptance and control-plane submodule.[[PR-4456](https://github.com/hashicorp/consul-k8s/pull/4456)]"
+  ]
+ },
+ "1.6.1": {
+  "bug fixes": [
+   "helm: fix issue where the API Gateway GatewayClassConfig tolerations can not be parsed by the Helm chart. [[GH-4315](https://github.com/hashicorp/consul-k8s/issues/4315)]"
+  ]
+ },
+ "1.5.4": {
+  "bug fixes": [
+   "helm: fix issue where the API Gateway GatewayClassConfig tolerations can not be parsed by the Helm chart. [[GH-4315](https://github.com/hashicorp/consul-k8s/issues/4315)]"
+  ]
+ },
+ "1.6.0": {
+  "bug fixes": [
+   "helm: Fix ArgoCD hooks related annotations on server-acl-init Job, they must be added at Job definition and not template level. [[GH-3989](https://github.com/hashicorp/consul-k8s/issues/3989)]"
+  ]
+ },
  "1.5.3": {
   "security updates": [
    "Bump Go to 1.22.5 to address [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791) [[GH-4228](https://github.com/hashicorp/consul-k8s/issues/4228)]"
+  ],
+  "bug fixes": [
+   "Fixes install of Consul on GKE Autopilot where the option 'manageNonStandardCRDs' was not being used for the TCPRoute CRD. [[GH-4213](https://github.com/hashicorp/consul-k8s/issues/4213)]",
+   "api-gateway: fix nil pointer deref bug when the section name in a gateway policy is not specified [[GH-4247](https://github.com/hashicorp/consul-k8s/issues/4247)]",
+   "sync-catalog: fix infinite retry loop when the catalog fails to connect to consul-server during the sync process [[GH-4266](https://github.com/hashicorp/consul-k8s/issues/4266)]",
+   "terminating-gateways: Fix bug where namespace field was not correctly set on ACL policies if using the `Registration` CRD with the service's namespace unset. [[GH-4224](https://github.com/hashicorp/consul-k8s/issues/4224)]"
+  ]
+ },
+ "1.4.7": {
+  "bug fixes": [
+   "helm: fix issue where the API Gateway GatewayClassConfig tolerations can not be parsed by the Helm chart. [[GH-4315](https://github.com/hashicorp/consul-k8s/issues/4315)]"
   ]
  },
  "1.4.6": {
   "security updates": [
    "Bump Go to 1.22.5 to address [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791) [[GH-4228](https://github.com/hashicorp/consul-k8s/issues/4228)]"
+  ],
+  "bug fixes": [
+   "Fixes install of Consul on GKE Autopilot where the option 'manageNonStandardCRDs' was not being used for the TCPRoute CRD. [[GH-4213](https://github.com/hashicorp/consul-k8s/issues/4213)]",
+   "api-gateway: fix nil pointer deref bug when the section name in a gateway policy is not specified [[GH-4247](https://github.com/hashicorp/consul-k8s/issues/4247)]",
+   "sync-catalog: fix infinite retry loop when the catalog fails to connect to consul-server during the sync process [[GH-4266](https://github.com/hashicorp/consul-k8s/issues/4266)]"
   ]
  },
  "1.3.9": {
   "security updates": [
    "Bump Go to 1.22.5 to address [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791) [[GH-4228](https://github.com/hashicorp/consul-k8s/issues/4228)]"
+  ],
+  "bug fixes": [
+   "Fixes install of Consul on GKE Autopilot where the option 'manageNonStandardCRDs' was not being used for the TCPRoute CRD. [[GH-4213](https://github.com/hashicorp/consul-k8s/issues/4213)]",
+   "api-gateway: fix nil pointer deref bug when the section name in a gateway policy is not specified [[GH-4247](https://github.com/hashicorp/consul-k8s/issues/4247)]",
+   "helm: Fix ArgoCD hooks related annotations on server-acl-init Job, they must be added at Job definition and not template level. [[GH-3989](https://github.com/hashicorp/consul-k8s/issues/3989)]",
+   "sync-catalog: fix infinite retry loop when the catalog fails to connect to consul-server during the sync process [[GH-4266](https://github.com/hashicorp/consul-k8s/issues/4266)]"
   ]
  },
  "1.1.16": {
   "security updates": [
    "Bump Go to 1.22.5 to address [CVE-2024-24791](https://nvd.nist.gov/vuln/detail/CVE-2024-24791) [[GH-4228](https://github.com/hashicorp/consul-k8s/issues/4228)]"
+  ],
+  "bug fixes": [
+   "sync-catalog: fix infinite retry loop when the catalog fails to connect to consul-server during the sync process [[GH-4266](https://github.com/hashicorp/consul-k8s/issues/4266)]"
   ]
  },
  "1.5.1": {
   "security updates": [
    "Upgrade go version to 1.22.5 to address [CVE-2024-24791](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-24791) [[GH-4154](https://github.com/hashicorp/consul-k8s/issues/4154)]"
+  ],
+  "bug fixes": [
+   "api-gateway: fix issue where API Gateway specific acl roles/policy were not being cleaned up on deletion of an api-gateway [[GH-4060](https://github.com/hashicorp/consul-k8s/issues/4060)]",
+   "endpoints-controller: graceful shutdown logic should not run on a new pod with the same name. Fixes a case where statefulset rollouts could get stuck in graceful shutdown when the new pods come up. [[GH-4059](https://github.com/hashicorp/consul-k8s/issues/4059)]",
+   "terminating-gateway: Fix generated acl policy for external services to include the namespace and partition block if they are enabled. [[GH-4153](https://github.com/hashicorp/consul-k8s/issues/4153)]"
   ]
  },
  "1.4.4": {
   "security updates": [
    "Upgrade go version to 1.22.5 to address [CVE-2024-24791](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-24791) [[GH-4154](https://github.com/hashicorp/consul-k8s/issues/4154)]"
+  ],
+  "bug fixes": [
+   "api-gateway: fix issue where API Gateway specific acl roles/policy were not being cleaned up on deletion of an api-gateway [[GH-4060](https://github.com/hashicorp/consul-k8s/issues/4060)]",
+   "cni: fix incorrect release version due to unstable submodule pinning [[GH-4091](https://github.com/hashicorp/consul-k8s/issues/4091)]",
+   "endpoints-controller: graceful shutdown logic should not run on a new pod with the same name. Fixes a case where statefulset rollouts could get stuck in graceful shutdown when the new pods come up. [[GH-4059](https://github.com/hashicorp/consul-k8s/issues/4059)]"
   ]
  },
  "1.3.7": {
   "security updates": [
    "Upgrade go version to 1.22.5 to address [CVE-2024-24791](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-24791) [[GH-4154](https://github.com/hashicorp/consul-k8s/issues/4154)]"
+  ],
+  "bug fixes": [
+   "api-gateway: fix issue where API Gateway specific acl roles/policy were not being cleaned up on deletion of an api-gateway [[GH-4060](https://github.com/hashicorp/consul-k8s/issues/4060)]",
+   "cni: fix incorrect release version due to unstable submodule pinning [[GH-4091](https://github.com/hashicorp/consul-k8s/issues/4091)]",
+   "endpoints-controller: graceful shutdown logic should not run on a new pod with the same name. Fixes a case where statefulset rollouts could get stuck in graceful shutdown when the new pods come up. [[GH-4059](https://github.com/hashicorp/consul-k8s/issues/4059)]"
   ]
  },
  "1.1.14": {
   "security updates": [
    "Upgrade go version to 1.22.5 to address [CVE-2024-24791](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-24791) [[GH-4154](https://github.com/hashicorp/consul-k8s/issues/4154)]"
+  ],
+  "bug fixes": [
+   "cni: fix incorrect release version due to unstable submodule pinning [[GH-4091](https://github.com/hashicorp/consul-k8s/issues/4091)]"
+  ]
+ },
+ "1.5.0": {
+  "bug fixes": [
+   "api-gateway: fix bug where multiple logical APIGateways would share the same ACL policy. [[GH-4003](https://github.com/hashicorp/consul-k8s/issues/4003)]",
+   "cni: fix incorrect release version due to unstable submodule pinning [[GH-4091](https://github.com/hashicorp/consul-k8s/issues/4091)]",
+   "helm: bug fix for `prometheus.io` annotation omission while using datadog integration with openmetrics/prometheus and consul integration checks [[GH-3685](https://github.com/hashicorp/consul-k8s/issues/3685)]"
+  ]
+ },
+ "1.4.2": {
+  "bug fixes": [
+   "api-gateway: Fix order of initialization for creating ACL role/policy to avoid error logs in consul when upgrading between versions. [[GH-3918](https://github.com/hashicorp/consul-k8s/issues/3918)]",
+   "api-gateway: fix bug where multiple logical APIGateways would share the same ACL policy. [[GH-4000](https://github.com/hashicorp/consul-k8s/issues/4000)]",
+   "consul-cni: Fixed a bug where the output of `-version` did not include the version of the binary [[GH-3829](https://github.com/hashicorp/consul-k8s/issues/3829)]",
+   "control-plane: fix a panic when an upstream annotation is malformed. [[GH-3956](https://github.com/hashicorp/consul-k8s/issues/3956)]",
+   "connect-inject: Fixed issue where on restart, if a managed-gateway-acl-role already existed the container would error [[GH-3978](https://github.com/hashicorp/consul-k8s/issues/3978)]"
+  ]
+ },
+ "1.3.5": {
+  "bug fixes": [
+   "api-gateway: Fix order of initialization for creating ACL role/policy to avoid error logs in consul when upgrading between versions. [[GH-3918](https://github.com/hashicorp/consul-k8s/issues/3918)]",
+   "api-gateway: fix bug where multiple logical APIGateways would share the same ACL policy. [[GH-4001](https://github.com/hashicorp/consul-k8s/issues/4001)]",
+   "control-plane: fix a panic when an upstream annotation is malformed. [[GH-3956](https://github.com/hashicorp/consul-k8s/issues/3956)]",
+   "connect-inject: Fixed issue where on restart, if a managed-gateway-acl-role already existed the container would error [[GH-3978](https://github.com/hashicorp/consul-k8s/issues/3978)]"
+  ]
+ },
+ "1.2.8": {
+  "bug fixes": [
+   "api-gateway: Fix order of initialization for creating ACL role/policy to avoid error logs in consul when upgrading between versions. [[GH-3918](https://github.com/hashicorp/consul-k8s/issues/3918)]",
+   "api-gateway: fix bug where multiple logical APIGateways would share the same ACL policy. [[GH-4002](https://github.com/hashicorp/consul-k8s/issues/4002)]",
+   "connect-inject: Fixed issue where on restart, if a managed-gateway-acl-role already existed the container would error [[GH-3978](https://github.com/hashicorp/consul-k8s/issues/3978)]"
   ]
  },
  "1.4.1": {
   "security updates": [
    "Update `google.golang.org/protobuf` to v1.33.0 to address [CVE-2024-24786](https://nvd.nist.gov/vuln/detail/CVE-2024-24786). [[GH-3719](https://github.com/hashicorp/consul-k8s/issues/3719)]"
+  ],
+  "bug fixes": [
+   "api-gateway: Fix order of initialization for creating ACL role/policy to avoid error logs in consul. [[GH-3779](https://github.com/hashicorp/consul-k8s/issues/3779)]",
+   "control-plane: fix an issue where ACL token cleanup did not respect a pod's GracefulShutdownPeriodSeconds and",
+   "control-plane: fix an issue where ACL tokens would prematurely be deleted and services would be deregistered if there"
   ]
  },
  "1.3.4": {
   "security updates": [
    "Update `google.golang.org/protobuf` to v1.33.0 to address [CVE-2024-24786](https://nvd.nist.gov/vuln/detail/CVE-2024-24786). [[GH-3719](https://github.com/hashicorp/consul-k8s/issues/3719)]",
    "Upgrade docker/distribution to 2.8.3+incompatible (latest) to resolve [CVE-2023-2253](https://osv.dev/vulnerability/CVE-2023-2253). [[GH-3625](https://github.com/hashicorp/consul-k8s/issues/3625)]"
+  ],
+  "bug fixes": [
+   "api-gateway: Fix order of initialization for creating ACL role/policy to avoid error logs in consul. [[GH-3779](https://github.com/hashicorp/consul-k8s/issues/3779)]",
+   "control-plane: fix an issue where ACL token cleanup did not respect a pod's GracefulShutdownPeriodSeconds and",
+   "control-plane: fix an issue where ACL tokens would prematurely be deleted and services would be deregistered if there"
   ]
  },
  "1.2.7": {
   "security updates": [
    "Update `google.golang.org/protobuf` to v1.33.0 to address [CVE-2024-24786](https://nvd.nist.gov/vuln/detail/CVE-2024-24786). [[GH-3719](https://github.com/hashicorp/consul-k8s/issues/3719)]",
    "Upgrade docker/distribution to 2.8.3+incompatible (latest) to resolve [CVE-2023-2253](https://osv.dev/vulnerability/CVE-2023-2253). [[GH-3625](https://github.com/hashicorp/consul-k8s/issues/3625)]"
+  ],
+  "bug fixes": [
+   "api-gateway: Fix order of initialization for creating ACL role/policy to avoid error logs in consul. [[GH-3779](https://github.com/hashicorp/consul-k8s/issues/3779)]",
+   "control-plane: fix an issue where ACL token cleanup did not respect a pod's GracefulShutdownPeriodSeconds and",
+   "control-plane: fix an issue where ACL tokens would prematurely be deleted and services would be deregistered if there"
   ]
  },
  "1.1.11": {
   "security updates": [
    "Update `google.golang.org/protobuf` to v1.33.0 to address [CVE-2024-24786](https://nvd.nist.gov/vuln/detail/CVE-2024-24786). [[GH-3719](https://github.com/hashicorp/consul-k8s/issues/3719)]",
    "Upgrade docker/distribution to 2.8.3+incompatible (latest) to resolve [CVE-2023-2253](https://osv.dev/vulnerability/CVE-2023-2253). [[GH-3625](https://github.com/hashicorp/consul-k8s/issues/3625)]"
+  ],
+  "bug fixes": [
+   "control-plane: fix an issue where ACL token cleanup did not respect a pod's GracefulShutdownPeriodSeconds and",
+   "control-plane: fix an issue where ACL tokens would prematurely be deleted and services would be deregistered if there"
   ]
  },
  "1.4.0": {
   "security updates": [
    "Update Envoy version to 1.25.11 to address [CVE-2023-44487](https://github.com/envoyproxy/envoy/security/advisories/GHSA-jhv4-f7mr-xx76) [[GH-3116](https://github.com/hashicorp/consul-k8s/issues/3116)]",
    "Upgrade docker/distribution to 2.8.3+incompatible (latest) to resolve [CVE-2023-2253](https://osv.dev/vulnerability/CVE-2023-2253). [[GH-3625](https://github.com/hashicorp/consul-k8s/issues/3625)]"
+  ],
+  "bug fixes": [
+   "consul-telemetry-collector: fix args to consul-dataplane when global.acls.manageSystemACLs [[GH-3184](https://github.com/hashicorp/consul-k8s/issues/3184)]"
+  ]
+ },
+ "1.3.3": {
+  "bug fixes": [
+   "api-gateway: fix issue where external annotations and labels are being incorrectly deleted on services controlled by the API Gateway [[GH-3597](https://github.com/hashicorp/consul-k8s/issues/3597)]"
+  ]
+ },
+ "1.2.6": {
+  "bug fixes": [
+   "api-gateway: fix issue where external annotations and labels are being incorrectly deleted on services controlled by the API Gateway [[GH-3597](https://github.com/hashicorp/consul-k8s/issues/3597)]"
   ]
  },
  "1.3.2": {
   "security updates": [
    "Update `golang.org/x/crypto` to v0.17.0 to address [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795). [[GH-3442](https://github.com/hashicorp/consul-k8s/issues/3442)]"
+  ],
+  "bug fixes": [
+   "api-gateway: fix issue where deleting an http-route in a non-default namespace would not remove the route from Consul. [[GH-3440](https://github.com/hashicorp/consul-k8s/issues/3440)]"
   ]
  },
  "1.2.5": {
   "security updates": [
    "Update `golang.org/x/crypto` to v0.17.0 to address [CVE-2023-48795](https://nvd.nist.gov/vuln/detail/CVE-2023-48795). [[GH-3442](https://github.com/hashicorp/consul-k8s/issues/3442)]"
+  ],
+  "bug fixes": [
+   "api-gateway: fix issue where deleting an http-route in a non-default namespace would not remove the route from Consul. [[GH-3440](https://github.com/hashicorp/consul-k8s/issues/3440)]"
   ]
  },
  "1.1.9": {
@@ -163,6 +376,26 @@
  "1.3.1": {
   "security updates": [
    "Update Envoy version to 1.25.11 to address [CVE-2023-44487](https://github.com/envoyproxy/envoy/security/advisories/GHSA-jhv4-f7mr-xx76) [[GH-3118](https://github.com/hashicorp/consul-k8s/issues/3118)]"
+  ],
+  "bug fixes": [
+   "consul-telemetry-collector: fix deployments to non-default namespaces when global.enableConsulNamespaces [[GH-3215](https://github.com/hashicorp/consul-k8s/issues/3215)]",
+   "consul-telemetry-collector: fix args to consul-dataplane when global.acls.manageSystemACLs [[GH-3184](https://github.com/hashicorp/consul-k8s/issues/3184)]",
+   "control-plane: Fixes a bug with the control-plane CLI validation where the consul-dataplane sidecar CPU request is compared against the memory limit instead of the CPU limit. [[GH-3209](https://github.com/hashicorp/consul-k8s/issues/3209)]",
+   "control-plane: fixes an issue with the server-acl-init job where the job would fail on upgrades due to consul server ip address changes. [[GH-3137](https://github.com/hashicorp/consul-k8s/issues/3137)]"
+  ]
+ },
+ "1.2.4": {
+  "bug fixes": [
+   "consul-telemetry-collector: fix deployments to non-default namespaces when global.enableConsulNamespaces [[GH-3215](https://github.com/hashicorp/consul-k8s/issues/3215)]",
+   "consul-telemetry-collector: fix args to consul-dataplane when global.acls.manageSystemACLs [[GH-3184](https://github.com/hashicorp/consul-k8s/issues/3215)]",
+   "control-plane: fixes an issue with the server-acl-init job where the job would fail on upgrades due to consul server ip address changes. [[GH-3137](https://github.com/hashicorp/consul-k8s/issues/3137)]"
+  ]
+ },
+ "1.1.8": {
+  "bug fixes": [
+   "consul-telemetry-collector: fix deployments to non-default namespaces when global.enableConsulNamespaces [[GH-3215](https://github.com/hashicorp/consul-k8s/issues/3215)]",
+   "consul-telemetry-collector: fix args to consul-dataplane when global.acls.manageSystemACLs [[GH-3184](https://github.com/hashicorp/consul-k8s/issues/3184)]",
+   "control-plane: fixes an issue with the server-acl-init job where the job would fail on upgrades due to consul server ip address changes. [[GH-3137](https://github.com/hashicorp/consul-k8s/issues/3137)]"
   ]
  },
  "1.3.0": {
@@ -173,6 +406,10 @@
  "1.2.3": {
   "security updates": [
    "Update Envoy version to 1.25.11 to address [CVE-2023-44487](https://github.com/envoyproxy/envoy/security/advisories/GHSA-jhv4-f7mr-xx76) [[GH-3119](https://github.com/hashicorp/consul-k8s/issues/3119)]"
+  ],
+  "bug fixes": [
+   "api-gateway: fix issue where missing `NET_BIND_SERVICE` capability prevented api-gateway `Pod` from starting up when deployed to OpenShift [[GH-3070](https://github.com/hashicorp/consul-k8s/issues/3070)]",
+   "crd: fix misspelling of preparedQuery field in ControlPlaneRequestLimit CRD [[GH-3001](https://github.com/hashicorp/consul-k8s/issues/3001)]"
   ]
  },
  "1.1.7": {
@@ -185,27 +422,112 @@
    "Update Envoy version to 1.24.12 to address [CVE-2023-44487](https://github.com/envoyproxy/envoy/security/advisories/GHSA-jhv4-f7mr-xx76) [[GH-3121](https://github.com/hashicorp/consul-k8s/issues/3121)]"
   ]
  },
+ "1.2.2": {
+  "bug fixes": [
+   "audit-log: fix parsing error for some audit log configuration fields fail with uncovertible string to integer errors. [[GH-2905](https://github.com/hashicorp/consul-k8s/issues/2905)]",
+   "control-plane: Fix issue where ACL tokens would have an empty pod name that prevented proper token cleanup. [[GH-2808](https://github.com/hashicorp/consul-k8s/issues/2808)]"
+  ]
+ },
+ "1.1.6": {
+  "bug fixes": [
+   "audit-log: fix parsing error for some audit log configuration fields fail with uncovertible string to integer errors. [[GH-2905](https://github.com/hashicorp/consul-k8s/issues/2905)]"
+  ]
+ },
+ "1.0.10": {
+  "bug fixes": [
+   "audit-log: fix parsing error for some audit log configuration fields fail with uncovertible string to integer errors. [[GH-2905](https://github.com/hashicorp/consul-k8s/issues/2905)]",
+   "control-plane: Fix issue where ACL tokens would have an empty pod name that prevented proper token cleanup. [[GH-2808](https://github.com/hashicorp/consul-k8s/issues/2808)]"
+  ]
+ },
+ "1.2.1": {
+  "bug fixes": [
+   "api-gateway: Fix creation of invalid Kubernetes Service when multiple Gateway listeners have the same port. [[GH-2413](https://github.com/hashicorp/consul-k8s/issues/2413)]",
+   "api-gateway: fix helm install when setting copyAnnotations or nodeSelector [[GH-2597](https://github.com/hashicorp/consul-k8s/issues/2597)]",
+   "api-gateway: fixes bug where envoy will silently reject RSA keys less than 2048 bits in length when not in FIPS mode, and",
+   "control-plane: fix bug in endpoints controller when deregistering services from consul when a node is deleted. [[GH-2571](https://github.com/hashicorp/consul-k8s/issues/2571)]",
+   "helm: fix CONSUL_LOGIN_DATACENTER for consul client-daemonset. [[GH-2652](https://github.com/hashicorp/consul-k8s/issues/2652)]",
+   "helm: fix ui ingress manifest formatting, and exclude `ingressClass` when not defined. [[GH-2687](https://github.com/hashicorp/consul-k8s/issues/2687)]",
+   "transparent-proxy: Fix issue where connect-inject lacked sufficient `mesh:write` privileges in some deployments,"
+  ]
+ },
+ "1.1.4": {
+  "bug fixes": [
+   "control-plane: fix bug in endpoints controller when deregistering services from consul when a node is deleted. [[GH-2571](https://github.com/hashicorp/consul-k8s/issues/2571)]",
+   "helm: fix CONSUL_LOGIN_DATACENTER for consul client-daemonset. [[GH-2652](https://github.com/hashicorp/consul-k8s/issues/2652)]",
+   "helm: fix ui ingress manifest formatting, and exclude `ingressClass` when not defined. [[GH-2687](https://github.com/hashicorp/consul-k8s/issues/2687)]"
+  ]
+ },
+ "1.0.9": {
+  "bug fixes": [
+   "control-plane: fix bug in endpoints controller when deregistering services from consul when a node is deleted. [[GH-2571](https://github.com/hashicorp/consul-k8s/issues/2571)]",
+   "helm: fix CONSUL_LOGIN_DATACENTER for consul client-daemonset. [[GH-2652](https://github.com/hashicorp/consul-k8s/issues/2652)]",
+   "helm: fix ui ingress manifest formatting, and exclude `ingressClass` when not defined. [[GH-2687](https://github.com/hashicorp/consul-k8s/issues/2687)]"
+  ]
+ },
  "1.2.0": {
   "security updates": [
    "Update [Go-Discover](https://github.com/hashicorp/go-discover) in the container has been updated to address [CVE-2020-14040](https://github.com/advisories/GHSA-5rcv-m4m3-hfh7) [[GH-2390](https://github.com/hashicorp/consul-k8s/issues/2390)]",
    "Bump Dockerfile base image to `alpine:3.18`. Resolves [CVE-2023-2650](https://github.com/advisories/GHSA-gqxg-9vfr-p9cg) vulnerability in openssl@3.0.8-r4 [[GH-2284](https://github.com/hashicorp/consul-k8s/issues/2284)]"
+  ],
+  "bug fixes": [
+   "Fix Prometheus CVEs by bumping controller-runtime. [[GH-2183](https://github.com/hashicorp/consul-k8s/issues/2183)]",
+   "control-plane: Fix casing of the Enforce Consecutive 5xx field on Service Defaults and acceptance test fixtures. [[GH-2266](https://github.com/hashicorp/consul-k8s/issues/2266)]",
+   "control-plane: fix issue where consul-connect-injector acl token was unintentionally being deleted and not recreated when a container was restarted due to a livenessProbe failure. [[GH-1914](https://github.com/hashicorp/consul-k8s/issues/1914)]"
   ]
  },
  "1.1.3": {
   "security updates": [
    "Bump Dockerfile base image to `alpine:3.18`. Resolves [CVE-2023-2650](https://github.com/advisories/GHSA-gqxg-9vfr-p9cg) vulnerability in openssl@3.0.8-r4 [[GH-2284](https://github.com/hashicorp/consul-k8s/issues/2284)]",
    "Update [Go-Discover](https://github.com/hashicorp/go-discover) in the container has been updated to address [CVE-2020-14040](https://github.com/advisories/GHSA-5rcv-m4m3-hfh7) [[GH-2390](https://github.com/hashicorp/consul-k8s/issues/2390)]"
+  ],
+  "bug fixes": [
+   "control-plane: Fix casing of the Enforce Consecutive 5xx field on Service Defaults and acceptance test fixtures. [[GH-2266](https://github.com/hashicorp/consul-k8s/issues/2266)]"
   ]
  },
  "1.0.8": {
   "security updates": [
    "Bump Dockerfile base image to `alpine:3.18`. Resolves [CVE-2023-2650](https://github.com/advisories/GHSA-gqxg-9vfr-p9cg) vulnerability in openssl@3.0.8-r4 [[GH-2284](https://github.com/hashicorp/consul-k8s/issues/2284)]",
    "Update [Go-Discover](https://github.com/hashicorp/go-discover) in the container has been updated to address [CVE-2020-14040](https://github.com/advisories/GHSA-5rcv-m4m3-hfh7) [[GH-2390](https://github.com/hashicorp/consul-k8s/issues/2390)]"
+  ],
+  "bug fixes": [
+   "control-plane: Fix casing of the Enforce Consecutive 5xx field on Service Defaults and acceptance test fixtures. [[GH-2266](https://github.com/hashicorp/consul-k8s/issues/2266)]",
+   "control-plane: fix issue with json tags of service defaults fields EnforcingConsecutive5xx, MaxEjectionPercent and BaseEjectionTime. [[GH-2159](https://github.com/hashicorp/consul-k8s/issues/2159)]",
+   "control-plane: fix issue with multiport pods crashlooping due to dataplane port conflicts by ensuring dns redirection is disabled for non-tproxy pods [[GH-2176](https://github.com/hashicorp/consul-k8s/issues/2176)]",
+   "crd: fix bug on service intentions CRD causing some updates to be ignored. [[GH-2194](https://github.com/hashicorp/consul-k8s/issues/2194)]"
   ]
  },
  "0.49.7": {
   "security updates": [
    "Bump Dockerfile base image to `alpine:3.18`. Resolves [CVE-2023-2650](https://github.com/advisories/GHSA-gqxg-9vfr-p9cg) vulnerability in openssl@3.0.8-r4 [[GH-2284](https://github.com/hashicorp/consul-k8s/issues/2284)]"
+  ],
+  "bug fixes": [
+   "crd: fix bug on service intentions CRD causing some updates to be ignored. [[GH-2194](https://github.com/hashicorp/consul-k8s/issues/2194)]"
+  ]
+ },
+ "1.1.2": {
+  "bug fixes": [
+   "crd: fix bug on service intentions CRD causing some updates to be ignored. [[GH-2194](https://github.com/hashicorp/consul-k8s/issues/2083)]",
+   "api-gateway: fix issue where the API Gateway controller is unable to start up successfully when Vault is configured as the secrets backend [[GH-2083](https://github.com/hashicorp/consul-k8s/issues/2083)]",
+   "control-plane: fix issue with json tags of service defaults fields EnforcingConsecutive5xx, MaxEjectionPercent and BaseEjectionTime. [[GH-2160](https://github.com/hashicorp/consul-k8s/issues/2160)]",
+   "control-plane: fix issue with multiport pods crashlooping due to dataplane port conflicts by ensuring dns redirection is disabled for non-tproxy pods [[GH-2176](https://github.com/hashicorp/consul-k8s/issues/2176)]",
+   "sync-catalog: fix issue where the sync-catalog ACL token were set with an incorrect ENV VAR. [[GH-2068](https://github.com/hashicorp/consul-k8s/issues/2068)]"
+  ]
+ },
+ "1.0.7": {
+  "bug fixes": [
+   "api-gateway: fix issue where the API Gateway controller is unable to start up successfully when Vault is configured as the secrets backend [[GH-2083](https://github.com/hashicorp/consul-k8s/issues/2083)]",
+   "sync-catalog: fix issue where the sync-catalog ACL token were set with an incorrect ENV VAR. [[GH-2068](https://github.com/hashicorp/consul-k8s/issues/2068)]"
+  ]
+ },
+ "1.1.1": {
+  "bug fixes": [
+   "api-gateway: fix ACL issue where when adminPartitions and ACLs are enabled, API Gateway Controller is unable to create a new namespace in Consul [[GH-2029](https://github.com/hashicorp/consul-k8s/issues/2029)]",
+   "api-gateway: fix issue where specifying an external server SNI name while using client nodes resulted in a TLS verification error. [[GH-2013](https://github.com/hashicorp/consul-k8s/issues/2013)]"
+  ]
+ },
+ "1.0.6": {
+  "bug fixes": [
+   "api-gateway: fix issue where specifying an external server SNI name while using client nodes resulted in a TLS verification error. [[GH-2013](https://github.com/hashicorp/consul-k8s/issues/2013)]"
   ]
  },
  "1.0.5": {
@@ -216,6 +538,9 @@
  "0.49.5": {
   "security updates": [
    "upgrade to use Go 1.19.6. This resolves vulnerabilities CVE-2022-41724 in crypto/tls and CVE-2022-41723 in net/http. [[GH-1975](https://github.com/hashicorp/consul-k8s/issues/1975)]"
+  ],
+  "bug fixes": [
+   "control-plane: fix issue where consul-connect-injector acl token was unintentionally being deleted and not recreated when a container was restarted due to a livenessProbe failure. [[GH-1914](https://github.com/hashicorp/consul-k8s/issues/1914)]"
   ]
  },
  "1.1.0": {
@@ -223,9 +548,174 @@
    "Upgrade to use Go 1.20.1 This resolves vulnerabilities [CVE-2022-41724](https://go.dev/issue/58001) in `crypto/tls` and [CVE-2022-41723](https://go.dev/issue/57855) in `net/http`. [[GH-1908](https://github.com/hashicorp/consul-k8s/pull/1908)]"
   ]
  },
+ "1.0.0": {
+  "bug fixes": [
+   "Add `peering:read` permissions to mesh gateway token to fix peering connections through the mesh gateways. [[GH-1685](https://github.com/hashicorp/consul-k8s/pull/1685)]"
+  ]
+ },
+ "0.49.0": {
+  "bug fixes": [
+   "Fixes a typo in the templating of `global.connectInject.disruptionBudget.maxUnavailable`. [[GH-1530](https://github.com/hashicorp/consul-k8s/pull/1530)]"
+  ]
+ },
+ "0.48.0": {
+  "bug fixes": [
+   "Fix issue where SNI filters for Terminating Gateways showed up as blank lines. [[GH-1442](https://github.com/hashicorp/consul-k8s/pull/1442)]",
+   "Fix issue where Logical DNS endpoints were being displayed alongside cluster names. [[GH-1452](https://github.com/hashicorp/consul-k8s/pull/1452)]"
+  ]
+ },
+ "0.47.0": {
+  "bug fixes": [
+   "Fix permissions in client-daemonset and server-statefulset when using extra-config volumes to prevent errors on OpenShift. [[GH-1307](https://github.com/hashicorp/consul-k8s/pull/1307)]"
+  ]
+ },
+ "0.46.0": {
+  "bug fixes": [
+   "Fix missing RBAC permissions for the peering controllers to be able to update secrets. [[GH-1359](https://github.com/hashicorp/consul-k8s/pull/1359)]",
+   "Fix a bug in the peering controller where we tried to read the secret from the cache right after creating it. [[GH-1359](https://github.com/hashicorp/consul-k8s/pull/1359)]"
+  ]
+ },
  "0.44.0": {
   "security updates": [
    "Bump golang.org/x/crypto and golang.org/x/text dependencies to address CVE-2022-27291 and CVE-2021-38561 respectively on both CLI and Control Plane. There's no known exposure within Consul on Kubernetes as the dependencies are not invoked. [[GH-1189](https://github.com/hashicorp/consul-k8s/pull/1189)]"
+  ],
+  "bug fixes": [
+   "Correct webhook-cert-manager-clusterrole to utilize the web-cert-manager podsecuritypolicy rather than connect-injectors when `global.enablePodSecurityPolicies` is true. [[GH-1202](https://github.com/hashicorp/consul-k8s/pull/1202)]"
+  ]
+ },
+ "0.43.0": {
+  "bug fixes": [
+   "Fix issue where clusters not in the same namespace as their deployment name could not be upgraded. [[GH-1115](https://github.com/hashicorp/consul-k8s/pull/1115)]",
+   "Fix issue where the CLI was looking for secrets in namespaces other than the namespace targeted by the release. [[GH-1156](https://github.com/hashicorp/consul-k8s/pull/1156)]",
+   "Fix issue where the federation secret was not being found in certain configurations. [[GH-1154](https://github.com/hashicorp/consul-k8s/pull/1154)]",
+   "Fix issue where upgrading a deployment from non-service mesh to service mesh would cause Pods to hang in init. [[GH-1136](https://github.com/hashicorp/consul-k8s/pull/1136)]"
+  ]
+ },
+ "0.42.0": {
+  "bug fixes": [
+   "Fix PodSecurityPolicies for clients/mesh gateways when hostNetwork is used. [[GH-1090](https://github.com/hashicorp/consul-k8s/pull/1090)]",
+   "Fix `install` and `upgrade` commands for Windows. [[GH-1139](https://github.com/hashicorp/consul-k8s/pull/1139)]"
+  ]
+ },
+ "0.41.0": {
+  "bug fixes": [
+   "Fix issue where if the API gateway controller pods restarted, gateway pods would become disconnected from the secret discovery service. [[GH-1007](https://github.com/hashicorp/consul-k8s/pull/1007)]",
+   "Fix issue where the API gateway controller could not update existing Deployments or Services. [[GH-1014](https://github.com/hashicorp/consul-k8s/pull/1014)]",
+   "Fix issue where the API gateway controller lacked sufficient permissions to bind routes when ACLs were enabled. [[GH-1018](https://github.com/hashicorp/consul-k8s/pull/1018)]",
+   "Rename fields of IngressGateway CRD to fix incorrect names (`gatewayTLSConfig` => `tls`, `gatewayServiceTLSConfig` => `tls`, `gatewayTLSSDSConfig` => `sds`). [[GH-1017](https://github.com/hashicorp/consul-k8s/pull/1017)]"
+  ]
+ },
+ "0.40.0": {
+  "bug fixes": [
+   "Avoid making unnecessary calls to Consul in the endpoints controller to improve application startup time when Consul is down. [[GH-779](https://github.com/hashicorp/consul-k8s/issues/779)]"
+  ]
+ },
+ "0.37.0": {
+  "bug fixes": [
+   "ACLs: Fix issue where if one or more servers fail to have their ACL tokens set on the initial run of server-acl-init",
+   "ACLs: Fix issue where if the number of Consul servers is increased, the new servers are never provisioned",
+   "Fix issue where after a `helm upgrade`, users would see `x509: certificate signed by unknown authority.`",
+   "Fix issue where UI metrics would be enabled when `global.metrics=false` and `ui.metrics.enabled=-`. [[GH-841](https://github.com/hashicorp/consul-k8s/pull/841)]"
+  ]
+ },
+ "0.34.1": {
+  "bug fixes": [
+   "Fix consul-k8s image version in values file. [[GH-732](https://github.com/hashicorp/consul-k8s/pull/732)]"
+  ]
+ },
+ "0.34.0": {
+  "bug fixes": [
+   "Catalog Sync: Fix issue registering NodePort services with wrong IPs when a node has multiple IP addresses. [[GH-619](https://github.com/hashicorp/consul-k8s/pull/619)]"
+  ]
+ },
+ "0.33.0": {
+  "bug fixes": [
+   "Connect: Fix bug where environment variables `<NAME>_CONNECT_SERVICE_HOST` and",
+   "Connect: Fix a bug with leaving around ACL tokens after a service has been deregistered. Note that this will not clean up existing leftover ACL tokens. [[GH-540](https://github.com/hashicorp/consul-k8s/issues/540)][[GH-599](https://github.com/hashicorp/consul-k8s/issues/599)]",
+   "CRDs: Fix ProxyDefaults and ServiceDefaults resources not syncing with Consul < 1.10.0 [[GH-1023](https://github.com/hashicorp/consul-helm/issues/1023)]"
+  ]
+ },
+ "0.26.0": {
+  "bug fixes": [
+   "CRDs: Fix a bug where the `config` field in `ProxyDefaults` CR failed syncing to Consul because `apiextensions.k8s.io/v1` requires CRD spec to have structured schema. [[GH-495](https://github.com/hashicorp/consul-k8s/pull/495)]"
+  ]
+ },
+ "0.25.0": {
+  "bug fixes": [
+   "CRDs: fix incorrect validation for `ServiceResolver`. [[GH-456](https://github.com/hashicorp/consul-k8s/pull/456)]"
+  ]
+ },
+ "0.23.0": {
+  "bug fixes": [
+   "CRDs: Fix issue where a `ServiceIntentions` resource could be continually resynced with Consul"
+  ]
+ },
+ "0.20.0": {
+  "bug fixes": [
+   "CRDs: **(Consul Enterprise only)** Fix namespace support for ServiceIntentions CRD. [[GH-362](https://github.com/hashicorp/consul-k8s/pull/362)]"
+  ]
+ },
+ "0.17.0": {
+  "bug fixes": [
+   "Connect: Update resource settings to fix out of memory errors and CPU usage at 100% of limit. [[GH-283](https://github.com/hashicorp/consul-k8s/issues/283), [consul-helm GH-515](https://github.com/hashicorp/consul-helm/issues/515)]"
+  ]
+ },
+ "0.16.0": {
+  "bug fixes": [
+   "Fix bug where preStop hook was malformed. This caused Consul ACL tokens to never be deleted for connect services. [[GH-265](https://github.com/hashicorp/consul-k8s/issues/265)]",
+   "Fix bug where environment variable for upstream was not populated when using a different datacenter resulted. [[GH-246](https://github.com/hashicorp/consul-k8s/issues/246)]",
+   "Fix bug where the Connect health-check was defined with a service name instead of a service ID. This check was passing in consul version before 1.8, but will now fail with versions 1.8 and higher. [[GH-272](https://github.com/hashicorp/consul-k8s/pull/272)]"
+  ]
+ },
+ "0.14.0": {
+  "bug fixes": [
+   "Connect: Fix upstream annotation parsing when multiple prepared queries are separated by spaces [[GH-224](https://github.com/hashicorp/consul-k8s/issues/224)]",
+   "ACLs: Fix bug with `acl-init -token-sink-file` where running the command twice would fail [[GH-248](https://github.com/hashicorp/consul-k8s/pull/248)]"
+  ]
+ },
+ "0.13.0": {
+  "bug fixes": [
+   "Sync: Fix a race condition where sync would delete services at initial startup [[GH-208](https://github.com/hashicorp/consul-k8s/pull/208)]"
+  ]
+ },
+ "0.12.0": {
+  "bug fixes": [
+   "Bootstrap ACLs: Fixes mesh gateway ACL policies to have the correct permissions",
+   "Sync: Fixes a hot loop bug when getting an error from Consul when retrieving service information [[GH-204](https://github.com/hashicorp/consul-k8s/pull/204)]"
+  ]
+ },
+ "0.10.1": {
+  "bug fixes": [
+   "Connect: Fix bug where the new lifecycle sidecar didn't have permissions to"
+  ]
+ },
+ "0.10.0": {
+  "bug fixes": [
+   "Connect: Fix critical bug where Connect-registered services instances would be deregistered",
+   "Connect: Fix bug where UI links between sidecar and service didn't work because"
+  ]
+ },
+ "0.9.3": {
+  "bug fixes": [
+   "Fixes a bug where even if the ACL Tokens for the other components existed"
+  ]
+ },
+ "0.9.2": {
+  "bug fixes": [
+   "Fix bug during connect-inject where the `-default-protocol` flag was being",
+   "Fix bug during connect-inject where service-tag annotations were",
+   "Fix bug during `server-acl-init` where if any step errored then the command"
+  ]
+ },
+ "0.9.1": {
+  "bug fixes": [
+   "Fix bootstrap acl issue when Consul was installed into a namespace other than `default`",
+   "Fix sync bug where `ClusterIP` services had their `Service` port instead"
+  ]
+ },
+ "0.8.1": {
+  "bug fixes": [
+   "Fix central configuration write command to handle the case where the service already exists"
   ]
  },
  "0.7.0": {
@@ -233,31 +723,72 @@
    "Removes GRPCRoute method match defaulting to allow for matching all requests,",
    "Update route validation to comply with RFC-3986 \"p-char\" characters. (#1644,",
    "Illegal names like \" \" will be not allowed for query param name in",
-   "Webhook: Port is now considered when validating that ParentRefs are unique"
+   "Webhook: Port is now considered when validating that ParentRefs are unique",
+   "Fixes for mesh conformance tests (#2017, @keithmattix)",
+   "Fix description of ReferenceGrant example in documentation by making it use",
+   "Fix grammar mistake in ReferenceGrant implementation guidelines. (#1865,"
+  ]
+ },
+ "0.6.0": {
+  "bug fixes": [
+   "Fix Gateway reference in HTTPRouteInvalidParentRefNotMatchingListenerPort"
   ]
  },
  "0.5.0": {
+  "bug fixes": [
+   "Fix service registration naming when using Connect [[GH 36](https://github.com/hashicorp/consul-k8s/issues/36)]",
+   "Fix catalog sync so that agents don't incorrectly deregister Kubernetes services [[GH 40](https://github.com/hashicorp/consul-k8s/issues/40)][[GH 59](https://github.com/hashicorp/consul-k8s/issues/59)]",
+   "Fix performance issue for the k8s -> Consul catalog sync [[GH 60](https://github.com/hashicorp/consul-k8s/issues/60)]",
+   "Fixes a problem that would cause webhook deployment to fail on Kubernetes",
+   "Fixes a bug where the `Namespace` could be unspecified in `ReferencePolicy`",
+   "Fixes a bug where v1alpha2 GatewayClass controller names were not being"
+  ],
   "breaking changes": [
    "Breaking Changes",
    "The v1alpha1 API version was deprecated and removed.",
    "The `NamedAddress` value for `Gateway`'s `spec.addresses[].type` field has",
    "Implementations are now expected to use `500` instead of `503` responses when"
-  ],
+  ]
+ },
+ "0.4.0": {
   "bug fixes": [
-   "Fixes a problem that would cause webhook deployment to fail on Kubernetes",
-   "Fixes a bug where the `Namespace` could be unspecified in `ReferencePolicy`",
-   "Fixes a bug where v1alpha2 GatewayClass controller names were not being"
+   "[#777](https://github.com/kubernetes-sigs/gateway-api/pull/777) : Fix typo",
+   "[#875](https://github.com/kubernetes-sigs/gateway-api/pull/875) : Fix HTTP path match documentation.",
+   "[#845](https://github.com/kubernetes-sigs/gateway-api/pull/845) : Fix markdown list formatting.",
+   "[#834](https://github.com/kubernetes-sigs/gateway-api/pull/834) : Fixes some broken links",
+   "[#885](https://github.com/kubernetes-sigs/gateway-api/pull/885) : Fix incorrect urls",
+   "[#748](https://github.com/kubernetes-sigs/gateway-api/pull/748) : fix kustomize to install v1a2 crds"
+  ]
+ },
+ "0.2.1": {
+  "bug fixes": [
+   "Fix single direction catalog sync [[GH 7](https://github.com/hashicorp/consul-k8s/issues/7)]"
+  ]
+ },
+ "0.7.1": {
+  "bug fixes": [
+   "Fixed an issues causing conformance tests to fail when using IPv6 addresses.",
+   "Fixes to port and scheme redirect tests: Tests now send HTTPS requests with"
   ]
  },
  "0.6.2": {
   "bug fixes": [
-   "Fix invalid HTTP redirect/rewrite examples."
+   "Fix invalid HTTP redirect/rewrite examples.",
+   "Fixed an issue where tests may fail erroneously on the removal of resources"
   ]
  },
  "0.6.1": {
   "bug fixes": [
    "Our regex for validating path characters was updated to accurately identify",
-   "An erroneous \"namespace\" field was present in our webhook ClusterRoleBindings"
+   "An erroneous \"namespace\" field was present in our webhook ClusterRoleBindings",
+   "Fixed a broken test for GRPCRoute that caused an erronous failure.",
+   "Fixed usage of `net/http` default client in conformance test suite",
+   "Fixed missing reference to NoMatchingParent in godoc"
+  ]
+ },
+ "0.4.3": {
+  "bug fixes": [
+   "A fix to ensure that Path match validation actually works"
   ]
  },
  "0.4.2": {

@@ -1,7 +1,37 @@
 {
+ "1.35.5": {
+  "bug fixes": [
+   "Fixed a bug where ImageRef in container status changed from a repo@digest to a raw image ID hash after CRI-O restart. (#9985, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.34.10": {
+  "bug fixes": [
+   "Fixed a bug where ImageRef in container status changed from a repo@digest to a raw image ID hash after CRI-O restart. (#9986, @saschagrunert)"
+  ]
+ },
+ "1.36.1": {
+  "bug fixes": [
+   "Fixed a bug where ImageRef in container status changed from a repo@digest to a raw image ID hash after CRI-O restart. (#9984, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.34.9": {
+  "bug fixes": [
+   "Fix a panic caused by concurrent StopContainer calls racing to send on an already-closed channel. (#9920, @sabujmaity)",
+   "Fixed the race condition where cri-o reports exitCode 255 when the container exits fast. (#9879, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.33.13": {
+  "bug fixes": [
+   "Fixed the race condition where cri-o reports exitCode 255 when the container exits fast. (#9932, @openshift-cherrypick-robot)"
+  ]
+ },
  "1.35.3": {
   "security updates": [
    "Fix CVE-2026-35469 by updating spdystream dependency (#9883, @openshift-cherrypick-robot)"
+  ],
+  "bug fixes": [
+   "Fixed a panic when concurrent StopContainer calls race against the stop lifecycle completing. (#9814, @openshift-cherrypick-robot)",
+   "Fixed the race condition where cri-o reports exitCode 255 when the container exits fast. (#9871, @openshift-cherrypick-robot)"
   ]
  },
  "1.34.8": {
@@ -17,11 +47,70 @@
  "1.36.0": {
   "security updates": [
    "Fix CVE-2026-35469 by updating spdystream dependency (#9880, @haircommander)"
+  ],
+  "bug fixes": [
+   "Fix concurrent RemoveImage race condition by handling ErrNotAnImage as an idempotent deletion result. (#9803, @jnovy)",
+   "Fixed UpdateContainerResources to apply cgroupv2 unified settings (#9820, @PannagaRao)",
+   "Fixed a bug where CRI-O didn't return all metrics when \"all\" is set. (#9719, @bitoku)",
+   "Fixed a panic when concurrent StopContainer calls race against the stop lifecycle completing. (#9799, @sabujmaity)",
+   "Fixed a regression in v1.35.0 where systemd containers with `hostUsers: false` (user namespaces enabled) would fail with \"Permission denied\" errors when systemd attempted to create cgroups. (#9712, @saschagrunert)",
+   "Fixed cases where regular container images could accidentally be pulled into the OCI artifact store (#9782, @bitoku)",
+   "Fixed the race condition where cri-o reports exitCode 255 when the container exits fast. (#9846, @bitoku)"
+  ]
+ },
+ "1.35.2": {
+  "bug fixes": [
+   "Fixed a bug where CRI-O didn't return all metrics when \"all\" is set. (#9781, @openshift-cherrypick-robot)",
+   "Fixed cases where regular container images could accidentally be pulled into the OCI artifact store (#9788, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.35.1": {
+  "bug fixes": [
+   "Fixed a regression in v1.35.0 where systemd containers with `hostUsers: false` (user namespaces enabled) would fail with \"Permission denied\" errors when systemd attempted to create cgroups. (#9713, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.33.10": {
+  "bug fixes": [
+   "Fix a bug in high performance hook irq smp affinity disabling where a late container deletion could cause other containers to have their irq smp affinity messed up. (#9741, @andreaskaris)"
+  ]
+ },
+ "1.34.5": {
+  "bug fixes": [
+   "Fix a bug in high performance hook irq smp affinity disabling where a late container deletion could cause other containers to have their irq smp affinity messed up. (#9699, @haircommander)"
+  ]
+ },
+ "1.34.4": {
+  "bug fixes": [
+   "Fixed release description to use cosigns new bundle format. (#9656, @saschagrunert)",
+   "Fix Exec CPU affinity doesn't work when CPU load balancing is disabled. (#9681, @bitoku)"
+  ]
+ },
+ "1.33.8": {
+  "bug fixes": [
+   "Fixed release description to use cosigns new bundle format. (#9657, @saschagrunert)"
+  ]
+ },
+ "1.32.12": {
+  "bug fixes": [
+   "Fixed release description to use cosigns new bundle format. (#9658, @saschagrunert)"
   ]
  },
  "1.35.0": {
   "breaking changes": [
    "Add container_spec* and container_last_seen metrics"
+  ],
+  "bug fixes": [
+   "Fixed release description to use cosigns new bundle format. (#9655, @saschagrunert)",
+   "Fixed pod sandbox stop timeout allocation to properly distribute deadline between container and infra container stops, preventing timeout failures on slower systems. (#9643, @saschagrunert)",
+   "Fix Exec CPU affinity doesn't work when CPU load balancing is disabled. (#9647, @bitoku)",
+   "Fix a bug in high performance hook irq smp affinity disabling where a late container deletion could cause other containers to have their irq smp affinity messed up. (#9613, @haircommander)",
+   "Fix a bug where CRI metrics had the incorrect metadata. Now, instead of the metrics being populated with the sandbox metadata, they are populated with the container metadata. (#9535, @haircommander)",
+   "Fix the bug where the `ContainersStatuses.Image` returned by the `GetContainerEvents` is nil. (#9663, @HirazawaUi)",
+   "Fixed a bug where includedPodMetrics are not respected in ListMetricDescriptors (#9565, @bitoku)",
+   "Fixed memory leak with CRI connection when using the systemd watchdog feature. (#9448, @saschagrunert)",
+   "Fixed static build gpgme issue resulting in an \"Invalid crypto engine\" error on various platforms. (#9479, @saschagrunert)",
+   "Server: Fix network cleanup failures when NetNS path is empty (#9410, @sohankunkerkar)",
+   "Fixed kubectl exec and crictl exec commands hanging when accessing containers in the Terminating state. These commands now work correctly throughout the container shutdown period. (#9614, @willianpaixao)"
   ],
   "security updates": [
    "Fixed CVE-2025-58183: Updated tar-split to v0.12.2 to fix unbounded memory allocation vulnerability when parsing malicious container images with GNU sparse tar files. (#9589, @saschagrunert)"
@@ -40,16 +129,264 @@
  "1.32.11": {
   "security updates": [
    "Fixed CVE-2025-58183: Updated tar-split to v0.12.2 to fix unbounded memory allocation vulnerability when parsing malicious container images with GNU sparse tar files. (#9592, @saschagrunert)"
+  ],
+  "bug fixes": [
+   "Server: Fix network cleanup failures when NetNS path is empty (#9617, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.34.1": {
+  "bug fixes": [
+   "Fixed static build gpgme issue resulting in an \"Invalid crypto engine\" error on various platforms. (#9487, @openshift-cherrypick-robot)",
+   "Server: Fix network cleanup failures when NetNS path is empty (#9471, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.33.5": {
+  "bug fixes": [
+   "Fix log rotation not working for containers running with the kata-containers runtime (#9452, @littlejawa)",
+   "Server: Fix network cleanup failures when NetNS path is empty (#9472, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.32.9": {
+  "bug fixes": [
+   "Fix log rotation not working for containers running with the kata-containers runtime (#9451, @littlejawa)"
+  ]
+ },
+ "1.31.13": {
+  "bug fixes": [
+   "Fix log rotation not working for containers running with the kata-containers runtime (#9450, @littlejawa)"
+  ]
+ },
+ "1.34.0": {
+  "bug fixes": [
+   "Fixed typos in CLI and error messages.",
+   "Fix a bug where CRI-O did not respect cases where the kubelet instructed it to unmask /proc for containers (#9285, @haircommander)",
+   "Fix a potential deadlock when an infra container is taking a long time to exit and the sandbox's readiness is blocked on the infra container's opLock (#9188, @haircommander)",
+   "Fix log rotation not working for containers running with the kata-containers runtime (#9433, @littlejawa)",
+   "Fix terminal resize race condition (#9246, @sohankunkerkar)",
+   "Fix the bug that pod can't be terminated when the process is uninterruptible sleep for a while. (#9256, @bitoku)",
+   "Fix the bug where it continues to emit a metric after it confirms the conmon is stopped once (#9333, @bitoku)",
+   "Fixed a bug which caused CDI injection by NRI plugins to not being honored. NRI plugins are now able to inject CDI devices into containers. (#9128, @klihub)",
+   "Fixed segmentation fault when trying to create a lot of pods at a time. (#9272, @bitoku)",
+   "Fixes a crash introduced in 1.33.0 when cleaning up a pod that uses HostPorts"
+  ]
+ },
+ "1.33.3": {
+  "bug fixes": [
+   "Fix the bug that pod can't be terminated when the process is uninterruptible sleep for a while. (#9320, @openshift-cherrypick-robot)",
+   "Fixed segmentation fault when trying to create a lot of pods at a time. (#9368, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.32.7": {
+  "bug fixes": [
+   "Fix the bug that pod can't be terminated when the process is uninterruptible sleep for a while. (#9326, @bitoku)"
+  ]
+ },
+ "1.31.11": {
+  "bug fixes": [
+   "Fix the bug that pod can't be terminated when the process is uninterruptible sleep for a while. (#9327, @bitoku)"
+  ]
+ },
+ "1.33.2": {
+  "bug fixes": [
+   "Fix a bug where CRI-O did not respect cases where the kubelet instructed it to unmask /proc for containers (#9288, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.32.6": {
+  "bug fixes": [
+   "Fix a potential deadlock when an infra container is taking a long time to exit and the sandbox's readiness is blocked on the infra container's opLock (#9224, @haircommander)"
+  ]
+ },
+ "1.31.10": {
+  "bug fixes": [
+   "Fixed `make install` for building the man pages. (#9279, @saschagrunert)",
+   "Fix a potential deadlock when an infra container is taking a long time to exit and the sandbox's readiness is blocked on the infra container's opLock (#9291, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.33.1": {
+  "bug fixes": [
+   "Fix a potential deadlock when an infra container is taking a long time to exit and the sandbox's readiness is blocked on the infra container's opLock (#9214, @openshift-cherrypick-robot)",
+   "Fixes a crash introduced in 1.33.0 when cleaning up a pod that uses HostPorts"
+  ]
+ },
+ "1.33.0": {
+  "bug fixes": [
+   "Fix path traversal in CRI-O log handling (#8968, @sohankunkerkar)",
+   "Fix a panic when default_annotations are used (#8867, @haircommander)",
+   "Fix artifact handling to retrieve artifact status using both the canonical name and the short name. (#9081, @bitoku)",
+   "Fix log rotation failure during pod termination (#8868, @bitoku)",
+   "Fixed bug to allow `conmon_cgroup` to be empty when cgroup manager is `cgroupfs` . (#8888, @xw19)",
+   "Fixed context cancellation when image pull progress timeout is `0` (`--pull-progress-timeout=0` / `pull_progress_timeout=0`) (#8998, @saschagrunert)",
+   "Fixed log format from klog. (#8918, @bitoku)",
+   "Prevent multiple crio wipes on reboot (#9059, @PannagaRao)"
+  ]
+ },
+ "1.31.8": {
+  "bug fixes": [
+   "Prevent multiple crio wipes on reboot (#9137, @PannagaRao)"
+  ]
+ },
+ "1.30.13": {
+  "bug fixes": [
+   "Prevent multiple crio wipes on reboot (#9148, @PannagaRao)"
+  ]
+ },
+ "1.32.3": {
+  "bug fixes": [
+   "Prevent multiple crio wipes on reboot (#9071, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.31.7": {
+  "bug fixes": [
+   "Fixed bug when trying to pull certain docker schema 1 images in CRI-O. (#9072, @saschagrunert)"
+  ]
+ },
+ "1.32.2": {
+  "bug fixes": [
+   "Fixed context cancellation when image pull progress timeout is `0` (`--pull-progress-timeout=0` / `pull_progress_timeout=0`) (#9010, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.31.6": {
+  "bug fixes": [
+   "Fix log rotation failure during pod termination (#8948, @openshift-cherrypick-robot)",
+   "Fixed context cancellation when image pull progress timeout is `0` (`--pull-progress-timeout=0` / `pull_progress_timeout=0`) (#9009, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.30.11": {
+  "bug fixes": [
+   "Fix log rotation failure during pod termination (#8949, @bitoku)"
+  ]
+ },
+ "1.32.1": {
+  "bug fixes": [
+   "Fix a panic when default_annotations are used (#8886, @openshift-cherrypick-robot)",
+   "Fix log rotation failure during pod termination (#8947, @openshift-cherrypick-robot)",
+   "Fix path traversal in CRI-O log handling (#8976, @sohankunkerkar)"
+  ]
+ },
+ "1.31.5": {
+  "bug fixes": [
+   "Fix path traversal in CRI-O log handling (#8977, @sohankunkerkar)"
+  ]
+ },
+ "1.30.10": {
+  "bug fixes": [
+   "Fixed build issue with newer golang versions. (#8925, @saschagrunert)",
+   "Fix path traversal in CRI-O log handling (#8978, @sohankunkerkar)"
+  ]
+ },
+ "1.29.13": {
+  "bug fixes": [
+   "Fixed build issue with newer golang versions. (#8930, @saschagrunert)",
+   "Fixed issue when sandbox removal is not possible due to stale or missing network namespace path. (#8818, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.30.9": {
+  "bug fixes": [
+   "Fixed issue when sandbox removal is not possible due to stale or missing network namespace path. (#8819, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.31.4": {
+  "bug fixes": [
+   "Fix a panic when default_annotations are used (#8885, @openshift-cherrypick-robot)",
+   "Fixed issue when sandbox removal is not possible due to stale or missing network namespace path. (#8820, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.32.0": {
+  "bug fixes": [
+   "Fixed building CRI-O without libseccomp. (#8686, @michalsieron)",
+   "Fix a bug where an `allowed_annotation` specified twice (in either a workload or runtime) couldn't be used (#8628, @haircommander)",
+   "Fix a bug where signature checking failed if an image specified both a tag and a digest (#8605, @haircommander)",
+   "Fixed bug to always inherit `monitor_env` when calling the OCI runtime. (#8808, @saschagrunert)",
+   "Fixed evented pleg pod sandbox status timestamp to use a time in nanosecond resolution. (#8582, @saschagrunert)",
+   "Fixed gpgme/gnupg search path in static build binaries. (#8708, @saschagrunert)",
+   "Fixed issue when sandbox removal is not possible due to stale or missing network namespace path. (#8785, @saschagrunert)"
+  ]
+ },
+ "1.31.3": {
+  "bug fixes": [
+   "Fixed gpgme/gnupg search path in static build binaries. (#8745, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.31.2": {
+  "bug fixes": [
+   "Fix a bug where an `allowed_annotation` specified twice (in either a workload or runtime) couldn't be used (#8710, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.30.7": {
+  "bug fixes": [
+   "Fix a bug where an `allowed_annotation` specified twice (in either a workload or runtime) couldn't be used (#8712, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.29.10": {
+  "bug fixes": [
+   "Fix a bug where an `allowed_annotation` specified twice (in either a workload or runtime) couldn't be used (#8725, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.28.11": {
+  "bug fixes": [
+   "Fix a bug where the GID is not added to /etc/group when run_as_group is set (#8564, @kwilczynski)",
+   "Fixed container stats label filtering. (#8576, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.31.1": {
+  "bug fixes": [
+   "Fix a bug where signature checking failed if an image specified both a tag and a digest (#8618, @openshift-cherrypick-robot)",
+   "Fixed evented pleg pod sandbox status timestamp to use a time in nanosecond resolution. (#8588, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.30.6": {
+  "bug fixes": [
+   "Fix a bug where the GID is not added to /etc/group when run_as_group is set (#8558, @openshift-cherrypick-robot)",
+   "Fixed container stats label filtering. (#8574, @openshift-cherrypick-robot)",
+   "Fixed evented pleg pod sandbox status timestamp to use a time in nanosecond resolution. (#8586, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.29.9": {
+  "bug fixes": [
+   "Fix a bug where the GID is not added to /etc/group when run_as_group is set (#8563, @kwilczynski)",
+   "Fixed container stats label filtering. (#8575, @openshift-cherrypick-robot)",
+   "Fixed evented pleg pod sandbox status timestamp to use a time in nanosecond resolution. (#8587, @openshift-cherrypick-robot)"
   ]
  },
  "1.31.0": {
+  "bug fixes": [
+   "Fixed version output formatting in `crio -h`. (#8337, @saschagrunert)",
+   "Fix a bug where a pod with a userns would fail to be created when `ping_group_range` sysctl was specified for it (and the max of that range was outside of the pods user namespace) (#8174, @haircommander)",
+   "Fix a bug where pinns wasn't setting the sysctls at the correct time when it was also pinning a user namespace (#8149, @haircommander)",
+   "Fix a bug where the GID is not added to /etc/group when run_as_group is set (#8251, @PannagaRao)",
+   "Fix memory leakage when sending a failing port-forward request (#8203, @bitoku)",
+   "Fix the bug that cri-o stops watching container exits after it gets an fsnotify error (#8195, @bitoku)",
+   "Fixed a bug where stopping a container would block all further stop attempts for the same container. (#8300, @sohankunkerkar)",
+   "Fixed container stats label filtering. (#8240, @saschagrunert)",
+   "Fixed container volume restore on CRI-O restart. (#8301, @saschagrunert)",
+   "Fixed pod lifecycle regression where the exec PID's got killed before the actual container. (#8162, @saschagrunert)"
+  ],
   "security updates": [
    "Fix CVE-2024-5154 where a malicious container image could make a symlink of `/proc/mounts` on the host, out of the container's rootfs (#8225, @haircommander)"
+  ]
+ },
+ "1.30.4": {
+  "bug fixes": [
+   "Fixed a bug where stopping a container would block all further stop attempts for the same container. (#8392, @sohankunkerkar)"
+  ]
+ },
+ "1.29.7": {
+  "bug fixes": [
+   "Fixed a bug where stopping a container would block all further stop attempts for the same container. (#8393, @sohankunkerkar)"
+  ]
+ },
+ "1.28.9": {
+  "bug fixes": [
+   "Fixed a bug where stopping a container would block all further stop attempts for the same container. (#8394, @sohankunkerkar)"
   ]
  },
  "1.30.2": {
   "security updates": [
    "Fix CVE-2024-5154 where a malicious container image could make a symlink of `/proc/mounts` on the host, out of the container's rootfs (#8231, @openshift-cherrypick-robot)"
+  ],
+  "bug fixes": [
+   "Fix memory leakage when sending a failing port-forward request (#8206, @openshift-cherrypick-robot)",
+   "Fix the bug that cri-o stops watching container exits after it gets an fsnotify error (#8209, @openshift-cherrypick-robot)"
   ]
  },
  "1.29.5": {
@@ -62,7 +399,22 @@
    "Fix CVE-2024-3154 , a security flaw where CRI-O allowed users to specify annotations that changed specific fields in the runtime. One consequence is a user can change the systemd properties of the container, allowing unsafe properties to be set by the runtime (#8086, @haircommander)"
   ]
  },
+ "1.30.1": {
+  "bug fixes": [
+   "Fixed kubelet image garbage collection when images being referenced as digests instead of IDs. (#8115, @haircommander)",
+   "Fix a bug where a pod with a userns would fail to be created when `ping_group_range` sysctl was specified for it (and the max of that range was outside of the pods user namespace) (#8186, @openshift-cherrypick-robot)",
+   "Fix a bug where pinns wasn't setting the sysctls at the correct time when it was also pinning a user namespace (#8155, @openshift-cherrypick-robot)",
+   "Fixed pod lifecycle regression where the exec PID's got killed before the actual container. (#8179, @openshift-cherrypick-robot)"
+  ]
+ },
  "1.30.0": {
+  "bug fixes": [
+   "Bumping our NRI deps also fixes a bug where starting a cri-o launched NRI plugin could cause the accidental closing of an unrelated fd (socket, file, etc.) due to an fd double-close bug. (#7728, @klihub)",
+   "Fix AppArmour profile Apply() function to correctly handle an \"Unconfined\" mode. (#8103, @roman-kiselenko)",
+   "Fix a bug where a container that exits soon after a StopContainer request is issued will be paused in termination for longer than the grace period (#7735, @haircommander)",
+   "Fixed kubelet image garbage collection when images being referenced as digests instead of IDs. (#8115, @haircommander)",
+   "Reverted image ID field change in the container status. While the change did fix an issue with Kubelet image GC, it caused an unintended change in the container status of the Kubernetes pod API, breaking an accidentally stable API (#7762, @saschagrunert)"
+  ],
   "security updates": [
    "Fix CVE-2024-3154, a security flaw where CRI-O allowed users to specify annotations that changed specific fields in the runtime. One consequence is a user can change the systemd properties of the container, allowing unsafe properties to be set by the runtime (#8088, @haircommander)"
   ]
@@ -82,6 +434,23 @@
    "Fix CVE-2024-3154 , a security flaw where CRI-O allowed users to specify annotations that changed specific fields in the runtime. One consequence is a user can change the systemd properties of the container, allowing unsafe properties to be set by the runtime (#8087, @haircommander)"
   ]
  },
+ "1.29.2": {
+  "bug fixes": [
+   "Bumped NRI deps also fixes a bug where starting a cri-o launched NRI plugin could cause the accidental closing of an unrelated fd (socket, file, etc.) due to an fd double-close bug. (#7730, @klihub)",
+   "Reverted image ID field change in the container status. While the change did fix an issue with Kubelet image GC, it caused an unintended change in the container status of the Kubernetes pod API, breaking an accidentally stable API. (#7803, @saschagrunert)",
+   "Fix a bug where a container that exits soon after a StopContainer request is issued will be paused in termination for longer than the grace period (#7737, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.28.4": {
+  "bug fixes": [
+   "Fix a bug where a container that exits soon after a StopContainer request is issued will be paused in termination for longer than the grace period (#7738, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.27.4": {
+  "bug fixes": [
+   "Fix a bug where a container that exits soon after a StopContainer request is issued will be paused in termination for longer than the grace period (#7739, @openshift-cherrypick-robot)"
+  ]
+ },
  "1.29.1": {
   "security updates": [
    "Fix CVE-2023-6476, where poorly filtered access to an experimental annotation can allow pods to circumvent resource limits on cgroupsv2. See GHSA-p4rx-7wvg-fwrc for more information. (@haircommander)"
@@ -97,40 +466,166 @@
    "Fix CVE-2023-6476, where poorly filtered access to an experimental annotation can allow pods to circumvent resource limits on cgroupsv2. See https://github.com/cri-o/cri-o/security/advisories/GHSA-p4rx-7wvg-fwrc for more information. (@haircommander)"
   ]
  },
+ "1.29.0": {
+  "bug fixes": [
+   "Removed `crio-status` binary in favor of the `crio status` subcommand. Fixed the help output of `crio status`. (#7440, @saschagrunert)",
+   "Fix a bug in cpuset load balancing where cpusets flip between load balanced and not due to an ordering issue. (#7208, @haircommander)",
+   "Fix a bug where CRI-O would override a Bidirectional mount in favor of a HostToContainer if the mount contained the host's container storage (#7408, @haircommander)",
+   "Fixed image name consistency for more predictable behavior with pinned images. (#7299, @sohankunkerkar)",
+   "No longer set inactive-or-failed collect mode property, which fixes a race with container that OOM kill. As a result, users should upgrade to runc 1.1.8 or crun 1.9 (#7374, @haircommander)",
+   "Fix a bug where the cgroup crun configures is different than that CRI-O sets load balancing/cpu quota on (#7373, @haircommander)"
+  ]
+ },
  "1.27.2": {
   "security updates": [
    "Update the golang.org/x/net package from 0.12.0 to 0.17.0 to fix vulnerabilities CVE-2023-39325 and CVE-2023-4448. (#7416, @kwilczynski)",
    "Update the google.golang.org/grpc package from 1.54.0 to 1.58.3 to fix vulnerabilities CVE-2023-39325 and CVE-2023-4448. (#7415, @kwilczynski)"
+  ],
+  "bug fixes": [
+   "Fix a very rare panic from a double closed channel in container stop (#7168, @haircommander)",
+   "Fixed an issue preventing the use of block devices with kata containers (#7158, @littlejawa)",
+   "Fix a bug in cpuset load balancing where cpusets flip between load balanced and not due to an ordering issue. (#7291, @openshift-cherrypick-robot)",
+   "Fix a bug where the cgroup crun configures is different than that CRI-O sets load balancing/cpu quota on (#7443, @haircommander)",
+   "Revert kata containers block devices fix because it prevents non-root users from accessing block devices (where they were previously able to) (#7191, @davidvossel)",
+   "Fix a bug where CRI-O would override a Bidirectional mount in favor of a HostToContainer if the mount contained the host's container storage (#7457, @kwilczynski)"
   ]
  },
  "1.28.2": {
   "security updates": [
    "Update the golang.org/x/net package from 0.13.0 to 0.17.0 to fix vulnerabilities CVE-2023-39325 and CVE-2023-4448. (#7386, @kwilczynski)",
    "Update the google.golang.org/grpc package from 1.57.0 to 1.58.3 to fix vulnerabilities CVE-2023-39325 and CVE-2023-4448. (#7381, @kwilczynski)"
+  ],
+  "bug fixes": [
+   "Fix a bug where CRI-O would override a Bidirectional mount in favor of a HostToContainer if the mount contained the host's container storage (#7456, @openshift-cherrypick-robot)",
+   "Fix a bug where the cgroup crun configures is different than that CRI-O sets load balancing/cpu quota on (#7442, @haircommander)"
+  ]
+ },
+ "1.28.1": {
+  "bug fixes": [
+   "Fix a bug in cpuset load balancing where cpusets flip between load balanced and not due to an ordering issue. (#7290, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.28.0": {
+  "bug fixes": [
+   "Fix a bug where network metrics collection is broken with systemd cgroup driver and dropped infra containers. (#6856, @haircommander)",
+   "Fix a bug where sending information to cadvisor is stalled on taking the container's state lock (#6925, @haircommander)",
+   "Fix a bug where the PostStop runtime handler hooks weren't being called when a container exited gracefully (#7058, @haircommander)",
+   "Fix a bug where the `cpu-quota.crio.io` annotation was not propagated to the pod cgroup, meaning cpu quota was not disabled for the container (#6917, @haircommander)",
+   "Fix a bug with cpu quota annotation that manifests like:",
+   "Fix a segfault when a user namespace is requested but no OCI ID mappings are present (#6834, @haircommander)",
+   "Fix a very rare panic from a double closed channel in container stop (#7129, @haircommander)",
+   "Fixed an issue preventing the use of block devices with kata containers (#7142, @littlejawa)",
+   "Fixed bug where CRI-O runs with umask of `0`. (#6843, @saschagrunert)",
+   "Fixed bug where `ImageRef` refers to a digest rather than an image ID, which negatively impacted kubelets garbage collection. (#7149, @saschagrunert)",
+   "Fix a segfault when a user namespace is requested (#6844, @Syquel)",
+   "Revert kata containers block devices fix because it prevents non-root users from accessing block devices (where they were previously able to) (#7192, @davidvossel)"
+  ]
+ },
+ "1.25.4": {
+  "bug fixes": [
+   "Fix a bug where network metrics collection is broken with systemd cgroup driver and dropped infra containers. (#6930, @haircommander)",
+   "Fixed bug where CRI-O runs with umask of `0`. (#6900, @saschagrunert)",
+   "Fix a bug where sending information to cadvisor is stalled on taking the container's state lock (#7132, @sohankunkerkar)"
+  ]
+ },
+ "1.26.4": {
+  "bug fixes": [
+   "Fix a bug where the `cpu-quota.crio.io` annotation was not propagated to the pod cgroup, meaning cpu quota was not disabled for the container (#6938, @haircommander)",
+   "Fix a bug with cpu quota annotation that manifests like:",
+   "Fixed bug where CRI-O runs with umask of `0`. (#6895, @saschagrunert)",
+   "Fix a bug where network metrics collection is broken with systemd cgroup driver and dropped infra containers. (#6875, @openshift-cherrypick-robot)",
+   "Fix a bug where sending information to cadvisor is stalled on taking the container's state lock (#7131, @sohankunkerkar)"
+  ]
+ },
+ "1.27.1": {
+  "bug fixes": [
+   "Fix a bug where network metrics collection is broken with systemd cgroup driver and dropped infra containers. (#6873, @openshift-cherrypick-robot)",
+   "Fix a bug where sending information to cadvisor is stalled on taking the container's state lock (#7034, @openshift-cherrypick-robot)",
+   "Fix a bug where the PostStop runtime handler hooks weren't being called when a container exited gracefully (#7085, @openshift-cherrypick-robot)",
+   "Fix a bug where the `cpu-quota.crio.io` annotation was not propagated to the pod cgroup, meaning cpu quota was not disabled for the container (#6937, @openshift-cherrypick-robot)",
+   "Fix a bug with cpu quota annotation that manifests like:",
+   "Fixed bug where CRI-O runs with umask of `0`. (#6851, @openshift-cherrypick-robot)"
+  ]
+ },
+ "1.24.6": {
+  "bug fixes": [
+   "Fix a bug where network metrics collection is broken with systemd cgroup driver and dropped infra containers. ([#6949](https://github.com/cri-o/cri-o/pull/6949), [@haircommander](https://github.com/haircommander))",
+   "Fixed bug where CRI-O runs with umask of `0`. ([#6901](https://github.com/cri-o/cri-o/pull/6901), [@saschagrunert](https://github.com/saschagrunert))"
+  ]
+ },
+ "1.27.0": {
+  "bug fixes": [
+   "Fix panic of server when EnablePodEvents is set to true ([#6630](https://github.com/cri-o/cri-o/pull/6630), [@haircommander](https://github.com/haircommander))",
+   "Fixed a bug when running kata containers, where exec sync requests (manually or automatically triggered via readiness/liveness probes)"
   ]
  },
  "1.25.3": {
   "security updates": [
    "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline (#6524, @openshift-cherrypick-robot)"
+  ],
+  "bug fixes": [
+   "Fix a bug where `internal/resourcestore.(*ResourceStore).SetStageForResource` leaks memory (#6529, @openshift-cherrypick-robot)"
   ]
  },
  "1.24.5": {
+  "bug fixes": [
+   "Fix a bug where CRI-O would fail if Kubelet specified `-1` for swap (which is a valid way of specifying unlimited) ([#6150](https://github.com/cri-o/cri-o/pull/6150), [@haircommander](https://github.com/haircommander))"
+  ],
   "security updates": [
    "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline ([#6672](https://github.com/cri-o/cri-o/pull/6672), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
    "Fix a bug where the GID of the container is not specified in the AdditionalGids, leading to a low risk security vulnerability. For more information please see CVE-2022-2995. ([#6775](https://github.com/cri-o/cri-o/pull/6775), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
   ]
  },
+ "1.26.2": {
+  "breaking changes": [
+   "Action required ... if running with experimental NRI support enabled. NRI related block in the configuration file needs to be updated."
+  ],
+  "bug fixes": [
+   "Fix a bug where compilation failed when linking against btrfs-prog (#6508, @haircommander)"
+  ]
+ },
  "1.25.2": {
+  "bug fixes": [
+   "Fixed bug to restore `/var/lib/containers/storage/overlay/backingFsBlockDev` on XFS file systems. (#6358, @saschagrunert)",
+   "Fix a bug where `internal/resourcestore.(*ResourceStore).SetStageForResource` leaks memory (#6403, @haircommander)",
+   "Fix a segfault in `crio config` when `runtime.workloads.resources` is nil (#6192, @haircommander)",
+   "Fix conmonrs cgroup when infra container is dropped (#6416, @mrunalp)",
+   "Fixed wrong tracing key for hostname field (`service.instance.id` → `host.name`)."
+  ],
   "security updates": [
    "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline (#6450, @haircommander)"
   ]
  },
  "1.24.4": {
+  "bug fixes": [
+   "Fixed bug to restore `/var/lib/containers/storage/overlay/backingFsBlockDev` on XFS file systems. ([#6358](https://github.com/cri-o/cri-o/pull/6358), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix a bug where `internal/resourcestore.(*ResourceStore).SetStageForResource` leaks memory ([#6403](https://github.com/cri-o/cri-o/pull/6403), [@haircommander](https://github.com/haircommander))",
+   "Fix a segfault in `crio config` when `runtime.workloads.resources` is nil ([#6192](https://github.com/cri-o/cri-o/pull/6192), [@haircommander](https://github.com/haircommander))",
+   "Fix conmonrs cgroup when infra container is dropped ([#6416](https://github.com/cri-o/cri-o/pull/6416), [@mrunalp](https://github.com/mrunalp))",
+   "Fixed wrong tracing key for hostname field (`service.instance.id` → `host.name`)."
+  ],
   "security updates": [
    "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline ([#6450](https://github.com/cri-o/cri-o/pull/6450), [@haircommander](https://github.com/haircommander))"
   ]
  },
+ "1.23.5": {
+  "bug fixes": [
+   "Fixed bug to restore `/var/lib/containers/storage/overlay/backingFsBlockDev` on XFS file systems. ([#6390](https://github.com/cri-o/cri-o/pull/6390), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix a bug about log container ([#6409](https://github.com/cri-o/cri-o/pull/6409), [@laxmanvallandas](https://github.com/laxmanvallandas))"
+  ]
+ },
  "1.26.0": {
+  "bug fixes": [
+   "Fixed bug to restore `/var/lib/containers/storage/overlay/backingFsBlockDev` on XFS file systems. (#6358, @saschagrunert)",
+   "Fix a bug where `conmon_cgroup` and `monitor_path` became out of sync (#6255, @haircommander)",
+   "Fix a bug where `internal/resourcestore.(*ResourceStore).SetStageForResource` leaks memory (#6403, @haircommander)",
+   "Fix a bug where static pods cannot be created because they've already been created. (#6123, @haircommander)",
+   "Fix a bug where updating `default_runtime` would cause the `runc` entry in the runtimes table to be deleted (#6257, @haircommander)",
+   "Fix a segfault in `crio config` when `runtime.workloads.resources` is nil (#6192, @haircommander)",
+   "Fix conmonrs cgroup when infra container is dropped (#6416, @mrunalp)",
+   "Fixed wrong tracing key for hostname field (`service.instance.id` → `host.name`).",
+   "Fix some inconsistencies in the help text (#6217, @haircommander)"
+  ],
   "security updates": [
    "Fix CVE-2022-4318 by failing to create container if it's passed a HOME environment variable with a newline (#6450, @haircommander)",
    "Add an option \"add_inheritable_capabilities\" which adds added capabilities to the inheritable list as well. As of CRI-O 1.24.0, CRI-O drops the inheritable capabilities to fix CVE-2022-27652 . However, this can cause regressions in workloads that attempt to pass capabilities to non-root users through inheritable capabilities. (#6236, @haircommander)"
@@ -141,20 +636,54 @@
    "Fix CVE-2022-27652 by dropping and refusing to add any inheritable capabilities ([#5770](https://github.com/cri-o/cri-o/pull/5770), [@haircommander](https://github.com/haircommander))",
    "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5937](https://github.com/cri-o/cri-o/pull/5937), [@haircommander](https://github.com/haircommander))",
    "Revert fix for CVE-2022-27652 by re-adding inheritable capabilities. While there is a workaround, we believe this causes regression mid cycle with is contrary to CRI-O's backporting policy. The risk of the CVE is low, and so there is little risk in reverting here. ([#6168](https://github.com/cri-o/cri-o/pull/6168), [@haircommander](https://github.com/haircommander))"
+  ],
+  "bug fixes": [
+   "Fix a bug where child processes of containers in the host's PID namespace appear to leak after the child exits ([#5977](https://github.com/cri-o/cri-o/pull/5977), [@haircommander](https://github.com/haircommander))",
+   "Fix a panic caused by using the improper Result structure version when setting up CNI plugins ([#6320](https://github.com/cri-o/cri-o/pull/6320), [@juanfresia](https://github.com/juanfresia))",
+   "Fix a bug where a container is stuck in INIT because CRI-O believes it to be paused, and never updates the state ([#6143](https://github.com/cri-o/cri-o/pull/6143), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where exit files were never cleaned up from `/run/crio/exits` ([#6171](https://github.com/cri-o/cri-o/pull/6171), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a rare deadlock while communicating to systemd (RHBZ 2082344) ([#5961](https://github.com/cri-o/cri-o/pull/5961), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
   ]
  },
  "1.25.1": {
   "security updates": [
    "Add an option \"add_inheritable_capabilities\" which adds added capabilities to the inheritable list as well. As of CRI-O 1.24.0, CRI-O drops the inheritable capabilities to fix CVE-2022-27652 . However, this can cause regressions in workloads that attempt to pass capabilities to non-root users through inheritable capabilities. (#6236, @haircommander)"
+  ],
+  "bug fixes": [
+   "Fix a bug where `conmon_cgroup` and `monitor_path` became out of sync (#6255, @haircommander)",
+   "Fix a bug where static pods cannot be created because they've already been created. (#6123, @haircommander)",
+   "Fix a bug where updating `default_runtime` would cause the `runc` entry in the runtimes table to be deleted (#6257, @haircommander)",
+   "Fix some inconsistencies in the help text (#6217, @haircommander)"
   ]
  },
  "1.24.3": {
   "security updates": [
    "Add an option \"add_inheritable_capabilities\" which adds added capabilities to the inheritable list as well. As of CRI-O 1.24.0, CRI-O drops the inheritable capabilities to fix CVE-2022-27652 . However, this can cause regressions in workloads that attempt to pass capabilities to non-root users through inheritable capabilities. ([#6236](https://github.com/cri-o/cri-o/pull/6236), [@haircommander](https://github.com/haircommander))",
    "Fix a bug where the GID of the container is not specified in the AdditionalGids, leading to a low risk security vulnerability. For more information please see CVE-2022-2995. ([#6159](https://github.com/cri-o/cri-o/pull/6159), [@haircommander](https://github.com/haircommander))"
+  ],
+  "bug fixes": [
+   "Fix a bug where `conmon_cgroup` and `monitor_path` became out of sync ([#6255](https://github.com/cri-o/cri-o/pull/6255), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where a container is stuck in INIT because CRI-O believes it to be paused, and never updates the state ([#6122](https://github.com/cri-o/cri-o/pull/6122), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where exit files were never cleaned up from `/run/crio/exits` ([#5508](https://github.com/cri-o/cri-o/pull/5508), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where static pods cannot be created because they've already been created. ([#6123](https://github.com/cri-o/cri-o/pull/6123), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where updating `default_runtime` would cause the `runc` entry in the runtimes table to be deleted ([#6257](https://github.com/cri-o/cri-o/pull/6257), [@haircommander](https://github.com/haircommander))",
+   "Fix an issue with leaked systemd scopes by always sending runc the `--systemd-cgroup` flag when using systemd cgroups ([#6153](https://github.com/cri-o/cri-o/pull/6153), [@haircommander](https://github.com/haircommander))",
+   "Fixed possible panic on attach when using `runtime_type = \"pod\"` if no stdin is being provided. ([#6110](https://github.com/cri-o/cri-o/pull/6110), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix some inconsistencies in the help text ([#6217](https://github.com/cri-o/cri-o/pull/6217), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where CRI-O would fail if Kubelet specified `-1` for swap (which is a valid way of specifying unlimited) ([#6139](https://github.com/cri-o/cri-o/pull/6139), [@haircommander](https://github.com/haircommander))"
   ]
  },
  "1.25.0": {
+  "bug fixes": [
+   "Fix a panic caused by using the improper Result structure version when setting up CNI plugins (#5949, @haircommander)",
+   "Fix a bug where a container is stuck in INIT because CRI-O believes it to be paused, and never updates the state (#6122, @haircommander)",
+   "Fix a bug where child processes of containers in the host's PID namespace appear to leak after the child exits (#5895, @haircommander)",
+   "Fix a bug where exit files were never cleaned up from `/run/crio/exits` (#5508, @haircommander)",
+   "Fix a rare deadlock while communicating to systemd (RHBZ 2082344) (#5922, @kolyshkin)",
+   "Fix an issue with leaked systemd scopes by always sending runc the `--systemd-cgroup` flag when using systemd cgroups (#6153, @haircommander)",
+   "Fixed possible panic on attach when using `runtime_type = \"pod\"` if no stdin is being provided. (#6110, @saschagrunert)",
+   "Fix a bug where CRI-O would fail if Kubelet specified `-1` for swap (which is a valid way of specifying unlimited) (#6139, @haircommander)"
+  ],
   "security updates": [
    "Fix a bug where the GID of the container is not specified in the AdditionalGids, leading to a low risk security vulnerability. For more information please see CVE-2022-2995. (#6159, @haircommander)"
   ]
@@ -162,6 +691,11 @@
  "1.24.2": {
   "security updates": [
    "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5935](https://github.com/cri-o/cri-o/pull/5935), [@haircommander](https://github.com/haircommander))"
+  ],
+  "bug fixes": [
+   "Fix a bug where child processes of containers in the host's PID namespace appear to leak after the child exits ([#5943](https://github.com/cri-o/cri-o/pull/5943), [@haircommander](https://github.com/haircommander))",
+   "Fix a panic caused by using the improper Result structure version when setting up CNI plugins ([#5960](https://github.com/cri-o/cri-o/pull/5960), [@haircommander](https://github.com/haircommander))",
+   "Fix a rare deadlock while communicating to systemd (RHBZ 2082344) ([#5954](https://github.com/cri-o/cri-o/pull/5954), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
   ]
  },
  "1.20.9": {
@@ -177,16 +711,1053 @@
  "1.23.3": {
   "security updates": [
    "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5937](https://github.com/cri-o/cri-o/pull/5937), [@haircommander](https://github.com/haircommander))"
+  ],
+  "bug fixes": [
+   "Fix a bug where CRI-O would leak a log file if a container failed to be created and the pod hadn't yet been cleaned up. ([#5817](https://github.com/cri-o/cri-o/pull/5817), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a segfault when multiple container stops come in for the same container ([#5782](https://github.com/cri-o/cri-o/pull/5782), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fixed `io.kubernetes.cri-o.TrySkipVolumeSELinuxLabel` annotation usage with the OpenShift MCS. ([#5792](https://github.com/cri-o/cri-o/pull/5792), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
   ]
  },
  "1.22.5": {
   "security updates": [
    "Fix a bug where ExecSync requests (exec probes) could use an arbitrary amount of memory and disk. Output from ExecSync requests is now limited to 16MB (the amount that exec output was limited to in the dockershim). Disk limiting requires conmon 2.1.2 to work. See https://github.com/cri-o/cri-o/security/advisories/GHSA-fcm2-6c3h-pg6j and CVE-2022-1708 for more information. ([#5936](https://github.com/cri-o/cri-o/pull/5936), [@haircommander](https://github.com/haircommander))"
+  ],
+  "bug fixes": [
+   "Fix a bug where CRI-O would leak a log file if a container failed to be created and the pod hadn't yet been cleaned up. ([#5825](https://github.com/cri-o/cri-o/pull/5825), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.22.4": {
+  "bug fixes": [
+   "Fix a segfault when multiple container stops come in for the same container ([#5803](https://github.com/cri-o/cri-o/pull/5803), [@haircommander](https://github.com/haircommander))",
+   "Fixed `io.kubernetes.cri-o.TrySkipVolumeSELinuxLabel` annotation usage with the OpenShift MCS. ([#5829](https://github.com/cri-o/cri-o/pull/5829), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.21.7": {
+  "bug fixes": [
+   "Fix a segfault when multiple container stops come in for the same container ([#5828](https://github.com/cri-o/cri-o/pull/5828), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fixed `io.kubernetes.cri-o.TrySkipVolumeSELinuxLabel` annotation usage with the OpenShift MCS. ([#5873](https://github.com/cri-o/cri-o/pull/5873), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
   ]
  },
  "1.24.0": {
   "security updates": [
    "Fix CVE-2022-27652 by dropping and refusing to add any inheritable capabilities ([#5769](https://github.com/cri-o/cri-o/pull/5769), [@haircommander](https://github.com/haircommander))"
+  ],
+  "bug fixes": [
+   "Fix a bug where CRI-O would leak a log file if a container failed to be created and the pod hadn't yet been cleaned up. ([#5800](https://github.com/cri-o/cri-o/pull/5800), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where a pod given a host IPC or network namespace could configure sysctls on the host ([#5610](https://github.com/cri-o/cri-o/pull/5610), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where invalid default_sysctls could be specified, leading to an error like \"Failed to configure sysctls after unshare: No such file or directory\" ([#5673](https://github.com/cri-o/cri-o/pull/5673), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where memory swap values were specified even if the memory swap cgroup is not enabled ([#5539](https://github.com/cri-o/cri-o/pull/5539), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where situations of excessive load on nodes causes containers to never actually start ([#5590](https://github.com/cri-o/cri-o/pull/5590), [@haircommander](https://github.com/haircommander))",
+   "Fix a potential crash caused by a log message NULL-pointer dereference. ([#5579](https://github.com/cri-o/cri-o/pull/5579), [@klihub](https://github.com/klihub))",
+   "Fix a segfault when multiple container stops come in for the same container ([#5756](https://github.com/cri-o/cri-o/pull/5756), [@haircommander](https://github.com/haircommander))",
+   "Fix an issue where protobuf panics when serializing ListContainer and ListPodSandbox calls ([#5606](https://github.com/cri-o/cri-o/pull/5606), [@haircommander](https://github.com/haircommander))",
+   "Fix bug where `ip a` reports `Error: Peer netns reference is invalid` ([#5529](https://github.com/cri-o/cri-o/pull/5529), [@haircommander](https://github.com/haircommander))",
+   "Fix crypto-profile bind within RHEL based containers. ([#5555](https://github.com/cri-o/cri-o/pull/5555), [@rphillips](https://github.com/rphillips))",
+   "Fix filesystem stats on zfs driver. ([#5821](https://github.com/cri-o/cri-o/pull/5821), [@cnfatal](https://github.com/cnfatal))",
+   "Fix vm containers couldn't restore after cri-o restart ([#5574](https://github.com/cri-o/cri-o/pull/5574), [@gozssky](https://github.com/gozssky))",
+   "Fix zsh completion generation. ([#5586](https://github.com/cri-o/cri-o/pull/5586), [@klihub](https://github.com/klihub))",
+   "Fixed `get` script pointing to `main` instead of `master` for retrieving the latest revision. ([#5707](https://github.com/cri-o/cri-o/pull/5707), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed `io.kubernetes.cri-o.TrySkipVolumeSELinuxLabel` annotation usage with the OpenShift MCS. ([#5775](https://github.com/cri-o/cri-o/pull/5775), [@manuelluis](https://github.com/manuelluis))",
+   "Fixed possible runtime panic on pod sandbox stats retrieval. ([#5588](https://github.com/cri-o/cri-o/pull/5588), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix 386 builds within CI ([#5813](https://github.com/cri-o/cri-o/pull/5813), [@rphillips](https://github.com/rphillips))"
+  ]
+ },
+ "1.23.2": {
+  "bug fixes": [
+   "Fix a bug where invalid default_sysctls could be specified, leading to an error like \"Failed to configure sysctls after unshare: No such file or directory\" ([#5673](https://github.com/cri-o/cri-o/pull/5673), [@haircommander](https://github.com/haircommander))",
+   "Fixed `get` script pointing to `main` instead of `master` for retrieving the latest revision. ([#5707](https://github.com/cri-o/cri-o/pull/5707), [@saschagrunert](https://github.com/saschagrunert))"
+  ]
+ },
+ "1.20.7": {
+  "bug fixes": [
+   "Backport the fix of merging storage_option from drop-in files to sttorage_option from storage.conf. ([#5435](https://github.com/cri-o/cri-o/pull/5435), [@QiWang19](https://github.com/QiWang19))",
+   "Fix a bug where a pod given a host IPC or network namespace could configure sysctls on the host ([#5702](https://github.com/cri-o/cri-o/pull/5702), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where situations of excessive load on nodes causes containers to never actually start ([#5693](https://github.com/cri-o/cri-o/pull/5693), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a case where conmon children are sometimes leaked ([#5704](https://github.com/cri-o/cri-o/pull/5704), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fixed missing quantile values in `container_runtime_crio_operations_latency_microseconds_total` metrics ([#5265](https://github.com/cri-o/cri-o/pull/5265), [@saschagrunert](https://github.com/saschagrunert))"
+  ]
+ },
+ "1.19.5": {
+  "bug fixes": [
+   "[1.19] gh actions: fix workflow by @haircommander in https://github.com/cri-o/cri-o/pull/5307",
+   "[1.19] various deadlock fixes by @haircommander in https://github.com/cri-o/cri-o/pull/5617",
+   "[release-1.19] BZ#2010841 Fix missing quantile in `latency_microseconds_total` metrics by @saschagrunert in https://github.com/cri-o/cri-o/pull/5264"
+  ]
+ },
+ "1.21.5": {
+  "bug fixes": [
+   "Fix a bug where a pod given a host IPC or network namespace could configure sysctls on the host ([#5686](https://github.com/cri-o/cri-o/pull/5686), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where situations of excessive load on nodes causes containers to never actually start ([#5666](https://github.com/cri-o/cri-o/pull/5666), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a case where conmon children are sometimes leaked ([#5510](https://github.com/cri-o/cri-o/pull/5510), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.23.1": {
+  "bug fixes": [
+   "Fix a bug where a pod given a host IPC or network namespace could configure sysctls on the host ([#5610](https://github.com/cri-o/cri-o/pull/5610), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where memory swap values were specified even if the memory swap cgroup is not enabled ([#5539](https://github.com/cri-o/cri-o/pull/5539), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where situations of excessive load on nodes causes containers to never actually start ([#5590](https://github.com/cri-o/cri-o/pull/5590), [@haircommander](https://github.com/haircommander))",
+   "Fix a potential crash caused by a log message NULL-pointer dereference. ([#5579](https://github.com/cri-o/cri-o/pull/5579), [@klihub](https://github.com/klihub))",
+   "Fix an issue where protobuf panics when serializing ListContainer and ListPodSandbox calls ([#5606](https://github.com/cri-o/cri-o/pull/5606), [@haircommander](https://github.com/haircommander))",
+   "Fix bug where `ip a` reports `Error: Peer netns reference is invalid` ([#5529](https://github.com/cri-o/cri-o/pull/5529), [@haircommander](https://github.com/haircommander))",
+   "Fix crypto-profile bind within RHEL based containers. ([#5555](https://github.com/cri-o/cri-o/pull/5555), [@rphillips](https://github.com/rphillips))",
+   "Fix vm containers couldn't restore after cri-o restart ([#5574](https://github.com/cri-o/cri-o/pull/5574), [@gozssky](https://github.com/gozssky))",
+   "Fix zsh completion generation. ([#5586](https://github.com/cri-o/cri-o/pull/5586), [@klihub](https://github.com/klihub))",
+   "Fixed possible runtime panic on pod sandbox stats retrieval. ([#5588](https://github.com/cri-o/cri-o/pull/5588), [@saschagrunert](https://github.com/saschagrunert))"
+  ]
+ },
+ "1.18.6": {
+  "bug fixes": [
+   "Fixed invalid version in `crio version` output"
+  ]
+ },
+ "1.18.5": {
+  "bug fixes": [
+   "Fixed a bug where crictl only showed pod level stats, not container level stats. (#4043, @haircommander)",
+   "Fix a bug where CollectMode wouldn't be set if the feature was backported to systemd (in RHEL/CentOS 7, for instance) (#4572, @openshift-cherrypick-robot)",
+   "Fix a bug where containers didn't have a finished time set when using the \"vm\" style runtimes. (#4498, @openshift-cherrypick-robot)",
+   "Fix running privileged systemd containers with bidirectional mounts (#4583, @giuseppe)"
+  ]
+ },
+ "1.23.0": {
+  "bug fixes": [
+   "Fixed `crio_image_pulls_layer_size_` metric name in tutorials/metrics.md ([#5278](https://github.com/cri-o/cri-o/pull/5278), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix a PID leak in situations where conmon fails to be moved into the pod cgroup ([#5283](https://github.com/cri-o/cri-o/pull/5283), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where CRI-O waits forever on a conmon process that will not stop ([#5306](https://github.com/cri-o/cri-o/pull/5306), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where CRI-O would never shutdown if the networking plugin wasn't configured correctly ([#5284](https://github.com/cri-o/cri-o/pull/5284), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where `inspectp` verbose output was incomplete for pods with a dropped infra container ([#5313](https://github.com/cri-o/cri-o/pull/5313), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where host network containers couldn't read their cgroup hierarchy ([#5244](https://github.com/cri-o/cri-o/pull/5244), [@haircommander](https://github.com/haircommander))",
+   "Fix an RSS regression with exec sync requests ([#5245](https://github.com/cri-o/cri-o/pull/5245), [@haircommander](https://github.com/haircommander))",
+   "Fixed `contrib/metrics-exporter/cluster.yaml` for `kubectl create`. ([#5286](https://github.com/cri-o/cri-o/pull/5286), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed missing quantile values in `container_runtime_crio_operations_latency_microseconds_total` metrics ([#5258](https://github.com/cri-o/cri-o/pull/5258), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed superfluous response.WriteHeader error in HTTP endpoint ([#5405](https://github.com/cri-o/cri-o/pull/5405), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix a case where conmon children are sometimes leaked ([#5500](https://github.com/cri-o/cri-o/pull/5500), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.21.4": {
+  "bug fixes": [
+   "Fix a PID leak in situations where conmon fails to be moved into the pod cgroup ([#5297](https://github.com/cri-o/cri-o/pull/5297), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where CRI-O waits forever on a conmon process that will not stop ([#5407](https://github.com/cri-o/cri-o/pull/5407), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where host network containers couldn't read their cgroup hierarchy ([#5389](https://github.com/cri-o/cri-o/pull/5389), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fixed missing quantile values in `container_runtime_crio_operations_latency_microseconds_total` metrics ([#5266](https://github.com/cri-o/cri-o/pull/5266), [@saschagrunert](https://github.com/saschagrunert))"
+  ]
+ },
+ "1.22.1": {
+  "bug fixes": [
+   "Fix an RSS regression with exec sync requests ([#5245](https://github.com/cri-o/cri-o/pull/5245), [@haircommander](https://github.com/haircommander))",
+   "Fix a PID leak in situations where conmon fails to be moved into the pod cgroup ([#5295](https://github.com/cri-o/cri-o/pull/5295), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where CRI-O waits forever on a conmon process that will not stop ([#5309](https://github.com/cri-o/cri-o/pull/5309), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where `inspectp` verbose output was incomplete for pods with a dropped infra container ([#5315](https://github.com/cri-o/cri-o/pull/5315), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where host network containers couldn't read their cgroup hierarchy ([#5365](https://github.com/cri-o/cri-o/pull/5365), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fixed missing quantile values in `container_runtime_crio_operations_latency_microseconds_total` metrics ([#5259](https://github.com/cri-o/cri-o/pull/5259), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.20.6": {
+  "bug fixes": [
+   "Fix a PID leak in situations where conmon fails to be moved into the pod cgroup ([#5370](https://github.com/cri-o/cri-o/pull/5370), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where CRI-O waits forever on a conmon process that will not stop ([#5408](https://github.com/cri-o/cri-o/pull/5408), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix an issue when a container with a terminal has an exec probe ([#5364](https://github.com/cri-o/cri-o/pull/5364), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.21.3": {
+  "bug fixes": [
+   "Fix a bug where a container exec process received a little less time than the timeout provided ([#5093](https://github.com/cri-o/cri-o/pull/5093), [@haircommander](https://github.com/haircommander))",
+   "Fix a performance regression with exec probes ([#5162](https://github.com/cri-o/cri-o/pull/5162), [@haircommander](https://github.com/haircommander))",
+   "Fix potential panic when reopening a container's log ([#5213](https://github.com/cri-o/cri-o/pull/5213), [@haircommander](https://github.com/haircommander))",
+   "Fix an RSS regression with exec sync requests ([#5262](https://github.com/cri-o/cri-o/pull/5262), [@haircommander](https://github.com/haircommander))",
+   "Fix an issue where a container started with a terminal fails on exec sync calls ([#5121](https://github.com/cri-o/cri-o/pull/5121), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.20.5": {
+  "bug fixes": [
+   "Fix a bug where a container exec process received a little less time than the timeout provided ([#5094](https://github.com/cri-o/cri-o/pull/5094), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where container storage can get corrupted if the `link` directory is missing. ([#5130](https://github.com/cri-o/cri-o/pull/5130), [@haircommander](https://github.com/haircommander))",
+   "Fix a performance regression with exec probes ([#5164](https://github.com/cri-o/cri-o/pull/5164), [@haircommander](https://github.com/haircommander))",
+   "Fix potential panic when reopening a container's log ([#5214](https://github.com/cri-o/cri-o/pull/5214), [@haircommander](https://github.com/haircommander))",
+   "Fix an RSS regression with exec sync requests ([#5270](https://github.com/cri-o/cri-o/pull/5270), [@mrunalp](https://github.com/mrunalp))",
+   "Fix an issue where a container started with a terminal fails on exec sync calls ([#5122](https://github.com/cri-o/cri-o/pull/5122), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.19.4": {
+  "bug fixes": [
+   "Fix a bug where CRI-O prematurely stopped pulling from a blocked registry, even if there was a mirror for that registry it was allowed to pull from. ([#5120](https://github.com/cri-o/cri-o/pull/5120), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where a container exec process received a little less time than the timeout provided ([#5095](https://github.com/cri-o/cri-o/pull/5095), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where container storage can get corrupted if the `link` directory is missing. ([#5128](https://github.com/cri-o/cri-o/pull/5128), [@haircommander](https://github.com/haircommander))",
+   "Fix a performance regression with exec probes ([#5174](https://github.com/cri-o/cri-o/pull/5174), [@haircommander](https://github.com/haircommander))",
+   "Fix an RSS regression with exec sync requests ([#5274](https://github.com/cri-o/cri-o/pull/5274), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix potential panic when reopening a container's log ([#5215](https://github.com/cri-o/cri-o/pull/5215), [@haircommander](https://github.com/haircommander))",
+   "Fix an issue where a container started with a terminal fails on exec sync calls ([#5123](https://github.com/cri-o/cri-o/pull/5123), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.22.0": {
+  "bug fixes": [
+   "Fix a bug in `internal_wipe` that would mean CNI resources would be leaked across reboots. ([#4900](https://github.com/cri-o/cri-o/pull/4900), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where CRI-O can't work with runc 1.0.0-rc93 because of an incorrectly specified list of capabilities ([#4828](https://github.com/cri-o/cri-o/pull/4828), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where CRI-O would leak opened files for namespaces on a server restore ([#4758](https://github.com/cri-o/cri-o/pull/4758), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where `crio config` would print a string for `privileged_without_host_devices`, not a boolean ([#4827](https://github.com/cri-o/cri-o/pull/4827), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where a container exec process received a little less time than the timeout provided ([#5067](https://github.com/cri-o/cri-o/pull/5067), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where an exec sync timeout would fail to cleanup the runtime exec process ([#4999](https://github.com/cri-o/cri-o/pull/4999), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where cAdvisor couldn't read the disk usage of a pod with a dropped infra container ([#5145](https://github.com/cri-o/cri-o/pull/5145), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where duplicate requests would stall even if the pod or container was already created ([#5052](https://github.com/cri-o/cri-o/pull/5052), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where server startup was significantly slowed down by attempting to clean up CNI resources after a reboot. ([#4929](https://github.com/cri-o/cri-o/pull/4929), [@haircommander](https://github.com/haircommander))",
+   "Fix a performance regression with exec probes ([#5136](https://github.com/cri-o/cri-o/pull/5136), [@haircommander](https://github.com/haircommander))",
+   "Fix a segfault when CRI-O has takes more than 8 minutes to create a pod or container ([#4834](https://github.com/cri-o/cri-o/pull/4834), [@haircommander](https://github.com/haircommander))",
+   "Fix an RSS regression with exec sync requests ([#5245](https://github.com/cri-o/cri-o/pull/5245), [@haircommander](https://github.com/haircommander))",
+   "Fix an issue where a container started with a terminal fails on exec sync calls ([#5107](https://github.com/cri-o/cri-o/pull/5107), [@haircommander](https://github.com/haircommander))",
+   "Fix drop ALL and add back few caps behavior to not include the default configured capabilities ([#4923](https://github.com/cri-o/cri-o/pull/4923), [@mrunalp](https://github.com/mrunalp))",
+   "Fix potential panic when reopening a container's log ([#5212](https://github.com/cri-o/cri-o/pull/5212), [@haircommander](https://github.com/haircommander))",
+   "Fixed bug where it was not possible to run containers using the default or no seccomp profile on",
+   "Fixed bug where runtime VM created containers never reach their `completed` state. ([#4803](https://github.com/cri-o/cri-o/pull/4803), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed linkmode detection for on `en_US` systems `crio version` ([#5168](https://github.com/cri-o/cri-o/pull/5168), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed runtime panic for layers lockfile if its parent directory does not exist."
+  ]
+ },
+ "1.21.2": {
+  "bug fixes": [
+   "Fix a bug where a container exec process received a little less time than the timeout provided ([#5093](https://github.com/cri-o/cri-o/pull/5093), [@haircommander](https://github.com/haircommander))",
+   "Fixed \"layer not known\" issue during image pull for corrupted `layers.json` files. ([#5015](https://github.com/cri-o/cri-o/pull/5015), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix a bug where an exec sync timeout would fail to cleanup the runtime exec process ([#5002](https://github.com/cri-o/cri-o/pull/5002), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.20.3": {
+  "bug fixes": [
+   "Fix possible segfault when image is deleted by podman while CRI-O is listing images ([#4933](https://github.com/cri-o/cri-o/pull/4933), [@haircommander](https://github.com/haircommander))",
+   "Fix a couple of FD leaks when pulling images ([#4815](https://github.com/cri-o/cri-o/pull/4815), [@haircommander](https://github.com/haircommander))",
+   "Fix a segfault when CRI-O has takes more than 8 minutes to create a pod or container ([#4847](https://github.com/cri-o/cri-o/pull/4847), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix bug where cri-o would fail if tzdata package wasn't installed ([#4716](https://github.com/cri-o/cri-o/pull/4716), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.19.2": {
+  "bug fixes": [
+   "Fix a bug where a timeout in RunPodSandbox or CreateContainer requests caused CRI-O to delete the newly created resource. Now, it saves that resource, until the kubelet re-requests it, thus allowing kubelet and CRI-O to reconcile quicker when nodes are under load. ([#4444](https://github.com/cri-o/cri-o/pull/4444), [@haircommander](https://github.com/haircommander))",
+   "Fix a couple of FD leaks when pulling images ([#4814](https://github.com/cri-o/cri-o/pull/4814), [@haircommander](https://github.com/haircommander))",
+   "Fix a goroutine leak when checking image pulling progress ([#4482](https://github.com/cri-o/cri-o/pull/4482), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where CollectMode wouldn't be set if the feature was backported to systemd (in RHEL/CentOS 7, for instance) ([#4571](https://github.com/cri-o/cri-o/pull/4571), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where containers didn't have a finished time set when using the \"vm\" style runtimes. ([#4497](https://github.com/cri-o/cri-o/pull/4497), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a segfault when CRI-O has takes more than 8 minutes to create a pod or container ([#4848](https://github.com/cri-o/cri-o/pull/4848), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix running privileged systemd containers with bidirectional mounts ([#4581](https://github.com/cri-o/cri-o/pull/4581), [@giuseppe](https://github.com/giuseppe))",
+   "Fixed pinns compilation if the `TEMP_FAILURE_RETRY` macro is not available ([#4517](https://github.com/cri-o/cri-o/pull/4517), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.21.0": {
+  "bug fixes": [
+   "Fix a bug where pods with `hostNetwork: true` couldn't have ports forwarded from them when drop_infra_ctr=true ([#4495](https://github.com/cri-o/cri-o/pull/4495), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where CollectMode wouldn't be set if the feature was backported to systemd (in RHEL/CentOS 7, for instance) ([#4563](https://github.com/cri-o/cri-o/pull/4563), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where containers didn't have a finished time set when using the \"vm\" style runtimes. ([#4468](https://github.com/cri-o/cri-o/pull/4468), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where crio wipe incorrectly wiped container storage even though the node wasn't rebooted ([#4691](https://github.com/cri-o/cri-o/pull/4691), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where pods or containers could be cleaned up out of order if the request timed out ([#4722](https://github.com/cri-o/cri-o/pull/4722), [@haircommander](https://github.com/haircommander))",
+   "Fix running privileged systemd containers with bidirectional mounts ([#4575](https://github.com/cri-o/cri-o/pull/4575), [@giuseppe](https://github.com/giuseppe))",
+   "Fixed a bug that could cause CRI-O to segfault when a node is under heavy load ([#4530](https://github.com/cri-o/cri-o/pull/4530), [@haircommander](https://github.com/haircommander))",
+   "Fixed a bug which would cause configuration files to not be reloaded properly on SIGHUP when one or more \"drop-in\" configuration files were being used. ([#4694](https://github.com/cri-o/cri-o/pull/4694), [@nalind](https://github.com/nalind))",
+   "Fixed version log timestamp when starting CRI-O ([#4724](https://github.com/cri-o/cri-o/pull/4724), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix OOMs when using crun together with CPU Manager ([#4592](https://github.com/cri-o/cri-o/pull/4592), [@odinuge](https://github.com/odinuge))",
+   "Fixed a bug where image authentication failed from not finding the auth file. ([#4461](https://github.com/cri-o/cri-o/pull/4461), [@QiWang19](https://github.com/QiWang19))"
+  ]
+ },
+ "1.20.2": {
+  "bug fixes": [
+   "Fix running privileged containers causing the `unknown capability \"CAP_PERFMON\"` error ([#4659](https://github.com/cri-o/cri-o/pull/4659), [@saschagrunert](https://github.com/saschagrunert))"
+  ]
+ },
+ "1.20.1": {
+  "bug fixes": [
+   "Fixed a bug that could cause CRI-O to segfault when a node is under heavy load ([#4535](https://github.com/cri-o/cri-o/pull/4535), [@haircommander](https://github.com/haircommander))",
+   "Fix a bug where CollectMode wouldn't be set if the feature was backported to systemd (in RHEL/CentOS 7, for instance) ([#4570](https://github.com/cri-o/cri-o/pull/4570), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix a bug where containers didn't have a finished time set when using the \"vm\" style runtimes. ([#4496](https://github.com/cri-o/cri-o/pull/4496), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix running privileged systemd containers with bidirectional mounts ([#4577](https://github.com/cri-o/cri-o/pull/4577), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fixed a bug where image authentication failed from not finding the auth file. ([#4462](https://github.com/cri-o/cri-o/pull/4462), [@QiWang19](https://github.com/QiWang19))"
+  ]
+ },
+ "1.19.1": {
+  "bug fixes": [
+   "Fix occasional \"chown: interrupted system call\" error on container creation. ([#4340](https://github.com/cri-o/cri-o/pull/4340), [@kolyshkin](https://github.com/kolyshkin))",
+   "Fixed a bug where a container creation failure caused that container to leak in the runtime ([#4201](https://github.com/cri-o/cri-o/pull/4201), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.20.0": {
+  "bug fixes": [
+   "Fix a bug where a timeout in RunPodSandbox or CreateContainer requests caused CRI-O to delete the newly created resource. Now, it saves that resource, until the kubelet re-requests it, thus allowing kubelet and CRI-O to reconcile quicker when nodes are under load. ([#4430](https://github.com/cri-o/cri-o/pull/4430), [@haircommander](https://github.com/haircommander))",
+   "Fix bug where runAsUser would only work with runAsGroup if userns annotations were specified ([#4300](https://github.com/cri-o/cri-o/pull/4300), [@haircommander](https://github.com/haircommander))",
+   "Fix bug where we attempted to chown with the mappings configured on server level, when they could have been from annotations ([#4294](https://github.com/cri-o/cri-o/pull/4294), [@haircommander](https://github.com/haircommander))",
+   "Fix making /etc/resolv.conf bind-mount to be readonly for a readonly container. ([#4268](https://github.com/cri-o/cri-o/pull/4268), [@kolyshkin](https://github.com/kolyshkin))",
+   "Fix occasional \"chown: interrupted system call\" error on container creation. ([#4334](https://github.com/cri-o/cri-o/pull/4334), [@kolyshkin](https://github.com/kolyshkin))",
+   "Fixed bug that all custom sandbox annotations will be passed to OCI hooks and therefore are also available on the containers ([#4138](https://github.com/cri-o/cri-o/pull/4138), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed a bug where a container creation failure caused that container to leak in the runtime ([#4198](https://github.com/cri-o/cri-o/pull/4198), [@haircommander](https://github.com/haircommander))",
+   "Fix a goroutine leak when checking image pulling progress ([#4413](https://github.com/cri-o/cri-o/pull/4413), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.18.4": {
+  "bug fixes": [
+   "Fixed regression where it was not able to run exec any more when compiling CRI-O with newer go versions ([#4192](https://github.com/cri-o/cri-o/pull/4192), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix a bug where a sudden reboot causes incomplete image writes. This could cause image storage to be corrupted, resulting in an error `layer not known`. ([#3972](https://github.com/cri-o/cri-o/pull/3972), [@giuseppe](https://github.com/giuseppe))",
+   "Fixed a bug where a container creation failure caused that container to leak in the runtime ([#4237](https://github.com/cri-o/cri-o/pull/4237), [@haircommander](https://github.com/haircommander))",
+   "Fixed a bug where exec sync requests (manually or automatically triggered via readiness/liveness probes) overwrite",
+   "Fix bug where empty config fields having to do with storage cause `/info` requests to return incorrect information (which causes cadvisor to fail to read imageFs information) ([#4176](https://github.com/cri-o/cri-o/pull/4176), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fixed crio restart behavior to make sure that Pod creation timestamps are restored and the order in the list of pods stays stable across restarts ([#4010](https://github.com/cri-o/cri-o/pull/4010), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))"
+  ]
+ },
+ "1.19.0": {
+  "bug fixes": [
+   "Fix handling of the --cni-plugin-dir and other multivalue command line flags ([#3870](https://github.com/cri-o/cri-o/pull/3870), [@rhafer](https://github.com/rhafer))",
+   "Fix path to bash via `/usr/bin/env` in crio-shutdown.service ([#3971](https://github.com/cri-o/cri-o/pull/3971), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix the container cgroup in case cgroupfs cgroup manager is used (&#35;4075) ([#4080](https://github.com/cri-o/cri-o/pull/4080), [@kolyshkin](https://github.com/kolyshkin))",
+   "Fix working set calculation ([#4068](https://github.com/cri-o/cri-o/pull/4068), [@kolyshkin](https://github.com/kolyshkin))",
+   "Fixed `crio version` binary mode parsing on musl toolchains ([#3969](https://github.com/cri-o/cri-o/pull/3969), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed a bug where crictl only showed pod level stats, not container level stats. ([#3933](https://github.com/cri-o/cri-o/pull/3933), [@wgahnagl](https://github.com/wgahnagl))",
+   "Fixed a bug where exec sync requests (manually or automatically triggered via readiness/liveness probes) overwrite",
+   "Fixed bug where Pod creation would fail if Uid was not specified in Metadata of sandbox config passed in a run pod sandbox request ([#3774](https://github.com/cri-o/cri-o/pull/3774), [@haircommander](https://github.com/haircommander))",
+   "Fixed bug where pod names would sometimes leak on creation, causing the kubelet to fail to recreate ([#3964](https://github.com/cri-o/cri-o/pull/3964), [@haircommander](https://github.com/haircommander))",
+   "Fixed crio restart behavior to make sure that Pod creation timestamps are restored and the order in the list of pods stays stable across restarts ([#4006](https://github.com/cri-o/cri-o/pull/4006), [@rhafer](https://github.com/rhafer))",
+   "Fixed wrong linkmode output (on `crio version`) for static binaries ([#3638](https://github.com/cri-o/cri-o/pull/3638), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix a bug where a sudden reboot causes incomplete image writes. This could cause image storage to be corrupted, resulting in an error `layer not known`. ([#3975](https://github.com/cri-o/cri-o/pull/3975), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fix bug where empty config fields having to do with storage cause `/info` requests to return incorrect information (which causes cadvisor to fail to read imageFs information) ([#4161](https://github.com/cri-o/cri-o/pull/4161), [@openshift-cherrypick-robot](https://github.com/openshift-cherrypick-robot))",
+   "Fixes panic when /sys/fs/cgroup can't be stat'ed ([#3973](https://github.com/cri-o/cri-o/pull/3973), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.17.5": {
+  "bug fixes": [
+   "1e5cec409 Revert \"Fix potentially unclosed file in runtimeVM#CreateContainer\"",
+   "04dd575a1 internal/oci/runtime_vm: fix resizePty signature",
+   "9374b7c2d Fix naming test panic",
+   "a13886c9c more retErr fixes",
+   "78009728b Fix potentially unclosed file in runtimeVM#CreateContainer",
+   "694daca8f test: update image digest to fix test"
+  ]
+ },
+ "1.18.3": {
+  "bug fixes": [
+   "Fixed bug where pod names would sometimes leak on creation, causing the kubelet to fail to recreate (#3950, @haircommander)"
+  ]
+ },
+ "1.18.2": {
+  "bug fixes": [
+   "Fixed bug where Pod creation would fail if Uid was not specified in Metadata of sandbox config passed in a run pod sandbox request ([#3829](https://github.com/cri-o/cri-o/pull/3829), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.18.1": {
+  "bug fixes": [
+   "Fix linkmode retrieval on `crio version` for static binaries ([#3734](https://github.com/cri-o/cri-o/pull/3734), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix a bug where CRI-O could not start a container if CONFIG_CGROUP_HUGETLB was not set in the kernel ([#3721](https://github.com/cri-o/cri-o/pull/3721), [@haircommander](https://github.com/haircommander))",
+   "Fix some `crio version` oddities ([#3688](https://github.com/cri-o/cri-o/pull/3688), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.15.4": {
+  "bug fixes": [
+   "cf9047092 test: update image digest to fix test",
+   "685ec07bb fix selinux label on volume mount directory creation"
+  ]
+ },
+ "1.18.0": {
+  "bug fixes": [
+   "Fix bug in `crio version` output where the linkmode cannot be retrieved because of non absolute paths of the executable ([#3627](https://github.com/cri-o/cri-o/pull/3627), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed CRI-O to fail to start when `runc` is no configured runtime and the `runc` binary is not in `$PATH` ([#3367](https://github.com/cri-o/cri-o/pull/3367), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed SIGHUP reload for drop-in configuration files ([#3241](https://github.com/cri-o/cri-o/pull/3241), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fixed glibc static binary bug to not resolve DNS correctly ([#3615](https://github.com/cri-o/cri-o/pull/3615), [@saschagrunert](https://github.com/saschagrunert))",
+   "Fix bug resulting in false reports of OOM ([#3423](https://github.com/cri-o/cri-o/pull/3423), [@haircommander](https://github.com/haircommander))"
+  ]
+ },
+ "1.17.3": {
+  "bug fixes": [
+   "[`a967feba5`](https://github.com/cri-o/cri-o/commit/a967feba5d3dc3331e511136527df7b593688331) Merge pull request [#3533](https://github.com/cri-o/cri-o/pull/3533) from rhafer/fix-3511-1.17",
+   "[`2a90d7520`](https://github.com/cri-o/cri-o/commit/2a90d752006cb3bf0cd5f623ca9a9348b085a7f4) Merge pull request [#3530](https://github.com/cri-o/cri-o/pull/3530) from haircommander/fix-netns-dir-1.17"
+  ]
+ },
+ "1.17.2": {
+  "bug fixes": [
+   "397359270 stats: fix some style nits",
+   "f2d3397f4 stats: fix stats when systemd cgroups are used",
+   "b9a74ec15 Fix docs generation"
+  ]
+ },
+ "1.17.0": {
+  "bug fixes": [
+   "6fcac310d Fix reload behavior for unqualified search registries",
+   "2559d20f6 fix nit from #3165",
+   "477125aaf fix unit tests",
+   "3f729e83f fix small test failures",
+   "2409fa0e3 persist exit: fix some nits",
+   "7de6d624f Fixes to better handle exit code",
+   "bc0b1c1a1 fix integration tests",
+   "b339a51dd Fix generated docs for rc1 tag",
+   "46167cbec Fix possible segmentation fault in namespace removal",
+   "eab842efc Fix pinns path mismatch for install and uninstall",
+   "c3ac2e539 Fix possible segmentation fault in error handling",
+   "1c106412e Fixed cni setup link in crictl.md",
+   "fc2595923 fix the git commit variable in Makefile in case git doesn't exist.",
+   "35b64361e fix extra ')' in the end",
+   "64b88d854 Fix unit tests for master branch",
+   "f019410b1 Fix CLI double default prints",
+   "fc5f63499 Fix possible branch condition evaluates to a garbage value",
+   "980afc54e Fix test scope for e2e features",
+   "2911d495c Fix fish shell completion for new default conmon system.slice",
+   "29e2328bc Fix default storage driver for completions validation",
+   "6025578f1 Update golangci lint and apply fixes",
+   "5779b74e9 fix ami rhel7",
+   "55b67e050 Fix CRI-O apt-get version",
+   "bcc4e1729 fix selinux label on volume mount directory creation",
+   "829123115 Fix invalid log_dir position in crio.conf",
+   "05f04b9ac Fix possible segmentation fault on restore when runtime_type changes"
+  ]
+ },
+ "1.15.3": {
+  "bug fixes": [
+   "b44db9645 Fix integration tests by adjusting image digest",
+   "2f3d5d633 fix ami rhel7"
+  ]
+ },
+ "1.16.3": {
+  "bug fixes": [
+   "a80d731a3 fix integration tests"
+  ]
+ },
+ "1.14.12": {
+  "bug fixes": [
+   "74985cbcb Fix integration tests by adjusting image digest",
+   "179ea6b55 fix ami rhel7"
+  ]
+ },
+ "1.13.11": {
+  "bug fixes": [
+   "94fffc3db fix ami rhel7",
+   "1511ca190 Vendor in CVE fixes from c/image"
+  ]
+ },
+ "1.16.0": {
+  "bug fixes": [
+   "Various man page fixes",
+   "7deb5e656 fix specfile for hack/build-rpms.sh",
+   "e82ed0001 fix ami rhel7",
+   "1d7f001f0 Fix up conmon path in spec file",
+   "7f50ff083 Fix server restore to not remove podman containers",
+   "62bf91528 fix selinux label on volume mount directory creation",
+   "6a4d9f935 Fix invalid log_dir position in crio.conf",
+   "e8e8d7252 Fix possible segmentation fault on restore when runtime_type changes",
+   "6f70702d6 Makefile: Fixed go build command",
+   "13a874dc4 cleanup: fix typo words in config.go",
+   "bfe1bf8dd fix 32 bit builds",
+   "16338ad1b fix whitespace",
+   "01d71e2f1 Fix hostport mapping for IPv6 addresses",
+   "a677466e3 crio-wipe: Fix int compare in lib.bash",
+   "c6ebf8427 main.go: flag help message error fix",
+   "8f47f37ac Fix documentation for IP based sandbox methods",
+   "49521cc19 Fix parse of memory.limit_in_bytes on 32-bit machines",
+   "6e014942e Readme: Fix broken CRI link",
+   "fa7b97950 fix make integration",
+   "96d782cce Fix documentation between crio.8.md and source",
+   "8d994c4a9 Fix `signature_policy` value in man page",
+   "4f5f0e78e Fix `no_pivot` boolean style in man page",
+   "e33303c5c Fix `ctr_stop_timeout` value in man page",
+   "6f0e47f5c Fix wrong `file_locking_path` in man page",
+   "098a0bdd0 Fix `default_mounts_file` documentation",
+   "bc47270e2 Fix git-vars target for shells which do not default to bash",
+   "c602a3510 Fix AMI builds and tests",
+   "af0c1b274 Fix invalid CRIO_ROOT for integration tests",
+   "0db55c324 Fix seccomp checks for integration tests"
+  ]
+ },
+ "1.14.11": {
+  "bug fixes": [
+   "a4fe91585 fix golangci-lint install for go 1.10",
+   "372500603 Update vendor code for cni and ocicni and libpod, fix build errors",
+   "2900b196d fix nits",
+   "62b536f56 crio-wipe: Fix int compare in lib.bash"
+  ]
+ },
+ "1.15.2": {
+  "bug fixes": [
+   "b2497bb75 Fix 32 bit builds",
+   "799d7e328 crio-wipe: Fix int compare in lib.bash"
+  ]
+ },
+ "1.15.1": {
+  "bug fixes": [
+   "964699128 Fix container image used for integration tests",
+   "e2bc98748 Fix parse of memory.limit_in_bytes on 32-bit machines"
+  ]
+ },
+ "1.14.10": {
+  "bug fixes": [
+   "b58b525ba Fix parse of memory.limit_in_bytes on 32-bit machines",
+   "7f23249ef Fix container image used for integration tests"
+  ]
+ },
+ "1.13.10": {
+  "bug fixes": [
+   "807e3e3cb Fix parse of memory.limit_in_bytes on 32-bit machines",
+   "1a8a1b8d3 fix integration test",
+   "82d6ddec8 Fix integration tests for CNI update",
+   "062ae1181 Fix missing images names on list"
+  ]
+ },
+ "1.14.8": {
+  "bug fixes": [
+   "d519e6e0c Small stderr fixes in crio-wipe"
+  ]
+ },
+ "1.15.0": {
+  "bug fixes": [
+   "Add further linters and applied their fixes",
+   "Fix `hack/openpgp_tag.sh` on older distributions",
+   "Fix broken link to `policy.json(5)` in `README.md`",
+   "Fix build issues on 32-bit architectures",
+   "Fix conmon cross-compilation",
+   "Fix links in tutorials/setup.md",
+   "Fix logic of `server.restore()`",
+   "Fix mentioned distributions within the setup tutorial",
+   "Fix missing images names on `ListImages` RPC",
+   "Fix oci segfault when cgroup cannot be configured",
+   "Fix parallel make build failure",
+   "Fix possible out of bounds access during log parsing",
+   "Fix possible runtime panic on store shutdown",
+   "Fix possible runtime panic when netns is `nil`",
+   "Fix possible runtime panic when netns is not set up",
+   "Fix runtime panic when having concurrent writes to runtime impl map",
+   "14bce4555 Fix mockGetRef, and deal with all of the fallout",
+   "70356ebbd crio-wipe: fix readme nits",
+   "b52bd78c8 Fix e2e*features*\\* selinux denials",
+   "a6b7638f7 Fix redundant if in lib/rename.go",
+   "a7cf5b5a2 Fix Vagrantfile vendor inconsistency",
+   "6d2a1c424 Small stderr fixes in crio-wipe",
+   "0f446aeaf Fix mentioned distributions in README.md",
+   "cf13b8f76 crictl.md: Fix a typo",
+   "fd52f89bb README.md: Fix a typo",
+   "801be0364 Fix missing images names on list",
+   "2615edfe2 Fix gomega matcher syntax",
+   "1b70e6533 Fix mentioned distributions within the setup tutorial",
+   "fd81c3e82 Fix errcheck lint for network namespace creation",
+   "1951bda01 Fix runtime panic when having concurrent writes to runtime impl map",
+   "59f8db7e8 Fix build issues on 32-bit architectures",
+   "b68af0f3c Revert old fix",
+   "65925cc39 Fix possible runtime panic on store shutdown",
+   "bff7ded9a README.md: fix a typo",
+   "fe2b0bde5 Fix logging to journal",
+   "9a59cc956 Fix links in tutorials/setup.md",
+   "4c22b439d setup: fix broken link",
+   "44864aaf2 Add gocritic paramTypeCombine linter and fixes",
+   "e672d4a95 Add gocritic builtinShadow linter and fixes",
+   "fe83ee2f1 Fix sandbox tests",
+   "c1e9670e0 Add gocritic importShadow linter and fixes",
+   "a5295f178 Add gocritic wrapperFunc linter and fixes",
+   "ea9e2474a Add gocritic unnamedResult linter and fix issues",
+   "b73bc4632 Add gocritic sloppyReassign linter and fixes",
+   "cd2981c27 Add gocritic appendCombine linter and fixes",
+   "3407a25ff Add gocritic appendAssign linter and fixes",
+   "4a64aba22 Add nakedret linter and related fixes",
+   "ac20ee159 conmon: fix cross-compilation",
+   "a8fe9e09b Fix kubernetes import paths for cri-api",
+   "a66c72345 fixes make fmt/spacing issue",
+   "c2e70adc5 fixes assumption that socklen_t is always an unsigned long",
+   "62ba22149 Fix logic of server.restore()",
+   "dd9192469 Fix hack/openpgp_tag.sh on older distributions",
+   "c80fea53d Fix testunit-bin makefile target",
+   "1e83226e9 Fix coverity scan problem",
+   "1527b5c38 Fix travis badge URL",
+   "e6daef18c fix broken link to policy.json(5) in readme",
+   "cfd4c767d Fix Makefile targets for sudo",
+   "233231468 Fix travis build",
+   "3fda83024 Fix parallel make build failure",
+   "e12380508 oci: fix segfault when cgroup cannot be configured",
+   "d2987c8a2 test: Fix oom test",
+   "61f8a5c41 Fix possible out of bounds access during log parsing"
+  ]
+ },
+ "1.14.5": {
+  "bug fixes": [
+   "9a4bdced4 Fix up machine os content version and cri-o version in spec",
+   "0c52f0206 Fix missing images names on list"
+  ]
+ },
+ "1.9.16": {
+  "bug fixes": [
+   "7155a7596 Merge pull request #2182 from openSUSE/release-1.9-oob-log-fix",
+   "1b650eb8f Fix possible out of bounds access during log parsing",
+   "dbf5c04e1 container_create: fix race with sandbox being stopped"
+  ]
+ },
+ "1.14.4": {
+  "bug fixes": [
+   "a548864fb Fix runtime panic when having concurrent writes to runtime impl map"
+  ]
+ },
+ "1.14.3": {
+  "bug fixes": [
+   "60639596f fix build issues on 32-bit arches"
+  ]
+ },
+ "1.14.2": {
+  "bug fixes": [
+   "75d882e31 Fix logic of server.restore()"
+  ]
+ },
+ "1.11.14": {
+  "bug fixes": [
+   "b6c682de0 Fix integration tests",
+   "9ac5d3fda Merge pull request #2216 from giuseppe/fix-fd-leak",
+   "fd8619024 test: Fix oom test"
+  ]
+ },
+ "1.14.1": {
+  "bug fixes": [
+   "3ddde3dee Merge pull request #2301 from openSUSE/release-1.14-travis-fix",
+   "fd8164391 Fix integration tests",
+   "d22b84496 Fix `make vendor` on travis",
+   "ecb8f669f Merge pull request #2253 from openSUSE/release-1.14-netns-nil-fix",
+   "2b87faf32 Merge pull request #2216 from giuseppe/fix-fd-leak",
+   "e4ec5b9a9 test: Fix oom test",
+   "1c30e47d2 Fix parallel make build failure",
+   "efb108aae Merge pull request #2187 from openSUSE/release-1.14-oob-log-fix",
+   "b58326d23 Fix possible out of bounds access during log parsing",
+   "5923bd29c Merge pull request #2169 from giuseppe/fix-segfault-with-manage_network_ns_lifecycle",
+   "281d80cbf sandbox: fix segfault with manage_network_ns_lifecycle"
+  ]
+ },
+ "1.13.7": {
+  "bug fixes": [
+   "3421a7e60 Fix logic of server.restore()",
+   "67e7515f2 Fix integration tests"
+  ]
+ },
+ "1.13.6": {
+  "bug fixes": [
+   "47f02d2e Merge pull request #2216 from giuseppe/fix-fd-leak"
+  ]
+ },
+ "1.13.5": {
+  "bug fixes": [
+   "6be705bd test: Fix oom test",
+   "ac05e1b4 Merge pull request #2186 from openSUSE/release-1.13-oob-log-fix",
+   "645a8144 Fix possible out of bounds access during log parsing"
+  ]
+ },
+ "1.11.13": {
+  "bug fixes": [
+   "62131eab Merge pull request #2184 from openSUSE/release-1.11-oob-log-fix",
+   "6abfdc01 Fix possible out of bounds access during log parsing",
+   "e895c5fd Fix integration test dependencies",
+   "62e69f48 Merge pull request #2147 from giuseppe/race-fixes-1.11",
+   "2a42ce59 container_create: fix race with sandbox being stopped"
+  ]
+ },
+ "1.14.0": {
+  "bug fixes": [
+   "Switched to golangci-lint with many additional linters enabled alongwith fixes.",
+   "Bug fixes.",
+   "6c463a0c fix gofmt errors",
+   "4d51ce85 Merge pull request #2158 from openSUSE/integration-fix",
+   "e6fe5f19 Fix integration test dependencies",
+   "2a9da4e0 Fix oci_test for journald logging",
+   "8cbd6890 Merge pull request #2042 from openSUSE/apparmor-test-fix",
+   "323f6940 Fix apparmor related integration tests",
+   "31b32698 Merge pull request #2045 from openSUSE/network-test-fix",
+   "99200826 fix typos",
+   "c7b63fd9 Fix network test failure",
+   "be2df39d Merge pull request #2039 from runcom/vndr-fix",
+   "650fae1c Merge pull request #2006 from fntlnz/fix/makefile-unused-variable",
+   "2d0c697f Merge pull request #1983 from openSUSE/filesystem-fix",
+   "df8f28a3 Merge pull request #1940 from vikaschoudhary16/fix-permissions",
+   "64bb93d8 fix: Update renamed dependency",
+   "fd6ca608 Merge pull request #1984 from openSUSE/utils-fix",
+   "4379cb44 Fix segfault for invalid paths in GetDiskUsageStats()",
+   "95ad2104 Merge pull request #1981 from runcom/dockertransport-fix",
+   "12ec0b28 Merge pull request #1957 from giuseppe/fix-race-stop-pod-sandbox",
+   "df052eb1 Merge pull request #1956 from giuseppe/fix-network-cleanup",
+   "f4cb1772 Merge pull request #1955 from giuseppe/fix-another-segfault",
+   "6703d85f container_create: fix race with sandbox being stopped",
+   "d6b2efb4 container_server: fix a segfault when the sandbox is not found",
+   "e428dc09 Merge pull request #1944 from giuseppe/fix-segfault-on-network-failure",
+   "46fc394d server: fix segfault on cleanup",
+   "2319849d container: fix potential segfault on setup failure",
+   "c60178b7 Usernamespaces: Fix permissions on runDirPath and BundlePath"
+  ]
+ },
+ "1.13.4": {
+  "bug fixes": [
+   "f8781ebf Fix integration test dependencies",
+   "03eff1c0 container_create: fix race with sandbox being stopped"
+  ]
+ },
+ "1.12.10": {
+  "bug fixes": [
+   "4e37578a Merge pull request #2148 from giuseppe/race-fixes-1.12",
+   "f7f31279 container_create: fix race with sandbox being stopped"
+  ]
+ },
+ "1.12.7": {
+  "bug fixes": [
+   "01d348ab container_create: fix RunAsGroup logic"
+  ]
+ },
+ "1.13.1": {
+  "bug fixes": [
+   "Bug fixes.",
+   "ede97e6c Merge pull request #1960 from giuseppe/fix-another-segfault-1.13",
+   "094402d3 container_server: fix a segfault when the sandbox is not found"
+  ]
+ },
+ "1.11.11": {
+  "bug fixes": [
+   "276440dd Merge pull request #1958 from giuseppe/fix-another-segfault-1.11",
+   "9cd8a431 container_server: fix a segfault when the sandbox is not found",
+   "9272787a Merge pull request #1953 from giuseppe/fix-segfault-on-network-failure-1.11",
+   "acd0b9a9 container: fix potential segfault on setup failure",
+   "6af91e34 server: fix segfault on cleanup"
+  ]
+ },
+ "1.12.4": {
+  "bug fixes": [
+   "e4359798 Merge pull request #1959 from giuseppe/fix-another-segfault-1.12",
+   "92e62a81 container_server: fix a segfault when the sandbox is not found",
+   "6dc31736 Merge pull request #1954 from giuseppe/fix-segfault-on-network-failure-1.12",
+   "68519294 container: fix potential segfault on setup failure",
+   "ba61ee48 server: fix segfault on cleanup"
+  ]
+ },
+ "1.13.0": {
+  "bug fixes": [
+   "5a4c3be91 container_create: fix RunAsGroup logic",
+   "3dd902fc9 man: Fix typo",
+   "9c7f9ad79 Merge pull request #1910 from runcom/fix-kata",
+   "4da359e4c vendor: revendor c/storage to fix a devicemapper bug",
+   "4a360891e Merge pull request #1909 from isimluk/fix-overflow",
+   "ced618faa vendor: update storage for a panic fix",
+   "542feb760 Merge pull request #1884 from runcom/fix-dev",
+   "c2a8afd5c container_create: fix dev mounts and remove nodev from /dev mounts",
+   "6cfe7cb79 Fix typos: hsotname -> hostname",
+   "03472b011 Fix some typos",
+   "845f1c142 docs: fix links for policy.json, registries.conf",
+   "8a64c99a8 conmon: fix case when symlink == max UNIX socket path",
+   "6edbe3f79 fix containerd-release moved to release-tool",
+   "f2b95cf06 Fix documents",
+   "3afb398c2 WIP: Test fix for sync",
+   "89c85be5c Fix typos issues"
+  ]
+ },
+ "1.12.2": {
+  "bug fixes": [
+   "fa540c8e8 Merge pull request #1913 from runcom/fix-devmapper-112",
+   "5d1f5b330 vendor: revendor c/storage to fix a devicemapper bug"
+  ]
+ },
+ "1.11.10": {
+  "bug fixes": [
+   "5a0142c07 Merge pull request #1912 from runcom/fix-devmapper-111",
+   "b77e711ea vendor: revendor c/storage to fix a devicemapper bug"
+  ]
+ },
+ "1.12.1": {
+  "bug fixes": [
+   "1c5f9c0a6 vendor: update storage for a panic fix",
+   "fe94f7abd Merge pull request #1888 from runcom/fix-nodev-1.12",
+   "6ebf9960c container_create: fix dev mounts and remove nodev from /dev mounts",
+   "cbbd61391 fix containerd-release moved to release-tool"
+  ]
+ },
+ "1.11.9": {
+  "bug fixes": [
+   "f12e24eff vendor: update storage for a panic fix",
+   "c22b5ef27 Merge pull request #1889 from runcom/fix-nodev-1.11",
+   "0a771c14c container_create: fix dev mounts and remove nodev from /dev mounts"
+  ]
+ },
+ "1.11.8": {
+  "bug fixes": [
+   "f8a5beb8 fix containerd-release moved to release-tool"
+  ]
+ },
+ "1.11.7": {
+  "bug fixes": [
+   "715b23d5 Switch to branch with sync test fix"
+  ]
+ },
+ "1.12.0": {
+  "bug fixes": [
+   "74bf69991 Fix typos issues",
+   "95c7b216a vendor: fixes from 1783",
+   "fb1095aab image_pull: fix variable shadowing",
+   "6fd770281 Fix manpage to correctly state default storage driver",
+   "021489840 Fix formatting for Warnf",
+   "df9f1761a Merge pull request #1744 from giuseppe/fix-reboot",
+   "6e03ced47 oci: fix segfault if cgroupfs cannot be configured",
+   "6ceadd83d Merge pull request #1718 from vrothberg/fix-aa-build",
+   "c541e7c6b Merge pull request #1724 from giuseppe/fix-segfault-conmon",
+   "3c30a2f1b conmon: fix segfault when --log-level is not specified",
+   "73b690140 Fix AppArmor build",
+   "4640cc4d1 fix typo",
+   "909d63b2e Merge pull request #1716 from runcom/ipv6-fix",
+   "ec7245bef Merge pull request #1707 from runcom/fix-caps-error-invalid",
+   "569bb533e Fixes based on review feedback",
+   "1bf8625a3 Merge pull request #1656 from chavafg/topic/fix-rc"
+  ]
+ },
+ "1.11.4": {
+  "bug fixes": [
+   "a1770b64 contrib: test: fix up cri-tools repository",
+   "0e1be2db Merge pull request #1787 from runcom/fix-1.11-k8s-sigs",
+   "b0e2b041 *: fix for repo move over kubernetes-sigs"
+  ]
+ },
+ "1.11.3": {
+  "bug fixes": [
+   "1a9742bd Merge pull request #1782 from runcom/selinux-fix-privileged-mounts",
+   "e5361d9f Merge pull request #1774 from runcom/fix-image-pull-shadowing",
+   "a8751974 image_pull: fix variable shadowing"
+  ]
+ },
+ "1.11.2": {
+  "bug fixes": [
+   "d1135d73 Fix AppArmor build",
+   "c2ac3318 Merge pull request #1708 from runcom/fix-caps-error-invalid-1.11"
+  ]
+ },
+ "1.9.14": {
+  "bug fixes": [
+   "88f17a22 Merge pull request #1618 from runcom/fix-race-cadvisor-create-19",
+   "93351e93 server: fix race between container create and cadvisor asking for info"
+  ]
+ },
+ "1.11.1": {
+  "bug fixes": [
+   "2d62e7b2 Merge pull request #1659 from chavafg/topic/fix-rc-1.11"
+  ]
+ },
+ "1.10.5": {
+  "bug fixes": [
+   "e0dd8a3d Merge pull request #1657 from chavafg/topic/fix-rc-1.10"
+  ]
+ },
+ "1.11.0": {
+  "bug fixes": [
+   "7bf9d667 Fix typo in crictl environment variable export",
+   "f51010b9 Fix Conmon timestamps with non-integer-hour offsets",
+   "6cf08a75 sandbox_run: fix selinux relabel sharing",
+   "9bf9c82e container_create: more selinux relabel fixes",
+   "d0e48a80 server: fix race between container create and cadvisor asking for info",
+   "8f37cfef Fix c compiler warning",
+   "cfecc4af tutorial.md: fix path to cri-tools",
+   "756c17d8 Fix missing ansible dependency",
+   "da424091 Fix handling of /dev/shm mounting inside of containers",
+   "a5cf1395 network: Fix manage NetworkNS lifecycle",
+   "82b7a8cf Fix up config files description",
+   "1bf96987 test: Fix race condition in ctr.bats",
+   "d4fe40e9 conmon: fix typo servier->server",
+   "446cd49b Fix accidental positive side-effect of RHEL 7.4- bug"
+  ]
+ },
+ "1.10.4": {
+  "bug fixes": [
+   "c432dabf network: Fix manage NetworkNS lifecycle",
+   "0291f8b7 Merge pull request #1628 from runcom/selinux-relabel-fixes-1.10",
+   "18ea4bdf sandbox_run: fix selinux relabel sharing",
+   "60aca683 container_create: more selinux relabel fixes",
+   "011fa7bd Merge pull request #1616 from runcom/fix-race-cadvisor-create",
+   "4cafb570 Merge pull request #1620 from runcom/fix-selinux-relabeling",
+   "70795f75 server: fix race between container create and cadvisor asking for info"
+  ]
+ },
+ "1.10.3": {
+  "bug fixes": [
+   "b15d3ed4 Merge pull request #1613 from runcom/create-fixes-1.10"
+  ]
+ },
+ "1.10.2": {
+  "bug fixes": [
+   "07ac5d36c Merge pull request #1607 from giuseppe/fix-reload-log-1.10",
+   "040d5282b Merge pull request #1541 from runcom/status-fix-1.10"
+  ]
+ },
+ "1.9.13": {
+  "bug fixes": [
+   "a4d6f38a4 Merge pull request #1540 from runcom/status-fix-1.9"
+  ]
+ },
+ "1.10.1": {
+  "bug fixes": [
+   "eaee119f Fix handling of /dev/shm mounting inside of containers",
+   "abf5dd92 test: Fix race condition in ctr.bats"
+  ]
+ },
+ "1.9.11": {
+  "bug fixes": [
+   "475af0a1 test: Fix race condition in ctr.bats"
+  ]
+ },
+ "1.10.0": {
+  "bug fixes": [
+   "Bugs and stability fixes",
+   "e00b07dc8 container_exec: Fix terminal setting for exec",
+   "04b325868 Cleanup two comments that a previous patch fixed",
+   "9f14e5193 Fix a few CI-test nits",
+   "ae956715b factor common code out of ListImages, fix some missing locking",
+   "e35204c5e Fix create container failure due to wrong image reference",
+   "51b52191e Fix SELINUXOPT handling",
+   "0b87fe448 Merge pull request #1367 from runcom/fix-selinuxopt",
+   "7f82f9bbe Makefile: fix SELINUXOPT generation",
+   "534143053 Merge pull request #1358 from runcom/master-netns-fix",
+   "ada416b4e Makefile: Fix install.* prerequisites",
+   "ea90be40c Merge pull request #1337 from nalind/fix-runasuser-cache",
+   "731083936 Merge pull request #1321 from runcom/bump-runtime-tools-cap-fix",
+   "c718f15d4 vendor: bump runtime-tools to fix caps drop handling",
+   "ebb88f9a6 Merge pull request #1306 from runcom/fix-log-path-restore",
+   "a0157078a sandbox: fix sandbox logPath when crio restarts",
+   "28997fe4c Merge pull request #1304 from runcom/fix-ami-build",
+   "3c859c0d6 contrib: test: fix runc build on AMIs",
+   "a19ab49f4 Fix typo in options defition",
+   "a50f352eb Update tutorial.md to fix a few minor errors",
+   "41aaf4e3d Merge pull request #1250 from giuseppe/fix-tmpdir-files",
+   "88b13dfdd fix log",
+   "ebc249cad Merge pull request #1214 from runcom/fix-1.10-vendor"
+  ]
+ },
+ "1.9.7": {
+  "bug fixes": [
+   "a68f7b55 Merge pull request #1357 from runcom/netns-fixes"
+  ]
+ },
+ "1.9.5": {
+  "bug fixes": [
+   "b79bd2d1 Merge pull request #1338 from nalind/fix-runasuser-1.9-cache"
+  ]
+ },
+ "1.9.4": {
+  "bug fixes": [
+   "b79bd2d1 Merge pull request #1338 from nalind/fix-runasuser-1.9-cache"
+  ]
+ },
+ "1.8.5": {
+  "bug fixes": [
+   "278bb8568 Merge pull request #1311 from runcom/fix-listen-1.8",
+   "ff1544999 cmd/crio: fix listen address dir creation"
+  ]
+ },
+ "1.9.2": {
+  "bug fixes": [
+   "01631617a sandbox: fix sandbox logPath when crio restarts"
+  ]
+ },
+ "1.0.9": {
+  "bug fixes": [
+   "0f7d5d583 cmd/crio: fix listen address dir creation"
+  ]
+ },
+ "1.9.0": {
+  "bug fixes": [
+   "e572043a6 Merge pull request #1213 from runcom/fix-deps-1.9",
+   "21930bfe2 vendor: fix deps for release-1.9",
+   "a85ea609d Merge pull request #1207 from runcom/fix-exec-termianl",
+   "afeab27a3 container_exec: fix terminal true process json",
+   "989d275e7 Merge pull request #1170 from alexandrst88/fix-tutorial",
+   "2cae11ba3 Merge pull request #1189 from runcom/fix-apparmor-master",
+   "c8aad704d container_create: fix apparmor from container config",
+   "a71948e9e Fixed install.md documentation",
+   "b2a78eba2 Merge pull request #1185 from runcom/fix-runtime-deps",
+   "4a32d0ff3 Merge pull request #1183 from runcom/fix-image-pull-master",
+   "87f1ae214 image_pull: fix image resolver",
+   "070b8bfdc Merge pull request #1176 from runcom/fix-e2e-1.0",
+   "7508cdeac Merge pull request #1173 from runcom/fix-cve",
+   "67e2d28c8 Merge pull request #1171 from WeiZhang555/fix-readme",
+   "21252ed22 Merge pull request #1151 from mdshuai/fix-test-typo",
+   "e90e0c706 fix typo for test/README.md"
+  ]
+ },
+ "1.0.8": {
+  "bug fixes": [
+   "111988640 Merge pull request #1210 from runcom/fix-exec-1.7",
+   "327d8b327 container_exec: fix terminal true process json"
+  ]
+ },
+ "1.8.4": {
+  "bug fixes": [
+   "6cc35bf46 Merge pull request #1209 from runcom/fix-exec-1.8",
+   "765421be0 container_exec: fix terminal true process json"
+  ]
+ },
+ "1.8.3": {
+  "bug fixes": [
+   "187876571 Merge pull request #1191 from runcom/fix-apparmor-1.8",
+   "b2ea67f50 container_create: fix apparmor from container config",
+   "171e31287 Merge pull request #1180 from runcom/fix-image-pull"
+  ]
+ },
+ "1.0.7": {
+  "bug fixes": [
+   "c30571b43 Merge pull request #1182 from runcom/fix-image-pull-v1"
+  ]
+ },
+ "1.8.2": {
+  "bug fixes": [
+   "fe8c42344cdff05aee6b05ef49053e53618e317b image_pull: fix image resolver",
+   "d6ebe5d48 Merge pull request #1174 from runcom/fix-cve-1.8"
+  ]
+ },
+ "1.0.6": {
+  "bug fixes": [
+   "dd571523ecde501ede49a9d6dd5e39efcee9ec20 image_pull: fix image resolver",
+   "3078f5906 Merge pull request #1175 from runcom/fix-cve-1.0"
+  ]
+ },
+ "1.8.0": {
+  "bug fixes": [
+   "71d2131c8 Merge pull request #1138 from runcom/fix-image-policy",
+   "d49fb788d Fix Local modifications exist in repository",
+   "b7697672f Various test-scaffolding fixes",
+   "6b6d634cf Merge pull request #1115 from mountkin/fix-makefile",
+   "d5ffe3475 fix \"docker run\" command in Makefile",
+   "b85fe5ab9 Fix conmon and runc paths for kpod tests",
+   "dbaf500c0 Merge pull request #1094 from runcom/makefile-fixes",
+   "03f9350a1 lint fixes",
+   "c54658cb7 Merge pull request #1083 from lsm5/unitfile-fixes",
+   "1ef3e9697 Fix gofmt and golint issues",
+   "499b2fa18 Fix a copy/paste error in libpod initializers",
+   "863e137bd Merge pull request #1039 from runcom/fix-process-exec",
+   "9191a994f fixes runc install path on Dockerfile",
+   "d7d2ce7ce Merge pull request #1044 from runcom/fix-host-pid",
+   "da725f3e5 fix host pid handling for containers and share uts ns",
+   "3be3936d7 Merge pull request #1041 from runcom/fix-e2e",
+   "d91877dbb contrib: test: fix e2e cmdline",
+   "c04f585a5 Merge pull request #1021 from runcom/fix-crio-versioning",
+   "eafb7f710 Merge pull request #1014 from runcom/oci-kill-all-fix",
+   "a11b1f953 Fixed logic flaw in the secrets mounts",
+   "e07ba4b2d version: fix version handling and kube info",
+   "c6f5a290d oci: fixes to properly handle container stop action",
+   "ab68c553d CI: use a fixed runc version, not master",
+   "4e126d779 Fix references to CRI-O",
+   "fc2cae39e Initial fixes for cri-tests"
+  ]
+ },
+ "1.0.4": {
+  "bug fixes": [
+   "8a39d94a0 Merge pull request #1134 from runcom/fix-cve-2017-14992"
+  ]
+ },
+ "1.0.3": {
+  "bug fixes": [
+   "66586603b Merge pull request #1121 from runcom/carry-logs-fix-v1",
+   "b0da62fcb test: Fix partial log line parsing",
+   "d54ad9465 Merge pull request #1099 from runcom/makefile-fixes-v1"
+  ]
+ },
+ "1.0.2": {
+  "bug fixes": [
+   "c31d1d15 Merge pull request #1093 from runcom/makefile-fixes-v1",
+   "1544488a Merge pull request #1084 from lsm5/release-1.0-unitfile-fixes"
+  ]
+ },
+ "1.0.1": {
+  "bug fixes": [
+   "d8aaba71 Merge pull request #1045 from runcom/fix-host-pid-v1",
+   "3a504024 Merge pull request #1040 from runcom/fix-process-exec-v1",
+   "a45c16d7 fix host pid handling for containers and share uts ns",
+   "a2ab0a5e Merge pull request #1047 from runcom/fix-e2e-v1",
+   "ed89aa63 contrib: test: fix e2e cmdline",
+   "5f826acf Merge pull request #1033 from runcom/fix-stop-1.0",
+   "9b797f0c oci: fixes to properly handle container stop action",
+   "bb737b91 Merge pull request #1022 from runcom/fix-version-rel-1",
+   "c0f6f4fb Fix logic flaw in secrets mount",
+   "7efdae80 version: fix version handling and kube info"
+  ]
+ },
+ "1.0.0": {
+  "bug fixes": [
+   "Bugs, stability and performance fixes."
   ]
  }
 }

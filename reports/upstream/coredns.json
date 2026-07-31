@@ -1,8 +1,125 @@
 {
+ "1.14.3": {
+  "bug fixes": [
+   "plugin/file: Fix data race in xfr.go (https://github.com/coredns/coredns/pull/8039)",
+   "plugin/ready: fix Reset list of readiness plugins (https://github.com/coredns/coredns/pull/8035)",
+   "plugin/transfer: Fix case-sensitive zone handling for AXFR/IXFR (https://github.com/coredns/coredns/pull/7899)",
+   "plugin/transfter: Fix longestMatch to select the most specific zone correctly (https://github.com/coredns/coredns/pull/7949)"
+  ]
+ },
+ "1.14.2": {
+  "bug fixes": [
+   "plugin/forward: Fix parsing error when handling TLS+IPv6 address (https://github.com/coredns/coredns/pull/7848)",
+   "plugin/kubernetes: Fix panic on empty ListenHosts (https://github.com/coredns/coredns/pull/7857)",
+   "plugin/rewrite: Fix cname target rewrite for CNAME chains (https://github.com/coredns/coredns/pull/7853)"
+  ]
+ },
+ "1.14.0": {
+  "bug fixes": [
+   "core: Fix gosec G115 integer overflow warnings (https://github.com/coredns/coredns/pull/7799)",
+   "plugin/azure: Fix slice init length (https://github.com/coredns/coredns/pull/6901)",
+   "plugin/file: Fix for misleading SOA parser warnings (https://github.com/coredns/coredns/pull/7774)"
+  ]
+ },
+ "1.13.2": {
+  "bug fixes": [
+   "core: Fix usage of sync.Pool to save an alloc (https://github.com/coredns/coredns/pull/7701)",
+   "core: Fix data race with sync.RWMutex for uniq (https://github.com/coredns/coredns/pull/7707)",
+   "plugin/kubernetes: Fix kubernetes plugin logging (https://github.com/coredns/coredns/pull/7727)",
+   "plugin/secondary: Fix reload causing secondary plugin goroutine to leak (https://github.com/coredns/coredns/pull/7694)"
+  ]
+ },
+ "1.13.1": {
+  "bug fixes": [
+   "core: Update golang to 1.25.2 and golang.org/x/net to v0.45.0 on CVE fixes (https://github.com/coredns/coredns/pull/7598)"
+  ]
+ },
+ "1.13.0": {
+  "bug fixes": [
+   "core: Fix Corefile infinite loop on unclosed braces (https://github.com/coredns/coredns/pull/7571)",
+   "core: Fix Corefile related import cycle issue (https://github.com/coredns/coredns/pull/7567)",
+   "plugin/file: Fix data race in tree Elem.Name (https://github.com/coredns/coredns/pull/7574)"
+  ]
+ },
+ "1.12.4": {
+  "bug fixes": [
+   "plugin/file: Fix label offset problem in ClosestEncloser (https://github.com/coredns/coredns/pull/7465)",
+   "plugin/grpc: Fix span leak and deadline on error attempt (https://github.com/coredns/coredns/pull/7487)",
+   "plugin/transfer: Fix goroutine leak on axfr err (https://github.com/coredns/coredns/pull/7516)"
+  ]
+ },
+ "1.12.3": {
+  "bug fixes": [
+   "plugin/cache: Fix data race when refreshing cached messages (https://github.com/coredns/coredns/pull/7398)",
+   "plugin/cache: Fix data race when updating the TTL of cached messages (https://github.com/coredns/coredns/pull/7397)",
+   "plugin/test: Fix TXT record comparison logic for multi-string vs multi-record scenarios (https://github.com/coredns/coredns/pull/7413)"
+  ]
+ },
+ "1.12.1": {
+  "bug fixes": [
+   "plugin/kubernetes: Fix handling of pods having DeletionTimestamp set (https://github.com/coredns/coredns/pull/7119) (#7131)"
+  ]
+ },
+ "1.11.4": {
+  "bug fixes": [
+   "plugin/etcd: fix etcd connection leakage during reload (https://github.com/coredns/coredns/pull/6646)",
+   "plugin/file: Fix zone parser error handling (https://github.com/coredns/coredns/pull/6680)"
+  ]
+ },
+ "1.11.3": {
+  "bug fixes": [
+   "plugin/rewrite: fix multi request concurrency issue in cname rewrite (https://github.com/coredns/coredns/pull/6407)",
+   "plugin/cache: fix keepttl parsing (https://github.com/coredns/coredns/pull/6250)"
+  ]
+ },
+ "1.11.1": {
+  "bug fixes": [
+   "plugin/cache: fix keepttl parsing (https://github.com/coredns/coredns/pull/6250)"
+  ]
+ },
+ "1.11.0": {
+  "bug fixes": [
+   "Plus many bug fixes, and some security improvements.",
+   "plugin/clouddns: fix answers limited to one response (https://github.com/coredns/coredns/pull/5986)",
+   "plugin/forward: fix forward metrics for backwards compatibility (https://github.com/coredns/coredns/pull/6178)",
+   "plugin/kubernetes: fix headless/endpoint query panics when endpoints are disabled (https://github.com/coredns/coredns/pull/6137)",
+   "plugin/kubernetes: fix ports panic (https://github.com/coredns/coredns/pull/6179)",
+   "prevent fail counter of a proxy overflows (https://github.com/coredns/coredns/pull/5990)",
+   "prevent panics when using DoHWriter (https://github.com/coredns/coredns/pull/6120)"
+  ]
+ },
+ "1.10.1": {
+  "bug fixes": [
+   "plugin/k8s_external: Fix rcode for headless services (https://github.com/coredns/coredns/pull/5657)",
+   "plugin/dnstap: Fix behavior when multiple dnstap plugins specified (https://github.com/coredns/coredns/pull/5773)",
+   "plugin/forward: Fix dnstap for forwarded request/response (https://github.com/coredns/coredns/pull/5890)"
+  ]
+ },
+ "1.9.4": {
+  "bug fixes": [
+   "plugin/rewrite: fix a crash in rewrite plugin when rule type is missing (https://github.com/coredns/coredns/pull/5459)",
+   "plugin/rewrite: fix out-of-index issue in rewrite plugin (https://github.com/coredns/coredns/pull/5462)"
+  ]
+ },
  "1.9.3": {
   "security updates": [
    "core: update gopkg.in/yaml.v3 to fix CVE-2022-28948 (https://github.com/coredns/coredns/pull/5408)",
    "core: update golang.org/x/crypto to fix CVE-2022-27191 (https://github.com/coredns/coredns/pull/5407)"
+  ]
+ },
+ "1.9.2": {
+  "bug fixes": [
+   "plugin/cache: fix cache poisoning exploit (https://github.com/coredns/coredns/pull/5174)",
+   "plugin/etcd: fix multi record TXT lookups (https://github.com/coredns/coredns/pull/5293)",
+   "plugin/kubernetes: fix k8s start up timeout ticker (https://github.com/coredns/coredns/pull/5361)",
+   "plugin/template: fix rcode option documentation (https://github.com/coredns/coredns/pull/5328)"
+  ]
+ },
+ "1.9.1": {
+  "bug fixes": [
+   "plugin/grpc: Fix healthy proxy error case (https://github.com/coredns/coredns/pull/5168)",
+   "plugin/k8s_external: Fix external nsAddrs when CoreDNS Service has no External IPs (https://github.com/coredns/coredns/pull/4891)",
+   "plugin/secondary: Fix startup transfer failure wrong zone logged (https://github.com/coredns/coredns/pull/5085)"
   ]
  }
 }

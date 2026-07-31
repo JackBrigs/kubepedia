@@ -1,17 +1,73 @@
 {
+ "0.34.7": {
+  "bug fixes": [
+   "fix: pogGroupController panic when no selected pod by @Colvin-Y in https://github.com/kubernetes-sigs/scheduler-plugins/pull/941",
+   "Fix head-of-line blocking in coscheduling QueueSort by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/949",
+   "coscheduling: fix data race in Permit() by upgrading RLock to Lock by @binacs in https://github.com/kubernetes-sigs/scheduler-plugins/pull/957",
+   "build: fix deprecated cloudbuild base image by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/962",
+   "fix: allow scheduler SA to access resource.k8s.io API group by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/963",
+   "fix: create GitHub release before uploading helm chart asset by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/966"
+  ]
+ },
+ "0.33.5": {
+  "bug fixes": [
+   "fix merge bug for trimaran peaks by @kannon92 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/928"
+  ]
+ },
+ "0.32.7": {
+  "bug fixes": [
+   "fix: update the mailing list address by @sanposhiho in https://github.com/kubernetes-sigs/scheduler-plugins/pull/904",
+   "[doc] Fix install.md by @kevin85421 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/915",
+   "fix: prevent panic when client initialization fails by @togettoyou in https://github.com/kubernetes-sigs/scheduler-plugins/pull/910",
+   "fix: allow scheduler SA to list v1.VolumeAttachment by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/923"
+  ]
+ },
  "0.31.8": {
+  "bug fixes": [
+   "bug(preemption): fix SelectVictimsOnNode method consistent with default scheduler by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/838",
+   "fix(util): fix the problem of pod overhead not being calculated by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/840",
+   "fix(QOSSort): refine queue sorting logic by adding inqueue timestamp by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/855",
+   "flake: fix qos sort plugin flaky integration test by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/861",
+   "clientutil: fix a typo by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/899"
+  ],
   "security updates": [
    "CVE-2024-45338: uplift golang.org/x/net version to 0.33.0 by @sharimsft in https://github.com/kubernetes-sigs/scheduler-plugins/pull/857"
   ]
  },
  "0.30.6": {
+  "bug fixes": [
+   "Avoid unnecessary requeue operations in coscheduling by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/700",
+   "fix log print and some nit issue by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/726",
+   "Fix typo: gochache => gocache by @yeahdongcn in https://github.com/kubernetes-sigs/scheduler-plugins/pull/750",
+   "fix: add validation for pggroup by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/758",
+   "fix buildx command in cloudbuild by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/767",
+   "chore: fix EventsToRegister method comment by @googs1025 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/764",
+   "Fix an issue that build params are not propagated by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/777",
+   "fix image URLs in Helm chart by @Huang-Wei in https://github.com/kubernetes-sigs/scheduler-plugins/pull/784",
+   "Fix leader election config in the helm chart by @chotiwat in https://github.com/kubernetes-sigs/scheduler-plugins/pull/815",
+   "fix: fix wrong PreemptionToleration policy example by @odeinjul in https://github.com/kubernetes-sigs/scheduler-plugins/pull/805"
+  ],
   "security updates": [
    "Fix CVE-2023-47108 in go.opentelemetry.io by @jgu17 in https://github.com/kubernetes-sigs/scheduler-plugins/pull/742"
   ]
  },
+ "0.29.7": {
+  "bug fixes": [
+   "Fix https://github.com/advisories/GHSA-8pgv-569h-w5rw in go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.42.0 (#742, @jgu17)"
+  ]
+ },
  "0.28.9": {
+  "bug fixes": [
+   "Performance fix to eliminate unnecessary re-queue actions in coscheduling plugin (#700, @Huang-Wei)"
+  ],
   "security updates": [
    "Golang.org/x/net is bumped to v0.23.0 to address CVE-2023-45288 (#714, @Huang-Wei)"
+  ]
+ },
+ "0.27.8": {
+  "bug fixes": [
+   "Fix findSuitableCombination calculation logic for selecting a combination when it contains NUMA nodes without memory modules (#627, @283713406)",
+   "Fix incorrect score calculation for NodeResourceTopology LeastNUMANodes scoring strategy when NUMA nodes ids are not sorted. (#623, @PiotrProkop)"
   ]
  },
  "0.25.7": {
@@ -20,6 +76,17 @@
    "use `kubectl replace -f <crds>` to ensure new CRDs function well",
    "migrate the labels - new label is using a style of `*.scheduling.x-k8s.io/<label-name>`, e.g., `scheduling.x-k8s.io/pod-group`",
    "Helm chart now leverages `--namespace scheduler-plugins --create-namespace` to consolidate both Helm release meta info and chart artifacts in the same namespace. Moreover, it enables users to customize the installation namespace."
+  ]
+ },
+ "0.23.10": {
+  "bug fixes": [
+   "Bug fixes and improvements to NodeResourceTopology and TargetLoadPacking plugins."
+  ]
+ },
+ "0.22.6": {
+  "bug fixes": [
+   "Bug fixes:",
+   "Avoid instantiating core resource's informers duplicately #302"
   ]
  }
 }

@@ -1,0 +1,41 @@
+{
+ "4.3.0": {
+  "bug fixes": [
+   "ci: update trivy-action to v0.35.0 to fix image scanning failure by @bpickard22 in https://github.com/k8snetworkplumbingwg/multus-cni/pull/1484",
+   "Fix thick plugin STATUS and GC handling for plugin-level commands by @tsorya in https://github.com/k8snetworkplumbingwg/multus-cni/pull/1490"
+  ]
+ },
+ "4.2.4": {
+  "bug fixes": [
+   "Adds support for CNI STATUS + other fixes for CNI Spec 1.1.0 by @trozet in https://github.com/k8snetworkplumbingwg/multus-cni/pull/1470",
+   "Fix typo: cilium spelling by @linuzctl in https://github.com/k8snetworkplumbingwg/multus-cni/pull/1465"
+  ]
+ },
+ "4.2.3": {
+  "bug fixes": [
+   "Fix node reboot issue by using install_multus bin to update cni file by @Untersander in https://github.com/k8snetworkplumbingwg/multus-cni/pull/1445"
+  ]
+ },
+ "4.2.2": {
+  "bug fixes": [
+   "Fix missing config on startup error"
+  ]
+ },
+ "4.2.0": {
+  "bug fixes": [
+   "Updated network-attachment-definition-client to v1.7.6 (thanks @Brian-McM! for the fix)",
+   "(And there's fixes for e2e config and runtimeConfig API versions)"
+  ]
+ },
+ "4.1.0": {
+  "bug fixes": [
+   "Updated net-attach-def-client library with fixes for multiple interfaces in CNI results",
+   "Includes fixes for parity with configuration options from Multus 3.x"
+  ]
+ },
+ "3.1": {
+  "bug fixes": [
+   "Bug fixes for v3.0"
+  ]
+ }
+}

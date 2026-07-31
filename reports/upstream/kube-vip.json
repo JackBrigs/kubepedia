@@ -1,4 +1,51 @@
 {
+ "1.2.2": {
+  "bug fixes": [
+   "Fixed BGP metrics by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1616",
+   "Added support in ipoib interfaces in ARP mode. Fixes #694 by @ichaytay in https://github.com/kube-vip/kube-vip/pull/1596",
+   "fix(egress): isolate nftables tables by instance by @GabboPenna in https://github.com/kube-vip/kube-vip/pull/1635",
+   "Fixed tables creation when nftables is used, IP deletion on leadership loss and race condition in backend by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1626",
+   "fix(cmd): throw an error when no valid mode detected by @thebhdn in https://github.com/kube-vip/kube-vip/pull/1641",
+   "fix: optionally attach BGP service VIPs to interface by @MarijnRitzen in https://github.com/kube-vip/kube-vip/pull/1644",
+   "Fixes issues with seperate etcd prs by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/1653"
+  ]
+ },
+ "1.2.1": {
+  "bug fixes": [
+   "Fix ListAdvertisedRoutes by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1593",
+   "Fix control-plane leaderelection restart in etcd mode by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1603",
+   "Fix minor error handling issue in pkg/bgp/peer.go by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1601",
+   "Fixed deadlock on AddIP() call in StartVipService by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1594"
+  ]
+ },
+ "1.2.0": {
+  "bug fixes": [
+   "fix: make `get-gobgp` a dependency of `e2e-tests-bgp` in Makefile by @mattcarp12 in https://github.com/kube-vip/kube-vip/pull/1516",
+   "Fixed restart on node watcher error by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1511",
+   "This fixes the rules for egress allowed-networks by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/1528",
+   "Configuration of the deprecated endpoints in the tests fixed by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1542",
+   "fix(config): update comments for env vars by @lbohdanl in https://github.com/kube-vip/kube-vip/pull/1560",
+   "Fixed services test logs by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1552",
+   "Fixed ARP mode with cluster policy in 1.2.0-rc.0 by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1553",
+   "fix(bgp): improve IPv6 peer parsing robustness by @MaxRink in https://github.com/kube-vip/kube-vip/pull/1551",
+   "Fixed ARP and RT modes with global leader election for services in 1.2.0-rc.0 by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1561",
+   "fix: refactor labeler interface, enable labeling with cp_enabled=true by @lbohdanl in https://github.com/kube-vip/kube-vip/pull/1566",
+   "Fix and E2E tests for endpoints deletion - ARP and RT by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1572",
+   "Fix - Backend Watch Ticker by @mattcarp12 in https://github.com/kube-vip/kube-vip/pull/1565"
+  ]
+ },
+ "1.1.2": {
+  "bug fixes": [
+   "fix(egress): prevent unnecessary SNAT updates and fix missed updates by @RnkeZ in https://github.com/kube-vip/kube-vip/pull/1433"
+  ]
+ },
+ "1.1.1": {
+  "bug fixes": [
+   "Fixed BGP route advertisement in control-plane only mode by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1468",
+   "Fixed leader election restart issue by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1477",
+   "Fixed services error handling by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1478"
+  ]
+ },
  "1.1.0": {
   "bug fixes": [
    "Reverted missing change from #623 by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1416",
@@ -9,7 +56,55 @@
    "fix: align CLI lease flag defaults with Kubernetes client-go defaults (15/10/2) by @k-jun in https://github.com/kube-vip/kube-vip/pull/1429",
    "fix: skip UPNP refresh logging when no service instances by @ohauer in https://github.com/kube-vip/kube-vip/pull/1446",
    "Now will ensure egress rules are cleaned for nft-internal by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/1447",
-   "fix(metrics): register correct gauge for BGP session info by @sebastiangaiser in https://github.com/kube-vip/kube-vip/pull/1460"
+   "fix(metrics): register correct gauge for BGP session info by @sebastiangaiser in https://github.com/kube-vip/kube-vip/pull/1460",
+   "Fixed E2E ARP tests by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1412",
+   "Fixed actions failure when whoami image cannot be loaded by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1417"
+  ]
+ },
+ "1.0.4": {
+  "bug fixes": [
+   "Fixed preserveVipOnLeadershipLoss setting in manifest generation by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1376",
+   "Fixed endpointslices handling in dualstack clusters by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1379",
+   "Fixed an issue with default gateway interface retrieval in multi-path… by @hindungWang in https://github.com/kube-vip/kube-vip/pull/1373",
+   "fix common lease fix from 1.0.1 by @slimm609 in https://github.com/kube-vip/kube-vip/pull/1383",
+   "Fixed leaderelection retry on error by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1386",
+   "Fix context propagation and panic() calls by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1375",
+   "Fix IP refresh when using FQDN for VIP by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1390"
+  ]
+ },
+ "1.0.3": {
+  "bug fixes": [
+   "Avoid access inside WANIPv6FirewallControlClient when it might be nil by @ivucica in https://github.com/kube-vip/kube-vip/pull/1336",
+   "Fixed service DNS resolve by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1356",
+   "Fixed service port security rules for iptables by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1357",
+   "Fixed service deletion when service leader election is enabled by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1360",
+   "Bump to golang to fix stdlib vuln by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/1355"
+  ]
+ },
+ "1.0.2": {
+  "bug fixes": [
+   "fix: normalize IPv6 to 32-hex (fixes #1302) by @seungtae62 in https://github.com/kube-vip/kube-vip/pull/1313",
+   "Fixed DDNS nil pointer dereference (1305) by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1310"
+  ]
+ },
+ "1.0.1": {
+  "bug fixes": [
+   "Fix deletion of ConfiguredNetworks entry after deleting BGP host by @rmarkdev in https://github.com/kube-vip/kube-vip/pull/1246",
+   "Fixed nil pointer reference when endpoints serving condition is not set by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1260",
+   "fix for layer 3 issues with not added ip by @T-Bonhagen in https://github.com/kube-vip/kube-vip/pull/1252"
+  ]
+ },
+ "0.9.2": {
+  "bug fixes": [
+   "Fix/map concurrency by @Cellebyte in https://github.com/kube-vip/kube-vip/pull/1166",
+   "Fixed service-tests + minor changes by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1174",
+   "Fixed BGP clear deadlock by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1178"
+  ]
+ },
+ "0.9.1": {
+  "bug fixes": [
+   "fix: s/endoints/endpoints/ in RBAC manifest generation code by @sdwilsh in https://github.com/kube-vip/kube-vip/pull/1141",
+   "Fixed instance finding by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1140"
   ]
  },
  "0.9.0": {
@@ -23,6 +118,104 @@
    "CLI: `--metalKey`, ENV: `PACKET_AUTH_TOKEN`",
    "CLI: `--metalProject`, ENV: `vip_packetproject`",
    "CLI: `--metalProjectId`, ENV: `vip_packetprojectid`"
+  ],
+  "bug fixes": [
+   "Fixed service IP address deletion on service modification bug by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1122",
+   "Fix DualStack in BGP mode by @Cellebyte in https://github.com/kube-vip/kube-vip/pull/1123",
+   "fix #1127 as we have a nil deref if router does not support IPv6 by @Cellebyte in https://github.com/kube-vip/kube-vip/pull/1130"
+  ]
+ },
+ "0.8.10": {
+  "bug fixes": [
+   "Fixed ENV log level setting by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1073",
+   "Fixed logging level configuration with command line argument by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1074",
+   "Fixed network mask setting function by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1072",
+   "Fixed IPVS backend re-add by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1091",
+   "Fixed service update in BGP and ARP mode by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1094",
+   "Fixed service/endpoints discovery concurrent issue by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1093",
+   "Fixed route deletion issue when 2 services referenced same endpoint by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1111",
+   "Fixed IPVS deletion issues by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/1096"
+  ]
+ },
+ "0.8.8": {
+  "bug fixes": [
+   "Fix linting issue by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/1024",
+   "Fixes an issue with watchers having an old reference by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/1029"
+  ]
+ },
+ "0.8.6": {
+  "bug fixes": [
+   "Fixed null pointer exception when IPVS loadbalancer is used by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/987"
+  ]
+ },
+ "0.8.5": {
+  "bug fixes": [
+   "Fixed NDP responder by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/973",
+   "Fixed retry-watcher timeout issue by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/974",
+   "Egress rules deletion fix by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/970"
+  ]
+ },
+ "0.8.4": {
+  "bug fixes": [
+   "Fixed lastKnownGoodEndpoint not being set when in non-leader-election… by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/955",
+   "Added e2e tests for control-plane in routing table mode, fixed IPv6 issue by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/958"
+  ]
+ },
+ "0.8.3": {
+  "bug fixes": [
+   "fix: set vip_cidr default value by @M0NsTeRRR in https://github.com/kube-vip/kube-vip/pull/904",
+   "fix: ipv6 host and port join by @M0NsTeRRR in https://github.com/kube-vip/kube-vip/pull/910"
+  ]
+ },
+ "0.8.2": {
+  "bug fixes": [
+   "Manifest fix by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/894"
+  ]
+ },
+ "0.8.1": {
+  "bug fixes": [
+   "fix: unecessary string modification by @ShivanshVij in https://github.com/kube-vip/kube-vip/pull/832",
+   "fix: set service's uid in activeService map for inactive services by @starbops in https://github.com/kube-vip/kube-vip/pull/837",
+   "Fixed route deletion when route is used by more than one service by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/838",
+   "fix: close file by @testwill in https://github.com/kube-vip/kube-vip/pull/846",
+   "bump golang for security fix by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/884"
+  ]
+ },
+ "0.8.0": {
+  "bug fixes": [
+   "Fix netmask of ipvs to consider ipv6 case by @lubronzhan in https://github.com/kube-vip/kube-vip/pull/783",
+   "fix: Modify the ImagePullPolicy used by cli manifest by @Bao0ne in https://github.com/kube-vip/kube-vip/pull/805",
+   "fix: add iptables-legacy package by @starbops in https://github.com/kube-vip/kube-vip/pull/809",
+   "fix: add ddns address as a network by @adavis10006 in https://github.com/kube-vip/kube-vip/pull/795",
+   "Fixes on masquerade forwarding mode by @wyike in https://github.com/kube-vip/kube-vip/pull/812",
+   "fixes to linting by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/817",
+   "Examples and fixes to annotation interface by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/819"
+  ]
+ },
+ "0.7.2": {
+  "bug fixes": [
+   "Fix flaky e2e test by @lubronzhan in https://github.com/kube-vip/kube-vip/pull/776",
+   "Fixes conntrack deleting wrong connections and cleaning old SNAT rules by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/777"
+  ]
+ },
+ "0.7.1": {
+  "bug fixes": [
+   "Route refactoring and lifecycle fixes",
+   "Added common endpoint provider interface and fixed route deletion iss… by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/761",
+   "Fix IPVS service error: netlink receive invalid argument by @lou-lan in https://github.com/kube-vip/kube-vip/pull/765",
+   "fixes a bug that wouldn't return CIDRs for egress by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/768"
+  ]
+ },
+ "0.7.0": {
+  "bug fixes": [
+   "docs: fix directroute forwarding method by @zifeo in https://github.com/kube-vip/kube-vip/pull/696",
+   "fixes go modules by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/707",
+   "More fixes by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/709",
+   "fixes to the new ipvs import by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/710",
+   "fix #723 and allow short hostnames as well by @Cellebyte in https://github.com/kube-vip/kube-vip/pull/724",
+   "No-leader-election mode for BGP and fixes for routing table mode by @p-strusiewiczsurmacki-mobica in https://github.com/kube-vip/kube-vip/pull/740",
+   "fix: Using log instead of fmt.print by @ii2day in https://github.com/kube-vip/kube-vip/pull/746",
+   "fix: print manifests to stdout by @Wielewout in https://github.com/kube-vip/kube-vip/pull/750"
   ]
  },
  "0.6.4": {
@@ -31,7 +224,84 @@
    "Fixes to routing/table mode for VIP lifecycle",
    "Fixes to the `rbac`",
    "Ability to push a hostname when using DHCP",
-   "Various other e2e fixes (much faster CI)"
+   "Various other e2e fixes (much faster CI)",
+   "Fix etcd e2e tests in GitHub actions by @g-gaston in https://github.com/kube-vip/kube-vip/pull/629",
+   "Fixes to linting for routing table by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/670"
+  ]
+ },
+ "0.6.3": {
+  "bug fixes": [
+   "chore: Spelling fixes by @mjtrangoni in https://github.com/kube-vip/kube-vip/pull/612"
+  ]
+ },
+ "0.6.2": {
+  "bug fixes": [
+   "Fixes to ginko by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/593",
+   "Fix to main by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/598",
+   "action fix by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/599",
+   "Fix dos through checking for remaining services before releasing ip. … by @usiegl00 in https://github.com/kube-vip/kube-vip/pull/601"
+  ]
+ },
+ "0.6.1": {
+  "bug fixes": [
+   "Fix makefile default target by @runsisi in https://github.com/kube-vip/kube-vip/pull/579",
+   "Fixes to e2e tests and re-enabling by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/592"
+  ]
+ },
+ "0.6.0": {
+  "bug fixes": [
+   "fix LB annotations by @tuxtof in https://github.com/kube-vip/kube-vip/pull/553"
+  ]
+ },
+ "0.5.12": {
+  "bug fixes": [
+   "Fix the doc link by @lubronzhan in https://github.com/kube-vip/kube-vip/pull/531",
+   "Adds nftables as an option, and fixes a panic by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/540"
+  ]
+ },
+ "0.5.10": {
+  "bug fixes": [
+   "Fix service deletion not registering by @spideyfusion in https://github.com/kube-vip/kube-vip/pull/510",
+   "Fixes and testing for endpoints by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/513",
+   "Fix broken link in docs by @fimmicon in https://github.com/kube-vip/kube-vip/pull/494",
+   "lint fixes by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/517",
+   "Actions fixes by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/518"
+  ]
+ },
+ "0.5.9": {
+  "bug fixes": [
+   "Fixes to negative waitgroup by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/509",
+   "Adds services testing and fixes missing context by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/511"
+  ]
+ },
+ "0.5.8": {
+  "bug fixes": [
+   "Fix watching for endpoints RBAC rule by @kriansa in https://github.com/kube-vip/kube-vip/pull/498"
+  ]
+ },
+ "0.5.7": {
+  "bug fixes": [
+   "fixes slow deletion of kube-vip pod",
+   "Fixes to goroutines etc.",
+   "Fix CVE by @lubronzhan in https://github.com/kube-vip/kube-vip/pull/489"
+  ]
+ },
+ "0.5.6": {
+  "bug fixes": [
+   "Fix typo in EnableControlPlane config option by @abhay-krishna in https://github.com/kube-vip/kube-vip/pull/467",
+   "Fixes to logging by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/470",
+   "Fixes all leaderElection code to use config by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/472",
+   "This fixes an issue with the cache being wiped by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/474",
+   "Fixes to where iptables are gc by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/478",
+   "logging and fixed an issue with multiple elections by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/480",
+   "Fix to egress rules by @thebsdbox in https://github.com/kube-vip/kube-vip/pull/482"
+  ]
+ },
+ "0.5.5": {
+  "bug fixes": [
+   "Allow fixed virtual MAC for DHCP VIPs by @valtzu in https://github.com/kube-vip/kube-vip/pull/434",
+   "fix: --table flag should add vip_routingtable env var not vip_wireguard by @alexandrevilain in https://github.com/kube-vip/kube-vip/pull/446",
+   "Build-fixes by @cprivitere in https://github.com/kube-vip/kube-vip/pull/440"
   ]
  }
 }

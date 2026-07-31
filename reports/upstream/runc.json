@@ -63,7 +63,9 @@
    "libct: close child fds on `prepareCgroupFD` error. (#4936)",
    "libct: fix mips compilation. (#4962, #4967)",
    "When configuring a `tmpfs` mount, only set the `mode=` argument if the target",
-   "Fix various file descriptor leaks and add additional tests to detect them as",
+   "Fix various file descriptor leaks and add additional tests to detect them as"
+  ],
+  "security updates": [
    "The \"hallucination\" helpers added as part of the [CVE-2025-52881][]"
   ]
  },
@@ -93,6 +95,12 @@
    "[CVE-2025-31133][] exploits an issue with how masked paths are implemented in",
    "[CVE-2025-52565][] is very similar in concept and application to",
    "[CVE-2025-52881][] is a more sophisticated variant of [CVE-2019-19921][],"
+  ]
+ },
+ "1.3.2": {
+  "bug fixes": [
+   "runc state: fix occasional \"cgroup.freeze: no such device\" error.",
+   "Fixed integration test failure on ppc64, caused by 64K page size so the"
   ]
  },
  "1.3.1": {
@@ -130,9 +138,33 @@
    "We no longer use `F_SEAL_FUTURE_WRITE` when sealing the runc binary, as it"
   ]
  },
+ "1.2.5": {
+  "bug fixes": [
+   "CI: fixed criu-dev compilation. (#4611)"
+  ]
+ },
+ "1.2.3": {
+  "bug fixes": [
+   "Fixed a regression in use of securejoin.MkdirAll, where multiple",
+   "Fixed a regression in eBPF support for pre-5.6 kernels after upgrading"
+  ]
+ },
+ "1.2.2": {
+  "bug fixes": [
+   "Fixed the failure of `runc delete` on a rootless container with no"
+  ]
+ },
  "1.2.0": {
   "security updates": [
    "The original fix for [CVE-2024-45310][cve-2024-45310] was intentionally very"
+  ],
+  "bug fixes": [
+   "We now use v0.16 of Cilium's eBPF library, including fixes that quite a few"
+  ]
+ },
+ "1.1.15": {
+  "bug fixes": [
+   "In order to fix performance issues in the \"lightweight\" bindfd protection"
   ]
  },
  "1.1.14": {
@@ -141,6 +173,15 @@
   ]
  },
  "1.1.13": {
+  "bug fixes": [
+   "runc list: fix race with runc delete. (#4231)",
+   "Fix set nofile rlimit error. (#4277, #4299)",
+   "libct/cg/fs: fix setting rt_period vs rt_runtime. (#4284)",
+   "Fix a debug msg for user ns in nsexec. (#4315)",
+   "script/*: fix gpg usage wrt keyboxd. (#4316)",
+   "CI fixes and misc backports. (#4241)",
+   "Fix codespell warnings. (#4300)"
+  ],
   "security updates": [
    "The `runc` binaries provided here were built with go1.21.11, which includes [a"
   ]
@@ -150,11 +191,84 @@
    "Fix [CVE-2024-21626][cve-2024-21626], a container breakout attack that took advantage of"
   ]
  },
+ "1.1.11": {
+  "bug fixes": [
+   "Fix several issues with userns path handling. (#4122, #4124, #4134, #4144)"
+  ]
+ },
+ "1.1.10": {
+  "bug fixes": [
+   "Fixed permissions of a newly created directories to not depend on the value",
+   "Fix a semi-arbitrary cgroup write bug when given a malicious hugetlb"
+  ]
+ },
+ "1.1.9": {
+  "bug fixes": [
+   "Fixed losing sticky bit on tmpfs (a regression in 1.1.8). (#3952, #3961)",
+   "intelrdt: fixed ignoring ClosID on some systems. (#3550, #3978)"
+  ]
+ },
+ "1.1.8": {
+  "bug fixes": [
+   "libct: fix a race with systemd removal. (#3877)",
+   "man/runc: fixes. (#3892)",
+   "Fix tmpfs mode opts when dir already exists. (#3916)",
+   "docs/systemd: fix a broken link. (#3917)"
+  ]
+ },
  "1.1.5": {
   "security updates": [
    "CVE-2023-25809 is a vulnerability involving rootless containers where",
    "CVE-2023-27561 was a regression which effectively re-introduced",
    "CVE-2023-28642 is a variant of CVE-2023-27561 and was fixed by the same"
+  ],
+  "bug fixes": [
+   "Fix the inability to use `/dev/null` when inside a container. (#3620)",
+   "Fix changing the ownership of host's `/dev/null` caused by fd redirection",
+   "Fix rare runc exec/enter unshare error on older kernels, including"
+  ]
+ },
+ "1.1.4": {
+  "bug fixes": [
+   "Fix mounting via wrong proc fd. When the user and mount namespaces are",
+   "Fix \"permission denied\" error from `runc run` on `noexec` fs. (#3541)",
+   "Fix failed exec after `systemctl daemon-reload`. Due to a regression"
+  ]
+ },
+ "1.1.3": {
+  "bug fixes": [
+   "Various CI fixes. (#3472, #3479)"
+  ]
+ },
+ "1.0.3": {
+  "bug fixes": [
+   "Fixed inability to start a container with read-write bind mount of a",
+   "Fixed inability to start when read-only /dev in set in spec (#3277)",
+   "Fixed not removing sub-cgroups upon container delete, when rootless cgroup v2",
+   "Fixed returning error from GetStats when hugetlb is unsupported (which causes",
+   "[CI only] Fixed criu 3.16 compatibility issue (#3282)"
+  ]
+ },
+ "1.0.2": {
+  "bug fixes": [
+   "Fixed a failure to set CPU quota period in some cases on cgroup v1. (#3115)",
+   "Fixed the inability to start a container with the \"adding seccomp filter",
+   "Fixed a rare debug log race in runc init, which can result in occasional",
+   "Fixed the check in cgroup v1 systemd manager if a container needs to be"
+  ]
+ },
+ "1.0.1": {
+  "bug fixes": [
+   "Fixed occasional runc exec/run failure (\"interrupted system call\") on an",
+   "Fixed \"unable to find groups ... token too long\" error with /etc/group",
+   "cgroup/systemd/v1: fix leaving cgroup frozen after Set if a parent cgroup is"
+  ]
+ },
+ "1.0.0": {
+  "bug fixes": [
+   "cgroups/systemd: fixed \"retry on dbus disconnect\" logic introduced in rc94",
+   "cgroups/systemd: fixed returning \"unit already exists\" error from a systemd",
+   "Fix all golangci-lint failures. (#2781, #2962)"
   ]
  },
  "0.1.0": {
@@ -165,6 +279,17 @@
    "seccomp logging removed",
    "delete container on aborted start",
    "/dev bind mount handling"
+  ]
+ },
+ "0.0.9": {
+  "bug fixes": [
+   "Various bug fixes and performance improvements."
+  ]
+ },
+ "0.0.6": {
+  "bug fixes": [
+   "fix minor typo",
+   "libcontainer: network_linux.go: fix go vet"
   ]
  }
 }

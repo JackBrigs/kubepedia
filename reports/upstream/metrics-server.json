@@ -46,6 +46,16 @@
    "Don‘t use Kubelet start time for metrics-server (@yangjunmyfm192085)"
   ]
  },
+ "0.5.2": {
+  "bug fixes": [
+   "Fix bad architecture metadata (@Serializator https://github.com/kubernetes-sigs/metrics-server/pull/882)"
+  ]
+ },
+ "0.4.5": {
+  "bug fixes": [
+   "Fix bad architecture metadata (@Serializator https://github.com/kubernetes-sigs/metrics-server/pull/882)"
+  ]
+ },
  "0.5.1": {
   "bug fixes": [
    "Fix reporting inconsistent number of nodes, caused by using invalid Kubelet node start time metric (@yangjunmyfm192085, https://github.com/kubernetes-sigs/metrics-server/issues/803)",
@@ -56,6 +66,21 @@
   "bug fixes": [
    "Prevent reporting negative CPU value caused by unreliable cAdvisor timestamp (@sanwishe)",
    "Skip metric points incorrectly reported as 0 by cAdvisor (@serathius)"
+  ]
+ },
+ "0.4.2": {
+  "bug fixes": [
+   "Prevent SubjectAccessReview requests to hang forever (@ialidzhikov)"
+  ]
+ },
+ "0.4.1": {
+  "bug fixes": [
+   "Fix registering metrics handler that caused error log with stacktrace"
+  ]
+ },
+ "0.4.0": {
+  "bug fixes": [
+   "REAME.md typo fixes (@zhiweiv)"
   ]
  }
 }

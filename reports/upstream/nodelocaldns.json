@@ -1,12 +1,54 @@
 {
  "1.26.0": {
+  "bug fixes": [
+   "Bump dependency versions for security fixes by @Michcioperz in https://github.com/kubernetes/dns/pull/674",
+   "Fix formatting in specification.md by @limo520 in https://github.com/kubernetes/dns/pull/647"
+  ],
   "security updates": [
    "Bump Go versions to fix CVE-2025-22870 by @Michcioperz in https://github.com/kubernetes/dns/pull/680"
+  ]
+ },
+ "1.24.0": {
+  "bug fixes": [
+   "Correct link to images.yaml in README from k8s.gcr.io to registry.k8s.io by @DamianSawicki in https://github.com/kubernetes/dns/pull/635",
+   "Update e2e test images, fix test timeouts by @dereknola in https://github.com/kubernetes/dns/pull/651"
   ]
  },
  "1.23.1": {
   "security updates": [
    "Vuln fixes for CVE-2023-5363 and CVE-2023-5528 by @irLinja in https://github.com/kubernetes/dns/pull/622"
+  ],
+  "bug fixes": [
+   "refactor: upgrade base images version for vuln fixes by @irLinja in https://github.com/kubernetes/dns/pull/629"
+  ]
+ },
+ "1.23.0": {
+  "bug fixes": [
+   "[fixes a long-standing bug](https://thekelleys.org.uk/gitweb/?p=dnsmasq.git;a=commit;h=8b606543a3fb687f0e49d4e832f98be9a08924d0) causing memory leaks for SRV records with TTL=0."
+  ]
+ },
+ "1.22.27": {
+  "bug fixes": [
+   "fix broken links to testgrid dashboard by @anshikavashistha in https://github.com/kubernetes/dns/pull/595",
+   "Bump for vulnerability fixes by @jingyuanliang in https://github.com/kubernetes/dns/pull/604",
+   "Bump k8s.io/kubernetes and google.golang.org/grpc to fix vulnerabilities by @DamianSawicki in https://github.com/kubernetes/dns/pull/607"
+  ]
+ },
+ "1.15.4": {
+  "bug fixes": [
+   "Change dnsmasq compile-image to debian (fixes #308)"
+  ]
+ },
+ "1.15.2": {
+  "bug fixes": [
+   "Rebase images to latest debian-base that contains CVE fixes (https://github.com/kubernetes/dns/pull/294, https://github.com/kubernetes/dns/pull/296)",
+   "Fixed some bugs in node-cache with iptables (https://github.com/kubernetes/dns/pull/291)"
+  ]
+ },
+ "1.15.1": {
+  "bug fixes": [
+   "node-cache 1.15.1 fixes a bug found in coreOS setup where the ip address on the nodelocaldns interface would not get assigned correctly. Fixes https://github.com/kubernetes/dns/issues/282",
+   "kube-dns 1.15.1 images now support specifying hostnames in stubDomains. Fixes https://github.com/kubernetes/dns/issues/82"
   ]
  }
 }

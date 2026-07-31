@@ -1,10 +1,327 @@
 {
  "0.19.0": {
   "bug fixes": [
+   "`core.noPublishFeatures` to slim published NodeFeature objects (#2530; whitespace-trim fix #2535).",
    "nfd-master: don't remove node labels when the NodeFeature cache is incomplete; add periodic reconciliation to clean up genuinely absent NodeFeatures (#2415).",
    "nfd-master: prevent stop() panic and informer leak on init failure (#2534).",
    "nfd-worker: trim whitespace in comma-separated command-line list values (#2535).",
    "Helm: render post-delete prune job resources at container level so they actually apply (#2515)."
+  ]
+ },
+ "0.18.0": {
+  "bug fixes": [
+   "Fix for running with OwnerReferencesPermissionEnforcement validating webhook enabled (#2006)"
+  ]
+ },
+ "0.17.3": {
+  "bug fixes": [
+   "Fix nfd-master memory leak on non-leader instances when leader election is enabled (#2135)"
+  ]
+ },
+ "0.16.8": {
+  "bug fixes": [
+   "Fix nfd-master memory leak on non-leader instances when leader election is enabled (#2136)"
+  ]
+ },
+ "0.17.0": {
+  "bug fixes": [
+   "Fix the problem with starting the master with empty cache (#1739)",
+   "Dockerfile: fix FromAs Casing (#1753)",
+   "nfd-master: fix typos (#1765)",
+   "fix: take into consideration possibility of having empty line in swap file (#1781)",
+   "Docs: Fixed feature-gates reference (#1822)",
+   "Docs: Fix the link to feature gates documentation (#1821)",
+   "Doc: Fix tilt up issue in feature discovering in developer guide (#1889)",
+   "scripts/update-gh-pages: fix release version parsing (#1974)",
+   "Fix version parsing (#1977)",
+   "Makefile: fix version parsing (#1981)"
+  ]
+ },
+ "0.16.1": {
+  "bug fixes": [
+   "[release-0.16] Fix the problem with starting the master with empty cache by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1740"
+  ]
+ },
+ "0.16.0": {
+  "bug fixes": [
+   "makefile: fix build: target (#1528)",
+   "apis/nfd: Trivial typo fix in tests (#1537)",
+   "Prevent `nfd-worker` erroring when reading attributes from paravirtual devices (#1557)",
+   "nfd-master: fix node status patching (#1571)",
+   "source/cpu: fix build tags on rdt discovery (#1594)",
+   "fix hook issue (#1604)",
+   "nfd-master: fix memory leak in nfd api-controller (#1615)",
+   "helm: fix invalid name of host-swaps volume (#1635)",
+   "Fix Make generate (#1662)",
+   "hack/init-buildx.sh: fix broken patter matching (#1683)"
+  ]
+ },
+ "0.15.3": {
+  "bug fixes": [
+   "nfd-master: fix memory leak in nfd api-controller by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1621"
+  ]
+ },
+ "0.14.5": {
+  "bug fixes": [
+   "nfd-master: fix memory leak in nfd api-controller by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1622"
+  ]
+ },
+ "0.15.2": {
+  "bug fixes": [
+   "fix hook issue by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1607"
+  ]
+ },
+ "0.15.1": {
+  "bug fixes": [
+   "makefile: fix build: target (#1529)"
+  ]
+ },
+ "0.15.0": {
+  "bug fixes": [
+   "deployment/helm: fix namespace of nfd-worker role and rolebinding (#1364)",
+   "deployment/helm: fix handling of enableNodeFeatureApi parameter (#1365)",
+   "nfd-master: fix filtering of extended resources (#1378)",
+   "Fix serviceaccount handling for nfd-gc to be consistent with others (#1392)",
+   "test/e2e: fix source/custom nodename test (#1421)",
+   "Fix pkg name for test/utils/deployment (#1418)",
+   "nfd-master: fix retry of node updates (#1425)",
+   "test/e2e: fix log messages (#1441)",
+   "test/e2e: fix broken feature-annotations test (#1440)",
+   "docs: fix documentation on SEV security features (#1447)",
+   "apis/nfd: fix incorrect comments of matching functions (#1467)",
+   "apis/nfd: fix logging of rule expression processing (#1458)",
+   "docs: fix small typo in customization guide (#1469)",
+   "apis/nfd: fix multiple matcher terms targeting the same feature (#1468)",
+   "nfd-worker: fix typo in log message (#1472)",
+   "test/e2e: fix broken test (#1496)",
+   "Makefile: fix e2e-testing of the full image (#1500)",
+   "chore(nfd-worker): fix minor typo in wrong label value format error (#1506)",
+   "docs: fix malformed hyperlink syntax (#1516)",
+   "docs: fix name of prometheus kustomize overlay (#1517)",
+   "docs: fix wording and nfd version in master config ref (#1520)",
+   "docs: second fix to the prometheus kustomize overlay name (#1518)",
+   "docs: fixes (#1521)"
+  ]
+ },
+ "0.14.3": {
+  "bug fixes": [
+   "nfd-master: fix retry of node updates (#1427)"
+  ]
+ },
+ "0.14.1": {
+  "bug fixes": [
+   "deployment/helm: fix namespace of nfd-worker role and rolebinding (#1370)",
+   "deployment/helm: fix handling of enableNodeFeatureApi parameter (#1371)"
+  ]
+ },
+ "0.13.5": {
+  "bug fixes": [
+   "deployment/helm: fix namespace of nfd-worker role and rolebinding (#1369)"
+  ]
+ },
+ "0.14.0": {
+  "bug fixes": [
+   "nfd-master: fix -prune (#1160)",
+   "nfd-master: fix a crash when processing NodeFeatureRules (#1173)",
+   "pkg/nfd-master/nfd-master.go: Fix typo (#1171)",
+   "nfd-topology-updater: fix wrong kubelet_internal_checkpoint path and compare basename to full path (#1167)",
+   "helm: fix mount for nfd-master config (#1204)",
+   "nfd-master: fix resync period config option (#1185)",
+   "deployment/helm: fix default for kubeletStateDir parameter (#1207)",
+   "Fixed typo in Header under deployment/kustomize.md (#1222)",
+   "Fix missing apostrophe for jq (#1245)",
+   "Fix a typo on nfd-master cmd (#1244)",
+   "Docs: Fix typo on customization-guide (#1247)",
+   "fix typo in helm chart (#1253)",
+   "docs: fix toc of topology-updater and topology-gc reference (#1278)",
+   "Fix Topology Manager policy and scope not being updated after NRT creation (#1256)",
+   "fix empty hugepages in some numa nodes caused no such file or directory errors (#1287)",
+   "topology-gc: fix Stop (#1306)",
+   "nfd_gc_test.go: fix multiple import of same pkg (#1333)"
+  ]
+ },
+ "0.13.4": {
+  "bug fixes": [
+   "fix empty hugepages in some numa nodes caused no such file or directory errors (#1298)"
+  ]
+ },
+ "0.13.3": {
+  "bug fixes": [
+   "nfd-master: fix node updates on config change by @marquiz in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1259"
+  ]
+ },
+ "0.13.2": {
+  "bug fixes": [
+   "helm: fix mount for nfd-master config (#1205)",
+   "deployment/helm: fix default for kubeletStateDir parameter (#1209)"
+  ]
+ },
+ "0.12.4": {
+  "bug fixes": [
+   "nfd-master: fix a crash when processing NodeFeatureRules (#1176)"
+  ]
+ },
+ "0.13.1": {
+  "bug fixes": [
+   "pkg/nfd-master/nfd-master.go: Fix typo by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1177",
+   "nfd-master: fix -prune by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1165",
+   "nfd-master: fix a crash when processing NodeFeatureRules by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1174",
+   "nfd-topology-updater: fix wrong kubelet_internal_checkpoint path and compare basename to full path by @k8s-infra-cherrypick-robot in https://github.com/kubernetes-sigs/node-feature-discovery/pull/1183"
+  ]
+ },
+ "0.13.0": {
+  "bug fixes": [
+   "docs: fix typo in CRD name (#1011)",
+   "docs: fix internal cross-page references by injecting .md (#1030)",
+   "docs: Fix link for Helm docs (#1040)",
+   "Fix some typos (#1058)",
+   "source/cpu: fix build flags of cpuid detection (#1063)",
+   "docs: fix usage customization guide typos (#1066)",
+   "helm: fix topology-updater rbac (#1078)",
+   "deployment: fixes for mounting kubelet config (#1080)",
+   "codegen: fix code-generation (#1083)",
+   "test/e2e: fix node cleanup function (#1115)",
+   "nfd-master: fix node update (#1119)",
+   "hack/prepare-release.sh: fix name of one e2e test file (#1151)"
+  ]
+ },
+ "0.12.3": {
+  "bug fixes": [
+   "nfd-master: fix node update (#1137)"
+  ]
+ },
+ "0.12.2": {
+  "bug fixes": [
+   "docs: Fix link for Helm docs (#1041)",
+   "helm: fix topology-updater rbac (#1103)",
+   "source/cpu: fix build flags of cpuid detection (#1104)",
+   "deployment: fixes for mounting kubelet config (#1105)"
+  ]
+ },
+ "0.12.0": {
+  "bug fixes": [
+   "docs: remove fixed release tag in developer guide (#798)",
+   "docs: fix operator deployment instructions (#811)",
+   "docs: small typo fix in cpuid feature list (#824)",
+   "github: small fix in new-release issue template (#822)",
+   "test/e2e: fix checking of nfd-master annotation (#839)",
+   "source/fake: fix name of fake flag feature (#843)",
+   "nfd-master: fix incorrect log messages in crd controller (#860)",
+   "nfd-master: more fixes to log messages (#861)",
+   "Fix templates for NodeFeatureRule with MatchAny (#865)",
+   "Lint fixes (#889)",
+   "docs: fix incorrect shell snippet for removing labels (#892)",
+   "test/e2e: fix segfault in case no e2e config file is specified (#891)",
+   "apis/nfd: fix NodeFeatureRule templating (#935)",
+   "cpu: fix 32-bit ARMv8 CPU flags (#927)",
+   "test/e2e: fix topologu-updater cmdline args (#960)",
+   "e2e: topologyupdater: fix and stabilize tests (#961)",
+   "helm: fix mount name of topology-updater config (#979)",
+   "nfd-master: fix creation of the -enable-nodefeature-api flag (#992)",
+   "test/e2e: fix creation of NFD CRDs (#993)",
+   "test/e2e: fix mistake in ginkgo focus (#1000)"
+  ]
+ },
+ "0.11.3": {
+  "bug fixes": [
+   "docs: fix incorrect shell snippet for removing labels (#893)"
+  ]
+ },
+ "0.11.2": {
+  "bug fixes": [
+   "docs: fix operator deployment instructions (#813)",
+   "docs: small typo fix in cpuid feature list (#826)",
+   "Fix templates for NodeFeatureRule with MatchAny (#872)"
+  ]
+ },
+ "0.11.0": {
+  "bug fixes": [
+   "scripts/update-gh-pages: fix symlink to stable version (#724)",
+   "Fix GoLinter Issues in the files (#711)",
+   "docs: fix operator deployment instructions (#726)",
+   "scripts/prepare-release: fix upating of readme (#755)",
+   "docs: re-fix operator deployment instructions (#762)",
+   "Additional Lint Fixes in Codebase (#779)",
+   "Fixed the incorrect references (#769)",
+   "Fix a couple typos (#796)"
+  ]
+ },
+ "0.10.1": {
+  "bug fixes": [
+   "[release-0.10] scripts/update-gh-pages: fix symlink to stable version (#746)"
+  ]
+ },
+ "0.10.0": {
+  "bug fixes": [
+   "fix kustomize sample overlay enabling cert-manager (#710)",
+   "Fix the typo in deployment-and-usage.md (#575)",
+   "Fix a link in deployment-and-usage.md (#589)",
+   "Fix broken link for worker-conf example (#590)",
+   "deployment: fix formatting of the worker conf sample (#599)",
+   "Fix broken link on docs/get-started (#603)",
+   "deployment: fix typo in overlay name (#609)",
+   "docs: fix TOCs (#610)",
+   "topology-updater:fix klog initialization (#625)",
+   "source: fix gofmt errors (#631)",
+   "pkg/resourcemonitor: fix typo in comment (#641)",
+   "Topology-updater introduction typo fix (#645)",
+   "More topology updater documentation typo fixes (#648)",
+   "source/memory: fix memory.numa label (#666)",
+   "images: fix invalid k8s-staging-test-infra/gcb-docker-gcloud tag (#686)",
+   "Lint fixes to pkg/apis (#687)",
+   "docs: fix mistake in md format (#693)",
+   "source/usb: fix fallback to default label format (#694)",
+   "Fix readiness and liveness checks (#709)",
+   "Fix kustomization template to work with cert-manager (#710)",
+   "docs: small fix in block and net features in customization guide (#715)"
+  ]
+ },
+ "0.9.0": {
+  "bug fixes": [
+   "Various fixes and improvements to Helm chart deployment",
+   "Correct the names of SSE4* cpuid flags (#547)",
+   "scripts/update-gh-pages: fix helm repo update (#486)",
+   "[helm] fix nfd worker tolerations value (#495)",
+   "Helm chart: Fix configMap indenting (#496)",
+   "docs: fixes in Helm documentation (#509)",
+   "Straighten wrinkles in lint fixes (#551)"
+  ]
+ },
+ "0.8.2": {
+  "bug fixes": [
+   "docs: fixes in Helm documentation (#512)"
+  ]
+ },
+ "0.8.1": {
+  "bug fixes": [
+   "release-0.8: fix helm repo update (#487)",
+   "Helm chart: Fix configMap indenting (#500)"
+  ]
+ },
+ "0.8.0": {
+  "bug fixes": [
+   "github: workflow fixes (#419)",
+   "Fix daemonset deployment template (#446)",
+   "Fix NFD master chart template (#447)",
+   "Logging fixes (#453)",
+   "pkg/utils: fix possible segfault in RegexpVal.Set (#462)",
+   "docs: fix some internal references (#480)"
+  ]
+ },
+ "0.7.0": {
+  "bug fixes": [
+   "Fix bug in kernel version number sanitization (#402)",
+   "Fix sporadic worker restarts (#336)"
+  ]
+ },
+ "0.5.0": {
+  "bug fixes": [
+   "documentation updates fixes"
+  ]
+ },
+ "0.4.0": {
+  "bug fixes": [
+   "Documentation updates fixes"
   ]
  },
  "0.3.0": {
@@ -26,6 +343,11 @@
    "Get node name from spec.nodeName instead of indirectly from pod. (#93)",
    "Remove hardcoding of nfd source path (#94)",
    "Use a specific released version of intel-cmt-cat"
+  ]
+ },
+ "0.1.0": {
+  "bug fixes": [
+   "Investigate and fix a number of issues from the quay.io vulnerability report."
   ]
  }
 }

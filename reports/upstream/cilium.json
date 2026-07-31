@@ -1,4 +1,9 @@
 {
+ "1.22.0": {
+  "bug fixes": [
+   "Added type `datetime.RFC7231` for date/time values in RFC 1123 format with a fixed GMT timezone."
+  ]
+ },
  "1.21.1": {
   "bug fixes": [
    "Fixed an issue in `ResponseError.Error()` where the request URL path was being logged unescaped.",
@@ -28,6 +33,11 @@
    "Fixed a data race in `ResourceID.String()`"
   ]
  },
+ "1.18.0": {
+  "bug fixes": [
+   "**Announcement**: When using the SSOTokenProvider, a previous implementation incorrectly compensated for invalid SSOTokenProvider configurations in the shared profile. This has been fixed via PR #1903 and tracked in issue #1846"
+  ]
+ },
  "1.16.0": {
   "bug fixes": [
    "`BearerTokenPolicy` now rewinds request bodies before retrying"
@@ -44,12 +54,16 @@
    "Removed `WorkloadIdentityCredentialOptions.EnableAzureProxy`."
   ],
   "bug fixes": [
-   "`AzureDeveloperCLICredential` improved reporting of error messages returned from `azd`"
+   "`AzureDeveloperCLICredential` improved reporting of error messages returned from `azd`",
+   "**Feature**: Adds support for the `ca_bundle` parameter in shared config and credentials files. The usage of the file is the same as environment variable, `AWS_CA_BUNDLE`, but sourced from shared config. Fixes [#1589](https://github.com/aws/aws-sdk-go-v2/issues/1589)"
   ]
  },
  "1.13.0": {
   "breaking changes": [
    "Removed the `WorkloadIdentityCredential` support for identity binding mode added in v1.13.0-beta.1."
+  ],
+  "bug fixes": [
+   "**Announcement**: When using the SSOTokenProvider, a previous implementation incorrectly compensated for invalid SSOTokenProvider configurations in the shared profile. This has been fixed via PR #1903 and tracked in issue #1846"
   ]
  },
  "1.12.0": {
@@ -98,7 +112,8 @@
    "Passing a `nil` credential value will no longer cause a panic. Instead, the authentication is skipped.",
    "Calling `Error` on a zero-value `azcore.ResponseError` will no longer panic.",
    "Fixed an issue in `fake.PagerResponder[T]` that would cause a trailing error to be omitted when iterating over pages.",
-   "Context values created by `azcore` will no longer flow across disjoint HTTP requests."
+   "Context values created by `azcore` will no longer flow across disjoint HTTP requests.",
+   "**Feature**: Adds support for `SourceIdentity` to `stscreds.AssumeRoleProvider` [#1588](https://github.com/aws/aws-sdk-go-v2/pull/1588). Fixes [#1575](https://github.com/aws/aws-sdk-go-v2/issues/1575)"
   ]
  },
  "1.8.0": {
@@ -128,7 +143,8 @@
  },
  "1.6.1": {
   "bug fixes": [
-   "Fixed an issue in `azcore.NewClient()` and `arm.NewClient()` that could cause an incorrect module name to be used in telemetry."
+   "Fixed an issue in `azcore.NewClient()` and `arm.NewClient()` that could cause an incorrect module name to be used in telemetry.",
+   "This version contains all bug fixes from `v1.7.0-beta.1`"
   ]
  },
  "1.6.0": {
@@ -136,7 +152,8 @@
    "Removed `AzurePipelinesCredential` and the persistent token caching API."
   ],
   "bug fixes": [
-   "Managed identity bug fixes"
+   "Managed identity bug fixes",
+   "**Bug Fix**: Fix IMDS client's response handling and operation timeout race. Fixes #1253"
   ]
  },
  "1.5.0": {
@@ -174,7 +191,9 @@
    "Renamed `NewOnBehalfOfCredentialFromSecret` to `NewOnBehalfOfCredentialWithSecret`"
   ],
   "bug fixes": [
-   "#51: Fix handling of single digit tilde constraint (thanks @dgodd)"
+   "#51: Fix handling of single digit tilde constraint (thanks @dgodd)",
+   "**Bug Fix**: Profile names were incorrectly normalized to lower-case, which could result in unexpected profile configurations.",
+   "**Bug Fix**: Fixed example usages of aws.CredentialsCache ([#1275](https://github.com/aws/aws-sdk-go-v2/pull/1275))"
   ]
  },
  "1.2.0": {
@@ -182,7 +201,8 @@
    "Fixed an issue in `runtime.SetMultipartFormData` to properly handle slices of `io.ReadSeekCloser`.",
    "Fixed the MaxRetryDelay default to be 60s.",
    "Failure to poll the state of an LRO will now return an `*azcore.ResponseError` for poller types that require this behavior.",
-   "Fixed a bug in `runtime.NewPipeline` that would cause pipeline-specified allowed headers and query parameters to be lost."
+   "Fixed a bug in `runtime.NewPipeline` that would cause pipeline-specified allowed headers and query parameters to be lost.",
+   "This version includes all fixes and features from 1.2.0-beta.*"
   ]
  },
  "1.1.4": {
@@ -194,6 +214,11 @@
  "1.1.3": {
   "bug fixes": [
    "Adjusted the initial retry delay to 800ms per the Azure SDK guidelines."
+  ]
+ },
+ "1.1.2": {
+  "bug fixes": [
+   "Fixed various doc bugs."
   ]
  },
  "1.1.1": {
@@ -334,6 +359,7 @@
  },
  "0.14.2": {
   "bug fixes": [
+   "Documentation fixes",
    "Fixed improper error wrapping"
   ]
  },
@@ -387,11 +413,12 @@
   ]
  },
  "0.11.0": {
+  "bug fixes": [
+   "Fix `RequestLogOptions` comment",
+   "`ManagedIdentityCredential.GetToken` returns `CredentialUnavailableError`"
+  ],
   "breaking changes": [
    "Unexported `AzureCLICredentialOptions.TokenProvider` and its type,"
-  ],
-  "bug fixes": [
-   "`ManagedIdentityCredential.GetToken` returns `CredentialUnavailableError`"
   ]
  },
  "0.10.0": {
@@ -399,9 +426,19 @@
    "Update based on `azcore` refactor [#15383](https://github.com/Azure/azure-sdk-for-go/pull/15383)"
   ]
  },
+ "0.9.4": {
+  "bug fixes": [
+   "Fix cancellation of per try timeout"
+  ]
+ },
  "0.9.3": {
   "bug fixes": [
    "`ManagedIdentityCredential.GetToken` no longer mutates its `opts.Scopes`"
+  ]
+ },
+ "0.9.1": {
+  "bug fixes": [
+   "Updated dependency on internal module to fix race condition."
   ]
  },
  "0.8.2": {
@@ -419,9 +456,17 @@
    "Removed `Response.CheckStatusCode()`"
   ]
  },
+ "0.2.0": {
+  "bug fixes": [
+   "Fixed calls to `Request.SetBody()` to include content type."
+  ]
+ },
  "1.13.1": {
   "bug fixes": [
-   "`AzureCLICredential` quoted arguments incorrectly on Windows"
+   "`AzureCLICredential` quoted arguments incorrectly on Windows",
+   "**Bug Fix**: Fixes LoadDefaultConfig handling of errors returned by passed in functional options. Previously errors returned from the LoadOptions passed into LoadDefaultConfig were incorrectly ignored. [#1562](https://github.com/aws/aws-sdk-go-v2/pull/1562). Thanks to [Pinglei Guo](https://github.com/pingleig) for submitting this PR.",
+   "**Bug Fix**: Fixes the SDK's handling of `duration_sections` in the shared credentials file or specified in multiple shared config and shared credentials files under the same profile. [#1568](https://github.com/aws/aws-sdk-go-v2/pull/1568). Thanks to [Amir Szekely](https://github.com/kichik) for help reproduce this bug.",
+   "**Bug Fix**: Updates `config` module to use os.UserHomeDir instead of hard coded environment variable for OS. [#1563](https://github.com/aws/aws-sdk-go-v2/pull/1563)"
   ]
  },
  "1.10.1": {
@@ -449,6 +494,11 @@
  "1.0.1": {
   "bug fixes": [
    "#21: Fix generation of alphanumeric strings (thanks @dbarranco)"
+  ]
+ },
+ "0.4.2": {
+  "bug fixes": [
+   "Typo fixes"
   ]
  },
  "8.0.0": {
@@ -539,6 +589,7 @@
  },
  "3.0.1": {
   "bug fixes": [
+   "Fix wrong module import for live test",
    "#125: Fixes issue with module path for v3"
   ]
  },
@@ -676,7 +727,8 @@
  },
  "1.4.1": {
   "bug fixes": [
-   "Fixed #64: Fix pre-release precedence issue (thanks @uudashr)"
+   "Fixed #64: Fix pre-release precedence issue (thanks @uudashr)",
+   "**Documentation**: Fixes the AssumeRoleProvider's documentation for using custom TokenProviders."
   ]
  },
  "1.2.3": {
@@ -684,7 +736,214 @@
    "#46: Fixed 0.x.x and 0.0.x in constraints being treated as *",
    "#34: Fixed issue where hyphen range was not working with pre-release parsing.",
    "#24: Fixed edge case issue where constraint \"> 0\" does not handle \"0.0.1-alpha\"",
-   "Issue #21: Per the SemVer spec (section 9) a pre-release is unstable and"
+   "Issue #21: Per the SemVer spec (section 9) a pre-release is unstable and",
+   "Fixed #1: * constraint failing on valid versions."
+  ]
+ },
+ "1.32.23": {
+  "bug fixes": [
+   "**Dependency Update**: Update to smithy-go v1.27.1 to fix several union-related deserialization bugs in schema-serde-enabled services."
+  ]
+ },
+ "1.32.19": {
+  "bug fixes": [
+   "**Bug Fix**: Adds support for AWS_RESTRICT_FILE_PERMISSIONS for env and in-code config."
+  ]
+ },
+ "1.32.12": {
+  "bug fixes": [
+   "**Bug Fix**: Replace usages of the old ioutil/ package throughout the SDK."
+  ]
+ },
+ "1.32.11": {
+  "bug fixes": [
+   "**Bug Fix**: Modernize non codegen files with go fix"
+  ]
+ },
+ "1.29.7": {
+  "bug fixes": [
+   "**Bug Fix**: Bump go version to 1.22"
+  ]
+ },
+ "1.29.2": {
+  "bug fixes": [
+   "**Bug Fix**: Fix env config naming and usage of deprecated ioutil"
+  ]
+ },
+ "1.28.7": {
+  "bug fixes": [
+   "**Bug Fix**: Fix improper use of printf-style functions."
+  ]
+ },
+ "1.27.34": {
+  "bug fixes": [
+   "**Bug Fix**: Read `AWS_CONTAINER_CREDENTIALS_FULL_URI` env variable if set when reading a profile with `credential_source`. Also ensure `AWS_CONTAINER_CREDENTIALS_RELATIVE_URI` is always read before it"
+  ]
+ },
+ "1.27.30": {
+  "bug fixes": [
+   "**Bug Fix**: Don't fail credentials unit tests if credentials are found on a file"
+  ]
+ },
+ "1.27.7": {
+  "bug fixes": [
+   "**Bug Fix**: Remove dependency on go-cmp."
+  ]
+ },
+ "1.26.6": {
+  "bug fixes": [
+   "**Bug Fix**: Remove invalid escaping of shared config values. All values in the shared config file will now be interpreted literally, save for fully-quoted strings which are unwrapped for legacy reasons."
+  ]
+ },
+ "1.26.1": {
+  "bug fixes": [
+   "**Bug Fix**: Correct loading of [services *] sections into shared config."
+  ]
+ },
+ "1.25.8": {
+  "bug fixes": [
+   "**Bug Fix**: Correct resolution of S3Express auth disable toggle."
+  ]
+ },
+ "1.18.45": {
+  "bug fixes": [
+   "**Bug Fix**: Fail to load config if an explicitly provided profile doesn't exist."
+  ]
+ },
+ "1.18.42": {
+  "bug fixes": [
+   "**Bug Fix**: Fixed a bug where merging `max_attempts` or `duration_seconds` fields across shared config files with invalid values would silently default them to 0.",
+   "**Bug Fix**: Move type assertion of config values out of the parsing stage, which resolves an issue where the contents of a profile would silently be dropped with certain numeric formats."
+  ]
+ },
+ "1.18.28": {
+  "bug fixes": [
+   "**Dependency Update**: Update to smithy-go v1.27.1 to fix several union-related deserialization bugs in schema-serde-enabled services."
+  ]
+ },
+ "1.18.20": {
+  "bug fixes": [
+   "**Bug Fix**: Replace usages of the old ioutil/ package throughout the SDK."
+  ]
+ },
+ "1.18.19": {
+  "bug fixes": [
+   "**Bug Fix**: Modernize non codegen files with go fix"
+  ]
+ },
+ "1.18.18": {
+  "bug fixes": [
+   "**Bug Fix**: Allow RoleARN to be set as functional option on STS WebIdentityRoleOptions. Fixes aws/aws-sdk-go-v2#2015."
+  ]
+ },
+ "1.18.5": {
+  "bug fixes": [
+   "**Bug Fix**: Unify logic between shared config and in finding home directory"
+  ]
+ },
+ "1.17.7": {
+  "bug fixes": [
+   "**Bug Fix**: Remove dependency on go-cmp."
+  ]
+ },
+ "1.15.5": {
+  "bug fixes": [
+   "**Bug Fix**: Fixes a bug in LoadDefaultConfig to correctly assign ConfigSources so all config resolvers have access to the config sources. This fixes the feature/ec2/imds client not having configuration applied via config.LoadOptions such as EC2IMDSClientEnableState. PR [#1682](https://github.com/aws/aws-sdk-go-v2/pull/1682)"
+  ]
+ },
+ "1.15.3": {
+  "bug fixes": [
+   "**Bug Fix**: Remove dependency on go-cmp."
+  ]
+ },
+ "1.19.22": {
+  "bug fixes": [
+   "**Dependency Update**: Update to smithy-go v1.27.1 to fix several union-related deserialization bugs in schema-serde-enabled services."
+  ]
+ },
+ "1.19.18": {
+  "bug fixes": [
+   "**Bug Fix**: Create new login cache files with 0600 on Unix platforms."
+  ]
+ },
+ "1.19.12": {
+  "bug fixes": [
+   "**Bug Fix**: Replace usages of the old ioutil/ package throughout the SDK."
+  ]
+ },
+ "1.17.60": {
+  "bug fixes": [
+   "**Bug Fix**: Bump go version to 1.22"
+  ]
+ },
+ "1.17.48": {
+  "bug fixes": [
+   "**Bug Fix**: Fix improper use of printf-style functions."
+  ]
+ },
+ "1.17.30": {
+  "bug fixes": [
+   "**Bug Fix**: Save SSO cached token expiry in UTC to ensure cross-SDK compatibility."
+  ]
+ },
+ "1.16.4": {
+  "bug fixes": [
+   "**Bug Fix**: Don't expect error responses to have a JSON payload in the endpointcreds provider."
+  ]
+ },
+ "1.13.5": {
+  "bug fixes": [
+   "**Bug Fix**: Unify logic between shared config and in finding home directory"
+  ]
+ },
+ "1.12.19": {
+  "bug fixes": [
+   "**Bug Fix**: Fixes an issue that prevented logging of the API request or responses when the respective log modes were enabled."
+  ]
+ },
+ "1.16.29": {
+  "bug fixes": [
+   "**Bug Fix**: Bump go version to 1.22"
+  ]
+ },
+ "1.4.28": {
+  "bug fixes": [
+   "**Dependency Update**: Update to smithy-go v1.27.1 to fix several union-related deserialization bugs in schema-serde-enabled services."
+  ]
+ },
+ "1.4.19": {
+  "bug fixes": [
+   "**Bug Fix**: Modernize non codegen files with go fix"
+  ]
+ },
+ "1.3.33": {
+  "bug fixes": [
+   "**Bug Fix**: Bump go version to 1.22"
+  ]
+ },
+ "2.7.28": {
+  "bug fixes": [
+   "**Dependency Update**: Update to smithy-go v1.27.1 to fix several union-related deserialization bugs in schema-serde-enabled services."
+  ]
+ },
+ "2.7.19": {
+  "bug fixes": [
+   "**Bug Fix**: Modernize non codegen files with go fix"
+  ]
+ },
+ "2.6.33": {
+  "bug fixes": [
+   "**Bug Fix**: Bump go version to 1.22"
+  ]
+ },
+ "2.6.26": {
+  "bug fixes": [
+   "**Bug Fix**: Fix improper use of printf-style functions."
+  ]
+ },
+ "2.6.3": {
+  "bug fixes": [
+   "**Bug Fix**: Remove dependency on go-cmp."
   ]
  }
 }
