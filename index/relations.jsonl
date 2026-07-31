@@ -947,6 +947,9 @@
 {"source": "TROUBLE-CILIUM_1_16_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_1_17_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_1_18_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_1_18_EXPOSURE", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_1_18_EXPOSURE", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-CILIUM_1_18_EXPOSURE", "target": "TROUBLE-CILIUM_KNOWN_CVES", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_1_19_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_1_6_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CILIUM_1_7_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}

@@ -870,6 +870,7 @@
 {"alias": "cilium 1.18 fixed in", "ids": ["TROUBLE-CILIUM_1_18_DEFECTS"]}
 {"alias": "cilium 1.18 known issues", "ids": ["TROUBLE-CILIUM_1_18_DEFECTS"]}
 {"alias": "cilium 1.18 packet drops upgrade", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
+{"alias": "cilium 1.18.4 known issues", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
 {"alias": "cilium 1.19 fixed in", "ids": ["TROUBLE-CILIUM_1_19_DEFECTS"]}
 {"alias": "cilium 1.19 ipsec kernel bug", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
 {"alias": "cilium 1.19 known issues", "ids": ["TROUBLE-CILIUM_1_19_DEFECTS"]}
@@ -928,6 +929,7 @@
 {"alias": "cilium loadbalancer", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium loadbalancer mode ignored", "ids": ["TROUBLE-CILIUM_LOADBALANCER_MODE_NOT_RENDERED"]}
 {"alias": "cilium managed etcd removed", "ids": ["CONCEPT-CILIUM_LEGACY_REMOVALS"]}
+{"alias": "cilium memory leak policy updates", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
 {"alias": "cilium mesh-auth-enabled default off", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
 {"alias": "cilium metallb-bgp removed", "ids": ["CONCEPT-CILIUM_LEGACY_REMOVALS"]}
 {"alias": "cilium monitor drop", "ids": ["TROUBLE-CILIUM_PACKET_DROPS"]}
@@ -939,6 +941,7 @@
 {"alias": "cilium observability", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
 {"alias": "cilium pods cant reach each other", "ids": ["TROUBLE-CILIUM_POD_CONNECTIVITY"]}
 {"alias": "cilium policy auth warning", "ids": ["TROUBLE-CILIUM_MESH_AUTH_DISABLED"]}
+{"alias": "cilium policy not updated with new identities", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
 {"alias": "cilium preflight upgrade runbook", "ids": ["PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18"]}
 {"alias": "cilium replace metallb", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium security", "ids": ["TROUBLE-CILIUM_KNOWN_CVES"]}
@@ -1779,6 +1782,7 @@
 {"alias": "encryption provider migration", "ids": ["TROUBLE-K8S_KMS_V1_DEPRECATED"]}
 {"alias": "endpoints empty", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "endpoints notReadyAddresses stuck", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
+{"alias": "endpoints stuck waiting-to-regenerate", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
 {"alias": "endpointslice empty", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "endpointslice informer cache out of date", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
 {"alias": "endpointslice rebalancing loop", "ids": ["TROUBLE-KCM_ENDPOINTSLICE_CHURN"]}
@@ -2520,6 +2524,7 @@
 {"alias": "integration failure matrix", "ids": ["CONCEPT-COMPONENT_INTERACTION_FAILURES"]}
 {"alias": "intermittent connectivity large cluster", "ids": ["TROUBLE-ARP_NEIGH_TABLE_OVERFLOW"]}
 {"alias": "intermittent dns failures kubernetes", "ids": ["TROUBLE-COREDNS_INTERMITTENT_DNS"]}
+{"alias": "intermittent packet drops fqdn policy", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
 {"alias": "internal error occurred admission", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "invalid ownership metadata", "ids": ["TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT"]}
 {"alias": "inventory groups", "ids": ["PRACTICE-INVENTORY"]}
@@ -4209,6 +4214,7 @@
 {"alias": "set arbitrary kubeletconfiguration field", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
 {"alias": "shim reaper mutex deadlock", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
 {"alias": "short-name did not resolve to an alias", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
+{"alias": "should we upgrade cilium 1.18", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
 {"alias": "should we upgrade containerd 2.1", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
 {"alias": "sidecar containers 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "sidecar lifecycle kubernetes", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
