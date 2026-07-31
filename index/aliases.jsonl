@@ -121,6 +121,7 @@
 {"alias": "1.33 upgrade notes", "ids": ["CONCEPT-K8S_1_33_CHANGES"]}
 {"alias": "1.34 upgrade notes", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
 {"alias": "1.35 upgrade notes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
+{"alias": "1.36 upgrade notes", "ids": ["CONCEPT-K8S_1_36_CHANGES"]}
 {"alias": "10250 unreachable", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "169.254 /31 interface node", "ids": ["TROUBLE-LEFTOVER_SECONDARY_BOND"]}
 {"alias": "1password connect", "ids": ["CONCEPT-ADDON_1PASSWORD_CONNECT"]}
@@ -1149,6 +1150,7 @@
 {"alias": "clock synchronization", "ids": ["CONFIG-NTP"]}
 {"alias": "clock-skew-tls-errors", "ids": ["TROUBLE-CLOCK_SKEW_TLS"]}
 {"alias": "cloki", "ids": ["CONCEPT-ADDON_GIGAPIPE"]}
+{"alias": "close containerd cves upgrade path", "ids": ["UPGRADE-CONTAINERD_2_1_TO_2_3"]}
 {"alias": "cloud-controller-manager", "ids": ["CONCEPT-CLOUD_CONTROLLER_MANAGER"]}
 {"alias": "cloud-provider external", "ids": ["TROUBLE-K8S_INTREE_CLOUD_PROVIDER_REMOVED"]}
 {"alias": "cloud_provider", "ids": ["VARIABLE-CLOUD_PROVIDER"]}
@@ -1278,11 +1280,13 @@
 {"alias": "containerd 2.0 known issues", "ids": ["TROUBLE-CONTAINERD_2_0_DEFECTS"]}
 {"alias": "containerd 2.1 fixed in", "ids": ["TROUBLE-CONTAINERD_2_1_DEFECTS"]}
 {"alias": "containerd 2.1 known issues", "ids": ["TROUBLE-CONTAINERD_2_1_DEFECTS"]}
+{"alias": "containerd 2.1 to 2.2 upgrade", "ids": ["UPGRADE-CONTAINERD_2_1_TO_2_3"]}
 {"alias": "containerd 2.1.5 known issues", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
 {"alias": "containerd 2.2 fixed in", "ids": ["TROUBLE-CONTAINERD_2_2_DEFECTS"]}
 {"alias": "containerd 2.2 known issues", "ids": ["TROUBLE-CONTAINERD_2_2_DEFECTS"]}
 {"alias": "containerd 2.3 fixed in", "ids": ["TROUBLE-CONTAINERD_2_3_DEFECTS"]}
 {"alias": "containerd 2.3 known issues", "ids": ["TROUBLE-CONTAINERD_2_3_DEFECTS"]}
+{"alias": "containerd 2.3 what changes", "ids": ["UPGRADE-CONTAINERD_2_1_TO_2_3"]}
 {"alias": "containerd 2.x", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd ImagePullBackOff after disabling proxy", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "containerd action required upgrade", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
@@ -1723,6 +1727,7 @@
 {"alias": "download_validate_certs", "ids": ["TROUBLE-DOWNLOAD_FAILS", "VARIABLE-DOWNLOAD_VALIDATE_CERTS"]}
 {"alias": "downloads", "ids": ["VARIABLE-DOWNLOADS"]}
 {"alias": "dra driver kubelet plugin", "ids": ["CONCEPT-K8S_DRA"]}
+{"alias": "dra granular rbac resourceclaims", "ids": ["CONCEPT-K8S_1_36_CHANGES"]}
 {"alias": "dragonfly", "ids": ["CONCEPT-ADDON_DRAGONFLY"]}
 {"alias": "dragonfly failover data loss", "ids": ["TROUBLE-DRAGONFLY_FAILOVER_DATALOSS"]}
 {"alias": "dragonfly healthcheck wrong port", "ids": ["TROUBLE-DRAGONFLY_FAILOVER_DATALOSS"]}
@@ -2147,6 +2152,7 @@
 {"alias": "flannel_vxlan_port", "ids": ["VARIABLE-FLANNEL_VXLAN_PORT"]}
 {"alias": "flannel_vxlan_vni", "ids": ["VARIABLE-FLANNEL_VXLAN_VNI"]}
 {"alias": "flatcar-apiserver-wait-dns-handler", "ids": ["TROUBLE-FLATCAR_APISERVER_WAIT_DNS"]}
+{"alias": "flex volumes removed kubeadm", "ids": ["CONCEPT-K8S_1_36_CHANGES"]}
 {"alias": "flowcontrol.apiserver.k8s.io", "ids": ["API-FLOWCONTROL_APISERVER"]}
 {"alias": "flowschema prioritylevelconfiguration", "ids": ["TROUBLE-APISERVER_APF_429"]}
 {"alias": "flush_iptables", "ids": ["VARIABLE-FLUSH_IPTABLES"]}
@@ -3258,6 +3264,7 @@
 {"alias": "kubernetes 1.35 changes", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
 {"alias": "kubernetes 1.35 fixed in", "ids": ["TROUBLE-KUBERNETES_1_35_DEFECTS"]}
 {"alias": "kubernetes 1.35 known issues", "ids": ["TROUBLE-KUBERNETES_1_35_DEFECTS"]}
+{"alias": "kubernetes 1.36 changes", "ids": ["CONCEPT-K8S_1_36_CHANGES"]}
 {"alias": "kubernetes 1.36 fixed in", "ids": ["TROUBLE-KUBERNETES_1_36_DEFECTS"]}
 {"alias": "kubernetes 1.36 known issues", "ids": ["TROUBLE-KUBERNETES_1_36_DEFECTS"]}
 {"alias": "kubernetes action required upgrade", "ids": ["TROUBLE-KUBERNETES_BREAKING_CHANGES"]}
@@ -4218,6 +4225,7 @@
 {"alias": "short-name did not resolve to an alias", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
 {"alias": "should we move cilium to 1.19", "ids": ["UPGRADE-CILIUM_1_18_TO_1_19"]}
 {"alias": "should we upgrade cilium 1.18", "ids": ["TROUBLE-CILIUM_1_18_EXPOSURE"]}
+{"alias": "should we upgrade containerd", "ids": ["UPGRADE-CONTAINERD_2_1_TO_2_3"]}
 {"alias": "should we upgrade containerd 2.1", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
 {"alias": "sidecar containers 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "sidecar lifecycle kubernetes", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
@@ -4702,6 +4710,7 @@
 {"alias": "what changed in 1.33", "ids": ["CONCEPT-K8S_1_33_CHANGES"]}
 {"alias": "what changed in 1.34", "ids": ["CONCEPT-K8S_1_34_CHANGES"]}
 {"alias": "what changed in 1.35", "ids": ["CONCEPT-K8S_1_35_CHANGES"]}
+{"alias": "what changed in 1.36", "ids": ["CONCEPT-K8S_1_36_CHANGES"]}
 {"alias": "what changes on kubernetes upgrade", "ids": ["CONCEPT-K8S_UPGRADE_SILENT_CHANGES"]}
 {"alias": "what does kubespray delete", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "what is not secure out of the box", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}

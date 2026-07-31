@@ -281,6 +281,9 @@
 {"source": "CONCEPT-K8S_1_35_CHANGES", "target": "CONCEPT-K8S_FEATURE_GATES", "type": "see_also"}
 {"source": "CONCEPT-K8S_1_35_CHANGES", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "CONCEPT-K8S_1_35_CHANGES", "target": "UPGRADE-V2_30_0__V2_31_0", "type": "see_also"}
+{"source": "CONCEPT-K8S_1_36_CHANGES", "target": "CONCEPT-K8S_1_35_CHANGES", "type": "see_also"}
+{"source": "CONCEPT-K8S_1_36_CHANGES", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
+{"source": "CONCEPT-K8S_1_36_CHANGES", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "CONCEPT-K8S_ADMISSION_POLICIES", "target": "CONCEPT-K8S_UPGRADE_SILENT_CHANGES", "type": "see_also"}
 {"source": "CONCEPT-K8S_ADMISSION_POLICIES", "target": "CONCEPT-POD_SECURITY_STANDARDS", "type": "see_also"}
 {"source": "CONCEPT-K8S_ADMISSION_POLICIES", "target": "PRACTICE-CLUSTER_HARDENING", "type": "see_also"}
@@ -1757,6 +1760,9 @@
 {"source": "UPGRADE-CILIUM_1_18_TO_1_19", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "UPGRADE-CILIUM_1_18_TO_1_19", "target": "TROUBLE-CILIUM_1_18_EXPOSURE", "type": "see_also"}
 {"source": "UPGRADE-CILIUM_1_18_TO_1_19", "target": "TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY", "type": "see_also"}
+{"source": "UPGRADE-CONTAINERD_2_1_TO_2_3", "target": "TROUBLE-CONTAINERD_2_1_EXPOSURE", "type": "see_also"}
+{"source": "UPGRADE-CONTAINERD_2_1_TO_2_3", "target": "TROUBLE-CONTAINERD_KNOWN_CVES", "type": "see_also"}
+{"source": "UPGRADE-CONTAINERD_2_1_TO_2_3", "target": "VARIABLE-CONTAINERD_VERSION", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "CONCEPT-KUBERNETES_VERSION_SUPPORT", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "TAG-PRE_UPGRADE", "type": "see_also"}
 {"source": "UPGRADE-KUBESPRAY_SEQUENTIAL", "target": "VARIABLE-KUBE_VERSION", "type": "see_also"}
