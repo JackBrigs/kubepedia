@@ -2265,6 +2265,8 @@
 {"alias": "group_vars layout", "ids": ["CONCEPT-SAMPLE_INVENTORY_LAYOUT"]}
 {"alias": "grow cluster kubespray", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
 {"alias": "grow pvc kubernetes", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
+{"alias": "grpc load balancing kubernetes service", "ids": ["CONCEPT-GRPC_LOAD_BALANCING"]}
+{"alias": "grpc max connection age goaway", "ids": ["CONCEPT-GRPC_LOAD_BALANCING"]}
 {"alias": "grpc stopped working inside cluster", "ids": ["TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503"]}
 {"alias": "grpcroute mirror service not found", "ids": ["TROUBLE-ENVOY_GATEWAY_1_6_KNOWN_ISSUES"]}
 {"alias": "gvisor", "ids": ["TAG-GVISOR"]}
@@ -2293,6 +2295,7 @@
 {"alias": "headlamp login", "ids": ["TROUBLE-HEADLAMP"]}
 {"alias": "headlamp oidc", "ids": ["TROUBLE-HEADLAMP"]}
 {"alias": "headlamp token", "ids": ["TROUBLE-HEADLAMP"]}
+{"alias": "headless service client side load balancing", "ids": ["CONCEPT-GRPC_LOAD_BALANCING"]}
 {"alias": "health check", "ids": ["PRACTICE-CLUSTER_HEALTH_CHECKS"]}
 {"alias": "helm", "ids": ["COMPONENT-HELM", "TAG-HELM"]}
 {"alias": "helm 2.0 fixed in", "ids": ["TROUBLE-HELM_2_0_DEFECTS"]}
@@ -2412,6 +2415,7 @@
 {"alias": "http-proxy.conf containerd.service.d", "ids": ["TROUBLE-CONTAINERD_PROXY_NOT_REMOVED"]}
 {"alias": "http01 dns01 challenge failing", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
 {"alias": "http2 client connection lost apiserver", "ids": ["TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503"]}
+{"alias": "http2 single tcp connection imbalance", "ids": ["CONCEPT-GRPC_LOAD_BALANCING"]}
 {"alias": "http_proxy", "ids": ["CONFIG-PROXY"]}
 {"alias": "https_proxy", "ids": ["CONFIG-PROXY"]}
 {"alias": "hubble", "ids": ["CONCEPT-CILIUM_HUBBLE"]}
@@ -3830,6 +3834,7 @@
 {"alias": "omni sidebase", "ids": ["CONCEPT-TALOS_OMNI"]}
 {"alias": "one minor at a time upgrade", "ids": ["TROUBLE-KUBEADM_VERSION_SKEW"]}
 {"alias": "one minor upgrade procedure", "ids": ["PRACTICE-RUNBOOK_UPGRADE_ONE_MINOR"]}
+{"alias": "one pod gets all the grpc traffic", "ids": ["CONCEPT-GRPC_LOAD_BALANCING"]}
 {"alias": "open-webui", "ids": ["CONCEPT-ADDON_KUBERNETES_MCP"]}
 {"alias": "open-webui mcp", "ids": ["TROUBLE-KUBERNETES_MCP"]}
 {"alias": "openebs lvm", "ids": ["CONCEPT-ADDON_LVM_LOCALPV"]}
@@ -4161,6 +4166,7 @@
 {"alias": "scale.yml add worker", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
 {"alias": "scale.yml facts first", "ids": ["TROUBLE-ADD_NODE_GOTCHAS"]}
 {"alias": "scaledobject no external metric", "ids": ["TROUBLE-KEDA_SCALEDOBJECT_NOT_SCALING"]}
+{"alias": "scaling replicas does not spread grpc load", "ids": ["CONCEPT-GRPC_LOAD_BALANCING"]}
 {"alias": "scheduled etcd backup", "ids": ["PRACTICE-RUNBOOK_ETCD_BACKUP"]}
 {"alias": "scheduler slow at scale", "ids": ["TROUBLE-SCHEDULER_PERF"]}
 {"alias": "scheduler-plugins", "ids": ["COMPONENT-SCHEDULER_PLUGINS"]}

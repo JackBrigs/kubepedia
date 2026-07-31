@@ -250,6 +250,8 @@
 {"source": "CONCEPT-GO_RUNTIME_CPU", "target": "CONFIG-CPU_ISOLATION", "type": "see_also"}
 {"source": "CONCEPT-GO_RUNTIME_MEMORY", "target": "COMPONENT-ETCD", "type": "see_also"}
 {"source": "CONCEPT-GO_RUNTIME_MEMORY", "target": "CONCEPT-SCALE_LIMITS", "type": "see_also"}
+{"source": "CONCEPT-GRPC_LOAD_BALANCING", "target": "COMPONENT-CILIUM", "type": "see_also"}
+{"source": "CONCEPT-GRPC_LOAD_BALANCING", "target": "CONCEPT-ADDON_ENVOY_GATEWAY", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "COMPONENT-CILIUM", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "COMPONENT-HELM", "type": "see_also"}
 {"source": "CONCEPT-HELM_IN_KUBESPRAY", "target": "TROUBLE-CILIUM_HELM_OWNERSHIP_ADOPT", "type": "see_also"}
