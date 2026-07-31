@@ -971,6 +971,8 @@
 {"source": "TROUBLE-ELASTICSEARCH_ECK_CLUSTER", "target": "CONCEPT-ADDON_ECK_OPERATOR", "type": "see_also"}
 {"source": "TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI", "target": "CONCEPT-ADDON_ENVOY_GATEWAY", "type": "see_also"}
 {"source": "TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503", "target": "CONCEPT-ADDON_ENVOY_GATEWAY", "type": "see_also"}
+{"source": "TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503", "target": "TROUBLE-ENVOY_GATEWAY_BACKEND_TLS_SNI", "type": "see_also"}
 {"source": "TROUBLE-ENVOY_XDS_CONTROLLER", "target": "CONCEPT-ADDON_ENVOY_XDS_CONTROLLER", "type": "see_also"}
 {"source": "TROUBLE-ENVOY_XDS_CONTROLLER", "target": "CONCEPT-CILIUM_ENVOY", "type": "see_also"}
 {"source": "TROUBLE-ETCD_CERT_DIR_RECURSIVE_PERMS_CALICO", "target": "COMPONENT-ETCD", "type": "see_also"}
