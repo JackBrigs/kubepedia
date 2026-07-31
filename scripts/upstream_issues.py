@@ -193,8 +193,12 @@ def yaml_notes(path):
 
 def changelog_notes(path):
     """CHANGELOG.md: версии по заголовкам, строки-пункты классифицируются по подзаголовку."""
+    # Только собственные заметки проекта: в корне репозитория либо в каталоге CHANGELOG/.
+    # Всё остальное — вендоренные зависимости. В клоне Cilium таких файлов 52 штуки, и
+    # разбор по ним давал «релизы 1.18.42» с записями про AWS SDK: чужой проект под
+    # именем своего. Пустой результат честнее подделки, поэтому фильтр строгий.
     names = [n for n in sh("git", "ls-tree", "--name-only", "-r", "HEAD", cwd=path).split("\n")
-             if re.search(r"(^|/)CHANGELOG[^/]*\.md$", n, re.I)]
+             if re.match(r"^(CHANGELOG[^/]*\.md|CHANGELOG/[^/]+\.md)$", n, re.I)]
     out = {}
     for name in names[:12]:
         text = sh("git", "show", f"HEAD:{name}", cwd=path)

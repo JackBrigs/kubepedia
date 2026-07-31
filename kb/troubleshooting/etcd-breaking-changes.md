@@ -31,8 +31,8 @@ relations:
 
 ## Summary
 
-**98 behaviour changes** the project itself marked as breaking or action-required, across
-10 releases from 3.1.0 to 4.0.0. These are not defects: they work as designed and still break
+**97 behaviour changes** the project itself marked as breaking or action-required, across
+9 releases from 3.1.0 to 4.0.0. These are not defects: they work as designed and still break
 a configuration that worked yesterday. An upgrade crossing any of them needs a decision, not just a
 rollout.
 
@@ -72,10 +72,6 @@ default flipped, an API version withdrawn, a variable that must now be set expli
 - Deprecated `latest` [release container](https://console.cloud.google.com/gcr/images/etcd-development/GLOBAL/etcd) tag. **`docker pull gcr.io/etcd-development/etcd:latest` would not be up-to-date**
 - Deprecated [minor](https://semver.org/) version [release container](https://console.cloud.google.com/gcr/images/etcd-development/GLOBAL/etcd) tags. `docker pull gcr.io/etcd-development/etcd:v3.3` would still work but may be stale. **`docker pull gcr.io/etcd-development/etcd:v3.4` would not work**. Use **`docker pull gcr.io/etcd-development/etcd:v3.3.14`** instead, with the exact patch version
 - Deprecated [ACIs from official release](https://github.com/etcd-io/etcd/pull/9059). [AppC was officially suspended](https://github.com/appc/spec#-disclaimer-), as of late 2016. [`acbuild`](https://github.com/containers/build#this-project-is-currently-unmaintained) is not maintained anymore. `*.aci` files are not available from `v3.4` release
-
-### 3.3.15
-
-- Revert "Migrate dependency management tool from `glide` to [Go module](https://github.com/etcd-io/etcd/pull/10063)". Now, etcd >= v3.3.15 uses `glide` for dependency management. See [kubernetes#81434](https://github.com/kubernetes/kubernetes/pull/81434) for more contexts
 
 ### 3.3.23
 

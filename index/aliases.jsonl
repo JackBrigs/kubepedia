@@ -848,35 +848,45 @@
 {"alias": "checksum mismatch download", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
 {"alias": "chrony", "ids": ["CONFIG-NTP"]}
 {"alias": "cilium", "ids": ["COMPONENT-CILIUM", "TAG-CILIUM"]}
-{"alias": "cilium 1.0 fixed in", "ids": ["TROUBLE-CILIUM_1_0_DEFECTS"]}
-{"alias": "cilium 1.0 known issues", "ids": ["TROUBLE-CILIUM_1_0_DEFECTS"]}
+{"alias": "cilium 1.10 fixed in", "ids": ["TROUBLE-CILIUM_1_10_DEFECTS"]}
+{"alias": "cilium 1.10 known issues", "ids": ["TROUBLE-CILIUM_1_10_DEFECTS"]}
+{"alias": "cilium 1.11 fixed in", "ids": ["TROUBLE-CILIUM_1_11_DEFECTS"]}
+{"alias": "cilium 1.11 known issues", "ids": ["TROUBLE-CILIUM_1_11_DEFECTS"]}
+{"alias": "cilium 1.12 fixed in", "ids": ["TROUBLE-CILIUM_1_12_DEFECTS"]}
+{"alias": "cilium 1.12 known issues", "ids": ["TROUBLE-CILIUM_1_12_DEFECTS"]}
 {"alias": "cilium 1.13 fixed in", "ids": ["TROUBLE-CILIUM_1_13_DEFECTS"]}
 {"alias": "cilium 1.13 known issues", "ids": ["TROUBLE-CILIUM_1_13_DEFECTS"]}
+{"alias": "cilium 1.14 fixed in", "ids": ["TROUBLE-CILIUM_1_14_DEFECTS"]}
+{"alias": "cilium 1.14 known issues", "ids": ["TROUBLE-CILIUM_1_14_DEFECTS"]}
+{"alias": "cilium 1.15 fixed in", "ids": ["TROUBLE-CILIUM_1_15_DEFECTS"]}
+{"alias": "cilium 1.15 known issues", "ids": ["TROUBLE-CILIUM_1_15_DEFECTS"]}
 {"alias": "cilium 1.15 to 1.19", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
+{"alias": "cilium 1.16 fixed in", "ids": ["TROUBLE-CILIUM_1_16_DEFECTS"]}
+{"alias": "cilium 1.16 known issues", "ids": ["TROUBLE-CILIUM_1_16_DEFECTS"]}
+{"alias": "cilium 1.17 fixed in", "ids": ["TROUBLE-CILIUM_1_17_DEFECTS"]}
 {"alias": "cilium 1.17 ipsec key", "ids": ["TROUBLE-CILIUM_IPSEC_PER_TUNNEL_KEYS"]}
+{"alias": "cilium 1.17 known issues", "ids": ["TROUBLE-CILIUM_1_17_DEFECTS"]}
 {"alias": "cilium 1.18 aws egress broken", "ids": ["TROUBLE-CILIUM_ENI_MASQUERADE_FLIP"]}
 {"alias": "cilium 1.18 fixed in", "ids": ["TROUBLE-CILIUM_1_18_DEFECTS"]}
 {"alias": "cilium 1.18 known issues", "ids": ["TROUBLE-CILIUM_1_18_DEFECTS"]}
 {"alias": "cilium 1.18 packet drops upgrade", "ids": ["TROUBLE-CILIUM_SERVICEACCOUNT_IDENTITY_DROPS"]}
+{"alias": "cilium 1.19 fixed in", "ids": ["TROUBLE-CILIUM_1_19_DEFECTS"]}
 {"alias": "cilium 1.19 ipsec kernel bug", "ids": ["TROUBLE-CILIUM_IPSEC_HOST_ROUTING_CVE"]}
+{"alias": "cilium 1.19 known issues", "ids": ["TROUBLE-CILIUM_1_19_DEFECTS"]}
 {"alias": "cilium 1.19 upgrade agent crashloop flag", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
-{"alias": "cilium 1.2 fixed in", "ids": ["TROUBLE-CILIUM_1_2_DEFECTS"]}
-{"alias": "cilium 1.2 known issues", "ids": ["TROUBLE-CILIUM_1_2_DEFECTS"]}
-{"alias": "cilium 1.4 fixed in", "ids": ["TROUBLE-CILIUM_1_4_DEFECTS"]}
-{"alias": "cilium 1.4 known issues", "ids": ["TROUBLE-CILIUM_1_4_DEFECTS"]}
-{"alias": "cilium 1.5 fixed in", "ids": ["TROUBLE-CILIUM_1_5_DEFECTS"]}
-{"alias": "cilium 1.5 known issues", "ids": ["TROUBLE-CILIUM_1_5_DEFECTS"]}
+{"alias": "cilium 1.6 fixed in", "ids": ["TROUBLE-CILIUM_1_6_DEFECTS"]}
+{"alias": "cilium 1.6 known issues", "ids": ["TROUBLE-CILIUM_1_6_DEFECTS"]}
+{"alias": "cilium 1.7 fixed in", "ids": ["TROUBLE-CILIUM_1_7_DEFECTS"]}
+{"alias": "cilium 1.7 known issues", "ids": ["TROUBLE-CILIUM_1_7_DEFECTS"]}
 {"alias": "cilium 1.8 fixed in", "ids": ["TROUBLE-CILIUM_1_8_DEFECTS"]}
 {"alias": "cilium 1.8 known issues", "ids": ["TROUBLE-CILIUM_1_8_DEFECTS"]}
 {"alias": "cilium 1.9 fixed in", "ids": ["TROUBLE-CILIUM_1_9_DEFECTS"]}
 {"alias": "cilium 1.9 known issues", "ids": ["TROUBLE-CILIUM_1_9_DEFECTS"]}
-{"alias": "cilium action required upgrade", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
 {"alias": "cilium agent Init CrashLoopBackOff", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "cilium bgp", "ids": ["CONCEPT-CILIUM_LOADBALANCING"]}
 {"alias": "cilium bgp not advertising after upgrade", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "cilium bgp v1 to v2 migration", "ids": ["TROUBLE-CILIUM_BGP_V1_REMOVED"]}
 {"alias": "cilium bpf masquerade", "ids": ["CONCEPT-CILIUM_DATAPATH"]}
-{"alias": "cilium breaking changes", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
 {"alias": "cilium check failed", "ids": ["TROUBLE-CILIUM_CONFIG_VALIDATION"]}
 {"alias": "cilium clustermesh policy broke", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "cilium clustermesh policy default local cluster", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
@@ -937,7 +947,6 @@
 {"alias": "cilium unknown flag enable-host-port", "ids": ["TROUBLE-CILIUM_KPR_TOGGLES_REMOVED"]}
 {"alias": "cilium upgrade 1.15.9 to 1.18.4 kubespray", "ids": ["PRACTICE-RUNBOOK_CILIUM_1_15_TO_1_18"]}
 {"alias": "cilium upgrade breaking changes", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
-{"alias": "cilium upgrade broke", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
 {"alias": "cilium version jump kubespray", "ids": ["UPGRADE-CILIUM_1_15_TO_1_19"]}
 {"alias": "cilium wireguard", "ids": ["CONCEPT-CILIUM_ENCRYPTION"]}
 {"alias": "cilium-bgp-advertisement-labels-undefined", "ids": ["TROUBLE-CILIUM_BGP_ADVERTISEMENT_LABELS"]}
@@ -1154,6 +1163,7 @@
 {"alias": "clustermesh default deny remote", "ids": ["TROUBLE-CILIUM_CLUSTERMESH_LOCAL_POLICY"]}
 {"alias": "cni", "ids": ["TAG-CNI"]}
 {"alias": "cni config load failed", "ids": ["TROUBLE-KUBELET_NODE_NOTREADY_CNI"]}
+{"alias": "cni del never executed after restart", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
 {"alias": "cni directory ownership kubespray", "ids": ["VARIABLE-KUBE_OWNER"]}
 {"alias": "cni migration runbook", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "cni overlay mtu", "ids": ["CONFIG-CNI_MTU"]}
@@ -1211,14 +1221,6 @@
 {"alias": "consul service mesh k8s", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
 {"alias": "consul values boolean string field", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
 {"alias": "consul-k8s", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
-{"alias": "consul-k8s 0.4 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_4_DEFECTS"]}
-{"alias": "consul-k8s 0.4 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_4_DEFECTS"]}
-{"alias": "consul-k8s 0.5 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_5_DEFECTS"]}
-{"alias": "consul-k8s 0.5 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_5_DEFECTS"]}
-{"alias": "consul-k8s 0.6 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_6_DEFECTS"]}
-{"alias": "consul-k8s 0.6 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_6_DEFECTS"]}
-{"alias": "consul-k8s 0.7 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_7_DEFECTS"]}
-{"alias": "consul-k8s 0.7 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_7_DEFECTS"]}
 {"alias": "consul-k8s 0.9 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_9_DEFECTS"]}
 {"alias": "consul-k8s 0.9 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_9_DEFECTS"]}
 {"alias": "consul-k8s 1.0 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_0_DEFECTS"]}
@@ -1240,9 +1242,6 @@
 {"alias": "consul-k8s 1.8 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_8_DEFECTS"]}
 {"alias": "consul-k8s 1.8 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_8_DEFECTS"]}
 {"alias": "consul-k8s 2.0 upgrade", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
-{"alias": "consul-k8s action required upgrade", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
-{"alias": "consul-k8s breaking changes", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
-{"alias": "consul-k8s upgrade broke", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
 {"alias": "container engine kubespray", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "container keeps restarting", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "container killed memory limit", "ids": ["TROUBLE-OOMKILLED"]}
@@ -1274,6 +1273,7 @@
 {"alias": "containerd 2.0 known issues", "ids": ["TROUBLE-CONTAINERD_2_0_DEFECTS"]}
 {"alias": "containerd 2.1 fixed in", "ids": ["TROUBLE-CONTAINERD_2_1_DEFECTS"]}
 {"alias": "containerd 2.1 known issues", "ids": ["TROUBLE-CONTAINERD_2_1_DEFECTS"]}
+{"alias": "containerd 2.1.5 known issues", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
 {"alias": "containerd 2.2 fixed in", "ids": ["TROUBLE-CONTAINERD_2_2_DEFECTS"]}
 {"alias": "containerd 2.2 known issues", "ids": ["TROUBLE-CONTAINERD_2_2_DEFECTS"]}
 {"alias": "containerd 2.3 fixed in", "ids": ["TROUBLE-CONTAINERD_2_3_DEFECTS"]}
@@ -1284,6 +1284,7 @@
 {"alias": "containerd breaking changes", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
 {"alias": "containerd config version 3", "ids": ["CONCEPT-CONTAINERD_2X"]}
 {"alias": "containerd config.toml v3", "ids": ["CONCEPT-CONTAINERD_2X"]}
+{"alias": "containerd credential leak pod events", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
 {"alias": "containerd cve", "ids": ["TROUBLE-CONTAINERD_KNOWN_CVES"]}
 {"alias": "containerd data root overlay", "ids": ["TROUBLE-CONTAINERD_OVERLAYFS"]}
 {"alias": "containerd debug", "ids": ["PRACTICE-CONTAINERD_DIAGNOSTICS"]}
@@ -2547,10 +2548,10 @@
 {"alias": "is this azure-csi bug already fixed", "ids": ["TROUBLE-AZURE_CSI_1_10_DEFECTS", "TROUBLE-AZURE_CSI_1_12_DEFECTS", "TROUBLE-AZURE_CSI_1_25_DEFECTS", "TROUBLE-AZURE_CSI_1_26_DEFECTS", "TROUBLE-AZURE_CSI_1_27_DEFECTS", "TROUBLE-AZURE_CSI_1_28_DEFECTS", "TROUBLE-AZURE_CSI_1_29_DEFECTS", "TROUBLE-AZURE_CSI_1_30_DEFECTS", "TROUBLE-AZURE_CSI_1_31_DEFECTS", "TROUBLE-AZURE_CSI_1_32_DEFECTS", "TROUBLE-AZURE_CSI_1_33_DEFECTS", "TROUBLE-AZURE_CSI_1_34_DEFECTS", "TROUBLE-AZURE_CSI_1_3_DEFECTS", "TROUBLE-AZURE_CSI_1_5_DEFECTS", "TROUBLE-AZURE_CSI_1_6_DEFECTS", "TROUBLE-AZURE_CSI_1_8_DEFECTS", "TROUBLE-AZURE_CSI_1_9_DEFECTS"]}
 {"alias": "is this calico bug already fixed", "ids": ["TROUBLE-CALICO_3_0_DEFECTS", "TROUBLE-CALICO_3_1_DEFECTS", "TROUBLE-CALICO_3_27_DEFECTS", "TROUBLE-CALICO_3_29_DEFECTS", "TROUBLE-CALICO_3_30_DEFECTS", "TROUBLE-CALICO_3_31_DEFECTS", "TROUBLE-CALICO_3_32_DEFECTS"]}
 {"alias": "is this cert-manager bug already fixed", "ids": ["TROUBLE-CERT_MANAGER_0_12_DEFECTS", "TROUBLE-CERT_MANAGER_0_13_DEFECTS", "TROUBLE-CERT_MANAGER_0_14_DEFECTS", "TROUBLE-CERT_MANAGER_0_15_DEFECTS", "TROUBLE-CERT_MANAGER_0_2_DEFECTS", "TROUBLE-CERT_MANAGER_0_3_DEFECTS", "TROUBLE-CERT_MANAGER_0_4_DEFECTS", "TROUBLE-CERT_MANAGER_0_5_DEFECTS", "TROUBLE-CERT_MANAGER_0_6_DEFECTS", "TROUBLE-CERT_MANAGER_0_7_DEFECTS", "TROUBLE-CERT_MANAGER_0_8_DEFECTS", "TROUBLE-CERT_MANAGER_0_9_DEFECTS", "TROUBLE-CERT_MANAGER_1_0_DEFECTS", "TROUBLE-CERT_MANAGER_1_11_DEFECTS", "TROUBLE-CERT_MANAGER_1_12_DEFECTS", "TROUBLE-CERT_MANAGER_1_13_DEFECTS", "TROUBLE-CERT_MANAGER_1_14_DEFECTS", "TROUBLE-CERT_MANAGER_1_15_DEFECTS", "TROUBLE-CERT_MANAGER_1_16_DEFECTS", "TROUBLE-CERT_MANAGER_1_17_DEFECTS", "TROUBLE-CERT_MANAGER_1_18_DEFECTS", "TROUBLE-CERT_MANAGER_1_19_DEFECTS", "TROUBLE-CERT_MANAGER_1_1_DEFECTS", "TROUBLE-CERT_MANAGER_1_20_DEFECTS", "TROUBLE-CERT_MANAGER_1_21_DEFECTS", "TROUBLE-CERT_MANAGER_1_3_DEFECTS", "TROUBLE-CERT_MANAGER_1_4_DEFECTS", "TROUBLE-CERT_MANAGER_1_5_DEFECTS", "TROUBLE-CERT_MANAGER_1_6_DEFECTS", "TROUBLE-CERT_MANAGER_1_7_DEFECTS"]}
-{"alias": "is this cilium bug already fixed", "ids": ["TROUBLE-CILIUM_1_0_DEFECTS", "TROUBLE-CILIUM_1_13_DEFECTS", "TROUBLE-CILIUM_1_18_DEFECTS", "TROUBLE-CILIUM_1_2_DEFECTS", "TROUBLE-CILIUM_1_4_DEFECTS", "TROUBLE-CILIUM_1_5_DEFECTS", "TROUBLE-CILIUM_1_8_DEFECTS", "TROUBLE-CILIUM_1_9_DEFECTS"]}
+{"alias": "is this cilium bug already fixed", "ids": ["TROUBLE-CILIUM_1_10_DEFECTS", "TROUBLE-CILIUM_1_11_DEFECTS", "TROUBLE-CILIUM_1_12_DEFECTS", "TROUBLE-CILIUM_1_13_DEFECTS", "TROUBLE-CILIUM_1_14_DEFECTS", "TROUBLE-CILIUM_1_15_DEFECTS", "TROUBLE-CILIUM_1_16_DEFECTS", "TROUBLE-CILIUM_1_17_DEFECTS", "TROUBLE-CILIUM_1_18_DEFECTS", "TROUBLE-CILIUM_1_19_DEFECTS", "TROUBLE-CILIUM_1_6_DEFECTS", "TROUBLE-CILIUM_1_7_DEFECTS", "TROUBLE-CILIUM_1_8_DEFECTS", "TROUBLE-CILIUM_1_9_DEFECTS"]}
 {"alias": "is this cinder-csi bug already fixed", "ids": ["TROUBLE-CINDER_CSI_1_21_DEFECTS", "TROUBLE-CINDER_CSI_1_25_DEFECTS", "TROUBLE-CINDER_CSI_1_26_DEFECTS", "TROUBLE-CINDER_CSI_1_27_DEFECTS", "TROUBLE-CINDER_CSI_1_28_DEFECTS", "TROUBLE-CINDER_CSI_1_29_DEFECTS", "TROUBLE-CINDER_CSI_1_31_DEFECTS", "TROUBLE-CINDER_CSI_1_32_DEFECTS"]}
 {"alias": "is this cni-plugins bug already fixed", "ids": ["TROUBLE-CNI_PLUGINS_0_8_DEFECTS", "TROUBLE-CNI_PLUGINS_1_0_DEFECTS", "TROUBLE-CNI_PLUGINS_1_1_DEFECTS", "TROUBLE-CNI_PLUGINS_1_2_DEFECTS", "TROUBLE-CNI_PLUGINS_1_6_DEFECTS"]}
-{"alias": "is this consul-k8s bug already fixed", "ids": ["TROUBLE-CONSUL_K8S_0_4_DEFECTS", "TROUBLE-CONSUL_K8S_0_5_DEFECTS", "TROUBLE-CONSUL_K8S_0_6_DEFECTS", "TROUBLE-CONSUL_K8S_0_7_DEFECTS", "TROUBLE-CONSUL_K8S_0_9_DEFECTS", "TROUBLE-CONSUL_K8S_1_0_DEFECTS", "TROUBLE-CONSUL_K8S_1_1_DEFECTS", "TROUBLE-CONSUL_K8S_1_2_DEFECTS", "TROUBLE-CONSUL_K8S_1_3_DEFECTS", "TROUBLE-CONSUL_K8S_1_4_DEFECTS", "TROUBLE-CONSUL_K8S_1_5_DEFECTS", "TROUBLE-CONSUL_K8S_1_6_DEFECTS", "TROUBLE-CONSUL_K8S_1_7_DEFECTS", "TROUBLE-CONSUL_K8S_1_8_DEFECTS"]}
+{"alias": "is this consul-k8s bug already fixed", "ids": ["TROUBLE-CONSUL_K8S_0_9_DEFECTS", "TROUBLE-CONSUL_K8S_1_0_DEFECTS", "TROUBLE-CONSUL_K8S_1_1_DEFECTS", "TROUBLE-CONSUL_K8S_1_2_DEFECTS", "TROUBLE-CONSUL_K8S_1_3_DEFECTS", "TROUBLE-CONSUL_K8S_1_4_DEFECTS", "TROUBLE-CONSUL_K8S_1_5_DEFECTS", "TROUBLE-CONSUL_K8S_1_6_DEFECTS", "TROUBLE-CONSUL_K8S_1_7_DEFECTS", "TROUBLE-CONSUL_K8S_1_8_DEFECTS"]}
 {"alias": "is this containerd bug already fixed", "ids": ["TROUBLE-CONTAINERD_1_1_DEFECTS", "TROUBLE-CONTAINERD_1_2_DEFECTS", "TROUBLE-CONTAINERD_1_3_DEFECTS", "TROUBLE-CONTAINERD_1_4_DEFECTS", "TROUBLE-CONTAINERD_1_5_DEFECTS", "TROUBLE-CONTAINERD_1_6_DEFECTS", "TROUBLE-CONTAINERD_1_7_DEFECTS", "TROUBLE-CONTAINERD_2_0_DEFECTS", "TROUBLE-CONTAINERD_2_1_DEFECTS", "TROUBLE-CONTAINERD_2_2_DEFECTS", "TROUBLE-CONTAINERD_2_3_DEFECTS"]}
 {"alias": "is this coredns bug already fixed", "ids": ["TROUBLE-COREDNS_1_11_DEFECTS", "TROUBLE-COREDNS_1_12_DEFECTS", "TROUBLE-COREDNS_1_13_DEFECTS", "TROUBLE-COREDNS_1_14_DEFECTS", "TROUBLE-COREDNS_1_9_DEFECTS"]}
 {"alias": "is this cri-o bug already fixed", "ids": ["TROUBLE-CRI_O_1_10_DEFECTS", "TROUBLE-CRI_O_1_11_DEFECTS", "TROUBLE-CRI_O_1_12_DEFECTS", "TROUBLE-CRI_O_1_13_DEFECTS", "TROUBLE-CRI_O_1_14_DEFECTS", "TROUBLE-CRI_O_1_15_DEFECTS", "TROUBLE-CRI_O_1_16_DEFECTS", "TROUBLE-CRI_O_1_17_DEFECTS", "TROUBLE-CRI_O_1_18_DEFECTS", "TROUBLE-CRI_O_1_8_DEFECTS", "TROUBLE-CRI_O_1_9_DEFECTS"]}
@@ -3390,6 +3391,7 @@
 {"alias": "latest component versions", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
 {"alias": "latest upstream versions", "ids": ["CONCEPT-UPGRADE_HORIZON"]}
 {"alias": "leaderelection lost", "ids": ["TROUBLE-CONTROL_PLANE_LEADER_ELECTION"]}
+{"alias": "leaked ip addresses after node reboot", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
 {"alias": "leave_etc_backup_files", "ids": ["VARIABLE-LEAVE_ETC_BACKUP_FILES"]}
 {"alias": "leftover vlan interface node", "ids": ["TROUBLE-LEFTOVER_SECONDARY_BOND"]}
 {"alias": "legacy service account token deleted", "ids": ["TROUBLE-KCM_SA_TOKEN_CLEANUP"]}
@@ -4207,6 +4209,7 @@
 {"alias": "set arbitrary kubeletconfiguration field", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
 {"alias": "shim reaper mutex deadlock", "ids": ["TROUBLE-CONTAINERD_SHIM_MEMORY_LEAK"]}
 {"alias": "short-name did not resolve to an alias", "ids": ["TROUBLE-CRIO_SHORT_NAME_REGISTRY"]}
+{"alias": "should we upgrade containerd 2.1", "ids": ["TROUBLE-CONTAINERD_2_1_EXPOSURE"]}
 {"alias": "sidecar containers 1.29", "ids": ["CONCEPT-K8S_1_29_CHANGES"]}
 {"alias": "sidecar lifecycle kubernetes", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
 {"alias": "sidecar startup ordering", "ids": ["CONCEPT-K8S_SIDECAR_CONTAINERS"]}
@@ -4673,9 +4676,7 @@
 {"alias": "what breaks upgrading aws-ebs-csi", "ids": ["TROUBLE-AWS_EBS_CSI_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading calico", "ids": ["TROUBLE-CALICO_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading cert-manager", "ids": ["TROUBLE-CERT_MANAGER_BREAKING_CHANGES"]}
-{"alias": "what breaks upgrading cilium", "ids": ["TROUBLE-CILIUM_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading cinder-csi", "ids": ["TROUBLE-CINDER_CSI_BREAKING_CHANGES"]}
-{"alias": "what breaks upgrading consul-k8s", "ids": ["TROUBLE-CONSUL_K8S_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading containerd", "ids": ["TROUBLE-CONTAINERD_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading etcd", "ids": ["TROUBLE-ETCD_BREAKING_CHANGES"]}
 {"alias": "what breaks upgrading gcp-pd-csi", "ids": ["TROUBLE-GCP_PD_CSI_BREAKING_CHANGES"]}

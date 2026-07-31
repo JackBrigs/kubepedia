@@ -762,86 +762,12 @@
   "bug fixes": [
    "Fix service registration naming when using Connect [[GH 36](https://github.com/hashicorp/consul-k8s/issues/36)]",
    "Fix catalog sync so that agents don't incorrectly deregister Kubernetes services [[GH 40](https://github.com/hashicorp/consul-k8s/issues/40)][[GH 59](https://github.com/hashicorp/consul-k8s/issues/59)]",
-   "Fix performance issue for the k8s -> Consul catalog sync [[GH 60](https://github.com/hashicorp/consul-k8s/issues/60)]",
-   "Bug Fixes",
-   "Fixes a problem that would cause webhook deployment to fail on Kubernetes v1.22 and greater. [#991](https://github.com/kubernetes-sigs/gateway-api/pull/991)",
-   "Fixes a bug where the `Namespace` could be unspecified in `ReferencePolicy` [#964](https://github.com/kubernetes-sigs/gateway-api/pull/964)",
-   "Fixes a bug where v1alpha2 GatewayClass controller names were not being shown in the output of `kubectl get gatewayclasses` [#909](https://github.com/kubernetes-sigs/gateway-api/pull/909)"
-  ],
-  "breaking changes": [
-   "Breaking Changes Validation improvements Internal type cleanup",
-   "The v1alpha1 API version was deprecated and removed. [#1197](https://github.com/kubernetes-sigs/gateway-api/pull/1197) [#906](https://github.com/kubernetes-sigs/gateway-api/issues/906)",
-   "The `NamedAddress` value for `Gateway`'s `spec.addresses[].type` field has been deprecated, and support for domain-prefixed values (like `example.com/NamedAddress`) has been added instead to better represent the custom nature of this support. [#1178](https://github.com/kubernetes-sigs/gateway-api/pull/1178)",
-   "Implementations are now expected to use `500` instead of `503` responses when the data-plane has no matching route. [#1151](https://github.com/kubernetes-sigs/gateway-api/pull/1151), [#1258](https://github.com/kubernetes-sigs/gateway-api/pull/1258)"
+   "Fix performance issue for the k8s -> Consul catalog sync [[GH 60](https://github.com/hashicorp/consul-k8s/issues/60)]"
   ]
  },
  "0.2.1": {
   "bug fixes": [
    "Fix single direction catalog sync [[GH 7](https://github.com/hashicorp/consul-k8s/issues/7)]"
-  ]
- },
- "0.7.1": {
-  "bug fixes": [
-   "Fixed an issues causing conformance tests to fail when using IPv6 addresses. (#2024, @howardjohn)",
-   "Fixes to port and scheme redirect tests: Tests now send HTTPS requests with consistent SNI and Host, Gateway now has the correct SANs. (#2039, @sunjaybhatia)"
-  ]
- },
- "0.7.0": {
-  "bug fixes": [
-   "Removes GRPCRoute method match defaulting to allow for matching all requests, or matching only by header. (#1753, @skriss)",
-   "Update route validation to comply with RFC-3986 \"p-char\" characters. (#1644, @jackstine)",
-   "Illegal names like \" \" will be not allowed for query param name in HTTPQueryParamMatch. (#1796, @gyohuangxin)",
-   "Webhook: Port is now considered when validating that ParentRefs are unique (#1995, @howardjohn)",
-   "Fixes for mesh conformance tests (#2017, @keithmattix)",
-   "Fix description of ReferenceGrant example in documentation by making it use the correct resources. (#1864, @matteoolivi)",
-   "Fix grammar mistake in ReferenceGrant implementation guidelines. (#1865, @matteoolivi)"
-  ]
- },
- "0.6.2": {
-  "bug fixes": [
-   "Fix invalid HTTP redirect/rewrite examples. (#1787, @Xunzhuo)",
-   "Fixed an issue where tests may fail erroneously on the removal of resources that are already removed. (#1745, @mlavacca)"
-  ]
- },
- "0.6.1": {
-  "bug fixes": [
-   "Our regex for validating path characters was updated to accurately identify \"p-chars\" as per RFC-3986. (#1644, @jackstine)",
-   "An erroneous \"namespace\" field was present in our webhook ClusterRoleBindings and has been removed. (#1684, @tao12345666333)",
-   "Fixed a broken test for GRPCRoute that caused an erronous failure. (#1692, @arkodg)",
-   "Fixed usage of `net/http` default client in conformance test suite (#1617, @howardjohn)",
-   "Fixed missing reference to NoMatchingParent in godoc (#1671, @mlavacca)"
-  ]
- },
- "0.6.0": {
-  "bug fixes": [
-   "Fix Gateway reference in HTTPRouteInvalidParentRefNotMatchingListenerPort (#1591, @sayboras)"
-  ]
- },
- "0.4.3": {
-  "bug fixes": [
-   "A fix to ensure that Path match validation actually works [#1071](https://github.com/kubernetes-sigs/gateway-api/pull/1071)"
-  ]
- },
- "0.4.2": {
-  "bug fixes": [
-   "Update image generation process with more consistent naming [#1034](https://github.com/kubernetes-sigs/gateway-api/pull/1034)"
-  ]
- },
- "0.4.1": {
-  "bug fixes": [
-   "ControllerName now prints correctly in kubectl output for GatewayClass [#909](https://github.com/kubernetes-sigs/gateway-api/pull/909)",
-   "Namespace can no longer be left unspecified in ReferencePolicy [#964](https://github.com/kubernetes-sigs/gateway-api/pull/964)",
-   "Wildcard characters can no longer be used in redirect Hostname values [#956](https://github.com/kubernetes-sigs/gateway-api/pull/956)"
-  ]
- },
- "0.4.0": {
-  "bug fixes": [
-   "[#777](https://github.com/kubernetes-sigs/gateway-api/pull/777) : Fix typo",
-   "[#875](https://github.com/kubernetes-sigs/gateway-api/pull/875) : Fix HTTP path match documentation.",
-   "[#845](https://github.com/kubernetes-sigs/gateway-api/pull/845) : Fix markdown list formatting.",
-   "[#834](https://github.com/kubernetes-sigs/gateway-api/pull/834) : Fixes some broken links",
-   "[#885](https://github.com/kubernetes-sigs/gateway-api/pull/885) : Fix incorrect urls",
-   "[#748](https://github.com/kubernetes-sigs/gateway-api/pull/748) : fix kustomize to install v1a2 crds"
   ]
  }
 }
