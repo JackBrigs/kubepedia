@@ -24,6 +24,10 @@ import argparse
 import json
 import re
 import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import osvlib  # общая логика «затронута ли версия» — см. её docstring
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -216,6 +220,11 @@ def sweep(matrices: list[Matrix], offline: bool) -> list[dict]:
                 for r in m.rows
             ]
         elif m.usable:
+            # Первый проход: собрать ответы по всем версиям. Сведения об исправлении
+            # часто лежат в записи, которую osv.dev вернул для другой версии, поэтому
+            # объединять фиксы надо по всей матрице, а не построчно. Повторных
+            # запросов нет — они берутся из кеша.
+            per_row = {}
             for row in m.rows:
                 vulns, failed = [], False
                 for pkg in packages_for(m.packages, row["version"]):
@@ -224,10 +233,29 @@ def sweep(matrices: list[Matrix], offline: bool) -> list[dict]:
                         failed = True
                     else:
                         vulns.extend(got)
+                per_row[row["version"]] = (vulns, failed)
+            all_vulns = [v for vulns, _ in per_row.values() for v in vulns]
+            fixes_all = osvlib.merge_fixes([v for v in all_vulns if osvlib.version_resolvable(v)])
+
+            for row in m.rows:
+                vulns, failed = per_row[row["version"]]
                 if failed and not vulns:
                     entry["rows"].append({**row, "error": True})
                     continue
-                live = canonical_ids(vulns)
+                # Единая логика с генератором матриц: отбрасываем записи, по которым
+                # нельзя судить о версии, и те, что закрыты в версии не старше
+                # проверяемой. Без этого свип считал ingress-nginx 1.13.3 уязвимым
+                # к тому, что починили в 1.12.1, и будил ложной тревогой каждое утро.
+                # Список строится одной функцией, а не пересечением двух словарей:
+                # ключи у них собирались по-разному, и пересечение молча схлопывалось
+                # в ноль — flannel показывал «0 уязвимостей» там, где их одна.
+                live = {}
+                for v in vulns:
+                    if not osvlib.version_resolvable(v):
+                        continue
+                    cid = osvlib.canonical_id(v)
+                    if osvlib.still_affected(cid, row["version"], fixes_all):
+                        live.setdefault(cid, v)
                 recorded = row["recorded"]
                 # osv ids, CVE and GHSA aliases all appear in the KB; one advisory
                 # is "already recorded" if the doc names it under any of them.

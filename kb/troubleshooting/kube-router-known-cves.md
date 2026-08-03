@@ -46,16 +46,16 @@ queried version, so this is authoritative affectedness rather than a guess from 
 
 ## Context
 
-| Kubespray | Component version | # CVEs | CVEs |
-|---|---|---:|---|
-| v2.27.0 | 2.0.0 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
-| v2.27.1 | 2.0.0 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
-| v2.28.0 | 2.1.1 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
-| v2.28.1 | 2.1.1 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
-| v2.29.0 | 2.1.1 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
-| v2.29.1 | 2.1.1 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
-| v2.30.0 | 2.1.1 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
-| v2.31.0 | 2.1.1 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
+| Component version | Kubespray | # CVEs | CVEs |
+|---|---|---|---|
+| 2.0.0 | v2.27.0 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
+| 2.0.0 | v2.27.1 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
+| 2.1.1 | v2.28.0 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
+| 2.1.1 | v2.28.1 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
+| 2.1.1 | v2.29.0 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
+| 2.1.1 | v2.29.1 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
+| 2.1.1 | v2.30.0 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
+| 2.1.1 | v2.31.0 | 4 | CVE-2026-32254, GHSA-v5mh-h5hx-7v92, GO-2026-5354, GO-2026-5653 |
 
 ## Diagnostics
 

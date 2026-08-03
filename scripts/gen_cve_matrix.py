@@ -169,9 +169,12 @@ def build(comp, pkg, comp_id, today):
     if not details:
         return {"empty": True, "comp": comp, "rows": table}
 
-    body = ["| Kubespray | Component version | # CVEs | CVEs |", "|---|---|---:|---|"]
+    # Порядок колонок обязан совпадать с рукописными матрицами: их разбирает
+    # cve_sweep, и при обратном порядке он спрашивает osv.dev про тег Kubespray
+    # вместо версии компонента. Ответ приходит пустой, расхождение — каждое утро.
+    body = ["| Component version | Kubespray | # CVEs | CVEs |", "|---|---|---|---|"]
     for tag, ver, ids in table:
-        body.append(f"| {tag} | {ver} | {len(ids)} | {', '.join(ids) if ids else '—'} |")
+        body.append(f"| {ver} | {tag} | {len(ids)} | {', '.join(ids) if ids else '—'} |")
     known = ["", "CVEs (id — summary — fixed in):", ""]
     for cid, v in sorted(details.items()):
         summary = re.sub(r"\s+", " ", v.get("summary") or v.get("details", "")[:160]).strip()
