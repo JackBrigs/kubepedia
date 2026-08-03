@@ -21,3 +21,4 @@ src-cache/
 
 # журнал пробелов поиска: сырые запросы (могут содержать имена хостов)
 reports/gaps.jsonl
+reports/nightly/
