@@ -1522,6 +1522,10 @@
 {"source": "TROUBLE-KYVERNO_TTL_CLEANUP", "target": "CONCEPT-KYVERNO_CONTROLLERS", "type": "see_also"}
 {"source": "TROUBLE-KYVERNO_UPGRADE", "target": "CONCEPT-ADDON_KYVERNO", "type": "see_also"}
 {"source": "TROUBLE-KYVERNO_UPGRADE", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED", "target": "CONCEPT-ADDON_KYVERNO", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED", "target": "TROUBLE-KYVERNO_FAILURE_POLICY_SYSTEM_NS", "type": "see_also"}
+{"source": "TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED", "target": "TROUBLE-KYVERNO_WEBHOOK_HA", "type": "see_also"}
 {"source": "TROUBLE-KYVERNO_WEBHOOK_HA", "target": "CONCEPT-ADDON_KYVERNO", "type": "see_also"}
 {"source": "TROUBLE-KYVERNO_WEBHOOK_HA", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-LEFTOVER_SECONDARY_BOND", "target": "CONCEPT-KUBESPRAY_NODE_IP", "type": "see_also"}

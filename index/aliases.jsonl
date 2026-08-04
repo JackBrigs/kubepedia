@@ -690,6 +690,7 @@
 {"alias": "cannot create regular file '/hostbin/cilium-mount'", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "cannot evict pod PDB", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
 {"alias": "cannot list resource", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "cannot patch DaemonSet admission webhook denied", "ids": ["TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED"]}
 {"alias": "cannot patch pods/ephemeralcontainers", "ids": ["PRACTICE-DEBUG_EPHEMERAL_CONTAINERS"]}
 {"alias": "cannot pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "cannot reach service", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
@@ -1623,6 +1624,7 @@
 {"alias": "delete node from cluster", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
 {"alias": "delete_node_delay_seconds", "ids": ["VARIABLE-DELETE_NODE_DELAY_SECONDS"]}
 {"alias": "delete_node_retries", "ids": ["VARIABLE-DELETE_NODE_RETRIES"]}
+{"alias": "denied the request the server has asked for the client to provide credentials", "ids": ["TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED"]}
 {"alias": "deploy new cluster kubespray", "ids": ["PRACTICE-RUNBOOK_BOOTSTRAP"]}
 {"alias": "deploy_container_engine", "ids": ["VARIABLE-DEPLOY_CONTAINER_ENGINE"]}
 {"alias": "deploy_coredns", "ids": ["VARIABLE-DEPLOY_COREDNS"]}
@@ -2393,6 +2395,7 @@
 {"alias": "helm cve", "ids": ["TROUBLE-HELM_KNOWN_CVES"]}
 {"alias": "helm in kubespray", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
 {"alias": "helm upgrade broke", "ids": ["TROUBLE-HELM_BREAKING_CHANGES"]}
+{"alias": "helm upgrade denied by kyverno", "ids": ["TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED"]}
 {"alias": "helm-apps", "ids": ["CONCEPT-HELM_IN_KUBESPRAY"]}
 {"alias": "helm_archive_checksum", "ids": ["VARIABLE-HELM_ARCHIVE_CHECKSUM"]}
 {"alias": "helm_archive_checksums", "ids": ["VARIABLE-HELM_ARCHIVE_CHECKSUMS"]}
@@ -3375,11 +3378,13 @@
 {"alias": "kyverno 1.12.0 etcd growth", "ids": ["TROUBLE-KYVERNO_UPGRADE"]}
 {"alias": "kyverno CEL policy webhook", "ids": ["CONCEPT-KYVERNO_CEL_POLICIES"]}
 {"alias": "kyverno ImageValidatingPolicy blocks", "ids": ["TROUBLE-KYVERNO_IMAGE_VERIFICATION_BLOCKS"]}
+{"alias": "kyverno Unauthorized failed to list", "ids": ["TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED"]}
 {"alias": "kyverno ValidatingPolicy MutatingPolicy", "ids": ["CONCEPT-KYVERNO_CEL_POLICIES"]}
 {"alias": "kyverno admission controller", "ids": ["CONCEPT-ADDON_KYVERNO"]}
 {"alias": "kyverno admission reports etcd full", "ids": ["TROUBLE-KYVERNO_REPORTS_ETCD_SCALE"]}
 {"alias": "kyverno auto VAP", "ids": ["CONCEPT-KYVERNO_CEL_POLICIES"]}
 {"alias": "kyverno background controller", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
+{"alias": "kyverno blocks cilium upgrade", "ids": ["TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED"]}
 {"alias": "kyverno blocks kube-system", "ids": ["TROUBLE-KYVERNO_FAILURE_POLICY_SYSTEM_NS"]}
 {"alias": "kyverno cleanup controller", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
 {"alias": "kyverno controllers architecture", "ids": ["CONCEPT-KYVERNO_CONTROLLERS"]}
@@ -3592,6 +3597,7 @@
 {"alias": "multus_namespace_isolation", "ids": ["VARIABLE-MULTUS_NAMESPACE_ISOLATION"]}
 {"alias": "multus_version", "ids": ["COMPONENT-MULTUS", "VARIABLE-MULTUS_VERSION"]}
 {"alias": "must read before upgrade k8s", "ids": ["CONCEPT-K8S_URGENT_UPGRADE_NOTES"]}
+{"alias": "mutate.kyverno.svc-fail denied the request", "ids": ["TROUBLE-KYVERNO_WEBHOOK_DENIES_UNAUTHORIZED"]}
 {"alias": "mutating webhook blocks pod creation", "ids": ["TROUBLE-VAULT_SECRETS_WEBHOOK"]}
 {"alias": "mutatingwebhookconfiguration blocking", "ids": ["TROUBLE-ADMISSION_WEBHOOK_BLOCKING"]}
 {"alias": "nameservers", "ids": ["VARIABLE-NAMESERVERS"]}
