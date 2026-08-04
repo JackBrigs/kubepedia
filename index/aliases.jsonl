@@ -690,6 +690,7 @@
 {"alias": "cannot create regular file '/hostbin/cilium-mount'", "ids": ["TROUBLE-CILIUM_MOUNT_CGROUP_DENIED"]}
 {"alias": "cannot evict pod PDB", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
 {"alias": "cannot list resource", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
+{"alias": "cannot patch pods/ephemeralcontainers", "ids": ["PRACTICE-DEBUG_EPHEMERAL_CONTAINERS"]}
 {"alias": "cannot pull image", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
 {"alias": "cannot reach service", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "cannot scrape controller-manager scheduler", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
@@ -1609,6 +1610,7 @@
 {"alias": "dashboard_tls_key_file", "ids": ["VARIABLE-DASHBOARD_TLS_KEY_FILE"]}
 {"alias": "dashboard_token_ttl", "ids": ["VARIABLE-DASHBOARD_TOKEN_TTL"]}
 {"alias": "dashboard_use_custom_certs", "ids": ["VARIABLE-DASHBOARD_USE_CUSTOM_CERTS"]}
+{"alias": "debug distroless container no shell", "ids": ["PRACTICE-DEBUG_EPHEMERAL_CONTAINERS"]}
 {"alias": "declarative deployment kubernetes", "ids": ["CONCEPT-GITOPS"]}
 {"alias": "declarative talos clusters", "ids": ["CONCEPT-TALOS_CLUSTER_API"]}
 {"alias": "decommission node kubespray", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE"]}
@@ -1847,6 +1849,7 @@
 {"alias": "envoy-xds-controller", "ids": ["CONCEPT-ADDON_ENVOY_XDS_CONTROLLER", "TROUBLE-ENVOY_XDS_CONTROLLER"]}
 {"alias": "envoy.enabled daemonset", "ids": ["CONCEPT-CILIUM_ENVOY"]}
 {"alias": "epel_enabled", "ids": ["VARIABLE-EPEL_ENABLED"]}
+{"alias": "ephemeral container cannot see processes", "ids": ["PRACTICE-DEBUG_EPHEMERAL_CONTAINERS"]}
 {"alias": "ephemeral port conflict kubelet etcd", "ids": ["TROUBLE-TUNED_PORT_RANGE_COLLISION"]}
 {"alias": "error dialing backend", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}
 {"alias": "error execution phase addon", "ids": ["TROUBLE-KUBEADM_UPGRADE_APPLY"]}
@@ -3157,7 +3160,10 @@
 {"alias": "kubectl", "ids": ["TAG-KUBECTL", "VARIABLE-KUBECTL"]}
 {"alias": "kubectl apply SSA", "ids": ["CONCEPT-K8S_KUBECTL_SSA_DEFAULT"]}
 {"alias": "kubectl apply managedFields", "ids": ["CONCEPT-K8S_KUBECTL_SSA_DEFAULT"]}
+{"alias": "kubectl cp fails distroless", "ids": ["PRACTICE-DEBUG_EPHEMERAL_CONTAINERS"]}
 {"alias": "kubectl cp hangs proxy", "ids": ["TROUBLE-K8S_SPDY_WEBSOCKETS"]}
+{"alias": "kubectl debug ephemeral container", "ids": ["PRACTICE-DEBUG_EPHEMERAL_CONTAINERS"]}
+{"alias": "kubectl debug target container", "ids": ["PRACTICE-DEBUG_EPHEMERAL_CONTAINERS"]}
 {"alias": "kubectl delete ns ordering", "ids": ["CONCEPT-K8S_ORDERED_NAMESPACE_DELETION"]}
 {"alias": "kubectl drain hangs", "ids": ["TROUBLE-NODE_DRAIN_GOTCHAS"]}
 {"alias": "kubectl exec error", "ids": ["TROUBLE-KUBECTL_EXEC_LOGS_FAILS"]}

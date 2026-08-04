@@ -553,6 +553,8 @@
 {"source": "PRACTICE-CONTAINERD_DIAGNOSTICS", "target": "COMPONENT-CONTAINERD", "type": "see_also"}
 {"source": "PRACTICE-CONTAINERD_DIAGNOSTICS", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "PRACTICE-CRI_O", "target": "CONCEPT-CONTAINER_MANAGER", "type": "see_also"}
+{"source": "PRACTICE-DEBUG_EPHEMERAL_CONTAINERS", "target": "PRACTICE-RBAC_LEAST_PRIVILEGE", "type": "see_also"}
+{"source": "PRACTICE-DEBUG_EPHEMERAL_CONTAINERS", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}
 {"source": "PRACTICE-DNS_DEBUG", "target": "COMPONENT-COREDNS", "type": "see_also"}
 {"source": "PRACTICE-DNS_DEBUG", "target": "COMPONENT-NODELOCALDNS", "type": "see_also"}
 {"source": "PRACTICE-DNS_DEBUG", "target": "VARIABLE-DNS_MODE", "type": "see_also"}

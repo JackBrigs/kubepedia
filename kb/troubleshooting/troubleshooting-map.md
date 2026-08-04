@@ -255,6 +255,9 @@ Kubespray не настраивает сеть на существующих х�
 - **Одна реплика загружена, остальные простаивают; добавление реплик не помогает** — это gRPC
   или HTTP/2 через ClusterIP: Service балансирует соединения, а не запросы →
   [[CONCEPT-GRPC_LOAD_BALANCING]].
+- **`cannot patch resource "pods/ephemeralcontainers"`** при `kubectl debug`, хотя прав в
+  неймспейсе достаточно — этого права нет ни в `admin`, ни в `edit` →
+  [[PRACTICE-DEBUG_EPHEMERAL_CONTAINERS]].
 - **Все маршруты разом отвечают 503, потом само проходит** — контроллер Gateway API потерял
   лидерство и перетранслировал конфигурацию по неполному кешу → [[TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503]].
 - **Остаток в `/etc/fstab`: `bpffs /sys/fs/bpf`** после того, как Kubespray перестал им управлять
