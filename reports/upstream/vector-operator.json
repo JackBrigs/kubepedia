@@ -1,0 +1,102 @@
+{
+ "0.0.31": {
+  "bug fixes": [
+   "[[127]](https://github.com/kaasops/vector-operator/pull/127) **Fix** Add imagePullSecrets from Vector Agent to ConfigCheck"
+  ]
+ },
+ "0.0.30": {
+  "bug fixes": [
+   "[[124]](https://github.com/kaasops/vector-operator/pull/124) **Fix** fix dockerfile to build arm64"
+  ]
+ },
+ "0.0.27": {
+  "bug fixes": [
+   "**HotFix** fix prom exporter port"
+  ]
+ },
+ "0.0.26": {
+  "bug fixes": [
+   "[[116]](https://github.com/kaasops/vector-operator/pull/116) **Fix** don not merge source if custom options exists"
+  ]
+ },
+ "0.0.24": {
+  "bug fixes": [
+   "[[109]](https://github.com/kaasops/vector-operator/pull/109) **Fix** fix broken apiservice error"
+  ]
+ },
+ "0.0.20": {
+  "bug fixes": [
+   "[[100](https://github.com/kaasops/vector-operator/pull/100)] **Fix** Create csv and fix rbac auto generation"
+  ]
+ },
+ "0.0.19": {
+  "bug fixes": [
+   "[[97](https://github.com/kaasops/vector-operator/pull/97)] **Fix** Check if ServiceMonitor CRD exists"
+  ]
+ },
+ "0.0.18": {
+  "bug fixes": [
+   "[[95](https://github.com/kaasops/vector-operator/pull/95)] **Fix** Added ImagePullPolicy to Vector Agent"
+  ]
+ },
+ "0.0.17": {
+  "bug fixes": [
+   "[[93](https://github.com/kaasops/vector-operator/pull/93)] **Fix** Fix Condition type"
+  ]
+ },
+ "0.0.16": {
+  "bug fixes": [
+   "[[92](https://github.com/kaasops/vector-operator/pull/92)] **Fix** Added rbac for ServiceMonitros"
+  ]
+ },
+ "0.0.13": {
+  "bug fixes": [
+   "[[83](https://github.com/kaasops/vector-operator/pull/83)] **Fix** Fix configcheck pods cleanup"
+  ]
+ },
+ "0.0.11": {
+  "bug fixes": [
+   "[[79](https://github.com/kaasops/vector-operator/pull/79)] **Fix** Remove vector.dev/exclude label"
+  ]
+ },
+ "0.0.10": {
+  "bug fixes": [
+   "[[73](https://github.com/kaasops/vector-operator/pull/73)] **Fix** Add vector tolerations for configCheck pod"
+  ]
+ },
+ "0.0.9": {
+  "bug fixes": [
+   "[[71](https://github.com/kaasops/vector-operator/pull/71)] **Fix** Fix panic on empty sinks and sources",
+   "[[70](https://github.com/kaasops/vector-operator/pull/70)] **Fix** Fix nil vector panic"
+  ]
+ },
+ "0.0.8": {
+  "bug fixes": [
+   "[[64](https://github.com/kaasops/vector-operator/pull/64)] **Fix** Do not reconсile vector if vp check fail",
+   "[[63](https://github.com/kaasops/vector-operator/pull/63)] **Fix** Fix configcheck gc"
+  ]
+ },
+ "0.0.6": {
+  "bug fixes": [
+   "[[60](https://github.com/kaasops/vector-operator/pull/60)] **Fix**: Fix Vector agent DaemosSet for collect journald service logs"
+  ]
+ },
+ "0.0.5": {
+  "bug fixes": [
+   "[[56](https://github.com/kaasops/vector-operator/pull/56)] **Fix**: Fix envs forwarding issue for configCheck",
+   "[[51](https://github.com/kaasops/vector-operator/pull/51)] **Fix**: Fix error with install vector CR in helm",
+   "[[50](https://github.com/kaasops/vector-operator/pull/50)] **Fix**: Fix error with SA in helm && Update helm"
+  ]
+ },
+ "0.0.3": {
+  "bug fixes": [
+   "[[46](https://github.com/kaasops/vector-operator/pull/46)] **Fix**: Fix error with envs forwarding from CR Vector"
+  ]
+ },
+ "0.0.2": {
+  "bug fixes": [
+   "[[37](https://github.com/kaasops/vector-operator/pull/37)] **Cleanup**: Fix context-in-struct warning",
+   "[[40](https://github.com/kaasops/vector-operator/pull/40)] **Fix**: Sloved context forward errors"
+  ]
+ }
+}
