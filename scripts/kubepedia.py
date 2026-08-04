@@ -31,6 +31,7 @@ CMDS = {
     "report":   ("upgrade_report.py", "KB-narrative upgrade report (personalized to an inventory)"),
     "verify":   ("check_versions.py", "KB integrity: component versions vs the tagged Kubespray source"),
     "versions": ("versions_lookup.py", "which version of a component ships per tag, and how it is defined"),
+    "code":     ("code.py",           "поиск по исходникам компонента на точном теге + постоянные ссылки для sources:"),
     "feed":     ("freshness.py",      "монитор свежести: новые теги, влитые PR апстрима (--upstream/--journal), протухание verified_at"),
     "issues":   ("upstream_issues.py", "проблемный слой апстрима: CVE, ломающие изменения и дефекты по релизам"),
     "breaking": ("gen_breaking_docs.py", "документы «ломающие изменения» из добытого проблемного слоя"),

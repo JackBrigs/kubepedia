@@ -591,3 +591,39 @@ tooling. Anything that changes what the base is allowed to say belongs under rev
 **Consequences.** `skills/README.md` documents the layout and the one-line redeploy for a fresh
 checkout (or a plain copy where an environment does not follow symlinks). The `learn` skill remains
 `.claude`-only for now — it is a maintenance loop, not an answering contract; move it if that changes.
+
+## D-025 — Tagged source becomes a queryable layer, not a one-off grep (2026-08-04)
+
+**Context.** `sources.md` already ranks tagged source code as the strongest evidence, and the base
+uses it that way: the sharpest documents cite `file:line` at an exact tag. But the act of getting
+there was manual and disposable. Each investigation grepped a clone by hand, the finding went into
+prose, and the next question started from zero. Two defects surfaced the same week: the Kubernetes
+repository — by far the most-read codebase in this project — was **absent** from `src-cache/`, so the
+API server error formats had to be fetched over the network mid-analysis; and the Kyverno clone was
+unusable for search, failing with `could not fetch ... from promisor remote`.
+
+That second failure is structural, not accidental. Every clone in `src-cache/` is partial
+(`--filter=blob:none`): file contents are not stored, they are fetched on demand. That is enough for
+`git show <one file>` and useless for `git grep <tag>`, which needs the blobs of the whole tree.
+
+**Decision.** Source becomes a first-class layer with its own handle, `kubepedia code`. A tag is
+**materialised once** as a git worktree (3–4 s) and searched as ordinary files afterwards (tens of
+ms). Every hit is printed with a permanent link to the same tag, and `--source` emits a ready
+`sources:` block, so a finding can enter a KDS document without hand-assembling a URL. A component
+version can be named directly (`--tag`) or resolved from the release envelope (`--kubespray v2.31.0`),
+which reuses the existing per-tag version lookup rather than re-deriving it.
+
+**Rationale.** Reproducibility is priority 4 of the project and was the one the code path violated:
+a claim backed by a grep nobody can repeat is only as good as the memory of whoever ran it. Making
+the tag explicit and the link permanent turns a private act into checkable evidence.
+
+**Consequences.** Missing repositories are cloned on first use from the existing 40-entry upstream
+map; repositories present in the cache but outside that map (`enhancements`, from which the KEP layer
+was built) are reachable too, with their owner read from the clone so the map is not maintained
+twice. A version that resolves to no tag is reported as an error rather than as an empty result —
+silence here would read as "not in the code", which is a false answer. Branches resolve as well, for
+repositories like `enhancements` that carry no tags, and are flagged as impermanent links unfit for a
+document. Search prefers `ripgrep` when a real binary is installed and falls back to POSIX `grep`
+otherwise: on the owner's machine `rg` is a shell function, not an executable, and a tool of the base
+must run on a bare system. Worktrees live under `src-cache/.worktrees/` (git-ignored, `--prune`
+clears them); their objects stay in the clone, so re-materialising never goes back to the network.
