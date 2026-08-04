@@ -21,8 +21,12 @@ LOG="$LOGDIR/$(date +%Y-%m-%d).log"
 
 # cron не наследует пользовательский PATH: без этого не найдутся git, gh и python
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-# ключ для push: агента в cron нет, поэтому указываем напрямую
-export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/id_ecdsa -o StrictHostKeyChecking=accept-new"
+# Ключ для push: агента в cron нет, поэтому указываем файлом и запрещаем ssh
+# подбирать другие личности (IdentitiesOnly) — иначе ошибка выглядит как проблема
+# ключа, хотя ssh просто перебрал не те. Путь абсолютный: на пустое окружение cron
+# полагаться нельзя. Здесь стоял id_ecdsa — он на GitHub не авторизован вовсе, и
+# push падал каждое утро, а интерактивно всё работало через ключ из агента.
+export GIT_SSH_COMMAND="ssh -i /Users/bredikhin.yu/.ssh/id_ed25519_home -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
 
 mkdir -p "$LOGDIR"
 exec >>"$LOG" 2>&1
@@ -38,12 +42,14 @@ say "свежесть и наблюдение за апстримом"
 "$PY" scripts/freshness.py --upstream --journal || echo "!! freshness завершился с ошибкой"
 
 say "пере-свип CVE"
-# Свип завершается нулём даже когда нашёл расхождение — код возврата тут не сигнал.
-# Проверено на первом же прогоне: матрицы разошлись, а итог отрапортовал «чисто».
-# Поэтому смотрим на сам вывод.
-CVE_OUT="$("$PY" scripts/cve_sweep.py 2>&1)"
-echo "$CVE_OUT"
-if echo "$CVE_OUT" | grep -qE "расхожден|устарел|new CVE|drift"; then
+# Сигнал берётся из кода возврата: 1 — расхождение с osv.dev, 0 — совпадение.
+# Раньше здесь стоял греп по выводу, потому что свип всегда завершался нулём. Греп
+# искал «расхожден» и находил эту подстроку в строке успеха «расхождений нет», так
+# что тревога звучала каждое утро независимо от результата. Причину чинить надо было
+# в свипе, а не в стороже: разбирать прозу вместо кода возврата — само по себе баг.
+if "$PY" scripts/cve_sweep.py; then
+    :
+else
     echo "!! РАСХОЖДЕНИЕ ПО CVE — матрицы разошлись с osv.dev, нужен разбор"
     DRIFT=1
 fi

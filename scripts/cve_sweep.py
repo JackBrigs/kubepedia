@@ -309,6 +309,7 @@ T = {
         "doc_says": "в доке",
         "git_only": "affectedness не проверяется по версии (в osv только git-диапазоны)",
         "unenumerated": "не перечислялись в доке; сейчас на osv.dev",
+        "unenumerated_note": "версий вне матрицы (документ неполон, но osv.dev ему не противоречит)",
         "errors": "запросов не удалось",
         "verdict": "Вердикт",
         "components": "компонентов",
@@ -326,12 +327,46 @@ T = {
         "doc_says": "doc says",
         "git_only": "affectedness not version-resolvable (osv has git ranges only)",
         "unenumerated": "not enumerated in the doc; osv.dev now reports",
+        "unenumerated_note": "versions missing from the matrix (doc incomplete, but osv.dev does not contradict it)",
         "errors": "failed queries",
         "verdict": "Verdict",
         "components": "components",
         "versions": "versions",
     },
 }
+
+
+def tally(results: list[dict]) -> dict:
+    """Сводка прогона — одно место, где решается «есть расхождение или нет».
+
+    Нужна отдельно от вывода, потому что вызывающая сторона обязана узнавать ответ
+    по коду возврата, а не грепом по тексту отчёта. Греп на этом и погорел: сторож
+    в ночном прогоне искал подстроку «расхожден» и находил её в строке успеха
+    «расхождений нет», поэтому тревога звучала каждое утро.
+
+    Расхождение — это разошедшийся счёт, новый CVE или ушедший. Версии, которых в
+    документе нет вовсе, считаются отдельно: матрица неполна, но осв.dev ей не
+    противоречит, и будить человека из-за этого не нужно.
+    """
+    drift = errors = versions = unenumerated = 0
+    for entry in results:
+        if not entry["usable"]:
+            continue
+        for row in entry["rows"]:
+            versions += 1
+            if row.get("error"):
+                errors += 1
+            elif row.get("skipped"):
+                pass
+            elif row["count_drift"]:
+                drift += 1
+            elif row["recorded"] is None:
+                unenumerated += 1
+            else:
+                drift += bool(row["new"]) + bool(row["gone"])
+    return {"drift": drift, "errors": errors, "versions": versions,
+            "unenumerated": unenumerated,
+            "components": sum(1 for e in results if e["usable"])}
 
 
 def render(results: list[dict], lang: str, today: str) -> str:
@@ -381,13 +416,17 @@ def render(results: list[dict], lang: str, today: str) -> str:
         out.append(head)
         out.extend(lines or [f"- ✅ {len(entry['rows'])} {t['versions']} — ok"])
         out.append("")
+    # вердикт считается тем же кодом, что и код возврата, — иначе текст отчёта и
+    # сигнал для автоматики однажды разойдутся
+    s = tally(results)
     out.append(f"## {t['verdict']}")
     out.append("")
-    counted = sum(1 for e in results if e["usable"])
-    out.append(f"{counted} {t['components']}, {versions} {t['versions']}.")
-    if errors:
-        out.append(f"{t['errors']}: {errors}.")
-    out.append(t["drift"] if drift else t["clean"])
+    out.append(f"{s['components']} {t['components']}, {s['versions']} {t['versions']}.")
+    if s["errors"]:
+        out.append(f"{t['errors']}: {s['errors']}.")
+    if s["unenumerated"]:
+        out.append(f"{t['unenumerated_note']}: {s['unenumerated']}.")
+    out.append(t["drift"] if s["drift"] else t["clean"])
     return "\n".join(out) + "\n"
 
 
@@ -410,7 +449,9 @@ def main() -> int:
         return 0
     today = args.today or __import__("datetime").date.today().isoformat()
     print(render(results, args.lang, today))
-    return 0
+    # код возврата — единственный надёжный сигнал для автоматики: 1 означает
+    # расхождение с osv.dev и разбор человеком, 0 — совпадение
+    return 1 if tally(results)["drift"] else 0
 
 
 if __name__ == "__main__":
