@@ -813,6 +813,9 @@
 {"source": "TROUBLE-APISERVER_REQUEST_LATENCY", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-APISERVER_REQUEST_LATENCY", "target": "TROUBLE-APISERVER_APF_429", "type": "see_also"}
 {"source": "TROUBLE-APISERVER_SANS_UNDEFINED_LB_DOMAIN", "target": "TROUBLE-APISERVER_CERT_SAN", "type": "see_also"}
+{"source": "TROUBLE-APT_RELEASE_INFO_CHANGE", "target": "CONCEPT-UBUNTU_24_04_K8S", "type": "see_also"}
+{"source": "TROUBLE-APT_RELEASE_INFO_CHANGE", "target": "PRACTICE-RUNBOOK_ADD_NODES", "type": "see_also"}
+{"source": "TROUBLE-APT_RELEASE_INFO_CHANGE", "target": "TROUBLE-ADD_NODE_GOTCHAS", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "CONCEPT-GITOPS", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "TROUBLE-ADMISSION_WEBHOOK_BLOCKING", "type": "see_also"}
 {"source": "TROUBLE-ARGOCD_APP_OUTOFSYNC", "target": "TROUBLE-RBAC_FORBIDDEN", "type": "see_also"}

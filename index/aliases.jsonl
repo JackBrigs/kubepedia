@@ -169,6 +169,7 @@
 {"alias": "Docker CRI", "ids": ["PRACTICE-DOCKER"]}
 {"alias": "DynamicResourceAllocation", "ids": ["CONCEPT-K8S_DRA"]}
 {"alias": "ErrImagePull", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "Failed to update apt cache", "ids": ["TROUBLE-APT_RELEASE_INFO_CHANGE"]}
 {"alias": "FailedGetResourceMetric", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
 {"alias": "FailedMount", "ids": ["TROUBLE-FAILEDMOUNT"]}
 {"alias": "FailedScheduling", "ids": ["TROUBLE-POD_PENDING_UNSCHEDULABLE"]}
@@ -216,6 +217,7 @@
 {"alias": "RPO RTO", "ids": ["PRACTICE-BACKUP_DR"]}
 {"alias": "RecoverVolumeExpansionFailure", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
 {"alias": "RemoveCgroupV1", "ids": ["CONCEPT-K8S_CGROUP_V1_REMOVAL"]}
+{"alias": "Repository InRelease changed its value", "ids": ["TROUBLE-APT_RELEASE_INFO_CHANGE"]}
 {"alias": "ResourceClaim ResourceSlice DeviceClass", "ids": ["CONCEPT-K8S_DRA"]}
 {"alias": "SERVFAIL external dns", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION"]}
 {"alias": "SNAT masquerade pods", "ids": ["TROUBLE-POD_EGRESS_INTERNET"]}
@@ -229,6 +231,7 @@
 {"alias": "StructuredAuthenticationConfiguration", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHN"]}
 {"alias": "StructuredAuthorizationConfig", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "SystemdCgroup", "ids": ["TROUBLE-CGROUP_DRIVER_MISMATCH"]}
+{"alias": "This must be accepted explicitly before updates for this repository can be applied", "ids": ["TROUBLE-APT_RELEASE_INFO_CHANGE"]}
 {"alias": "Ubuntu 20.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
 {"alias": "Ubuntu 22.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
 {"alias": "Ubuntu 24.04", "ids": ["CONCEPT-UBUNTU_24_04_K8S"]}
@@ -280,6 +283,7 @@
 {"alias": "alertmanager silence not working", "ids": ["TROUBLE-ALERTMANAGER_NOTIFICATIONS"]}
 {"alias": "all nodes down recovery", "ids": ["PRACTICE-RUNBOOK_COLD_START"]}
 {"alias": "all routes 503 at once", "ids": ["TROUBLE-ENVOY_GATEWAY_LEADER_LOSS_503"]}
+{"alias": "allow-releaseinfo-change", "ids": ["TROUBLE-APT_RELEASE_INFO_CHANGE"]}
 {"alias": "allowVolumeExpansion false", "ids": ["TROUBLE-PVC_VOLUME_EXPANSION"]}
 {"alias": "allow_ungraceful_removal", "ids": ["PRACTICE-RUNBOOK_REMOVE_NODE", "VARIABLE-ALLOW_UNGRACEFUL_REMOVAL"]}
 {"alias": "always", "ids": ["TAG-ALWAYS"]}
@@ -331,6 +335,7 @@
 {"alias": "application stuck progressing", "ids": ["TROUBLE-ARGOCD_APP_OUTOFSYNC"]}
 {"alias": "apply extra_args", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
 {"alias": "apps", "ids": ["TAG-APPS"]}
+{"alias": "apt-secure(8) manpage for details", "ids": ["TROUBLE-APT_RELEASE_INFO_CHANGE"]}
 {"alias": "architecture-compatibility", "ids": ["PRACTICE-ARCHITECTURE_COMPATIBILITY"]}
 {"alias": "argo cd security", "ids": ["TROUBLE-ARGOCD_KNOWN_CVES"]}
 {"alias": "argo-cd 0.11 fixed in", "ids": ["TROUBLE-ARGO_CD_0_11_DEFECTS"]}
@@ -848,6 +853,8 @@
 {"alias": "change kube_network_plugin", "ids": ["PRACTICE-RUNBOOK_CNI_MIGRATION"]}
 {"alias": "change kubelet setting safely", "ids": ["PRACTICE-RUNBOOK_CONFIG_CHANGE"]}
 {"alias": "change pod resources without restart", "ids": ["CONCEPT-K8S_IN_PLACE_POD_RESIZE"]}
+{"alias": "changed its Label value from", "ids": ["TROUBLE-APT_RELEASE_INFO_CHANGE"]}
+{"alias": "changed its Origin value from", "ids": ["TROUBLE-APT_RELEASE_INFO_CHANGE"]}
 {"alias": "check", "ids": ["TAG-CHECK"]}
 {"alias": "checksum mismatch download", "ids": ["TROUBLE-DOWNLOAD_FAILS"]}
 {"alias": "chrony", "ids": ["CONFIG-NTP"]}
@@ -3358,6 +3365,7 @@
 {"alias": "kubespray deletes cert-manager namespace", "ids": ["PRACTICE-CERT_MANAGER_SETUP"]}
 {"alias": "kubespray deletes namespace", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "kubespray etcd not kubeadm", "ids": ["CONCEPT-KUBESPRAY_ETCD_OWNERSHIP"]}
+{"alias": "kubespray fails on apt update new node", "ids": ["TROUBLE-APT_RELEASE_INFO_CHANGE"]}
 {"alias": "kubespray hangs check api is up", "ids": ["TROUBLE-DEPLOY_HANGS_WAIT_APISERVER"]}
 {"alias": "kubespray in-cluster registry auth", "ids": ["TROUBLE-REGISTRY_ADDON"]}
 {"alias": "kubespray ingress nginx removed", "ids": ["COMPONENT-INGRESS_NGINX"]}
