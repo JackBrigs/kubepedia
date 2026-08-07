@@ -118,6 +118,28 @@ storage type - fast
 storage space - 120Gb
 ```
 
+**Physical servers use a different form.** Virtual machines are ordered by resource
+size; a physical server is ordered as a machine, so the CPU is named by model, the
+RAID level is stated, and two policy questions are answered explicitly:
+
+```
+project, dc, name and other info
+sc-lux99-x-autotest-kube-node46
+
+resources
+OS - ubuntu 24.04
+CPU details - Intel Xeon 6710E
+RAM - 128 GB
+raid type - 1
+storage space - 960 + Gigabytes
+should storage be encrypted? - Yes
+should external access be enabled? - No
+```
+
+`systemd-detect-virt` decides which form applies: `none` means physical. Encryption
+is answered from the running fleet, not assumed — LUKS on the root partition shows
+up as `crypto_LUKS` in `lsblk -o NAME,FSTYPE`.
+
 A table carries the same fields and is preferred when several configurations are
 being compared side by side:
 
@@ -153,6 +175,11 @@ reporting (it justifies the number), but a new node smaller than its peers makes
 the cluster heterogeneous, which costs more than the capacity saved.
 
 **Swap is not ordered.** kubelet requires it off.
+
+**Memory is stated explicitly, never as "same as the neighbours".** A real fleet
+contains machines that were delivered under-populated: R470 nodes carrying a single
+64 GB module in a sixteen-slot board, where the standard order for that model is
+256 GB. Copying such a node reproduces the defect in the new order.
 
 **Addresses are not part of the hardware spec** but block delivery: free addresses
 in the same subnet must be confirmed by whoever owns the network before the request
