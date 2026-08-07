@@ -101,49 +101,51 @@ and take the next sequence numbers. Example from a real cluster: existing
 `lux99` is the site, `x-test-5` the cluster and the trailing digit the sequence.
 
 **4. Answer as a filled request, nothing else.** The form is the deliverable; prose
-around it is not. Headings and bold labels exactly as below — the requester pastes
-this straight into the ticket, so indentation and stray wrapping break it.
+around it is not. Field names stay exactly as the form writes them, lowercase and
+all — they are not rewritten into prettier labels. Each field line ends with two
+trailing spaces so the line breaks survive pasting.
 
 Physical server:
 
 ```markdown
-# Project Configuration
+# project, dc, name and other info
 
-## Project, DC, Name and Other Info
-- **Hostname:** `sc-lux99-x-autotest-kube-node46`
+sc-lux99-x-autotest-kube-node46
 
-## Resources
-- **OS:** Ubuntu 24.04
-- **CPU:** Intel Xeon 6710E
-- **RAM:** 256 GB
-- **RAID Type:** 1
-- **Storage:** 960 GB
-- **Disk Encryption Required:** Yes
-- **Enable External Access:** No
+# resources
+
+**OS** - ubuntu 24.04
+**CPU details** - Intel Xeon 6710E
+**RAM** - 256 GB
+**raid type** - 1
+**storage space** - 960Gb
+**should storage be encrypted?** - Yes
+**should external access be enabled?** - No
 ```
 
 Virtual machine — same shape, but ordered by resource size rather than by machine,
-so `CPU` becomes a count and the storage tier replaces the RAID level:
+so the CPU is a count and the storage tier replaces the RAID level:
 
 ```markdown
-# Project Configuration
+# project, dc, name and other info
 
-## Project, DC, Name and Other Info
-- **Hostname:** `sc-lux99-x-test-5-kube-node3`
-- **Hostname:** `sc-lux99-x-test-5-kube-node4`
+sc-lux99-x-test-5-kube-node3
+sc-lux99-x-test-5-kube-node4
 
-## Resources
-- **OS:** Ubuntu 24.04
-- **vCPUs:** 12
-- **RAM:** 24 GB
-- **Storage Type:** fast
-- **Storage:** 120 GB
+# resources
+
+**OS** - ubuntu 24.04
+**vCPUs** - 12
+**RAM** - 24 Gb
+**storage type** - fast
+**storage space** - 120Gb
 ```
 
 `systemd-detect-virt` decides which form applies: `none` means physical. Encryption
 is answered from the running fleet, not assumed — LUKS on the root partition shows
 up as `crypto_LUKS` in `lsblk -o NAME,FSTYPE`. External access for a worker node is
-`No` unless the request says otherwise.
+`No` unless the request says otherwise: the form offers both, but a filled request
+carries one answer, not the choice.
 
 **5. Branch when the fleet is not uniform.** If the target nodes differ from each
 other — different CPU, memory, disk count, or a naming scheme that does not extend
