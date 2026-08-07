@@ -3736,6 +3736,7 @@
 {"alias": "node not joining", "ids": ["PRACTICE-KUBEADM_JOIN_FAILURES"]}
 {"alias": "node not joining cluster", "ids": ["TROUBLE-KUBEADM_JOIN_NODE"]}
 {"alias": "node notready pods not rescheduled", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
+{"alias": "node order form", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
 {"alias": "node re-registered under different address", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "node ready false still in endpoints", "ids": ["TROUBLE-KCM_NODE_LIFECYCLE"]}
 {"alias": "node registered with wrong ip", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
@@ -3879,6 +3880,7 @@
 {"alias": "opt/cni/bin owner", "ids": ["VARIABLE-KUBE_OWNER"]}
 {"alias": "opt/cni/bin owner variable", "ids": ["VARIABLE-CNI_BIN_OWNER"]}
 {"alias": "opt/cni/bin unpack only", "ids": ["PRACTICE-CNI_GENERIC_PLUGIN"]}
+{"alias": "order new node", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
 {"alias": "ordered webhooks", "ids": ["CONCEPT-K8S_STRUCTURED_AUTHZ"]}
 {"alias": "orphaned released pv", "ids": ["TROUBLE-PVC_PV_DELETION"]}
 {"alias": "os patching kubernetes node", "ids": ["PRACTICE-RUNBOOK_NODE_MAINTENANCE"]}
@@ -4118,6 +4120,7 @@
 {"alias": "resolvconf", "ids": ["TAG-RESOLVCONF"]}
 {"alias": "resolvconf_mode", "ids": ["TROUBLE-DNS_EXTERNAL_RESOLUTION", "VARIABLE-RESOLVCONF_MODE"]}
 {"alias": "resolveconf_cloud_init_conf", "ids": ["VARIABLE-RESOLVECONF_CLOUD_INIT_CONF"]}
+{"alias": "resource request node", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
 {"alias": "restic kopia backup failed", "ids": ["TROUBLE-VELERO_BACKUP_RESTORE_FAILS"]}
 {"alias": "restic operator", "ids": ["CONCEPT-ADDON_K8UP"]}
 {"alias": "restic unlock k8up", "ids": ["TROUBLE-K8UP_BACKUP_ISSUES"]}
@@ -4808,3 +4811,8 @@
 {"alias": "yq_version", "ids": ["VARIABLE-YQ_VERSION"]}
 {"alias": "yum_repo_dir", "ids": ["VARIABLE-YUM_REPO_DIR"]}
 {"alias": "zalando-postgres-operator", "ids": ["CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR"]}
+{"alias": "заказ нод", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
+{"alias": "заказать сервер", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
+{"alias": "имена нод придумать", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
+{"alias": "какие параметры сервера заказать", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
+{"alias": "спецификация новой ноды", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}

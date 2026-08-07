@@ -679,6 +679,8 @@
 {"source": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "target": "PRACTICE-CLUSTER_HEALTH_CHECKS", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "target": "PRACTICE-GRACEFUL_UPGRADE", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_ORDER_NODES", "target": "PRACTICE-RUNBOOK_ADD_NODES", "type": "see_also"}
+{"source": "PRACTICE-RUNBOOK_ORDER_NODES", "target": "TROUBLE-ADD_NODE_GOTCHAS", "type": "see_also"}
 {"source": "PRACTICE-RUNBOOK_REMOVE_NODE", "target": "PRACTICE-ETCD_BACKUP_RESTORE", "type": "depends_on"}
 {"source": "PRACTICE-RUNBOOK_REMOVE_NODE", "target": "CONCEPT-RUNBOOKS_INDEX", "type": "part_of"}
 {"source": "PRACTICE-RUNBOOK_REMOVE_NODE", "target": "PRACTICE-NODES_ADD_REPLACE", "type": "see_also"}
