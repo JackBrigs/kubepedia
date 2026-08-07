@@ -4,6 +4,29 @@
 
 Преемник ручного «ежевечернего отчёта» базы 0.1.0 (`knowledge-base/reports/nightly/`), заглохшего 2026-07-15.
 
+## 2026-08-07
+
+Потолок базы: **v2.31.0**  (источник апстрим-тегов: remote)
+
+### Новые теги Kubespray за потолком
+
+✅ база на потолке апстрима (v2.31.0)
+
+### Влито в апстрим с 2026-08-06
+
+Триаж за человеком: смотреть те, что трогают роли и плейбуки — они меняют поведение на нодах.
+- `2026-08-06` [#13401](https://github.com/kubernetes-sigs/kubespray/pull/13401) Upgrade cilium from 1.19.6 to 1.20.0
+- `2026-08-06` [#13408](https://github.com/kubernetes-sigs/kubespray/pull/13408) kubelet, crio service: standardize unit file permissions to 0644
+
+### Устаревание (verified_at)
+
+Порог: 180 дн. Просрочено: **0** из 2730 доков.
+CVE-матрицы (17) — самая старая: `kb/troubleshooting/runc-known-cves.md` (2026-07-27, 11 дн. назад). CVE date-sensitive — пере-свип: `python3 scripts/cve_sweep.py`.
+
+### Вердикт
+
+✅ база свежа.
+
 ## 2026-08-06
 
 Потолок базы: **v2.31.0**  (источник апстрим-тегов: remote)
