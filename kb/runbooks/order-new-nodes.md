@@ -101,17 +101,33 @@ and take the next sequence numbers. Example from a real cluster: existing
 `lux99` is the site, `x-test-5` the cluster and the trailing digit the sequence.
 
 **4. Answer in the form's own shape.** The request form is the deliverable; prose
-around it is not. Reproduce its field names and order verbatim:
+around it is not. Reproduce its field names and order verbatim, one field per line:
 
 ```
 project, dc, name and other info
 
-<hostname1><hostname2>
+sc-lux99-x-test-5-kube-node3
+sc-lux99-x-test-5-kube-node4
 
 resources
 
-OS - ubuntu 24.04vCPUs - 12RAM - 24 Gbstorage type - faststorage space - 120Gb
+OS - ubuntu 24.04
+vCPUs - 12
+RAM - 24 Gb
+storage type - fast
+storage space - 120Gb
 ```
+
+A table carries the same fields and is preferred when several configurations are
+being compared side by side:
+
+| field | value |
+|---|---|
+| OS | ubuntu 24.04 |
+| vCPUs | 12 |
+| RAM | 24 Gb |
+| storage type | fast |
+| storage space | 120Gb |
 
 **5. Branch when the fleet is not uniform.** If the target nodes differ from each
 other — different CPU, memory, disk count, or a naming scheme that does not extend
