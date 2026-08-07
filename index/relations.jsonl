@@ -585,6 +585,8 @@
 {"source": "PRACTICE-KUBERNETES_RELIABILITY", "target": "PRACTICE-NODE_NOT_READY", "type": "see_also"}
 {"source": "PRACTICE-LARGE_DEPLOYMENTS", "target": "PRACTICE-GRACEFUL_UPGRADE", "type": "see_also"}
 {"source": "PRACTICE-LARGE_DEPLOYMENTS", "target": "TROUBLE-INOTIFY_FILE_LIMITS", "type": "see_also"}
+{"source": "PRACTICE-MAINTENANCE_NOTICE", "target": "PRACTICE-RUNBOOK_NODE_MAINTENANCE", "type": "see_also"}
+{"source": "PRACTICE-MAINTENANCE_NOTICE", "target": "PRACTICE-RUNBOOK_ORDER_NODES", "type": "see_also"}
 {"source": "PRACTICE-MIGRATE_DOCKER_TO_CONTAINERD", "target": "VARIABLE-CONTAINER_MANAGER", "type": "see_also"}
 {"source": "PRACTICE-MIRROR", "target": "CONFIG-PROXY", "type": "see_also"}
 {"source": "PRACTICE-MIRROR", "target": "PRACTICE-OFFLINE_ENVIRONMENT", "type": "see_also"}

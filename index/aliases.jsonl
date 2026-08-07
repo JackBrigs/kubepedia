@@ -246,6 +246,7 @@
 {"alias": "access denied kubernetes", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "access_ip", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
 {"alias": "acme challenge pending", "ids": ["TROUBLE-CERT_MANAGER_CERTIFICATE_NOT_READY"]}
+{"alias": "action required maintenance", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
 {"alias": "add control plane node", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
 {"alias": "add node", "ids": ["PRACTICE-NODES_ADD_REPLACE"]}
 {"alias": "add node runbook", "ids": ["PRACTICE-RUNBOOK_ADD_NODES"]}
@@ -3496,6 +3497,8 @@
 {"alias": "macvlan cni", "ids": ["COMPONENT-MACVLAN"]}
 {"alias": "macvlan_interface", "ids": ["COMPONENT-MACVLAN", "VARIABLE-MACVLAN_INTERFACE"]}
 {"alias": "main_ip", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
+{"alias": "maintenance", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
+{"alias": "maintenance notice template", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
 {"alias": "manage kubernetes secrets safely", "ids": ["CONCEPT-SECRETS_MANAGEMENT"]}
 {"alias": "manageSystemACLs", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
 {"alias": "manifest unknown", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
@@ -4815,4 +4818,9 @@
 {"alias": "заказать сервер", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
 {"alias": "имена нод придумать", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
 {"alias": "какие параметры сервера заказать", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
+{"alias": "окно обслуживания", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
+{"alias": "планові роботи датацентра", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
+{"alias": "работы провайдера", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
+{"alias": "создай maintenance", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
 {"alias": "спецификация новой ноды", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
+{"alias": "шаблон maintenance", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
