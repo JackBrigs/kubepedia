@@ -213,12 +213,12 @@ def log_gap(query, mode, best_score=0, best_title=""):
 
 
 def load_docs():
+    # Корпус берётся из общего кэша (kdslib.load_corpus): разбор фронтматтера — вся
+    # стоимость запроса, а сам поиск по уже разобранному занимает миллисекунды.
+    # Производные поля в кэш не кладутся: привести 13 МБ текста к нижнему регистру
+    # стоит 10 мс, а хранение удвоило бы размер и время чтения.
     docs = []
-    for path in kdslib.iter_doc_paths(KB):
-        try:
-            fm, _sections, body = kdslib.parse_doc(path)
-        except Exception:
-            continue
+    for path, fm, _sections, body in kdslib.load_corpus(KB):
         if not isinstance(fm, dict) or not fm.get("id"):
             continue
         docs.append({

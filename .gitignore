@@ -19,6 +19,9 @@ __pycache__/
 # upstream source caches (pinned-tag research, never committed)
 src-cache/
 
+# разобранный корпус базы для поиска — производное от kb/, пересобирается сам
+.cache/
+
 # журнал пробелов поиска: сырые запросы (могут содержать имена хостов)
 reports/gaps.jsonl
 reports/nightly/

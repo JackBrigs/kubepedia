@@ -8,6 +8,8 @@ import os
 import re
 import glob
 import datetime
+import hashlib
+import pickle
 
 import yaml
 
@@ -116,6 +118,73 @@ def parse_doc(path):
                     fm[k] = v.isoformat()
     sections = re.findall(r"^##[ \t]+(.+?)[ \t]*$", body, re.M)
     return fm, sections, body
+
+
+# Разбор всей базы стоит ~1.6 с на 2700 документов, и почти всё это — yaml.safe_load
+# фронтматтера. Для ночного прогона это неважно, но поиск по симптому платит ту же
+# секунду на каждый запрос, а его дёргают из диалога по несколько раз подряд. Поэтому
+# разобранный корпус кладётся в pickle рядом с базой.
+#
+# Инвалидация — по подписи из (путь, mtime_ns, размер) всех файлов: обход и stat 2700
+# файлов стоят 11 мс, то есть проверка актуальности дешевле разбора в полтораста раз.
+# Содержимое не хэшируется намеренно: любая правка меняет mtime и размер, а совпадение
+# обоих при изменённом тексте потребовало бы подгонки байт в байт.
+#
+# Кэш — производное от kb/, а не знание: он вне git, его безопасно удалить в любой
+# момент, и при первом же запросе он соберётся заново.
+CORPUS_CACHE_VERSION = 1
+
+
+def corpus_cache_path(kb_root):
+    return os.path.join(os.path.dirname(os.path.abspath(kb_root)), ".cache", "corpus.pkl")
+
+
+def _corpus_signature(paths):
+    h = hashlib.sha1()
+    h.update(f"v{CORPUS_CACHE_VERSION}\n".encode())
+    for p in paths:
+        st = os.stat(p)
+        h.update(f"{p}\0{st.st_mtime_ns}\0{st.st_size}\n".encode())
+    return h.hexdigest()
+
+
+def load_corpus(kb_root):
+    """Вернуть [(path, frontmatter, sections, body)] по всей базе, разобрав её один раз.
+
+    Документы с битым YAML пропускаются: это путь для чтения, а не для проверки —
+    о нарушениях сообщает validate_kds.py, который разбирает базу сам и видит ошибку.
+    """
+    paths = iter_doc_paths(kb_root)
+    sig = _corpus_signature(paths)
+    cache = corpus_cache_path(kb_root)
+    try:
+        with open(cache, "rb") as f:
+            blob = pickle.load(f)
+        if blob.get("sig") == sig:
+            return blob["docs"]
+    except Exception:
+        pass  # нет кэша, старый формат, битый файл — всё лечится пересборкой
+
+    docs = []
+    for path in paths:
+        try:
+            fm, sections, body = parse_doc(path)
+        except Exception:
+            continue
+        docs.append((path, fm, sections, body))
+
+    # Запись через временный файл и rename: два параллельных запроса не должны
+    # оставить наполовину записанный кэш, который следующий запуск примет за целый.
+    try:
+        os.makedirs(os.path.dirname(cache), exist_ok=True)
+        tmp = f"{cache}.{os.getpid()}.tmp"
+        with open(tmp, "wb") as f:
+            pickle.dump({"sig": sig, "docs": docs}, f, protocol=pickle.HIGHEST_PROTOCOL)
+        os.replace(tmp, cache)
+    except Exception:
+        pass  # кэш — ускорение, а не условие работы
+
+    return docs
 
 
 def build_index(kb_root, repo_root):
