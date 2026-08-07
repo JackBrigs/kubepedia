@@ -102,17 +102,19 @@ and take the next sequence numbers. Example from a real cluster: existing
 
 **4. Answer as a filled request, nothing else.** The form is the deliverable; prose
 around it is not. Field names stay exactly as the form writes them, lowercase and
-all — they are not rewritten into prettier labels. Each field line ends with two
+all — they are not rewritten into prettier labels. Section titles are bold, not
+`#` headings: a heading renders underlined in a terminal, which the form does not
+ask for. Each field line ends with two
 trailing spaces so the line breaks survive pasting.
 
 Physical server:
 
 ```markdown
-# project, dc, name and other info
+**project, dc, name and other info**
 
 sc-lux99-x-autotest-kube-node46
 
-# resources
+**resources**
 
 **OS** - ubuntu 24.04
 **CPU details** - Intel Xeon 6710E
@@ -127,12 +129,12 @@ Virtual machine — same shape, but ordered by resource size rather than by mach
 so the CPU is a count and the storage tier replaces the RAID level:
 
 ```markdown
-# project, dc, name and other info
+**project, dc, name and other info**
 
 sc-lux99-x-test-5-kube-node3
 sc-lux99-x-test-5-kube-node4
 
-# resources
+**resources**
 
 **OS** - ubuntu 24.04
 **vCPUs** - 12
