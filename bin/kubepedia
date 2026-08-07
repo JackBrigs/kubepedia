@@ -1,0 +1,31 @@
+#!/bin/sh
+# Запуск базы из любого каталога.
+#
+# Скрипты живут в репозитории и ходят к kb/ по путям относительно себя, поэтому
+# важен не текущий каталог, а место самой ссылки: путь вычисляется от неё, а не
+# от того, где стоит пользователь. Ссылку кладут на PATH:
+#
+#   ln -s "$PWD/bin/kubepedia" ~/.local/bin/kubepedia
+#
+# Интерпретатор берётся из .venv проекта, если он есть: у системного python3
+# может не оказаться PyYAML, и тогда ошибка выглядела бы как поломка базы.
+set -eu
+
+self=$0
+# Разворачиваем цепочку симлинков: ссылка на PATH указывает сюда, а нам нужен репозиторий.
+while [ -L "$self" ]; do
+    link=$(readlink "$self")
+    case $link in
+        /*) self=$link ;;
+        *)  self=$(dirname "$self")/$link ;;
+    esac
+done
+REPO=$(cd "$(dirname "$self")/.." && pwd)
+
+if [ -x "$REPO/.venv/bin/python" ]; then
+    PY="$REPO/.venv/bin/python"
+else
+    PY=$(command -v python3)
+fi
+
+exec "$PY" "$REPO/scripts/kubepedia.py" "$@"

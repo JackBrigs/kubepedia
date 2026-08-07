@@ -38,6 +38,8 @@ CMDS = {
     "defects":  ("gen_defect_docs.py", "документы «исправленные дефекты» по линиям поддержки"),
     "cve-matrix": ("gen_cve_matrix.py", "матрица CVE по версиям из конверта тегов (osv.dev)"),
     "cve":      ("cve_sweep.py",      "периодический пере-свип CVE: сверка матриц базы с osv.dev"),
+    "serve":    ("serve.py",          "резидентная база: веб-чат и HTTP-ручка (--host 0.0.0.0 — видно из локальной сети)"),
+    "bot":      ("bot.py",            "телеграм-бот над базой: доступ с телефона, работает из-за NAT"),
     "validate": ("validate_kds.py",   "KDS validation of the knowledge base"),
     "index":    ("generate_index.py", "regenerate the derived index/ from kb/"),
 }
