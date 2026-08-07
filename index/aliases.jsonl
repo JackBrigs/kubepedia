@@ -169,6 +169,7 @@
 {"alias": "Docker CRI", "ids": ["PRACTICE-DOCKER"]}
 {"alias": "DynamicResourceAllocation", "ids": ["CONCEPT-K8S_DRA"]}
 {"alias": "ErrImagePull", "ids": ["TROUBLE-IMAGEPULLBACKOFF"]}
+{"alias": "ExternalProvisioning", "ids": ["TROUBLE-CSI_PROVISIONER_MISSING_SA"]}
 {"alias": "Failed to update apt cache", "ids": ["TROUBLE-APT_RELEASE_INFO_CHANGE"]}
 {"alias": "FailedGetResourceMetric", "ids": ["TROUBLE-HPA_NOT_SCALING"]}
 {"alias": "FailedMount", "ids": ["TROUBLE-FAILEDMOUNT"]}
@@ -205,6 +206,8 @@
 {"alias": "OrderedNamespaceDeletion", "ids": ["CONCEPT-K8S_ORDERED_NAMESPACE_DELETION"]}
 {"alias": "PLEG is not healthy", "ids": ["TROUBLE-KUBELET_PLEG_NOT_HEALTHY"]}
 {"alias": "PSS", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
+{"alias": "PVC Pending нет событий Provisioning", "ids": ["TROUBLE-CSI_PROVISIONER_MISSING_SA"]}
+{"alias": "PVC висит Pending ceph-block", "ids": ["TROUBLE-CSI_PROVISIONER_MISSING_SA"]}
 {"alias": "PartialObjectMetadata operation not supported", "ids": ["TROUBLE-KCM_RECONCILE_STALLS"]}
 {"alias": "Pod Security Standards", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
 {"alias": "PodSecurity", "ids": ["CONCEPT-POD_SECURITY_STANDARDS"]}
@@ -1565,6 +1568,7 @@
 {"alias": "crun_runtime", "ids": ["VARIABLE-CRUN_RUNTIME"]}
 {"alias": "crun_version", "ids": ["VARIABLE-CRUN_VERSION"]}
 {"alias": "csi drivers kubespray", "ids": ["CONCEPT-CSI_LAYER"]}
+{"alias": "csi provisioner не создаёт том", "ids": ["TROUBLE-CSI_PROVISIONER_MISSING_SA"]}
 {"alias": "csi sidecars", "ids": ["CONCEPT-CSI_LAYER"]}
 {"alias": "csi snapshot backup", "ids": ["CONCEPT-VELERO"]}
 {"alias": "csi-cephfs", "ids": ["CONCEPT-ADDON_CEPH_CSI_CEPHFS"]}
@@ -1584,6 +1588,7 @@
 {"alias": "csi_snapshotter_image_repo", "ids": ["VARIABLE-CSI_SNAPSHOTTER_IMAGE_REPO"]}
 {"alias": "csi_snapshotter_image_tag", "ids": ["VARIABLE-CSI_SNAPSHOTTER_IMAGE_TAG"]}
 {"alias": "csv pending", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
+{"alias": "ctrlplugin forbidden serviceaccount", "ids": ["TROUBLE-CSI_PROVISIONER_MISSING_SA"]}
 {"alias": "custom apiserver flags", "ids": ["CONFIG-FEATURE_GATES_AND_FLAGS"]}
 {"alias": "custom cni without kubespray", "ids": ["PRACTICE-CNI_GENERIC_PLUGIN"]}
 {"alias": "custom flags kubespray", "ids": ["CONCEPT-ESCAPE_HATCHES"]}
@@ -4155,6 +4160,7 @@
 {"alias": "rook-ceph", "ids": ["CONCEPT-ADDON_ROOK_CEPH"]}
 {"alias": "rook-ceph-cluster", "ids": ["CONCEPT-ADDON_ROOK_CEPH"]}
 {"alias": "rook-ceph-cluster upgrade fails", "ids": ["TROUBLE-ROOK_CEPH_UPGRADE_SC_IMMUTABLE"]}
+{"alias": "rook-ceph.rbd.csi.ceph.com не обрабатывает PVC", "ids": ["TROUBLE-CSI_PROVISIONER_MISSING_SA"]}
 {"alias": "rook-operator", "ids": ["CONCEPT-ADDON_ROOK_CEPH"]}
 {"alias": "rotate etcd certs", "ids": ["PRACTICE-RUNBOOK_CERT_ROTATION"]}
 {"alias": "rotate-server-certificates", "ids": ["TROUBLE-KUBELET_SERVING_CERT_ROTATION"]}
@@ -4264,6 +4270,7 @@
 {"alias": "service not working", "ids": ["TROUBLE-SERVICE_NO_ENDPOINTS"]}
 {"alias": "serviceaccount forbidden", "ids": ["TROUBLE-RBAC_FORBIDDEN"]}
 {"alias": "serviceaccount has no secret", "ids": ["TROUBLE-K8S_SA_SECRET_TOKEN_REMOVED"]}
+{"alias": "serviceaccount rbd-ctrlplugin-sa not found", "ids": ["TROUBLE-CSI_PROVISIONER_MISSING_SA"]}
 {"alias": "servicelevelobjective crd", "ids": ["TROUBLE-PYRRA"]}
 {"alias": "servicemonitor no metrics", "ids": ["TROUBLE-PROMETHEUS_TARGET_DOWN"]}
 {"alias": "services", "ids": ["TAG-SERVICES"]}
@@ -4712,6 +4719,7 @@
 {"alias": "vxlan-mtu-mismatch", "ids": ["TROUBLE-VXLAN_MTU_MISMATCH"]}
 {"alias": "waitforfirstconsumer", "ids": ["TROUBLE-PVC_PENDING_NO_STORAGECLASS"]}
 {"alias": "waitforfirstconsumer pvc pending", "ids": ["TROUBLE-PVC_PENDING_NO_PROVISIONER"]}
+{"alias": "waiting for a volume to be created by external provisioner", "ids": ["TROUBLE-CSI_PROVISIONER_MISSING_SA"]}
 {"alias": "waiting for apiserver healthz init", "ids": ["TROUBLE-DEPLOY_HANGS_WAIT_APISERVER"]}
 {"alias": "waiting for the kubelet to boot up the control plane", "ids": ["TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK"]}
 {"alias": "watchlist streaming list", "ids": ["TROUBLE-APISERVER_MEMORY_LISTS"]}

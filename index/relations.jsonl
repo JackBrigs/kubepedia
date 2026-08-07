@@ -1155,6 +1155,8 @@
 {"source": "TROUBLE-CRUN_1_27_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CRUN_1_4_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
 {"source": "TROUBLE-CRUN_1_8_DEFECTS", "target": "CONCEPT-UPGRADE_HORIZON", "type": "see_also"}
+{"source": "TROUBLE-CSI_PROVISIONER_MISSING_SA", "target": "CONCEPT-ADDON_ROOK_CEPH", "type": "see_also"}
+{"source": "TROUBLE-CSI_PROVISIONER_MISSING_SA", "target": "TROUBLE-NODE_LOCAL_PVC_DRAIN", "type": "see_also"}
 {"source": "TROUBLE-DEPLOY_HANGS_WAIT_APISERVER", "target": "CONCEPT-KUBESPRAY_KUBEADM_SEAM", "type": "see_also"}
 {"source": "TROUBLE-DEPLOY_HANGS_WAIT_APISERVER", "target": "TROUBLE-CGROUP_DRIVER_MISMATCH", "type": "see_also"}
 {"source": "TROUBLE-DEPLOY_HANGS_WAIT_APISERVER", "target": "TROUBLE-KUBEADM_UPGRADE_HEALTH_CHECK", "type": "see_also"}
