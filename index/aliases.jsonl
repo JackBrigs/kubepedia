@@ -297,6 +297,7 @@
 {"alias": "anonymous authentication config", "ids": ["CONFIG-APISERVER_AUTHENTICATION_CONFIG"]}
 {"alias": "ansible automation platform", "ids": ["PRACTICE-AWX"]}
 {"alias": "ansible awx", "ids": ["CONCEPT-ADDON_AWX"]}
+{"alias": "ansible role conventions", "ids": ["PRACTICE-ANSIBLE_ROLE_RULES"]}
 {"alias": "ansible usage", "ids": ["PRACTICE-ANSIBLE"]}
 {"alias": "ansible vs kubeadm error", "ids": ["CONCEPT-KUBESPRAY_KUBEADM_SEAM"]}
 {"alias": "ansible_default_ipv4", "ids": ["CONCEPT-KUBESPRAY_NODE_IP"]}
@@ -1219,6 +1220,7 @@
 {"alias": "conntrack-table-full", "ids": ["TROUBLE-CONNTRACK_TABLE_FULL"]}
 {"alias": "conntrack_modules", "ids": ["VARIABLE-CONNTRACK_MODULES"]}
 {"alias": "consistent reads from cache", "ids": ["CONCEPT-K8S_CONSISTENT_READS_CACHE"]}
+{"alias": "consul", "ids": ["CONCEPT-CONSUL_LOCAL"]}
 {"alias": "consul acl permission denied loop", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
 {"alias": "consul bootstrap token secret", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
 {"alias": "consul chart 2.0 breaking changes", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
@@ -1230,6 +1232,8 @@
 {"alias": "consul injector blocks pod creation", "ids": ["TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK"]}
 {"alias": "consul leave_on_terminate", "ids": ["TROUBLE-CONSUL_SERVER_QUORUM"]}
 {"alias": "consul lost quorum", "ids": ["TROUBLE-CONSUL_SERVER_QUORUM"]}
+{"alias": "consul maint", "ids": ["CONCEPT-CONSUL_LOCAL"]}
+{"alias": "consul maintenance", "ids": ["CONCEPT-CONSUL_LOCAL"]}
 {"alias": "consul no cluster leader", "ids": ["TROUBLE-CONSUL_SERVER_QUORUM"]}
 {"alias": "consul on kubernetes", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
 {"alias": "consul pods stuck pending admission", "ids": ["TROUBLE-CONSUL_CONNECT_INJECT_WEBHOOK"]}
@@ -1239,6 +1243,7 @@
 {"alias": "consul server-acl-init fails", "ids": ["TROUBLE-CONSUL_ACL_BOOTSTRAP"]}
 {"alias": "consul service mesh k8s", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
 {"alias": "consul values boolean string field", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
+{"alias": "consul датацентр", "ids": ["CONCEPT-CONSUL_LOCAL"]}
 {"alias": "consul-k8s", "ids": ["CONCEPT-CONSUL_ON_K8S"]}
 {"alias": "consul-k8s 0.9 fixed in", "ids": ["TROUBLE-CONSUL_K8S_0_9_DEFECTS"]}
 {"alias": "consul-k8s 0.9 known issues", "ids": ["TROUBLE-CONSUL_K8S_0_9_DEFECTS"]}
@@ -1261,6 +1266,7 @@
 {"alias": "consul-k8s 1.8 fixed in", "ids": ["TROUBLE-CONSUL_K8S_1_8_DEFECTS"]}
 {"alias": "consul-k8s 1.8 known issues", "ids": ["TROUBLE-CONSUL_K8S_1_8_DEFECTS"]}
 {"alias": "consul-k8s 2.0 upgrade", "ids": ["TROUBLE-CONSUL_UPGRADE_1X_TO_2X"]}
+{"alias": "consul_envoy_gateway", "ids": ["CONCEPT-CONSUL_LOCAL"]}
 {"alias": "container engine kubespray", "ids": ["CONCEPT-CONTAINER_MANAGER"]}
 {"alias": "container keeps restarting", "ids": ["TROUBLE-CRASHLOOPBACKOFF"]}
 {"alias": "container killed memory limit", "ids": ["TROUBLE-OOMKILLED"]}
@@ -1642,6 +1648,7 @@
 {"alias": "destructive tasks kubespray", "ids": ["CONCEPT-DESTRUCTIVE_ACTIONS"]}
 {"alias": "devices.kubevirt.io/kvm", "ids": ["CONCEPT-ADDON_KVM_DEVICE_PLUGIN"]}
 {"alias": "devices.kubevirt.io/kvm zero", "ids": ["TROUBLE-KVM_DEVICE_PLUGIN"]}
+{"alias": "devrules", "ids": ["CONCEPT-LOCAL_SOURCES", "PRACTICE-ANSIBLE_ROLE_RULES"]}
 {"alias": "dex", "ids": ["CONCEPT-ADDON_DEX"]}
 {"alias": "dex 0.23.0", "ids": ["CONCEPT-ADDON_DEX"]}
 {"alias": "dex connector error", "ids": ["TROUBLE-DEX_OIDC_LOGIN_FAILS"]}
@@ -2549,6 +2556,7 @@
 {"alias": "insecure defaults", "ids": ["CONCEPT-INSECURE_DEFAULTS"]}
 {"alias": "insecure registry containerd", "ids": ["TROUBLE-CONTAINERD_REGISTRY_CONFIG"]}
 {"alias": "install order cert-manager first", "ids": ["TROUBLE-WEBHOOK_CERT_MANAGER_ORDERING"]}
+{"alias": "install- префикс роли", "ids": ["PRACTICE-ANSIBLE_ROLE_RULES"]}
 {"alias": "installed addons", "ids": ["CONCEPT-ADDON_CATALOG"]}
 {"alias": "installplan requires approval", "ids": ["TROUBLE-OLM_SUBSCRIPTION"]}
 {"alias": "instance video: no matching devices available", "ids": ["TROUBLE-TUNED_VM_WARNING_NOISE"]}
@@ -3451,6 +3459,7 @@
 {"alias": "loadbalancer_apiserver_memory_requests", "ids": ["VARIABLE-LOADBALANCER_APISERVER_MEMORY_REQUESTS"]}
 {"alias": "loadbalancer_apiserver_pod_name", "ids": ["VARIABLE-LOADBALANCER_APISERVER_POD_NAME"]}
 {"alias": "loadbalancer_apiserver_type", "ids": ["VARIABLE-LOADBALANCER_APISERVER_TYPE"]}
+{"alias": "local documentation register", "ids": ["CONCEPT-LOCAL_SOURCES"]}
 {"alias": "local-path data loss remove node", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "local-path pvc node drain", "ids": ["TROUBLE-NODE_LOCAL_PVC_DRAIN"]}
 {"alias": "local-path-provisioner", "ids": ["COMPONENT-LOCAL_PATH_PROVISIONER", "TAG-LOCAL_PATH_PROVISIONER"]}
@@ -3981,6 +3990,7 @@
 {"alias": "preflight failed", "ids": ["TROUBLE-KUBESPRAY_PREFLIGHT_FAILS"]}
 {"alias": "preinstall", "ids": ["TAG-PREINSTALL"]}
 {"alias": "preinstall_selinux_state", "ids": ["VARIABLE-PREINSTALL_SELINUX_STATE"]}
+{"alias": "prepared query consul", "ids": ["CONCEPT-CONSUL_LOCAL"]}
 {"alias": "privileged pod forbidden namespace", "ids": ["TROUBLE-PSA_BLOCKS_PRIVILEGED_WORKLOAD"]}
 {"alias": "progressive delivery", "ids": ["CONCEPT-ADDON_FLAGGER"]}
 {"alias": "prometheus alertmanager", "ids": ["CONCEPT-ADDON_ALERTMANAGER"]}
@@ -4481,6 +4491,7 @@
 {"alias": "tbot not renewing certs", "ids": ["TROUBLE-TBOT"]}
 {"alias": "tbot output config", "ids": ["TROUBLE-TBOT"]}
 {"alias": "tbot proxy address", "ids": ["TROUBLE-TBOT"]}
+{"alias": "team conventions", "ids": ["CONCEPT-LOCAL_SOURCES"]}
 {"alias": "tear down cluster kubespray", "ids": ["PRACTICE-RUNBOOK_RESET"]}
 {"alias": "teleport bot", "ids": ["CONCEPT-ADDON_TBOT"]}
 {"alias": "teleport machine id", "ids": ["CONCEPT-ADDON_TBOT"]}
@@ -4814,13 +4825,23 @@
 {"alias": "yq_version", "ids": ["VARIABLE-YQ_VERSION"]}
 {"alias": "yum_repo_dir", "ids": ["VARIABLE-YUM_REPO_DIR"]}
 {"alias": "zalando-postgres-operator", "ids": ["CONCEPT-ADDON_ZALANDO_POSTGRES_OPERATOR"]}
+{"alias": "вывод ноды из consul", "ids": ["CONCEPT-CONSUL_LOCAL"]}
+{"alias": "где лежат конвенции команды", "ids": ["CONCEPT-LOCAL_SOURCES"]}
 {"alias": "заказ нод", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
 {"alias": "заказать сервер", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
 {"alias": "имена нод придумать", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
+{"alias": "именование ролей", "ids": ["PRACTICE-ANSIBLE_ROLE_RULES"]}
+{"alias": "как писать роли ansible", "ids": ["PRACTICE-ANSIBLE_ROLE_RULES"]}
+{"alias": "как пишут роли в команде", "ids": ["CONCEPT-LOCAL_SOURCES"]}
 {"alias": "какие параметры сервера заказать", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
+{"alias": "написать плейбук", "ids": ["PRACTICE-ANSIBLE_ROLE_RULES"]}
+{"alias": "нода не в каталоге consul", "ids": ["CONCEPT-CONSUL_LOCAL"]}
 {"alias": "окно обслуживания", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
+{"alias": "переменные роли префикс", "ids": ["PRACTICE-ANSIBLE_ROLE_RULES"]}
 {"alias": "планові роботи датацентра", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
+{"alias": "правила разработки ansible", "ids": ["CONCEPT-LOCAL_SOURCES", "PRACTICE-ANSIBLE_ROLE_RULES"]}
 {"alias": "работы провайдера", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
+{"alias": "соглашения репозитория плейбуков", "ids": ["CONCEPT-LOCAL_SOURCES"]}
 {"alias": "создай maintenance", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
 {"alias": "спецификация новой ноды", "ids": ["PRACTICE-RUNBOOK_ORDER_NODES"]}
 {"alias": "шаблон maintenance", "ids": ["PRACTICE-MAINTENANCE_NOTICE"]}
