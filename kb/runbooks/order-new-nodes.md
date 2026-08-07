@@ -100,56 +100,50 @@ and take the next sequence numbers. Example from a real cluster: existing
 `sc-lux99-x-test-5-kube-node1` and `-node2` yield `-node3` and `-node4`, where
 `lux99` is the site, `x-test-5` the cluster and the trailing digit the sequence.
 
-**4. Answer in the form's own shape.** The request form is the deliverable; prose
-around it is not. Reproduce its field names and order verbatim, one field per line:
+**4. Answer as a filled request, nothing else.** The form is the deliverable; prose
+around it is not. Headings and bold labels exactly as below — the requester pastes
+this straight into the ticket, so indentation and stray wrapping break it.
 
+Physical server:
+
+```markdown
+# Project Configuration
+
+## Project, DC, Name and Other Info
+- **Hostname:** `sc-lux99-x-autotest-kube-node46`
+
+## Resources
+- **OS:** Ubuntu 24.04
+- **CPU:** Intel Xeon 6710E
+- **RAM:** 256 GB
+- **RAID Type:** 1
+- **Storage:** 960 GB
+- **Disk Encryption Required:** Yes
+- **Enable External Access:** No
 ```
-project, dc, name and other info
 
-sc-lux99-x-test-5-kube-node3
-sc-lux99-x-test-5-kube-node4
+Virtual machine — same shape, but ordered by resource size rather than by machine,
+so `CPU` becomes a count and the storage tier replaces the RAID level:
 
-resources
+```markdown
+# Project Configuration
 
-OS - ubuntu 24.04
-vCPUs - 12
-RAM - 24 Gb
-storage type - fast
-storage space - 120Gb
-```
+## Project, DC, Name and Other Info
+- **Hostname:** `sc-lux99-x-test-5-kube-node3`
+- **Hostname:** `sc-lux99-x-test-5-kube-node4`
 
-**Physical servers use a different form.** Virtual machines are ordered by resource
-size; a physical server is ordered as a machine, so the CPU is named by model, the
-RAID level is stated, and two policy questions are answered explicitly:
-
-```
-project, dc, name and other info
-sc-lux99-x-autotest-kube-node46
-
-resources
-OS - ubuntu 24.04
-CPU details - Intel Xeon 6710E
-RAM - 128 GB
-raid type - 1
-storage space - 960 + Gigabytes
-should storage be encrypted? - Yes
-should external access be enabled? - No
+## Resources
+- **OS:** Ubuntu 24.04
+- **vCPUs:** 12
+- **RAM:** 24 GB
+- **Storage Type:** fast
+- **Storage:** 120 GB
 ```
 
 `systemd-detect-virt` decides which form applies: `none` means physical. Encryption
 is answered from the running fleet, not assumed — LUKS on the root partition shows
-up as `crypto_LUKS` in `lsblk -o NAME,FSTYPE`.
-
-A table carries the same fields and is preferred when several configurations are
-being compared side by side:
-
-| field | value |
-|---|---|
-| OS | ubuntu 24.04 |
-| vCPUs | 12 |
-| RAM | 24 Gb |
-| storage type | fast |
-| storage space | 120Gb |
+up as `crypto_LUKS` in `lsblk -o NAME,FSTYPE`. External access for a worker node is
+`No` unless the request says otherwise.
 
 **5. Branch when the fleet is not uniform.** If the target nodes differ from each
 other — different CPU, memory, disk count, or a naming scheme that does not extend
